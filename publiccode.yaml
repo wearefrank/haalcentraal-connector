@@ -1,0 +1,62 @@
+publiccodeYmlVersion: "0.2"
+# Instructies: https://github.com/OpenCatalogi/OpenCatalogiBundle/blob/main/docs/Publiccode.md
+name: {{ cookiecutter.instance_name }}
+url: "https://github.com/wearefrank/{{ cookiecutter.instance_name }}.git"
+softwareVersion: "6.7.5"    # Optional
+releaseDate: 2023-08-14
+applicationSuite: frankframework
+platforms:
+  - frankframework
+
+categories:
+  - translation
+  - integration
+  - migration
+
+developmentStatus: stable
+
+softwareType: "standalone/other"
+
+description:
+  en:
+    shortDescription: >
+      The {{ cookiecutter.instance_name }} component is an integration component.
+          
+    longDescription: >
+      The {{ cookiecutter.instance_name }} component is an integration component.
+
+    features:
+       - Statelessness
+       - Atomicity
+       - Loose Coupling
+       - Error Tracking
+       - Standardized Interface
+
+legal:
+  license: European Union Public License 1.2
+
+maintenance:
+  type: "community"
+
+  contacts:
+    - name: Sander Bult
+
+localisation:
+  localisationReady: true
+  availableLanguages:
+    - en
+# De Nederlandse uitbreiding op de Common Ground standaard
+nl:
+  countryExtensionVersion: "1.0"
+  commonground:
+  - layerType: "integration"
+  - installationType: "docker"
+  - intendedOrganisations: "https://github.com/wearefrank"
+  gemma:
+    bedrijfsfuncties:
+      - "sadsad"
+      - "sadsad"
+    bedrijfsservices:
+      - "sadsad"
+      - "sadsad"
+    applicatiefunctie: "referentie component"

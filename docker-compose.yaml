@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  frank:
+    build: .
+    image: wearefrank/{{ cookiecutter.instance_name_lc }}:${VERSION:-latest}
+    ports:
+      - "${PORT:-8080}:8080"
+    environment:
+      application.server.type.custom: ${TRANSACTION_MANAGER:-NARAYANA}
+      credentialFactory.class: nl.nn.credentialprovider.PropertyFileCredentialFactory
+      credentialFactory.map.properties: /opt/frank/secrets/credentials.properties
+      TZ: ${TIME_ZONE:-Europe/Amsterdam}
+    env_file:
+      - .env
+    volumes:
+      - ${SECRETS_PATH:-./src/main/secrets}:/opt/frank/secrets
+    restart: unless-stopped
+
