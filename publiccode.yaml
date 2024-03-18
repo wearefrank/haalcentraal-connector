@@ -1,7 +1,7 @@
 publiccodeYmlVersion: "0.2"
 # Instructies: https://github.com/OpenCatalogi/OpenCatalogiBundle/blob/main/docs/Publiccode.md
-name: {{ cookiecutter.instance_name }}
-url: "https://github.com/wearefrank/{{ cookiecutter.instance_name }}.git"
+name: HaalCentraal Connector
+url: "https://github.com/wearefrank/HaalCentraal Connector.git"
 softwareVersion: "6.7.5"    # Optional
 releaseDate: 2023-08-14
 applicationSuite: frankframework
@@ -20,10 +20,10 @@ softwareType: "standalone/other"
 description:
   en:
     shortDescription: >
-      The {{ cookiecutter.instance_name }} component is an integration component.
+      The HaalCentraal Connector component is an integration component.
           
     longDescription: >
-      The {{ cookiecutter.instance_name }} component is an integration component.
+      The HaalCentraal Connector component is an integration component.
 
     features:
        - Statelessness

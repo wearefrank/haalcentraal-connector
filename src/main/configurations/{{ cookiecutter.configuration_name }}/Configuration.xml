@@ -1,7 +1,0 @@
-<!DOCTYPE Configuration [
-	<!ENTITY zaaktype_update SYSTEM "./configuration_catalogi_zaaktype_update.xml">
-	]>
-
-<Configuration name="{{ cookiecutter.configuration_name }}">
-	&zaaktype_update;
-</Configuration>

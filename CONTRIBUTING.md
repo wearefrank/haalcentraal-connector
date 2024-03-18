@@ -1,8 +1,7 @@
 # Deliverables
 
 This project builds the following artifacts:
-* A docker image that can be used to run this application stand-alone.
-* A .jar file with only the Frank configuration of this project. The .jar file can be uploaded in het-integratie-platform, see https://github.com/wearefrank/het-integratie-platform. 
+* A docker image that can be used to run this application stand-alone. 
 
 # CI/CD
 
@@ -33,12 +32,12 @@ Here is a checklist for testing the CI/CD.
 * Do a commit on main that has a commit message starting with `fix:`. The following should happen:
   * The pipeline succeeds - this checks all authorizations are in place.
   * A commit with a message starting with `chore:` has been added automatically.
-  * The extra commit updates files `src/main/resources/BuildInfo.properties`, `configurations/{{ cookiecutter.configuration_name }}/BuildInfo.properties`, `publiccode.yaml` and `CHANGELOG.md`.
+  * The extra commit updates files `src/main/resources/BuildInfo.properties`, `configurations/brp-personen-bevragen-client/BuildInfo.properties`, `publiccode.yaml` and `CHANGELOG.md`.
   * These files should have trustworthy contents - speaks for itself.
   * On GitHub, there is a tag for the new version that starts with `v`. For example if the new release is `3.2.1` then the tag should be `v3.2.1`. You can get this tag using `git fetch origin` on the command line.
   * The docker image for the release has been created on http://www.dockerhub.com. The `latest` tag should have been updated - creation time should be the current time. Depending on the type of release, the `3.2.1`, the `3.2` or the `3` tags should be the current date.
   * Check on dockerhub that tags that should not have been updated do not have the current time as creation time.
-  * Run the docker image using `docker run -p 8080:8080 wearefrank/{{ cookiecutter.configuration_name }}:3.2.1`. Check the name of the docker container you started using `docker ps -a`. Login to the docker container using `docker exec -it <container name> bash`. Check that `/opt/frank/resources/BuildInfo.properties` and `/opt/frank/configurations/{{ cookiecutter.configuration_name }}/BuildInfo.properties` contain the right version and the right date.
+  * Run the docker image using `docker run -p 8080:8080 wearefrank/brp-personen-bevragen-client:3.2.1`. Check the name of the docker container you started using `docker ps -a`. Login to the docker container using `docker exec -it <container name> bash`. Check that `/opt/frank/resources/BuildInfo.properties` and `/opt/frank/configurations/brp-personen-bevragen-client/BuildInfo.properties` contain the right version and the right date.
 * Check a breaking change like above. This should update the major version.
 * Do a commit with \[skip ci\] in the commit message. It should not make a release and it should not push a docker image.
 * Make a pull request. Check that no release is made and that no docker image is pushed.

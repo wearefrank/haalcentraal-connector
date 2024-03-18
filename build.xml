@@ -1,5 +1,5 @@
-<project default="restart-{{ cookiecutter.instance_name }}">
-    <target name="restart-{{ cookiecutter.instance_name }}">
+<project default="restart-HaalCentraal Connector">
+    <target name="restart-HaalCentraal Connector">
         <basename property="project.dir" file="${basedir}"/>
         <condition property="exe" value="../frank-runner/restart.bat" else="/bin/bash">
             <os family="windows"/>

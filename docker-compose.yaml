@@ -3,7 +3,7 @@ version: '3.8'
 services:
   frank:
     build: .
-    image: wearefrank/{{ cookiecutter.instance_name_lc }}:${VERSION:-latest}
+    image: wearefrank/haalcentraal-connector:${VERSION:-latest}
     ports:
       - "${PORT:-8080}:8080"
     environment:

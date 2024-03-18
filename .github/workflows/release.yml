@@ -1,4 +1,3 @@
-{% raw %}
 name: Release
 
 on:
@@ -101,4 +100,3 @@ jobs:
       dockerhub-token: ${{ secrets.DOCKERHUB_TOKEN }}
     with:
       version: ${{ needs.analyze-commits.outputs.version-next }}
-{% endraw %}
