@@ -1,0 +1,26 @@
+{
+  "name": "haalcentraal-connector",
+  "version": "1.0.0",
+  "description": "Build configuration from template: `node ./tools/templating/brp-personen-bevragen-client/brp-personen-bevragen-client.js`",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wearefrank/haalcentraal-connector.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wearefrank/haalcentraal-connector/issues"
+  },
+  "homepage": "https://github.com/wearefrank/haalcentraal-connector#readme",
+  "dependencies": {
+    "handlebars": "^4.7.8"
+  }
+}

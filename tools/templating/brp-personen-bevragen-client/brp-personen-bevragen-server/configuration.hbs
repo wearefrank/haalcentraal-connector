@@ -1,0 +1,11 @@
+<!DOCTYPE Configuration [
+	{{~#each modules}}
+	<!ENTITY {{{name}}} SYSTEM "{{{path}}}">
+	{{~/each}}
+	]>
+
+<Configuration name="{{{name}}}">
+	{{~#each modules}}
+	&{{{name}}};
+	{{~/each}}
+</Configuration>

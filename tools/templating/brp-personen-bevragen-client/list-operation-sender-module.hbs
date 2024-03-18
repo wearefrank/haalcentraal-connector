@@ -1,0 +1,73 @@
+<Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+    <Adapter name="{{ adapter.name }}"
+        active="{{ literal '${' }}{{{ adapter.name }}}.active{{ literal '}' }}"
+        description="{{{ adapter.description }}}">
+
+        <Receiver name="{{ adapter.name }}">
+            <JavaListener name="{{ adapter.name }}" />
+        </Receiver>
+        
+        <Pipeline>
+            <Exits>
+                <Exit name="EXIT" state="SUCCESS" />
+                <Exit name="EXCEPTION" state="ERROR" />
+            </Exits>
+
+            <JwtPipe
+                name="create-jwt"
+                expirationTime="600"
+                storeResultInSessionKey="jwtToken"
+                ifParam="valueAuthType"
+                ifValue="Jwt"
+                >
+                <Param name="valueAuthType" value="{{ literal '${' }}zaakbrug.zgw.{{api}}.auth-type{{ literal '}' }}" />
+                <Param name="sharedSecret" pattern="{password}" authAlias="{{ literal '${' }}zaakbrug.zgw.{{api}}.auth-alias{{ literal '}' }}" hidden="true"/>
+                <Param name="client_id" pattern="{username}" authAlias="{{ literal '${' }}zaakbrug.zgw.{{api}}.auth-alias{{ literal '}' }}" hidden="true"/>
+                <Param name="user_id" pattern="{username}" authAlias="{{ literal '${' }}zaakbrug.zgw.{{api}}.auth-alias{{ literal '}' }}" hidden="true"/>
+                <Param name="user_reresentation" pattern="{username}" authAlias="{{ literal '${' }}zaakbrug.zgw.{{api}}.auth-alias{{ literal '}' }}" hidden="true"/>
+            </JwtPipe>
+
+			<SenderPipe
+                name="{{ adapter.sender.name }}-sender"
+                getInputFromFixedValue="&lt;dummy/&gt;"
+                >
+				<HttpSender 
+					name="{{ adapter.sender.name }}-httpsender" 
+					methodType="GET"
+					headersParams="Authorization,Accept-Crs"
+                    timeout="{{ literal '${' }}zaakbrug.zgw.{{api}}.timeout{{ literal '}' }}"
+                    parametersToSkipWhenEmpty="*"
+				    />
+                <Param name="url" value="{{ literal '${' }}zaakbrug.zgw.zaken-api.root-url{{ literal '}' }}{{ path }}" />
+                {{#each adapter.sender.params}}
+                <!-- {{{ description }}} -->
+                <Param name="{{ name }}" sessionKey="{{ name }}" />
+		        {{/each}}
+                <Param name="Accept-Crs" value="EPSG:4326" />
+                <Param name="Authorization" value="Bearer @@zaken-api.jwt@@" hidden="true" />
+                <Forward name="success" path="JsonToXml" />
+                <Forward name="exception" path="ErrorJsonToXml" />
+			</SenderPipe>
+
+            <JsonPipe name="ErrorJsonToXml" />
+
+            <XsltPipe
+                name="BuildErrorMsg"
+                styleSheetName="Zgw/Common/ParseNegativeHttpResult.xsl"
+                >
+                <Param name="senderPipeName" value="{{ adapter.sender.name }}-sender" />
+                <Forward name="success" path="EXCEPTION" />
+            </XsltPipe>
+
+            <JsonPipe name="JsonToXml" />
+
+            <XsltPipe
+                name="UnwrapOpenZaakApiEnvelopeToList"
+                styleSheetName="Zgw/Common/UnwrapOpenZaakApiEnvelopeToList.xslt"
+                >
+                <Param name="Type" value="{{ adapter.object-type }}" />
+                <Param name="List" value="{{ adapter.collection }}" />
+            </XsltPipe>
+        </Pipeline>
+    </Adapter>
+</Module>
