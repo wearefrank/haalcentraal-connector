@@ -1,0 +1,19 @@
+<Module
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+    <Adapter name="brpPersonenProxy">
+        <Receiver name="BrpRequestReceiver">
+            <ApiListener
+                name="BrpRequestListener"
+                uriPattern="brplistener"
+                method="POST"
+                headerParams="X-API-KEY"
+                />
+        </Receiver>
+        <Pipeline>
+            <SenderPipe getInputFromSessionKey="originalMessage" name="requestProxyPipe">
+                <IbisLocalSender javaListener="BRP Personen Bevragen"><Param name="X-API-KEY" sessionKey="headers" xpathExpression="/headers/header[@name = 'X-API-KEY']/text()"/></IbisLocalSender>
+            </SenderPipe>
+        </Pipeline>
+    </Adapter>
+</Module>
