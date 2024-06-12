@@ -1,0 +1,11 @@
+<!DOCTYPE Configuration [
+	<!ENTITY brp-personen_subscribe SYSTEM "configuration-brp-personen_subscribe.xml">
+	<!ENTITY brp-personen_update SYSTEM "configuration-brp-personen_update.xml">
+	<!ENTITY brp-personen_query_sender SYSTEM "configuration-brp-personen_query_sender.xml">
+	]>
+
+<Configuration name="subscription-management-and-processing">
+	&brp-personen_subscribe;
+	&brp-personen_update;
+	&brp-personen_query_sender;
+</Configuration>

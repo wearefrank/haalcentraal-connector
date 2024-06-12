@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="root">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="type" type="xs:string" />
+        <xs:element name="fields" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="gemeenteVanInschrijving" type="xs:string" minOccurs="0" />
+        <xs:element name="geboortedatum" type="xs:date" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="geslachtsnaam" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="geslacht" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="voorvoegsel" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="voornamen" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="inclusiefOverledenPersonen" type="xs:boolean" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="burgerservicenummer" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="huisletter" type="xs:string" minOccurs="0" />
+        <xs:element name="huisnummer" type="huisnummer" minOccurs="0" />
+        <xs:element name="huisnummertoevoeging" type="xs:string" minOccurs="0" />
+        <xs:element name="postcode" type="postcode" minOccurs="0" />
+        <xs:element name="straat" type="xs:string" minOccurs="0" />
+        <xs:element name="nummeraanduidingIdentificatie" type="xs:string" minOccurs="0" />
+        <xs:element name="adresseerbaarObjectIdentificatie" type="xs:string" minOccurs="0" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="huisnummer">
+    <xs:restriction base="xs:int">
+      <xs:minInclusive value="1"/>
+      <xs:maxInclusive value="99999"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="postcode">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="^[1-9]{1}[0-9]{3}[ ]?[A-Za-z]{2}$"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema> 

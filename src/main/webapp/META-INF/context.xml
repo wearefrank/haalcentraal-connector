@@ -11,10 +11,11 @@
     <Resource
         name="jdbc/haalcentraal-connector-postgresql"
         auth="Container"
-        factory="org.apache.naming.factory.BeanFactory"
-        type="org.postgresql.xa.PGXADataSource"
+        type="javax.sql.DataSource"
+        driverClassName="org.postgresql.Driver"
         url="jdbc:postgresql://${jdbc.hostname}:${jdbc.port:-5432}/${jdbc.database}?tcpKeepAlive=${jdbc.tcpKeepAlive:-true}${jdbc.adittionalUrlParameters}"
-        user="${jdbc/username}"
+        username="${jdbc/username}"
         password="${jdbc/password}"
     />
+
 </Context>

@@ -1,0 +1,109 @@
+<Module
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../FrankConfig.xsd"> 
+	<Adapter name="BrpPersonenEventHandler"
+		description="BrpPersonenEventHandler">
+
+		<Receiver name="BrpPersonenEventHandler">
+			<JavaListener name="BrpPersonenEventHandler" />
+		</Receiver>
+        <Pipeline>
+			<Exits>
+				<Exit name="EXIT" state="SUCCESS" />
+				<Exit name="EXCEPTION" state="ERROR" />
+			</Exits>
+
+            <SenderPipe name="PostBRPPersonenBevragen" 
+                getInputFromSessionKey="originalMessage"
+                storeResultInSessionKey="newJSON">
+				<HttpSender
+					url="https://proefomgeving.haalcentraal.nl/haalcentraal/api/brp/personen"
+					methodType="POST"
+					headersParams="X-API-KEY"
+					contentType="application/json">
+					<Param name="X-API-KEY" value="X-API-KEY"/>
+				</HttpSender>
+
+				<Forward name="success" path="JsonToXml" />
+				<Forward name="400" path="EXIT" />
+				<Forward name="401" path="EXIT" />
+				<Forward name="403" path="EXIT" />
+				<Forward name="404" path="EXIT" />
+				<Forward name="406" path="EXIT" />
+				<Forward name="415" path="EXIT" />
+				<Forward name="429" path="EXIT" />
+				<Forward name="500" path="EXIT" />
+				<Forward name="503" path="EXIT" />
+			</SenderPipe>
+
+            <JsonPipe name="JsonToXml">
+                <Forward name="success" path="hasBurgerservicenummer"/>
+            </JsonPipe>
+            
+            <PutInSessionPipe 
+                name="hasBurgerservicenummer">
+                <Param name="burgerservicenummer" xpathExpression='//burgerservicenummer/text()' />
+                <Forward name="success" path="GetPersoon" />
+            </PutInSessionPipe>
+
+            <SenderPipe name="GetPersoon" getInputFromFixedValue="&lt;/r&gt;" storeResultInSessionKey="oldJSON">
+                <FixedQuerySender
+					name="getPersonenSender"
+                    queryType="SELECT"
+					query="SELECT * FROM personen WHERE BURGERSERVICENUMMER=?{burgerservicenummer}"
+					datasourceName="jdbc/haalcentraal-connector-postgresql">
+					<Param name="burgerservicenummer" sessionKey="burgerservicenummer"/>
+            	</FixedQuerySender> 
+                <Forward name="success" path="PersonExists" />
+                <Forward name="exception" path="EXCEPTION" />
+            </SenderPipe>
+            
+            <XmlIfPipe
+                name="PersonExists"
+                xpathExpression="count(result/rowset/row) > 0"
+            >
+                <Forward name="then" path="awgawga"/>
+                <Forward name="else" path="EXCEPTION"/>
+                <Forward name="exception" path="EXCEPTION"/>
+            </XmlIfPipe>
+
+
+			<SenderPipe name="awgawga"
+            storeResultInSessionKey="json">
+				<JavascriptSender
+				jsFileName="JSONcompare.js"
+				jsFunctionName="compareJSONFiles"
+				>
+				</JavascriptSender>
+				<Param name="oldJSON" sessionKey="oldJSON" xpathExpression="result/rowset/row/field[@name='BODY']"/>
+				<Param name="newJSON" sessionKey="newJSON"/>
+				<Forward name="success" path="bool" />
+				<Forward name="exception" path="EXIT" />
+			</SenderPipe>
+
+            <XmlIfPipe
+                name="bool"
+                regex="true"
+            >
+                <Forward name="then" path="EXIT"/>
+                <Forward name="else" path="UpdatePersoon"/>
+                <Forward name="exception" path="EXCEPTION"/>
+            </XmlIfPipe>
+
+
+            <SenderPipe name="UpdatePersoon" getInputFromFixedValue="&lt;/r&gt;">
+                <FixedQuerySender
+					name="insertPersonenSender"
+                    queryType="OTHER"
+					query="UPDATE personen SET BODY=?{body} WHERE BURGERSERVICENUMMER=?{burgerservicenummer}"
+					datasourceName="jdbc/haalcentraal-connector-postgresql">
+					<Param name="burgerservicenummer" sessionKey="burgerservicenummer"/>
+					<Param name="body" sessionKey="json"/>
+            	</FixedQuerySender> 
+                <Forward name="success" path="EXIT" />
+                <Forward name="exception" path="EXCEPTION" />
+            </SenderPipe>
+
+        </Pipeline>
+    </Adapter>
+</Module>
