@@ -13,6 +13,9 @@
                     
                 </xsl:for-each> -->
                 <fields>burgerservicenummer</fields>
+                <fields>gemeenteVanInschrijving</fields>
+                <!-- <fields>leeftijd</fields> -->
+                <fields>naam</fields>
                 <!-- <fields>
                     adressering
                 </fields> -->

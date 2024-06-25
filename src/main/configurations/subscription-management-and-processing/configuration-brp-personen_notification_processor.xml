@@ -1,0 +1,49 @@
+<Module 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+	<Adapter name="brp personen notification processor"
+		description="brp personen notification processor">
+
+		<Receiver name="brp personen notification processor">
+			<JavaListener name="brp personen notification processor" />
+		</Receiver>
+
+		<Pipeline>
+			<Exits>
+				<Exit name="EXIT" state="SUCCESS" />
+			</Exits>
+
+            <SenderPipe name="getNotifications" storeResultInSessionKey="notifications">
+                <FixedQuerySender
+                    includeFieldDefinition="false"
+					name="getNotificationSender"
+                    queryType="SELECT"
+					query="SELECT id,notification,date FROM notifications ORDER BY date ASC"
+					datasourceName="jdbc/haalcentraal-connector-postgresql">
+            	</FixedQuerySender>
+                <Forward name="success" path="processNotifications" />
+            </SenderPipe>
+
+			<ForEachChildElementPipe name="processNotifications" getInputFromSessionKey="notifications" elementXPathExpression="result/rowset/row">
+                <IbisLocalSender
+                    name="personenUpdater"
+                    javaListener="BrpPersonenUpdate">
+                </IbisLocalSender>
+			</ForEachChildElementPipe>
+
+			<EchoPipe name="echoPipe">
+				<Forward name="success" path="EXIT" />
+			</EchoPipe>
+
+		</Pipeline>
+	</Adapter>
+
+	<Scheduler>
+		<Job
+			name="process notifications"
+			cronExpression="0 0 21 ? * MON-FRI"
+			javaListener="brp personen notification processor"
+			function="SendMessage"
+		/>
+	</Scheduler>
+</Module>

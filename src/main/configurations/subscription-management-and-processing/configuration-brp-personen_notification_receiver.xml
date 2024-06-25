@@ -1,0 +1,58 @@
+<Module 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+	<Adapter name="brp personen notification receiver"
+		description="brp personen notification receiver">
+
+		<Receiver name="BRP Personen notification receiver">
+			<JavaListener name="BRP Personen notification receiver" />
+		</Receiver>
+
+		<Pipeline>
+			<Exits>
+				<Exit name="EXIT" state="SUCCESS" />
+				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
+			</Exits>
+
+            <JsonPipe name="JsonToXml">
+                <Forward name="success" path="GetPersoon"/>
+            </JsonPipe>
+
+            <SenderPipe name="GetPersoon">
+                <FixedQuerySender
+					name="getPersonenSender"
+                    queryType="SELECT"
+					query="SELECT * FROM personen WHERE BURGERSERVICENUMMER=?{burgerservicenummer} ORDER BY date DESC LIMIT 1"
+					datasourceName="jdbc/haalcentraal-connector-postgresql">
+					<Param name="burgerservicenummer" xpathExpression="root/burgerservicenummer"/>
+            	</FixedQuerySender> 
+                <Forward name="success" path="PersonExists" />
+                <Forward name="exception" path="BadRequest" />
+            </SenderPipe>
+            
+            <XmlIfPipe
+                name="PersonExists"
+                xpathExpression="count(result/rowset/row) = 1"
+            >
+                <Forward name="then" path="InsertNotification"/>
+                <Forward name="else" path="BadRequest"/>
+                <Forward name="exception" path="BadRequest"/>
+            </XmlIfPipe>
+
+            <SenderPipe name="InsertNotification" getInputFromSessionKey="originalMessage">
+                <FixedQuerySender
+					name="insertPersonenSender"
+					query="INSERT INTO notifications (notification, date) VALUES(?,CURRENT_TIMESTAMP)"
+					datasourceName="jdbc/haalcentraal-connector-postgresql">
+					<Param name="notification" sessionKey="originalMessage"/>
+            	</FixedQuerySender>
+                <Forward name="success" path="echoPipe" />
+            </SenderPipe>
+
+		<EchoPipe name="echoPipe">
+			<Forward name="success" path="EXIT" />
+		</EchoPipe>
+
+		</Pipeline>
+	</Adapter>
+</Module>

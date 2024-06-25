@@ -22,14 +22,49 @@
 				<Exit name="ServiceUnavailable" state="ERROR" code="503" />
 			</Exits>
 
+            <SenderPipe 
+                name="GetApplicationConfigFromLocalFS"
+                storeResultInSessionKey="ApplicationConfig"
+                >
+                <IbisLocalSender
+                    name="CallImportFromLocalFS"
+                    javaListener="ImportFromLocalFS"
+                    returnedSessionKeys="Error">
+                    <Param name="FileName" value="${FilePath_1}" />
+                </IbisLocalSender>
+                <Forward name="success" path="filter"/>
+                <Forward name="exception" path="BadRequest" />
+            </SenderPipe>
 
-            <SenderPipe name="InsertPersoon">
+            <XsltPipe
+				getInputFromSessionKey="ApplicationConfig"
+                name="filter"
+                styleSheetName="mappings/filterAppID.xslt"
+                >
+				<Param name="code" sessionKey="originalMessage" xpathExpression="personen/gemeenteVanInschrijving/code"/>
+                <Forward name="success" path="XmlToJson"/>
+                <Forward name="error" path="BadRequest"/>
+            </XsltPipe>
+
+            <Json2XmlValidatorPipe
+                name="XmlToJson"
+                root="root"
+                schema="mappings/appId.xsd"
+                outputFormat="JSON"
+                compactJsonArrays="false"
+                storeResultInSessionKey="storeInput"
+                throwException="true">
+                <Forward name="success" path="InsertPersoon" />
+            </Json2XmlValidatorPipe>
+
+            <SenderPipe name="InsertPersoon" getInputFromSessionKey="originalMessage">
                 <FixedQuerySender
 					name="insertPersonenSender"
-					query="INSERT INTO personen VALUES(?,?)"
+					query="INSERT INTO personen VALUES(?,?,?,CURRENT_TIMESTAMP)"
 					datasourceName="jdbc/haalcentraal-connector-postgresql">
 					<Param name="burgerservicenummer" xpathExpression="personen/burgerservicenummer"/>
 					<Param name="body" sessionKey="body"/>
+					<Param name="appId" sessionKey="storeInput"/>
             	</FixedQuerySender>
                 <Forward name="success" path="echoPipe" />
             </SenderPipe>

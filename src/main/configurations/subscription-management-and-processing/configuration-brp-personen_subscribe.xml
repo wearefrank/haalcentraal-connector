@@ -43,27 +43,6 @@
                 throwException="true">
                 <Forward name="success" path="PostBRPPersonenBevragen" />
             </Json2XmlValidatorPipe>
-
-
-			<!-- Configure HttpSender -->
-			<!-- 
-				{
-					"type": "ZoekMetGeslachtsnaamEnGeboortedatum",
-					"fields": [
-					"burgerservicenummer"
-					],
-					"gemeenteVanInschrijving": "0518",
-					"inclusiefOverledenPersonen": true,
-					"geboortedatum": "1964-09-24",
-					"geslachtsnaam": "Vries",
-					"geslacht": "V",
-					"voorvoegsel": "de",
-					"voornamen": "Dirk"
-				}
-			-->
-			
-			<!-- url="${proefomgeving.haalcentraal.BRP.personen.bevragen.endpoint}/personen" -->
-			<!-- url="${lokaal.haalcentraal.BRP.personen.bevragen.endpoint}/personen" -->
 				
 			<SenderPipe name="PostBRPPersonenBevragen"
 			storeResultInSessionKey="body" >
@@ -72,7 +51,7 @@
 					methodType="POST"
 					headersParams="X-API-KEY"
 					contentType="application/json">
-					<Param name="X-API-KEY" value="gJfQ77EKmR5UlsxGH0iwiA4PSxjT3Ix6"/>
+					<Param name="X-API-KEY" value="${X-API-KEY}"/>
 				</HttpSender>
 
 				<Forward name="success" path="JSON" />
@@ -120,7 +99,6 @@
                 <Forward name="success" path="echoPipe"/>
                 <Forward name="error" path="exception"/>
             </XsltPipe>
-
 
 			<EchoPipe name="echoPipe">
 				<Forward name="success" path="Exit" />
