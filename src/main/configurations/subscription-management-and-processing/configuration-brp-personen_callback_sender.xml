@@ -26,7 +26,7 @@
             <XsltPipe
 				getInputFromSessionKey="body"
                 name="mappingJsonToStuf"
-                styleSheetName="mappings/mappingJsonToStuf.xslt"
+                styleSheetName="xsl/mappingJsonToStuf.xslt"
                 storeResultInSessionKey="soapMessage"
                 >
 				

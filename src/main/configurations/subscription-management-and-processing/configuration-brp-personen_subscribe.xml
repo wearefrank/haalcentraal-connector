@@ -25,8 +25,7 @@
 			
             <XsltPipe
                 name="mappingStufToJson"
-                styleSheetName="mappings/mappingStufToJson.xslt"
-				skipEmptyTags="true"
+                styleSheetName="xsl/mappingStufToJson.xslt"
                 >
 				<Param name="varZenderOrganisatie" xpathExpression="npsLv01/stuurgegevens/zender/organisatie" />
                 <Forward name="success" path="XmlToJson"/>
@@ -36,7 +35,7 @@
             <Json2XmlValidatorPipe
                 name="XmlToJson"
                 root="root"
-                schema="mappings/checkInput.xsd"
+                schema="xsd/checkInput.xsd"
                 outputFormat="JSON"
                 compactJsonArrays="false"
                 storeResultInSessionKey="storeInput"
@@ -87,7 +86,7 @@
             <XsltPipe
 				getInputFromSessionKey="xmlbody"
                 name="mappingJsonToStuf"
-                styleSheetName="mappings/mappingJsonToStuf.xslt"
+                styleSheetName="xsl/mappingJsonToStuf.xslt"
                 >
 				
 				<Param name="varZenderApplicatie" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/zender/applicatie"/>

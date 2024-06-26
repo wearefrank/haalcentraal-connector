@@ -1,31 +1,27 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
     xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310">
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
-    <xsl:param name="varZenderOrganisatie" />
     <xsl:template match="/">
         <root>
             <xsl:choose>
                 <xsl:when test="((boolean(//*[contains(name(),'bsn')]/text())) and not(//*[contains(name(),'huisnummer')])) ">
                     <type>RaadpleegMetBurgerservicenummer</type>
                    
-                <fields>burgerservicenummer</fields>
-                <fields>aNummer</fields>
-                <fields>adressering</fields>
-                <fields>datumInschrijvingInGemeente</fields>
-                <fields>geboorte</fields>
-                <fields>gemeenteVanInschrijving</fields>
-                <fields>geslacht</fields>
-                <fields>leeftijd</fields>
-                <fields>naam</fields>
-                <fields>nationaliteiten</fields>
-                <fields>overlijden</fields>
-                <fields>verblijfplaats</fields>
-                <fields>verblijfplaatsBinnenland</fields>
-                <fields>adresseringBinnenland</fields>
-                <gemeenteVanInschrijving>
-                        <xsl:value-of
-                            select="$varZenderOrganisatie" />
-                    </gemeenteVanInschrijving>
+                    <fields>burgerservicenummer</fields>
+                    <fields>aNummer</fields>
+                    <fields>adressering</fields>
+                    <fields>datumInschrijvingInGemeente</fields>
+                    <fields>geboorte</fields>
+                    <fields>gemeenteVanInschrijving</fields>
+                    <fields>geslacht</fields>
+                    <fields>leeftijd</fields>
+                    <fields>naam</fields>
+                    <fields>nationaliteiten</fields>
+                    <fields>overlijden</fields>
+                    <fields>verblijfplaats</fields>
+                    <fields>verblijfplaatsBinnenland</fields>
+                    <fields>adresseringBinnenland</fields>
+
                     <xsl:choose>
                         <xsl:when test="count(//*[contains(name(),'bsn')]/text()) > 1">
                             <!-- <xsl:for-each
@@ -59,10 +55,7 @@
                     <fields>leeftijd</fields>
                     <fields>naam</fields>
                     <fields>adresseringBinnenland</fields>
-                    <gemeenteVanInschrijving>
-                        <xsl:value-of
-                            select="$varZenderOrganisatie" />
-                    </gemeenteVanInschrijving>
+    
                     <inclusiefOverledenPersonen>
                         <xsl:value-of
                             select="//*[contains(name(),'inclusiefOverledenPersonen')]/text()" />
@@ -99,10 +92,7 @@
                     <fields>leeftijd</fields>
                     <fields>naam</fields>
                     <fields>adresseringBinnenland</fields>
-                    <gemeenteVanInschrijving>
-                        <xsl:value-of
-                            select="$varZenderOrganisatie" />
-                    </gemeenteVanInschrijving>
+    
                     <inclusiefOverledenPersonen>
                         <xsl:value-of
                             select="//*[contains(name(),'inclusiefOverledenPersonen')]/text()" />
@@ -135,10 +125,7 @@
                     <fields>leeftijd</fields>
                     <fields>naam</fields>
                     <fields>adresseringBinnenland</fields>
-                    <gemeenteVanInschrijving>
-                        <xsl:value-of
-                            select="$varZenderOrganisatie" />
-                    </gemeenteVanInschrijving>
+    
                     <!-- <inclusiefOverledenPersonen>
                         <xsl:value-of
                             select="//*[contains(name(),'inclusiefOverledenPersonen')]/text()" />
@@ -170,10 +157,7 @@
                     <fields>leeftijd</fields>
                     <fields>naam</fields>
                     <fields>adresseringBinnenland</fields>
-                    <gemeenteVanInschrijving>
-                        <xsl:value-of
-                            select="$varZenderOrganisatie" />
-                    </gemeenteVanInschrijving>
+    
                     <inclusiefOverledenPersonen>
                         <xsl:value-of
                             select="//*[contains(name(),'inclusiefOverledenPersonen')]/text()" />
@@ -195,6 +179,9 @@
                             select="//*[local-name()='gor.straatnaam']/text()" />
                     </straat>
                 </xsl:when>
+                <xsl:otherwise>
+                    <fields>naam</fields>
+            </xsl:otherwise>
             </xsl:choose>
         </root>
     </xsl:template>

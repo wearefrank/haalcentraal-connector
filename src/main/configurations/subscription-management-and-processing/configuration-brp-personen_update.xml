@@ -69,7 +69,7 @@
             <XsltPipe
                 name="mappingStufToJson"
 				getInputFromSessionKey="input"
-                styleSheetName="mappings/personenRequest.xslt"
+                styleSheetName="xsl/personenRequest.xslt"
 				skipEmptyTags="true"
                 >
 				<Param name="varZenderOrganisatie" xpathExpression="npsLv01/gelijk/zender/organisatie" />
@@ -80,7 +80,7 @@
             <Json2XmlValidatorPipe
                 name="XmlToJson"
                 root="root"
-                schema="mappings/checkInput.xsd"
+                schema="xsd/checkInput.xsd"
                 outputFormat="JSON"
                 compactJsonArrays="false"
                 storeResultInSessionKey="storeInput"
@@ -191,7 +191,7 @@
             <XsltPipe
                 name="filter"
 				getInputFromSessionKey="ApplicationConfig"
-                styleSheetName="mappings/app.xslt"
+                styleSheetName="xsl/app.xslt"
                 >
 				<Param name="appIds" sessionKey="appIdsXml" type="DOMDOC"/>
                 <Forward name="success" path="forloop"/>
