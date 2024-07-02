@@ -42,7 +42,7 @@
             <SenderPipe name="InsertNotification" getInputFromSessionKey="originalMessage">
                 <FixedQuerySender
 					name="insertPersonenSender"
-					query="INSERT INTO notifications (notification, date) VALUES(?,CURRENT_TIMESTAMP)"
+					query="INSERT INTO notifications (notification, date, retry) VALUES(?,CURRENT_TIMESTAMP,1)"
 					datasourceName="jdbc/haalcentraal-connector-postgresql">
 					<Param name="notification" sessionKey="originalMessage"/>
             	</FixedQuerySender>

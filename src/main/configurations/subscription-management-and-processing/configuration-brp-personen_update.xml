@@ -7,10 +7,12 @@
 		<Receiver name="BrpPersonenUpdate">
 			<JavaListener name="BrpPersonenUpdate" />
 		</Receiver>
+
         <Pipeline>
 			<Exits>
 				<Exit name="EXIT" state="SUCCESS" />
 				<Exit name="EXCEPTION" state="ERROR" />
+				<Exit name="BADREQUEST" state="ERROR" code="400" />
 			</Exits>
 
 			<PutInSessionPipe name="idInput">
@@ -20,6 +22,11 @@
 
 			<PutInSessionPipe name="dateInput">
 				<Param name="date" xpathExpression="row/field[@name='DATE']"/>
+				<Forward name="success" path="retryInput"/>
+			</PutInSessionPipe>
+
+			<PutInSessionPipe name="retryInput">
+				<Param name="retry" xpathExpression="row/field[@name='RETRY']"/>
 				<Forward name="success" path="jsonInput"/>
 			</PutInSessionPipe>
 
@@ -139,7 +146,7 @@
                 name="isSubset"
                 regex="true"
             >
-                <Forward name="then" path="deleteNotificationDate"/>
+                <Forward name="then" path="maxRetries"/>
                 <Forward name="else" path="InsertPersoon"/>
                 <Forward name="exception" path="EXCEPTION"/>
             </XmlIfPipe>
@@ -210,16 +217,46 @@
                 <Forward name="error" path="EXCEPTION"/>
 			</ForEachChildElementPipe>
 
-            <SenderPipe name="deleteNotificationDate" getInputFromSessionKey="input">
+            <XmlIfPipe
+                name="maxRetries"
+                getInputFromSessionKey="retry"
+                regex="[1-${MAX_RETRIES}]"
+            >
+                <Forward name="then" path="incrementRetry"/>
+                <Forward name="else" path="deleteNotificationMaxRetries"/>
+                <Forward name="exception" path="EXCEPTION"/>
+            </XmlIfPipe>
+
+            <SenderPipe name="incrementRetry" getInputFromSessionKey="input">
+                <FixedQuerySender
+					name="incrementRetry"
+					query="UPDATE notifications Set retry=?{retryCur} + 1 WHERE id=?{idNotification}"
+					datasourceName="jdbc/haalcentraal-connector-postgresql">
+					<Param name="idNotification" sessionKey="id" type="INTEGER"/>
+					<Param name="retryCur" sessionKey="retry" type="INTEGER"/>
+            	</FixedQuerySender> 
+                <Forward name="success" path="incrementRetryMessage" />
+                <Forward name="exception" path="EXCEPTION" />
+            </SenderPipe>
+
+			<FixedResultPipe name="incrementRetryMessage" returnString="retrying again later"> 
+                <Forward name="success" path="EXIT" />
+            </FixedResultPipe>
+
+            <SenderPipe name="deleteNotificationMaxRetries" storeResultInSessionKey="delete" getInputFromSessionKey="input">
                 <FixedQuerySender
 					name="deleteNotification"
-					query="DELETE FROM notifications WHERE id=?{idNotification} AND date &lt; NOW() - INTERVAL '3 DAY'"
+					query="DELETE FROM notifications WHERE id=?{idNotification}"
 					datasourceName="jdbc/haalcentraal-connector-postgresql">
 					<Param name="idNotification" sessionKey="id" type="INTEGER"/>
             	</FixedQuerySender> 
-                <Forward name="success" path="EXIT" />
+                <Forward name="success" path="maxRetriesMessage" />
                 <Forward name="exception" path="EXCEPTION" />
             </SenderPipe>
+
+			<FixedResultPipe name="maxRetriesMessage" returnString="MaxRetries reached"> 
+                <Forward name="success" path="BADREQUEST" />
+            </FixedResultPipe>
         </Pipeline>
     </Adapter>
 </Module>

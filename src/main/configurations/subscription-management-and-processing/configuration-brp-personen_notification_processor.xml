@@ -18,13 +18,14 @@
                     includeFieldDefinition="false"
 					name="getNotificationSender"
                     queryType="SELECT"
-					query="SELECT id,notification,date FROM notifications ORDER BY date ASC"
+					query="SELECT id,notification,date,retry FROM notifications ORDER BY date ASC"
 					datasourceName="jdbc/haalcentraal-connector-postgresql">
             	</FixedQuerySender>
                 <Forward name="success" path="processNotifications" />
             </SenderPipe>
 
-			<ForEachChildElementPipe name="processNotifications" getInputFromSessionKey="notifications" elementXPathExpression="result/rowset/row">
+			<ForEachChildElementPipe name="processNotifications" getInputFromSessionKey="notifications" elementXPathExpression="result/rowset/row" 	
+										ignoreExceptions="true">
                 <IbisLocalSender
                     name="personenUpdater"
                     javaListener="BrpPersonenUpdate">
