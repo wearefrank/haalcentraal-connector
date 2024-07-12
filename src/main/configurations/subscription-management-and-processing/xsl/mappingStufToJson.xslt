@@ -4,7 +4,7 @@
     <xsl:template match="/">
         <root>
             <xsl:choose>
-                <xsl:when test="((boolean(//*[contains(name(),'bsn')]/text())) and not(//*[contains(name(),'huisnummer')])) ">
+                <xsl:when test="((boolean(//*[contains(name(),'bsn')]/text())))">
                     <type>RaadpleegMetBurgerservicenummer</type>
                    
                     <fields>burgerservicenummer</fields>

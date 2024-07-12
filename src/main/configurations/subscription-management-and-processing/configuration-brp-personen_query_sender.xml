@@ -43,7 +43,7 @@
                 >
 				<Param name="code" sessionKey="originalMessage" xpathExpression="personen/gemeenteVanInschrijving/code"/>
                 <Forward name="success" path="XmlToJson"/>
-                <Forward name="error" path="BadRequest"/>
+                <Forward name="exception" path="BadRequest"/>
             </XsltPipe>
 
             <Json2XmlValidatorPipe

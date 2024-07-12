@@ -37,10 +37,8 @@
 				<Param name="varOntvangerApplicatie" value="NEDMAG_VnA"/>
 				<Param name="varOntvangerOrganisatie" value="NEDGR"/>
                 <Forward name="success" path="callback"/>
-                <Forward name="error" path="EXCEPTION"/>
+                <Forward name="exception" path="EXCEPTION"/>
             </XsltPipe>
-
-            
 
             <SenderPipe 
                 name="callback"
@@ -52,7 +50,7 @@
 				</HttpSender>
                 <Param name="url" sessionKey="originalMessage" xpathExpression="app/url"/>
                 <Forward name="success" path="echoPipe"/>
-                <Forward name="error" path="EXCEPTION"/>
+                <Forward name="exception" path="EXCEPTION"/>
             </SenderPipe>
 
 		<EchoPipe name="echoPipe">

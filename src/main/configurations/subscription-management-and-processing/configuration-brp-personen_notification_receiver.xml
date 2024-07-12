@@ -23,7 +23,8 @@
 					name="getPersonenSender"
                     queryType="SELECT"
 					query="SELECT * FROM personen WHERE BURGERSERVICENUMMER=?{burgerservicenummer} ORDER BY date DESC LIMIT 1"
-					datasourceName="jdbc/haalcentraal-connector-postgresql">
+					datasourceName="jdbc/haalcentraal-connector-postgresql"
+					includeFieldDefinition="false">
 					<Param name="burgerservicenummer" xpathExpression="root/burgerservicenummer"/>
             	</FixedQuerySender> 
                 <Forward name="success" path="PersonExists" />
@@ -40,12 +41,9 @@
             </XmlIfPipe>
 
             <SenderPipe name="InsertNotification" getInputFromSessionKey="originalMessage">
-                <FixedQuerySender
-					name="insertPersonenSender"
-					query="INSERT INTO notifications (notification, date, retry) VALUES(?,CURRENT_TIMESTAMP,1)"
-					datasourceName="jdbc/haalcentraal-connector-postgresql">
-					<Param name="notification" sessionKey="originalMessage"/>
-            	</FixedQuerySender>
+				<MessageStoreSender
+					slotId="${instance.name}/notificationStore"
+				/>
                 <Forward name="success" path="echoPipe" />
             </SenderPipe>
 

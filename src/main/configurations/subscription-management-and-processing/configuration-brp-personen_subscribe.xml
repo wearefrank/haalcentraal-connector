@@ -29,7 +29,7 @@
                 >
 				<Param name="varZenderOrganisatie" xpathExpression="npsLv01/stuurgegevens/zender/organisatie" />
                 <Forward name="success" path="XmlToJson"/>
-                <Forward name="error" path="exception"/>
+                <Forward name="exception" path="exception"/>
             </XsltPipe>
 
             <Json2XmlValidatorPipe
@@ -96,7 +96,7 @@
 				<Param name="varOntvangerApplicatie" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/ontvanger/applicatie"/>
 				<Param name="varOntvangerOrganisatie" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/ontvanger/organisatie"/>
                 <Forward name="success" path="echoPipe"/>
-                <Forward name="error" path="exception"/>
+                <Forward name="exception" path="exception"/>
             </XsltPipe>
 
 			<EchoPipe name="echoPipe">

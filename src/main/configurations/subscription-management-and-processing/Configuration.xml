@@ -5,6 +5,7 @@
 	<!ENTITY ImportFromLocalFS SYSTEM "Configuration_ImportFromLocalFS.xml">
 	<!ENTITY brp-personen_notification_processor SYSTEM "configuration-brp-personen_notification_processor.xml">
 	<!ENTITY brp-personen_notification_receiver SYSTEM "configuration-brp-personen_notification_receiver.xml">
+	<!ENTITY brp-personen_notification_retry_scheduler SYSTEM "configuration-brp-personen_notification_retry_scheduler.xml">
 	<!ENTITY brp-personen_callback_sender SYSTEM "configuration-brp-personen_callback_sender.xml">
 	]>
 
@@ -15,5 +16,6 @@
 	&ImportFromLocalFS;
 	&brp-personen_notification_processor;
 	&brp-personen_notification_receiver;
+	&brp-personen_notification_retry_scheduler;
 	&brp-personen_callback_sender;
 </Configuration>
