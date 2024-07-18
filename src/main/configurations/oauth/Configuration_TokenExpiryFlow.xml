@@ -1,0 +1,26 @@
+<Adapter name="TokenExpiryFlow">
+    <Receiver name="TokenExpiryFlowReceiver">
+        <JavaLister name="TokenExpiryFlowListener" returnedSessionKeys="token" />
+    </Receiver>
+
+    <Pipeline>
+        <Exits>
+            <Exit name="SUCCESS" state="SUCCESS" />
+            <Exit name="ERROR" state="ERROR" />
+        </Exits>
+
+        <SenderPipe name="CheckTokenExpired">
+            <IbisLocalSender name="CheckTokenExpiredSender" JavaListener="CheckTokenExpiredListener"/>
+        </SenderPipe>
+
+        <XmlIfPipe name="IfTokenExpired">
+            <Forward name="then" path="GetToken" />
+            <Forward name="else" path="SUCCESS" />
+        </XmlIfPipe>
+
+        <SenderPipe name="GetToken">
+            <IbisLocalSender name="GetTokenSender" JavaListener="GetTokenListener" returnedSessionKeys="token"/>
+        </SenderPipe>
+
+    </Pipeline>
+</Adapter>

@@ -1,0 +1,17 @@
+<Adapter name="CheckTokenExpired">
+    <Receiver name="CheckTokenExpiredReceiver">
+        <JavaLister name="CheckTokenExpiredListener" />
+    </Receiver>
+
+    <Pipeline>
+        <Exits>
+            <Exit name="SUCCESS" state="SUCCESS" />
+            <Exit name="ERROR" state="ERROR" />
+        </Exits>
+
+        <JsonPipe name="Json2Xml" direction="JSON2XML" />
+
+        <XsltPipe name="IsTokenExpired"  xpathExpression="root/error/text() = 'token expired'" />
+
+    </Pipeline>
+</Adapter>

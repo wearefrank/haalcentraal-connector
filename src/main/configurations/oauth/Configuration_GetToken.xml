@@ -1,0 +1,49 @@
+<Adapter name="GetToken">
+    <Receiver name="GetTokenReceiver">
+        <JavaLister name="GetTokenListener" returnedSessionKeys="token" />
+    </Receiver>
+
+    <Pipeline>
+        <Exits>
+            <Exit name="SUCCESS" state="SUCCESS" />
+            <Exit name="ERROR" state="ERROR" />
+        </Exits>
+
+        <!-- Request an authorization token -->
+        <SenderPipe name="BrpAuthorizationRequest">
+            <HttpSender
+                    url="${oauth.token.url}"
+                    methodType="POST"
+                    contentType="application/x-www-form-urlencoded"
+                    postType="URLENCODED"
+                    headersParams="Accept, Content-Type, Digest, Date, TPP-Signature-Certificate, authorization"
+                    treatInputMessageAsParameters="false"
+                    keystore="/certs/tls.p12"
+                    keystoreAlias="brp"
+                    keystorePassword="Password123!" />
+            <Param name="grant_type" value="client_credentials" />
+            <Param name="client_id" pattern="${oauth.client-id}" />
+            <Param name="client_secret" pattern="${oauth.client-secret}" />
+            <Param name="scope" value="${oauth.scope}" />
+            <Param name="resourceServer" value="ResourceServer01" />
+            <Param name="Accept" value="application/json" />
+            <Param name="Content-Type" value="application/x-www-form-urlencoded" />
+
+            <Forward name="400" path="400" />
+            <Forward name="401" path="401" />
+            <Forward name="500" path="500" />
+        </SenderPipe>
+
+        <!-- Parse the response -->
+        <JsonValidatorPipe name="BrpTokenResponseValidator"
+                           schema="schemas/brpTokenResponseValidator.json">
+            <Forward name="failure" path="ParseError" />
+        </JsonValidatorPipe>
+
+        <!-- Extract and store required data from the response -->
+        <JsonPipe name="JsonToXml" />
+        <XsltPipe name="TokenExtractor" xpathExpression="/root/access_token" storeResultInSessionKey="token" />
+
+        <LocalFileSystemPipe name="WriteTokenToFile" filename="token.txt" action="write" />
+    </Pipeline>
+</Adapter>
