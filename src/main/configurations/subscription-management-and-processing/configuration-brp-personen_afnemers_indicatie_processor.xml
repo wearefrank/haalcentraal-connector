@@ -64,7 +64,7 @@
                 <Forward name="exception" path="EXCEPTION"/>
             </XsltPipe>
 
-            <XmlIfPipe name="isEqual" xpathExpression="count($oldAppidData/Applications/appid) = count($newAppidData/Applications/appid)">
+            <XmlIfPipe name="isEqual" xpathExpression="count($oldAppidData/root) = count($newAppidData/Applications)">
                 <Param name="newAppidData" sessionKey="newAppidData" type="DOMDOC"/>
                 <Param name="oldAppidData" sessionKey="appid" type="DOMDOC"/>
                 <Forward name="then" path="XmlToJson" />

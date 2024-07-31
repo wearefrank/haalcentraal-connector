@@ -11,7 +11,7 @@
                 <xsl:variable name="currentAppId" select="./appId"/>
 
                 <!-- Check if currentAppId matches any appId in $appIds -->
-                <xsl:if test="$appIds/root/appId = $currentAppId">
+                <xsl:if test="$appIds/root/appid = $currentAppId">
                     <!-- Output the URL of the matching Applications -->
                     <app>
                         <url><xsl:value-of select="./url"/></url>
