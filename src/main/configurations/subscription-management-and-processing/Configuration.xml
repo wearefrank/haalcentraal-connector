@@ -7,6 +7,9 @@
 	<!ENTITY brp-personen_notification_receiver SYSTEM "configuration-brp-personen_notification_receiver.xml">
 	<!ENTITY brp-personen_notification_retry_scheduler SYSTEM "configuration-brp-personen_notification_retry_scheduler.xml">
 	<!ENTITY brp-personen_callback_sender SYSTEM "configuration-brp-personen_callback_sender.xml">
+	<!ENTITY SoapEndpointRouter SYSTEM "Configuration_SoapEndpointRouter.xml">
+	<!ENTITY brp-personen_afnemers_indicatie_processor SYSTEM "configuration-brp-personen_afnemers_indicatie_processor.xml">
+	<!ENTITY brp-personen_afnemers_indicatie_receiver SYSTEM "configuration-brp-personen_afnemers_indicatie_receiver.xml">
 	]>
 
 <Configuration name="subscription-management-and-processing">
@@ -18,4 +21,7 @@
 	&brp-personen_notification_receiver;
 	&brp-personen_notification_retry_scheduler;
 	&brp-personen_callback_sender;
+	&SoapEndpointRouter;
+	&brp-personen_afnemers_indicatie_processor;
+	&brp-personen_afnemers_indicatie_receiver;
 </Configuration>

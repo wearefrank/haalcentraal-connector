@@ -1,0 +1,30 @@
+<Module 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+	<Adapter name="brp personen afnemers indicatie receiver"
+		description="brp personen afnemers indicatie receiver">
+
+		<Receiver name="BRP Personen afnemers indicatie receiver">
+			<JavaListener name="BRP Personen afnemers indicatie receiver" />
+		</Receiver>
+
+		<Pipeline>
+			<Exits>
+				<Exit name="EXIT" state="SUCCESS" />
+				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
+			</Exits>
+
+            <SenderPipe name="InsertNotification" getInputFromSessionKey="originalMessage">
+				<MessageStoreSender
+					slotId="${instance.name}/afnemersIndicatieStore"
+				/>
+                <Forward name="success" path="echoPipe" />
+            </SenderPipe>
+
+		<EchoPipe name="echoPipe">
+			<Forward name="success" path="EXIT" />
+		</EchoPipe>
+
+		</Pipeline>
+	</Adapter>
+</Module>

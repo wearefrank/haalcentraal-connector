@@ -1,0 +1,108 @@
+<Module 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+
+	<Adapter name="brp personen afnemers indicatie processor"
+		description="brp personen afnemers indicatie processor">
+
+		<Receiver name="brp personen afnemers indicatie processor" checkForDuplicates="true" maxRetries="0" >
+			<MessageStoreListener slotId="${instance.name}/afnemersIndicatieStore" statusValueInProcess="I"/>
+		</Receiver>
+
+		<Pipeline>
+			<Exits>
+				<Exit name="EXIT" state="SUCCESS" />v
+				<Exit name="EXCEPTION" state="ERROR" />
+			</Exits>
+
+            <SenderPipe 
+                name="GetApplicationConfigFromLocalFS"
+                storeResultInSessionKey="ApplicationConfig"
+                >
+                <IbisLocalSender
+                    name="CallImportFromLocalFS"
+                    javaListener="ImportFromLocalFS"
+                    returnedSessionKeys="Error">
+                    <Param name="FileName" value="${FilePath_1}" />
+                </IbisLocalSender>
+                <Forward name="success" path="GetPersoon"/>
+                <Forward name="exception" path="EXCEPTION" />
+            </SenderPipe>
+
+            <SenderPipe name="GetPersoon" storeResultInSessionKey="databaseData">
+                <FixedQuerySender
+					name="getPersonenSender"
+                    queryType="SELECT"
+					query="SELECT appid,body FROM personen WHERE BURGERSERVICENUMMER=?{burgerservicenummer} ORDER BY date DESC LIMIT 1"
+					datasourceName="jdbc/haalcentraal-connector-postgresql"
+					includeFieldDefinition="false">
+					<Param name="burgerservicenummer" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn" type="INTEGER"/>
+            	</FixedQuerySender> 
+                <Forward name="success" path="getAppIds" />
+                <Forward name="exception" path="EXCEPTION" />
+            </SenderPipe>          
+            
+            <XsltPipe name="getAppIds" getInputFromSessionKey="databaseData" xpathExpression="result/rowset/row/field[@name='APPID']/text()">
+                <Forward name="success" path="Json2Xml" />
+            </XsltPipe>
+
+            <JsonPipe name="Json2Xml" direction="JSON2XML" storeResultInSessionKey="appid">
+                <Forward name="succes" path="filter"/>
+            </JsonPipe>
+
+            <XsltPipe
+				getInputFromSessionKey="ApplicationConfig"
+                name="filter"
+                styleSheetName="xsl/mergeAppID.xslt"
+                storeResultInSessionKey="newAppidData"
+                >
+				<Param name="sleutelVerzendend" sessionKey="originalMessage" xpathExpression="npsLk01/object/@sleutelVerzendend"/>
+				<Param name="code" sessionKey="originalMessage" xpathExpression="npsLk01/stuurgegevens/zender/organisatie"/>
+				<Param name="appid" sessionKey="appid" type="DOMDOC" />
+				<Param name="verwerkingssoort" sessionKey="originalMessage" xpathExpression="npsLk01/object/@verwerkingssoort"/>
+                <Forward name="success" path="isEqual"/>
+                <Forward name="exception" path="EXCEPTION"/>
+            </XsltPipe>
+
+            <XmlIfPipe name="isEqual" xpathExpression="count($oldAppidData/Applications/appid) = count($newAppidData/Applications/appid)">
+                <Param name="newAppidData" sessionKey="newAppidData" type="DOMDOC"/>
+                <Param name="oldAppidData" sessionKey="appid" type="DOMDOC"/>
+                <Forward name="then" path="XmlToJson" />
+                <Forward name="else" path="noChangeException" />
+            </XmlIfPipe>
+
+            <Json2XmlValidatorPipe
+                name="XmlToJson"
+                root="Applications"
+                schema="xsd/appId.xsd"
+                outputFormat="JSON"
+                compactJsonArrays="false"
+                storeResultInSessionKey="storeInput"
+                throwException="true">
+                <Forward name="success" path="InsertPersoon" />
+            </Json2XmlValidatorPipe>
+
+            <SenderPipe name="InsertPersoon" getInputFromSessionKey="originalMessage">
+                <FixedQuerySender
+					name="insertPersonenSender"
+					query="INSERT INTO personen VALUES(?,?,?,CURRENT_TIMESTAMP)"
+					datasourceName="jdbc/haalcentraal-connector-postgresql">
+					<Param name="burgerservicenummer" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn"/>
+					<Param name="body" sessionKey="databaseData" xpathExpression="result/rowset/row/field[@name='BODY']/text()"/>
+					<Param name="appId" sessionKey="storeInput"/>
+            	</FixedQuerySender>
+                <Forward name="success" path="EXIT" />
+            </SenderPipe>
+
+            <XmlIfPipe name="noChangeException" xpathExpression="$originalMessage/npsLk01/object/@verwerkingssoort = 'T'">
+                <Param name="originalMessage" sessionKey="originalMessage" type="DOMDOC"/>
+                <Forward name="then" path="noSubscriptinoAdded" />
+                <Forward name="else" path="noSubscriptinoDeleted" />
+            </XmlIfPipe>
+            
+            <ExceptionPipe name="noSubscriptinoAdded"/>
+            <ExceptionPipe name="noSubscriptinoDeleted"/>
+
+		</Pipeline>
+	</Adapter>
+</Module>

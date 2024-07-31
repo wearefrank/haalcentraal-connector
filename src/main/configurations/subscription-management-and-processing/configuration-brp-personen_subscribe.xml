@@ -50,7 +50,7 @@
 					methodType="POST"
 					headersParams="X-API-KEY"
 					contentType="application/json">
-					<Param name="X-API-KEY" value="${X-API-KEY}"/>
+					<Param name="X-API-KEY" value="${credential:password:X-API-KEY}"/>
 				</HttpSender>
 
 				<Forward name="success" path="JSON" />

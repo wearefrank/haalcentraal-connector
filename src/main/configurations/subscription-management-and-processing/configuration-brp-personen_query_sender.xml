@@ -21,27 +21,12 @@
 				<Exit name="ServerError" state="ERROR" code="500" />
 				<Exit name="ServiceUnavailable" state="ERROR" code="503" />
 			</Exits>
-
-            <SenderPipe 
-                name="GetApplicationConfigFromLocalFS"
-                storeResultInSessionKey="ApplicationConfig"
-                >
-                <IbisLocalSender
-                    name="CallImportFromLocalFS"
-                    javaListener="ImportFromLocalFS"
-                    returnedSessionKeys="Error">
-                    <Param name="FileName" value="${FilePath_1}" />
-                </IbisLocalSender>
-                <Forward name="success" path="filter"/>
-                <Forward name="exception" path="BadRequest" />
-            </SenderPipe>
-
+			
             <XsltPipe
-				getInputFromSessionKey="ApplicationConfig"
-                name="filter"
-                styleSheetName="xsl/filterAppID.xslt"
+                name="mappingStufToJson"
+                styleSheetName="xsl/mappingStufToJson.xslt"
                 >
-				<Param name="code" sessionKey="originalMessage" xpathExpression="personen/gemeenteVanInschrijving/code"/>
+				<Param name="varZenderOrganisatie" xpathExpression="npsLv01/stuurgegevens/zender/organisatie" />
                 <Forward name="success" path="XmlToJson"/>
                 <Forward name="exception" path="BadRequest"/>
             </XsltPipe>
@@ -49,30 +34,70 @@
             <Json2XmlValidatorPipe
                 name="XmlToJson"
                 root="root"
-                schema="xsd/appId.xsd"
+                schema="xsd/checkInput.xsd"
                 outputFormat="JSON"
                 compactJsonArrays="false"
                 storeResultInSessionKey="storeInput"
                 throwException="true">
-                <Forward name="success" path="InsertPersoon" />
+                <Forward name="success" path="PostBRPPersonenBevragen" />
             </Json2XmlValidatorPipe>
+				
+			<SenderPipe name="PostBRPPersonenBevragen"
+			storeResultInSessionKey="body" >
+				<HttpSender
+					url="${proefomgeving.haalcentraal.BRP.personen.bevragen.endpoint}/personen"
+					methodType="POST"
+					headersParams="X-API-KEY"
+					contentType="application/json">
+					<Param name="X-API-KEY" value="${credential:password:X-API-KEY}"/>
+				</HttpSender>
 
-            <SenderPipe name="InsertPersoon" getInputFromSessionKey="originalMessage">
+				<Forward name="success" path="JSON" />
+				<Forward name="400" path="BadRequest" />
+				<Forward name="401" path="NotAuthorized" />
+				<Forward name="403" path="Forbidden" />
+				<Forward name="404" path="NotFound" />
+				<Forward name="406" path="NotAcceptable" />
+				<Forward name="415" path="UnsupportedMediaType" />
+				<Forward name="429" path="TooManyRequest" />
+				<Forward name="500" path="ServerError" />
+				<Forward name="503" path="ServiceUnavailable" />
+			</SenderPipe>
+
+			<JsonPipe
+                name="JSON"
+				storeResultInSessionKey="xmlbody">
+                <Forward name="success" path="BRP Personen query" />
+            </JsonPipe>	
+
+			<ForEachChildElementPipe name="BRP Personen query"
+				elementXPathExpression="root/personen">
                 <FixedQuerySender
 					name="insertPersonenSender"
-					query="INSERT INTO personen VALUES(?,?,?,CURRENT_TIMESTAMP)"
+					query="INSERT INTO personen VALUES(?,?,'{}',CURRENT_TIMESTAMP)"
 					datasourceName="jdbc/haalcentraal-connector-postgresql">
-					<Param name="burgerservicenummer" xpathExpression="personen/burgerservicenummer"/>
+					<Param name="burgerservicenummer" xpathExpression="personen/burgerservicenummer" type="INTEGER"/>
 					<Param name="body" sessionKey="body"/>
-					<Param name="appId" sessionKey="storeInput"/>
             	</FixedQuerySender>
-                <Forward name="success" path="echoPipe" />
-            </SenderPipe>
-
-		<EchoPipe name="echoPipe">
-			<Forward name="success" path="EXIT" />
-		</EchoPipe>
-
+				<Forward name="success" path="mappingJsonToStuf"/>
+				<Forward name="exception" path="BadRequest" />
+			</ForEachChildElementPipe>  
+			
+            <XsltPipe
+				getInputFromSessionKey="xmlbody"
+                name="mappingJsonToStuf"
+                styleSheetName="xsl/mappingJsonToStuf.xslt"
+                >
+				
+				<Param name="varZenderApplicatie" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/zender/applicatie"/>
+				<Param name="varZenderOrganisatie" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/zender/organisatie" />
+				<Param name="varZenderGebruiker" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/zender/gebruiker"/>
+				<Param name="varReferentienummer" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/referentienummer"/>
+				<Param name="varOntvangerApplicatie" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/ontvanger/applicatie"/>
+				<Param name="varOntvangerOrganisatie" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/ontvanger/organisatie"/>
+                <Forward name="success" path="EXIT"/>
+                <Forward name="exception" path="BadRequest"/>
+            </XsltPipe>
 		</Pipeline>
 	</Adapter>
 </Module>
