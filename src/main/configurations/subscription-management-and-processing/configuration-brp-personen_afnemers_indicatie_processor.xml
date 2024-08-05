@@ -100,8 +100,8 @@
                 <Forward name="else" path="noSubscriptinoDeleted" />
             </XmlIfPipe>
             
-            <ExceptionPipe name="noSubscriptinoAdded"/>
-            <ExceptionPipe name="noSubscriptinoDeleted"/>
+            <ExceptionPipe name="noSubscriptionAdded"/>
+            <ExceptionPipe name="noSubscriptionDeleted"/>
 
 		</Pipeline>
 	</Adapter>
