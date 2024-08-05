@@ -96,8 +96,8 @@
 
             <XmlIfPipe name="noChangeException" xpathExpression="$originalMessage/npsLk01/object/@verwerkingssoort = 'T'">
                 <Param name="originalMessage" sessionKey="originalMessage" type="DOMDOC"/>
-                <Forward name="then" path="noSubscriptinoAdded" />
-                <Forward name="else" path="noSubscriptinoDeleted" />
+                <Forward name="then" path="noSubscriptionAdded" />
+                <Forward name="else" path="noSubscriptionDeleted" />
             </XmlIfPipe>
             
             <ExceptionPipe name="noSubscriptionAdded"/>
