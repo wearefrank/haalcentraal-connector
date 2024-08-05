@@ -18,12 +18,17 @@
 				<MessageStoreSender
 					slotId="${instance.name}/afnemersIndicatieStore"
 				/>
-                <Forward name="success" path="echoPipe" />
+                <Forward name="success" path="WrapBv03Response" />
             </SenderPipe>
 
-		<EchoPipe name="echoPipe">
-			<Forward name="success" path="EXIT" />
-		</EchoPipe>
+            <SoapWrapperPipe
+				getInputFromSessionKey="originalMessage"
+                name="WrapBv03Response"
+				soapBodyStyleSheet="xsl/CreateBv03Response.xslt"
+                >
+                <Param name="Stuurgegevens" xpathExpression="/*/stuurgegevens" defaultValue="&lt;stuurgegevens/&gt;" type="DOMDOC" />
+                <Forward name="success" path="EXIT"/>
+            </SoapWrapperPipe>
 
 		</Pipeline>
 	</Adapter>

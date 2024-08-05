@@ -95,9 +95,18 @@
 				<Param name="varReferentienummer" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/referentienummer"/>
 				<Param name="varOntvangerApplicatie" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/ontvanger/applicatie"/>
 				<Param name="varOntvangerOrganisatie" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/ontvanger/organisatie"/>
-                <Forward name="success" path="EXIT"/>
+                <Forward name="success" path="WrapZakLka1Response"/>
                 <Forward name="exception" path="BadRequest"/>
             </XsltPipe>
+			<!-- soapBodyStyleSheet="Common/xsl/CreateZakLa01Response.xslt" -->
+
+            <SoapWrapperPipe
+                name="WrapZakLka1Response"
+                >
+                <Forward name="success" path="EXIT"/>
+            </SoapWrapperPipe>
+
+
 		</Pipeline>
 	</Adapter>
 </Module>
