@@ -11,7 +11,7 @@
 
 		<Pipeline>
 			<Exits>
-				<Exit name="EXIT" state="SUCCESS" />v
+				<Exit name="EXIT" state="SUCCESS" />
 				<Exit name="EXCEPTION" state="ERROR" />
 			</Exits>
 
@@ -38,9 +38,14 @@
 					includeFieldDefinition="false">
 					<Param name="burgerservicenummer" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn" type="INTEGER"/>
             	</FixedQuerySender> 
-                <Forward name="success" path="getAppIds" />
+                <Forward name="success" path="checkPersonen" />
                 <Forward name="exception" path="EXCEPTION" />
-            </SenderPipe>          
+            </SenderPipe>    
+
+            <XmlIfPipe name="checkPersonen" xpathExpression="/result/rowset/row">
+                <Forward name="then" path="getAppIds" />
+                <Forward name="else" path="noPersonFoundWithGivenBsn" />
+            </XmlIfPipe>      
             
             <XsltPipe name="getAppIds" getInputFromSessionKey="databaseData" xpathExpression="result/rowset/row/field[@name='APPID']/text()">
                 <Forward name="success" path="Json2Xml" />
@@ -100,6 +105,7 @@
                 <Forward name="else" path="noSubscriptionDeleted" />
             </XmlIfPipe>
             
+            <ExceptionPipe name="noPersonFoundWithGivenBsn"/>
             <ExceptionPipe name="noSubscriptionAdded"/>
             <ExceptionPipe name="noSubscriptionDeleted"/>
 
