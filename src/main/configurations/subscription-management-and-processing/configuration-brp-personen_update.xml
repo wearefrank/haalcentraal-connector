@@ -73,7 +73,7 @@
                 <Forward name="success" path="PostBRPPersonenBevragen" />
             </Json2XmlValidatorPipe>
 
-			<SenderPipe name="PostBRPPersonenBevragen">
+			<SenderPipe name="PostBRPPersonenBevragen" storeResultInSessionKey="newJSON">
 				<IbisLocalSender
 					name="Post BRP Personen"
 					javaListener="Post BRP Personen"
@@ -82,7 +82,7 @@
 				<Forward name="success" path="PersoonToXml" />
 				<Forward name="exception" path="BADREQUEST" />
 			</SenderPipe>
-            
+
             <JsonPipe name="PersoonToXml">
                 <Forward name="success" path="hasBurgerservicenummer"/>
             </JsonPipe>

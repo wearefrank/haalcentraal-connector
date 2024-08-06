@@ -42,7 +42,7 @@
                 <Forward name="success" path="PostBRPPersonenBevragen" />
             </Json2XmlValidatorPipe>
 
-			<SenderPipe name="PostBRPPersonenBevragen">
+			<SenderPipe name="PostBRPPersonenBevragen" storeResultInSessionKey="body">
 				<IbisLocalSender
 					name="PostBRPPersonenBevragen"
 					javaListener="Post BRP Personen"
