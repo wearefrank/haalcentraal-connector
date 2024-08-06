@@ -42,27 +42,15 @@
                 throwException="true">
                 <Forward name="success" path="PostBRPPersonenBevragen" />
             </Json2XmlValidatorPipe>
-				
-			<SenderPipe name="PostBRPPersonenBevragen"
-			storeResultInSessionKey="body" >
-				<HttpSender
-					url="${proefomgeving.haalcentraal.BRP.personen.bevragen.endpoint}/personen"
-					methodType="POST"
-					headersParams="X-API-KEY"
-					contentType="application/json">
-					<Param name="X-API-KEY" value="${credential:password:X-API-KEY}"/>
-				</HttpSender>
 
+			<SenderPipe name="PostBRPPersonenBevragen">
+				<IbisLocalSender
+					name="Post BRP Personen"
+					javaListener="Post BRP Personen"
+					returnedSessionKeys="Error">
+				</IbisLocalSender>
 				<Forward name="success" path="JSON" />
-				<Forward name="400" path="BadRequest" />
-				<Forward name="401" path="NotAuthorized" />
-				<Forward name="403" path="Forbidden" />
-				<Forward name="404" path="NotFound" />
-				<Forward name="406" path="NotAcceptable" />
-				<Forward name="415" path="UnsupportedMediaType" />
-				<Forward name="429" path="TooManyRequest" />
-				<Forward name="500" path="ServerError" />
-				<Forward name="503" path="ServiceUnavailable" />
+				<Forward name="exception" path="BadRequest" />
 			</SenderPipe>
 
 			<JsonPipe

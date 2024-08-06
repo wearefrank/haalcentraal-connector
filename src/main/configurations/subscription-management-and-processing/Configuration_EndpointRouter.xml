@@ -14,12 +14,12 @@
                 <Exit name="EXIT" state="SUCCESS"/>
                 <Exit name="EXCEPTION" state="ERROR"/>
                 <Exit name="202" state="SUCCESS" code="202"/>
-                <Exit name="404" state="ERROR" code="404"/>
+                <Exit name="400" state="ERROR" code="400"/>
             </Exits>
 
             <JsonValidatorPipe name="jsonValidator" schema="json/JsonValidatorSchema.json" onlyIfSessionKey="HttpMethod">
                 <Forward name="success" path="notification receiver" />
-                <Forward name="exception" path="404" />
+                <Forward name="exception" path="400" />
             </JsonValidatorPipe>
             
             <SenderPipe
@@ -30,7 +30,7 @@
                     returnedSessionKeys="Error">
                 </IbisLocalSender>
                 <Forward name="202" path="202" />
-                <Forward name="404" path="404"/>
+                <Forward name="400" path="400"/>
             </SenderPipe>
 
             <WsdlXmlValidatorPipe 

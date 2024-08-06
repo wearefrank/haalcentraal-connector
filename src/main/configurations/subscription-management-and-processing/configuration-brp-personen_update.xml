@@ -73,29 +73,16 @@
                 <Forward name="success" path="PostBRPPersonenBevragen" />
             </Json2XmlValidatorPipe>
 
-
-            <SenderPipe name="PostBRPPersonenBevragen" 
-                storeResultInSessionKey="newJSON">
-				<HttpSender
-					url="https://proefomgeving.haalcentraal.nl/haalcentraal/api/brp/personen"
-					methodType="POST"
-					headersParams="X-API-KEY"
-					contentType="application/json">
-					<Param name="X-API-KEY" value="${credential:password:X-API-KEY}"/>
-				</HttpSender>
-
+			<SenderPipe name="PostBRPPersonenBevragen">
+				<IbisLocalSender
+					name="Post BRP Personen"
+					javaListener="Post BRP Personen"
+					returnedSessionKeys="Error">
+				</IbisLocalSender>
 				<Forward name="success" path="PersoonToXml" />
-				<Forward name="400" path="EXCEPTION" />
-				<Forward name="401" path="EXCEPTION" />
-				<Forward name="403" path="EXCEPTION" />
-				<Forward name="404" path="EXCEPTION" />
-				<Forward name="406" path="EXCEPTION" />
-				<Forward name="415" path="EXCEPTION" />
-				<Forward name="429" path="EXCEPTION" />
-				<Forward name="500" path="EXCEPTION" />
-				<Forward name="503" path="EXCEPTION" />
+				<Forward name="exception" path="BADREQUEST" />
 			</SenderPipe>
-
+            
             <JsonPipe name="PersoonToXml">
                 <Forward name="success" path="hasBurgerservicenummer"/>
             </JsonPipe>
