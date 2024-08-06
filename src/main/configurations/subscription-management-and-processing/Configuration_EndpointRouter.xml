@@ -1,14 +1,37 @@
 <Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
-    <Adapter name="SoapEndpointRouter"
+    <Adapter name="EndpointRouter"
         description="">
         <Receiver name="SoapEndpointRouter">
             <WebServiceListener name="SoapEndpointRouter" address="${haalcentraal_connector.soap.endpoint}" soap="false"/>
         </Receiver>
+
+		<Receiver name="RestEndpointRouter">
+			<ApiListener name="RestEndpointRouter" uriPattern="${haalcentraal_connector.rest.endpoint}" method="POST"/>
+		</Receiver>
+
         <Pipeline>
             <Exits>
                 <Exit name="EXIT" state="SUCCESS"/>
                 <Exit name="EXCEPTION" state="ERROR"/>
+                <Exit name="202" state="SUCCESS" code="202"/>
+                <Exit name="404" state="ERROR" code="404"/>
             </Exits>
+
+            <JsonValidatorPipe name="jsonValidator" schema="json/JsonValidatorSchema.json" onlyIfSessionKey="HttpMethod">
+                <Forward name="success" path="notification receiver" />
+                <Forward name="exception" path="404" />
+            </JsonValidatorPipe>
+            
+            <SenderPipe
+                name="notification receiver" onlyIfSessionKey="HttpMethod">
+                <IbisLocalSender
+                    name="BRP Personen notification receiver"
+                    javaListener="BRP Personen notification receiver"
+                    returnedSessionKeys="Error">
+                </IbisLocalSender>
+                <Forward name="202" path="202" />
+                <Forward name="404" path="404"/>
+            </SenderPipe>
 
             <WsdlXmlValidatorPipe 
                 name="ValidateInput"
@@ -72,7 +95,7 @@
                     returnedSessionKeys="Error">
                 </IbisLocalSender>
                 <Forward name="success" path="EXIT" />
-                <Forward name="exception" path="BackEndError" />
+                <Forward name="404" path="BackEndError" />
             </SenderPipe>
 
             <SenderPipe
@@ -81,7 +104,6 @@
                     name="BRP Personen query sender"
                     javaListener="BRP Personen query sender"
                     returnedSessionKeys="Error">
-                    <Param name="ZaakIdentificatie" xpathExpression="/*/gelijk/identificatie" type="STRING" />
                 </IbisLocalSender>
                 <Forward name="success" path="EXIT" />
                 <Forward name="exception" path="BackEndError" />

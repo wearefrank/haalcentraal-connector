@@ -10,8 +10,8 @@
 
 		<Pipeline>
 			<Exits>
-				<Exit name="EXIT" state="SUCCESS" />
-				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
+				<Exit name="EXIT" state="SUCCESS" code="202" />
+				<Exit name="BadRequest" state="ERROR" code="404" empty="true" />
 			</Exits>
 
             <JsonPipe name="JsonToXml">
