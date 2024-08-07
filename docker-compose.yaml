@@ -3,8 +3,8 @@ services:
     build:
       context: .
       args:
-        FF_VERSION: ${FF_VERSION:-8.3.0-20240730.042429}
-    image: wearefrank/openforms2xxllnc:${VERSION:-latest}
+        FF_VERSION: ${FF_VERSION:-latest}
+    image: wearefrank/haalcentraal-connector:${VERSION:-latest}
     ports:
       - "${PORT:-8080}:8080"
     environment:

@@ -6,7 +6,7 @@ services:
     build:
       context: .
       args:
-        FF_VERSION: ${FF_VERSION:-8.3.0-20240730.042429}
+        FF_VERSION: ${FF_VERSION:-latest}
     image: wearefrank/haalcentraal-connector:${VERSION:-latest}
     environment:
       configurations.brp-personen-bevragen-client.classLoaderType: ScanningDirectoryClassLoader
