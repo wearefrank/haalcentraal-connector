@@ -34,7 +34,6 @@
 					name="getPersonenSender"
                     queryType="SELECT"
 					query="SELECT appid,body FROM personen WHERE BURGERSERVICENUMMER=?{burgerservicenummer} ORDER BY date DESC LIMIT 1"
-					datasourceName="jdbc/haalcentraal-connector-postgresql"
 					includeFieldDefinition="false">
 					<Param name="burgerservicenummer" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn" type="INTEGER"/>
             	</FixedQuerySender> 
@@ -90,8 +89,7 @@
             <SenderPipe name="InsertPersoon" getInputFromSessionKey="originalMessage">
                 <FixedQuerySender
 					name="insertPersonenSender"
-					query="INSERT INTO personen VALUES(?,?,?,CURRENT_TIMESTAMP)"
-					datasourceName="jdbc/haalcentraal-connector-postgresql">
+					query="INSERT INTO personen VALUES(?,?,?,CURRENT_TIMESTAMP)">
 					<Param name="burgerservicenummer" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn"/>
 					<Param name="body" sessionKey="databaseData" xpathExpression="result/rowset/row/field[@name='BODY']/text()"/>
 					<Param name="appId" sessionKey="storeInput"/>
