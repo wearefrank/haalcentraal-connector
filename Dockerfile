@@ -24,6 +24,9 @@ COPY --chown=tomcat src/main/secrets/ /opt/frank/secrets/
 COPY --chown=tomcat src/main/resources/ /opt/frank/resources/
 COPY --chown=tomcat src/test/testtool/ /opt/frank/testtool/
 
+ENV credentialFactory.class=nl.nn.credentialprovider.PropertyFileCredentialFactory
+ENV credentialFactory.map.properties=/opt/frank/secrets/credentials.properties
+
 # COPY --chown=tomcat entrypoint.sh /scripts/entrypoint.sh
 
 HEALTHCHECK --interval=15s --timeout=5s --start-period=30s --retries=60 \
@@ -31,6 +34,3 @@ HEALTHCHECK --interval=15s --timeout=5s --start-period=30s --retries=60 \
 
 # ENTRYPOINT ["/scripts/entrypoint.sh"]
 # CMD ["catalina.sh", "run"]
-
-ENV credentialFactory.class=nl.nn.credentialprovider.PropertyFileCredentialFactory
-ENV credentialFactory.map.properties=/opt/frank/secrets/credentials.properties
