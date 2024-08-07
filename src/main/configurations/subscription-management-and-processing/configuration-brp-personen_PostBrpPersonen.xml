@@ -1,0 +1,50 @@
+<Module 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+	<Adapter name="Post BRP Personen"
+		description="Post BRP Personen">
+
+		<Receiver name="Post BRP Personen">
+			<JavaListener name="Post BRP Personen" />
+		</Receiver>
+
+		<Pipeline>
+			<Exits>
+				<Exit name="Exit" state="SUCCESS" />
+				<Exit name="exception" state="ERROR" />
+				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
+				<Exit name="NotAuthorized" state="ERROR" code="401" empty="true" />
+				<Exit name="Forbidden" state="ERROR" code="403" empty="true" />
+				<Exit name="NotFound" state="ERROR" code="404" empty="true" />
+				<Exit name="NotAcceptable" state="ERROR" code="406" empty="true" />
+				<Exit name="UnsupportedMediaType" state="ERROR" code="415" empty="true" />
+				<Exit name="TooManyRequest" state="ERROR" code="429" empty="true" />
+				<Exit name="ServerError" state="ERROR" code="500" />
+				<Exit name="ServiceUnavailable" state="ERROR" code="503" />
+			</Exits>
+				
+			<SenderPipe name="PostBRPPersonenBevragen"
+				storeResultInSessionKey="body" >
+				<HttpSender
+					url="${proefomgeving.haalcentraal.BRP.personen.bevragen.endpoint}/personen"
+					methodType="POST"
+					headersParams="X-API-KEY"
+					contentType="application/json">
+					<Param name="X-API-KEY" pattern="{password}" authAlias="X-API-KEY" hidden="true" />
+				</HttpSender>
+
+				<Forward name="success" path="Exit" />
+				<Forward name="400" path="BadRequest" />
+				<Forward name="401" path="NotAuthorized" />
+				<Forward name="403" path="Forbidden" />
+				<Forward name="404" path="NotFound" />
+				<Forward name="406" path="NotAcceptable" />
+				<Forward name="415" path="UnsupportedMediaType" />
+				<Forward name="429" path="TooManyRequest" />
+				<Forward name="500" path="ServerError" />
+				<Forward name="503" path="ServiceUnavailable" />
+			</SenderPipe>
+
+		</Pipeline>
+	</Adapter>
+</Module>

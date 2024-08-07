@@ -1,0 +1,96 @@
+<Module 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+	<Adapter name="BRP Personen subscribe"
+		description="BRP Personen subscribe">
+
+		<Receiver name="BRP Personen subscribe">
+			<JavaListener name="BRP Personen subscribe" />
+		</Receiver>
+
+		<Pipeline>
+			<Exits>
+				<Exit name="Exit" state="SUCCESS" />
+				<Exit name="exception" state="ERROR" />
+				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
+				<Exit name="NotAuthorized" state="ERROR" code="401" empty="true" />
+				<Exit name="Forbidden" state="ERROR" code="403" empty="true" />
+				<Exit name="NotFound" state="ERROR" code="404" empty="true" />
+				<Exit name="NotAcceptable" state="ERROR" code="406" empty="true" />
+				<Exit name="UnsupportedMediaType" state="ERROR" code="415" empty="true" />
+				<Exit name="TooManyRequest" state="ERROR" code="429" empty="true" />
+				<Exit name="ServerError" state="ERROR" code="500" />
+				<Exit name="ServiceUnavailable" state="ERROR" code="503" />
+			</Exits>
+			
+            <XsltPipe
+                name="mappingStufToJson"
+                styleSheetName="xsl/mappingStufToJson.xslt"
+                >
+				<Param name="varZenderOrganisatie" xpathExpression="npsLv01/stuurgegevens/zender/organisatie" />
+                <Forward name="success" path="XmlToJson"/>
+                <Forward name="exception" path="exception"/>
+            </XsltPipe>
+
+            <Json2XmlValidatorPipe
+                name="XmlToJson"
+                root="root"
+                schema="xsd/checkInput.xsd"
+                outputFormat="JSON"
+                compactJsonArrays="false"
+                storeResultInSessionKey="storeInput"
+                throwException="true">
+                <Forward name="success" path="PostBRPPersonenBevragen" />
+            </Json2XmlValidatorPipe>
+
+			<SenderPipe name="PostBRPPersonenBevragen" storeResultInSessionKey="body">
+				<IbisLocalSender
+					name="Post BRP Personen"
+					javaListener="Post BRP Personen"
+					returnedSessionKeys="Error">
+				</IbisLocalSender>
+				<Forward name="success" path="JSON" />
+				<Forward name="exception" path="BadRequest" />
+			</SenderPipe>
+
+			<JsonPipe
+                name="JSON"
+				storeResultInSessionKey="xmlbody">
+                <Forward name="success" path="BRP Personen query" />
+            </JsonPipe>	
+
+			<ForEachChildElementPipe name="BRP Personen query"
+				elementXPathExpression="root/personen">
+				<IbisLocalSender
+					name="BRP Personen query sender"
+					javaListener="BRP Personen query sender"
+					returnedSessionKeys="Error">
+				</IbisLocalSender>
+				<Param name="body" sessionKey="body"/>
+				<Forward name="success" path="mappingJsonToStuf"/>
+				<Forward name="exception" path="exception" />
+			</ForEachChildElementPipe>  
+			
+            <XsltPipe
+				getInputFromSessionKey="xmlbody"
+                name="mappingJsonToStuf"
+                styleSheetName="xsl/mappingJsonToStuf.xslt"
+                >
+				
+				<Param name="varZenderApplicatie" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/zender/applicatie"/>
+				<Param name="varZenderOrganisatie" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/zender/organisatie" />
+				<Param name="varZenderGebruiker" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/zender/gebruiker"/>
+				<Param name="varReferentienummer" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/referentienummer"/>
+				<Param name="varOntvangerApplicatie" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/ontvanger/applicatie"/>
+				<Param name="varOntvangerOrganisatie" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/ontvanger/organisatie"/>
+                <Forward name="success" path="echoPipe"/>
+                <Forward name="exception" path="exception"/>
+            </XsltPipe>
+
+			<EchoPipe name="echoPipe">
+				<Forward name="success" path="Exit" />
+			</EchoPipe>
+
+		</Pipeline>
+	</Adapter>
+</Module>

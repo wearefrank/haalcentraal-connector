@@ -1,0 +1,30 @@
+<Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+    <Adapter name="ImportFromLocalFS"
+        description="">
+
+        <Receiver name="ImportFromLocalFS">
+            <JavaListener name="ImportFromLocalFS" returnedSessionKeys="Error" />
+        </Receiver>
+
+        <Pipeline>
+            <Exits>
+                <Exit name="EXIT" state="SUCCESS"/>
+                <Exit name="EXCEPTION" state="ERROR"/>
+            </Exits>
+
+            <LocalFileSystemPipe name="ReadFile" action="read">
+				<Param name="filename" sessionKey="FileName" />
+				<Forward name="success" path="IsXml" />
+			</LocalFileSystemPipe>
+
+			<XmlWellFormedCheckerPipe name="IsXml">
+				<Forward name="success" path="EXIT" />
+				<Forward name="failure" path="JsonToXml" />
+            </XmlWellFormedCheckerPipe>
+
+            <JsonPipe name="JsonToXml">
+                <Forward name="success" path="EXIT"/>
+            </JsonPipe>
+        </Pipeline>
+    </Adapter>
+</Module>

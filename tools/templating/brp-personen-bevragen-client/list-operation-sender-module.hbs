@@ -9,32 +9,62 @@
         
         <Pipeline>
             <Exits>
-                <Exit name="EXIT" state="SUCCESS" />
-                <Exit name="EXCEPTION" state="ERROR" />
-            </Exits>
+				<Exit name="Exit" state="SUCCESS" />
+				<Exit name="BadRequest" state="ERROR" code="400" />
+				<Exit name="NotAuthorized" state="ERROR" code="401" />
+				<Exit name="Forbidden" state="ERROR" code="403" />
+				<Exit name="NotFound" state="ERROR" code="404" />
+				<Exit name="NotAcceptable" state="ERROR" code="406" />
+				<Exit name="UnsupportedMediaType" state="ERROR" code="415" />
+				<Exit name="TooManyRequest" state="ERROR" code="429" />
+				<Exit name="ServerError" state="ERROR" code="500" />
+				<Exit name="ServiceUnavailable" state="ERROR" code="503" />
+			</Exits>
 
-            <JwtPipe
-                name="create-jwt"
-                expirationTime="600"
-                storeResultInSessionKey="jwtToken"
-                ifParam="valueAuthType"
-                ifValue="Jwt"
-                >
-                <Param name="valueAuthType" value="{{ literal '${' }}zaakbrug.zgw.{{api}}.auth-type{{ literal '}' }}" />
-                <Param name="sharedSecret" pattern="{password}" authAlias="{{ literal '${' }}zaakbrug.zgw.{{api}}.auth-alias{{ literal '}' }}" hidden="true"/>
-                <Param name="client_id" pattern="{username}" authAlias="{{ literal '${' }}zaakbrug.zgw.{{api}}.auth-alias{{ literal '}' }}" hidden="true"/>
-                <Param name="user_id" pattern="{username}" authAlias="{{ literal '${' }}zaakbrug.zgw.{{api}}.auth-alias{{ literal '}' }}" hidden="true"/>
-                <Param name="user_reresentation" pattern="{username}" authAlias="{{ literal '${' }}zaakbrug.zgw.{{api}}.auth-alias{{ literal '}' }}" hidden="true"/>
-            </JwtPipe>
+            <XsltPipe name="MAP_Stuf301_Stuurgegevens_to_Context"
+				styleSheetName="xsl/ControlDataToContext.xslt"
+				getInputFromSessionKey="originalMessage">
+				<Forward name="success" path="storeValues" />
+			</XsltPipe>
+
+			<PutInSessionPipe name="storeValues">
+				<Param name="varZenderApplicatie" xpathExpression="Root/Record/varZenderApplicatie" />
+				<Param name="varZenderOrganisatie"
+					xpathExpression="Root/Record/varZenderOrganisatie" />
+				<Param name="varOntvangerApplicatie"
+					xpathExpression="Root/Record/varOntvangerApplicatie" />
+				<Param name="varZenderGebruiker" xpathExpression="Root/Record/varZenderGebruiker" />
+				<Param name="varReferentienummer"
+					xpathExpression="Root/Record/varReferentienummer" />
+				<Param name="varOntvangerOrganisatie"
+					xpathExpression="Root/Record/varOntvangerOrganisatie" />
+				<Forward name="success" path="mappingStufToJson" />
+			</PutInSessionPipe>
+
+			<XsltPipe name="mappingStufToJson" getInputFromSessionKey="originalMessage"
+				styleSheetName="xsl/mappingStufToJson.xslt">
+				<Param name="varZenderOrganisatie" sessionKey="varZenderOrganisatie" />
+				<Forward name="success" path="CheckFirstInput" />
+			</XsltPipe>
+
+			<Json2XmlValidatorPipe
+				name="CheckFirstInput"
+				root="root"
+				outputFormat="JSON"
+				schema="xsd/CheckInput.xsd"
+				throwException="true"
+				storeResultInSessionKey="FirstInput">
+				<Forward name="success" path="{{ adapter.sender.name }}-sender" />
+			</Json2XmlValidatorPipe>
 
 			<SenderPipe
                 name="{{ adapter.sender.name }}-sender"
-                getInputFromFixedValue="&lt;dummy/&gt;"
                 >
 				<HttpSender 
 					name="{{ adapter.sender.name }}-httpsender" 
-					methodType="GET"
-					headersParams="Authorization,Accept-Crs"
+					methodType="POST"
+					headersParams="Authorization,Accept-Crs,X-API-KEY"
+                    contentType="application/json"
                     timeout="{{ literal '${' }}zaakbrug.zgw.{{api}}.timeout{{ literal '}' }}"
                     parametersToSkipWhenEmpty="*"
 				    />
@@ -44,30 +74,37 @@
                 <Param name="{{ name }}" sessionKey="{{ name }}" />
 		        {{/each}}
                 <Param name="Accept-Crs" value="EPSG:4326" />
-                <Param name="Authorization" value="Bearer @@zaken-api.jwt@@" hidden="true" />
+                <Param name="X-API-KEY" pattern="{password}" authAlias="${credential:username:BRP}" hidden="true"/>
                 <Forward name="success" path="JsonToXml" />
-                <Forward name="exception" path="ErrorJsonToXml" />
+				<Forward name="400" path="BadRequest" />
+				<Forward name="401" path="NotAuthorized" />
+				<Forward name="403" path="Forbidden" />
+				<Forward name="404" path="NotFound" />
+				<Forward name="406" path="NotAcceptable" />
+				<Forward name="415" path="UnsupportedMediaType" />
+				<Forward name="429" path="TooManyRequest" />
+				<Forward name="500" path="ServerError" />
+				<Forward name="503" path="ServiceUnavailable" />
 			</SenderPipe>
 
-            <JsonPipe name="ErrorJsonToXml" />
+            <JsonPipe name="JsonToXml">
+				<Forward name="success" path="MapJsonToStuf" />
+			</JsonPipe>
 
-            <XsltPipe
-                name="BuildErrorMsg"
-                styleSheetName="Zgw/Common/ParseNegativeHttpResult.xsl"
-                >
-                <Param name="senderPipeName" value="{{ adapter.sender.name }}-sender" />
-                <Forward name="success" path="EXCEPTION" />
-            </XsltPipe>
+			<XsltPipe name="MapJsonToStuf"
+				styleSheetName="xsl/mappingJsonToStuf.xslt">
+				<Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
+				<Param name="varZenderOrganisatie" sessionKey="varZenderOrganisatie" />
+				<Param name="varZenderGebruiker" sessionKey="varZenderGebruiker" />
+				<Param name="varReferentienummer" sessionKey="varReferentienummer" />
+				<Param name="varOntvangerApplicatie" sessionKey="varOntvangerApplicatie" />
+				<Param name="varOntvangerOrganisatie" sessionKey="varOntvangerOrganisatie" />
+				<Forward name="success" path="Exit" />
+			</XsltPipe>
 
-            <JsonPipe name="JsonToXml" />
-
-            <XsltPipe
-                name="UnwrapOpenZaakApiEnvelopeToList"
-                styleSheetName="Zgw/Common/UnwrapOpenZaakApiEnvelopeToList.xslt"
-                >
-                <Param name="Type" value="{{ adapter.object-type }}" />
-                <Param name="List" value="{{ adapter.collection }}" />
-            </XsltPipe>
+			<EchoPipe name="echoPipe">
+				<Forward name="success" path="Exit" />
+			</EchoPipe>
         </Pipeline>
     </Adapter>
 </Module>

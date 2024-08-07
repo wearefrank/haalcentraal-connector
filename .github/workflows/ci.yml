@@ -37,6 +37,5 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
     with:
       version: ${{ needs.version-next.outputs.version-next }}
-      
 
   

@@ -1,0 +1,62 @@
+<Module 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+	<Adapter name="BRP Personen callback sender"
+		description="callback sender voor brp personen">
+
+		<Receiver name="BRP Personen callback sender">
+			<JavaListener name="BRP Personen callback sender" />
+		</Receiver>
+
+		<Pipeline>
+			<Exits>
+				<Exit name="EXIT" state="SUCCESS" />
+				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
+				<Exit name="NotAuthorized" state="ERROR" code="401" empty="true" />
+				<Exit name="Forbidden" state="ERROR" code="403" empty="true" />
+				<Exit name="NotFound" state="ERROR" code="404" empty="true" />
+				<Exit name="NotAcceptable" state="ERROR" code="406" empty="true" />
+				<Exit name="UnsupportedMediaType" state="ERROR" code="415" empty="true" />
+				<Exit name="TooManyRequest" state="ERROR" code="429" empty="true" />
+				<Exit name="ServerError" state="ERROR" code="500" />
+				<Exit name="ServiceUnavailable" state="ERROR" code="503" />
+                <Exit name="EXCEPTION" state="ERROR" />
+			</Exits>
+			
+            <XsltPipe
+				getInputFromSessionKey="body"
+                name="mappingJsonToStuf"
+                styleSheetName="xsl/mappingJsonToStuf.xslt"
+                storeResultInSessionKey="soapMessage"
+                >
+				
+				<Param name="varZenderApplicatie" sessionKey="originalMessage" xpathExpression="app/applicatie"/>
+				<Param name="varZenderOrganisatie" sessionKey="originalMessage" xpathExpression="app/organisatie" />
+				<Param name="varZenderGebruiker" sessionKey="originalMessage" xpathExpression="app/gebruiker"/>
+				<Param name="varReferentienummer" sessionKey="originalMessage" xpathExpression="app/referentienummer"/>
+				<Param name="varOntvangerApplicatie" value="NEDMAG_VnA"/>
+				<Param name="varOntvangerOrganisatie" value="NEDGR"/>
+                <Forward name="success" path="callback"/>
+                <Forward name="exception" path="EXCEPTION"/>
+            </XsltPipe>
+
+            <SenderPipe 
+                name="callback"
+                getInputFromSessionKey="soapMessage"
+                >
+				<HttpSender
+					methodType="POST"
+					contentType="application/xml">
+				</HttpSender>
+                <Param name="url" sessionKey="originalMessage" xpathExpression="app/url"/>
+                <Forward name="success" path="echoPipe"/>
+                <Forward name="exception" path="EXCEPTION"/>
+            </SenderPipe>
+
+		<EchoPipe name="echoPipe">
+			<Forward name="success" path="EXIT" />
+		</EchoPipe>
+
+		</Pipeline>
+	</Adapter>
+</Module>
