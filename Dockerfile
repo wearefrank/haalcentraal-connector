@@ -31,3 +31,6 @@ HEALTHCHECK --interval=15s --timeout=5s --start-period=30s --retries=60 \
 
 # ENTRYPOINT ["/scripts/entrypoint.sh"]
 # CMD ["catalina.sh", "run"]
+
+ENV credentialFactory.class=nl.nn.credentialprovider.PropertyFileCredentialFactory
+ENV credentialFactory.map.properties=/opt/frank/secrets/credentials.properties
