@@ -1,0 +1,99 @@
+<Module 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+	<Adapter name="BRP Personen query sender"
+		description="query sender voor brp personen">
+
+		<Receiver name="BRP Personen query sender">
+			<JavaListener name="BRP Personen query sender" />
+		</Receiver>
+
+		<Pipeline>
+			<Exits>
+				<Exit name="EXIT" state="SUCCESS" />
+				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
+				<Exit name="NotAuthorized" state="ERROR" code="401" empty="true" />
+				<Exit name="Forbidden" state="ERROR" code="403" empty="true" />
+				<Exit name="NotFound" state="ERROR" code="404" empty="true" />
+				<Exit name="NotAcceptable" state="ERROR" code="406" empty="true" />
+				<Exit name="UnsupportedMediaType" state="ERROR" code="415" empty="true" />
+				<Exit name="TooManyRequest" state="ERROR" code="429" empty="true" />
+				<Exit name="ServerError" state="ERROR" code="500" />
+				<Exit name="ServiceUnavailable" state="ERROR" code="503" />
+			</Exits>
+			
+            <XsltPipe
+                name="mappingStufToJson"
+                styleSheetName="xsl/mappingStufToJson.xslt"
+                >
+				<Param name="varZenderOrganisatie" xpathExpression="npsLv01/stuurgegevens/zender/organisatie" />
+                <Forward name="success" path="XmlToJson"/>
+                <Forward name="exception" path="BadRequest"/>
+            </XsltPipe>
+
+            <Json2XmlValidatorPipe
+                name="XmlToJson"
+                root="root"
+                schema="xsd/checkInput.xsd"
+                outputFormat="JSON"
+                compactJsonArrays="false"
+                storeResultInSessionKey="storeInput"
+                throwException="true">
+                <Forward name="success" path="PostBRPPersonenBevragen" />
+            </Json2XmlValidatorPipe>
+
+			<SenderPipe name="PostBRPPersonenBevragen" storeResultInSessionKey="body">
+				<IbisLocalSender
+					name="PostBRPPersonenBevragen"
+					javaListener="Post BRP Personen"
+					returnedSessionKeys="Error">
+				</IbisLocalSender>
+				<Forward name="success" path="JSON" />
+				<Forward name="exception" path="BadRequest" />
+			</SenderPipe>
+
+			<JsonPipe
+                name="JSON"
+				storeResultInSessionKey="xmlbody">
+                <Forward name="success" path="BRP Personen query" />
+            </JsonPipe>	
+
+			<ForEachChildElementPipe name="BRP Personen query"
+				elementXPathExpression="root/personen">
+                <FixedQuerySender
+					name="insertPersonenSender"
+					query="INSERT INTO personen VALUES(?,?,'{}',CURRENT_TIMESTAMP)">
+					<Param name="burgerservicenummer" xpathExpression="personen/burgerservicenummer" type="INTEGER"/>
+					<Param name="body" sessionKey="body"/>
+            	</FixedQuerySender>
+				<Forward name="success" path="mappingJsonToStuf"/>
+				<Forward name="exception" path="BadRequest" />
+			</ForEachChildElementPipe>  
+			
+            <XsltPipe
+				getInputFromSessionKey="xmlbody"
+                name="mappingJsonToStuf"
+                styleSheetName="xsl/mappingJsonToStuf.xslt"
+                >
+				
+				<Param name="varZenderApplicatie" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/zender/applicatie"/>
+				<Param name="varZenderOrganisatie" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/zender/organisatie" />
+				<Param name="varZenderGebruiker" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/zender/gebruiker"/>
+				<Param name="varReferentienummer" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/referentienummer"/>
+				<Param name="varOntvangerApplicatie" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/ontvanger/applicatie"/>
+				<Param name="varOntvangerOrganisatie" sessionKey="originalMessage" xpathExpression="npsLv01/stuurgegevens/ontvanger/organisatie"/>
+                <Forward name="success" path="WrapZakLka1Response"/>
+                <Forward name="exception" path="BadRequest"/>
+            </XsltPipe>
+			<!-- soapBodyStyleSheet="Common/xsl/CreateZakLa01Response.xslt" -->
+
+            <SoapWrapperPipe
+                name="WrapZakLka1Response"
+                >
+                <Forward name="success" path="EXIT"/>
+            </SoapWrapperPipe>
+
+
+		</Pipeline>
+	</Adapter>
+</Module>
