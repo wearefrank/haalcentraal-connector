@@ -30,7 +30,7 @@
 					methodType="POST"
 					headersParams="X-API-KEY"
 					contentType="application/json">
-					<Param name="X-API-KEY" value="${credential:password:X-API-KEY}"/>
+					<Param name="X-API-KEY" pattern="{password}" authAlias="X-API-KEY" hidden="true" />
 				</HttpSender>
 
 				<Forward name="success" path="Exit" />
