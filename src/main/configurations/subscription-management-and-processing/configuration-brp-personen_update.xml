@@ -1,0 +1,172 @@
+<Module
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../FrankConfig.xsd"> 
+	<Adapter name="BrpPersonenUpdate"
+		description="BrpPersonenUpdate">
+
+		<Receiver name="BrpPersonenUpdate">
+			<JavaListener name="BrpPersonenUpdate" />
+		</Receiver>
+
+        <Pipeline>
+			<Exits>
+				<Exit name="EXIT" state="SUCCESS" />
+				<Exit name="EXCEPTION" state="ERROR" />
+				<Exit name="BADREQUEST" state="ERROR" code="400" />
+			</Exits>
+
+            <JsonPipe name="JsonToXmlInput" storeResultInSessionKey="input">
+                <Forward name="success" path="GetPersoon"/>
+            </JsonPipe>
+
+            <SenderPipe name="GetPersoon" storeResultInSessionKey="oldJSON" getInputFromSessionKey="input">
+                <FixedQuerySender
+					name="getPersonenSender"
+                    queryType="SELECT"
+					query="SELECT BODY,APPID,DATE FROM personen WHERE BURGERSERVICENUMMER=?{burgerservicenummer} ORDER BY date DESC LIMIT 1"
+					includeFieldDefinition="false">
+					<Param name="burgerservicenummer" xpathExpression="root/burgerservicenummer"/>
+            	</FixedQuerySender> 
+                <Forward name="success" path="PersonExists" />
+            </SenderPipe>
+            
+            <XmlIfPipe
+                name="PersonExists"
+                xpathExpression="count(result/rowset/row) = 1"
+            >
+                <Forward name="then" path="appId"/>
+                <Forward name="else" path="EXCEPTION"/>
+            </XmlIfPipe>
+			
+            <PutInSessionPipe 
+                name="appId">
+                <Param name="appIds" sessionKey="oldJSON" xpathExpression="result/rowset/row/field[@name='APPID']" />
+                <Forward name="success" path="appToXml" />
+            </PutInSessionPipe>
+
+			<JsonPipe
+                name="appToXml"
+				getInputFromSessionKey="appIds"
+                storeResultInSessionKey="appIdsXml">
+                <Forward name="success" path="mappingStufToJson" />
+            </JsonPipe>	
+
+            <XsltPipe
+                name="mappingStufToJson"
+				getInputFromSessionKey="input"
+                styleSheetName="xsl/personenRequest.xslt"
+				skipEmptyTags="true"
+                >
+				<Param name="varZenderOrganisatie" xpathExpression="npsLv01/gelijk/zender/organisatie" />
+                <Forward name="success" path="XmlToJson"/>
+            </XsltPipe>
+
+            <Json2XmlValidatorPipe
+                name="XmlToJson"
+                root="root"
+                schema="xsd/checkInput.xsd"
+                outputFormat="JSON"
+                compactJsonArrays="false"
+                storeResultInSessionKey="storeInput"
+                throwException="true">
+                <Forward name="success" path="PostBRPPersonenBevragen" />
+            </Json2XmlValidatorPipe>
+
+			<SenderPipe name="PostBRPPersonenBevragen" storeResultInSessionKey="newJSON">
+				<IbisLocalSender
+					name="Post BRP Personen"
+					javaListener="Post BRP Personen"
+					returnedSessionKeys="Error">
+				</IbisLocalSender>
+				<Forward name="success" path="PersoonToXml" />
+				<Forward name="exception" path="BADREQUEST" />
+			</SenderPipe>
+
+            <JsonPipe name="PersoonToXml">
+                <Forward name="success" path="hasBurgerservicenummer"/>
+            </JsonPipe>
+            
+            <PutInSessionPipe 
+                name="hasBurgerservicenummer">
+                <Param name="burgerservicenummer" xpathExpression='//burgerservicenummer/text()' />
+                <Forward name="success" path="JsonComparer" />
+            </PutInSessionPipe>
+            
+            <!-- returns true if it's a subset, else returns a combined json version that can be immediately put in the database-->
+			<SenderPipe name="JsonComparer"
+                storeResultInSessionKey="json">
+				<JavascriptSender
+                    jsFileName="JSONcompare.js"
+                    jsFunctionName="compareJSONFiles"
+				>
+				</JavascriptSender>
+				<Param name="oldJSON" sessionKey="oldJSON" xpathExpression="result/rowset/row/field[@name='BODY']"/>
+				<Param name="newJSON" sessionKey="newJSON"/>
+				<Forward name="success" path="isSubset" />
+			</SenderPipe>
+
+            <XmlIfPipe
+                name="isSubset"
+                regex="true"
+            >
+                <Forward name="then" path="NoUpdateFound"/>
+                <Forward name="else" path="InsertPersoon"/>
+            </XmlIfPipe>
+
+            <SenderPipe name="InsertPersoon" getInputFromSessionKey="input">
+                <FixedQuerySender
+					name="insertPersonenSender"
+					query="INSERT INTO personen VALUES(?,?,?,CURRENT_TIMESTAMP)">
+					<Param name="burgerservicenummer" sessionKey="burgerservicenummer"/>
+					<Param name="body" sessionKey="json"/>
+					<Param name="appId" sessionKey="appIds"/>
+            	</FixedQuerySender>
+                <Forward name="success" path="jsonToXml" />
+            </SenderPipe>
+
+			<JsonPipe
+                name="jsonToXml"
+				getInputFromSessionKey="json"
+				storeResultInSessionKey="xmlbody">
+                <Forward name="success" path="GetApplicationConfigFromLocalFS" />
+            </JsonPipe>	
+
+            <SenderPipe 
+                name="GetApplicationConfigFromLocalFS"
+                storeResultInSessionKey="ApplicationConfig"
+                >
+                <IbisLocalSender
+                    name="CallImportFromLocalFS"
+                    javaListener="ImportFromLocalFS"
+                    returnedSessionKeys="Error">
+                    <Param name="FileName" value="${FilePath_1}" />
+                </IbisLocalSender>
+                <Forward name="success" path="filter"/>
+                <Forward name="error" path="EXCEPTION"/>
+            </SenderPipe>
+
+            <XsltPipe
+                name="filter"
+				getInputFromSessionKey="ApplicationConfig"
+                styleSheetName="xsl/app.xslt"
+                >
+				<Param name="appIds" sessionKey="appIdsXml" type="DOMDOC"/>
+                <Forward name="success" path="forloop"/>
+            </XsltPipe>
+
+			<ForEachChildElementPipe name="forloop"
+				elementXPathExpression="root/app">
+				<IbisLocalSender
+					name="BRP Personen callback sender"
+					javaListener="BRP Personen callback sender"
+					>
+                    <Param name="body" sessionKey="xmlbody"/>
+				</IbisLocalSender>
+				<Forward name="success" path="EXIT" />
+			</ForEachChildElementPipe>
+
+            <ExceptionPipe name="NoUpdateFound" />
+
+        </Pipeline>
+    </Adapter>
+</Module>

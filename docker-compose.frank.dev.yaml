@@ -1,0 +1,18 @@
+services:
+  frank:
+    extends:
+      file: docker-compose.yaml
+      service: frank
+    build:
+      context: .
+      args:
+        FF_VERSION: ${FF_VERSION:-latest}
+    image: wearefrank/haalcentraal-connector:${VERSION:-latest}
+    environment:
+      configurations.brp-personen-bevragen-client.classLoaderType: ScanningDirectoryClassLoader
+      configurations.brp-personen-bevragen-server.classLoaderType: ScanningDirectoryClassLoader
+      configurations.subscription-management-and-processing.classLoaderType: ScanningDirectoryClassLoader
+
+volumes:
+  frank-logs:
+  frank-h2db-data:

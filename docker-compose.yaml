@@ -1,8 +1,9 @@
-version: '3.8'
-
 services:
   frank:
-    build: .
+    build:
+      context: .
+      args:
+        FF_VERSION: ${FF_VERSION:-latest}
     image: wearefrank/haalcentraal-connector:${VERSION:-latest}
     ports:
       - "${PORT:-8080}:8080"
@@ -14,6 +15,37 @@ services:
     env_file:
       - .env
     volumes:
-      - ${SECRETS_PATH:-./src/main/secrets}:/opt/frank/secrets
+      - frank-h2db-data:/opt/frank/h2
+      - frank-logs:/usr/local/tomcat/logs
+    develop:
+      watch:
+        - action: sync
+          path: ./src/main/configurations
+          target: /opt/frank/configurations
+        - action: sync
+          path: ./src/main/resources
+          target: /opt/frank/resources
+        - action: sync
+          path: ./src/test/testtool
+          target: /opt/frank/testtool
+        - action: sync+restart
+          path: ./src/main/resources/DeploymentSpecifics.properties
+          target: /opt/frank/resources/DeploymentSpecifics.properties
+        - action: sync+restart
+          path: ./src/main/resources/ladybug/DatabaseChangelog_Custom.xml
+          target: /opt/frank/resources/ladybug/DatabaseChangelog_Custom.xml
+        - action: sync+restart
+          path: ./src/main/resources/springIbisTestToolCustom.xml
+          target: /opt/frank/resources/springIbisTestToolCustom.xml
+        - action: sync+restart
+          path: ./src/main/secrets
+          target: /opt/frank/secrets
+        - action: rebuild
+          path: ./src/main/java
+        - action: rebuild
+          path: ./src/main/webapp/META-INF/context.xml
     restart: unless-stopped
 
+volumes:
+  frank-logs:
+  frank-h2db-data:
