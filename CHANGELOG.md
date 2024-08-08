@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.2.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.1.0...v1.2.0) (2024-08-08)
+
+### 🍕 Features
+
+* add Oauth ([559360b](https://github.com/wearefrank/haalcentraal-connector/commit/559360bb4223d2d17342e3bcbb105978490e475c))
+
 ## [1.1.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.0.0...v1.1.0) (2024-08-08)
 
 ### 🍕 Features
