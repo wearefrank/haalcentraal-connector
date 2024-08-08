@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "access_token": { "type": "string" },
+    "expires_in": { "type": "integer" },
+    "scope": { "type": "string" },
+    "token_type": { "type": "string" },
+    "keys": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "kty": { "type": "string" },
+          "n": { "type": "string" },
+          "e": { "type": "string" },
+          "use": { "type": "string" },
+          "alg": { "type": "string" },
+          "x5t": { "type": "string" }
+        },
+        "required": ["kty", "n", "e", "use", "alg", "x5t"]
+      }
+    },
+    "client_id": { "type": "string" }
+  },
+  "required": ["access_token", "expires_in", "scope", "token_type", "keys", "client_id"]
+}
