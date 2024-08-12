@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.3.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.2.0...v1.3.0) (2024-08-12)
+
+### 🍕 Features
+
+* BRP zoek personen ([616cdf4](https://github.com/wearefrank/haalcentraal-connector/commit/616cdf477b594a289e9a7e231e2224e6f84287b5))
+
 ## [1.2.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.1.0...v1.2.0) (2024-08-08)
 
 ### 🍕 Features
