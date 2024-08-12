@@ -1,0 +1,126 @@
+<Module 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+	<Adapter name="BRP-API-Personen"
+		description="ZoekPersonen">
+
+		<Receiver name="BRP Personen Bevragen">
+			<JavaListener name="BRP Personen Bevragen" />
+		</Receiver>
+
+		<Pipeline>
+			<Exits>
+				<Exit name="Exit" state="SUCCESS" />
+				<Exit name="BadRequest" state="ERROR" code="400" />
+				<Exit name="NotAuthorized" state="ERROR" code="401" />
+				<Exit name="Forbidden" state="ERROR" code="403" />
+				<Exit name="NotFound" state="ERROR" code="404" />
+				<Exit name="NotAcceptable" state="ERROR" code="406" />
+				<Exit name="UnsupportedMediaType" state="ERROR" code="415" />
+				<Exit name="TooManyRequest" state="ERROR" code="429" />
+				<Exit name="ServerError" state="ERROR" code="500" />
+				<Exit name="ServiceUnavailable" state="ERROR" code="503" />
+			</Exits>
+
+
+			<XsltPipe name="MAP_Stuf301_Stuurgegevens_to_Context"
+				styleSheetName="xsl/GetInputValues.xslt"
+				getInputFromSessionKey="originalMessage">
+				<Forward name="success" path="storeValues" />
+			</XsltPipe>
+
+			<PutInSessionPipe name="storeValues">
+				<Param name="berichtcode" xpathExpression="Root/Record/berichtcode" />
+				<Param name="varZenderApplicatie" xpathExpression="Root/Record/varZenderApplicatie" />
+				<Param name="varZenderOrganisatie"
+					xpathExpression="Root/Record/varZenderOrganisatie" />
+				<Param name="varOntvangerApplicatie"
+					xpathExpression="Root/Record/varOntvangerApplicatie" />
+				<Param name="varZenderGebruiker" xpathExpression="Root/Record/varZenderGebruiker" />
+				<Param name="varReferentienummer"
+					xpathExpression="Root/Record/varReferentienummer" />
+				<Param name="varOntvangerOrganisatie"
+					xpathExpression="Root/Record/varOntvangerOrganisatie" />
+				<Param name="varEntiteittype"
+					xpathExpression="Root/Record/varEntiteittype" />
+				<Param name="indicatorVervolgvraag"
+					xpathExpression="Root/Record/indicatorVervolgvraag" />
+				<Forward name="success" path="ReadFieldsFile" />
+			</PutInSessionPipe>
+
+			<LocalFileSystemPipe name="ReadFieldsFile"
+				action="read"
+				storeResultInSessionKey="fields">
+				<Param name="filename"
+					value="${configurations.directory}\HaalCentraal\xsl\fields.xml" />
+				<Forward name="success" path="mappingStufToJson" />
+			</LocalFileSystemPipe>
+
+			<XsltPipe name="mappingStufToJson" getInputFromSessionKey="originalMessage"
+				styleSheetName="xsl/mappingStufToJson.xslt">
+				<Param name="varZenderOrganisatie" sessionKey="varZenderOrganisatie" />
+				<Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
+				<Param name="inclusiefOverledenPersonen" value="${inclusiefOverledenPersonen}"/>
+				<Param name="fields" sessionKey="fields" type="DOMDOC" />
+				<Forward name="success" path="CheckHCInput" />
+			</XsltPipe>
+
+			<Json2XmlValidatorPipe
+				name="CheckHCInput"
+				root="root"
+				outputFormat="JSON"
+				schema="xsd/CheckHCInput.xsd"
+				throwException="true"
+				storeResultInSessionKey="FirstInput">
+				<Forward name="success" path="PostBRPPersonenBevragen" />
+			</Json2XmlValidatorPipe>
+
+			<SenderPipe name="PostBRPPersonenBevragen">
+				<HttpSender
+					url="${proefomgeving.haalcentraal.BRP.personen.bevragen.endpoint}/personen"
+					methodType="POST"
+					headersParams="X-API-KEY"
+					contentType="application/json">
+					<Param name="X-API-KEY" pattern="{password}"
+						authAlias="${credential:username:BRP}" hidden="true" />
+				</HttpSender>
+
+				<Forward name="success" path="JsonToXml" />
+				<Forward name="400" path="BadRequest" />
+				<Forward name="401" path="NotAuthorized" />
+				<Forward name="403" path="Forbidden" />
+				<Forward name="404" path="NotFound" />
+				<Forward name="406" path="NotAcceptable" />
+				<Forward name="415" path="UnsupportedMediaType" />
+				<Forward name="429" path="TooManyRequest" />
+				<Forward name="500" path="ServerError" />
+				<Forward name="503" path="ServiceUnavailable" />
+			</SenderPipe>
+
+			<JsonPipe name="JsonToXml">
+				<Forward name="success" path="MapJsonToStuf" />
+			</JsonPipe>
+
+			<XsltPipe name="MapJsonToStuf"
+				styleSheetName="xsl/mappingJsonToStuf.xslt">
+				<Param name="berichtcode" sessionKey="berichtcode" />
+				<Param name="varEntiteittype" sessionKey="varEntiteittype" />
+				<Param name="indicatorVervolgvraag" sessionKey="indicatorVervolgvraag" />
+				<Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
+				<Param name="varZenderOrganisatie" sessionKey="varZenderOrganisatie" />
+				<Param name="varZenderGebruiker" sessionKey="varZenderGebruiker" />
+				<Param name="varReferentienummer" sessionKey="varReferentienummer" />
+				<Param name="varOntvangerApplicatie" sessionKey="varOntvangerApplicatie" />
+				<Param name="varOntvangerOrganisatie" sessionKey="varOntvangerOrganisatie" />
+				<Param name="originalMessage" sessionKey="originalMessage" type="DOMDOC" />
+				<Forward name="success" path="Exit" />
+			</XsltPipe>
+
+
+			<EchoPipe name="echoPipe">
+				<Forward name="success" path="Exit" />
+			</EchoPipe>
+
+		</Pipeline>
+	</Adapter>
+</Module>

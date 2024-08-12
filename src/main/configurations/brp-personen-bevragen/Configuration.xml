@@ -1,0 +1,7 @@
+<!DOCTYPE Configuration [
+	<!ENTITY BRP-API-Personen SYSTEM "ConfigurationBRPPersonenBevragen.xml">
+]>
+
+<Configuration>
+	&BRP-API-Personen;
+</Configuration>
