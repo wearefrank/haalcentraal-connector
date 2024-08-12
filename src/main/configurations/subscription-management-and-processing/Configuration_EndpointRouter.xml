@@ -50,6 +50,19 @@
                 <Forward name="success" path="UnwrapSoapMessage"/>
                 <Forward name="failure" path="WsdlValidationSoftFailForwarder"/>
             </WsdlXmlValidatorPipe>
+            
+
+			<!-- <LocalFileSystemPipe name="ReadFieldsFile"
+				action="read"
+				storeResultInSessionKey="fields">
+				<Param name="filename"
+					value="${configurations.directory}/subscription-management-and-processing/xsl/testSoap.xml" />
+				<Forward name="success" path="WrapZakLka1Response" />
+			</LocalFileSystemPipe> -->
+
+
+
+            
 
             <XmlSwitchPipe 
                 name="WsdlValidationSoftFailForwarder"
@@ -62,8 +75,9 @@
 
             <SoapWrapperPipe 
                 name="UnwrapSoapMessage"
+                removeOutputNamespaces="false"
+                storeResultInSessionKey="unwrappedSoapMessage"
                 direction="UNWRAP"
-                removeOutputNamespaces="true"
                 >
                 <Forward name="success" path="LegalizeSoapActionForPipeName"/>
                 <Forward name="exception" path="BackEndError"/>
@@ -98,18 +112,73 @@
                 <Forward name="404" path="BackEndError" />
             </SenderPipe>
 
+        <XsltPipe name="http:__www.egem.nl_StUF_sector_bg_0310_npsLv01"
+            styleSheetName="xsl/GetInputValues.xslt"
+            getInputFromSessionKey="originalMessage">
+            <Forward name="success" path="storeValues" />
+        </XsltPipe>
+
+        <PutInSessionPipe name="storeValues">
+            <Param name="berichtcode" xpathExpression="Root/Record/berichtcode" />
+            <Param name="varZenderApplicatie" xpathExpression="Root/Record/varZenderApplicatie" />
+            <Param name="varZenderOrganisatie"
+                xpathExpression="Root/Record/varZenderOrganisatie" />
+            <Param name="varOntvangerApplicatie"
+                xpathExpression="Root/Record/varOntvangerApplicatie" />
+            <Param name="varZenderGebruiker" xpathExpression="Root/Record/varZenderGebruiker" />
+            <Param name="varReferentienummer"
+                xpathExpression="Root/Record/varReferentienummer" />
+            <Param name="varOntvangerOrganisatie"
+                xpathExpression="Root/Record/varOntvangerOrganisatie" />
+            <Param name="varEntiteittype"
+                xpathExpression="Root/Record/varEntiteittype" />
+            <Param name="indicatorVervolgvraag"
+                xpathExpression="Root/Record/indicatorVervolgvraag" />
+            <Forward name="success" path="BRP Personen query sender" />
+        </PutInSessionPipe>
+
             <SenderPipe
-                name="http:__www.egem.nl_StUF_sector_bg_0310_npsLv01">
+                name="BRP Personen query sender" getInputFromSessionKey="unwrappedSoapMessage">
                 <IbisLocalSender
                     name="BRP Personen query sender"
                     javaListener="BRP Personen query sender"
                     returnedSessionKeys="Error">
+                    <Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
+                    <Param name="varZenderOrganisatie" sessionKey="varZenderOrganisatie" />
+                    <Param name="varZenderOrganisatie" sessionKey="varZenderOrganisatie" />
+                    <Param name="varZenderOrganisatie" sessionKey="varZenderOrganisatie" />
+                    <Param name="varZenderOrganisatie" sessionKey="varZenderOrganisatie" />
+                    <Param name="varZenderOrganisatie" sessionKey="varZenderOrganisatie" />
                 </IbisLocalSender>
-                <Forward name="success" path="EXIT" />
+                <Forward name="success" path="MapJsonToStuf" />
                 <Forward name="exception" path="BackEndError" />
             </SenderPipe>
 
             <!-- SoapWrapperPipes -->
+
+
+			<XsltPipe name="MapJsonToStuf"
+				styleSheetName="xsl/mappingJsonToStuf.xslt">
+				<Param name="berichtcode" sessionKey="berichtcode" />
+				<Param name="varEntiteittype" sessionKey="varEntiteittype" />
+				<Param name="indicatorVervolgvraag" sessionKey="indicatorVervolgvraag" />
+				<Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
+				<Param name="varZenderOrganisatie" sessionKey="varZenderOrganisatie" />
+				<Param name="varZenderGebruiker" sessionKey="varZenderGebruiker" />
+				<Param name="varReferentienummer" sessionKey="varReferentienummer" />
+				<Param name="varOntvangerApplicatie" sessionKey="varOntvangerApplicatie" />
+				<Param name="varOntvangerOrganisatie" sessionKey="varOntvangerOrganisatie" />
+				<Param name="originalMessage" sessionKey="unwrappedSoapMessage" type="DOMDOC" />
+				<Forward name="success" path="WrapZakLka1Response" />
+			</XsltPipe>
+        <!-- soapBodyStyleSheet="Common/xsl/CreateZakLa01Response.xslt" -->
+
+        <SoapWrapperPipe
+            name="WrapZakLka1Response"
+            >
+            <Forward name="success" path="EXIT"/>
+        </SoapWrapperPipe>
+
 
             <!-- ERRORS -->
             <XsltPipe 

@@ -1,29 +1,71 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
-    xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310">
+    xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301">
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
+    <xsl:param name="varZenderOrganisatie" />
+    <xsl:param name="varZenderApplicatie" />
+    <xsl:param name="inclusiefOverledenPersonen" />
+    <xsl:param name="fields" as="node()?" />
     <xsl:template match="/">
+        <xsl:param name="vanafBSN" select="//BG:vanaf//*[local-name() = 'inp.bsn']" />
+        <xsl:param
+            name="totEnMetBSN" select="//BG:totEnMet//*[local-name() = 'inp.bsn']" />
         <root>
             <xsl:choose>
-                <xsl:when test="((boolean(//*[contains(name(),'bsn')]/text())))">
+                <xsl:when test="boolean(//*[contains(name(),'bsn')]/text())">
                     <type>RaadpleegMetBurgerservicenummer</type>
-                   
-                    <fields>burgerservicenummer</fields>
-                    <fields>aNummer</fields>
-                    <fields>adressering</fields>
-                    <fields>datumInschrijvingInGemeente</fields>
-                    <fields>geboorte</fields>
-                    <fields>gemeenteVanInschrijving</fields>
-                    <fields>geslacht</fields>
-                    <fields>leeftijd</fields>
-                    <fields>naam</fields>
-                    <fields>nationaliteiten</fields>
-                    <fields>overlijden</fields>
-                    <fields>verblijfplaats</fields>
-                    <fields>verblijfplaatsBinnenland</fields>
-                    <fields>adresseringBinnenland</fields>
-
+                    <xsl:choose>
+                        <xsl:when test="$varZenderApplicatie=&apos;DEC_ZKN&apos;">
+                            <xsl:for-each select="$fields/root/DEC_ZKN/fields">
+                                <fields>
+                                    <xsl:value-of select="." />
+                                </fields>
+                            </xsl:for-each>
+                        </xsl:when>
+                        <xsl:when test="$varZenderApplicatie=&apos;TOP&apos;">
+                            <xsl:for-each select="$fields/root/TOP/fields">
+                                <fields>
+                                    <xsl:value-of select="." />
+                                </fields>
+                            </xsl:for-each>
+                        </xsl:when>
+                        <xsl:when test="$varZenderApplicatie=&apos;GWS&apos;">
+                            <xsl:for-each select="$fields/root/GWS/fields">
+                                <fields>
+                                    <xsl:value-of select="." />
+                                </fields>
+                            </xsl:for-each>
+                        </xsl:when>
+                        <xsl:when test="$varZenderApplicatie=&apos;LBA&apos;">
+                            <xsl:for-each select="$fields/root/LBA/fields">
+                                <fields>
+                                    <xsl:value-of select="." />
+                                </fields>
+                            </xsl:for-each>
+                        </xsl:when>
+                        <xsl:when test="$varZenderApplicatie=&apos;PGAx-SG-ZVH&apos;">
+                            <xsl:for-each select="$fields/root/PGAx/fields">
+                                <fields>
+                                    <xsl:value-of select="." />
+                                </fields>
+                            </xsl:for-each>
+                        </xsl:when>
+                    </xsl:choose>
+                    <xsl:choose>
+                        <xsl:when test="$varZenderOrganisatie !=''">
+                            <gemeenteVanInschrijving>
+                                <xsl:value-of
+                                    select="$varZenderOrganisatie" />
+                            </gemeenteVanInschrijving>
+                        </xsl:when>
+                        <xsl:otherwise></xsl:otherwise>
+                    </xsl:choose>
                     <xsl:choose>
                         <xsl:when test="count(//*[contains(name(),'bsn')]/text()) > 1">
+                            <xsl:call-template
+                                name="generateRangeForBSN">
+                                <xsl:with-param name="vanafBSN" select="$vanafBSN" />
+                                <xsl:with-param name="totEnMetBSN" select="$totEnMetBSN" />
+                            </xsl:call-template>
                             <!-- <xsl:for-each
                                 select="">
                                 <burgerservicenummer>
@@ -37,78 +79,119 @@
                             <burgerservicenummer>
                                 <xsl:value-of select="//*[contains(name(),'bsn')]/text()" />
                             </burgerservicenummer>
-                            <!-- 
-                            <burgerservicenummer>
-                                999990044
-                            </burgerservicenummer> -->
                         </xsl:otherwise>
                     </xsl:choose>
 
                 </xsl:when>
+
                 <xsl:when
-                    test="((boolean(//*[contains(name(),'geslachtsnaam')]/text())) and (boolean(//*[contains(name(),'geboortedatum')]/text())))">
+                    test="((boolean(//*[contains(name(),'geslachtsnaam')]/text())) and
+                        (boolean(//*[contains(name(),'geboortedatum')]/text())))">
                     <type>ZoekMetGeslachtsnaamEnGeboortedatum</type>
-                    <fields>burgerservicenummer</fields>
-                    <fields>adressering</fields>
-                    <fields>geboorte</fields>
-                    <fields>geslacht</fields>
-                    <fields>leeftijd</fields>
-                    <fields>naam</fields>
-                    <fields>adresseringBinnenland</fields>
-    
-                    <inclusiefOverledenPersonen>
-                        <xsl:value-of
-                            select="//*[contains(name(),'inclusiefOverledenPersonen')]/text()" />
+            <xsl:for-each
+                        select="$fields/root/zoekMet/fields">
+                        <fields>
+                            <xsl:value-of select="." />
+                        </fields>
+                    </xsl:for-each>
+            <xsl:choose>
+                        <xsl:when test="$varZenderOrganisatie !=''">
+                            <gemeenteVanInschrijving>
+                                <xsl:value-of
+                                    select="$varZenderOrganisatie" />
+                            </gemeenteVanInschrijving>
+                        </xsl:when>
+                        <xsl:otherwise></xsl:otherwise>
+                    </xsl:choose>
+            <inclusiefOverledenPersonen>
+                        <xsl:value-of select="$inclusiefOverledenPersonen" />
                     </inclusiefOverledenPersonen>
-                    <geboortedatum>
+            <geboortedatum>
+                        <xsl:variable name="geboortedatum"><xsl:value-of
+                                select="//*[local-name()='geboortedatum']/text()" />
+                        </xsl:variable>
                         <xsl:value-of
-                            select="//*[local-name()='geboortedatum']/text()" />
+                            select="concat(substring($geboortedatum, 1, 4), '-', substring($geboortedatum, 5, 2), '-', substring($geboortedatum, 7, 2))" />
                     </geboortedatum>
-                    <geslachtsnaam>
+            <geslachtsnaam>
                         <xsl:value-of
                             select="//*[local-name()='geslachtsnaam']/text()" />
                     </geslachtsnaam>
-                    <geslacht>
-                        <xsl:value-of
-                            select="//*[local-name()='geslacht']" />
-                    </geslacht>
-                    <voorvoegsel>
-                        <xsl:value-of
-                            select="//*[local-name()='voorvoegselGeslachtsnaam']/text()" />
-                    </voorvoegsel>
-                    <voornamen>
-                        <xsl:value-of
-                            select="//*[local-name()='voornamen']/text()" />
-                    </voornamen>
-                </xsl:when>
+            <xsl:choose>
+                        <xsl:when test="//*[local-name()='geslacht'] !=''">
+                            <geslacht>
+                                <xsl:value-of
+                                    select="//*[local-name()='geslacht']" />
+                            </geslacht>
+                        </xsl:when>
+                        <xsl:otherwise></xsl:otherwise>
+                    </xsl:choose>
+            <xsl:choose>
+                        <xsl:when test="//*[local-name()='voorvoegselGeslachtsnaam']/text() !=''">
+                            <voorvoegsel>
+                                <xsl:value-of
+                                    select="//*[local-name()='voorvoegselGeslachtsnaam']/text()" />
+                            </voorvoegsel>
+                        </xsl:when>
+                        <xsl:otherwise></xsl:otherwise>
+                    </xsl:choose>
+            <xsl:choose>
+                        <xsl:when test="//*[local-name()='voornamen']/text()">
+                            <voornamen>
+                                <xsl:value-of
+                                    select="//*[local-name()='voornamen']/text()" />
+                            </voornamen>
 
+                        </xsl:when>
+                        <xsl:otherwise></xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
                 <xsl:when
-                    test="((boolean(//*[contains(name(),'geslachtsnaam')]/text())) and (boolean(//*[contains(name(),'voornamen')]/text())) and (boolean(//*[contains(name(),'woonplaatsnaam')]/text())))">
+                    test="((boolean(//*[contains(name(),'geslachtsnaam')]/text())) and
+                        (boolean(//*[contains(name(),'voornamen')]/text())) and
+                        (boolean(//*[contains(name(),'woonplaatsnaam')]/text())))">
                     <type>ZoekMetNaamEnGemeenteVanInschrijving</type>
-                    <fields>burgerservicenummer</fields>
-                    <fields>adressering</fields>
-                    <fields>geboorte</fields>
-                    <fields>geslacht</fields>
-                    <fields>leeftijd</fields>
-                    <fields>naam</fields>
-                    <fields>adresseringBinnenland</fields>
-    
+                    <xsl:for-each
+                        select="$fields/root/zoekMet/fields">
+                        <fields>
+                            <xsl:value-of select="." />
+                        </fields>
+                    </xsl:for-each>
+                    <xsl:choose>
+                        <xsl:when test="$varZenderOrganisatie !=''">
+                            <gemeenteVanInschrijving>
+                                <xsl:value-of
+                                    select="$varZenderOrganisatie" />
+                            </gemeenteVanInschrijving>
+                        </xsl:when>
+                        <xsl:otherwise></xsl:otherwise>
+                    </xsl:choose>
                     <inclusiefOverledenPersonen>
-                        <xsl:value-of
-                            select="//*[contains(name(),'inclusiefOverledenPersonen')]/text()" />
+                        <xsl:value-of select="$inclusiefOverledenPersonen" />
                     </inclusiefOverledenPersonen>
-                    <geslacht>
-                        <xsl:value-of
-                            select="//*[local-name()='geslacht']" />
-                    </geslacht>
+                    <xsl:choose>
+                        <xsl:when test="//*[local-name()='geslacht'] !=''">
+                            <geslacht>
+                                <xsl:value-of
+                                    select="//*[local-name()='geslacht']" />
+                            </geslacht>
+                        </xsl:when>
+                        <xsl:otherwise></xsl:otherwise>
+                    </xsl:choose>
+            
                     <geslachtsnaam>
                         <xsl:value-of
                             select="//*[local-name()='geslachtsnaam']/text()" />
                     </geslachtsnaam>
-                    <voorvoegsel>
-                        <xsl:value-of
-                            select="//*[local-name()='voorvoegselGeslachtsnaam']/text()" />
-                    </voorvoegsel>
+                    <xsl:choose>
+                        <xsl:when test="//*[local-name()='voorvoegselGeslachtsnaam']/text() !=''">
+                            <voorvoegsel>
+                                <xsl:value-of
+                                    select="//*[local-name()='voorvoegselGeslachtsnaam']/text()" />
+                            </voorvoegsel>
+                        </xsl:when>
+                        <xsl:otherwise></xsl:otherwise>
+                    </xsl:choose>
                     <voornamen>
                         <xsl:value-of
                             select="//*[local-name()='voornamen']/text()" />
@@ -116,73 +199,123 @@
                 </xsl:when>
 
                 <xsl:when
-                    test="((boolean(//*[contains(name(),'postcode')]/text())) and (boolean(//*[contains(name(),'huisnummer')]/text())))">
+                    test="((boolean(//*[contains(name(),'postcode')]/text())) and
+                        (boolean(//*[contains(name(),'huisnummer')]/text())))">
                     <type>ZoekMetPostcodeEnHuisnummer</type>
-                    <fields>burgerservicenummer</fields>
-                    <fields>adressering</fields>
-                    <fields>geboorte</fields>
-                    <fields>geslacht</fields>
-                    <fields>leeftijd</fields>
-                    <fields>naam</fields>
-                    <fields>adresseringBinnenland</fields>
-    
-                    <!-- <inclusiefOverledenPersonen>
-                        <xsl:value-of
-                            select="//*[contains(name(),'inclusiefOverledenPersonen')]/text()" />
+                    <xsl:for-each
+                        select="$fields/root/zoekMet/fields">
+                        <fields>
+                            <xsl:value-of select="." />
+                        </fields>
+                    </xsl:for-each>
+                    <xsl:choose>
+                        <xsl:when test="$varZenderOrganisatie !=''">
+                            <gemeenteVanInschrijving>
+                                <xsl:value-of
+                                    select="$varZenderOrganisatie" />
+                            </gemeenteVanInschrijving>
+                        </xsl:when>
+                        <xsl:otherwise></xsl:otherwise>
+                    </xsl:choose>
+                    <inclusiefOverledenPersonen>
+                        <xsl:value-of select="$inclusiefOverledenPersonen" />
                     </inclusiefOverledenPersonen>
-                    <huisletter>
-                        <xsl:value-of
-                            select="//*[contains(name(),'huisletter')]/text()" />
-                    </huisletter> -->
+                    <xsl:choose>
+                        <xsl:when test="//*[contains(name(),'huisletter')]/text() !=''">
+                            <huisletter>
+                                <xsl:value-of
+                                    select="//*[contains(name(),'huisletter')]/text()" />
+                            </huisletter>
+                        </xsl:when>
+                        <xsl:otherwise></xsl:otherwise>
+                    </xsl:choose>
                     <huisnummer>
                         <xsl:value-of
                             select="//*[local-name()='aoa.huisnummer']/text()" />
                     </huisnummer>
-                    <!-- <huisnummertoevoeging>
-                        <xsl:value-of
-                            select="//*[contains(name(),'huisnummertoevoeging')]/text()" />
-                    </huisnummertoevoeging> -->
+                    <xsl:choose>
+                        <xsl:when test="//*[contains(name(),'huisnummertoevoeging')]/text() !=''">
+                            <huisnummertoevoeging>
+                                <xsl:value-of
+                                    select="//*[contains(name(),'huisnummertoevoeging')]/text()" />
+                            </huisnummertoevoeging>
+                        </xsl:when>
+                        <xsl:otherwise></xsl:otherwise>
+                    </xsl:choose>
                     <postcode>
                         <xsl:value-of
                             select="//*[local-name()='aoa.postcode']/text()" />
                     </postcode>
                 </xsl:when>
                 <xsl:when
-                    test="((boolean(//*[contains(name(),'straatnaam')]/text())) and (boolean(//*[contains(name(),'woonplaatsNaam')]/text())) and (boolean(//*[contains(name(),'huisnummer')]/text())))">
+                    test="((boolean(//*[contains(name(),'straatnaam')]/text())) and
+                        (boolean(//*[contains(name(),'woonplaatsNaam')]/text())) and
+                        (boolean(//*[contains(name(),'huisnummer')]/text())))">
                     <type>ZoekMetStraatHuisnummerEnGemeenteVanInschrijving</type>
-                    <fields>burgerservicenummer</fields>
-                    <fields>adressering</fields>
-                    <fields>geboorte</fields>
-                    <fields>geslacht</fields>
-                    <fields>leeftijd</fields>
-                    <fields>naam</fields>
-                    <fields>adresseringBinnenland</fields>
-    
+                    <xsl:for-each
+                        select="$fields/root/zoekMet/fields">
+                        <fields>
+                            <xsl:value-of select="." />
+                        </fields>
+                    </xsl:for-each>
+                    <xsl:choose>
+                        <xsl:when test="$varZenderOrganisatie !=''">
+                            <gemeenteVanInschrijving>
+                                <xsl:value-of
+                                    select="$varZenderOrganisatie" />
+                            </gemeenteVanInschrijving>
+                        </xsl:when>
+                        <xsl:otherwise></xsl:otherwise>
+                    </xsl:choose>
                     <inclusiefOverledenPersonen>
-                        <xsl:value-of
-                            select="//*[contains(name(),'inclusiefOverledenPersonen')]/text()" />
+                        <xsl:value-of select="$inclusiefOverledenPersonen" />
                     </inclusiefOverledenPersonen>
-                    <huisletter>
-                        <xsl:value-of
-                            select="//*[local-name()='aoa.huisletter']/text()" />
-                    </huisletter>
+                    <xsl:choose>
+                        <xsl:when test="//*[contains(name(),'huisletter')]/text() !=''">
+                            <huisletter>
+                                <xsl:value-of
+                                    select="//*[contains(name(),'huisletter')]/text()" />
+                            </huisletter>
+                        </xsl:when>
+                        <xsl:otherwise></xsl:otherwise>
+                    </xsl:choose>
                     <huisnummer>
                         <xsl:value-of
                             select="//*[local-name()='aoa.huisnummer']/text()" />
                     </huisnummer>
-                    <huisnummertoevoeging>
-                        <xsl:value-of
-                            select="//*[local-name()='aoa.huisnummertoevoeging']/text()" />
-                    </huisnummertoevoeging>
+                    <xsl:choose>
+                        <xsl:when test="//*[contains(name(),'huisnummertoevoeging')]/text() !=''">
+                            <huisnummertoevoeging>
+                                <xsl:value-of
+                                    select="//*[contains(name(),'huisnummertoevoeging')]/text()" />
+                            </huisnummertoevoeging>
+                        </xsl:when>
+                        <xsl:otherwise></xsl:otherwise>
+                    </xsl:choose>
                     <straat>
                         <xsl:value-of
                             select="//*[local-name()='gor.straatnaam']/text()" />
                     </straat>
                 </xsl:when>
-                <xsl:otherwise>
-                    <fields>naam</fields>
-            </xsl:otherwise>
             </xsl:choose>
         </root>
+    </xsl:template>
+    <xsl:template name="generateRangeForBSN">
+        <xsl:param name="vanafBSN" />
+    <xsl:param name="totEnMetBSN" />
+
+        <!-- Output the current number -->
+        <burgerservicenummer>
+            <xsl:value-of
+                select="format-number($vanafBSN, '0')" />
+        </burgerservicenummer>
+    <xsl:if
+            test="$vanafBSN != $totEnMetBSN">
+            <!-- Recursive call to generate the next number -->
+      <xsl:call-template name="generateRangeForBSN">
+                <xsl:with-param name="vanafBSN" select="$vanafBSN + 1" />
+                <xsl:with-param name="totEnMetBSN" select="$totEnMetBSN" />
+            </xsl:call-template>
+        </xsl:if>
     </xsl:template>
 </xsl:stylesheet>

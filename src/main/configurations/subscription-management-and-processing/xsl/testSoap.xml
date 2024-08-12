@@ -1,0 +1,2110 @@
+<BG:npsLa01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<BG:stuurgegevens>
+		<StUF:berichtcode>La01</StUF:berichtcode>
+		<StUF:zender>
+			<StUF:organisatie>NEDGR</StUF:organisatie>
+			<StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
+		</StUF:zender>
+		<StUF:ontvanger>
+			<StUF:organisatie>1883</StUF:organisatie>
+			<StUF:applicatie>DEC_ZKN</StUF:applicatie>
+			<StUF:gebruiker>SH2102</StUF:gebruiker>
+		</StUF:ontvanger>
+		<StUF:crossRefnummer>f789666f-adbe-431f-b97a-6468037dc6d1</StUF:crossRefnummer>
+		<StUF:entiteittype>NPS</StUF:entiteittype>
+	</BG:stuurgegevens>
+	<BG:parameters>
+		<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+		<StUF:aantalVoorkomens>49</StUF:aantalVoorkomens>
+	</BG:parameters>
+	<BG:antwoord>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="4896">
+			<BG:inp.bsn>046166476</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>1094648921</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>A.G.M.</BG:voorletters>
+			<BG:voornamen>Alfons Gerard Marie</BG:voornamen>
+			<BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner>Dongen</BG:geslachtsnaamPartner>
+			<BG:voorvoegselGeslachtsnaamPartner>van</BG:voorvoegselGeslachtsnaamPartner>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19441121</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Geleen</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000035961</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3513</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Geleen</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Oranjelaan</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Oranjelaan</BG:gor.straatnaam>
+				<BG:aoa.postcode>6166BK</BG:aoa.postcode>
+				<BG:aoa.huisnummer>113</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf>20010101</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat>2</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>1883</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20010101</BG:inp.datumInschrijving>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:ing.indicatieBlokkering>N</BG:ing.indicatieBlokkering>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="16694">
+			<BG:inp.bsn>073883876</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>7513724816</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>A.J.A.</BG:voorletters>
+			<BG:voornamen>Alphons Johannes Agnes</BG:voornamen>
+			<BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner>Jansen</BG:geslachtsnaamPartner>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19620405</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000031630</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3512</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Sittard</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Merovingenstraat</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Merovingenstraat</BG:gor.straatnaam>
+				<BG:aoa.postcode>6132EA</BG:aoa.postcode>
+				<BG:aoa.huisnummer>2</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf>20010101</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat>2</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>1883</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20010101</BG:inp.datumInschrijving>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:ing.indicatieBlokkering>N</BG:ing.indicatieBlokkering>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="8645">
+			<BG:inp.bsn>159211542</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>3175976809</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>A.J.H.</BG:voorletters>
+			<BG:voornamen>Andy Jozef Hubertina</BG:voornamen>
+			<BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19780528</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000014600</BG:aoa.identificatie>
+				<BG:wpl.identificatie>2808</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Born</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Graetheide</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Graetheide</BG:gor.straatnaam>
+				<BG:aoa.postcode>6121RM</BG:aoa.postcode>
+				<BG:aoa.huisnummer>71</BG:aoa.huisnummer>
+				<BG:aoa.huisletter>B</BG:aoa.huisletter>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf>20060421</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat>1</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>1883</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20010101</BG:inp.datumInschrijving>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:ing.indicatieBlokkering>N</BG:ing.indicatieBlokkering>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="98369">
+			<BG:inp.bsn>158334577</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>3651484193</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>A.M.H.</BG:voorletters>
+			<BG:voornamen>Alexandra Maria Hendrik</BG:voornamen>
+			<BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner>Dieteren</BG:geslachtsnaamPartner>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19730909</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000038234</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3513</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Geleen</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Rijksweg Zuid</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Rijksweg Zuid</BG:gor.straatnaam>
+				<BG:aoa.postcode>6161BG</BG:aoa.postcode>
+				<BG:aoa.huisnummer>97</BG:aoa.huisnummer>
+				<BG:aoa.huisletter>C</BG:aoa.huisletter>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf>20141209</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat>3</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>1883</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20010101</BG:inp.datumInschrijving>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:ing.indicatieBlokkering>N</BG:ing.indicatieBlokkering>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="189636">
+			<BG:inp.bsn>159245308</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>4793858209</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>A.M.H.</BG:voorletters>
+			<BG:voornamen>Anna Maria Hubertina</BG:voornamen>
+			<BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19091223</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Heistraat</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:aoa.postcode>6142AN</BG:aoa.postcode>
+				<BG:aoa.huisnummer>92</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="72426">
+			<BG:inp.bsn>250148845</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>4674735298</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>B.J.M.</BG:voorletters>
+			<BG:voornamen>Bryan Johannes Maria</BG:voornamen>
+			<BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>O</BG:geslachtsaanduiding>
+			<BG:geboortedatum>20030531</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard-Geleen</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:sub.verblijfBuitenland>
+				<BG:lnd.landcode>9089</BG:lnd.landcode>
+				<BG:lnd.landnaam>Bondsrepubliek Duitsland</BG:lnd.landnaam>
+				<BG:sub.adresBuitenland1>Ahornstrasse 22</BG:sub.adresBuitenland1>
+				<BG:sub.adresBuitenland2>52538 Schalbruch Selfkant</BG:sub.adresBuitenland2>
+				<BG:sub.adresBuitenland3 xsi:nil="true" StUF:noValue="geenWaarde"/>
+			</BG:sub.verblijfBuitenland>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="34602">
+			<BG:inp.bsn>159302547</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>8102965978</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>C.</BG:voorletters>
+			<BG:voornamen>Cindy</BG:voornamen>
+			<BG:aanduidingNaamgebruik>V</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner>Dieteren</BG:geslachtsnaamPartner>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19760408</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000006795</BG:aoa.identificatie>
+				<BG:wpl.identificatie>2814</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Holtum</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Buchterweg</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Buchterweg</BG:gor.straatnaam>
+				<BG:aoa.postcode>6123BH</BG:aoa.postcode>
+				<BG:aoa.huisnummer>22</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf>20040323</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat>2</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>1883</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20010101</BG:inp.datumInschrijving>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:ing.indicatieBlokkering>N</BG:ing.indicatieBlokkering>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="85461">
+			<BG:inp.bsn>159400132</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>3170354064</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>D.G.H.M.</BG:voorletters>
+			<BG:voornamen>Dennis Gemma Hubertus Maria</BG:voornamen>
+			<BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19850828</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000035063</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3512</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Sittard</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Ophoven</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Ophoven</BG:gor.straatnaam>
+				<BG:aoa.postcode>6133XS</BG:aoa.postcode>
+				<BG:aoa.huisnummer>111</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf>20010101</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat>1</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>1883</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20010101</BG:inp.datumInschrijving>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:ing.indicatieBlokkering>N</BG:ing.indicatieBlokkering>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="72427">
+			<BG:inp.bsn>240600058</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>4975173793</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>D.J.C.</BG:voorletters>
+			<BG:voornamen>Dennis Jozef Cornelus</BG:voornamen>
+			<BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>O</BG:geslachtsaanduiding>
+			<BG:geboortedatum>20010118</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard-Geleen</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:sub.verblijfBuitenland>
+				<BG:lnd.landcode>9089</BG:lnd.landcode>
+				<BG:lnd.landnaam>Bondsrepubliek Duitsland</BG:lnd.landnaam>
+				<BG:sub.adresBuitenland1>Ahornstrasse 22</BG:sub.adresBuitenland1>
+				<BG:sub.adresBuitenland2>52538 Schalbruch Selfkant</BG:sub.adresBuitenland2>
+				<BG:sub.adresBuitenland3 xsi:nil="true" StUF:noValue="geenWaarde"/>
+			</BG:sub.verblijfBuitenland>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="200098">
+			<BG:inp.bsn>156019061</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>5830413497</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>F.J.H.</BG:voorletters>
+			<BG:voornamen>Ferdinand Jozef Helena</BG:voornamen>
+			<BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19630615</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Schinnen</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:gor.straatnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:aoa.postcode xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummer xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="156232">
+			<BG:inp.bsn>158953514</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>6835232429</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>G.A.</BG:voorletters>
+			<BG:voornamen>Gerardina Antoinette</BG:voornamen>
+			<BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19360114</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000002845</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3512</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Sittard</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Bedfordhof</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Bedfordhof</BG:gor.straatnaam>
+				<BG:aoa.postcode>6137JX</BG:aoa.postcode>
+				<BG:aoa.huisnummer>6</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="8642">
+			<BG:inp.bsn>048211497</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>5202954575</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>G.L.</BG:voorletters>
+			<BG:voornamen>Gerardus Leonardus</BG:voornamen>
+			<BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner>Ermans</BG:geslachtsnaamPartner>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19520607</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000044689</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3512</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Sittard</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Rijksweg Zuid</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Rijksweg Zuid</BG:gor.straatnaam>
+				<BG:aoa.postcode>6134AC</BG:aoa.postcode>
+				<BG:aoa.huisnummer>251</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf>20010101</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat>2</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>1883</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20010101</BG:inp.datumInschrijving>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:ing.indicatieBlokkering>N</BG:ing.indicatieBlokkering>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="159726">
+			<BG:inp.bsn>047783023</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>6236189531</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>G.L.G.</BG:voorletters>
+			<BG:voornamen>Gerardus Leo Gertruda</BG:voornamen>
+			<BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19350813</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Schinnen</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000038793</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3513</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Geleen</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Pastoor van Eijsstraat</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Pastoor van Eijsstraat</BG:gor.straatnaam>
+				<BG:aoa.postcode>6161VJ</BG:aoa.postcode>
+				<BG:aoa.huisnummer>17</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="33945">
+			<BG:inp.bsn>047848509</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>1784939761</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>H.G.H.</BG:voorletters>
+			<BG:voornamen>Hubertus Gerardus Helena</BG:voornamen>
+			<BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner>Bosman</BG:geslachtsnaamPartner>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19400504</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Geleen</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000041677</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3513</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Geleen</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Rijksweg Noord</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Rijksweg Noord</BG:gor.straatnaam>
+				<BG:aoa.postcode>6162AG</BG:aoa.postcode>
+				<BG:aoa.huisnummer>185</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf>20171113</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat>4</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>1883</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20171113</BG:inp.datumInschrijving>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:ing.indicatieBlokkering>N</BG:ing.indicatieBlokkering>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="204382">
+			<BG:inp.bsn>047858357</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>3285014514</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>H.G.S.</BG:voorletters>
+			<BG:voornamen>Hendrikus Gerardus Sibilla</BG:voornamen>
+			<BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19331007</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Schinnen</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000049755</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3513</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Geleen</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Van der Stockstraat</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Van der Stockstraat</BG:gor.straatnaam>
+				<BG:aoa.postcode>6162BA</BG:aoa.postcode>
+				<BG:aoa.huisnummer>5</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="173812">
+			<BG:inp.bsn>048034460</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>6063092025</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>H.H.</BG:voorletters>
+			<BG:voornamen>Hubertus Helena</BG:voornamen>
+			<BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19330131</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Blijdestein</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:aoa.postcode>6132CS</BG:aoa.postcode>
+				<BG:aoa.huisnummer>5</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="34603">
+			<BG:inp.bsn>048229052</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>1796369518</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>H.L.R.</BG:voorletters>
+			<BG:voornamen>Hubertus Leonardus Rina</BG:voornamen>
+			<BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner>Beckers</BG:geslachtsnaamPartner>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19540102</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000002438</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3512</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Sittard</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Baanderthof</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Baanderthof</BG:gor.straatnaam>
+				<BG:aoa.postcode>6136EX</BG:aoa.postcode>
+				<BG:aoa.huisnummer>12</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf>20010101</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat>2</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>1883</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20010101</BG:inp.datumInschrijving>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:ing.indicatieBlokkering>N</BG:ing.indicatieBlokkering>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="87641">
+			<BG:inp.bsn xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>H.S.</BG:voorletters>
+			<BG:voornamen>Henriette Sibilla</BG:voornamen>
+			<BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19210212</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:gor.straatnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:aoa.postcode xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummer xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="72430">
+			<BG:inp.bsn>159320380</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>2805279416</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>J.A.</BG:voorletters>
+			<BG:voornamen>Jacobus Agnes</BG:voornamen>
+			<BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner>Genemans</BG:geslachtsnaamPartner>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19620827</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000027796</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3512</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Sittard</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Keizer Karel-V-straat</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Keizer Karel-V-straat</BG:gor.straatnaam>
+				<BG:aoa.postcode>6137HC</BG:aoa.postcode>
+				<BG:aoa.huisnummer>20</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf>20080101</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat>2</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>1883</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20080101</BG:inp.datumInschrijving>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:ing.indicatieBlokkering>N</BG:ing.indicatieBlokkering>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="16698">
+			<BG:inp.bsn>159365272</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>5761424582</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>J.A.G.</BG:voorletters>
+			<BG:voornamen>Joyce Agnes Gerardus</BG:voornamen>
+			<BG:aanduidingNaamgebruik>V</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner>GÃ¶ttgens</BG:geslachtsnaamPartner>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19871006</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000032516</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3512</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Sittard</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Mgr. Claessensstraat</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Mgr. Claessensstraat</BG:gor.straatnaam>
+				<BG:aoa.postcode>6131AH</BG:aoa.postcode>
+				<BG:aoa.huisnummer>17</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf>20151001</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat>2</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>1883</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20010101</BG:inp.datumInschrijving>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:ing.indicatieBlokkering>N</BG:ing.indicatieBlokkering>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="60380">
+			<BG:inp.bsn>158955006</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>4736719675</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>J.G.A.</BG:voorletters>
+			<BG:voornamen>Jozef Gerdina Antoinnette</BG:voornamen>
+			<BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner>Mols</BG:geslachtsnaamPartner>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19631130</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000020224</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3512</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Sittard</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Hendrik Luijtenstraat</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Hendrik Luijtenstraat</BG:gor.straatnaam>
+				<BG:aoa.postcode>6137CS</BG:aoa.postcode>
+				<BG:aoa.huisnummer>23</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf>20010101</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat>2</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>1883</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20010101</BG:inp.datumInschrijving>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:ing.indicatieBlokkering>N</BG:ing.indicatieBlokkering>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="72428">
+			<BG:inp.bsn>225124257</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>8313764156</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>J.H.C.</BG:voorletters>
+			<BG:voornamen>Jeffrey Hubertus Cristian</BG:voornamen>
+			<BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>O</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19961024</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:sub.verblijfBuitenland>
+				<BG:lnd.landcode>9089</BG:lnd.landcode>
+				<BG:lnd.landnaam>Bondsrepubliek Duitsland</BG:lnd.landnaam>
+				<BG:sub.adresBuitenland1>Ahornstrasse 22</BG:sub.adresBuitenland1>
+				<BG:sub.adresBuitenland2>52538 Schalbruch Selfkant</BG:sub.adresBuitenland2>
+				<BG:sub.adresBuitenland3 xsi:nil="true" StUF:noValue="geenWaarde"/>
+			</BG:sub.verblijfBuitenland>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="98364">
+			<BG:inp.bsn>048182606</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>9416313638</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>J.M.</BG:voorletters>
+			<BG:voornamen>Jacobus Maria</BG:voornamen>
+			<BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19370403</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Europalaan</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:aoa.postcode>6164CW</BG:aoa.postcode>
+				<BG:aoa.huisnummer>2</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="37308">
+			<BG:inp.bsn>156004835</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>4697869476</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>J.M.F.</BG:voorletters>
+			<BG:voornamen>JosÃ© Marie Francisca</BG:voornamen>
+			<BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner>Vroomen</BG:geslachtsnaamPartner>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19550622</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000008429</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3512</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Sittard</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Christian Kisselsstraat</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Christian Kisselsstraat</BG:gor.straatnaam>
+				<BG:aoa.postcode>6131BV</BG:aoa.postcode>
+				<BG:aoa.huisnummer>11</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf>20170622</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat>3</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>1883</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20010101</BG:inp.datumInschrijving>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:ing.indicatieBlokkering>N</BG:ing.indicatieBlokkering>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="10142">
+			<BG:inp.bsn>156037567</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>9049491620</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>K.G.M.</BG:voorletters>
+			<BG:voornamen>Kimberly Gerarda Maria</BG:voornamen>
+			<BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19820609</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Geleen</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000019157</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3513</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Geleen</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Hyacinthenlaan</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Hyacinthenlaan</BG:gor.straatnaam>
+				<BG:aoa.postcode>6163BM</BG:aoa.postcode>
+				<BG:aoa.huisnummer>118</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf>20080410</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat>1</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>1883</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20080410</BG:inp.datumInschrijving>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:ing.indicatieBlokkering>N</BG:ing.indicatieBlokkering>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="72429">
+			<BG:inp.bsn>207801447</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>3912680384</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>K.M.J.</BG:voorletters>
+			<BG:voornamen>Kevin Maria Joseph</BG:voornamen>
+			<BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>O</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19911003</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:sub.verblijfBuitenland>
+				<BG:lnd.landcode>9089</BG:lnd.landcode>
+				<BG:lnd.landnaam>Bondsrepubliek Duitsland</BG:lnd.landnaam>
+				<BG:sub.adresBuitenland1>hauptstrasse 29 A</BG:sub.adresBuitenland1>
+				<BG:sub.adresBuitenland2>52538 Havert</BG:sub.adresBuitenland2>
+				<BG:sub.adresBuitenland3>Selfkant</BG:sub.adresBuitenland3>
+			</BG:sub.verblijfBuitenland>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="8841">
+			<BG:inp.bsn>220589823</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>7673058694</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>M.</BG:voorletters>
+			<BG:voornamen>Moreno</BG:voornamen>
+			<BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>O</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19950611</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000042605</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3512</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Sittard</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Rozenstraat</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Rozenstraat</BG:gor.straatnaam>
+				<BG:aoa.postcode>6134XX</BG:aoa.postcode>
+				<BG:aoa.huisnummer>4</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="57007">
+			<BG:inp.bsn>122640378</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>8259072740</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>M.C.J.A.</BG:voorletters>
+			<BG:voornamen>Maria Catharina Jan Arnold</BG:voornamen>
+			<BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner>Wit</BG:geslachtsnaamPartner>
+			<BG:voorvoegselGeslachtsnaamPartner>de</BG:voorvoegselGeslachtsnaamPartner>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19641111</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000020185</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3512</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Sittard</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Hemelsley</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Hemelsley</BG:gor.straatnaam>
+				<BG:aoa.postcode>6137BX</BG:aoa.postcode>
+				<BG:aoa.huisnummer>262</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf>20010101</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat>3</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>1883</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20010101</BG:inp.datumInschrijving>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:ing.indicatieBlokkering>N</BG:ing.indicatieBlokkering>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="81053">
+			<BG:inp.bsn>072854662</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>3050187261</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>M.F.C.</BG:voorletters>
+			<BG:voornamen>Maria Francisca Catharina</BG:voornamen>
+			<BG:aanduidingNaamgebruik>V</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner>Schmeitz</BG:geslachtsnaamPartner>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19550223</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Tudderen</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000000290</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3512</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Sittard</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Aan het Broek</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Aan het Broek</BG:gor.straatnaam>
+				<BG:aoa.postcode>6137TL</BG:aoa.postcode>
+				<BG:aoa.huisnummer>28</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf>20090704</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat>2</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>1883</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20010101</BG:inp.datumInschrijving>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:ing.indicatieBlokkering>N</BG:ing.indicatieBlokkering>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="91010">
+			<BG:inp.bsn>159368790</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>3427903187</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>M.F.H.M.</BG:voorletters>
+			<BG:voornamen>Michael Francisca Heinrich Michiel</BG:voornamen>
+			<BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19871219</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Geleen</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000031739</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3512</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Sittard</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Louis Delruellestraat</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Louis Delruellestraat</BG:gor.straatnaam>
+				<BG:aoa.postcode>6136JM</BG:aoa.postcode>
+				<BG:aoa.huisnummer>28</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf>20120120</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat>1</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>1883</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20010101</BG:inp.datumInschrijving>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:ing.indicatieBlokkering>N</BG:ing.indicatieBlokkering>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="9729">
+			<BG:inp.bsn>076139451</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>7672343615</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>M.G.</BG:voorletters>
+			<BG:voornamen>Maria Gerarda</BG:voornamen>
+			<BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19280305</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Schinnen</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000037372</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3512</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Sittard</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Odasingel</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Odasingel</BG:gor.straatnaam>
+				<BG:aoa.postcode>6131GS</BG:aoa.postcode>
+				<BG:aoa.huisnummer>805</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="146715">
+			<BG:inp.bsn>159379593</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>6454818748</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>M.G.A.J.</BG:voorletters>
+			<BG:voornamen>Mitch Gemma Adrianus Johannes</BG:voornamen>
+			<BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner>Velders</BG:geslachtsnaamPartner>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19881010</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000008675</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3513</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Geleen</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Clematisstraat</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Clematisstraat</BG:gor.straatnaam>
+				<BG:aoa.postcode>6163VB</BG:aoa.postcode>
+				<BG:aoa.huisnummer>1</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf>20150717</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat>2</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>1883</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20010101</BG:inp.datumInschrijving>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:ing.indicatieBlokkering>N</BG:ing.indicatieBlokkering>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="21135">
+			<BG:inp.bsn>157408681</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>6503079626</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>M.H.J.</BG:voorletters>
+			<BG:voornamen>MÃ©line Hubertina Josefa</BG:voornamen>
+			<BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner>Houben</BG:geslachtsnaamPartner>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19770809</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000055491</BG:aoa.identificatie>
+				<BG:wpl.identificatie>2815</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Limbricht</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Klinkekoulsweg</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Klinkekoulsweg</BG:gor.straatnaam>
+				<BG:aoa.postcode>6141BL</BG:aoa.postcode>
+				<BG:aoa.huisnummer>13</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf>20140611</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat>2</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>1883</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20011016</BG:inp.datumInschrijving>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:ing.indicatieBlokkering>N</BG:ing.indicatieBlokkering>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="104304">
+			<BG:inp.bsn>025734775</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>8654584816</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>M.H.S.</BG:voorletters>
+			<BG:voornamen>Marianne Hubertina Sybilla</BG:voornamen>
+			<BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19570730</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Jeroen Boschstraat</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:aoa.postcode>6137XK</BG:aoa.postcode>
+				<BG:aoa.huisnummer>42</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="159445">
+			<BG:inp.bsn xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>M.H.S.</BG:voorletters>
+			<BG:voornamen>Maria Helena Sibilla</BG:voornamen>
+			<BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
+			<BG:geboortedatum>18960510</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:gor.straatnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:aoa.postcode xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummer xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="4894">
+			<BG:inp.bsn xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>M.J.A.</BG:voorletters>
+			<BG:voornamen>Maria Jacobus Antonius</BG:voornamen>
+			<BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19040322</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:gor.straatnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:aoa.postcode xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummer xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="41419">
+			<BG:inp.bsn>158329946</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>8961209090</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>M.K.J.</BG:voorletters>
+			<BG:voornamen>Meranda Katharina Josef</BG:voornamen>
+			<BG:aanduidingNaamgebruik>V</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner>Goossens</BG:geslachtsnaamPartner>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19741212</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000005492</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3512</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Sittard</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Bloemenweg</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Bloemenweg</BG:gor.straatnaam>
+				<BG:aoa.postcode>6134XS</BG:aoa.postcode>
+				<BG:aoa.huisnummer>18</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf>20011112</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat>2</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>1883</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20010101</BG:inp.datumInschrijving>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:ing.indicatieBlokkering>N</BG:ing.indicatieBlokkering>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="85460">
+			<BG:inp.bsn>071036878</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>7143495164</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>M.M.G.</BG:voorletters>
+			<BG:voornamen>Martin Maria Gemma</BG:voornamen>
+			<BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner>Vluggen</BG:geslachtsnaamPartner>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19600410</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Sittard</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>1883200000035063</BG:aoa.identificatie>
+				<BG:wpl.identificatie>3512</BG:wpl.identificatie>
+				<BG:wpl.woonplaatsNaam>Sittard</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Ophoven</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Ophoven</BG:gor.straatnaam>
+				<BG:aoa.postcode>6133XS</BG:aoa.postcode>
+				<BG:aoa.huisnummer>111</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="geenWaarde"/>
+				<BG:begindatumVerblijf>20010101</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat>2</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>1883</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20010101</BG:inp.datumInschrijving>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:ing.indicatieBlokkering>N</BG:ing.indicatieBlokkering>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="62911">
+			<BG:inp.bsn>124452607</BG:inp.bsn>
+			<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.a-nummer>5841218717</BG:inp.a-nummer>
+			<BG:geslachtsnaam>Keijbets</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde"/>
+			<BG:voorletters>M.N.</BG:voorletters>
+			<BG:voornamen>Maria Nicolaas</BG:voornamen>
+			<BG:aanduidingNaamgebruik>V</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner>Pfeifer</BG:geslachtsnaamPartner>
