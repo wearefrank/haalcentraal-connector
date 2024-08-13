@@ -1,5 +1,14 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.3.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.3.0...v1.3.1) (2024-08-13)
+
+### 🐛 Bug Fixes
+
+* add oauth config to DeploymentSpecifics ([54f1abf](https://github.com/wearefrank/haalcentraal-connector/commit/54f1abfdb66e1963002735923d5cc2ae08aaff01))
+* make sure oauth config is included ([9b6d16e](https://github.com/wearefrank/haalcentraal-connector/commit/9b6d16eb5d1c49c2d4a7b4a9f61ba7916cff5870))
+* Merge pull request [#6](https://github.com/wearefrank/haalcentraal-connector/issues/6) from wearefrank/oauth ([de054de](https://github.com/wearefrank/haalcentraal-connector/commit/de054def245d05814623a15a6c3f82115eb69587))
+* move diginetwerk properties to global DeploymentSpecifics ([fc0ed02](https://github.com/wearefrank/haalcentraal-connector/commit/fc0ed029aee2601b255ec470870f4ef85222b183))
+
 ## [1.3.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.2.0...v1.3.0) (2024-08-12)
 
 ### 🍕 Features
