@@ -10,7 +10,7 @@
         </Exits>
 
         <SenderPipe name="CheckTokenExpired">
-            <IbisLocalSender name="CheckTokenExpiredSender" JavaListener="CheckTokenExpiredListener"/>
+            <IbisLocalSender name="CheckTokenExpiredSender" javaListener="CheckTokenExpiredListener"/>
         </SenderPipe>
 
         <XmlIfPipe name="IfTokenExpired">
@@ -19,7 +19,7 @@
         </XmlIfPipe>
 
         <SenderPipe name="GetToken">
-            <IbisLocalSender name="GetTokenSender" JavaListener="GetTokenListener" returnedSessionKeys="token"/>
+            <IbisLocalSender name="GetTokenSender" javaListener="GetTokenListener" returnedSessionKeys="token"/>
         </SenderPipe>
 
     </Pipeline>
