@@ -1,5 +1,12 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.3.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.3.1...v1.3.2) (2024-08-13)
+
+### 🐛 Bug Fixes
+
+* dumb syntax error ([6d46b1c](https://github.com/wearefrank/haalcentraal-connector/commit/6d46b1c001c32d986c0c417afaec8adcd0da86de))
+* Merge pull request [#9](https://github.com/wearefrank/haalcentraal-connector/issues/9) from wearefrank/oauth ([afc5f51](https://github.com/wearefrank/haalcentraal-connector/commit/afc5f51f9b004a312a26be2b83a482114990fa0f))
+
 ## [1.3.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.3.0...v1.3.1) (2024-08-13)
 
 ### 🐛 Bug Fixes
