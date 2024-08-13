@@ -1,6 +1,6 @@
 <Adapter name="TokenExpiryFlow">
     <Receiver name="TokenExpiryFlowReceiver">
-        <JavaLister name="TokenExpiryFlowListener" returnedSessionKeys="token" />
+        <JavaListener name="TokenExpiryFlowListener" returnedSessionKeys="token" />
     </Receiver>
 
     <Pipeline>

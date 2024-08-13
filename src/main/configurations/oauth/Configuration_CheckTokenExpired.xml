@@ -1,6 +1,6 @@
 <Adapter name="CheckTokenExpired">
     <Receiver name="CheckTokenExpiredReceiver">
-        <JavaLister name="CheckTokenExpiredListener" />
+        <JavaListener name="CheckTokenExpiredListener" />
     </Receiver>
 
     <Pipeline>
