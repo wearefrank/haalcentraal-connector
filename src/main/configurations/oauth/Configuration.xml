@@ -1,8 +1,12 @@
 <!DOCTYPE Configuration [
         <!ENTITY GetToken SYSTEM "Configuration_GetToken.xml">
+        <!ENTITY CheckTokenExpired SYSTEM "Configuration_CheckTokenExpired.xml">
+        <!ENTITY TokenExpiryFlow SYSTEM "Configuration_TokenExpiryFlow.xml">
         ]>
-<Configuration
+<Configuration name="oauth"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
     &GetToken;
+    &CheckTokenExpired;
+    &TokenExpiryFlow;
 </Configuration>
