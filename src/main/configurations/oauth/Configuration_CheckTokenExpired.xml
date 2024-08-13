@@ -9,7 +9,7 @@
             <Exit name="ERROR" state="ERROR" />
         </Exits>
 
-        <JsonPipe name="Json2Xml" direction="JSON2XML" />
+        <JsonPipe name="Json2Xml" />
 
         <XsltPipe name="IsTokenExpired"  xpathExpression="root/error/text() = 'token expired'" />
 

@@ -37,7 +37,7 @@
         <!-- Parse the response -->
         <JsonValidatorPipe name="BrpTokenResponseValidator"
                            schema="schemas/brpTokenResponseValidator.json">
-            <Forward name="failure" path="ParseError" />
+            <Forward name="failure" path="ERROR" />
         </JsonValidatorPipe>
 
         <!-- Extract and store required data from the response -->
