@@ -1,6 +1,6 @@
 <Adapter name="GetToken">
     <Receiver name="GetTokenReceiver">
-        <JavaLister name="GetTokenListener" returnedSessionKeys="token" />
+        <JavaListener name="GetTokenListener" returnedSessionKeys="token" />
     </Receiver>
 
     <Pipeline>
