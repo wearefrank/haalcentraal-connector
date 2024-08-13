@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.3.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.3.2...v1.3.3) (2024-08-13)
+
+### 🧑‍💻 Code Refactoring
+
+* soap project definition path ([03d8192](https://github.com/wearefrank/haalcentraal-connector/commit/03d81920d0fa1681a909377495dc0cf9ad788a6f))
+
 ## [1.3.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.3.1...v1.3.2) (2024-08-13)
 
 ### 🐛 Bug Fixes
