@@ -17,10 +17,7 @@
                     contentType="application/x-www-form-urlencoded"
                     postType="URLENCODED"
                     headersParams="Accept, Content-Type, Digest, Date, TPP-Signature-Certificate, authorization"
-                    treatInputMessageAsParameters="false"
-                    keystore="/certs/tls.p12"
-                    keystoreAlias="brp"
-                    keystorePassword="Password123!" />
+                    treatInputMessageAsParameters="false" />
             <Param name="grant_type" value="client_credentials" />
             <Param name="client_id" pattern="${oauth.client-id}" />
             <Param name="client_secret" pattern="${oauth.client-secret}" />
