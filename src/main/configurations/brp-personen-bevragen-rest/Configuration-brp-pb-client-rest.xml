@@ -5,7 +5,7 @@
 		description="API voor het bevragen van personen uit de basisregistratie personen (BRP)">
 
 		<Receiver name="BrpPbClientRestReceiver">
-			<JavaListener name="BRP Personen Bevragen" />
+			<JavaListener name="BrpPbClientRestListener" />
 		</Receiver>
 
 		<Pipeline>

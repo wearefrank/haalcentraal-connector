@@ -12,7 +12,7 @@
         </Receiver>
         <Pipeline>
             <SenderPipe getInputFromSessionKey="originalMessage" name="requestProxyPipe">
-                <IbisLocalSender javaListener="BRP Personen Bevragen"><Param name="X-API-KEY" sessionKey="headers" xpathExpression="/headers/header[@name = 'X-API-KEY']/text()"/></IbisLocalSender>
+                <IbisLocalSender javaListener="BrpPbClientRestListener"><Param name="X-API-KEY" sessionKey="headers" xpathExpression="/headers/header[@name = 'X-API-KEY']/text()"/></IbisLocalSender>
             </SenderPipe>
         </Pipeline>
     </Adapter>

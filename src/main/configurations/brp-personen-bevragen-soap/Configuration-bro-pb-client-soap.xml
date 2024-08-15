@@ -5,7 +5,7 @@
 		description="ZoekPersonen">
 
 		<Receiver name="BrpPbClientSoapReceiver">
-			<JavaListener name="BRP Personen Bevragen" />
+			<JavaListener name="BrpPbClientSoapListener" />
 		</Receiver>
 
 		<Pipeline>
