@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.3.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.3.5...v1.3.6) (2024-08-15)
+
+### 🐛 Bug Fixes
+
+* isDiginetwerk=false for now ([5054e7b](https://github.com/wearefrank/haalcentraal-connector/commit/5054e7bbdae99f48107277aa92c04841da92c3ee))
+
 ## [1.3.5](https://github.com/wearefrank/haalcentraal-connector/compare/v1.3.4...v1.3.5) (2024-08-13)
 
 ### 🐛 Bug Fixes
