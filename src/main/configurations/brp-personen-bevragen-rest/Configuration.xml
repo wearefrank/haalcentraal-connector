@@ -1,0 +1,7 @@
+<!DOCTYPE Configuration [
+	<!ENTITY brp-bevragen-client-rest SYSTEM "Configuration-brp-pb-client-rest.xml">
+	]>
+
+<Configuration name="brp-personen-bevragen-rest">
+	&brp-bevragen-client-rest;
+</Configuration>

@@ -1,7 +1,0 @@
-<!DOCTYPE Configuration [
-	<!ENTITY brp-bevragen-client SYSTEM "configuration-brp-personen_bevragen-client-Personen-Personen.xml">
-	]>
-
-<Configuration name="brp-personen-bevragen-client">
-	&brp-bevragen-client;
-</Configuration>

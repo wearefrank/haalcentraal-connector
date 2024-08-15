@@ -1,11 +1,11 @@
 <Module
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
-    <Adapter name="brpPersonenProxy">
-        <Receiver name="BrpRequestReceiver">
+    <Adapter name="BrpPbServerOutway">
+        <Receiver name="BrpPbServerOutwayReceiver">
             <ApiListener
-                name="BrpRequestListener"
-                uriPattern="brplistener"
+                name="BrpPbServerOutwayListener"
+                uriPattern="haalcentraal_api"
                 method="POST"
                 headerParams="X-API-KEY"
                 />

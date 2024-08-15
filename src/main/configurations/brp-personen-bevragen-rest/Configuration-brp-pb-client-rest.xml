@@ -1,10 +1,10 @@
 <Module 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
-	<Adapter name="BRP Personen Bevragen"
+	<Adapter name="BrpPbClientRest"
 		description="API voor het bevragen van personen uit de basisregistratie personen (BRP)">
 
-		<Receiver name="BRP Personen Bevragen">
+		<Receiver name="BrpPbClientRestReceiver">
 			<JavaListener name="BRP Personen Bevragen" />
 		</Receiver>
 
