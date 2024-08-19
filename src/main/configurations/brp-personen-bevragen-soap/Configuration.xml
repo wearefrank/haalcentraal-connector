@@ -1,7 +1,7 @@
 <!DOCTYPE Configuration [
-	<!ENTITY BRP-API-Personen SYSTEM "ConfigurationBRPPersonenBevragen.xml">
+	<!ENTITY brp-bevragen-client-soap SYSTEM "Configuration-brp-pb-client-soap.xml">
 ]>
 
-<Configuration>
-	&BRP-API-Personen;
+<Configuration name="brp-bevragen-client-soap">
+	&brp-bevragen-client-soap;
 </Configuration>
