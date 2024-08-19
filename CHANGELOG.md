@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.3.7](https://github.com/wearefrank/haalcentraal-connector/compare/v1.3.6...v1.3.7) (2024-08-19)
+
+### 🐛 Bug Fixes
+
+* update name/add fields ([22e2018](https://github.com/wearefrank/haalcentraal-connector/commit/22e20180b99f100e7199a1b9920b5a8c58a0c5f6))
+
 ## [1.3.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.3.5...v1.3.6) (2024-08-15)
 
 ### 🐛 Bug Fixes
