@@ -4,8 +4,8 @@
 	<Adapter name="BRP-API-Personen"
 		description="ZoekPersonen">
 
-		<Receiver name="BRP Personen Bevragen">
-			<JavaListener name="BRP Personen Bevragen" />
+		<Receiver name="BRP-API-Personen">
+			<JavaListener name="BRP-API-Personen" />
 		</Receiver>
 
 		<Pipeline>
@@ -52,7 +52,7 @@
 				action="read"
 				storeResultInSessionKey="fields">
 				<Param name="filename"
-					value="${configurations.directory}\HaalCentraal\xsl\fields.xml" />
+					value="${configurations.directory}\brp-personen-bevragen\xsl\fields.xml" />
 				<Forward name="success" path="mappingStufToJson" />
 			</LocalFileSystemPipe>
 
