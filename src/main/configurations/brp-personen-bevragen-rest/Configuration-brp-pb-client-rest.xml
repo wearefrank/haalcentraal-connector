@@ -53,7 +53,10 @@
 					url="${haalcentraal.BRP.personen.bevragen.endpoint}/personen"
 					methodType="POST"
 					headersParams="token"
-					contentType="application/json">
+					contentType="application/json"
+					keystore="/certs/tls.p12"
+					keystoreAlias="brp"
+					keystorePassword="Password123!">
 					<Param name="token" sessionKey="token"/>
 				</HttpSender>
 

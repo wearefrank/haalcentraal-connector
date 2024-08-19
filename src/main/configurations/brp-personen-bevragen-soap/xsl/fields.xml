@@ -45,6 +45,9 @@
         <fields>immigratie</fields>
         <fields>indicatieGezagMinderjarige</fields>
         <fields>verblijfstitel</fields>
+        <fields>europeesKiesrecht</fields>
+        <fields>partners.naam.geslachtsnaam</fields>
+        <fields>partners.naam.voornamen</fields>
     </DEC_ZKN>
     <LBA>
         <fields>burgerservicenummer</fields>
