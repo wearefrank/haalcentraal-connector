@@ -1,7 +1,7 @@
 <!DOCTYPE Configuration [
-	<!ENTITY brp-bevragen-server-outway SYSTEM "Configuration-brp-pb-server-outway.xml">
+	<!ENTITY brp-pb-outway SYSTEM "Configuration-brp-pb-outway.xml">
 	]>
 
 <Configuration name="brp-personen-bevragen-outway">
-	&brp-bevragen-server-outway;
+	&brp-pb-outway;
 </Configuration>
