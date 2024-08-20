@@ -1,5 +1,18 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.4.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.3.8...v1.4.0) (2024-08-20)
+
+### 🍕 Features
+
+* finish renaming ([ed2d017](https://github.com/wearefrank/haalcentraal-connector/commit/ed2d017a7b9d5ce8bbdee296449f448bd424c48b))
+
+### 🐛 Bug Fixes
+
+* configuration.names property ([5fe411e](https://github.com/wearefrank/haalcentraal-connector/commit/5fe411e7a0468e0825cc248930c81347ac29754f))
+* first renaming ([c5a918c](https://github.com/wearefrank/haalcentraal-connector/commit/c5a918c924ecdb7c8fe0577b00f8b08c69678da2))
+* renaming ([daaeab1](https://github.com/wearefrank/haalcentraal-connector/commit/daaeab189e4d99937f0fb0406618d5811d4e96df))
+* soap Configuration.xml file ([6b4daab](https://github.com/wearefrank/haalcentraal-connector/commit/6b4daabb45d559c664ec7a8fb364103b5506825a))
+
 ## [1.3.8](https://github.com/wearefrank/haalcentraal-connector/compare/v1.3.7...v1.3.8) (2024-08-20)
 
 ### 🐛 Bug Fixes
