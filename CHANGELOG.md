@@ -1,5 +1,12 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.4.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.4.0...v1.4.1) (2024-08-20)
+
+### 🐛 Bug Fixes
+
+* add oauth properties/placeholders ([8ba8272](https://github.com/wearefrank/haalcentraal-connector/commit/8ba8272bf8ce92eb6b15b0c8cfb676b944ea0ce3))
+* Merge pull request [#17](https://github.com/wearefrank/haalcentraal-connector/issues/17) from wearefrank/renaming ([8783355](https://github.com/wearefrank/haalcentraal-connector/commit/8783355c9f51ed4ef50afdaac460501235503d87))
+
 ## [1.4.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.3.8...v1.4.0) (2024-08-20)
 
 ### 🍕 Features
