@@ -1,11 +1,11 @@
 <Module 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
-	<Adapter name="BRP-API-Personen"
+	<Adapter name="BrpPbClientSoap"
 		description="ZoekPersonen">
 
-		<Receiver name="BRP-API-Personen">
-			<JavaListener name="BRP-API-Personen" />
+		<Receiver name="BrpPbClientSoapReceiver">
+			<JavaListener name="BrpPbClientSoapListener" />
 		</Receiver>
 
 		<Pipeline>
@@ -52,7 +52,7 @@
 				action="read"
 				storeResultInSessionKey="fields">
 				<Param name="filename"
-					value="${configurations.directory}\brp-personen-bevragen\xsl\fields.xml" />
+					value="${configurations.directory}\brp-personen-bevragen-soap\xsl\fields.xml" />
 				<Forward name="success" path="mappingStufToJson" />
 			</LocalFileSystemPipe>
 
