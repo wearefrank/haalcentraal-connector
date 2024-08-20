@@ -2,6 +2,6 @@
 	<!ENTITY brp-bevragen-client-soap SYSTEM "Configuration-brp-pb-client-soap.xml">
 ]>
 
-<Configuration name="brp-bevragen-client-soap">
+<Configuration name="brp-personen-bevragen-soap">
 	&brp-bevragen-client-soap;
 </Configuration>

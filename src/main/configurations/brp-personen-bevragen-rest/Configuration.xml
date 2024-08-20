@@ -2,6 +2,6 @@
 	<!ENTITY brp-pb-client-rest SYSTEM "Configuration-brp-pb-client-rest.xml">
 ]>
 
-<Configuration name="brp-personen-bevragen-outway">
+<Configuration name="brp-personen-bevragen-rest">
 	&brp-pb-client-rest;
 </Configuration>
