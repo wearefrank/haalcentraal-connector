@@ -40,23 +40,23 @@
 			-->
 			
 			<!-- url="${haalcentraal.BRP.personen.bevragen.endpoint.proefomgeving}/personen" -->
-			
+
 			<XmlIfPipe name="IfDiginetwerk" getInputFromFixedValue="${isDiginetwerk}">
 				<Forward name="then" path="ReadTokenFromFile" />
 				<Forward name="else" path="PostBRPPersonenBevragenTestEnv" />
 			</XmlIfPipe>
 
-			<LocalFileSystemPipe name="ReadTokenFromFile" filename="token.txt" action="read" storeResultInSessionKey="token" preserveInput="true" />
-				
-			<SenderPipe name="PostBRPPersonenBevragenDiginetwerk" >
+			<LocalFileSystemPipe name="ReadTokenFromFile" filename="token.txt" action="read" storeResultInSessionKey="token" preserveInput="true" active="${isDiginetwerk}"/>
+
+			<SenderPipe name="PostBRPPersonenBevragenDiginetwerk" active="${isDiginetwerk}">
 				<HttpSender
-					url="${haalcentraal.BRP.personen.bevragen.endpoint}/personen"
-					methodType="POST"
-					headersParams="token"
-					contentType="application/json"
-					keystore="/certs/tls.p12"
-					keystoreAlias="brp"
-					keystorePassword="Password123!">
+						url="${haalcentraal.BRP.personen.bevragen.endpoint}/personen"
+						methodType="POST"
+						headersParams="token"
+						contentType="application/json"
+						keystore="/certs/tls.p12"
+						keystoreAlias="brp"
+						keystorePassword="Password123!">
 					<Param name="token" sessionKey="token"/>
 				</HttpSender>
 
@@ -72,25 +72,25 @@
 				<Forward name="503" path="ServiceUnavailable" />
 			</SenderPipe>
 
-			<XmlIfPipe name="IfLoopPrevention" getInputFromSessionKey="loopPrevention">
+			<XmlIfPipe name="IfLoopPrevention" getInputFromSessionKey="loopPrevention" active="${isDiginetwerk}">
 				<Forward name="then" path="Forbidden" />
 				<Forward name="else" path="TokenExpiryFlow" />
 			</XmlIfPipe>
 
-			<SenderPipe name="TokenExpiryFlow">
+			<SenderPipe name="TokenExpiryFlow" active="${isDiginetwerk}">
 				<IbisLocalSender name="TokenExpiryFlowSender" javaListener="TokenExpiryFlowListener" returnedSessionKeys="token"/>
 			</SenderPipe>
 
-			<PutInSessionPipe name="PutLoopPreventionInSession" sessionKey="loopPrevention" value="true" />
+			<PutInSessionPipe name="PutLoopPreventionInSession" sessionKey="loopPrevention" value="true" active="${isDiginetwerk}" />
 
 			<!--If the error was caused by something else than an expired token, then go to exit 'forbidden',
 				otherwise, retry the actual call with the new token-->
-			<XmlIfPipe name="IfDifferentError" expressionValue="false">
+			<XmlIfPipe name="IfDifferentError" expressionValue="false" active="${isDiginetwerk}">
 				<Forward name="then" path="Forbidden" />
 				<Forward name="else" path="PostBRPPersonenBevragenDiginetwerk" />
 			</XmlIfPipe>
 
-			<SenderPipe name="PostBRPPersonenBevragenTestEnv" >
+			<SenderPipe name="PostBRPPersonenBevragenTestEnv">
 				<HttpSender
 						url="${haalcentraal.BRP.personen.bevragen.endpoint.proefomgeving}/personen"
 						methodType="POST"
