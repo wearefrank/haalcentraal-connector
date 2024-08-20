@@ -1,11 +1,11 @@
 <Module 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
-	<Adapter name="BRP Personen Bevragen"
+	<Adapter name="BrpPbOutway"
 		description="API voor het bevragen van personen uit de basisregistratie personen (BRP)">
 
-		<Receiver name="BRP Personen Bevragen">
-			<JavaListener name="BRP Personen Bevragen" />
+		<Receiver name="BrpPbOutwayReceiver">
+			<JavaListener name="BrpPbOutwayListener" />
 		</Receiver>
 
 		<Pipeline>
@@ -40,11 +40,6 @@
 			-->
 			
 			<!-- url="${haalcentraal.BRP.personen.bevragen.endpoint.proefomgeving}/personen" -->
-
-			<XmlIfPipe name="IfDiginetwerk" getInputFromFixedValue="${isDiginetwerk}">
-				<Forward name="then" path="ReadTokenFromFile" />
-				<Forward name="else" path="PostBRPPersonenBevragenTestEnv" />
-			</XmlIfPipe>
 
 			<LocalFileSystemPipe name="ReadTokenFromFile" filename="token.txt" action="read" storeResultInSessionKey="token" preserveInput="true" active="${isDiginetwerk}"/>
 

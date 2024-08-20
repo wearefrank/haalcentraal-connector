@@ -1,0 +1,7 @@
+<!DOCTYPE Configuration [
+	<!ENTITY brp-pb-outway SYSTEM "Configuration-brp-pb-outway.xml">
+	]>
+
+<Configuration name="brp-personen-bevragen-outway">
+	&brp-pb-outway;
+</Configuration>
