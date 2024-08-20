@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.4.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.4.2...v1.4.3) (2024-08-20)
+
+### 🐛 Bug Fixes
+
+* hardcoded apikey for test environment ([e58fe45](https://github.com/wearefrank/haalcentraal-connector/commit/e58fe45f1a8132f3e04a3a3cdddd39203b3fece0))
+
 ## [1.4.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.4.1...v1.4.2) (2024-08-20)
 
 ### 🐛 Bug Fixes
