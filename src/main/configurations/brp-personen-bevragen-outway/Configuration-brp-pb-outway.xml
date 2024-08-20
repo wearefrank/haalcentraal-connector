@@ -92,7 +92,7 @@
 						headersParams="X-API-KEY"
 						contentType="application/json">
 					<!--hardcoded api key for testing-->
-					<Param name="X-API-KEY" value="1kj7NbMBgZFcFRFUgNz5TzMPteOCaC1W"/>
+					<Param name="X-API-KEY" value="d8ZCxIm65WH7CMGYaTFZLpGgVZZOMvx3"/>
 				</HttpSender>
 
 				<Forward name="success" path="echoPipe" />
