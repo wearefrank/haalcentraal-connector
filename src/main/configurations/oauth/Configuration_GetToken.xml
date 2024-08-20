@@ -32,8 +32,8 @@
         </SenderPipe>
 
         <!-- Parse the response -->
-        <JsonValidatorPipe name="BrpTokenResponseValidator"
-                           schema="schemas/brpTokenResponseValidator.json">
+        <JsonValidatorPipe name="BrpBpTokenResponseValidator"
+                           schema="BrpBpTokenResponseValidator.json">
             <Forward name="failure" path="ERROR" />
         </JsonValidatorPipe>
 
