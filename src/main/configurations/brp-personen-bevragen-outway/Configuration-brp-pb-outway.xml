@@ -91,7 +91,8 @@
 						methodType="POST"
 						headersParams="X-API-KEY"
 						contentType="application/json">
-					<Param name="X-API-KEY" sessionKey="X-API-KEY"/>
+					<!--hardcoded api key for testing-->
+					<Param name="X-API-KEY" value="1kj7NbMBgZFcFRFUgNz5TzMPteOCaC1W"/>
 				</HttpSender>
 
 				<Forward name="success" path="echoPipe" />
