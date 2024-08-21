@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.5.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.5.0...v1.5.1) (2024-08-21)
+
+### 🐛 Bug Fixes
+
+* small refactor to make everything use the outway ([e4872c1](https://github.com/wearefrank/haalcentraal-connector/commit/e4872c1051fe1cd18375ee349d06d8a5967d6444))
+
 ## [1.5.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.4.3...v1.5.0) (2024-08-21)
 
 ### 🍕 Features
