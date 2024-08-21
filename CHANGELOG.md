@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.5.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.4.3...v1.5.0) (2024-08-21)
+
+### 🍕 Features
+
+* 'isDiginetwerk' property is now set during deployment ([1368b6d](https://github.com/wearefrank/haalcentraal-connector/commit/1368b6dcfb5aa72e943e3327bf4ee5e769e4ef95))
+
 ## [1.4.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.4.2...v1.4.3) (2024-08-20)
 
 ### 🐛 Bug Fixes
