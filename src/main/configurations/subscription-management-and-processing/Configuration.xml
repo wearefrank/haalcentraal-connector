@@ -10,7 +10,6 @@
 	<!ENTITY EndpointRouter SYSTEM "Configuration_EndpointRouter.xml">
 	<!ENTITY brp-personen_afnemers_indicatie_processor SYSTEM "configuration-brp-personen_afnemers_indicatie_processor.xml">
 	<!ENTITY brp-personen_afnemers_indicatie_receiver SYSTEM "configuration-brp-personen_afnemers_indicatie_receiver.xml">
-	<!ENTITY brp-personen_PostBrpPersonen SYSTEM "configuration-brp-personen_PostBrpPersonen.xml">
 	
 	]>
 
@@ -26,5 +25,4 @@
 	&EndpointRouter;
 	&brp-personen_afnemers_indicatie_processor;
 	&brp-personen_afnemers_indicatie_receiver;
-	&brp-personen_PostBrpPersonen;
 </Configuration>

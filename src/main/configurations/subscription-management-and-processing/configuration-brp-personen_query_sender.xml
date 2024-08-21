@@ -43,17 +43,13 @@
             </Json2XmlValidatorPipe>
 
 			<SenderPipe name="PostBRPPersonenBevragen" storeResultInSessionKey="body">
-				<IbisLocalSender
-					name="PostBRPPersonenBevragen"
-					javaListener="Post BRP Personen"
-					returnedSessionKeys="Error">
-				</IbisLocalSender>
-				<Forward name="success" path="JSON" />
+				<IbisLocalSender name="BPRPersonenBevragen" javaListener="BrpPbOutwayListener"/>
+				<Forward name="success" path="JsonToXml" />
 				<Forward name="exception" path="BadRequest" />
 			</SenderPipe>
 
 			<JsonPipe
-                name="JSON"
+                name="JsonToXml"
 				storeResultInSessionKey="xmlbody">
                 <Forward name="success" path="BRP Personen query" />
             </JsonPipe>	
