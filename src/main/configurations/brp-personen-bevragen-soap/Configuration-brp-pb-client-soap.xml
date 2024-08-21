@@ -72,18 +72,10 @@
 				schema="xsd/CheckHCInput.xsd"
 				throwException="true"
 				storeResultInSessionKey="FirstInput">
-				<Forward name="success" path="PostBRPPersonenBevragen" />
 			</Json2XmlValidatorPipe>
 
-			<SenderPipe name="PostBRPPersonenBevragen">
-				<HttpSender
-					url="${proefomgeving.haalcentraal.BRP.personen.bevragen.endpoint}/personen"
-					methodType="POST"
-					headersParams="X-API-KEY"
-					contentType="application/json">
-					<Param name="X-API-KEY" pattern="{password}"
-						authAlias="${credential:username:BRP}" hidden="true" />
-				</HttpSender>
+			<SenderPipe name="BRPPersonenBevragen">
+				<IbisLocalSender name="BPRPersonenBevragen" javaListener="BrpPbOutwayListener"/>
 
 				<Forward name="success" path="JsonToXml" />
 				<Forward name="400" path="BadRequest" />
@@ -97,11 +89,9 @@
 				<Forward name="503" path="ServiceUnavailable" />
 			</SenderPipe>
 
-			<JsonPipe name="JsonToXml">
-				<Forward name="success" path="MapJsonToStuf" />
-			</JsonPipe>
+			<JsonPipe name="JsonToXml"/>
 
-			<XsltPipe name="MapJsonToStuf"
+			<XsltPipe name="MapResponse"
 				styleSheetName="xsl/mappingJsonToStuf.xslt">
 				<Param name="berichtcode" sessionKey="berichtcode" />
 				<Param name="varEntiteittype" sessionKey="varEntiteittype" />
@@ -115,11 +105,6 @@
 				<Param name="originalMessage" sessionKey="originalMessage" type="DOMDOC" />
 				<Forward name="success" path="Exit" />
 			</XsltPipe>
-
-
-			<EchoPipe name="echoPipe">
-				<Forward name="success" path="Exit" />
-			</EchoPipe>
 
 		</Pipeline>
 	</Adapter>

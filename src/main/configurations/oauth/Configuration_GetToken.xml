@@ -26,9 +26,9 @@
             <Param name="Accept" value="application/json" />
             <Param name="Content-Type" value="application/x-www-form-urlencoded" />
 
-            <Forward name="400" path="400" />
-            <Forward name="401" path="401" />
-            <Forward name="500" path="500" />
+            <Forward name="400" path="ERROR" />
+            <Forward name="401" path="ERROR" />
+            <Forward name="500" path="ERROR" />
         </SenderPipe>
 
         <!-- Parse the response -->
