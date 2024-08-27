@@ -52,7 +52,7 @@
 				action="read"
 				storeResultInSessionKey="fields">
 				<Param name="filename"
-					value="${configurations.directory}\brp-personen-bevragen-soap\xsl\fields.xml" />
+					value="${configurations.directory}/brp-personen-bevragen-soap/xsl/fields.xml" />
 				<Forward name="success" path="mappingStufToJson" />
 			</LocalFileSystemPipe>
 
