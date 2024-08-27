@@ -47,7 +47,7 @@
         <fields>verblijfstitel</fields>
         <fields>europeesKiesrecht</fields>
         <fields>partners.naam.geslachtsnaam</fields>
-        <fields>partners.naam.voornamen</fields>
+        <fields>partners.naam.voorvoegsel</fields>
     </DEC_ZKN>
     <LBA>
         <fields>burgerservicenummer</fields>
