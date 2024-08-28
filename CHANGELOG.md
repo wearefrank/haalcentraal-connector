@@ -1,5 +1,12 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.5.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.5.1...v1.5.2) (2024-08-28)
+
+### 🐛 Bug Fixes
+
+* update the API-KEY value ([bb29310](https://github.com/wearefrank/haalcentraal-connector/commit/bb293108f2db45e7ea3d56f4dd315b79fc4b60c7))
+* update the filename ([85de886](https://github.com/wearefrank/haalcentraal-connector/commit/85de88652cdd9f2d693e3e52d8626471911aaa85))
+
 ## [1.5.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.5.0...v1.5.1) (2024-08-21)
 
 ### 🐛 Bug Fixes
