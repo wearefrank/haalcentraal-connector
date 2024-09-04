@@ -71,7 +71,7 @@
                                 select="$varEntiteittype" />
                         </xsl:attribute>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.bsn)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.bsn)">
                             <BG:inp.bsn>
                                 <xsl:choose>
                                     <xsl:when test="./burgerservicenummer/text() !=''">
@@ -79,13 +79,13 @@
                                     </xsl:when>
                                     <xsl:when test="./burgerservicenummer/text() =''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.bsn/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.bsn/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.bsn/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.bsn/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -94,7 +94,7 @@
                             </BG:inp.bsn>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.typering)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.typering)">
                             <BG:sub.typering>
                                 <xsl:choose>
                                     <xsl:when test="./sub.typering/text() != ''">
@@ -102,13 +102,13 @@
                                     </xsl:when>
                                     <xsl:when test="./sub.typering/text() = ''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.typering/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.typering/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.typering/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.typering/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -117,13 +117,13 @@
                             </BG:sub.typering>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.a-nummer)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.a-nummer)">
                             <BG:inp.a-nummer>
                                 <xsl:choose>
                                     <xsl:when
                                         test="($varZenderApplicatie=&apos;TOP&apos;) or ($varZenderApplicatie=&apos;PGAx-SG-ZVH&apos;)">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.a-nummer/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.a-nummer/@xsi:nil" /></xsl:attribute>
                                     <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -135,14 +135,14 @@
                                             </xsl:when>
                                             <xsl:when test="./aNummer/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.a-nummer/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.a-nummer/@xsi:nil" /></xsl:attribute>
                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.a-nummer/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.a-nummer/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -153,7 +153,7 @@
                             </BG:inp.a-nummer>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:geslachtsnaam)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:geslachtsnaam)">
                             <BG:geslachtsnaam>
                                 <xsl:choose>
                                     <xsl:when test="./naam/geslachtsnaam/text() != ''">
@@ -161,13 +161,13 @@
                                     </xsl:when>
                                     <xsl:when test="./naam/geslachtsnaam/text() = ''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:geslachtsnaam/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:geslachtsnaam/@xsi:nil" /></xsl:attribute>
                                         <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:geslachtsnaam/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:geslachtsnaam/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -176,7 +176,7 @@
                             </BG:geslachtsnaam>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:voorvoegselGeslachtsnaam)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:voorvoegselGeslachtsnaam)">
                             <BG:voorvoegselGeslachtsnaam>
                                 <xsl:choose>
                                     <xsl:when test="./naam/voorvoegsel/text() != ''">
@@ -184,13 +184,13 @@
                                     </xsl:when>
                                     <xsl:when test="./naam/voorvoegsel/text() = ''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:voorvoegselGeslachtsnaam/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:voorvoegselGeslachtsnaam/@xsi:nil" /></xsl:attribute>
                                         <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:voorvoegselGeslachtsnaam/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:voorvoegselGeslachtsnaam/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -199,7 +199,7 @@
                             </BG:voorvoegselGeslachtsnaam>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:voorletters)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:voorletters)">
                             <BG:voorletters>
                                 <xsl:choose>
                                     <xsl:when test="./naam/voorletters/text() != ''">
@@ -207,13 +207,13 @@
                                     </xsl:when>
                                     <xsl:when test="./naam/voorletters/text() = ''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:voorletters/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:voorletters/@xsi:nil" /></xsl:attribute>
                                         <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:voorletters/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:voorletters/@xsi:nil" /></xsl:attribute>
                                         <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -222,7 +222,7 @@
                             </BG:voorletters>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:voornamen)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:voornamen)">
                             <BG:voornamen>
                                 <xsl:choose>
                                     <xsl:when test="./naam/voornamen/text() != ''">
@@ -230,13 +230,13 @@
                                     </xsl:when>
                                     <xsl:when test="./naam/voornamen/text() = ''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:voornamen/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:voornamen/@xsi:nil" /></xsl:attribute>
                                         <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:voornamen/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:voornamen/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -245,7 +245,7 @@
                             </BG:voornamen>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:aanduidingNaamgebruik)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:aanduidingNaamgebruik)">
                             <BG:aanduidingNaamgebruik>
                                 <xsl:choose>
                                     <xsl:when test="./naam/aanduidingNaamgebruik/code/text() != ''">
@@ -253,13 +253,13 @@
                                     </xsl:when>
                                     <xsl:when test="./naam/aanduidingNaamgebruik/code/text() = ''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:aanduidingNaamgebruik/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:aanduidingNaamgebruik/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:aanduidingNaamgebruik/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:aanduidingNaamgebruik/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -268,13 +268,13 @@
                             </BG:aanduidingNaamgebruik>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:geslachtsnaamPartner)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:geslachtsnaamPartner)">
                             <BG:geslachtsnaamPartner>
                                 <xsl:choose>
                                     <xsl:when
                                         test="($varZenderApplicatie=&apos;LBA&apos;) or ($varZenderApplicatie=&apos;TOP&apos;) or ($varZenderApplicatie=&apos;PGAx-SG-ZVH&apos;)">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:geslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:geslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
                                     <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -284,13 +284,13 @@
                                     </xsl:when>
                                     <xsl:when test="./partners/naam/geslachtsnaam/text() = ''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:geslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:geslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:geslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:geslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -299,13 +299,13 @@
                             </BG:geslachtsnaamPartner>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:voorvoegselGeslachtsnaamPartner)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:voorvoegselGeslachtsnaamPartner)">
                             <BG:voorvoegselGeslachtsnaamPartner>
                                 <xsl:choose>
                                     <xsl:when
                                         test="($varZenderApplicatie=&apos;LBA&apos;) or ($varZenderApplicatie=&apos;PGAx-SG-ZVH&apos;)">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:voorvoegselGeslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:voorvoegselGeslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
                                     <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -315,13 +315,13 @@
                                     </xsl:when>
                                     <xsl:when test="./partners/naam/voorvoegsel/text() = ''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:voorvoegselGeslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:voorvoegselGeslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:voorvoegselGeslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:voorvoegselGeslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -330,13 +330,13 @@
                             </BG:voorvoegselGeslachtsnaamPartner>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:aanhefAanschrijving)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:aanhefAanschrijving)">
                             <BG:aanhefAanschrijving>
                                 <xsl:choose>
                                     <xsl:when
                                         test="($varZenderApplicatie=&apos;LBA&apos;) or ($varZenderApplicatie=&apos;TOP&apos;) or ($varZenderApplicatie=&apos;GWS&apos;)">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:aanhefAanschrijving/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:aanhefAanschrijving/@xsi:nil" /></xsl:attribute>
                                     <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -346,13 +346,13 @@
                                     </xsl:when>
                                     <xsl:when test="./adressering/aanhef/text() = ''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:aanhefAanschrijving/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:aanhefAanschrijving/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:aanhefAanschrijving/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:aanhefAanschrijving/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -361,13 +361,13 @@
                             </BG:aanhefAanschrijving>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:voornamenAanschrijving)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:voornamenAanschrijving)">
                             <BG:voornamenAanschrijving>
                                 <xsl:choose>
                                     <xsl:when
                                         test="($varZenderApplicatie=&apos;LBA&apos;) or ($varZenderApplicatie=&apos;TOP&apos;) or ($varZenderApplicatie=&apos;GWS&apos;)">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:voornamenAanschrijving/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:voornamenAanschrijving/@xsi:nil" /></xsl:attribute>
                                     <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -377,13 +377,13 @@
                                     </xsl:when>
                                     <xsl:when test="/text() = ''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:voornamenAanschrijving/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:voornamenAanschrijving/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:voornamenAanschrijving/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:voornamenAanschrijving/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -392,13 +392,13 @@
                             </BG:voornamenAanschrijving>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:geslachtsnaamAanschrijving)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:geslachtsnaamAanschrijving)">
                             <BG:geslachtsnaamAanschrijving>
                                 <xsl:choose>
                                     <xsl:when
                                         test="($varZenderApplicatie=&apos;LBA&apos;) or ($varZenderApplicatie=&apos;TOP&apos;) or ($varZenderApplicatie=&apos;GWS&apos;)">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:geslachtsnaamAanschrijving/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:geslachtsnaamAanschrijving/@xsi:nil" /></xsl:attribute>
                                     <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -423,13 +423,13 @@
                                     </xsl:when>
                                     <xsl:when test="./naam/aanduidingNaamgebruik/code/text() = ''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:geslachtsnaamAanschrijving/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:geslachtsnaamAanschrijving/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:geslachtsnaamAanschrijving/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:geslachtsnaamAanschrijving/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -439,13 +439,13 @@
                         </xsl:if>
 
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:adellijkeTitelPredikaat)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:adellijkeTitelPredikaat)">
                             <BG:adellijkeTitelPredikaat>
                                 <xsl:choose>
                                     <xsl:when
                                         test="($varZenderApplicatie=&apos;LBA&apos;) or ($varZenderApplicatie=&apos;TOP&apos;) or ($varZenderApplicatie=&apos;GWS&apos;) or ($varZenderApplicatie=&apos;DEC_ZKN&apos;) or ($varZenderApplicatie=&apos;PGAx-SG-ZVH&apos;)">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:adellijkeTitelPredikaat/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:adellijkeTitelPredikaat/@xsi:nil" /></xsl:attribute>
                                     <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -456,13 +456,13 @@
                                     </xsl:when>
                                     <xsl:when test="./naam/adellijkeTitelPredicaat/code/text() = ''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:adellijkeTitelPredikaat/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:adellijkeTitelPredikaat/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:adellijkeTitelPredikaat/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:adellijkeTitelPredikaat/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -472,7 +472,7 @@
                         </xsl:if>
 
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:geslachtsaanduiding)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:geslachtsaanduiding)">
                             <BG:geslachtsaanduiding>
                                 <xsl:choose>
                                     <xsl:when test="./geslachtsaanduiding/text() != ''">
@@ -480,13 +480,13 @@
                                     </xsl:when>
                                     <xsl:when test="./geslachtsaanduiding/text() = ''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:geslachtsaanduiding/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:geslachtsaanduiding/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:geslachtsaanduiding/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:geslachtsaanduiding/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -496,7 +496,7 @@
                         </xsl:if>
 
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:geboortedatum)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:geboortedatum)">
                             <BG:geboortedatum>
                                 <xsl:choose>
                                     <xsl:when test="./geboorte/datum/datum/text() != ''">
@@ -506,13 +506,13 @@
                                     </xsl:when>
                                     <xsl:when test="./geboorte/datum/datum/text() = ''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:geboortedatum/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:geboortedatum/@xsi:nil" /></xsl:attribute>
                                         <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:geboortedatum/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:geboortedatum/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -521,7 +521,7 @@
                             </BG:geboortedatum>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.geboorteplaats)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.geboorteplaats)">
                             <BG:inp.geboorteplaats>
                                 <xsl:choose>
                                     <xsl:when test="./geboorte/plaats/omschrijving/text() != ''">
@@ -529,13 +529,13 @@
                                     </xsl:when>
                                     <xsl:when test="./geboorte/plaats/omschrijving/text() = ''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.geboorteplaats/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.geboorteplaats/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.geboorteplaats/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.geboorteplaats/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -544,7 +544,7 @@
                             </BG:inp.geboorteplaats>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.geboorteLand)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.geboorteLand)">
                             <BG:inp.geboorteLand>
                                 <xsl:choose>
                                     <xsl:when test="./geboorte/land/code/text() != ''">
@@ -552,13 +552,13 @@
                                     </xsl:when>
                                     <xsl:when test="./geboorte/land/code/text() = ''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.geboorteLand/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.geboorteLand/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.geboorteLand/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.geboorteLand/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -596,7 +596,7 @@
                             </plaats>
                         </BG:inOnderzoek> -->
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:overlijdensdatum)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:overlijdensdatum)">
                             <BG:overlijdensdatum>
                                 <xsl:choose>
                                     <xsl:when test="./overlijden/datum/datum/text() != ''">
@@ -607,13 +607,13 @@
                                     </xsl:when>
                                     <xsl:when test="./overlijden/datum/datum/text() = ''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:overlijdensdatum/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:overlijdensdatum/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:overlijdensdatum/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:overlijdensdatum/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -623,22 +623,22 @@
                         </xsl:if>
 
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn)">
                             <BG:inp.verblijftIn>
                                 <xsl:attribute name="StUF:entiteittype"><xsl:value-of
-                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/@StUF:entiteittype" /></xsl:attribute>
+                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/@StUF:entiteittype" /></xsl:attribute>
                                 <xsl:choose>
                                     <xsl:when test="$varZenderApplicatie=&apos;GWS&apos;">
                                         <xsl:if
-                                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde)">
+                                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde)">
                                             <BG:gerelateerde>
                                                 <xsl:attribute name="StUF:entiteittype"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/@StUF:entiteittype" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/@StUF:entiteittype" /></xsl:attribute>
                                                 <xsl:if
-                                                    test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp)">
+                                                    test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp)">
                                                     <BG:adresAanduidingGrp>
                                                         <xsl:if
-                                                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:wpl.woonplaatsNaam)">
+                                                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:wpl.woonplaatsNaam)">
                                                             <BG:wpl.woonplaatsNaam>
                                                                 <xsl:choose>
                                                                     <xsl:when
@@ -650,7 +650,7 @@
                                                                         test="./verblijfplaats/verblijfadres/woonplaats/text() = ''">
                                                                         <xsl:attribute
                                                                             name="xsi:nil"><xsl:value-of
-                                                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:wpl.woonplaatsNaam/@xsi:nil" /></xsl:attribute>
+                                                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:wpl.woonplaatsNaam/@xsi:nil" /></xsl:attribute>
                                                                         <xsl:attribute
                                                                             name="StUF:noValue">
                                                                             <xsl:value-of
@@ -659,7 +659,7 @@
                                                                     <xsl:otherwise>
                                                                         <xsl:attribute
                                                                             name="xsi:nil"><xsl:value-of
-                                                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:wpl.woonplaatsNaam/@xsi:nil" /></xsl:attribute>
+                                                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:wpl.woonplaatsNaam/@xsi:nil" /></xsl:attribute>
                                                                                 <xsl:attribute
                                                                             name="StUF:noValue">
                                                                             <xsl:value-of
@@ -669,7 +669,7 @@
                                                             </BG:wpl.woonplaatsNaam>
                                                         </xsl:if>
                                                         <xsl:if
-                                                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:gor.straatnaam)">
+                                                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:gor.straatnaam)">
                                                             <BG:gor.straatnaam>
                                                                 <xsl:choose>
                                                                     <xsl:when
@@ -681,7 +681,7 @@
                                                                         test="./verblijfplaats/verblijfadres/officieleStraatnaam/text() = ''">
                                                                         <xsl:attribute
                                                                             name="xsi:nil"><xsl:value-of
-                                                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:gor.straatnaam/@xsi:nil" /></xsl:attribute>
+                                                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:gor.straatnaam/@xsi:nil" /></xsl:attribute>
                                                                         <xsl:attribute
                                                                             name="StUF:noValue">
                                                                             <xsl:value-of
@@ -690,7 +690,7 @@
                                                                     <xsl:otherwise>
                                                                         <xsl:attribute
                                                                             name="xsi:nil"><xsl:value-of
-                                                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:gor.straatnaam/@xsi:nil" /></xsl:attribute>
+                                                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:gor.straatnaam/@xsi:nil" /></xsl:attribute>
                                                                         <xsl:attribute
                                                                             name="StUF:noValue">
                                                                             <xsl:value-of
@@ -700,7 +700,7 @@
                                                             </BG:gor.straatnaam>
                                                         </xsl:if>
                                                         <xsl:if
-                                                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.postcode)">
+                                                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.postcode)">
                                                             <BG:aoa.postcode>
                                                                 <xsl:choose>
                                                                     <xsl:when
@@ -712,7 +712,7 @@
                                                                         test="./verblijfplaats/verblijfadres/postcode/text() = ''">
                                                                         <xsl:attribute
                                                                             name="xsi:nil"><xsl:value-of
-                                                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.postcode/@xsi:nil" /></xsl:attribute>
+                                                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.postcode/@xsi:nil" /></xsl:attribute>
                                                                         <xsl:attribute
                                                                             name="StUF:noValue">
                                                                             <xsl:value-of
@@ -721,7 +721,7 @@
                                                                     <xsl:otherwise>
                                                                         <xsl:attribute
                                                                             name="xsi:nil"><xsl:value-of
-                                                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.postcode/@xsi:nil" /></xsl:attribute>
+                                                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.postcode/@xsi:nil" /></xsl:attribute>
                                                                         <xsl:attribute
                                                                             name="StUF:noValue">
                                                                             <xsl:value-of
@@ -731,7 +731,7 @@
                                                             </BG:aoa.postcode>
                                                         </xsl:if>
                                                         <xsl:if
-                                                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.huisnummer)">
+                                                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.huisnummer)">
                                                             <BG:aoa.huisnummer>
                                                                 <xsl:choose>
                                                                     <xsl:when
@@ -743,7 +743,7 @@
                                                                         test="./verblijfplaats/verblijfadres/huisnummer/text() = ''">
                                                                         <xsl:attribute
                                                                             name="xsi:nil"><xsl:value-of
-                                                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.huisnummer/@xsi:nil" /></xsl:attribute>
+                                                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.huisnummer/@xsi:nil" /></xsl:attribute>
                                                                         <xsl:attribute
                                                                             name="StUF:noValue">
                                                                             <xsl:value-of
@@ -752,7 +752,7 @@
                                                                     <xsl:otherwise>
                                                                         <xsl:attribute
                                                                             name="xsi:nil"><xsl:value-of
-                                                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.huisnummer/@xsi:nil" /></xsl:attribute>
+                                                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.huisnummer/@xsi:nil" /></xsl:attribute>
                                                                         <xsl:attribute
                                                                             name="StUF:noValue">
                                                                             <xsl:value-of
@@ -762,7 +762,7 @@
                                                             </BG:aoa.huisnummer>
                                                         </xsl:if>
                                                         <xsl:if
-                                                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.huisletter)">
+                                                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.huisletter)">
                                                             <BG:aoa.huisletter>
                                                                 <xsl:choose>
                                                                     <xsl:when
@@ -774,7 +774,7 @@
                                                                         test="./verblijfplaats/verblijfadres/huisletter/text() = ''">
                                                                         <xsl:attribute
                                                                             name="xsi:nil"><xsl:value-of
-                                                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.huisletter/@xsi:nil" /></xsl:attribute>
+                                                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.huisletter/@xsi:nil" /></xsl:attribute>
                                                                         <xsl:attribute
                                                                             name="StUF:noValue">
                                                                             <xsl:value-of
@@ -783,7 +783,7 @@
                                                                     <xsl:otherwise>
                                                                         <xsl:attribute
                                                                             name="xsi:nil"><xsl:value-of
-                                                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.huisletter/@xsi:nil" /></xsl:attribute>
+                                                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.huisletter/@xsi:nil" /></xsl:attribute>
                                                                         <xsl:attribute
                                                                             name="StUF:noValue">
                                                                             <xsl:value-of
@@ -793,7 +793,7 @@
                                                             </BG:aoa.huisletter>
                                                         </xsl:if>
                                                         <xsl:if
-                                                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.huisnummertoevoeging)">
+                                                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.huisnummertoevoeging)">
                                                             <BG:aoa.huisnummertoevoeging>
                                                                 <xsl:choose>
                                                                     <xsl:when
@@ -805,7 +805,7 @@
                                                                         test="./verblijfplaats/verblijfadres/huisnummertoevoeging/text() = ''">
                                                                         <xsl:attribute
                                                                             name="xsi:nil"><xsl:value-of
-                                                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.huisnummertoevoeging/@xsi:nil" /></xsl:attribute>
+                                                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.huisnummertoevoeging/@xsi:nil" /></xsl:attribute>
                                                                         <xsl:attribute
                                                                             name="StUF:noValue">
                                                                             <xsl:value-of
@@ -814,7 +814,7 @@
                                                                     <xsl:otherwise>
                                                                         <xsl:attribute
                                                                             name="xsi:nil"><xsl:value-of
-                                                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.huisnummertoevoeging/@xsi:nil" /></xsl:attribute>
+                                                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:adresAanduidingGrp/BG:aoa.huisnummertoevoeging/@xsi:nil" /></xsl:attribute>
                                                                         <xsl:attribute
                                                                             name="StUF:noValue">
                                                                             <xsl:value-of
@@ -826,7 +826,7 @@
                                                     </BG:adresAanduidingGrp>
                                                 </xsl:if>
                                                 <xsl:if
-                                                    test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:ingangsdatumObject)">
+                                                    test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:ingangsdatumObject)">
                                                     <BG:ingangsdatumObject>
                                                         <xsl:choose>
                                                             <xsl:when
@@ -839,14 +839,14 @@
                                                             <xsl:when
                                                                 test="./verblijfplaats/datumIngangGeldigheid/datum/text() = ''">
                                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:ingangsdatumObject/@xsi:nil" /></xsl:attribute>
+                                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:ingangsdatumObject/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                                     name="StUF:noValue"><xsl:value-of
                                                                         select="$geenWaarde" /></xsl:attribute>
                                                             </xsl:when>
                                                             <xsl:otherwise>
                                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:ingangsdatumObject/@xsi:nil" /></xsl:attribute>
+                                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:ingangsdatumObject/@xsi:nil" /></xsl:attribute>
                                                                 <xsl:attribute
                                                                     name="StUF:noValue">
                                                                     <xsl:value-of
@@ -856,7 +856,7 @@
                                                     </BG:ingangsdatumObject>
                                                 </xsl:if>
                                                 <xsl:if
-                                                    test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:gemeenteCode)">
+                                                    test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:gemeenteCode)">
                                                     <BG:gemeenteCode>
                                                         <xsl:choose>
                                                             <xsl:when
@@ -867,14 +867,14 @@
                                                             <xsl:when
                                                                 test="./verblijfplaats/gemeenteVanInschrijving/code/text() = ''">
                                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:gemeenteCode/@xsi:nil" /></xsl:attribute>
+                                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:gemeenteCode/@xsi:nil" /></xsl:attribute>
                                                                 <xsl:attribute
                                                                     name="StUF:noValue"><xsl:value-of
                                                                         select="$geenWaarde" /></xsl:attribute>
                                                             </xsl:when>
                                                             <xsl:otherwise>
                                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:gemeenteCode/@xsi:nil" /></xsl:attribute>
+                                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:gemeenteCode/@xsi:nil" /></xsl:attribute>
                                                                 <xsl:attribute
                                                                     name="StUF:noValue">
                                                                     <xsl:value-of
@@ -884,7 +884,7 @@
                                                     </BG:gemeenteCode>
                                                 </xsl:if>
                                                 <xsl:if
-                                                    test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:gemeenteNaam)">
+                                                    test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:gemeenteNaam)">
                                                     <BG:gemeenteNaam>
                                                         <xsl:choose>
                                                             <xsl:when
@@ -895,14 +895,14 @@
                                                             <xsl:when
                                                                 test="./verblijfplaats/gemeenteVanInschrijving/omschrijving/text() = ''">
                                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:gemeenteNaam/@xsi:nil" /></xsl:attribute>
+                                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:gemeenteNaam/@xsi:nil" /></xsl:attribute>
                                                                 <xsl:attribute
                                                                     name="StUF:noValue"><xsl:value-of
                                                                         select="$geenWaarde" /></xsl:attribute>
                                                             </xsl:when>
                                                             <xsl:otherwise>
                                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:gemeenteNaam/@xsi:nil" /></xsl:attribute>
+                                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.verblijftIn/BG:gerelateerde/BG:gemeenteNaam/@xsi:nil" /></xsl:attribute>
                                                                 <xsl:attribute
                                                                     name="StUF:noValue">
                                                                     <xsl:value-of
@@ -928,10 +928,10 @@
                         </xsl:if>
 
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres)">
                             <BG:verblijfsadres>
                                 <xsl:if
-                                    test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.identificatie)">
+                                    test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.identificatie)">
                                     <BG:aoa.identificatie>
                                         <xsl:choose>
                                             <xsl:when
@@ -945,14 +945,14 @@
                                                     <xsl:when
                                                         test="./verblijfplaats/nummeraanduidingIdentificatie/text() = ''">
                                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.identificatie/@xsi:nil" /></xsl:attribute>
+                                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.identificatie/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                             name="StUF:noValue"><xsl:value-of
                                                                 select="$geenWaarde" /></xsl:attribute>
                                                     </xsl:when>
                                                     <xsl:otherwise>
                                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.identificatie/@xsi:nil" /></xsl:attribute>
+                                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.identificatie/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                             name="StUF:noValue"><xsl:value-of
                                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -961,7 +961,7 @@
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.identificatie/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.identificatie/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$nietGeautoriseerd" /></xsl:attribute>
@@ -970,7 +970,7 @@
                                     </BG:aoa.identificatie>
                                 </xsl:if>
                                 <xsl:if
-                                    test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:wpl.identificatie)">
+                                    test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:wpl.identificatie)">
                                     <BG:wpl.identificatie>
                                         <xsl:choose>
                                             <xsl:when
@@ -984,14 +984,14 @@
                                                     <xsl:when
                                                         test="./verblijfplaats/adresseerbaarObjectIdentificatie/text() = ''">
                                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:wpl.identificatie/@xsi:nil" /></xsl:attribute>
+                                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:wpl.identificatie/@xsi:nil" /></xsl:attribute>
                                                                 <xsl:attribute
                                                             name="StUF:noValue"><xsl:value-of
                                                                 select="$geenWaarde" /></xsl:attribute>
                                                     </xsl:when>
                                                     <xsl:otherwise>
                                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:wpl.identificatie/@xsi:nil" /></xsl:attribute>
+                                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:wpl.identificatie/@xsi:nil" /></xsl:attribute>
                                                                 <xsl:attribute
                                                             name="StUF:noValue"><xsl:value-of
                                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -1000,7 +1000,7 @@
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:wpl.identificatie/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:wpl.identificatie/@xsi:nil" /></xsl:attribute>
                                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$nietGeautoriseerd" /></xsl:attribute>
@@ -1009,7 +1009,7 @@
                                     </BG:wpl.identificatie>
                                 </xsl:if>
                                 <xsl:if
-                                    test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:wpl.woonplaatsNaam)">
+                                    test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:wpl.woonplaatsNaam)">
                                     <BG:wpl.woonplaatsNaam>
                                         <xsl:choose>
                                             <xsl:when
@@ -1020,14 +1020,14 @@
                                             <xsl:when
                                                 test="./verblijfplaats/verblijfadres/woonplaats/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:wpl.woonplaatsNaam/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:wpl.woonplaatsNaam/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:wpl.woonplaatsNaam/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:wpl.woonplaatsNaam/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -1036,16 +1036,16 @@
                                     </BG:wpl.woonplaatsNaam>
                                 </xsl:if>
                                 <xsl:if
-                                    test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.woonplaatsWaarinGelegen)">
+                                    test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.woonplaatsWaarinGelegen)">
                                     <BG:aoa.woonplaatsWaarinGelegen>
                                         <xsl:if
-                                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.woonplaatsWaarinGelegen/wpl.identificatie)">
+                                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.woonplaatsWaarinGelegen/wpl.identificatie)">
                                             <BG:wpl.identificatie>
                                                 <xsl:choose>
                                                     <xsl:when
                                                         test="($varZenderApplicatie = &apos;DEC_ZKN&apos;) or ($varZenderApplicatie = &apos;LBA&apos;) or ($varZenderApplicatie = &apos;TOP&apos;)">
                                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.woonplaatsWaarinGelegen/wpl.woonplaatsNaam/@xsi:nil" /></xsl:attribute>
+                                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.woonplaatsWaarinGelegen/wpl.woonplaatsNaam/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                             name="StUF:noValue"><xsl:value-of
                                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -1055,14 +1055,14 @@
                                             </BG:wpl.identificatie>
                                         </xsl:if>
                                         <xsl:if
-                                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.woonplaatsWaarinGelegen/wpl.woonplaatsNaam)">
+                                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.woonplaatsWaarinGelegen/wpl.woonplaatsNaam)">
                                             <BG:wpl.woonplaatsNaam>
                                                 <xsl:choose>
                                                     <xsl:when
                                                         test="($varZenderApplicatie = &apos;LBA&apos;) or ($varZenderApplicatie = &apos;TOP&apos;)
                                                         or ($varZenderApplicatie = &apos;DEC_ZKN&apos;)">
                                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.woonplaatsWaarinGelegen/wpl.woonplaatsNaam/@xsi:nil" /></xsl:attribute>
+                                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.woonplaatsWaarinGelegen/wpl.woonplaatsNaam/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                             name="StUF:noValue"><xsl:value-of
                                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -1075,14 +1075,14 @@
                                     </BG:aoa.woonplaatsWaarinGelegen>
                                 </xsl:if>
                                 <xsl:if
-                                    test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:gor.identificatie)">
+                                    test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:gor.identificatie)">
                                     <BG:gor.identificatie>
                                         <xsl:choose>
                                             <xsl:when
                                                 test="($varZenderApplicatie = &apos;LBA&apos;) or ($varZenderApplicatie = &apos;TOP&apos;)
                                                         or ($varZenderApplicatie = &apos;DEC_ZKN&apos;)">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:gor.identificatie/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:gor.identificatie/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$nietGeautoriseerd" /></xsl:attribute>
@@ -1093,14 +1093,14 @@
                                     </BG:gor.identificatie>
                                 </xsl:if>
                                 <xsl:if
-                                    test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:opr.identificatie)">
+                                    test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:opr.identificatie)">
                                     <BG:opr.identificatie>
                                         <xsl:choose>
                                             <xsl:when
                                                 test="($varZenderApplicatie = &apos;LBA&apos;) or ($varZenderApplicatie = &apos;TOP&apos;)
                                                         or ($varZenderApplicatie = &apos;DEC_ZKN&apos;)">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:opr.identificatie/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:opr.identificatie/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$nietGeautoriseerd" /></xsl:attribute>
@@ -1111,7 +1111,7 @@
                                     </BG:opr.identificatie>
                                 </xsl:if>
                                 <xsl:if
-                                    test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:gor.openbareRuimteNaam)">
+                                    test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:gor.openbareRuimteNaam)">
                                     <BG:gor.openbareRuimteNaam>
                                         <xsl:choose>
                                             <xsl:when
@@ -1122,14 +1122,14 @@
                                             <xsl:when
                                                 test="./verblijfplaats/naamOpenbareRuimte/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:gor.openbareRuimteNaam/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:gor.openbareRuimteNaam/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:gor.openbareRuimteNaam/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:gor.openbareRuimteNaam/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -1138,7 +1138,7 @@
                                     </BG:gor.openbareRuimteNaam>
                                 </xsl:if>
                                 <xsl:if
-                                    test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:gor.straatnaam)">
+                                    test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:gor.straatnaam)">
                                     <BG:gor.straatnaam>
                                         <xsl:choose>
                                             <xsl:when
@@ -1149,14 +1149,14 @@
                                             <xsl:when
                                                 test="./verblijfplaats/verblijfadres/officieleStraatnaam/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:gor.straatnaam/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:gor.straatnaam/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:gor.straatnaam/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:gor.straatnaam/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -1165,7 +1165,7 @@
                                     </BG:gor.straatnaam>
                                 </xsl:if>
                                 <xsl:if
-                                    test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.postcode)">
+                                    test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.postcode)">
                                     <BG:aoa.postcode>
                                         <xsl:choose>
                                             <xsl:when
@@ -1176,14 +1176,14 @@
                                             <xsl:when
                                                 test="./verblijfplaats/verblijfadres/postcode/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.postcode/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.postcode/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.postcode/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.postcode/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -1192,7 +1192,7 @@
                                     </BG:aoa.postcode>
                                 </xsl:if>
                                 <xsl:if
-                                    test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.huisnummer)">
+                                    test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.huisnummer)">
                                     <BG:aoa.huisnummer>
                                         <xsl:choose>
                                             <xsl:when
@@ -1203,14 +1203,14 @@
                                             <xsl:when
                                                 test="./verblijfplaats/verblijfadres/huisnummer/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.huisnummer/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.huisnummer/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.huisnummer/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.huisnummer/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -1219,7 +1219,7 @@
                                     </BG:aoa.huisnummer>
                                 </xsl:if>
                                 <xsl:if
-                                    test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.huisletter)">
+                                    test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.huisletter)">
                                     <BG:aoa.huisletter>
                                         <xsl:choose>
                                             <xsl:when
@@ -1230,14 +1230,14 @@
                                             <xsl:when
                                                 test="./verblijfplaats/verblijfadres/huisletter/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.huisletter/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.huisletter/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.huisletter/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.huisletter/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -1246,7 +1246,7 @@
                                     </BG:aoa.huisletter>
                                 </xsl:if>
                                 <xsl:if
-                                    test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.huisnummertoevoeging)">
+                                    test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.huisnummertoevoeging)">
                                     <BG:aoa.huisnummertoevoeging>
                                         <xsl:choose>
                                             <xsl:when
@@ -1257,14 +1257,14 @@
                                             <xsl:when
                                                 test="./verblijfplaats/verblijfadres/huisnummertoevoeging/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.huisnummertoevoeging/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.huisnummertoevoeging/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.huisnummertoevoeging/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:aoa.huisnummertoevoeging/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -1273,7 +1273,7 @@
                                     </BG:aoa.huisnummertoevoeging>
                                 </xsl:if>
                                 <xsl:if
-                                    test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:inp.locatiebeschrijving)">
+                                    test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:inp.locatiebeschrijving)">
                                     <BG:inp.locatiebeschrijving>
                                         <xsl:choose>
                                             <xsl:when test="$varZenderApplicatie != &apos;GWS&apos;">
@@ -1286,14 +1286,14 @@
                                                     <xsl:when
                                                         test="./verblijfplaats/verblijfadres/locatiebeschrijving/text() = ''">
                                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:inp.locatiebeschrijving/@xsi:nil" /></xsl:attribute>
+                                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:inp.locatiebeschrijving/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                             name="StUF:noValue"><xsl:value-of
                                                                 select="$geenWaarde" /></xsl:attribute>
                                                     </xsl:when>
                                                     <xsl:otherwise>
                                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:inp.locatiebeschrijving/@xsi:nil" /></xsl:attribute>
+                                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:inp.locatiebeschrijving/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                             name="StUF:noValue"><xsl:value-of
                                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -1303,7 +1303,7 @@
 
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:inp.locatiebeschrijving/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:inp.locatiebeschrijving/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$nietGeautoriseerd" /></xsl:attribute>
@@ -1312,7 +1312,7 @@
                                     </BG:inp.locatiebeschrijving>
                                 </xsl:if>
                                 <xsl:if
-                                    test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:begindatumVerblijf)">
+                                    test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:begindatumVerblijf)">
                                     <BG:begindatumVerblijf>
                                         <xsl:choose>
                                             <xsl:when
@@ -1325,14 +1325,14 @@
                                             <xsl:when
                                                 test="./verblijfplaats/datumVan/datum/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:begindatumVerblijf/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:begindatumVerblijf/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:begindatumVerblijf/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:verblijfsadres/BG:begindatumVerblijf/@xsi:nil" /></xsl:attribute>
                                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -1344,14 +1344,14 @@
                         </xsl:if>
 
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland)">
                             <BG:sub.verblijfBuitenland>
                                 <xsl:choose>
                                     <xsl:when test="$varZenderApplicatie != &apos;PGAx-SG-ZVH&apos;">
                                         <xsl:if
                                             test="./verblijfplaats/type = &apos;VerblijfplaatsBuitenland&apos;">
                                             <xsl:if
-                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:lnd.landcode)">
+                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:lnd.landcode)">
                                                 <BG:lnd.landcode>
                                                     <xsl:choose>
                                                         <xsl:when
@@ -1362,14 +1362,14 @@
                                                         <xsl:when
                                                             test="./verblijfplaats/verblijfadres/land/code/text() = ''">
                                                             <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:lnd.landcode/@xsi:nil" /></xsl:attribute>
+                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:lnd.landcode/@xsi:nil" /></xsl:attribute>
                                                             <xsl:attribute
                                                                 name="StUF:noValue"><xsl:value-of
                                                                     select="$geenWaarde" /></xsl:attribute>
                                                         </xsl:when>
                                                         <xsl:otherwise>
                                                             <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:lnd.landcode/@xsi:nil" /></xsl:attribute>
+                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:lnd.landcode/@xsi:nil" /></xsl:attribute>
                                                             <xsl:attribute
                                                                 name="StUF:noValue"><xsl:value-of
                                                                     select="$waardeOnbekend" /></xsl:attribute>
@@ -1378,7 +1378,7 @@
                                                 </BG:lnd.landcode>
                                             </xsl:if>
                                     <xsl:if
-                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:lnd.landnaam)">
+                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:lnd.landnaam)">
                                                 <BG:lnd.landnaam>
                                                     <xsl:choose>
                                                         <xsl:when
@@ -1389,14 +1389,14 @@
                                                         <xsl:when
                                                             test="./verblijfplaats/verblijfadres/land/omschrijving/text() = ''">
                                                             <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:lnd.landnaam/@xsi:nil" /></xsl:attribute>
+                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:lnd.landnaam/@xsi:nil" /></xsl:attribute>
                                                             <xsl:attribute
                                                                 name="StUF:noValue"><xsl:value-of
                                                                     select="$geenWaarde" /></xsl:attribute>
                                                         </xsl:when>
                                                         <xsl:otherwise>
                                                             <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:lnd.landnaam/@xsi:nil" /></xsl:attribute>
+                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:lnd.landnaam/@xsi:nil" /></xsl:attribute>
                                                             <xsl:attribute
                                                                 name="StUF:noValue"><xsl:value-of
                                                                     select="$waardeOnbekend" /></xsl:attribute>
@@ -1416,14 +1416,14 @@
                                                         <xsl:when
                                                             test="./verblijfplaats/verblijfadres/regel1/text() = ''">
                                                             <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:sub.adresBuitenland1/@xsi:nil" /></xsl:attribute>
+                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:sub.adresBuitenland1/@xsi:nil" /></xsl:attribute>
                                                             <xsl:attribute
                                                                 name="StUF:noValue"><xsl:value-of
                                                                     select="$geenWaarde" /></xsl:attribute>
                                                         </xsl:when>
                                                         <xsl:otherwise>
                                                             <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:sub.adresBuitenland1/@xsi:nil" /></xsl:attribute>
+                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:sub.adresBuitenland1/@xsi:nil" /></xsl:attribute>
                                                             <xsl:attribute
                                                                 name="StUF:noValue"><xsl:value-of
                                                                     select="$waardeOnbekend" /></xsl:attribute>
@@ -1442,14 +1442,14 @@
                                                         <xsl:when
                                                             test="./verblijfplaats/verblijfadres/regel2/text() = ''">
                                                             <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:sub.adresBuitenland2/@xsi:nil" /></xsl:attribute>
+                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:sub.adresBuitenland2/@xsi:nil" /></xsl:attribute>
                                                             <xsl:attribute
                                                                 name="StUF:noValue"><xsl:value-of
                                                                     select="$geenWaarde" /></xsl:attribute>
                                                         </xsl:when>
                                                         <xsl:otherwise>
                                                             <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:sub.adresBuitenland2/@xsi:nil" /></xsl:attribute>
+                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:sub.adresBuitenland2/@xsi:nil" /></xsl:attribute>
                                                             <xsl:attribute
                                                                 name="StUF:noValue"><xsl:value-of
                                                                     select="$waardeOnbekend" /></xsl:attribute>
@@ -1468,14 +1468,14 @@
                                                         <xsl:when
                                                             test="./verblijfplaats/verblijfadres/regel3/text() = ''">
                                                             <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:sub.adresBuitenland3/@xsi:nil" /></xsl:attribute>
+                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:sub.adresBuitenland3/@xsi:nil" /></xsl:attribute>
                                                     <xsl:attribute
                                                                 name="StUF:noValue"><xsl:value-of
                                                                     select="$geenWaarde" /></xsl:attribute>
                                                         </xsl:when>
                                                         <xsl:otherwise>
                                                             <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:sub.adresBuitenland3/@xsi:nil" /></xsl:attribute>
+                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.verblijfBuitenland/BG:sub.adresBuitenland3/@xsi:nil" /></xsl:attribute>
                                                             <xsl:attribute
                                                                 name="StUF:noValue"><xsl:value-of
                                                                     select="$waardeOnbekend" /></xsl:attribute>
@@ -1495,7 +1495,7 @@
                             </BG:sub.verblijfBuitenland>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.adresHerkomst)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.adresHerkomst)">
                             <BG:inp.adresHerkomst>
                                 <xsl:choose>
                                     <xsl:when test="./verblijfplaats/functieAdres/code/text() != ''">
@@ -1504,13 +1504,13 @@
                                     </xsl:when>
                                     <xsl:when test="./verblijfplaats/functieAdres/code/text() = ''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.adresHerkomst/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.adresHerkomst/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.adresHerkomst/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.adresHerkomst/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -1520,20 +1520,20 @@
                         </xsl:if>
 
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.telefoonnummer)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.telefoonnummer)">
                             <BG:sub.telefoonnummer>
                                 <xsl:choose>
                                     <xsl:when
                                         test="$varZenderApplicatie=&apos;TOP&apos;">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.telefoonnummer/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.telefoonnummer/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.telefoonnummer/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.telefoonnummer/@xsi:nil" /></xsl:attribute>
                                         <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -1542,13 +1542,13 @@
                             </BG:sub.telefoonnummer>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.faxnummer)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.faxnummer)">
                             <BG:sub.faxnummer>
                                 <xsl:if
                                     test="($varZenderApplicatie=&apos;TOP&apos;) or ($varZenderApplicatie=&apos;LBA&apos;) or 
                                         ($varZenderApplicatie=&apos;GWS&apos;) or ($varZenderApplicatie=&apos;DEC_ZKN&apos;) or ($varZenderApplicatie=&apos;PGAx-SG-ZVH&apos;)">
                                     <xsl:attribute name="xsi:nil"><xsl:value-of
-                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.faxnummer/@xsi:nil" /></xsl:attribute>
+                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.faxnummer/@xsi:nil" /></xsl:attribute>
                                         <xsl:attribute
                                         name="StUF:noValue"><xsl:value-of
                                             select="$nietGeautoriseerd" /></xsl:attribute>
@@ -1556,20 +1556,20 @@
                             </BG:sub.faxnummer>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.emailadres)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.emailadres)">
                             <BG:sub.emailadres>
                                 <xsl:choose>
                                     <xsl:when
                                         test="$varZenderApplicatie=&apos;TOP&apos;">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.emailadres/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.emailadres/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.emailadres/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.emailadres/@xsi:nil" /></xsl:attribute>
                                         <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -1578,13 +1578,13 @@
                             </BG:sub.emailadres>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.url)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.url)">
                             <BG:sub.url>
                                 <xsl:if
                                     test="($varZenderApplicatie=&apos;TOP&apos;) or ($varZenderApplicatie=&apos;LBA&apos;) or 
                                     ($varZenderApplicatie=&apos;GWS&apos;) or ($varZenderApplicatie=&apos;DEC_ZKN&apos;) or ($varZenderApplicatie=&apos;PGAx-SG-ZVH&apos;)">
                                     <xsl:attribute name="xsi:nil"><xsl:value-of
-                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.url/@xsi:nil" /></xsl:attribute>
+                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.url/@xsi:nil" /></xsl:attribute>
                                     <xsl:attribute
                                         name="StUF:noValue"><xsl:value-of
                                             select="$nietGeautoriseerd" /></xsl:attribute>
@@ -1592,13 +1592,13 @@
                             </BG:sub.url>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.rekeningnummerBankGiro)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.rekeningnummerBankGiro)">
                             <BG:sub.rekeningnummerBankGiro>
                                 <xsl:if
                                     test="($varZenderApplicatie=&apos;TOP&apos;) or ($varZenderApplicatie=&apos;LBA&apos;) or 
                                     ($varZenderApplicatie=&apos;GWS&apos;) or ($varZenderApplicatie=&apos;DEC_ZKN&apos;) or ($varZenderApplicatie=&apos;PGAx-SG-ZVH&apos;)">
                                     <xsl:attribute name="xsi:nil"><xsl:value-of
-                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:sub.rekeningnummerBankGiro/@xsi:nil" /></xsl:attribute>
+                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:sub.rekeningnummerBankGiro/@xsi:nil" /></xsl:attribute>
                                     <xsl:attribute
                                         name="StUF:noValue"><xsl:value-of
                                             select="$nietGeautoriseerd" /></xsl:attribute>
@@ -1608,7 +1608,7 @@
                         <!--update
                         the value-->
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.burgerlijkeStaat)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.burgerlijkeStaat)">
                             <BG:inp.burgerlijkeStaat>
                                 <xsl:choose>
                                     <xsl:when test="$varZenderApplicatie!=&apos;PGAx-SG-ZVH&apos;">
@@ -1617,7 +1617,7 @@
                                                 test="./partners/aangaanHuwelijkPartnerschap/text() != ''"> </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.burgerlijkeStaat/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.burgerlijkeStaat/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -1626,7 +1626,7 @@
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.burgerlijkeStaat/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.burgerlijkeStaat/@xsi:nil" /></xsl:attribute>
                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -1635,7 +1635,7 @@
                             </BG:inp.burgerlijkeStaat>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.gemeenteVanInschrijving)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.gemeenteVanInschrijving)">
                             <BG:inp.gemeenteVanInschrijving>
                                 <xsl:choose>
                                     <xsl:when test="./gemeenteVanInschrijving/code/text() != ''">
@@ -1643,13 +1643,13 @@
                                     </xsl:when>
                                     <xsl:when test="./gemeenteVanInschrijving/code/text() = ''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.gemeenteVanInschrijving/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.gemeenteVanInschrijving/@xsi:nil" /></xsl:attribute>
                                         <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.gemeenteVanInschrijving/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.gemeenteVanInschrijving/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -1658,7 +1658,7 @@
                             </BG:inp.gemeenteVanInschrijving>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:vbt.aanduidingVerblijfstitel)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:vbt.aanduidingVerblijfstitel)">
                             <BG:vbt.aanduidingVerblijfstitel>
                                 <xsl:choose>
                                     <xsl:when test="$varZenderApplicatie=&apos;GWS&apos;">
@@ -1671,14 +1671,14 @@
                                             <xsl:when
                                                 test="./verblijfstitel/aanduiding/code/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:vbt.aanduidingVerblijfstitel/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:vbt.aanduidingVerblijfstitel/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:vbt.aanduidingVerblijfstitel/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:vbt.aanduidingVerblijfstitel/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -1687,7 +1687,7 @@
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:vbt.aanduidingVerblijfstitel/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:vbt.aanduidingVerblijfstitel/@xsi:nil" /></xsl:attribute>
                             <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -1696,7 +1696,7 @@
                             </BG:vbt.aanduidingVerblijfstitel>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.datumVestigingInNederland)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.datumVestigingInNederland)">
                             <BG:inp.datumVestigingInNederland>
                                 <xsl:choose>
                                     <xsl:when
@@ -1712,14 +1712,14 @@
                                             <xsl:when
                                                 test="./immigratie/datumVestigingInNederland/datum/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.datumVestigingInNederland/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.datumVestigingInNederland/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.datumVestigingInNederland/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.datumVestigingInNederland/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -1728,7 +1728,7 @@
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.datumVestigingInNederland/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.datumVestigingInNederland/@xsi:nil" /></xsl:attribute>
                             <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -1737,7 +1737,7 @@
                             </BG:inp.datumVestigingInNederland>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.immigratieLand)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.immigratieLand)">
                             <BG:inp.immigratieLand>
                                 <xsl:choose>
                                     <xsl:when test="($varZenderApplicatie=&apos;DEC_ZKN&apos;)">
@@ -1750,14 +1750,14 @@
                                             <xsl:when
                                                 test="./immigratie/landVanwaarIngeschreven/omschrijving/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.immigratieLand/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.immigratieLand/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.immigratieLand/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.immigratieLand/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -1766,7 +1766,7 @@
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.immigratieLand/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.immigratieLand/@xsi:nil" /></xsl:attribute>
                             <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -1775,7 +1775,7 @@
                             </BG:inp.immigratieLand>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.datumVertrekUitNederland)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.datumVertrekUitNederland)">
                             <BG:inp.datumVertrekUitNederland>
                                 <xsl:choose>
                                     <xsl:when test="($varZenderApplicatie=&apos;LBA&apos;)">
@@ -1790,14 +1790,14 @@
                                             <xsl:when
                                                 test="./immigratie/indicatieVestigingVanuitBuitenland/datum/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.datumVertrekUitNederland/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.datumVertrekUitNederland/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.datumVertrekUitNederland/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.datumVertrekUitNederland/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -1806,7 +1806,7 @@
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.datumVertrekUitNederland/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.datumVertrekUitNederland/@xsi:nil" /></xsl:attribute>
                                     <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -1815,7 +1815,7 @@
                             </BG:inp.datumVertrekUitNederland>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.emigratieLand)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.emigratieLand)">
                             <BG:inp.emigratieLand>
                                 <xsl:choose>
                                     <xsl:when
@@ -1832,7 +1832,7 @@
                                                 <xsl:when
                                                     test="./verblijfplaats/type/text()!='VerblijfplaatsBuitenland'">
                                                     <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.emigratieLand/@xsi:nil" /></xsl:attribute>
+                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.emigratieLand/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                         name="StUF:noValue"><xsl:value-of
                                                             select="$waardeOnbekend" /></xsl:attribute>
@@ -1841,7 +1841,7 @@
                                                 <xsl:when
                                                     test="./verblijfplaats/verblijfadres/land/code/text()=''">
                                                     <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.emigratieLand/@xsi:nil" /></xsl:attribute>
+                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.emigratieLand/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                         name="StUF:noValue"><xsl:value-of
                                                             select="$geenWaarde" /></xsl:attribute>
@@ -1852,7 +1852,7 @@
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.emigratieLand/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.emigratieLand/@xsi:nil" /></xsl:attribute>
                             <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -1861,7 +1861,7 @@
                             </BG:inp.emigratieLand>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:ing.indicatieGezagMinderjarige)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:ing.indicatieGezagMinderjarige)">
                             <BG:ing.indicatieGezagMinderjarige>
                                 <xsl:choose>
                                     <xsl:when
@@ -1875,14 +1875,14 @@
                                             <xsl:when
                                                 test="./gezagsverhouding/indicatieGezagMinderjarige/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:ing.indicatieGezagMinderjarige/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:ing.indicatieGezagMinderjarige/@xsi:nil" /></xsl:attribute>
                                                     <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:ing.indicatieGezagMinderjarige/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:ing.indicatieGezagMinderjarige/@xsi:nil" /></xsl:attribute>
                                                     <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -1891,7 +1891,7 @@
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:ing.indicatieGezagMinderjarige/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:ing.indicatieGezagMinderjarige/@xsi:nil" /></xsl:attribute>
                                         <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -1900,13 +1900,13 @@
                             </BG:ing.indicatieGezagMinderjarige>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.indicatieGeheim)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.indicatieGeheim)">
                             <BG:inp.indicatieGeheim>
                                 <xsl:choose>
                                     <xsl:when
                                         test="$varZenderApplicatie=&apos;DEC_ZKN&apos;">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.indicatieGeheim/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.indicatieGeheim/@xsi:nil" /></xsl:attribute>
                                         <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -1921,14 +1921,14 @@
                                             <xsl:when
                                                 test="./geheimhoudingPersoonsgegevens/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.indicatieGeheim/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.indicatieGeheim/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.indicatieGeheim/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.indicatieGeheim/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -1939,14 +1939,14 @@
                             </BG:inp.indicatieGeheim>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:ing.indicatieBlokkering)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:ing.indicatieBlokkering)">
                             <BG:ing.indicatieBlokkering>
 
                             </BG:ing.indicatieBlokkering>
                         </xsl:if>
 
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:datumInschrijving)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:datumInschrijving)">
                             <BG:datumInschrijving>
                                 <xsl:choose>
                                     <xsl:when
@@ -1959,13 +1959,13 @@
                                     <xsl:when
                                         test="./datumEersteInschrijvingGBA/datum/text() = ''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:datumInschrijving/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:datumInschrijving/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:datumInschrijving/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:datumInschrijving/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -1974,12 +1974,12 @@
                             </BG:datumInschrijving>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:ing.aanduidingEuropeesKiesrecht)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:ing.aanduidingEuropeesKiesrecht)">
                             <BG:ing.aanduidingEuropeesKiesrecht>
                                 <xsl:choose>
                                     <xsl:when test="$varZenderApplicatie != &apos;DEC_ZKN&apos;">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:ing.aanduidingEuropeesKiesrecht/@StUF:entiteittype" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:ing.aanduidingEuropeesKiesrecht/@StUF:entiteittype" /></xsl:attribute>
                                         <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -1994,14 +1994,14 @@
                                             <xsl:when
                                                 test="./europeesKiesrecht/aanduiding/code/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:ing.aanduidingEuropeesKiesrecht/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:ing.aanduidingEuropeesKiesrecht/@xsi:nil" /></xsl:attribute>
                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:ing.aanduidingEuropeesKiesrecht/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:ing.aanduidingEuropeesKiesrecht/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -2012,7 +2012,7 @@
                             </BG:ing.aanduidingEuropeesKiesrecht>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:aanduidingBijzonderNederlanderschap)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:aanduidingBijzonderNederlanderschap)">
                             <BG:aanduidingBijzonderNederlanderschap>
                                 <xsl:choose>
                                     <xsl:when test="$varZenderApplicatie = &apos;GWS&apos;">
@@ -2025,14 +2025,14 @@
                                             <xsl:when
                                                 test="./nationaliteit/aanduidingBijzonderNederlanderschap/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:aanduidingBijzonderNederlanderschap/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:aanduidingBijzonderNederlanderschap/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:aanduidingBijzonderNederlanderschap/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:aanduidingBijzonderNederlanderschap/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -2041,7 +2041,7 @@
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:aanduidingBijzonderNederlanderschap/@StUF:entiteittype" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:aanduidingBijzonderNederlanderschap/@StUF:entiteittype" /></xsl:attribute>
                                         <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -2051,17 +2051,17 @@
                         </xsl:if>
 
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit)">
                             <BG:inp.heeftAlsNationaliteit>
                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit/@StUF:entiteittype" /></xsl:attribute>
+                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit/@StUF:entiteittype" /></xsl:attribute>
                                 <xsl:if
-                                    test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit/BG:gerelateerde)">
+                                    test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit/BG:gerelateerde)">
                                     <BG:gerelateerde>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit/BG:gerelateerde/@StUF:entiteittype" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit/BG:gerelateerde/@StUF:entiteittype" /></xsl:attribute>
                                         <xsl:if
-                                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit/BG:gerelateerde/BG:code)">
+                                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit/BG:gerelateerde/BG:code)">
                                             <BG:code>
                                                 <xsl:choose>
                                                     <xsl:when
@@ -2075,14 +2075,14 @@
                                                             <xsl:when
                                                                 test="./nationaliteit/nationaliteit/code/text()=''">
                                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit/BG:gerelateerde/BG:code/@xsi:nil" /></xsl:attribute>
+                                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit/BG:gerelateerde/BG:code/@xsi:nil" /></xsl:attribute>
                                                             <xsl:attribute
                                                                     name="StUF:noValue"><xsl:value-of
                                                                         select="$geenWaarde" /></xsl:attribute>
                                                             </xsl:when>
                                                             <xsl:otherwise>
                                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit/BG:gerelateerde/BG:code/@xsi:nil" /></xsl:attribute>
+                                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit/BG:gerelateerde/BG:code/@xsi:nil" /></xsl:attribute>
                                                             <xsl:attribute
                                                                     name="StUF:noValue"><xsl:value-of
                                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -2091,7 +2091,7 @@
                                                     </xsl:when>
                                                     <xsl:otherwise>
                                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit/BG:gerelateerde/BG:code/@xsi:nil" /></xsl:attribute>
+                                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit/BG:gerelateerde/BG:code/@xsi:nil" /></xsl:attribute>
                                                     <xsl:attribute
                                                             name="StUF:noValue"><xsl:value-of
                                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -2100,7 +2100,7 @@
                                             </BG:code>
                                         </xsl:if>
                                         <xsl:if
-                                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit/BG:gerelateerde/BG:omschrijving)">
+                                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit/BG:gerelateerde/BG:omschrijving)">
                                             <BG:omschrijving>
                                                 <xsl:choose>
                                                     <xsl:when
@@ -2114,14 +2114,14 @@
                                                             <xsl:when
                                                                 test="./nationaliteit/nationaliteit/omschrijving/text()=''">
                                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit/BG:gerelateerde/BG:omschrijving/@xsi:nil" /></xsl:attribute>
+                                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit/BG:gerelateerde/BG:omschrijving/@xsi:nil" /></xsl:attribute>
                                                             <xsl:attribute
                                                                     name="StUF:noValue"><xsl:value-of
                                                                         select="$geenWaarde" /></xsl:attribute>
                                                             </xsl:when>
                                                             <xsl:otherwise>
                                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit/BG:gerelateerde/BG:omschrijving/@xsi:nil" /></xsl:attribute>
+                                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit/BG:gerelateerde/BG:omschrijving/@xsi:nil" /></xsl:attribute>
                                                             <xsl:attribute
                                                                     name="StUF:noValue"><xsl:value-of
                                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -2130,7 +2130,7 @@
                                                     </xsl:when>
                                                     <xsl:otherwise>
                                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit/BG:gerelateerde/BG:omschrijving/@xsi:nil" /></xsl:attribute>
+                                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsNationaliteit/BG:gerelateerde/BG:omschrijving/@xsi:nil" /></xsl:attribute>
                                                     <xsl:attribute
                                                             name="StUF:noValue"><xsl:value-of
                                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -2141,7 +2141,7 @@
                                     </BG:gerelateerde>
                                 </xsl:if>
                                 <xsl:if
-                                    test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.redenVerkrijging)">
+                                    test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.redenVerkrijging)">
                                     <BG:inp.redenVerkrijging>
                                         <xsl:choose>
                                             <xsl:when
@@ -2152,14 +2152,14 @@
                                             <xsl:when
                                                 test="./nationaliteit/redenOpname/code/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.redenVerkrijging/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.redenVerkrijging/@xsi:nil" /></xsl:attribute>
                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.redenVerkrijging/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.redenVerkrijging/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -2168,7 +2168,7 @@
                                     </BG:inp.redenVerkrijging>
                                 </xsl:if>
                                 <xsl:if
-                                    test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.datumVerkrijging)">
+                                    test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.datumVerkrijging)">
                                     <BG:inp.datumVerkrijging>
                                         <xsl:choose>
                                             <xsl:when
@@ -2181,14 +2181,14 @@
                                             <xsl:when
                                                 test="./nationaliteit/datumIngangGeldigheid/datum/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.datumVerkrijging/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.datumVerkrijging/@xsi:nil" /></xsl:attribute>
                                         <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.datumVerkrijging/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.datumVerkrijging/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -2211,7 +2211,7 @@
                             <redenOpname>True</redenOpname>
                         </BG:inOnderzoek> -->
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.redenOpschortingBijhouding)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.redenOpschortingBijhouding)">
                             <BG:inp.redenOpschortingBijhouding>
                                 <xsl:value-of select="./opschortingBijhouding/reden" />
                                 <xsl:if test="./opschortingBijhouding/reden=0">
@@ -2220,7 +2220,7 @@
                             </BG:inp.redenOpschortingBijhouding>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.datumOpschortingBijhouding)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.datumOpschortingBijhouding)">
                             <BG:inp.datumOpschortingBijhouding>
                                 <xsl:choose>
                                     <xsl:when
@@ -2233,13 +2233,13 @@
                                     <xsl:when
                                         test="./opschortingBijhouding/datum/datum/text() = ''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.datumOpschortingBijhouding/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.datumOpschortingBijhouding/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.datumOpschortingBijhouding/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.datumOpschortingBijhouding/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -2248,7 +2248,7 @@
                             </BG:inp.datumOpschortingBijhouding>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:overlijdensdatum)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:overlijdensdatum)">
                             <BG:overlijdensdatum>
                                 <xsl:choose>
                                     <xsl:when
@@ -2261,13 +2261,13 @@
                                     <xsl:when
                                         test="./overlijden/datum/datum/text() = ''">
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:overlijdensdatum/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:overlijdensdatum/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of select="$geenWaarde" /></xsl:attribute>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:overlijdensdatum/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:overlijdensdatum/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -2276,7 +2276,7 @@
                             </BG:overlijdensdatum>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.overlijdenplaats)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.overlijdenplaats)">
                             <BG:inp.overlijdenplaats>
                                 <xsl:choose>
                                     <xsl:when
@@ -2290,14 +2290,14 @@
                                             <xsl:when
                                                 test="./overlijden/plaats/omschrijving/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.overlijdenplaats/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.overlijdenplaats/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.overlijdenplaats/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.overlijdenplaats/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -2306,7 +2306,7 @@
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.overlijdenplaats/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.overlijdenplaats/@xsi:nil" /></xsl:attribute>
                         <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -2315,7 +2315,7 @@
                             </BG:inp.overlijdenplaats>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.overlijdenLand)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.overlijdenLand)">
                             <BG:inp.overlijdenLand>
                                 <xsl:choose>
                                     <xsl:when
@@ -2326,14 +2326,14 @@
                                             </xsl:when>
                                             <xsl:when test="./overlijden/land/code/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.overlijdenLand/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.overlijdenLand/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.overlijdenLand/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.overlijdenLand/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -2342,7 +2342,7 @@
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.overlijdenLand/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.overlijdenLand/@xsi:nil" /></xsl:attribute>
                                             <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -2417,7 +2417,7 @@
                             </StUF:InOnderzoek> 
                         </BG:Verblijfsplaats>-->
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:ing.indicatieCurateleRegister)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:ing.indicatieCurateleRegister)">
                             <BG:ing.indicatieCurateleRegister>
                                 <xsl:choose>
                                     <xsl:when
@@ -2432,7 +2432,7 @@
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:ing.indicatieCurateleRegister/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:ing.indicatieCurateleRegister/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$waardeOnbekend" /></xsl:attribute>
@@ -2462,7 +2462,7 @@
                             </datumIngangOnderzoek>
                         </BG:inOnderzoek> -->
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:ing.datumVerliesVerblijfstitel)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:ing.datumVerliesVerblijfstitel)">
                             <BG:ing.datumVerliesVerblijfstitel>
                                 <xsl:choose>
                                     <xsl:when test="$varZenderApplicatie=&apos;GWS&apos;">
@@ -2477,14 +2477,14 @@
                                             <xsl:when
                                                 test="./verblijfstitel/datumEinde/datum/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:ing.datumVerliesVerblijfstitel/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:ing.datumVerliesVerblijfstitel/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:ing.datumVerliesVerblijfstitel/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:ing.datumVerliesVerblijfstitel/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -2493,7 +2493,7 @@
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:ing.datumVerliesVerblijfstitel/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:ing.datumVerliesVerblijfstitel/@xsi:nil" /></xsl:attribute>
                                             <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -2502,7 +2502,7 @@
                             </BG:ing.datumVerliesVerblijfstitel>
                         </xsl:if>
                         <xsl:if
-                            test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:ing.datumVerkrijgingVerblijfstitel)">
+                            test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:ing.datumVerkrijgingVerblijfstitel)">
                             <BG:ing.datumVerkrijgingVerblijfstitel>
                                 <xsl:choose>
                                     <xsl:when test="$varZenderApplicatie=&apos;GWS&apos;">
@@ -2517,14 +2517,14 @@
                                             <xsl:when
                                                 test="./verblijfstitel/datumIngang/datum/text() = ''">
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:ing.datumVerkrijgingVerblijfstitel/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:ing.datumVerkrijgingVerblijfstitel/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$geenWaarde" /></xsl:attribute>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                        select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:ing.datumVerkrijgingVerblijfstitel/@xsi:nil" /></xsl:attribute>
+                                                        select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:ing.datumVerkrijgingVerblijfstitel/@xsi:nil" /></xsl:attribute>
                                                 <xsl:attribute
                                                     name="StUF:noValue"><xsl:value-of
                                                         select="$waardeOnbekend" /></xsl:attribute>
@@ -2533,7 +2533,7 @@
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:ing.datumVerkrijgingVerblijfstitel/@xsi:nil" /></xsl:attribute>
+                                                select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:ing.datumVerkrijgingVerblijfstitel/@xsi:nil" /></xsl:attribute>
                                             <xsl:attribute
                                             name="StUF:noValue"><xsl:value-of
                                                 select="$nietGeautoriseerd" /></xsl:attribute>
@@ -2545,13 +2545,13 @@
                         <xsl:for-each
                             select="./partners">
                             <xsl:if
-                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner)">
+                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner)">
                                 <BG:inp.heeftAlsEchtgenootPartner>
                                     <xsl:choose>
                                         <xsl:when
                                             test="($varZenderApplicatie=&apos;DEC_ZKN&apos;) or ($varZenderApplicatie=&apos;PGAx-SG-ZVH&apos;)">
                                             <xsl:attribute name="StUF:entiteittype"><xsl:value-of
-                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/@StUF:entiteittype" /></xsl:attribute>
+                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/@StUF:entiteittype" /></xsl:attribute>
                                             <xsl:attribute
                                                 name="xsi:nil">true</xsl:attribute>
                                         <xsl:attribute
@@ -2562,15 +2562,15 @@
                                             <xsl:choose>
                                                 <xsl:when test="./text() !=''">
                                                     <xsl:attribute name="StUF:entiteittype"><xsl:value-of
-                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/@StUF:entiteittype" /></xsl:attribute>
+                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/@StUF:entiteittype" /></xsl:attribute>
                                     <xsl:if
-                                                        test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde)">
+                                                        test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde)">
                                                         <BG:gerelateerde>
                                                             <xsl:attribute name="StUF:entiteittype"><xsl:value-of
-                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/@StUF:entiteittype" />
+                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/@StUF:entiteittype" />
                                                             </xsl:attribute>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:inp.bsn)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:inp.bsn)">
                                                                 <BG:inp.bsn>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -2585,7 +2585,7 @@
                                                                                     test="./burgerservicenummer/text() =''">
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:inp.bsn/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:inp.bsn/@xsi:nil" /></xsl:attribute>
                                                                         <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$geenWaarde" /></xsl:attribute>
@@ -2593,7 +2593,7 @@
                                                                                 <xsl:otherwise>
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:inp.bsn/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:inp.bsn/@xsi:nil" /></xsl:attribute>
                                                                         <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$waardeOnbekend" /></xsl:attribute>
@@ -2603,7 +2603,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:inp.bsn/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:inp.bsn/@xsi:nil" /></xsl:attribute>
                                                             <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$nietGeautoriseerd" /></xsl:attribute>
@@ -2612,7 +2612,7 @@
                                                                 </BG:inp.bsn>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:geslachtsnaam)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:geslachtsnaam)">
                                                                 <BG:geslachtsnaam>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -2624,7 +2624,7 @@
                                                                             test="./naam/geslachtsnaam/text() =''">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:geslachtsnaam/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:geslachtsnaam/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue">
                                                                                 <xsl:value-of
@@ -2633,7 +2633,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:geslachtsnaam/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:geslachtsnaam/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue">
                                                                                 <xsl:value-of
@@ -2643,7 +2643,7 @@
                                                                 </BG:geslachtsnaam>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:voorletters)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:voorletters)">
                                                                 <BG:voorletters>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -2655,7 +2655,7 @@
                                                                             test="./naam/voorletters/text() =''">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:voorletters/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:voorletters/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue">
                                                                                 <xsl:value-of
@@ -2664,7 +2664,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:voorletters/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:voorletters/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue">
                                                                                 <xsl:value-of
@@ -2674,7 +2674,7 @@
                                                                 </BG:voorletters>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:voornamen)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:voornamen)">
                                                                 <BG:voornamen>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -2686,7 +2686,7 @@
                                                                             test="./naam/voornamen/text() =''">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:voornamen/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:voornamen/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue">
                                                                                 <xsl:value-of
@@ -2695,7 +2695,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:voornamen/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:voornamen/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue">
                                                                                 <xsl:value-of
@@ -2705,7 +2705,7 @@
                                                                 </BG:voornamen>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:voorvoegselGeslachtsnaam)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:voorvoegselGeslachtsnaam)">
                                                                 <BG:voorvoegselGeslachtsnaam>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -2717,7 +2717,7 @@
                                                                             test="./naam/voorvoegsel/text() =''">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:voorvoegselGeslachtsnaam/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:voorvoegselGeslachtsnaam/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue">
                                                                                 <xsl:value-of
@@ -2726,7 +2726,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:voorvoegselGeslachtsnaam/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:voorvoegselGeslachtsnaam/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue">
                                                                                 <xsl:value-of
@@ -2736,7 +2736,7 @@
                                                                 </BG:voorvoegselGeslachtsnaam>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:geslachtsaanduiding)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:geslachtsaanduiding)">
                                                                 <BG:geslachtsaanduiding>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -2751,7 +2751,7 @@
                                                                                     test="./geslachtsaanduiding/text() =''">
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:geslachtsaanduiding/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:geslachtsaanduiding/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$geenWaarde" /></xsl:attribute>
@@ -2759,7 +2759,7 @@
                                                                                 <xsl:otherwise>
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:geslachtsaanduiding/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:geslachtsaanduiding/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$waardeOnbekend" /></xsl:attribute>
@@ -2769,7 +2769,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:geslachtsaanduiding/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:geslachtsaanduiding/@xsi:nil" /></xsl:attribute>
                                                             <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$nietGeautoriseerd" /></xsl:attribute>
@@ -2778,7 +2778,7 @@
                                                                 </BG:geslachtsaanduiding>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:geboortedatum)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:geboortedatum)">
                                                                 <BG:geboortedatum>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -2793,7 +2793,7 @@
                                                                             test="./geboorte/datum/datum/text() =''">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:geboortedatum/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:geboortedatum/@xsi:nil" /></xsl:attribute>
                                                                 <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$geenWaarde" /></xsl:attribute>
@@ -2801,7 +2801,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:geboortedatum/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:geboortedatum/@xsi:nil" /></xsl:attribute>
                                                                 <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$waardeOnbekend" /></xsl:attribute>
@@ -2810,7 +2810,7 @@
                                                                 </BG:geboortedatum>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:inp.geboorteLand)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:inp.geboorteLand)">
                                                                 <BG:inp.geboorteLand>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -2822,7 +2822,7 @@
                                                                             test="./geboorte/land/code/text() =''">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:inp.geboorteLand/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:inp.geboorteLand/@xsi:nil" /></xsl:attribute>
                                                                 <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$geenWaarde" /></xsl:attribute>
@@ -2830,7 +2830,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:inp.geboorteLand/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:inp.geboorteLand/@xsi:nil" /></xsl:attribute>
                                                                 <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$waardeOnbekend" /></xsl:attribute>
@@ -2839,7 +2839,7 @@
                                                                 </BG:inp.geboorteLand>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:inp.geboorteplaats)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:inp.geboorteplaats)">
                                                                 <BG:inp.geboorteplaats>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -2851,7 +2851,7 @@
                                                                             test="./geboorte/plaats/omschrijving/text() =''">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:inp.geboorteplaats/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:inp.geboorteplaats/@xsi:nil" /></xsl:attribute>
                                                                 <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$geenWaarde" /></xsl:attribute>
@@ -2859,7 +2859,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:inp.geboorteplaats/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:gerelateerde/BG:inp.geboorteplaats/@xsi:nil" /></xsl:attribute>
                                                                 <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$waardeOnbekend" /></xsl:attribute>
@@ -2870,7 +2870,7 @@
                                                         </BG:gerelateerde>
                                                     </xsl:if>
                                                     <xsl:if
-                                                        test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:inp.soortVerbintenis)">
+                                                        test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:inp.soortVerbintenis)">
                                                         <BG:inp.soortVerbintenis>
                                                             <xsl:choose>
                                                                 <xsl:when
@@ -2885,7 +2885,7 @@
                                                                             test="./soortVerbintenis/text() =''">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:inp.soortVerbintenis/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:inp.soortVerbintenis/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$geenWaarde" /></xsl:attribute>
@@ -2893,7 +2893,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:inp.soortVerbintenis/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:inp.soortVerbintenis/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$waardeOnbekend" /></xsl:attribute>
@@ -2902,7 +2902,7 @@
                                                                 </xsl:when>
                                                                 <xsl:otherwise>
                                                                     <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:inp.soortVerbintenis/@xsi:nil" /></xsl:attribute>
+                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:inp.soortVerbintenis/@xsi:nil" /></xsl:attribute>
                                                             <xsl:attribute
                                                                         name="StUF:noValue"><xsl:value-of
                                                                             select="$nietGeautoriseerd" /></xsl:attribute>
@@ -2959,7 +2959,7 @@
                                     </BG:datumIngangOnderzoek>
                                 </BG:inOnderzoek> -->
                                     <xsl:if
-                                                        test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:datumSluiting)">
+                                                        test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:datumSluiting)">
                                                         <BG:datumSluiting>
                                                             <xsl:choose>
                                                                 <xsl:when
@@ -2972,14 +2972,14 @@
                                                                 <xsl:when
                                                                     test="./aangaanHuwelijkPartnerschap/datum/datum/text() =''">
                                                                     <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:datumSluiting/@xsi:nil" /></xsl:attribute>
+                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:datumSluiting/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                         name="StUF:noValue"><xsl:value-of
                                                                             select="$geenWaarde" /></xsl:attribute>
                                                                 </xsl:when>
                                                                 <xsl:otherwise>
                                                                     <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:datumSluiting/@xsi:nil" /></xsl:attribute>
+                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:datumSluiting/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                         name="StUF:noValue"><xsl:value-of
                                                                             select="$waardeOnbekend" /></xsl:attribute>
@@ -2988,7 +2988,7 @@
                                                         </BG:datumSluiting>
                                                     </xsl:if>
                                     <xsl:if
-                                                        test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:plaatsSluiting)">
+                                                        test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:plaatsSluiting)">
                                                         <BG:plaatsSluiting>
                                                             <BG:code>
                                                                 <xsl:value-of
@@ -3001,7 +3001,7 @@
                                                         </BG:plaatsSluiting>
                                                     </xsl:if>
                                     <xsl:if
-                                                        test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:landSluiting)">
+                                                        test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:landSluiting)">
                                                         <BG:landSluiting>
                                                             <BG:code>
                                                                 <xsl:value-of
@@ -3030,7 +3030,7 @@
                                     </BG:datumIngangOnderzoek>
                                 </BG:inOnderzoek> -->
                                     <xsl:if
-                                                        test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:inp.indicatieGeheim)">
+                                                        test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:inp.indicatieGeheim)">
                                                         <BG:inp.indicatieGeheim>
                                                             <xsl:choose>
                                                                 <xsl:when
@@ -3041,14 +3041,14 @@
                                                                 <xsl:when
                                                                     test="./geheimhoudingPersoonsgegevens/text() =''">
                                                                     <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:inp.indicatieGeheim/@xsi:nil" /></xsl:attribute>
+                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:inp.indicatieGeheim/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                         name="StUF:noValue"><xsl:value-of
                                                                             select="$geenWaarde" /></xsl:attribute>
                                                                 </xsl:when>
                                                                 <xsl:otherwise>
                                                                     <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:inp.indicatieGeheim/@xsi:nil" /></xsl:attribute>
+                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/BG:inp.indicatieGeheim/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                         name="StUF:noValue"><xsl:value-of
                                                                             select="$waardeOnbekend" /></xsl:attribute>
@@ -3059,7 +3059,7 @@
                                                 </xsl:when>
                                                 <xsl:when test="./text()=''">
                                                     <xsl:attribute name="StUF:entiteittype"><xsl:value-of
-                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/@StUF:entiteittype" /></xsl:attribute>
+                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/@StUF:entiteittype" /></xsl:attribute>
                                                     <xsl:attribute
                                                         name="xsi:nil">true</xsl:attribute>
                                                     <xsl:attribute
@@ -3068,7 +3068,7 @@
                                                 </xsl:when>
                                                 <xsl:otherwise>
                                                     <xsl:attribute name="StUF:entiteittype"><xsl:value-of
-                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/@StUF:entiteittype" /></xsl:attribute>
+                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsEchtgenootPartner/@StUF:entiteittype" /></xsl:attribute>
                                                     <xsl:attribute
                                                         name="xsi:nil">true</xsl:attribute>
                                                     <xsl:attribute
@@ -3085,13 +3085,13 @@
                         <xsl:for-each
                             select="./kinderen">
                             <xsl:if
-                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen)">
+                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen)">
                                 <BG:inp.heeftAlsKinderen>
                                     <xsl:choose>
                                         <xsl:when
                                             test="($varZenderApplicatie=&apos;DEC_ZKN&apos;) or ($varZenderApplicatie=&apos;LBA&apos;) or ($varZenderApplicatie=&apos;PGAx-SG-ZVH&apos;)">
                                             <xsl:attribute name="StUF:entiteittype"><xsl:value-of
-                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/@StUF:entiteittype" /></xsl:attribute>
+                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/@StUF:entiteittype" /></xsl:attribute>
                                             <xsl:attribute
                                                 name="xsi:nil">true</xsl:attribute>
                                         <xsl:attribute
@@ -3102,15 +3102,15 @@
                                             <xsl:choose>
                                                 <xsl:when test="./text() !=''">
                                                     <xsl:attribute name="StUF:entiteittype"><xsl:value-of
-                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/@StUF:entiteittype" /></xsl:attribute>
+                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/@StUF:entiteittype" /></xsl:attribute>
                                                             <xsl:if
-                                                        test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde)">
+                                                        test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde)">
                                                         <BG:gerelateerde>
                                                             <xsl:attribute name="StUF:entiteittype"><xsl:value-of
-                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/@StUF:entiteittype" />
+                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/@StUF:entiteittype" />
                                                             </xsl:attribute>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.bsn)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.bsn)">
                                                                 <BG:inp.bsn>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -3125,7 +3125,7 @@
                                                                                     test="./burgerservicenummer/text() =''">
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.bsn/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.bsn/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$geenWaarde" /></xsl:attribute>
@@ -3133,7 +3133,7 @@
                                                                                 <xsl:otherwise>
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.bsn/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.bsn/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$waardeOnbekend" /></xsl:attribute>
@@ -3143,7 +3143,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.bsn/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.bsn/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$nietGeautoriseerd" /></xsl:attribute>
@@ -3152,7 +3152,7 @@
                                                                 </BG:inp.bsn>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaam)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaam)">
                                                                 <BG:geslachtsnaam>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -3167,7 +3167,7 @@
                                                                                     test="./naam/geslachtsnaam/text() =''">
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaam/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaam/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$geenWaarde" /></xsl:attribute>
@@ -3175,7 +3175,7 @@
                                                                                 <xsl:otherwise>
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaam/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaam/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$waardeOnbekend" /></xsl:attribute>
@@ -3185,7 +3185,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaam/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaam/@xsi:nil" /></xsl:attribute>
                                                             <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$nietGeautoriseerd" /></xsl:attribute>
@@ -3194,7 +3194,7 @@
                                                                 </BG:geslachtsnaam>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorletters)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorletters)">
                                                                 <BG:voorletters>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -3209,7 +3209,7 @@
                                                                                     test="./naam/voorletters/text() =''">
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorletters/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorletters/@xsi:nil" /></xsl:attribute>
                                                             <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$geenWaarde" /></xsl:attribute>
@@ -3217,7 +3217,7 @@
                                                                                 <xsl:otherwise>
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorletters/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorletters/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$waardeOnbekend" /></xsl:attribute>
@@ -3227,7 +3227,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorletters/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorletters/@xsi:nil" /></xsl:attribute>
                                                             <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$nietGeautoriseerd" /></xsl:attribute>
@@ -3236,7 +3236,7 @@
                                                                 </BG:voorletters>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voornamen)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voornamen)">
                                                                 <BG:voornamen>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -3251,7 +3251,7 @@
                                                                                     test="./naam/voornamen/text() =''">
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voornamen/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voornamen/@xsi:nil" /></xsl:attribute>
                                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$geenWaarde" /></xsl:attribute>
@@ -3259,7 +3259,7 @@
                                                                                 <xsl:otherwise>
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voornamen/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voornamen/@xsi:nil" /></xsl:attribute>
                                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$waardeOnbekend" /></xsl:attribute>
@@ -3269,7 +3269,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voornamen/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voornamen/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$nietGeautoriseerd" /></xsl:attribute>
@@ -3278,7 +3278,7 @@
                                                                 </BG:voornamen>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorvoegselGeslachtsnaam)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorvoegselGeslachtsnaam)">
                                                                 <BG:voorvoegselGeslachtsnaam>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -3293,7 +3293,7 @@
                                                                                     test="./naam/voorvoegsel/text() =''">
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorvoegselGeslachtsnaam/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorvoegselGeslachtsnaam/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$geenWaarde" /></xsl:attribute>
@@ -3301,7 +3301,7 @@
                                                                                 <xsl:otherwise>
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorvoegselGeslachtsnaam/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorvoegselGeslachtsnaam/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$waardeOnbekend" /></xsl:attribute>
@@ -3311,7 +3311,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorvoegselGeslachtsnaam/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorvoegselGeslachtsnaam/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$nietGeautoriseerd" /></xsl:attribute>
@@ -3328,7 +3328,7 @@
                                         select="./naam/inOnderzoek[/groepsnaam = Persoonsgegevens/groepsnaam]/voorvoegsel" />
                                 </BG:inOnderzoek> -->
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geboortedatum)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geboortedatum)">
                                                                 <BG:geboortedatum>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -3346,7 +3346,7 @@
                                                                                     test="./geboorte/datum/datum/text() =''">
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geboortedatum/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geboortedatum/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$geenWaarde" /></xsl:attribute>
@@ -3354,7 +3354,7 @@
                                                                                 <xsl:otherwise>
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geboortedatum/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geboortedatum/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$waardeOnbekend" /></xsl:attribute>
@@ -3364,7 +3364,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geboortedatum/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geboortedatum/@xsi:nil" /></xsl:attribute>
                                                             <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$nietGeautoriseerd" /></xsl:attribute>
@@ -3373,7 +3373,7 @@
                                                                 </BG:geboortedatum>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.geboorteLand)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.geboorteLand)">
                                                                 <BG:inp.geboorteLand>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -3388,7 +3388,7 @@
                                                                                     test="./geboorte/land/code/text() =''">
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.geboorteLand/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.geboorteLand/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$geenWaarde" /></xsl:attribute>
@@ -3396,7 +3396,7 @@
                                                                                 <xsl:otherwise>
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.geboorteLand/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.geboorteLand/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$waardeOnbekend" /></xsl:attribute>
@@ -3406,7 +3406,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.geboorteLand/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.geboorteLand/@xsi:nil" /></xsl:attribute>
                                                             <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$nietGeautoriseerd" /></xsl:attribute>
@@ -3415,7 +3415,7 @@
                                                                 </BG:inp.geboorteLand>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.geboorteplaats)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.geboorteplaats)">
                                                                 <BG:inp.geboorteplaats>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -3430,7 +3430,7 @@
                                                                                     test="./geboorte/plaats/omschrijving/text() =''">
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.geboorteplaats/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.geboorteplaats/@xsi:nil" /></xsl:attribute>
                                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$geenWaarde" /></xsl:attribute>
@@ -3438,7 +3438,7 @@
                                                                                 <xsl:otherwise>
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.geboorteplaats/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.geboorteplaats/@xsi:nil" /></xsl:attribute>
                                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$waardeOnbekend" /></xsl:attribute>
@@ -3448,7 +3448,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.geboorteplaats/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.geboorteplaats/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$nietGeautoriseerd" /></xsl:attribute>
@@ -3457,7 +3457,7 @@
                                                                 </BG:inp.geboorteplaats>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:aanduidingNaamgebruik)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:aanduidingNaamgebruik)">
                                                                 <BG:aanduidingNaamgebruik>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -3472,7 +3472,7 @@
                                                                                     test="./naam/aanduidingNaamgebruik/code/text() = ''">
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:aanduidingNaamgebruik/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:aanduidingNaamgebruik/@xsi:nil" /></xsl:attribute>
                                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$geenWaarde" /></xsl:attribute>
@@ -3480,7 +3480,7 @@
                                                                                 <xsl:otherwise>
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:aanduidingNaamgebruik/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:aanduidingNaamgebruik/@xsi:nil" /></xsl:attribute>
                                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$waardeOnbekend" /></xsl:attribute>
@@ -3490,7 +3490,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:aanduidingNaamgebruik/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:aanduidingNaamgebruik/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$nietGeautoriseerd" /></xsl:attribute>
@@ -3499,14 +3499,14 @@
                                                                 </BG:aanduidingNaamgebruik>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaamPartner)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaamPartner)">
                                                                 <BG:geslachtsnaamPartner>
                                                                     <xsl:choose>
                                                                         <xsl:when
                                                                             test="$varZenderApplicatie=&apos;TOP&apos;">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
                                                                         <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$nietGeautoriseerd" /></xsl:attribute>
@@ -3520,7 +3520,7 @@
                                                                             test="./partners/naam/geslachtsnaam/text() = ''">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
                                                                                     <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$geenWaarde" /></xsl:attribute>
@@ -3528,7 +3528,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
                                                                                     <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$waardeOnbekend" /></xsl:attribute>
@@ -3537,14 +3537,14 @@
                                                                 </BG:geslachtsnaamPartner>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorvoegselGeslachtsnaamPartner)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorvoegselGeslachtsnaamPartner)">
                                                                 <BG:voorvoegselGeslachtsnaamPartner>
                                                                     <xsl:choose>
                                                                         <xsl:when
                                                                             test="$varZenderApplicatie=&apos;TOP&apos;">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorvoegselGeslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorvoegselGeslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
                                                                         <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$nietGeautoriseerd" /></xsl:attribute>
@@ -3558,7 +3558,7 @@
                                                                             test="./partners/naam/voorvoegsel/text() = ''">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorvoegselGeslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorvoegselGeslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
                                                                                     <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$geenWaarde" /></xsl:attribute>
@@ -3566,7 +3566,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorvoegselGeslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voorvoegselGeslachtsnaamPartner/@xsi:nil" /></xsl:attribute>
                                                                                     <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$waardeOnbekend" /></xsl:attribute>
@@ -3575,7 +3575,7 @@
                                                                 </BG:voorvoegselGeslachtsnaamPartner>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:aanhefAanschrijving)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:aanhefAanschrijving)">
                                                                 <BG:aanhefAanschrijving>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -3590,7 +3590,7 @@
                                                                                     test="./adressering/aanhef/text() = ''">
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:aanhefAanschrijving/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:aanhefAanschrijving/@xsi:nil" /></xsl:attribute>
                                                                                         <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$geenWaarde" /></xsl:attribute>
@@ -3598,7 +3598,7 @@
                                                                                 <xsl:otherwise>
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:aanhefAanschrijving/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:aanhefAanschrijving/@xsi:nil" /></xsl:attribute>
                                                                                         <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$waardeOnbekend" /></xsl:attribute>
@@ -3610,7 +3610,7 @@
                                                                             <xsl:attribute
                                                                                 name="xsi:nil">
                                                                                 <xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:aanhefAanschrijving/@xsi:nil" />
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:aanhefAanschrijving/@xsi:nil" />
                                                                             </xsl:attribute>
                                                                         <xsl:attribute
                                                                                 name="StUF:noValue">
@@ -3622,13 +3622,13 @@
                                                                 </BG:aanhefAanschrijving>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voornamenAanschrijving)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:voornamenAanschrijving)">
                                                                 <BG:voornamenAanschrijving>
 
                                                                 </BG:voornamenAanschrijving>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaamAanschrijving)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaamAanschrijving)">
                                                                 <BG:geslachtsnaamAanschrijving>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -3636,7 +3636,7 @@
                                                                             <xsl:attribute
                                                                                 name="xsi:nil">
                                                                                 <xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaamAanschrijving/@xsi:nil" />
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaamAanschrijving/@xsi:nil" />
                                                                             </xsl:attribute>
                                                                         <xsl:attribute
                                                                                 name="StUF:noValue">
@@ -3675,7 +3675,7 @@
                                                                                     test="./naam/aanduidingNaamgebruik/code/text() = ''">
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaamAanschrijving/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaamAanschrijving/@xsi:nil" /></xsl:attribute>
                                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$geenWaarde" /></xsl:attribute>
@@ -3683,7 +3683,7 @@
                                                                                 <xsl:otherwise>
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaamAanschrijving/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsnaamAanschrijving/@xsi:nil" /></xsl:attribute>
                                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$waardeOnbekend" /></xsl:attribute>
@@ -3694,7 +3694,7 @@
                                                                 </BG:geslachtsnaamAanschrijving>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsaanduiding)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsaanduiding)">
                                                                 <BG:geslachtsaanduiding>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -3706,7 +3706,7 @@
                                                                             test="./geslachtsaanduiding/text() =''">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsaanduiding/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsaanduiding/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$geenWaarde" /></xsl:attribute>
@@ -3714,7 +3714,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsaanduiding/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:geslachtsaanduiding/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$waardeOnbekend" /></xsl:attribute>
@@ -3723,7 +3723,7 @@
                                                                 </BG:geslachtsaanduiding>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:overlijdensdatum)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:overlijdensdatum)">
                                                                 <BG:overlijdensdatum>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -3738,7 +3738,7 @@
                                                                             test="./overlijden/datum/datum/text() = ''">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:overlijdensdatum/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:overlijdensdatum/@xsi:nil" /></xsl:attribute>
                                                                                     <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$geenWaarde" /></xsl:attribute>
@@ -3746,7 +3746,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:overlijdensdatum/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:overlijdensdatum/@xsi:nil" /></xsl:attribute>
                                                                                     <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$waardeOnbekend" /></xsl:attribute>
@@ -3755,7 +3755,7 @@
                                                                 </BG:overlijdensdatum>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.burgerlijkeStaat)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.burgerlijkeStaat)">
                                                                 <BG:inp.burgerlijkeStaat>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -3763,7 +3763,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.burgerlijkeStaat/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.burgerlijkeStaat/@xsi:nil" /></xsl:attribute>
                                                                                     <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$waardeOnbekend" /></xsl:attribute>
@@ -3772,7 +3772,7 @@
                                                                 </BG:inp.burgerlijkeStaat>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:ing.indicatieGezagMinderjarige)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:ing.indicatieGezagMinderjarige)">
                                                                 <BG:ing.indicatieGezagMinderjarige>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -3784,7 +3784,7 @@
                                                                             test="./gezagsverhouding/indicatieGezagMinderjarige/text() = ''">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:ing.indicatieGezagMinderjarige/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:ing.indicatieGezagMinderjarige/@xsi:nil" /></xsl:attribute>
                                                                                         <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$geenWaarde" /></xsl:attribute>
@@ -3792,7 +3792,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:ing.indicatieGezagMinderjarige/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:ing.indicatieGezagMinderjarige/@xsi:nil" /></xsl:attribute>
                                                                                         <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$waardeOnbekend" /></xsl:attribute>
@@ -3801,7 +3801,7 @@
                                                                 </BG:ing.indicatieGezagMinderjarige>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.indicatieGeheim)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.indicatieGeheim)">
                                                                 <BG:inp.indicatieGeheim>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -3816,7 +3816,7 @@
                                                                                     test="./geheimhoudingPersoonsgegevens/text() =''">
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.indicatieGeheim/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.indicatieGeheim/@xsi:nil" /></xsl:attribute>
                                                                                 <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$geenWaarde" /></xsl:attribute>
@@ -3824,7 +3824,7 @@
                                                                                 <xsl:otherwise>
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.indicatieGeheim/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.indicatieGeheim/@xsi:nil" /></xsl:attribute>
                                                                                 <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$waardeOnbekend" /></xsl:attribute>
@@ -3834,7 +3834,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.indicatieGeheim/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/BG:gerelateerde/BG:inp.indicatieGeheim/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$nietGeautoriseerd" /></xsl:attribute>
@@ -3858,7 +3858,7 @@
                                                 <xsl:when
                                                     test="./text()=''">
                                                     <xsl:attribute name="StUF:entiteittype"><xsl:value-of
-                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/@StUF:entiteittype" /></xsl:attribute>
+                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/@StUF:entiteittype" /></xsl:attribute>
                                             <xsl:attribute
                                                         name="xsi:nil">true</xsl:attribute>
                                 <xsl:attribute
@@ -3867,7 +3867,7 @@
                                                 </xsl:when>
                                                 <xsl:otherwise>
                                                     <xsl:attribute name="StUF:entiteittype"><xsl:value-of
-                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/@StUF:entiteittype" /></xsl:attribute>
+                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsKinderen/@StUF:entiteittype" /></xsl:attribute>
                                             <xsl:attribute
                                                         name="xsi:nil">true</xsl:attribute>
                                 <xsl:attribute
@@ -3884,13 +3884,13 @@
                         <xsl:for-each
                             select="./ouders">
                             <xsl:if
-                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders)">
+                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders)">
                                 <BG:inp.heeftAlsOuders>
                                     <xsl:choose>
                                         <xsl:when
                                             test="($varZenderApplicatie=&apos;DEC_ZKN&apos;) or ($varZenderApplicatie=&apos;PGAx-SG-ZVH&apos;)">
                                             <xsl:attribute name="StUF:entiteittype"><xsl:value-of
-                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/@StUF:entiteittype" /></xsl:attribute>
+                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/@StUF:entiteittype" /></xsl:attribute>
                                             <xsl:attribute
                                                 name="xsi:nil">true</xsl:attribute>
                                         <xsl:attribute
@@ -3901,10 +3901,10 @@
                                             <xsl:choose>
                                                 <xsl:when test="./text() !=''">
                                                     <xsl:attribute name="StUF:entiteittype"><xsl:value-of
-                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/@StUF:entiteittype" /></xsl:attribute>
+                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/@StUF:entiteittype" /></xsl:attribute>
                                     
                                                     <xsl:if
-                                                        test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/StUF:datumIngangFamilierechtelijkeBetrekking)">
+                                                        test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/StUF:datumIngangFamilierechtelijkeBetrekking)">
                                                         <StUF:datumIngangFamilierechtelijkeBetrekking>
                                                             <xsl:choose>
                                                                 <xsl:when
@@ -3922,7 +3922,7 @@
                                                                             test="./datumIngangFamilierechtelijkeBetrekking/datum/text() =''">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/StUF:datumIngangFamilierechtelijkeBetrekking/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/StUF:datumIngangFamilierechtelijkeBetrekking/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$geenWaarde" /></xsl:attribute>
@@ -3930,7 +3930,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/StUF:datumIngangFamilierechtelijkeBetrekking/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/StUF:datumIngangFamilierechtelijkeBetrekking/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$waardeOnbekend" /></xsl:attribute>
@@ -3939,7 +3939,7 @@
                                                                 </xsl:when>
                                                                 <xsl:otherwise>
                                                                     <xsl:attribute name="xsi:nil"><xsl:value-of
-                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/StUF:datumIngangFamilierechtelijkeBetrekking/@xsi:nil" /></xsl:attribute>
+                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/StUF:datumIngangFamilierechtelijkeBetrekking/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                         name="StUF:noValue"><xsl:value-of
                                                                             select="$nietGeautoriseerd" /></xsl:attribute>
@@ -3948,13 +3948,13 @@
                                                         </StUF:datumIngangFamilierechtelijkeBetrekking>
                                                     </xsl:if>
                                                     <xsl:if
-                                                        test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde)">
+                                                        test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde)">
                                                         <BG:gerelateerde>
                                                             <xsl:attribute name="StUF:entiteittype"><xsl:value-of
                                                                     select="$varEntiteittype" />
                                                             </xsl:attribute>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.bsn)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.bsn)">
                                                                 <BG:inp.bsn>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -3966,7 +3966,7 @@
                                                                             test="./burgerservicenummer/text() =''">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.bsn/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.bsn/@xsi:nil" /></xsl:attribute>
                                                                                 <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$geenWaarde" /></xsl:attribute>
@@ -3974,7 +3974,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.bsn/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.bsn/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$waardeOnbekend" /></xsl:attribute>
@@ -3983,7 +3983,7 @@
                                                                 </BG:inp.bsn>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:geslachtsaanduiding)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:geslachtsaanduiding)">
                                                                 <BG:geslachtsaanduiding>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -3995,7 +3995,7 @@
                                                                             test="./geslachtsaanduiding/text() =''">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:geslachtsaanduiding/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:geslachtsaanduiding/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$geenWaarde" /></xsl:attribute>
@@ -4003,7 +4003,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:geslachtsaanduiding/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:geslachtsaanduiding/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$waardeOnbekend" /></xsl:attribute>
@@ -4012,7 +4012,7 @@
                                                                 </BG:geslachtsaanduiding>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:geslachtsnaam)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:geslachtsnaam)">
                                                                 <BG:geslachtsnaam>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -4024,7 +4024,7 @@
                                                                             test="./naam/geslachtsnaam/text() =''">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:geslachtsnaam/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:geslachtsnaam/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue">
                                                                                 <xsl:value-of
@@ -4033,7 +4033,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:geslachtsnaam/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:geslachtsnaam/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue">
                                                                                 <xsl:value-of
@@ -4043,7 +4043,7 @@
                                                                 </BG:geslachtsnaam>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:voorletters)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:voorletters)">
                                                                 <BG:voorletters>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -4055,7 +4055,7 @@
                                                                             test="./naam/voorletters/text() =''">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:voorletters/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:voorletters/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue">
                                                                                 <xsl:value-of
@@ -4064,7 +4064,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:voorletters/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:voorletters/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue">
                                                                                 <xsl:value-of
@@ -4074,7 +4074,7 @@
                                                                 </BG:voorletters>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:voornamen)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:voornamen)">
                                                                 <BG:voornamen>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -4086,7 +4086,7 @@
                                                                             test="./naam/voornamen/text() =''">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:voornamen/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:voornamen/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue">
                                                                                 <xsl:value-of
@@ -4095,7 +4095,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:voornamen/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:voornamen/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue">
                                                                                 <xsl:value-of
@@ -4105,7 +4105,7 @@
                                                                 </BG:voornamen>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:voorvoegselGeslachtsnaam)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:voorvoegselGeslachtsnaam)">
                                                                 <BG:voorvoegselGeslachtsnaam>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -4117,7 +4117,7 @@
                                                                             test="./naam/voorvoegsel/text() =''">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:voorvoegselGeslachtsnaam/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:voorvoegselGeslachtsnaam/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                                 name="StUF:noValue">
                                                                                 <xsl:value-of
@@ -4126,7 +4126,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:voorvoegselGeslachtsnaam/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:voorvoegselGeslachtsnaam/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue">
                                                                                 <xsl:value-of
@@ -4155,7 +4155,7 @@
                                     </burgerservicenummer>
                                 </BG:inOnderzoek> -->
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:geboortedatum)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:geboortedatum)">
                                                                 <BG:geboortedatum>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -4167,7 +4167,7 @@
                                                                             test="./geboorte/datum/datum/text() =''">
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:geboortedatum/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:geboortedatum/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$geenWaarde" /></xsl:attribute>
@@ -4175,7 +4175,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:geboortedatum/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:geboortedatum/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$waardeOnbekend" /></xsl:attribute>
@@ -4184,7 +4184,7 @@
                                                                 </BG:geboortedatum>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.geboorteLand)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.geboorteLand)">
                                                                 <BG:inp.geboorteLand>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -4199,7 +4199,7 @@
                                                                                     test="./geboorte/land/code/text() =''">
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.geboorteLand/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.geboorteLand/@xsi:nil" /></xsl:attribute>
                                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$geenWaarde" /></xsl:attribute>
@@ -4207,7 +4207,7 @@
                                                                                 <xsl:otherwise>
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.geboorteLand/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.geboorteLand/@xsi:nil" /></xsl:attribute>
                                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$waardeOnbekend" /></xsl:attribute>
@@ -4217,7 +4217,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.geboorteLand/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.geboorteLand/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$nietGeautoriseerd" /></xsl:attribute>
@@ -4226,7 +4226,7 @@
                                                                 </BG:inp.geboorteLand>
                                                             </xsl:if>
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.geboorteplaats)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.geboorteplaats)">
                                                                 <BG:inp.geboorteplaats>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -4243,7 +4243,7 @@
                                                                                         select="./geboorte/plaats/omschrijving" />
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.geboorteplaats/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.geboorteplaats/@xsi:nil" /></xsl:attribute>
                                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$geenWaarde" /></xsl:attribute>
@@ -4251,7 +4251,7 @@
                                                                                 <xsl:otherwise>
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.geboorteplaats/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.geboorteplaats/@xsi:nil" /></xsl:attribute>
                                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$waardeOnbekend" /></xsl:attribute>
@@ -4261,7 +4261,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.geboorteplaats/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.geboorteplaats/@xsi:nil" /></xsl:attribute>
                                                                             <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$nietGeautoriseerd" /></xsl:attribute>
@@ -4286,7 +4286,7 @@
                                     </geboorte>
                                 </BG:inOnderzoek> -->
                                                             <xsl:if
-                                                                test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.indicatieGeheim)">
+                                                                test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.indicatieGeheim)">
                                                                 <BG:inp.indicatieGeheim>
                                                                     <xsl:choose>
                                                                         <xsl:when
@@ -4301,7 +4301,7 @@
                                                                                     test="./geheimhoudingPersoonsgegevens/text() =''">
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.indicatieGeheim/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.indicatieGeheim/@xsi:nil" /></xsl:attribute>
                                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$geenWaarde" /></xsl:attribute>
@@ -4309,7 +4309,7 @@
                                                                                 <xsl:otherwise>
                                                                                     <xsl:attribute
                                                                                         name="xsi:nil"><xsl:value-of
-                                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.indicatieGeheim/@xsi:nil" /></xsl:attribute>
+                                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.indicatieGeheim/@xsi:nil" /></xsl:attribute>
                                                                                     <xsl:attribute
                                                                                         name="StUF:noValue"><xsl:value-of
                                                                                             select="$waardeOnbekend" /></xsl:attribute>
@@ -4319,7 +4319,7 @@
                                                                         <xsl:otherwise>
                                                                             <xsl:attribute
                                                                                 name="xsi:nil"><xsl:value-of
-                                                                                    select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.indicatieGeheim/@xsi:nil" /></xsl:attribute>
+                                                                                    select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:gerelateerde/BG:inp.indicatieGeheim/@xsi:nil" /></xsl:attribute>
                                                                         <xsl:attribute
                                                                                 name="StUF:noValue"><xsl:value-of
                                                                                     select="$nietGeautoriseerd" /></xsl:attribute>
@@ -4330,7 +4330,7 @@
                                                         </BG:gerelateerde>
                                                     </xsl:if>
                                                     <xsl:if
-                                                        test="exists($originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:ouderAanduiding)">
+                                                        test="exists($originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:ouderAanduiding)">
                                                         <BG:ouderAanduiding>
                                                             <xsl:choose>
                                                                 <xsl:when
@@ -4342,7 +4342,7 @@
                                                                     test="./ouderAanduiding/text() =''">
                                                                     <xsl:attribute
                                                                         name="xsi:nil"><xsl:value-of
-                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:ouderAanduiding/@xsi:nil" /></xsl:attribute>
+                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:ouderAanduiding/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                         name="StUF:noValue"><xsl:value-of
                                                                             select="$geenWaarde" /></xsl:attribute>
@@ -4350,7 +4350,7 @@
                                                                 <xsl:otherwise>
                                                                     <xsl:attribute
                                                                         name="xsi:nil"><xsl:value-of
-                                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:ouderAanduiding/@xsi:nil" /></xsl:attribute>
+                                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/BG:ouderAanduiding/@xsi:nil" /></xsl:attribute>
                                                                     <xsl:attribute
                                                                         name="StUF:noValue"><xsl:value-of
                                                                             select="$waardeOnbekend" /></xsl:attribute>
@@ -4361,7 +4361,7 @@
                                                 </xsl:when>
                                                 <xsl:when test="./text()=''">
                                                     <xsl:attribute name="StUF:entiteittype"><xsl:value-of
-                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/@StUF:entiteittype" /></xsl:attribute>
+                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/@StUF:entiteittype" /></xsl:attribute>
                                                     <xsl:attribute
                                                         name="xsi:nil">true</xsl:attribute>
                                                     <xsl:attribute
@@ -4370,7 +4370,7 @@
                                                 </xsl:when>
                                                 <xsl:otherwise>
                                                     <xsl:attribute name="StUF:entiteittype"><xsl:value-of
-                                                            select="$originalMessage/BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/@StUF:entiteittype" /></xsl:attribute>
+                                                            select="$originalMessage//BG:npsLv01/BG:scope/BG:object/BG:inp.heeftAlsOuders/@StUF:entiteittype" /></xsl:attribute>
                                                     <xsl:attribute
                                                         name="xsi:nil">true</xsl:attribute>
                                                     <xsl:attribute

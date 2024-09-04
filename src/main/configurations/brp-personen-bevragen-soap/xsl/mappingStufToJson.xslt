@@ -66,14 +66,6 @@
                                 <xsl:with-param name="vanafBSN" select="$vanafBSN" />
                                 <xsl:with-param name="totEnMetBSN" select="$totEnMetBSN" />
                             </xsl:call-template>
-                            <!-- <xsl:for-each
-                                select="">
-                                <burgerservicenummer>
-                                    <xsl:variable name="counter"
-                                        select="(//*[local-name() = 'inp.bsn'])[1]" />
-                                    <xsl:value-of select="$counter" />
-                                </burgerservicenummer>
-                            </xsl:for-each> -->
                         </xsl:when>
                         <xsl:otherwise>
                             <burgerservicenummer>
@@ -81,7 +73,6 @@
                             </burgerservicenummer>
                         </xsl:otherwise>
                     </xsl:choose>
-
                 </xsl:when>
 
                 <xsl:when
