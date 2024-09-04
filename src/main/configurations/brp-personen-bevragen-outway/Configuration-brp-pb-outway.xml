@@ -1,6 +1,6 @@
-<Module 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+<Module
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
 	<Adapter name="BrpPbOutway"
 		description="API voor het bevragen van personen uit de basisregistratie personen (BRP)">
 
@@ -11,13 +11,14 @@
 		<Pipeline>
 			<Exits>
 				<Exit name="Exit" state="SUCCESS" />
-				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
-				<Exit name="NotAuthorized" state="ERROR" code="401" empty="true" />
-				<Exit name="Forbidden" state="ERROR" code="403" empty="true" />
-				<Exit name="NotFound" state="ERROR" code="404" empty="true" />
-				<Exit name="NotAcceptable" state="ERROR" code="406" empty="true" />
-				<Exit name="UnsupportedMediaType" state="ERROR" code="415" empty="true" />
-				<Exit name="TooManyRequest" state="ERROR" code="429" empty="true" />
+				<Exit name="Exception" state="ERROR" />
+				<Exit name="BadRequest" state="ERROR" code="400" />
+				<Exit name="NotAuthorized" state="ERROR" code="401" />
+				<Exit name="Forbidden" state="ERROR" code="403" />
+				<Exit name="NotFound" state="ERROR" code="404" />
+				<Exit name="NotAcceptable" state="ERROR" code="406" />
+				<Exit name="UnsupportedMediaType" state="ERROR" code="415" />
+				<Exit name="TooManyRequest" state="ERROR" code="429" />
 				<Exit name="ServerError" state="ERROR" code="500" />
 				<Exit name="ServiceUnavailable" state="ERROR" code="503" />
 			</Exits>
@@ -38,21 +39,22 @@
 					"voornamen": "Dirk"
 				}
 			-->
-			
+
 			<!-- url="${haalcentraal.BRP.personen.bevragen.endpoint.proefomgeving}/personen" -->
 
-			<LocalFileSystemPipe name="ReadTokenFromFile" filename="token.txt" action="read" storeResultInSessionKey="token" preserveInput="true" active="${isDiginetwerk}"/>
+			<LocalFileSystemPipe name="ReadTokenFromFile" filename="token.txt" action="read"
+				storeResultInSessionKey="token" preserveInput="true" active="${isDiginetwerk}" />
 
 			<SenderPipe name="PostBRPPersonenBevragenDiginetwerk" active="${isDiginetwerk}">
 				<HttpSender
-						url="${haalcentraal.BRP.personen.bevragen.endpoint}/personen"
-						methodType="POST"
-						headersParams="token"
-						contentType="application/json"
-						keystore="/certs/tls.p12"
-						keystoreAlias="brp"
-						keystorePassword="Password123!">
-					<Param name="token" sessionKey="token"/>
+					url="${haalcentraal.BRP.personen.bevragen.endpoint}/personen"
+					methodType="POST"
+					headersParams="token"
+					contentType="application/json"
+					keystore="/certs/tls.p12"
+					keystoreAlias="brp"
+					keystorePassword="Password123!">
+					<Param name="token" sessionKey="token" />
 				</HttpSender>
 
 				<Forward name="success" path="Exit" />
@@ -67,18 +69,23 @@
 				<Forward name="503" path="ServiceUnavailable" />
 			</SenderPipe>
 
-			<XmlIfPipe name="IfLoopPrevention" getInputFromSessionKey="loopPrevention" active="${isDiginetwerk}">
+			<XmlIfPipe name="IfLoopPrevention" getInputFromSessionKey="loopPrevention"
+				active="${isDiginetwerk}">
 				<Forward name="then" path="Forbidden" />
 				<Forward name="else" path="TokenExpiryFlow" />
 			</XmlIfPipe>
 
 			<SenderPipe name="TokenExpiryFlow" active="${isDiginetwerk}">
-				<IbisLocalSender name="TokenExpiryFlowSender" javaListener="TokenExpiryFlowListener" returnedSessionKeys="token"/>
+				<IbisLocalSender name="TokenExpiryFlowSender" javaListener="TokenExpiryFlowListener"
+					returnedSessionKeys="token" />
 			</SenderPipe>
 
-			<PutInSessionPipe name="PutLoopPreventionInSession" sessionKey="loopPrevention" value="true" active="${isDiginetwerk}" />
+			<PutInSessionPipe name="PutLoopPreventionInSession" sessionKey="loopPrevention"
+				value="true" active="${isDiginetwerk}" />
 
-			<!--If the error was caused by something else than an expired token, then go to exit 'forbidden',
+			<!--If
+			the error was caused by something else than an expired token, then go to exit
+			'forbidden',
 				otherwise, retry the actual call with the new token-->
 			<XmlIfPipe name="IfDifferentError" expressionValue="false" active="${isDiginetwerk}">
 				<Forward name="then" path="Forbidden" />
@@ -87,11 +94,11 @@
 
 			<SenderPipe name="PostBRPPersonenBevragenTestEnv">
 				<HttpSender
-						url="${haalcentraal.BRP.personen.bevragen.endpoint.proefomgeving}/personen"
-						methodType="POST"
-						headersParams="X-API-KEY"
-						contentType="application/json">
-					<Param name="X-API-KEY" pattern="{password}" authAlias="X-API-KEY" hidden="true"/>
+					url="${haalcentraal.BRP.personen.bevragen.endpoint.proefomgeving}/personen"
+					methodType="POST"
+					headersParams="X-API-KEY"
+					contentType="application/json">
+					<Param name="X-API-KEY" pattern="{password}" authAlias="X-API-KEY" hidden="true" />
 				</HttpSender>
 
 				<Forward name="success" path="Exit" />

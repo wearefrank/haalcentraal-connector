@@ -7,12 +7,21 @@
 		<Receiver name="BRP Personen notification receiver">
 			<JavaListener name="BRP Personen notification receiver" />
 		</Receiver>
+        
+        <Receiver name="RestEndpointRouter">
+			<ApiListener name="RestEndpointRouter" uriPattern="${haalcentraal_connector.notification.rest.endpoint}" method="POST"/>
+		</Receiver>
 
 		<Pipeline>
 			<Exits>
 				<Exit name="EXIT" state="SUCCESS" code="202" />
 				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
 			</Exits>
+
+			<JsonValidatorPipe name="jsonValidator" schema="json/JsonValidatorSchema.json" onlyIfSessionKey="HttpMethod">
+                <Forward name="success" path="JsonToXml" />
+                <Forward name="exception" path="BadRequest" />
+            </JsonValidatorPipe>
 
             <JsonPipe name="JsonToXml">
                 <Forward name="success" path="GetPersoon"/>

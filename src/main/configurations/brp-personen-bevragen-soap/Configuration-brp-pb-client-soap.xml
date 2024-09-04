@@ -1,6 +1,6 @@
-<Module 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+<Module
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
 	<Adapter name="BrpPbClientSoap"
 		description="ZoekPersonen">
 
@@ -11,6 +11,7 @@
 		<Pipeline>
 			<Exits>
 				<Exit name="Exit" state="SUCCESS" />
+				<Exit name="Exception" state="ERROR" />
 				<Exit name="BadRequest" state="ERROR" code="400" />
 				<Exit name="NotAuthorized" state="ERROR" code="401" />
 				<Exit name="Forbidden" state="ERROR" code="403" />
@@ -60,7 +61,7 @@
 				styleSheetName="xsl/mappingStufToJson.xslt">
 				<Param name="varZenderOrganisatie" sessionKey="varZenderOrganisatie" />
 				<Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
-				<Param name="inclusiefOverledenPersonen" value="${inclusiefOverledenPersonen}"/>
+				<Param name="inclusiefOverledenPersonen" value="${inclusiefOverledenPersonen}" />
 				<Param name="fields" sessionKey="fields" type="DOMDOC" />
 				<Forward name="success" path="CheckHCInput" />
 			</XsltPipe>
@@ -70,29 +71,22 @@
 				root="root"
 				outputFormat="JSON"
 				schema="xsd/CheckHCInput.xsd"
-				throwException="true"
-				storeResultInSessionKey="FirstInput">
+				throwException="true">
 			</Json2XmlValidatorPipe>
 
-			<SenderPipe name="BRPPersonenBevragen">
-				<IbisLocalSender name="BPRPersonenBevragen" javaListener="BrpPbOutwayListener"/>
-
+			<SenderPipe name="BRPPersonenBevragen" storeResultInSessionKey="body">
+				<IbisLocalSender name="BPRPersonenBevragen"
+					javaListener="BrpPbOutwayListener"
+					returnedSessionKeys="Error" />
 				<Forward name="success" path="JsonToXml" />
-				<Forward name="400" path="BadRequest" />
-				<Forward name="401" path="NotAuthorized" />
-				<Forward name="403" path="Forbidden" />
-				<Forward name="404" path="NotFound" />
-				<Forward name="406" path="NotAcceptable" />
-				<Forward name="415" path="UnsupportedMediaType" />
-				<Forward name="429" path="TooManyRequest" />
-				<Forward name="500" path="ServerError" />
-				<Forward name="503" path="ServiceUnavailable" />
+				<Forward name="exception" path="Exception" />
 			</SenderPipe>
 
-			<JsonPipe name="JsonToXml"/>
+			<JsonPipe name="JsonToXml" storeResultInSessionKey="xmlbody" />
 
 			<XsltPipe name="MapResponse"
-				styleSheetName="xsl/mappingJsonToStuf.xslt">
+				styleSheetName="xsl/mappingJsonToStuf.xslt"
+				storeResultInSessionKey="MapResponse">
 				<Param name="berichtcode" sessionKey="berichtcode" />
 				<Param name="varEntiteittype" sessionKey="varEntiteittype" />
 				<Param name="indicatorVervolgvraag" sessionKey="indicatorVervolgvraag" />
