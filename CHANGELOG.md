@@ -1,5 +1,15 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.6.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.5.4...v1.6.0) (2024-09-12)
+
+### 🍕 Features
+
+* extend ladybug table with soapaction column ([202b820](https://github.com/wearefrank/haalcentraal-connector/commit/202b8204943f2dc455e6cb74786a21731f07c3fa))
+
+### 🐛 Bug Fixes
+
+* SoapAction Error message ([ce1bfdb](https://github.com/wearefrank/haalcentraal-connector/commit/ce1bfdb7a6c764f080e5d8b8c259d094f8dde444))
+
 ## [1.5.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.5.3...v1.5.4) (2024-09-06)
 
 ### 🐛 Bug Fixes
