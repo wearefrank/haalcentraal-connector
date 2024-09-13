@@ -1,0 +1,35 @@
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd">
+
+<!-- When using one of the following commands, a rollback script is not required
+AddColumn
+AddDefaultValue
+AddForeignKeyConstraint
+AddLookupTable
+AddNotNullConstraint
+AddPrimaryKey
+AddUniqueConstraint
+CreateIndex
+CreateSequence
+CreateTable
+CreateView
+DropNotNullConstraint
+RenameColumn
+RenameTable
+RenameView
+TagDatabase
+ -->
+
+	<changeSet id="HCC-1" author="Vincent de Gans">
+		<comment>Add personen table to database</comment>
+		<createTable tableName="personen">
+			<column name="burgerservicenummer" type="java.sql.Types.INTEGER"/>
+			<column name="body" type="text"/>
+			<column name="appid" type="text"/>
+            <column name="date" type="java.sql.Types.TIMESTAMP"/>
+		</createTable>
+	</changeSet>
+</databaseChangeLog>
