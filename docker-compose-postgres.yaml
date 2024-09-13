@@ -13,7 +13,6 @@ services:
     ports:
       - "5400:5432"
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       - frank-postgres-data:/var/lib/postgresql/data
   
   frank-pgadmin:
