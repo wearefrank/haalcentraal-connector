@@ -28,6 +28,7 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin
     volumes:
       - ./docker/frank-postgres-pgadmin/frank-pgadmin-conf.json:/frank-pgadmin-conf.json
+      - ./servers.json:/pgadmin4/servers.json
     depends_on:
       - frank-postgres
 
