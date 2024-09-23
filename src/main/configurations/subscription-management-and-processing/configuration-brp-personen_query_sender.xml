@@ -35,7 +35,7 @@
 				getInputFromSessionKey="xmlbody">
                 <FixedQuerySender
 					name="insertPersonenSender"
-					query="INSERT INTO personen VALUES(?,?,'{}',CURRENT_TIMESTAMP)">
+					query="INSERT INTO Persoonsgegevens VALUES(?,'{}',CURRENT_TIMESTAMP)">
 					<Param name="burgerservicenummer" xpathExpression="personen/burgerservicenummer" type="INTEGER"/>
 					<Param name="body" sessionKey="body"/>
             	</FixedQuerySender>

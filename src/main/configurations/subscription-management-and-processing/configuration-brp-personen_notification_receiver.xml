@@ -31,7 +31,7 @@
                 <FixedQuerySender
 					name="getPersonenSender"
                     queryType="SELECT"
-					query="SELECT * FROM personen WHERE BURGERSERVICENUMMER=?{burgerservicenummer} ORDER BY date DESC LIMIT 1"
+					query="SELECT * FROM Persoonsgegevens WHERE bsn=?{burgerservicenummer} ORDER BY registratie_datum DESC LIMIT 1"
 					includeFieldDefinition="false">
 					<Param name="burgerservicenummer" xpathExpression="root/burgerservicenummer"/>
             	</FixedQuerySender> 

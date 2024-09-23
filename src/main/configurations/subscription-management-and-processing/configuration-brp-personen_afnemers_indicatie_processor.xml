@@ -33,7 +33,7 @@
                 <FixedQuerySender
 					name="getPersonenSender"
                     queryType="SELECT"
-					query="SELECT appid,body FROM personen WHERE BURGERSERVICENUMMER=?{burgerservicenummer} ORDER BY date DESC LIMIT 1"
+					query="SELECT * FROM Persoonsgegevens WHERE bsn=?{burgerservicenummer} ORDER BY registratie_datum DESC LIMIT 1"
 					includeFieldDefinition="false">
 					<Param name="burgerservicenummer" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn" type="INTEGER"/>
             	</FixedQuerySender> 
@@ -89,7 +89,7 @@
             <SenderPipe name="InsertPersoon" getInputFromSessionKey="originalMessage">
                 <FixedQuerySender
 					name="insertPersonenSender"
-					query="INSERT INTO personen VALUES(?,?,?,CURRENT_TIMESTAMP)">
+					query="INSERT INTO Persoonsgegevens VALUES(?,?,CURRENT_TIMESTAMP)">
 					<Param name="burgerservicenummer" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn"/>
 					<Param name="body" sessionKey="databaseData" xpathExpression="result/rowset/row/field[@name='BODY']/text()"/>
 					<Param name="appId" sessionKey="storeInput"/>
