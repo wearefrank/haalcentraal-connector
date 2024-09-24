@@ -15,6 +15,7 @@
 				<Exit name="EXCEPTION" state="ERROR" />
 			</Exits>
 
+            <!-- Retrieve the application configuration from the local file system -->
             <SenderPipe 
                 name="GetApplicationConfigFromLocalFS"
                 storeResultInSessionKey="ApplicationConfig"
@@ -29,11 +30,12 @@
                 <Forward name="exception" path="EXCEPTION" />
             </SenderPipe>
 
-            <SenderPipe name="GetPersoon" storeResultInSessionKey="databaseData">
+            <!-- Retrieve the person, and its subscribers with the given BSN -->
+            <SenderPipe name="RetrieveSubscribersFromBSN" storeResultInSessionKey="databaseData">
                 <FixedQuerySender
 					name="getPersonenSender"
                     queryType="SELECT"
-					query="SELECT * FROM Persoonsgegevens WHERE bsn=?{burgerservicenummer} ORDER BY registratie_datum DESC LIMIT 1"
+					query="SELECT * FROM persoonsgegevens,applicaties WHERE persoonsgegevens.bsn=?{burgerservicenummer} AND applicaties.bsn = persoonsgegevens.bsn"
 					includeFieldDefinition="false">
 					<Param name="burgerservicenummer" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn" type="INTEGER"/>
             	</FixedQuerySender> 
@@ -41,22 +43,26 @@
                 <Forward name="exception" path="EXCEPTION" />
             </SenderPipe>    
 
-            <XmlIfPipe name="checkPersonen" xpathExpression="/result/rowset/row">
+            <!-- Check if a person was found with the given BSN -->
+            <XmlIfPipe name="PersonExistsCheck" xpathExpression="/result/rowset/row">
                 <Forward name="then" path="getAppIds" />
                 <Forward name="else" path="noPersonFoundWithGivenBsn" />
             </XmlIfPipe>      
             
-            <XsltPipe name="getAppIds" getInputFromSessionKey="databaseData" xpathExpression="result/rowset/row/field[@name='APPID']/text()">
+            <!-- Extract the subscribers to the given BSN -->
+            <XsltPipe name="GetSubscribers" getInputFromSessionKey="databaseData" xpathExpression="result/rowset/row/field[@name='applicaties.id']/text()">
                 <Forward name="success" path="Json2Xml" />
             </XsltPipe>
 
-            <JsonPipe name="Json2Xml" direction="JSON2XML" storeResultInSessionKey="appid">
+            <!-- Convert the subscribers to XML -->
+            <JsonPipe name="ConvertSubscribersToXML" direction="JSON2XML" storeResultInSessionKey="appid">
                 <Forward name="succes" path="filter"/>
             </JsonPipe>
 
+            <!-- Merge the new subscriber with the old subscribers -->
             <XsltPipe
 				getInputFromSessionKey="ApplicationConfig"
-                name="filter"
+                name="AppendNewSubscribers"
                 styleSheetName="xsl/mergeAppID.xslt"
                 storeResultInSessionKey="newAppidData"
                 >
@@ -68,15 +74,17 @@
                 <Forward name="exception" path="EXCEPTION"/>
             </XsltPipe>
 
-            <XmlIfPipe name="isEqual" xpathExpression="count($oldAppidData/root/*) = count($newAppidData/Applications/*)">
+            <!-- Check if the new subscribers are equal to the old subscribers -->
+            <XmlIfPipe name="CheckIfSubscribersChanged" xpathExpression="count($oldAppidData/root/*) = count($newAppidData/Applications/*)">
                 <Param name="newAppidData" sessionKey="newAppidData" type="DOMDOC"/>
                 <Param name="oldAppidData" sessionKey="appid" type="DOMDOC"/>
                 <Forward name="then" path="noChangeException" />
                 <Forward name="else" path="XmlToJson" />
             </XmlIfPipe>
 
+            <!-- Convert the new subscribers to JSON -->
             <Json2XmlValidatorPipe
-                name="XmlToJson"
+                name="ConvertNewSubscribersToJson"
                 root="Applications"
                 schema="xsd/appId.xsd"
                 outputFormat="JSON"
@@ -86,10 +94,11 @@
                 <Forward name="success" path="InsertPersoon" />
             </Json2XmlValidatorPipe>
 
-            <SenderPipe name="InsertPersoon" getInputFromSessionKey="originalMessage">
+            <!-- Insert the new subscribers into the database -->
+            <SenderPipe name="InsertNewSubscribers" getInputFromSessionKey="originalMessage">
                 <FixedQuerySender
 					name="insertPersonenSender"
-					query="INSERT INTO Persoonsgegevens VALUES(?,?,CURRENT_TIMESTAMP)">
+					query="INSERT INTO persoonsgegevens VALUES(?,?,CURRENT_TIMESTAMP)">
 					<Param name="burgerservicenummer" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn"/>
 					<Param name="body" sessionKey="databaseData" xpathExpression="result/rowset/row/field[@name='BODY']/text()"/>
 					<Param name="appId" sessionKey="storeInput"/>
@@ -97,6 +106,7 @@
                 <Forward name="success" path="EXIT" />
             </SenderPipe>
 
+            <!-- Exception handling -->
             <XmlIfPipe name="noChangeException" xpathExpression="$originalMessage/npsLk01/object/@verwerkingssoort = 'T'">
                 <Param name="originalMessage" sessionKey="originalMessage" type="DOMDOC"/>
                 <Forward name="then" path="noSubscriptionAdded" />
