@@ -30,12 +30,13 @@
 				<Forward name="exception" path="ErrorJsonToXml" />
 			</SenderPipe>
 
+			<!-- Add empty persoonsgegevens entry for each person retrieved from the BRP -->
 			<ForEachChildElementPipe name="BRP Personen query"
 				elementXPathExpression="root/personen"
 				getInputFromSessionKey="xmlbody">
                 <FixedQuerySender
 					name="insertPersonenSender"
-					query="INSERT INTO Persoonsgegevens VALUES(?,'{}',CURRENT_TIMESTAMP)">
+					query="INSERT INTO persoonsgegevens VALUES(?,'{}',CURRENT_TIMESTAMP)">
 					<Param name="burgerservicenummer" xpathExpression="personen/burgerservicenummer" type="INTEGER"/>
 					<Param name="body" sessionKey="body"/>
             	</FixedQuerySender>

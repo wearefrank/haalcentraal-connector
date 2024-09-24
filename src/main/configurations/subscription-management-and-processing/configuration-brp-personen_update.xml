@@ -23,7 +23,7 @@
                 <FixedQuerySender
 					name="getPersonenSender"
                     queryType="SELECT"
-					query="SELECT * FROM Persoonsgegevens WHERE bsn=?{burgerservicenummer} ORDER BY registratie_datum DESC LIMIT 1"
+					query="SELECT * FROM persoonsgegevens WHERE bsn=?{burgerservicenummer} ORDER BY registratie_datum DESC LIMIT 1"
 					includeFieldDefinition="false">
 					<Param name="burgerservicenummer" xpathExpression="root/burgerservicenummer"/>
             	</FixedQuerySender> 
@@ -109,10 +109,11 @@
                 <Forward name="else" path="InsertPersoon"/>
             </XmlIfPipe>
 
+            <!--  -->
             <SenderPipe name="InsertPersoon" getInputFromSessionKey="input">
                 <FixedQuerySender
 					name="insertPersonenSender"
-					query="INSERT INTO Persoonsgegevens VALUES(?,?,?,CURRENT_TIMESTAMP)">
+					query="INSERT INTO persoonsgegevens VALUES(?,?,?,CURRENT_TIMESTAMP)">
 					<Param name="burgerservicenummer" sessionKey="burgerservicenummer"/>
 					<Param name="body" sessionKey="json"/>
 					<Param name="appId" sessionKey="appIds"/>
