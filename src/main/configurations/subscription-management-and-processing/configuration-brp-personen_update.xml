@@ -110,6 +110,7 @@
                 <Forward name="else" path="InsertPersoon"/>
             </XmlIfPipe>
 
+            <!--  -->
             <SenderPipe name="InsertPersoon" getInputFromSessionKey="input">
                 <FixedQuerySender
 					name="insertPersonenSender"
