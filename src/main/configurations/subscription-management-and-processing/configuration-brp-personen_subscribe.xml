@@ -7,7 +7,7 @@
 		<Receiver name="BRP Personen subscribe">
 			<JavaListener name="BRP Personen subscribe" />
 		</Receiver>
-
+		<!-- Not needeed I think -->
 		<Pipeline>
 			<Exits>
 				<Exit name="Exit" state="SUCCESS" />

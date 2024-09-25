@@ -14,13 +14,14 @@
 				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
 			</Exits>
 
+			<!-- put the message in the messagestore -->
             <SenderPipe name="InsertNotification" getInputFromSessionKey="originalMessage">
 				<MessageStoreSender
 					slotId="${instance.name}/afnemersIndicatieStore"
 				/>
                 <Forward name="success" path="WrapBv03Response" />
             </SenderPipe>
-
+			<!-- generic async response message -->
             <SoapWrapperPipe
 				getInputFromSessionKey="originalMessage"
                 name="WrapBv03Response"

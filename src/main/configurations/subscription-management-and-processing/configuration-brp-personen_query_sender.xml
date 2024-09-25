@@ -22,14 +22,16 @@
 				<Exit name="ServerError" state="ERROR" code="500" />
 				<Exit name="ServiceUnavailable" state="ERROR" code="503" />
 			</Exits>
-
+			
+			<!-- get persoons gegevens based on values given in the soap message -->
 			<SenderPipe name="BRPPersonenBevragen">
 				<IbisLocalSender name="BPRPersonenBevragen" javaListener="BrpPbClientSoapListener"
 				returnedSessionKeys="Error,body,xmlbody,MapResponse" />
 				<Forward name="success" path="BRP Personen query" />
 				<Forward name="exception" path="ErrorJsonToXml" />
 			</SenderPipe>
-
+			<!-- loop through the personen and put them in the database  -->
+			<!-- maybe don't need a forloop because it always gives back only 1 persoon??? -->
 			<ForEachChildElementPipe name="BRP Personen query"
 				elementXPathExpression="root/personen"
 				getInputFromSessionKey="xmlbody">
@@ -41,7 +43,7 @@
             	</FixedQuerySender>
 				<Forward name="success" path="WrapResponse"/>
 				<Forward name="exception" path="ErrorJsonToXml" />
-			</ForEachChildElementPipe>  
+			</ForEachChildElementPipe>
 
 			<JsonPipe
                 name="ErrorJsonToXml">

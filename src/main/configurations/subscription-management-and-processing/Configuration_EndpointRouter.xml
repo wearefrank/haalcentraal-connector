@@ -67,6 +67,7 @@
                 />
             
             <!-- SenderPipes -->
+             <!-- for Subscribing to a persoon -->
             <SenderPipe
                 name="http:__www.egem.nl_StUF_sector_bg_0310_npsLk01">
                 <IbisLocalSender
@@ -77,7 +78,7 @@
                 <Forward name="success" path="EXIT" />
                 <Forward name="404" path="BackEndError" />
             </SenderPipe>
-
+            <!-- For getting persoonsgegevens and putting it in the database -->
             <SenderPipe
                 name="http:__www.egem.nl_StUF_sector_bg_0310_npsLv01">
                 <IbisLocalSender

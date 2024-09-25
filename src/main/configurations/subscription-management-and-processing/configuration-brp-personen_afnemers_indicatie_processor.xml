@@ -14,7 +14,7 @@
 				<Exit name="EXIT" state="SUCCESS" />
 				<Exit name="EXCEPTION" state="ERROR" />
 			</Exits>
-
+            <!-- Get application mappingapplication.json-->
             <SenderPipe 
                 name="GetApplicationConfigFromLocalFS"
                 storeResultInSessionKey="ApplicationConfig"
@@ -28,7 +28,8 @@
                 <Forward name="success" path="GetPersoon"/>
                 <Forward name="exception" path="EXCEPTION" />
             </SenderPipe>
-
+            
+            <!-- Get persoon by bsn in the database -->
             <SenderPipe name="GetPersoon" storeResultInSessionKey="databaseData">
                 <FixedQuerySender
 					name="getPersonenSender"
@@ -40,20 +41,22 @@
                 <Forward name="success" path="checkPersonen" />
                 <Forward name="exception" path="EXCEPTION" />
             </SenderPipe>    
-
+            <!-- Check if the persoon actually exists -->
+             <!-- Might need to change implementation based on flow/discusion -->
             <XmlIfPipe name="checkPersonen" xpathExpression="/result/rowset/row">
                 <Forward name="then" path="getAppIds" />
                 <Forward name="else" path="noPersonFoundWithGivenBsn" />
             </XmlIfPipe>      
-            
+            <!-- get applications currently subscribed to the person -->
             <XsltPipe name="getAppIds" getInputFromSessionKey="databaseData" xpathExpression="result/rowset/row/field[@name='APPID']/text()">
                 <Forward name="success" path="Json2Xml" />
             </XsltPipe>
-
+            
             <JsonPipe name="Json2Xml" direction="JSON2XML" storeResultInSessionKey="appid">
                 <Forward name="succes" path="filter"/>
             </JsonPipe>
-
+            <!-- Make a list of applications that need to be added. (Mappings need to match and they should not already be subscribed) -->
+             <!-- Discuss which properties need to be matched inorder for an application to match -->
             <XsltPipe
 				getInputFromSessionKey="ApplicationConfig"
                 name="filter"
@@ -67,7 +70,7 @@
                 <Forward name="success" path="isEqual"/>
                 <Forward name="exception" path="EXCEPTION"/>
             </XsltPipe>
-
+            <!-- checks if the subscriber total is not the same. This overwrite the old subscriber data for now -->
             <XmlIfPipe name="isEqual" xpathExpression="count($oldAppidData/root/*) = count($newAppidData/Applications/*)">
                 <Param name="newAppidData" sessionKey="newAppidData" type="DOMDOC"/>
                 <Param name="oldAppidData" sessionKey="appid" type="DOMDOC"/>
@@ -85,7 +88,7 @@
                 throwException="true">
                 <Forward name="success" path="InsertPersoon" />
             </Json2XmlValidatorPipe>
-
+            <!-- New entry personen with updated version of subscribers -->
             <SenderPipe name="InsertPersoon" getInputFromSessionKey="originalMessage">
                 <FixedQuerySender
 					name="insertPersonenSender"
@@ -96,7 +99,8 @@
             	</FixedQuerySender>
                 <Forward name="success" path="EXIT" />
             </SenderPipe>
-
+            
+            <!-- exceptions -->
             <XmlIfPipe name="noChangeException" xpathExpression="$originalMessage/npsLk01/object/@verwerkingssoort = 'T'">
                 <Param name="originalMessage" sessionKey="originalMessage" type="DOMDOC"/>
                 <Forward name="then" path="noSubscriptionAdded" />

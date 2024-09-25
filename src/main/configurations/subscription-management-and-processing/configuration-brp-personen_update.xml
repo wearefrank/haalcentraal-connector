@@ -14,11 +14,11 @@
 				<Exit name="EXCEPTION" state="ERROR" />
 				<Exit name="BADREQUEST" state="ERROR" code="400" />
 			</Exits>
-
+            <!-- input is json bsn -->
             <JsonPipe name="JsonToXmlInput" storeResultInSessionKey="input">
                 <Forward name="success" path="GetPersoon"/>
             </JsonPipe>
-
+            <!-- get persoon with corresponding bsn -->
             <SenderPipe name="GetPersoon" storeResultInSessionKey="oldJSON" getInputFromSessionKey="input">
                 <FixedQuerySender
 					name="getPersonenSender"
@@ -29,7 +29,7 @@
             	</FixedQuerySender> 
                 <Forward name="success" path="PersonExists" />
             </SenderPipe>
-            
+            <!-- extra persoon check -->
             <XmlIfPipe
                 name="PersonExists"
                 xpathExpression="count(result/rowset/row) = 1"
@@ -51,6 +51,8 @@
                 <Forward name="success" path="mappingStufToJson" />
             </JsonPipe>	
 
+            <!-- make body for new persoon request -->
+            <!-- Check with Sena, mappings some applications are not allowed to see everything -->
             <XsltPipe
                 name="mappingStufToJson"
 				getInputFromSessionKey="input"
@@ -71,7 +73,7 @@
                 throwException="true">
                 <Forward name="success" path="PostBRPPersonenBevragen" />
             </Json2XmlValidatorPipe>
-
+            <!-- post request for personen -->
 			<SenderPipe name="PostBRPPersonenBevragen" storeResultInSessionKey="newJSON">
                 <IbisLocalSender name="BPRPersonenBevragen" javaListener="BrpPbOutwayListener"/>
 				<Forward name="success" path="PersoonToXml" />
@@ -81,7 +83,7 @@
             <JsonPipe name="PersoonToXml">
                 <Forward name="success" path="hasBurgerservicenummer"/>
             </JsonPipe>
-            
+            <!-- extra check i guess -->
             <PutInSessionPipe 
                 name="hasBurgerservicenummer">
                 <Param name="burgerservicenummer" xpathExpression='//burgerservicenummer/text()' />
@@ -109,6 +111,7 @@
                 <Forward name="else" path="InsertPersoon"/>
             </XmlIfPipe>
 
+            <!-- new entry persoon with updated version of json data-->
             <SenderPipe name="InsertPersoon" getInputFromSessionKey="input">
                 <FixedQuerySender
 					name="insertPersonenSender"
@@ -126,7 +129,8 @@
 				storeResultInSessionKey="xmlbody">
                 <Forward name="success" path="GetApplicationConfigFromLocalFS" />
             </JsonPipe>	
-
+            
+            <!-- Get application mappings mappingapplication.json-->
             <SenderPipe 
                 name="GetApplicationConfigFromLocalFS"
                 storeResultInSessionKey="ApplicationConfig"
@@ -141,6 +145,7 @@
                 <Forward name="error" path="EXCEPTION"/>
             </SenderPipe>
 
+            <!-- filter the apps based on subscriptions -->
             <XsltPipe
                 name="filter"
 				getInputFromSessionKey="ApplicationConfig"
@@ -149,7 +154,8 @@
 				<Param name="appIds" sessionKey="appIdsXml" type="DOMDOC"/>
                 <Forward name="success" path="forloop"/>
             </XsltPipe>
-
+            
+            <!-- for each subscribed applications call it's callback url -->
 			<ForEachChildElementPipe name="forloop"
 				elementXPathExpression="root/app">
 				<IbisLocalSender
