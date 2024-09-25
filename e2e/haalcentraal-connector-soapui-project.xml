@@ -42887,7 +42887,7 @@
          </ns:object>\r
       </ns:npsLk01>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="6027d46e-e077-46eb-bc1a-fd27033fb946"/><con:assertion type="Schema Compliance" id="3176a154-011d-4f12-be43-2721b39f423f"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="2f49681f-2392-4f4a-a2e2-870cfd26f326"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:restMockService id="8e9e2b84-d488-46b6-ba0c-2679f9eba4ac" port="8088" path="/" host="localhost" name="HC-Rest-MockService" docroot=""><con:settings/><con:properties/><con:afterRequestScript/><con:restMockAction name="personen" method="POST" resourcePath="/personen" id="fdcbc655-2f81-4220-917a-12fae09785c8"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>def requestBody = mockRequest.getRequestContent()
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="6027d46e-e077-46eb-bc1a-fd27033fb946"/><con:assertion type="Schema Compliance" id="3176a154-011d-4f12-be43-2721b39f423f"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="2f49681f-2392-4f4a-a2e2-870cfd26f326"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:restMockService id="8e9e2b84-d488-46b6-ba0c-2679f9eba4ac" port="8088" path="/" host="localhost" name="HC-Rest-MockService" docroot=""><con:settings/><con:properties><con:property><con:name>leeftijd</con:name><con:value>55</con:value></con:property></con:properties><con:afterRequestScript/><con:restMockAction name="personen" method="POST" resourcePath="/personen" id="fdcbc655-2f81-4220-917a-12fae09785c8"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>def requestBody = mockRequest.getRequestContent()
 
 log.info "Request body: " + requestBody
 
@@ -42959,59 +42959,25 @@ if( requestBody.contains("some data") )&#13;
     return "Response N"&#13;
 }&#13;
 */&#13;
-</con:dispatchPath><con:response name="Response 1" id="a3836b87-eb52-43c2-a2d1-f543a44e23f1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:script>// Define the URL and the payload
-def urlString = "http://localhost:8080/api/webhooks_brp"
-def postData = '{"burgerservicenummer" : 555555021}'  // Example JSON payload
+</con:dispatchPath><con:response name="Response 1" id="a3836b87-eb52-43c2-a2d1-f543a44e23f1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:script>//Assuming that you want integer value, otherwise ignore 'as Integer' in below statement
+def leeftijd = context.mockService.getPropertyValue('leeftijd') as Integer  
 
-// Define the delay in seconds
-def delayInSeconds = 5  // Change this to the number of seconds you want to delay
-// Asynchronous request in a new thread
-Thread.start {
-    try {
+Random rand = new Random()
 
-	   // Log the delay
-        log.info "Waiting for ${delayInSeconds} seconds before sending the POST request..."
-        
-        // Delay execution by x seconds (convert to milliseconds)
-        Thread.sleep(delayInSeconds * 1000)
-        // Create the URL object
-        def url = new URL(urlString)
+def randomValue = rand.nextInt(100)
 
-        // Open a connection
-        def connection = (HttpURLConnection) url.openConnection()
-
-        // Set the request method to POST
-        connection.setRequestMethod("POST")
-
-        // Set headers
-        connection.setRequestProperty("Content-Type", "application/json")
-
-        // Enable output for the connection (to send the payload)
-        connection.setDoOutput(true)
-
-        // Send the POST request
-        def writer = new OutputStreamWriter(connection.outputStream)
-        writer.write(postData)
-        writer.flush()
-        writer.close()
-
-        // Get the response code
-        def responseCode = connection.getResponseCode()
-        log.info "Response Code: $responseCode"
-
-        // Get the response content (if any)
-        def responseMessage = connection.inputStream.text
-        log.info "Response Message: $responseMessage"
-
-        // Disconnect after completion
-        connection.disconnect()
-
-    } catch (Exception e) {
-        log.error "Error while sending async POST request: ${e.message}"
-    }
+while(leeftijd == randomValue) {
+	randomValue = rand.nextInt(100)
+//	log.info "Random age value: ${randomValue} and ${leeftijd}"
 }
 
-log.info "POST request sent asynchronously to ${urlString}"</con:script><con:responseContent>{
+// Assign the random value to requestContext.leeftijd
+requestContext.leeftijd = randomValue
+
+context.mockService.setPropertyValue('leeftijd', "${randomValue}" )
+// You can optionally print or return the random value for debugging
+//log.info "Random age value: ${randomValue} and ${leeftijd}"
+</con:script><con:responseContent>{
    "type":"RaadpleegMetBurgerservicenummer",
    "personen":[
       {
@@ -43021,7 +42987,7 @@ log.info "POST request sent asynchronously to ${urlString}"</con:script><con:res
             "code":"M",
             "omschrijving":"man"
          },
-         "leeftijd":22,
+         "leeftijd":"${leeftijd}",
          "naam":{
             "aanduidingNaamgebruik":{
                "code":"E",
@@ -43072,108 +43038,6 @@ log.info "POST request sent asynchronously to ${urlString}"</con:script><con:res
                "officieleStraatnaam":"Laan van Nieuw-Oost-Indië",
                "korteStraatnaam":"Laan van Nieuw-O-Indië",
                "huisnummer": 69,
-               "huisletter":"A",
-               "postcode":"2593BL",
-               "woonplaats":"'s-Gravenhage"
-            },
-            "functieAdres":{
-               "code":"W",
-               "omschrijving":"woonadres"
-            },
-            "adresseerbaarObjectIdentificatie":"0518010000466195",
-            "nummeraanduidingIdentificatie":"0518200000466194",
-            "datumVan":{
-               "type":"Datum",
-               "datum":"2024-09-18",
-               "langFormaat":"18 september 2024"
-            },
-            "datumIngangGeldigheid":{
-               "type":"Datum",
-               "datum":"2024-09-18",
-               "langFormaat":"18 september 2024"
-            }
-         },
-         "gemeenteVanInschrijving":{
-            "code":"0518",
-            "omschrijving":"'s-Gravenhage"
-         },
-         "datumInschrijvingInGemeente":{
-            "type":"Datum",
-            "datum":"2006-03-18",
-            "langFormaat":"18 maart 2006"
-         },
-         "adressering":{
-            "aanhef":"Geachte heer Van den Verhuistest",
-            "aanschrijfwijze":{
-               "naam":"K. van den Verhuistest"
-            },
-            "gebruikInLopendeTekst":"de heer Van den Verhuistest",
-            "adresregel1":"Laan van Nieuw-O-Indië 101 A",
-            "adresregel2":"2593 BL 'S-GRAVENHAGE"
-         }
-      }
-   ]
-}</con:responseContent></con:response><con:response name="Response 2" id="3a4266cf-30df-41ac-b975-993b00ca1f6c" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:script/><con:responseContent>{
-   "type":"RaadpleegMetBurgerservicenummer",
-   "personen":[
-      {
-         "aNummer":"3959725474",
-         "burgerservicenummer":"555555021",
-         "geslacht":{
-            "code":"M",
-            "omschrijving":"man"
-         },
-         "leeftijd":22,
-         "naam":{
-            "aanduidingNaamgebruik":{
-               "code":"E",
-               "omschrijving":"eigen geslachtsnaam"
-            },
-            "voornamen":"Kees",
-            "voorvoegsel":"van den",
-            "geslachtsnaam":"Verhuistest",
-            "voorletters":"K.",
-            "volledigeNaam":"Kees van den Verhuistest"
-         },
-         "nationaliteiten":[
-            {
-               "type":"Nationaliteit",
-               "datumIngangGeldigheid":{
-                  "type":"Datum",
-                  "datum":"2002-07-01",
-                  "langFormaat":"1 juli 2002"
-               },
-               "nationaliteit":{
-                  "code":"0001",
-                  "omschrijving":"Nederlandse"
-               },
-               "redenOpname":{
-                  "code":"017",
-                  "omschrijving":"Rijkswet op het Nederlanderschap 1984, art. 3, lid 1"
-               }
-            }
-         ],
-         "geboorte":{
-            "land":{
-               "code":"6030",
-               "omschrijving":"Nederland"
-            },
-            "plaats":{
-               "code":"0530",
-               "omschrijving":"Hellevoetsluis"
-            },
-            "datum":{
-               "type":"Datum",
-               "datum":"2002-07-01",
-               "langFormaat":"1 juli 2002"
-            }
-         },
-         "verblijfplaats":{
-            "type":"Adres",
-            "verblijfadres":{
-               "officieleStraatnaam":"Laan van Nieuw-Oost-Indië",
-               "korteStraatnaam":"Laan van Nieuw-O-Indië",
-               "huisnummer":102,
                "huisletter":"A",
                "postcode":"2593BL",
                "woonplaats":"'s-Gravenhage"
