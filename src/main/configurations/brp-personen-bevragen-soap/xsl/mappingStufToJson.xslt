@@ -140,7 +140,8 @@
                 <xsl:when
                     test="((boolean(//*[contains(name(),'geslachtsnaam')]/text())) and
                         (boolean(//*[contains(name(),'voornamen')]/text())) and
-                        (boolean(//*[contains(name(),'woonplaatsnaam')]/text())))">
+                        ($varZenderOrganisatie !='') and
+                        (boolean(//*[contains(name(),'woonplaatsNaam')]/text())))">
                     <type>ZoekMetNaamEnGemeenteVanInschrijving</type>
                     <xsl:for-each
                         select="$fields/root/zoekMet/fields">
@@ -241,6 +242,7 @@
                 <xsl:when
                     test="((boolean(//*[contains(name(),'straatnaam')]/text())) and
                         (boolean(//*[contains(name(),'woonplaatsNaam')]/text())) and
+                        ($varZenderOrganisatie !='') and
                         (boolean(//*[contains(name(),'huisnummer')]/text())))">
                     <type>ZoekMetStraatHuisnummerEnGemeenteVanInschrijving</type>
                     <xsl:for-each
