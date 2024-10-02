@@ -50,6 +50,13 @@
                 <Forward name="else" path="noPersonFoundWithGivenBsn" />
             </XmlIfPipe>      
 
+            <!-- Add persoonsgegevens to db if none are found -->
+            <!-- TODO: Send message to persoonbevragen -->
+            <!-- <SenderPipe name="AddPersoonsgegevensRecordToDatabase">
+                <IbisLocalSender name="RequestPersoonsgegevensByBsn">
+                </IbisLocalSender>
+            </SenderPipe> -->
+
             <!-- Check if a subscriber needs to be either added or removed -->
             <XmlIfPipe name="CheckVerwerkingssoort" xpathExpression="$originalMessage = 'T'">
                 <Param name="originalMessage" sessionKey="originalMessage" xpathExpression="npsLk01/object/@verwerkingssoort"/>
@@ -105,7 +112,6 @@
             <ExceptionPipe name="noPersonFoundWithGivenBsn"/>
             <ExceptionPipe name="noSubscriptionAdded"/>
             <ExceptionPipe name="noSubscriptionDeleted"/>
-
 		</Pipeline>
 	</Adapter>
 </Module>
