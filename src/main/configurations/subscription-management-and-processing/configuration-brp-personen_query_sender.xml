@@ -26,7 +26,7 @@
 			<SenderPipe name="BRPPersonenBevragen">
 				<IbisLocalSender name="BPRPersonenBevragen" javaListener="BrpPbClientSoapListener"
 				returnedSessionKeys="Error,body,xmlbody,MapResponse" />
-				<Forward name="success" path="WrapResponse" />
+				<Forward name="success" path="BRP Personen query" />
 				<Forward name="exception" path="ErrorJsonToXml" />
 			</SenderPipe>
 
@@ -36,9 +36,9 @@
 				getInputFromSessionKey="xmlbody">
                 <FixedQuerySender
 					name="insertPersonenSender"
-					query="INSERT INTO persoonsgegevens VALUES(?,'{}',CURRENT_TIMESTAMP)">
+					query="INSERT INTO persoonsgegevens(bsn, data, registratie_datum) VALUES(?,?,CURRENT_TIMESTAMP)">
 					<Param name="burgerservicenummer" xpathExpression="personen/burgerservicenummer" type="INTEGER"/>
-					<Param name="body" sessionKey="body"/>
+					<Param name="data" sessionKey="body" type="STRING"/>
             	</FixedQuerySender>
 				<Forward name="success" path="WrapResponse"/>
 				<Forward name="exception" path="ErrorJsonToXml" />
