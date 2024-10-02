@@ -107,12 +107,24 @@
             <SenderPipe name="InsertNewSubscriber" getInputFromSessionKey="originalMessage">
                 <FixedQuerySender
 					name="insertPersonenSender"
-					query="INSERT INTO subscripties(bsn, app_id, begin_datum) VALUES(?,?,CURRENT_TIMESTAMP)">
+					query="
+                        INSERT INTO subscripties (bsn, app_id, begin_datum)
+                        SELECT ?{burgerservicenummer}, ?{appId}, CURRENT_TIMESTAMP
+                        WHERE NOT EXISTS (
+                            SELECT 1
+                            FROM subscripties
+                            WHERE bsn = ?{burgerservicenummer}
+                            AND app_id = ?{appId}
+                            AND eind_datum IS NULL
+                        );">
 					<Param name="burgerservicenummer" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn"/>
 					<Param name="appId" sessionKey="originalMessage" xpathExpression="npsLk01/stuurgegevens/zender/organisatie"/>
             	</FixedQuerySender>
-                <Forward name="success" path="EXIT" />
             </SenderPipe>
+            <XmlIfPipe name="NoSubscriptionAdded" xpathExpression="/result/rowsupdated = 0">
+                <Forward name="then" path="noSubscriptionAdded" />
+                <Forward name="else" path="EXIT" />
+            </XmlIfPipe>
 
             <!-- Delete the subscriber from the database -->
             <SenderPipe name="DeleteSubscriber" getInputFromSessionKey="originalMessage">
@@ -122,8 +134,11 @@
 					<Param name="burgerservicenummer" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn"/>
 					<Param name="appId" sessionKey="originalMessage" xpathExpression="npsLk01/stuurgegevens/zender/organisatie"/>
             	</FixedQuerySender>
-                <Forward name="success" path="EXIT" />
             </SenderPipe>
+            <XmlIfPipe name="NoSubscriptionEnded" xpathExpression="/result/rowsupdated = 0">
+                <Forward name="then" path="noSubscriptionDeleted" />
+                <Forward name="else" path="EXIT" />
+            </XmlIfPipe>
 
             <!-- Exception handling -->
             <XmlIfPipe name="noChangeException" xpathExpression="$originalMessage/npsLk01/object/@verwerkingssoort = 'T'">
