@@ -117,8 +117,11 @@
 					<Param name="burgerservicenummer" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn"/>
 					<Param name="appId" sessionKey="originalMessage" xpathExpression="npsLk01/stuurgegevens/zender/organisatie"/>
             	</FixedQuerySender>
-                <Forward name="success" path="EXIT" />
             </SenderPipe>
+            <XmlIfPipe name="NoSubscriptionEnded" xpathExpression="/result/rowsupdated = 0">
+                <Forward name="then" path="noSubscriptionDeleted" />
+                <Forward name="else" path="EXIT" />
+            </XmlIfPipe>
 
             <!-- Exception handling -->
             <XmlIfPipe name="noChangeException" xpathExpression="$originalMessage/npsLk01/object/@verwerkingssoort = 'T'">
