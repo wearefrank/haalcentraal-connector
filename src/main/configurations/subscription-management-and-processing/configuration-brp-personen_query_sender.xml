@@ -30,7 +30,7 @@
 				<Forward name="exception" path="ErrorJsonToXml" />
 			</SenderPipe>
 
-			<!-- Add empty persoonsgegevens entry for each person retrieved from the BRP -->
+			<!-- Add persoonsgegevens entry for each person retrieved from the BRP -->
 			<ForEachChildElementPipe name="BRP Personen query"
 				elementXPathExpression="root/personen"
 				getInputFromSessionKey="xmlbody">
