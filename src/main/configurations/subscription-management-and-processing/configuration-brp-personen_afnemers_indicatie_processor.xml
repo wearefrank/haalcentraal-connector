@@ -95,20 +95,6 @@
                 <Forward name="else" path="EXIT" />
             </XmlIfPipe>
 
-            <!-- Delete the subscriber from the database -->
-            <SenderPipe name="DeleteSubscriber" getInputFromSessionKey="originalMessage">
-                <FixedQuerySender
-					name="insertPersonenSender"
-					query="UPDATE subscripties SET eind_datum = CURRENT_TIMESTAMP WHERE bsn=?{burgerservicenummer} AND app_id=?{appId} AND eind_datum IS NULL">
-					<Param name="burgerservicenummer" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn"/>
-					<Param name="appId" sessionKey="originalMessage" xpathExpression="npsLk01/stuurgegevens/zender/organisatie"/>
-            	</FixedQuerySender>
-            </SenderPipe>
-            <XmlIfPipe name="NoSubscriptionEnded" xpathExpression="/result/rowsupdated = 0">
-                <Forward name="then" path="noSubscriptionDeleted" />
-                <Forward name="else" path="EXIT" />
-            </XmlIfPipe>
-
             <!-- Exception handling -->
             <XmlIfPipe name="noChangeException" xpathExpression="$originalMessage/npsLk01/object/@verwerkingssoort = 'T'">
                 <Param name="originalMessage" sessionKey="originalMessage" type="DOMDOC"/>
