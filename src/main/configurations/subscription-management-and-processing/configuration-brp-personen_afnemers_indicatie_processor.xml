@@ -81,7 +81,7 @@
                 <Forward name="else" path="EXIT" />
             </XmlIfPipe>
 
-            <!-- Delete the subscriber from the database -->
+            <!-- Set the end date for the specified subscription to now -->
             <SenderPipe name="DeleteSubscriber" getInputFromSessionKey="originalMessage">
                 <FixedQuerySender
 					name="insertPersonenSender"
