@@ -49,51 +49,6 @@
                 <Forward name="then" path="CheckVerwerkingssoort" />
                 <Forward name="else" path="noPersonFoundWithGivenBsn" />
             </XmlIfPipe>      
-            
-            <!-- Extract the subscribers to the given BSN -->
-            <!-- <XsltPipe name="GetSubscribers" getInputFromSessionKey="databaseData" xpathExpression="result/rowset/row/field[@name='applicaties.id']/text()">
-                <Forward name="success" path="Json2Xml" />
-            </XsltPipe> -->
-
-            <!-- Convert the subscribers to XML -->
-            <!-- <JsonPipe name="ConvertSubscribersToXML" direction="JSON2XML" storeResultInSessionKey="appid">
-                <Forward name="succes" path="filter"/>
-            </JsonPipe> -->
-
-            <!-- Merge the new subscriber with the old subscribers -->
-            <!-- <XsltPipe
-				getInputFromSessionKey="ApplicationConfig"
-                name="AppendNewSubscribers"
-                styleSheetName="xsl/mergeAppID.xslt"
-                storeResultInSessionKey="newAppidData"
-                >
-				<Param name="sleutelVerzendend" sessionKey="originalMessage" xpathExpression="npsLk01/object/@sleutelVerzendend"/>
-				<Param name="code" sessionKey="originalMessage" xpathExpression="npsLk01/stuurgegevens/zender/organisatie"/>
-				<Param name="appid" sessionKey="appid" type="DOMDOC" />
-				<Param name="verwerkingssoort" sessionKey="originalMessage" xpathExpression="npsLk01/object/@verwerkingssoort"/>
-                <Forward name="success" path="isEqual"/>
-                <Forward name="exception" path="EXCEPTION"/>
-            </XsltPipe> -->
-
-            <!-- Check if the new subscribers are equal to the old subscribers -->
-            <!-- <XmlIfPipe name="CheckIfSubscribersChanged" xpathExpression="count($oldAppidData/root/*) = count($newAppidData/Applications/*)">
-                <Param name="newAppidData" sessionKey="newAppidData" type="DOMDOC"/>
-                <Param name="oldAppidData" sessionKey="appid" type="DOMDOC"/>
-                <Forward name="then" path="noChangeException" />
-                <Forward name="else" path="XmlToJson" />
-            </XmlIfPipe> -->
-
-            <!-- Convert the new subscribers to JSON -->
-            <!-- <Json2XmlValidatorPipe
-                name="ConvertNewSubscribersToJson"
-                root="Applications"
-                schema="xsd/appId.xsd"
-                outputFormat="JSON"
-                compactJsonArrays="false"
-                storeResultInSessionKey="storeInput"
-                throwException="true">
-                <Forward name="success" path="InsertPersoon" />
-            </Json2XmlValidatorPipe> -->
 
             <!-- Check if a subscriber needs to be either added or removed -->
             <XmlIfPipe name="CheckVerwerkingssoort" xpathExpression="$originalMessage = 'T'">
