@@ -34,22 +34,22 @@
                 name="PersonExists"
                 xpathExpression="count(result/rowset/row) = 1"
             >
-                <Forward name="then" path="appId"/>
+                <Forward name="then" path="mappingStufToJson"/>
                 <Forward name="else" path="EXCEPTION"/>
             </XmlIfPipe>
 			
-            <PutInSessionPipe 
+            <!-- <PutInSessionPipe 
                 name="appId">
                 <Param name="appIds" sessionKey="oldJSON" xpathExpression="result/rowset/row/field[@name='APPID']" />
                 <Forward name="success" path="appToXml" />
-            </PutInSessionPipe>
+            </PutInSessionPipe> -->
 
-			<JsonPipe
+			<!-- <JsonPipe
                 name="appToXml"
 				getInputFromSessionKey="appIds"
                 storeResultInSessionKey="appIdsXml">
                 <Forward name="success" path="mappingStufToJson" />
-            </JsonPipe>	
+            </JsonPipe>	 -->
 
             <XsltPipe
                 name="mappingStufToJson"
@@ -96,7 +96,7 @@
                     jsFunctionName="compareJSONFiles"
 				>
 				</JavascriptSender>
-				<Param name="oldJSON" sessionKey="oldJSON" xpathExpression="result/rowset/row/field[@name='BODY']"/>
+				<Param name="oldJSON" sessionKey="oldJSON" xpathExpression="result/rowset/row/field[@name='DATA']"/>
 				<Param name="newJSON" sessionKey="newJSON"/>
 				<Forward name="success" path="isSubset" />
 			</SenderPipe>
@@ -105,22 +105,22 @@
                 name="isSubset"
                 regex="true"
             >
-                <Forward name="then" path="NoUpdateFound"/>
+                <!-- Changed to always insertPersoon for testing purposes -->
+                <Forward name="then" path="EXIT"/>
                 <Forward name="else" path="InsertPersoon"/>
             </XmlIfPipe>
 
-            <!--  -->
             <SenderPipe name="InsertPersoon" getInputFromSessionKey="input">
                 <FixedQuerySender
 					name="insertPersonenSender"
-					query="INSERT INTO persoonsgegevens VALUES(?,?,?,CURRENT_TIMESTAMP)">
+					query="INSERT INTO persoonsgegevens(bsn, data, registratie_datum) VALUES(?,?,CURRENT_TIMESTAMP)">
 					<Param name="burgerservicenummer" sessionKey="burgerservicenummer"/>
-					<Param name="body" sessionKey="json"/>
-					<Param name="appId" sessionKey="appIds"/>
+					<Param name="data" sessionKey="json"/>
             	</FixedQuerySender>
                 <Forward name="success" path="jsonToXml" />
             </SenderPipe>
 
+            <!-- TODO: Get subscribers and send notification -->
 			<JsonPipe
                 name="jsonToXml"
 				getInputFromSessionKey="json"
@@ -138,20 +138,31 @@
                     returnedSessionKeys="Error">
                     <Param name="FileName" value="${FilePath_1}" />
                 </IbisLocalSender>
-                <Forward name="success" path="filter"/>
+                <Forward name="success" path="GetSubscribersToUpdatedPerson"/>
                 <Forward name="error" path="EXCEPTION"/>
             </SenderPipe>
 
-            <XsltPipe
+            <!-- Retrieve all subscribers to the given bsn -->
+            <SenderPipe name="GetSubscribersToUpdatedPerson">
+                <FixedQuerySender 
+                    name="GetSubscribersByBSNQuery" 
+                    queryType="SELECT"
+                    query="SELECT app_id FROM subscripties WHERE bsn=? AND eind_datum IS NULL">
+                    <Param name="burgerservicenummer" sessionKey="input" xpathExpression="root/burgerservicenummer"/>
+                </FixedQuerySender>
+                <Forward name="SomewhereWhereSomethingWithAppIds" path="EXIT" />
+            </SenderPipe>
+
+            <!-- <XsltPipe
                 name="filter"
 				getInputFromSessionKey="ApplicationConfig"
                 styleSheetName="xsl/app.xslt"
                 >
 				<Param name="appIds" sessionKey="appIdsXml" type="DOMDOC"/>
                 <Forward name="success" path="forloop"/>
-            </XsltPipe>
+            </XsltPipe> -->
 
-			<ForEachChildElementPipe name="forloop"
+			<!-- <ForEachChildElementPipe name="forloop"
 				elementXPathExpression="root/app">
 				<IbisLocalSender
 					name="BRP Personen callback sender"
@@ -160,10 +171,9 @@
                     <Param name="body" sessionKey="xmlbody"/>
 				</IbisLocalSender>
 				<Forward name="success" path="EXIT" />
-			</ForEachChildElementPipe>
+			</ForEachChildElementPipe> -->
 
             <ExceptionPipe name="NoUpdateFound" />
-
         </Pipeline>
     </Adapter>
 </Module>
