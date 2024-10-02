@@ -46,7 +46,7 @@
             <!-- Check if a person was found with the given BSN -->
             <!-- TODO: Add person if no entry was found -->
             <XmlIfPipe name="PersonExistsCheck" xpathExpression="/result/rowset/row">
-                <Forward name="then" path="CheckVerwerkingssoort" />
+                <Forward name="then" path="InsertNewSubscribers" />
                 <Forward name="else" path="noPersonFoundWithGivenBsn" />
             </XmlIfPipe>      
 
