@@ -46,7 +46,7 @@
             <!-- Check if a person was found with the given BSN -->
             <!-- TODO: Add person if no entry was found -->
             <XmlIfPipe name="PersonExistsCheck" xpathExpression="/result/rowset/row">
-                <Forward name="then" path="InsertNewSubscribers" />
+                <Forward name="then" path="CheckVerwerkingssoort" />
                 <Forward name="else" path="noPersonFoundWithGivenBsn" />
             </XmlIfPipe>      
             
@@ -95,13 +95,30 @@
                 <Forward name="success" path="InsertPersoon" />
             </Json2XmlValidatorPipe> -->
 
+            <!-- Check if a subscriber needs to be either added or removed -->
+            <XmlIfPipe name="CheckVerwerkingssoort" xpathExpression="$originalMessage = 'T'">
+                <Param name="originalMessage" sessionKey="originalMessage" xpathExpression="npsLk01/object/@verwerkingssoort"/>
+                <Forward name="then" path="InsertNewSubscriber" />
+                <Forward name="else" path="DeleteSubscriber" />
+            </XmlIfPipe>
+
             <!-- Insert the new subscriber into the database -->
             <!-- TODO: Map subscriber from messagestore to actual app_id -->
-            <!-- TODO: Check if entry needs to be added or removed based on 'verwerkingssoort' -->
-            <SenderPipe name="InsertNewSubscribers" getInputFromSessionKey="originalMessage">
+            <SenderPipe name="InsertNewSubscriber" getInputFromSessionKey="originalMessage">
                 <FixedQuerySender
 					name="insertPersonenSender"
 					query="INSERT INTO subscripties(bsn, app_id, begin_datum) VALUES(?,?,CURRENT_TIMESTAMP)">
+					<Param name="burgerservicenummer" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn"/>
+					<Param name="appId" sessionKey="originalMessage" xpathExpression="npsLk01/stuurgegevens/zender/organisatie"/>
+            	</FixedQuerySender>
+                <Forward name="success" path="EXIT" />
+            </SenderPipe>
+
+            <!-- Delete the subscriber from the database -->
+            <SenderPipe name="DeleteSubscriber" getInputFromSessionKey="originalMessage">
+                <FixedQuerySender
+					name="insertPersonenSender"
+					query="UPDATE subscripties SET eind_datum = CURRENT_TIMESTAMP WHERE bsn=?{burgerservicenummer} AND app_id=?{appId} AND eind_datum IS NULL">
 					<Param name="burgerservicenummer" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn"/>
 					<Param name="appId" sessionKey="originalMessage" xpathExpression="npsLk01/stuurgegevens/zender/organisatie"/>
             	</FixedQuerySender>
