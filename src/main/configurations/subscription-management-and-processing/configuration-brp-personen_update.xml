@@ -25,17 +25,17 @@
                     queryType="SELECT"
 					query="SELECT * FROM persoonsgegevens WHERE bsn=?{burgerservicenummer} ORDER BY registratie_datum DESC LIMIT 1"
 					includeFieldDefinition="false">
-					<Param name="burgerservicenummer" xpathExpression="root/burgerservicenummer"/>
+					<Param name="burgerservicenummer" sessionKey="burgerservicenummer"/>
             	</FixedQuerySender> 
                 <Forward name="success" path="PersonExists" />
             </SenderPipe>
             
             <XmlIfPipe
                 name="PersonExists"
-                xpathExpression="count(result/rowset/row) = 1"
+                xpathExpression="count(result/rowset/row) = 0"
             >
                 <Forward name="then" path="mappingStufToJson"/>
-                <Forward name="else" path="EXCEPTION"/>
+                <Forward name="else" path="mappingStufToJson"/>
             </XmlIfPipe>
 			
             <!-- <PutInSessionPipe 
@@ -58,6 +58,7 @@
 				skipEmptyTags="true"
                 >
 				<Param name="varZenderOrganisatie" xpathExpression="npsLv01/gelijk/zender/organisatie" />
+                <Param name="burgerservicenummer" sessionKey="burgerservicenummer" />
                 <Forward name="success" path="XmlToJson"/>
             </XsltPipe>
 
