@@ -47,15 +47,16 @@
             <!-- TODO: Add person if no entry was found -->
             <XmlIfPipe name="PersonExistsCheck" xpathExpression="/result/rowset/row">
                 <Forward name="then" path="CheckVerwerkingssoort" />
-                <Forward name="else" path="noPersonFoundWithGivenBsn" />
+                <Forward name="else" path="AddPersoonsgegevensRecordToDatabase" />
             </XmlIfPipe>      
 
             <!-- Add persoonsgegevens to db if none are found -->
             <!-- TODO: Send message to persoonbevragen -->
-            <!-- <SenderPipe name="AddPersoonsgegevensRecordToDatabase">
-                <IbisLocalSender name="RequestPersoonsgegevensByBsn">
+            <SenderPipe name="AddPersoonsgegevensRecordToDatabase">
+                <IbisLocalSender name="RequestPersoonsgegevensByBsn" javaListener="BrpPersonenUpdate"> 
+                    <Param name="burgerservicenummer" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn"/>
                 </IbisLocalSender>
-            </SenderPipe> -->
+            </SenderPipe>
 
             <!-- Check if a subscriber needs to be either added or removed -->
             <XmlIfPipe name="CheckVerwerkingssoort" xpathExpression="$originalMessage = 'T'">
