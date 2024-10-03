@@ -2,6 +2,10 @@
 let isDifferent = false;
 
 function compareJSONFiles(oldJSON, newJSON) {
+    // check if there is oldJSON
+    if (!oldJSON) {
+        return newJSON;
+    }
     // Read remote JSON file
     const remoteJSON = JSON.parse(oldJSON);
 
@@ -29,6 +33,7 @@ function deepCompareJSONObjects(oldJson, newJson) {
         if (key === 'type') {
             continue;
         }
+
         
         // If the key is not present in the oldJson, add it
         if (!(key in oldJson)) {
