@@ -149,30 +149,14 @@
                     name="GetSubscribersByBSNQuery" 
                     queryType="SELECT"
                     query="SELECT app_id FROM subscripties WHERE bsn=? AND eind_datum IS NULL">
-                    <Param name="burgerservicenummer" sessionKey="input" xpathExpression="root/burgerservicenummer"/>
+                    <Param name="burgerservicenummer" sessionKey="burgerservicenummer"/>
                 </FixedQuerySender>
                 <Forward name="SomewhereWhereSomethingWithAppIds" path="EXIT" />
             </SenderPipe>
 
-            <!-- <XsltPipe
-                name="filter"
-				getInputFromSessionKey="ApplicationConfig"
-                styleSheetName="xsl/app.xslt"
-                >
-				<Param name="appIds" sessionKey="appIdsXml" type="DOMDOC"/>
-                <Forward name="success" path="forloop"/>
-            </XsltPipe> -->
-
-			<!-- <ForEachChildElementPipe name="forloop"
-				elementXPathExpression="root/app">
-				<IbisLocalSender
-					name="BRP Personen callback sender"
-					javaListener="BRP Personen callback sender"
-					>
-                    <Param name="body" sessionKey="xmlbody"/>
-				</IbisLocalSender>
-				<Forward name="success" path="EXIT" />
-			</ForEachChildElementPipe> -->
+            <!-- TODO: Map application_id to callback uri's -->
+            
+            <!-- TODO: Send updated data to callback uri's  -->
 
             <ExceptionPipe name="NoUpdateFound" />
         </Pipeline>
