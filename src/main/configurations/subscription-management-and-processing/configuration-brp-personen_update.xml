@@ -151,8 +151,10 @@
                     query="SELECT app_id FROM subscripties WHERE bsn=? AND eind_datum IS NULL">
                     <Param name="burgerservicenummer" sessionKey="burgerservicenummer"/>
                 </FixedQuerySender>
-                <Forward name="SomewhereWhereSomethingWithAppIds" path="EXIT" />
+                <Forward name="success" path="EXIT" />
             </SenderPipe>
+
+            <!-- TODO: Check if notifications need to be sent -->
 
             <!-- TODO: Map application_id to callback uri's -->
             
