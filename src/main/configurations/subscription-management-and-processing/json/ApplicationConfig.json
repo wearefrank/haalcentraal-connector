@@ -1,22 +1,21 @@
 {
-    "Applications": [
+	"Applications": [
 		{
-			"appId": "application1",
+			"appId": "1",
 			"identifier": "1883",
 			"url": "https://example.com",
-			"organisatie":1883,
+			"organisatie": 1883,
 			"applicatie": "DEC_ZKN",
 			"gebruiker": "SH2102",
 			"referentienummer": "e6efdf22-891e-48fa-8d21-9f4a47ac0184",
-			"sleutelVerzendend": "LBA.00000142157" 
-
+			"sleutelVerzendend": "LBA.00000142157"
 		},
 		{
-			"appId": "application2",
+			"appId": "2",
 			"identifier": "1883",
 			"url": "https://wearefrank.nl/",
-			"organisatie":1883,
-			"applicatie": "DEC_ZKN",
+			"organisatie": 1883,
+			"applicatie": "LBA",
 			"gebruiker": "SH2102",
 			"referentienummer": "e6efdf22-891e-48fa-8d21-9f4a47ac0184",
 			"sleutelVerzendend": "LBA.00000142157" 
