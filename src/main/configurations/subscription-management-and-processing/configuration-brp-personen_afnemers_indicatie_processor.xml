@@ -2,10 +2,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
 
-	<Adapter name="brp personen afnemers indicatie processor"
+	<Adapter name="BrpPersonenAfnemersIndicatieProcessor"
 		description="brp personen afnemers indicatie processor">
 
-		<Receiver name="brp personen afnemers indicatie processor" checkForDuplicates="true" maxRetries="0" >
+		<Receiver name="BrpPersonenAfnemersIndicatieProcessorReceiver" checkForDuplicates="true" maxRetries="0" >
 			<MessageStoreListener slotId="${instance.name}/afnemersIndicatieStore" statusValueInProcess="I"/>
 		</Receiver>
 
@@ -17,14 +17,14 @@
 
             <!-- Retrieve the application configuration from the local file system -->
             <SenderPipe 
-                name="GetApplicationConfigFromLocalFS"
+                name="GetApplicationConfigFromLocalFileSystem"
                 storeResultInSessionKey="ApplicationConfig"
                 >
                 <IbisLocalSender
                     name="CallImportFromLocalFS"
-                    javaListener="ImportFromLocalFS"
+                    javaListener="ProcessFileInputListener"
                     returnedSessionKeys="Error">
-                    <Param name="FileName" value="${FilePath_1}" />
+                    <Param name="FileName" value="${applicationConfigPath}" />
                 </IbisLocalSender>
                 <Forward name="success" path="RetrieveSubscribersFromBSN"/>
                 <Forward name="exception" path="EXCEPTION" />
