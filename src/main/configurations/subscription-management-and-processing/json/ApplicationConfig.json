@@ -19,26 +19,6 @@
 			"gebruiker": "SH2102",
 			"referentienummer": "e6efdf22-891e-48fa-8d21-9f4a47ac0184",
 			"sleutelVerzendend": "LBA.00000142157" 
-		},
-		{
-			"appId": "application3",
-			"identifier": "1234",
-			"url": "https://youtube.com",
-			"organisatie":1883,
-			"applicatie": "DEC_ZKN",
-			"gebruiker": "SH2102",
-			"referentienummer": "e6efdf22-891e-48fa-8d21-9f4a47ac0184",
-			"sleutelVerzendend": "LBA.00000142158" 
-		},
-		{
-			"appId": "application4",
-			"identifier": "1234",
-			"url": "https://google.com",
-			"organisatie":1883,
-			"applicatie": "DEC_ZKN",
-			"gebruiker": "SH2102",
-			"referentienummer": "e6efdf22-891e-48fa-8d21-9f4a47ac0184",
-			"sleutelVerzendend": "LBB.00000142157" 
 		}
 	]
 }
