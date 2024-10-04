@@ -3,7 +3,7 @@
     xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
 
 	<Adapter name="BrpPersonenAfnemersIndicatieProcessor"
-		description="brp personen afnemers indicatie processor">
+		description="Link an application to a person to receive a notification when personal data changes">
 
 		<Receiver name="BrpPersonenAfnemersIndicatieProcessorReceiver" checkForDuplicates="true" maxRetries="0" >
 			<MessageStoreListener slotId="${instance.name}/afnemersIndicatieStore" statusValueInProcess="I"/>
@@ -17,41 +17,40 @@
 
             <!-- Retrieve the application configuration from the local file system -->
             <SenderPipe 
-                name="GetApplicationConfigFromLocalFileSystem"
-                storeResultInSessionKey="ApplicationConfig"
-                >
+                name="LoadApplicationConfig"
+                storeResultInSessionKey="ApplicationConfig">
                 <IbisLocalSender
-                    name="CallImportFromLocalFS"
+                    name="GetApplicationConfigFromLocalFileSystem"
                     javaListener="ProcessFileInputListener"
                     returnedSessionKeys="Error">
                     <Param name="FileName" value="${applicationConfigPath}" />
                 </IbisLocalSender>
-                <Forward name="success" path="RetrieveSubscribersFromBSN"/>
+                <Forward name="success" path="FetchPersonByBsn"/>
                 <Forward name="exception" path="EXCEPTION" />
             </SenderPipe>
 
             <!-- Retrieve the person by BSN -->
-            <SenderPipe name="RetrieveSubscribersFromBSN" storeResultInSessionKey="databaseData">
+            <SenderPipe name="FetchPersonByBsn" storeResultInSessionKey="fetchedPersonEntries">
                 <FixedQuerySender
-					name="getPersonenSender"
+					name="FetchPersonSender"
                     queryType="SELECT"
 					query="SELECT * FROM persoonsgegevens WHERE bsn=?{burgerservicenummer}"
 					includeFieldDefinition="false">
 					<Param name="burgerservicenummer" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn" type="INTEGER"/>
             	</FixedQuerySender> 
-                <Forward name="success" path="PersonExistsCheck" />
+                <Forward name="success" path="CheckIfPersonExists" />
                 <Forward name="exception" path="EXCEPTION" />
             </SenderPipe>    
 
             <!-- Check if a person was found with the given BSN -->
-            <XmlIfPipe name="PersonExistsCheck" xpathExpression="/result/rowset/row">
+            <XmlIfPipe name="CheckIfPersonExists" getInputFromSessionKey="fetchedPersonEntries" xpathExpression="/result/rowset/row">
                 <Forward name="then" path="CheckVerwerkingssoort" />
-                <Forward name="else" path="AddPersoonsgegevensRecordToDatabase" />
+                <Forward name="else" path="InsertNewPerson" />
             </XmlIfPipe>      
 
             <!-- Add persoonsgegevens to db if none are found -->
-            <SenderPipe name="AddPersoonsgegevensRecordToDatabase">
-                <IbisLocalSender name="RequestPersoonsgegevensByBsn" javaListener="BrpPersonenUpdate"> 
+            <SenderPipe name="InsertNewPerson">
+                <IbisLocalSender name="InsertNewPersonSender" javaListener="BrpPersonenUpdate"> 
                     <Param name="burgerservicenummer" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn"/>
                 </IbisLocalSender>
             </SenderPipe>
@@ -59,15 +58,15 @@
             <!-- Check if a subscriber needs to be either added or removed -->
             <XmlIfPipe name="CheckVerwerkingssoort" xpathExpression="$originalMessage = 'T'">
                 <Param name="originalMessage" sessionKey="originalMessage" xpathExpression="npsLk01/object/@verwerkingssoort"/>
-                <Forward name="then" path="InsertNewSubscriber" />
-                <Forward name="else" path="DeleteSubscriber" />
+                <Forward name="then" path="InsertNewSubscription" />
+                <Forward name="else" path="EndSubscription" />
             </XmlIfPipe>
 
             <!-- Insert the new subscriber into the database -->
             <!-- TODO: Map subscriber from messagestore to actual app_id -->
-            <SenderPipe name="InsertNewSubscriber" getInputFromSessionKey="originalMessage">
+            <SenderPipe name="InsertNewSubscription" getInputFromSessionKey="originalMessage">
                 <FixedQuerySender
-					name="insertPersonenSender"
+					name="InsertSubscriptionSender"
 					query="
                         INSERT INTO subscripties (bsn, app_id, begin_datum)
                         SELECT ?{burgerservicenummer}, ?{appId}, CURRENT_TIMESTAMP
@@ -82,22 +81,22 @@
 					<Param name="appId" sessionKey="originalMessage" xpathExpression="npsLk01/stuurgegevens/zender/organisatie"/>
             	</FixedQuerySender>
             </SenderPipe>
-            <XmlIfPipe name="NoSubscriptionAdded" xpathExpression="/result/rowsupdated = 0">
+            <XmlIfPipe name="CheckNoSubscriptionAdded" xpathExpression="/result/rowsupdated = 0">
                 <Forward name="then" path="noSubscriptionAdded" />
                 <Forward name="else" path="EXIT" />
             </XmlIfPipe>
 
             <!-- Set the end date for the specified subscription to now -->
-            <SenderPipe name="DeleteSubscriber" getInputFromSessionKey="originalMessage">
+            <SenderPipe name="EndSubscription" getInputFromSessionKey="originalMessage">
                 <FixedQuerySender
-					name="insertPersonenSender"
+					name="EndSubscriptionSender"
 					query="UPDATE subscripties SET eind_datum = CURRENT_TIMESTAMP WHERE bsn=?{burgerservicenummer} AND app_id=?{appId} AND eind_datum IS NULL">
 					<Param name="burgerservicenummer" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn"/>
 					<Param name="appId" sessionKey="originalMessage" xpathExpression="npsLk01/stuurgegevens/zender/organisatie"/>
             	</FixedQuerySender>
             </SenderPipe>
-            <XmlIfPipe name="NoSubscriptionEnded" xpathExpression="/result/rowsupdated = 0">
-                <Forward name="then" path="noSubscriptionDeleted" />
+            <XmlIfPipe name="CheckNoSubscriptionEnded" xpathExpression="/result/rowsupdated = 0">
+                <Forward name="then" path="noSubscriptionEnded" />
                 <Forward name="else" path="EXIT" />
             </XmlIfPipe>
 
@@ -105,12 +104,12 @@
             <XmlIfPipe name="noChangeException" xpathExpression="$originalMessage/npsLk01/object/@verwerkingssoort = 'T'">
                 <Param name="originalMessage" sessionKey="originalMessage" type="DOMDOC"/>
                 <Forward name="then" path="noSubscriptionAdded" />
-                <Forward name="else" path="noSubscriptionDeleted" />
+                <Forward name="else" path="noSubscriptionEnded" />
             </XmlIfPipe>
             
             <ExceptionPipe name="noPersonFoundWithGivenBsn"/>
             <ExceptionPipe name="noSubscriptionAdded"/>
-            <ExceptionPipe name="noSubscriptionDeleted"/>
+            <ExceptionPipe name="noSubscriptionEnded"/>
 		</Pipeline>
 	</Adapter>
 </Module>
