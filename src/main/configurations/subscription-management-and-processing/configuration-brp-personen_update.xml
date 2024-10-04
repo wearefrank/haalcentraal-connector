@@ -135,9 +135,9 @@
                 >
                 <IbisLocalSender
                     name="CallImportFromLocalFS"
-                    javaListener="ImportFromLocalFS"
+                    javaListener="ProcessFileInputListener"
                     returnedSessionKeys="Error">
-                    <Param name="FileName" value="${FilePath_1}" />
+                    <Param name="FileName" value="${applicationConfigPath}" />
                 </IbisLocalSender>
                 <Forward name="success" path="GetSubscribersToUpdatedPerson"/>
                 <Forward name="error" path="EXCEPTION"/>
