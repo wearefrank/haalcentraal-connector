@@ -7,12 +7,15 @@
                 name="BrpPbClientRestListener"
                 uriPattern="haalcentraal_api"
                 method="POST"
-                headerParams="X-API-KEY"
+                headerParams="Accept,Content-Type"
                 />
         </Receiver>
         <Pipeline>
             <SenderPipe getInputFromSessionKey="originalMessage" name="requestProxyPipe">
-                <IbisLocalSender javaListener="BrpPbOutwayListener"><Param name="X-API-KEY" sessionKey="headers" xpathExpression="/headers/header[@name = 'X-API-KEY']/text()"/></IbisLocalSender>
+                <IbisLocalSender javaListener="BrpPbOutwayListener">
+                    <Param name="headerAccept" sessionKey="headers" xpathExpression="/headers/header[@name = 'Accept']/text()"/>
+                    <Param name="headerContent-Type" sessionKey="headers" xpathExpression="/headers/header[@name = 'Content-Type']/text()"/>
+                </IbisLocalSender>
             </SenderPipe>
         </Pipeline>
     </Adapter>

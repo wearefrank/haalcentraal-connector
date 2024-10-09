@@ -49,17 +49,17 @@
 				<HttpSender
 					url="${haalcentraal.BRP.personen.bevragen.endpoint}/personen"
 					methodType="POST"
-					headersParams="token"
-					contentType="application/json"
-					keystore="/certs/tls.p12"
-					keystoreAlias="brp"
-					keystorePassword="Password123!">
+					headersParams="token,Accept,Content-Type"
+					parametersToSkipWhenEmpty="Accept,Content-Type"
+					contentType="application/json">
 					<Param name="token" sessionKey="token" />
+					<Param name="Accept" sessionKey="headerAccept"/>
+					<Param name="Content-Type" sessionKey="headerContent-Type"/>
 				</HttpSender>
 
 				<Forward name="success" path="Exit" />
 				<Forward name="400" path="BadRequest" />
-				<Forward name="401" path="Json2Xml" />
+				<Forward name="401" path="NotAuthorized" />
 				<Forward name="403" path="Forbidden" />
 				<Forward name="404" path="NotFound" />
 				<Forward name="406" path="NotAcceptable" />
@@ -96,10 +96,13 @@
 				<HttpSender
 					url="${haalcentraal.BRP.personen.bevragen.endpoint.proefomgeving}/personen"
 					methodType="POST"
-					headersParams="X-API-KEY"
+					headersParams="X-API-KEY,Accept,Content-Type"
+					parametersToSkipWhenEmpty="Accept,Content-Type"
 					contentType="application/json">
 <!--					<Param name="X-API-KEY" pattern="{password}" authAlias="X-API-KEY" hidden="true" />-->
 					<Param name="X-API-KEY" value="d8ZCxIm65WH7CMGYaTFZLpGgVZZOMvx3" hidden="true"/>
+					<Param name="Accept" sessionKey="headerAccept"/>
+					<Param name="Content-Type" sessionKey="headerContent-Type"/>
 				</HttpSender>
 
 				<Forward name="success" path="Exit" />
