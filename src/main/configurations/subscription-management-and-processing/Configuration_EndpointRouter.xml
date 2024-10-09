@@ -63,7 +63,7 @@
             <XmlSwitchPipe 
                 name="ForwardBySoapActionSwitch"
                 forwardNameSessionKey="LegalizedSoapAction"
-                notFoundForwardName="UnsupportedSoapActionError"
+                notFoundForwardName="storeSOAPActionError"
                 />
             
             <!-- SenderPipes -->
@@ -92,6 +92,14 @@
             <!-- SoapWrapperPipes -->
 
             <!-- ERRORS -->
+            <PutInSessionPipe name="storeSOAPActionError" onlyIfSessionKey="SOAPAction">
+                <Param name="reason" pattern="Unsupported SOAP-action. No implementation found for: {SOAPAction}" />
+             </PutInSessionPipe>
+
+             <PutInSessionPipe name="storeSOAPActionError1" unlessSessionKey="SOAPAction">
+                <Param name="reason" pattern="Unsupported SOAP-action. SOAP-action cannot be empty" />
+             </PutInSessionPipe>
+
             <XsltPipe 
                 name="UnsupportedSoapActionError"
                 getInputFromFixedValue="&lt;dummy/&gt;"
@@ -99,7 +107,7 @@
                 storeResultInSessionKey="Error">
                 <Param name="cause" sessionKey="Error" type="DOMDOC" />
                 <Param name="code" value="TechnicalError" /> <!-- codes: TechnicalError, TranslationError, ConfigurationError-->
-                <Param name="reason" pattern="Unsupported SOAP-action. No implementation found for: {SOAPAction}" ignoreUnresolvablePatternElements="true" />
+                <Param name="reason" sessionKey="reason" />
                 <!-- <Param name="details" sessionKey="" /> -->  
                 <!-- <Param name="detailsXml" type="DOMDOC" /> -->
                 <Forward name="success" path="BackEndError" />

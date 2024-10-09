@@ -1,5 +1,31 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.6.0...v1.7.0) (2024-09-27)
+
+### 🍕 Features
+
+* SoapUI test cases(SOAP requests) ([0f5f1b5](https://github.com/wearefrank/haalcentraal-connector/commit/0f5f1b591c781152587b372758eb337a3ba8422d))
+
+### 🐛 Bug Fixes
+
+* update the mapping ([2fe5730](https://github.com/wearefrank/haalcentraal-connector/commit/2fe5730b2f3d7bfed04b946a1a14e0b98dcf1c4c))
+
+## [1.6.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.5.4...v1.6.0) (2024-09-12)
+
+### 🍕 Features
+
+* extend ladybug table with soapaction column ([202b820](https://github.com/wearefrank/haalcentraal-connector/commit/202b8204943f2dc455e6cb74786a21731f07c3fa))
+
+### 🐛 Bug Fixes
+
+* SoapAction Error message ([ce1bfdb](https://github.com/wearefrank/haalcentraal-connector/commit/ce1bfdb7a6c764f080e5d8b8c259d094f8dde444))
+
+## [1.5.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.5.3...v1.5.4) (2024-09-06)
+
+### 🐛 Bug Fixes
+
+* deploy ([ab16e44](https://github.com/wearefrank/haalcentraal-connector/commit/ab16e44d42c6a7fe5d0afd5c466db4ce71178adc))
+
 ## [1.5.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.5.2...v1.5.3) (2024-09-04)
 
 ### 🐛 Bug Fixes
