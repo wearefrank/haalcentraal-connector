@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.1...v1.7.2) (2024-10-09)
+
+### 🐛 Bug Fixes
+
+* turn off console security for now ([0cbd11e](https://github.com/wearefrank/haalcentraal-connector/commit/0cbd11e148832de76cc34821cbb6f1bf71f71b34))
+
 ## [1.7.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.0...v1.7.1) (2024-10-09)
 
 ### 🐛 Bug Fixes
