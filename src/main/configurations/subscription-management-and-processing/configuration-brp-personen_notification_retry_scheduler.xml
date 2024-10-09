@@ -24,7 +24,7 @@
 			<SenderPipe name="incrementRetry">
 				<FixedQuerySender query="UPDATE IBISSTORE
 					SET label = CASE
-						WHEN label ~ '^[0-9]+$' THEN CAST(CAST(label AS INTEGER) + 1 AS VARCHAR)
+						WHEN label ~ '^[0-9]+$' AND CAST(label AS INTEGER) &lt; ${MAX_RETRIES} THEN CAST(CAST(label AS INTEGER) + 1 AS VARCHAR)
 						ELSE label
 					END
 					WHERE TYPE = 'E'">
@@ -33,7 +33,7 @@
 			</SenderPipe>
 
 			<SenderPipe name="changeType">
-				<FixedQuerySender query="UPDATE IBISSTORE SET TYPE = 'M' WHERE TYPE = 'E'">
+				<FixedQuerySender query="UPDATE IBISSTORE SET TYPE = 'M' WHERE TYPE = 'E' AND CAST(label AS INTEGER) &lt; ${MAX_RETRIES}">
 				</FixedQuerySender>
 				<Forward name="success" path="EXIT" />
 			</SenderPipe>

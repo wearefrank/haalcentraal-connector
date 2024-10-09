@@ -14,32 +14,6 @@
 				<Exit name="EXIT" state="SUCCESS" />
 			</Exits>
 
-			<SenderPipe name="GetLabelFromCurrentMessage">
-				<FixedQuerySender
-					name="GetLabelFromCurrentMessage"
-					query="SELECT LABEL FROM IBISSTORE WHERE MESSAGEID = ?{MessageID}"
-					queryType="SELECT"
-					includeFieldDefinition="false">
-					<Param name="MessageID" sessionKey="mid"/>
-				</FixedQuerySender>
-				<Forward name="success" path="RetryFlag" />
-			</SenderPipe>
-
-			<PutInSessionPipe name="RetryFlag" preserveInput="true" unlessSessionKey="retry">
-				<Param name="retry" value="false" type="BOOLEAN"/>
-				<Forward name="success" path="checkManualRetry" />
-			</PutInSessionPipe>
-
-			<XmlIfPipe name="checkManualRetry" preserveInput="true" getInputFromSessionKey="retry" expressionValue="true">
-				<Forward name="then" path="processNotifications" />
-				<Forward name="else" path="CheckLabelForMaxTries" />
-			</XmlIfPipe>
-			
-			<XmlIfPipe name="CheckLabelForMaxTries" xpathExpression="result/rowset/row/field[@name='LABEL' and @null='true'] or ${MAX_RETRIES} > result/rowset/row/field[@name='LABEL']">
-				<Forward name="then" path="processNotifications" />
-				<Forward name="else" path="echoPipe" />
-			</XmlIfPipe>
-
 			<SenderPipe name="processNotifications" getInputFromSessionKey="originalMessage">
                 <IbisLocalSender
                     name="personenUpdater"
