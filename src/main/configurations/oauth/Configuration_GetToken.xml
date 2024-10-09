@@ -1,46 +1,49 @@
-<Adapter name="GetToken">
-    <Receiver name="GetTokenReceiver">
-        <JavaListener name="GetTokenListener" returnedSessionKeys="token" />
-    </Receiver>
+<Module>
+    <SendMessageJob name="GetTokenOnStartup" interval="0" javaListener="GetTokenListener" active="${isDiginetwerk}"/>
+    <Adapter name="GetToken">
+        <Receiver name="GetTokenReceiver">
+            <JavaListener name="GetTokenListener" returnedSessionKeys="token" />
+        </Receiver>
 
-    <Pipeline>
-        <Exits>
-            <Exit name="SUCCESS" state="SUCCESS" />
-            <Exit name="ERROR" state="ERROR" />
-        </Exits>
+        <Pipeline>
+            <Exits>
+                <Exit name="SUCCESS" state="SUCCESS" />
+                <Exit name="ERROR" state="ERROR" />
+            </Exits>
 
-        <!-- Request an authorization token -->
-        <SenderPipe name="BrpAuthorizationRequest">
-            <HttpSender
-                    url="${oauth.token.url}"
-                    methodType="POST"
-                    contentType="application/x-www-form-urlencoded"
-                    postType="URLENCODED"
-                    headersParams="Accept, Content-Type, Digest, Date, TPP-Signature-Certificate, authorization"
-                    treatInputMessageAsParameters="false" />
-            <Param name="grant_type" value="client_credentials" />
-            <Param name="client_id" pattern="${oauth.client-id}" />
-            <Param name="client_secret" pattern="${oauth.client-secret}" />
-            <Param name="scope" value="${oauth.scope}" />
-            <Param name="resourceServer" value="ResourceServer01" />
-            <Param name="Accept" value="application/json" />
-            <Param name="Content-Type" value="application/x-www-form-urlencoded" />
+            <!-- Request an authorization token -->
+            <SenderPipe name="BrpAuthorizationRequest">
+                <HttpSender
+                        url="${oauth.token.url}"
+                        methodType="POST"
+                        contentType="application/x-www-form-urlencoded"
+                        postType="URLENCODED"
+                        headersParams="Accept, Content-Type, Digest, Date, TPP-Signature-Certificate, authorization"
+                        treatInputMessageAsParameters="false" />
+                <Param name="grant_type" value="client_credentials" />
+                <Param name="client_id" pattern="${oauth.client-id}" />
+                <Param name="client_secret" pattern="${oauth.client-secret}" />
+                <Param name="scope" value="${oauth.scope}" />
+                <Param name="resourceServer" value="ResourceServer01" />
+                <Param name="Accept" value="application/json" />
+                <Param name="Content-Type" value="application/x-www-form-urlencoded" />
 
-            <Forward name="400" path="ERROR" />
-            <Forward name="401" path="ERROR" />
-            <Forward name="500" path="ERROR" />
-        </SenderPipe>
+                <Forward name="400" path="ERROR" />
+                <Forward name="401" path="ERROR" />
+                <Forward name="500" path="ERROR" />
+            </SenderPipe>
 
-        <!-- Parse the response -->
-        <JsonValidatorPipe name="BrpBpTokenResponseValidator"
-                           schema="BrpBpTokenResponseValidator.json">
-            <Forward name="failure" path="ERROR" />
-        </JsonValidatorPipe>
+            <!-- Parse the response -->
+            <JsonValidatorPipe name="BrpBpTokenResponseValidator"
+                               schema="BrpBpTokenResponseValidator.json">
+                <Forward name="failure" path="ERROR" />
+            </JsonValidatorPipe>
 
-        <!-- Extract and store required data from the response -->
-        <JsonPipe name="JsonToXml" />
-        <XsltPipe name="TokenExtractor" xpathExpression="/root/access_token" storeResultInSessionKey="token" />
+            <!-- Extract and store required data from the response -->
+            <JsonPipe name="JsonToXml" />
+            <XsltPipe name="TokenExtractor" xpathExpression="/root/access_token" storeResultInSessionKey="token" />
 
-        <LocalFileSystemPipe name="WriteTokenToFile" filename="token.txt" action="write" />
-    </Pipeline>
-</Adapter>
+            <LocalFileSystemPipe name="WriteTokenToFile" filename="token.txt" action="write" />
+        </Pipeline>
+    </Adapter>
+</Module>
