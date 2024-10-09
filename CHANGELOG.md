@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.0...v1.7.1) (2024-10-09)
+
+### 🐛 Bug Fixes
+
+* remove cert for now ([d8fc762](https://github.com/wearefrank/haalcentraal-connector/commit/d8fc7624abac4d54d6912da827b2284c84c9b71d))
+
 ## [1.7.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.6.0...v1.7.0) (2024-09-27)
 
 ### 🍕 Features
