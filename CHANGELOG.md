@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.2...v1.7.3) (2024-10-10)
+
+### 🐛 Bug Fixes
+
+* temporarily change oauth url to ip ([7e83aab](https://github.com/wearefrank/haalcentraal-connector/commit/7e83aab69cc08bdff66e8aa965feb8534fbdd387))
+
 ## [1.7.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.1...v1.7.2) (2024-10-09)
 
 ### 🐛 Bug Fixes
