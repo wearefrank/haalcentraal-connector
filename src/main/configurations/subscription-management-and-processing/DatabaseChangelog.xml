@@ -75,7 +75,7 @@ TagDatabase
 	</changeSet>
 
 	<!-- ChangeSet 5: Add foreign key constraint for 'Subscripties.app_id' -->
-	<!-- TODO: FK Contraint terug toevoegen, is uitgeschakeld om te testen  -->
+	<!-- TODO: Add FK contraint when applications are stored in the database  -->
 	<!-- <changeSet id="HCC-5" author="Vincent de Gans">
 		<comment>Add foreign key constraint between 'Subscripties' and 'Applicaties' on app_id</comment>
 		<addForeignKeyConstraint baseTableName="subscripties"
