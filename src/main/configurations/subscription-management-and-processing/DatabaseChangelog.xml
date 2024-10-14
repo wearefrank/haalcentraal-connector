@@ -22,17 +22,8 @@ RenameView
 TagDatabase
  -->
 
-	<!-- ChangeSet 1: Drop the existing 'personen' table -->
-	<changeSet id="HCC-1" author="Vincent de Gans">
-		<preConditions onFail="CONTINUE">
-			<tableExists tableName="personen" />
-		</preConditions>
-		<comment>Dropping the existing 'personen' table</comment>
-		<dropTable tableName="personen" />
-	</changeSet>
-
 	<!-- ChangeSet 2: Create 'Persoonsgegevens' table -->
-	<changeSet id="HCC-2" author="Vincent de Gans">
+	<changeSet id="HCC-1" author="Vincent de Gans">
 		<comment>Create the 'Persoonsgegevens' table</comment>
 		<createTable tableName="persoonsgegevens">
 			<column name="id" type="int">
@@ -46,7 +37,7 @@ TagDatabase
 	</changeSet>
 
 	<!-- ChangeSet 3: Create 'Applicaties' table -->
-	<changeSet id="HCC-3" author="Vincent de Gans">
+	<changeSet id="HCC-2" author="Vincent de Gans">
 		<comment>Create the 'Applicaties' table</comment>
 		<createTable tableName="applicaties">
 			<column name="id" type="varchar(255)">
@@ -60,7 +51,7 @@ TagDatabase
 	</changeSet>
 
 	<!-- ChangeSet 4: Create 'Subscripties' table -->
-	<changeSet id="HCC-4" author="Vincent de Gans">
+	<changeSet id="HCC-3" author="Vincent de Gans">
 		<comment>Create the 'Subscripties' table</comment>
 		<createTable tableName="subscripties">
 			<column name="id" type="int">
@@ -76,7 +67,7 @@ TagDatabase
 
 	<!-- ChangeSet 5: Add foreign key constraint for 'Subscripties.app_id' -->
 	<!-- TODO: Add FK contraint when applications are stored in the database  -->
-	<!-- <changeSet id="HCC-5" author="Vincent de Gans">
+	<!-- <changeSet id="HCC-4" author="Vincent de Gans">
 		<comment>Add foreign key constraint between 'Subscripties' and 'Applicaties' on app_id</comment>
 		<addForeignKeyConstraint baseTableName="subscripties"
 			baseColumnNames="app_id"
