@@ -34,8 +34,8 @@
 				elementXPathExpression="root/personen"
 				getInputFromSessionKey="xmlbody">
 				<IbisLocalSender
-					name="BRP Personen query sender"
-					javaListener="BRP Personen query sender"
+					name="BrpPersonenQuerySender"
+					javaListener="BrpPersonenQuerySender"
 					returnedSessionKeys="Error">
 				</IbisLocalSender>
 				<Param name="body" sessionKey="body"/>
