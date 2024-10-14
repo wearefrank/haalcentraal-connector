@@ -1,11 +1,11 @@
 <Module 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
-	<Adapter name="BRP Personen subscribe"
+	<Adapter name="BrpPersonenSubscribe"
 		description="BRP Personen subscribe">
 
-		<Receiver name="BRP Personen subscribe">
-			<JavaListener name="BRP Personen subscribe" />
+		<Receiver name="BrpPersonenSubscribe">
+			<JavaListener name="BrpPersonenSubscribe" />
 		</Receiver>
 
 		<Pipeline>

@@ -1,11 +1,11 @@
 <Module 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
-	<Adapter name="BRP Personen callback sender"
+	<Adapter name="BrpPersonenCallbackSender"
 		description="callback sender voor brp personen">
 
-		<Receiver name="BRP Personen callback sender">
-			<JavaListener name="BRP Personen callback sender" />
+		<Receiver name="BrpPersonenCallbackSender">
+			<JavaListener name="BrpPersonenCallbackSender" />
 		</Receiver>
 
 		<Pipeline>

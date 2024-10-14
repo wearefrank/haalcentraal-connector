@@ -2,10 +2,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
 
-	<Adapter name="brp personen notification retry scheduler"
+	<Adapter name="BrpPersonenNotificationRetryScheduler"
 		description="brp personen notification retry scheduler">
 		<Receiver>
-			<JavaListener name="brp personen notification retry scheduler" />
+			<JavaListener name="BrpPersonenNotificationRetryScheduler" />
 		</Receiver>
 
 		<Pipeline>

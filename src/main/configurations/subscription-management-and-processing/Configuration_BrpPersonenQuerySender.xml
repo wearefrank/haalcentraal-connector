@@ -1,11 +1,11 @@
 <Module 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
-	<Adapter name="BRP Personen query sender"
+	<Adapter name="BrpPersonenQuerySender"
 		description="query sender voor brp personen">
 
-		<Receiver name="BRP Personen query sender">
-			<JavaListener name="BRP Personen query sender" />
+		<Receiver name="BrpPersonenQuerySender">
+			<JavaListener name="BrpPersonenQuerySender" />
 		</Receiver>
 
 		<Pipeline>

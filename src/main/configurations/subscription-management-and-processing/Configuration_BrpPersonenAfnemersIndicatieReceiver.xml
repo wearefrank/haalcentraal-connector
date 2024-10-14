@@ -1,11 +1,11 @@
 <Module 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
-	<Adapter name="brp personen afnemers indicatie receiver"
+	<Adapter name="BrpPersonenAfnemersIndicatieReceiver"
 		description="brp personen afnemers indicatie receiver">
 
-		<Receiver name="BRP Personen afnemers indicatie receiver">
-			<JavaListener name="BRP Personen afnemers indicatie receiver" />
+		<Receiver name="BrpPersonenAfnemersIndicatieReceiver">
+			<JavaListener name="BrpPersonenAfnemersIndicatieReceiver" />
 		</Receiver>
 
 		<Pipeline>
