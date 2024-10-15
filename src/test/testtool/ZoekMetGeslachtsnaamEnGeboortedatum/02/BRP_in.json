@@ -1,0 +1,16 @@
+{
+    "type": "ZoekMetGeslachtsnaamEnGeboortedatum",
+    "fields": [
+    "adressering",
+    "burgerservicenummer",
+    "geboorte",
+    "geslacht",
+    "leeftijd",
+    "naam",
+    "adresseringBinnenland"
+    ],
+    "inclusiefOverledenPersonen": false,
+    "geboortedatum": "1971-07-28",
+    "geslachtsnaam": "Schoon"
+    }
+    
