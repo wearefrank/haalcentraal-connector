@@ -1,0 +1,35 @@
+<Module 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+	<Adapter name="BrpPersonenAfnemersIndicatieReceiver"
+		description="brp personen afnemers indicatie receiver">
+
+		<Receiver name="BrpPersonenAfnemersIndicatieReceiver">
+			<JavaListener name="BrpPersonenAfnemersIndicatieReceiver" />
+		</Receiver>
+
+		<Pipeline>
+			<Exits>
+				<Exit name="EXIT" state="SUCCESS" />
+				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
+			</Exits>
+
+            <SenderPipe name="InsertNotification" getInputFromSessionKey="originalMessage">
+				<MessageStoreSender
+					slotId="${instance.name}/afnemersIndicatieStore"
+				/>
+                <Forward name="success" path="WrapBv03Response" />
+            </SenderPipe>
+
+            <SoapWrapperPipe
+				getInputFromSessionKey="originalMessage"
+                name="WrapBv03Response"
+				soapBodyStyleSheet="xsl/CreateBv03Response.xslt"
+                >
+                <Param name="Stuurgegevens" xpathExpression="/*/stuurgegevens" defaultValue="&lt;stuurgegevens/&gt;" type="DOMDOC" />
+                <Forward name="success" path="EXIT"/>
+            </SoapWrapperPipe>
+
+		</Pipeline>
+	</Adapter>
+</Module>

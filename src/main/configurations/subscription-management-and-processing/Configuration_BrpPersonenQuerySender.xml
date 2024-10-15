@@ -1,0 +1,67 @@
+<Module 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+	<Adapter name="BrpPersonenQuerySender"
+		description="query sender voor brp personen">
+
+		<Receiver name="BrpPersonenQuerySender">
+			<JavaListener name="BrpPersonenQuerySender" />
+		</Receiver>
+
+		<Pipeline>
+			<Exits>
+				<Exit name="EXIT" state="SUCCESS" />
+				<Exit name="Exception" state="ERROR"/>
+				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
+				<Exit name="NotAuthorized" state="ERROR" code="401" empty="true" />
+				<Exit name="Forbidden" state="ERROR" code="403" empty="true" />
+				<Exit name="NotFound" state="ERROR" code="404" empty="true" />
+				<Exit name="NotAcceptable" state="ERROR" code="406" empty="true" />
+				<Exit name="UnsupportedMediaType" state="ERROR" code="415" empty="true" />
+				<Exit name="TooManyRequest" state="ERROR" code="429" empty="true" />
+				<Exit name="ServerError" state="ERROR" code="500" />
+				<Exit name="ServiceUnavailable" state="ERROR" code="503" />
+			</Exits>
+
+			<SenderPipe name="BRPPersonenBevragen">
+				<IbisLocalSender name="BPRPersonenBevragen" javaListener="BrpPbClientSoapListener"
+				returnedSessionKeys="Error,body,xmlbody,MapResponse" />
+				<Forward name="success" path="BRP Personen query" />
+				<Forward name="exception" path="ErrorJsonToXml" />
+			</SenderPipe>
+
+			<!-- Add persoonsgegevens entry for each person retrieved from the BRP -->
+			<ForEachChildElementPipe name="BRP Personen query"
+				elementXPathExpression="root/personen"
+				getInputFromSessionKey="xmlbody">
+                <FixedQuerySender
+					name="insertPersonenSender"
+					query="INSERT INTO persoonsgegevens(bsn, data, registratie_datum) VALUES(?,?,CURRENT_TIMESTAMP)">
+					<Param name="burgerservicenummer" xpathExpression="personen/burgerservicenummer" type="INTEGER"/>
+					<Param name="data" sessionKey="body" type="STRING"/>
+            	</FixedQuerySender>
+				<Forward name="success" path="WrapResponse"/>
+				<Forward name="exception" path="ErrorJsonToXml" />
+			</ForEachChildElementPipe>  
+
+			<JsonPipe
+                name="ErrorJsonToXml">
+                <Forward name="success" path="buildErrorMsg" />
+            </JsonPipe>
+
+            <XsltPipe
+                name="buildErrorMsg"
+                styleSheetName="xsl/ParseNegativeHttpResult.xsl"
+                >
+                <Param name="senderPipeName" value="PostBRPPersonenBevragenTestEnv" />
+                <Forward name="success" path="Exception" />
+            </XsltPipe>  
+
+			<SoapWrapperPipe
+                name="WrapResponse" getInputFromSessionKey="MapResponse" >
+                <Forward name="success" path="EXIT"/>
+            </SoapWrapperPipe>
+
+		</Pipeline>
+	</Adapter>
+</Module>

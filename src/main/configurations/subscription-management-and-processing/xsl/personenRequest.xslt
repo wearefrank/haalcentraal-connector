@@ -4,6 +4,8 @@
     xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310">
     
     <xsl:output method="xml" indent="yes"/>
+
+    <xsl:param name="burgerservicenummer"/>
     
     <!-- Template to match the root element of the input XML -->
     <xsl:template match="/root">
@@ -24,7 +26,7 @@
             <fields>verblijfplaats</fields>
             <fields>verblijfplaatsBinnenland</fields>
             <fields>adresseringBinnenland</fields>
-            <xsl:copy-of select="burgerservicenummer"/>
+            <burgerservicenummer><xsl:value-of select="$burgerservicenummer"/></burgerservicenummer>
         </root>
     </xsl:template>
     

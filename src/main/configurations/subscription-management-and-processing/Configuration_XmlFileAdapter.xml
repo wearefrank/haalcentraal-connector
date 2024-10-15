@@ -1,0 +1,29 @@
+<Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+    <Adapter name="XmlFileAdapter">
+        <Receiver name="ReceiveFileInput">
+            <JavaListener name="ProcessFileInputListener" returnedSessionKeys="Error" />
+        </Receiver>
+
+        <Pipeline>
+            <Exits>
+                <Exit name="EXIT" state="SUCCESS"/>
+                <Exit name="JsonConversionFailed" state="ERROR"/>
+            </Exits>
+
+            <LocalFileSystemPipe name="ReadFileContent" action="read">
+                <Param name="filename" sessionKey="FileName" />
+                <Forward name="success" path="ValidateXmlWellFormedness" />
+            </LocalFileSystemPipe>
+
+            <XmlWellFormedCheckerPipe name="ValidateXmlWellFormedness">
+                <Forward name="success" path="EXIT" />
+                <Forward name="failure" path="TryConvertJsonToXml" />
+            </XmlWellFormedCheckerPipe>
+
+            <JsonPipe name="TryConvertJsonToXml">
+                <Forward name="success" path="EXIT"/>
+                <Forward name="exception" path="JsonConversionFailed"/>
+            </JsonPipe>
+        </Pipeline>
+    </Adapter>
+</Module>

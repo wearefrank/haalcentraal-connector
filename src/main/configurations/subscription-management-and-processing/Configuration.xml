@@ -1,28 +1,27 @@
 <!DOCTYPE Configuration [
-	<!ENTITY brp-personen_subscribe SYSTEM "configuration-brp-personen_subscribe.xml">
-	<!ENTITY brp-personen_update SYSTEM "configuration-brp-personen_update.xml">
-	<!ENTITY brp-personen_query_sender SYSTEM "configuration-brp-personen_query_sender.xml">
-	<!ENTITY ImportFromLocalFS SYSTEM "Configuration_ImportFromLocalFS.xml">
-	<!ENTITY brp-personen_notification_processor SYSTEM "configuration-brp-personen_notification_processor.xml">
-	<!ENTITY brp-personen_notification_receiver SYSTEM "configuration-brp-personen_notification_receiver.xml">
-	<!ENTITY brp-personen_notification_retry_scheduler SYSTEM "configuration-brp-personen_notification_retry_scheduler.xml">
-	<!ENTITY brp-personen_callback_sender SYSTEM "configuration-brp-personen_callback_sender.xml">
-	<!ENTITY EndpointRouter SYSTEM "Configuration_EndpointRouter.xml">
-	<!ENTITY brp-personen_afnemers_indicatie_processor SYSTEM "configuration-brp-personen_afnemers_indicatie_processor.xml">
-	<!ENTITY brp-personen_afnemers_indicatie_receiver SYSTEM "configuration-brp-personen_afnemers_indicatie_receiver.xml">
-	
-	]>
+    <!ENTITY BrpPersonenSubscribe SYSTEM "Configuration_BrpPersonenSubscribe.xml">
+    <!ENTITY BrpPersonenUpdate SYSTEM "Configuration_BrpPersonenUpdate.xml">
+    <!ENTITY BrpPersonenQuerySender SYSTEM "Configuration_BrpPersonenQuerySender.xml">
+    <!ENTITY XmlFileAdapter SYSTEM "Configuration_XmlFileAdapter.xml">
+    <!ENTITY BrpPersonenNotificationProcessor SYSTEM "Configuration_BrpPersonenNotificationProcessor.xml">
+    <!ENTITY BrpPersonenNotificationReceiver SYSTEM "Configuration_BrpPersonenNotificationReceiver.xml">
+    <!ENTITY BrpPersonenNotificationRetryScheduler SYSTEM "Configuration_BrpPersonenNotificationRetryScheduler.xml">
+    <!ENTITY BrpPersonenCallbackSender SYSTEM "Configuration_BrpPersonenCallbackSender.xml">
+    <!ENTITY EndpointRouter SYSTEM "Configuration_EndpointRouter.xml">
+    <!ENTITY BrpPersonenAfnemersIndicatieProcessor SYSTEM "Configuration_BrpPersonenAfnemersIndicatieProcessor.xml">
+    <!ENTITY BrpPersonenAfnemersIndicatieReceiver SYSTEM "Configuration_BrpPersonenAfnemersIndicatieReceiver.xml">
+]>
 
 <Configuration name="subscription-management-and-processing">
-	&brp-personen_subscribe;
-	&brp-personen_update;
-	&brp-personen_query_sender;
-	&ImportFromLocalFS;
-	&brp-personen_notification_processor;
-	&brp-personen_notification_receiver;
-	&brp-personen_notification_retry_scheduler;
-	&brp-personen_callback_sender;
+	&BrpPersonenSubscribe;
+	&BrpPersonenUpdate;
+	&BrpPersonenQuerySender;
+	&XmlFileAdapter;
+	&BrpPersonenNotificationProcessor;
+	&BrpPersonenNotificationReceiver;
+	&BrpPersonenNotificationRetryScheduler;
+	&BrpPersonenCallbackSender;
 	&EndpointRouter;
-	&brp-personen_afnemers_indicatie_processor;
-	&brp-personen_afnemers_indicatie_receiver;
+	&BrpPersonenAfnemersIndicatieProcessor;
+	&BrpPersonenAfnemersIndicatieReceiver;
 </Configuration>
