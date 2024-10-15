@@ -38,6 +38,7 @@
                 <Forward name="else" path="mappingStufToJson"/>
             </XmlIfPipe>
 			
+            <!-- TODO: opruimen -->
             <!-- <PutInSessionPipe 
                 name="appId">
                 <Param name="appIds" sessionKey="oldJSON" xpathExpression="result/rowset/row/field[@name='APPID']" />
