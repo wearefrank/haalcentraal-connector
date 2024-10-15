@@ -78,5 +78,3 @@ Build configuration from template:
 
 - **xsl/**  
   This directory contains XSL files for XML transformations.
-
-
