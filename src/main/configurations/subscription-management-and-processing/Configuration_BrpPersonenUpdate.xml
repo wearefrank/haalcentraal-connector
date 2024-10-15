@@ -99,17 +99,8 @@
 				</JavascriptSender>
 				<Param name="oldJSON" sessionKey="oldJSON" xpathExpression="result/rowset/row/field[@name='DATA']"/>
 				<Param name="newJSON" sessionKey="newJSON"/>
-				<Forward name="success" path="isSubset" />
+				<Forward name="success" path="InsertPersoon" />
 			</SenderPipe>
-
-            <XmlIfPipe
-                name="isSubset"
-                regex="true"
-            >
-                <!-- Changed to always insertPersoon for testing purposes -->
-                <Forward name="then" path="EXIT"/>
-                <Forward name="else" path="InsertPersoon"/>
-            </XmlIfPipe>
 
             <SenderPipe name="InsertPersoon" getInputFromSessionKey="input">
                 <FixedQuerySender
