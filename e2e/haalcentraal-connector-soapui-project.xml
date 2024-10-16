@@ -43941,21 +43941,31 @@
    </soapenv:Body>
 </soapenv:Envelope>
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="8144a047-bc6f-4594-af10-a1bd6b5e1a9b"/><con:assertion type="Schema Compliance" id="760c63db-0cc2-4386-a7d2-34f8b1214e00" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="dc210a50-a15c-4ab1-88e6-bb804b222059" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:restMockService id="ad6444b3-e753-4f03-84a1-c67ba372c0e2" port="8088" path="/" host="DESKTOP-IP56B1I" name="HC-Rest-Mockservice" docroot=""><con:settings/><con:properties><con:property><con:name>leeftijd</con:name><con:value>23</con:value></con:property><con:property><con:name>hasBeenUsed</con:name><con:value>true</con:value></con:property></con:properties><con:restMockAction name="personen" method="POST" resourcePath="/personen" id="237f8ec4-4d2b-466f-ab81-cbb9b8705417"><con:settings/><con:defaultResponse>200-leeftijd_random</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>// Match based on body&#13;
-def requestBody = mockRequest.getRequestContent()&#13;
-&#13;
-if ( requestBody.contains("555555021"))&#13;
-{&#13;
-    return "200-leeftijd_random"&#13;
-}&#13;&#13; else if(requestBody.contains("123456789")) {
-	return "200-leeftijd_switch"
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="8144a047-bc6f-4594-af10-a1bd6b5e1a9b"/><con:assertion type="Schema Compliance" id="760c63db-0cc2-4386-a7d2-34f8b1214e00" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="dc210a50-a15c-4ab1-88e6-bb804b222059" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:restMockService id="ad6444b3-e753-4f03-84a1-c67ba372c0e2" port="8088" path="/" host="localhost" name="HC-Rest-Mockservice" docroot=""><con:settings/><con:properties><con:property><con:name>leeftijd</con:name><con:value>15</con:value></con:property><con:property><con:name>hasBeenUsed</con:name><con:value>false</con:value></con:property><con:property><con:name>leeftijdRetry</con:name><con:value>-1</con:value></con:property></con:properties><con:restMockAction name="personen" method="POST" resourcePath="/personen" id="237f8ec4-4d2b-466f-ab81-cbb9b8705417"><con:settings/><con:defaultResponse>205-RESET</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>import groovy.json.JsonSlurper
+
+def requestBody = mockRequest.getRequestContent()
+
+def parsedRequestBody = new JsonSlurper().parseText(requestBody)
+
+def burgerservicenummer = parsedRequestBody.burgerservicenummer[0].toInteger()
+
+if (burgerservicenummer == 555555021) {
+    return "200-leeftijd_random"
+} else if (burgerservicenummer == 123456789) {
+    return "200-leeftijd_change_retry"
+} else if (burgerservicenummer == -1) {
+    return "205-RESET"
 } else {
-	return "200-leeftijd_same"
+    return "200-leeftijd_42"
 }
-
-
-</con:dispatchPath><con:response name="200-leeftijd_random" id="ccfcee74-c22e-4ea3-83a5-f89808948a5d" httpResponseStatus="200"><con:settings/><con:script>//Assuming that you want integer value, otherwise ignore 'as Integer' in below statement
+</con:dispatchPath><con:response name="200-leeftijd_random" id="ccfcee74-c22e-4ea3-83a5-f89808948a5d" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:script>import groovy.json.JsonSlurper
+//Assuming that you want integer value, otherwise ignore 'as Integer' in below statement
 def leeftijd = context.mockService.getPropertyValue('leeftijd') as Integer  
+
+def requestBody = mockRequest.getRequestContent()
+def parsedRequestBody = new JsonSlurper().parseText(requestBody)
+burgerservicenummer = parsedRequestBody.burgerservicenummer[0].toInteger()
+requestContext.burgerservicenummer = burgerservicenummer
 
 Random rand = new Random()
 
@@ -43969,7 +43979,7 @@ while(leeftijd == randomValue) {
 // Assign the random value to requestContext.leeftijd
 requestContext.leeftijd = randomValue
 
-context.mockService.setPropertyValue('leeftijd', "${randomValue}" )
+context.mockService.setPropertyValue('leeftijdRandom', "${randomValue}" )
 // You can optionally print or return the random value for debugging
 //log.info "Random age value: ${randomValue} and ${leeftijd}"
 </con:script><con:responseContent>{
@@ -43977,7 +43987,7 @@ context.mockService.setPropertyValue('leeftijd', "${randomValue}" )
    "personen":[
       {
          "aNummer":"3959725474",
-         "burgerservicenummer":"555555021",
+         "burgerservicenummer":"${burgerservicenummer}",
          "geslacht":{
             "code":"M",
             "omschrijving":"man"
@@ -44074,17 +44084,32 @@ context.mockService.setPropertyValue('leeftijd', "${randomValue}" )
          }
       }
    ]
-}</con:responseContent></con:response><con:response name="200-leeftijd_switch" id="ce6821b8-2f99-4ca3-95e7-7f6d1fd6bbf2" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:script>//Assuming that you want integer value, otherwise ignore 'as Integer' in below statement
-def leeftijd = context.mockService.getPropertyValue('leeftijd') as Integer  
+}</con:responseContent></con:response><con:response name="200-leeftijd_change_retry" id="ce6821b8-2f99-4ca3-95e7-7f6d1fd6bbf2" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:script>import groovy.json.JsonSlurper
+
+//Assuming that you want integer value, otherwise ignore 'as Integer' in below statement
+def leeftijd = context.mockService.getPropertyValue('leeftijdSwitch') as Integer  
 def hasBeenUsed = context.mockService.getPropertyValue('hasBeenUsed') as String  
 
 Random rand = new Random()
 def randomValue = rand.nextInt(100)
 
+def requestBody = mockRequest.getRequestContent()
+
+def parsedRequestBody = new JsonSlurper().parseText(requestBody)
+burgerservicenummer = parsedRequestBody.burgerservicenummer[0].toInteger()
+requestContext.burgerservicenummer = burgerservicenummer
+
+
+if(leeftijd == -1) {
+	randomValue = rand.nextInt(100)
+	requestContext.leeftijd = leeftijd
+   	context.mockService.setPropertyValue('hasBeenUsed', "false")
+	context.mockService.setPropertyValue('leeftijdSwitch', "${randomValue}" )
+	return
+}
+
 if(hasBeenUsed == "false") {
-	
    	context.mockService.setPropertyValue('hasBeenUsed', "true")
-    
 	requestContext.leeftijd = leeftijd
 	return
 }
@@ -44094,11 +44119,9 @@ context.mockService.setPropertyValue('hasBeenUsed', "false")
 while(leeftijd == randomValue) {
 	randomValue = rand.nextInt(100)
 }
-
 // Assign the random value to request
 requestContext.leeftijd = randomValue
-
-context.mockService.setPropertyValue('leeftijd', "${randomValue}" )
+context.mockService.setPropertyValue('leeftijdSwitch', "${randomValue}" )
 // You can optionally print or return the random value for debugging
 //log.info "Random age value: ${randomValue} and ${leeftijd}"
 </con:script><con:responseContent>{
@@ -44106,7 +44129,7 @@ context.mockService.setPropertyValue('leeftijd', "${randomValue}" )
    "personen":[
       {
          "aNummer":"3959725474",
-         "burgerservicenummer":"555555021",
+         "burgerservicenummer":"${burgerservicenummer}",
          "geslacht":{
             "code":"M",
             "omschrijving":"man"
@@ -44203,20 +44226,22 @@ context.mockService.setPropertyValue('leeftijd', "${randomValue}" )
          }
       }
    ]
-}</con:responseContent></con:response><con:response name="200-leeftijd_same" id="cb0ef442-f315-44e9-9c7b-f505e2543829" httpResponseStatus="200"><con:settings/><con:script>//Assuming that you want integer value, otherwise ignore 'as Integer' in below statement
-def leeftijd = context.mockService.getPropertyValue('leeftijd') as Integer  
-	
-requestContext.leeftijd = leeftijd</con:script><con:responseContent>{
+}</con:responseContent></con:response><con:response name="200-leeftijd_42" id="cb0ef442-f315-44e9-9c7b-f505e2543829" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:script>import groovy.json.JsonSlurper
+
+def requestBody = mockRequest.getRequestContent()
+def parsedRequestBody = new JsonSlurper().parseText(requestBody)
+burgerservicenummer = parsedRequestBody.burgerservicenummer[0].toInteger()
+requestContext.burgerservicenummer = burgerservicenummer</con:script><con:responseContent>{
    "type":"RaadpleegMetBurgerservicenummer",
    "personen":[
       {
          "aNummer":"3959725474",
-         "burgerservicenummer":"555555021",
+         "burgerservicenummer":"${burgerservicenummer}",
          "geslacht":{
             "code":"M",
             "omschrijving":"man"
          },
-         "leeftijd":"${leeftijd}",
+         "leeftijd":"42",
          "naam":{
             "aanduidingNaamgebruik":{
                "code":"E",
@@ -44308,4 +44333,6 @@ requestContext.leeftijd = leeftijd</con:script><con:responseContent>{
          }
       }
    ]
-}</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
+}</con:responseContent></con:response><con:response name="205-RESET" id="77283039-2f62-497b-be0b-8da3b82c96ae" httpResponseStatus="205"><con:settings/><con:script>
+context.mockService.setPropertyValue('hasBeenUsed', "false")
+context.mockService.setPropertyValue('leeftijdSwitch', "-1" )</con:script><con:responseContent/></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
