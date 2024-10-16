@@ -3,7 +3,7 @@
 		{
 			"appId": "1",
 			"identifier": "1883",
-			"url": "https://example.com",
+			"url": "https://httpbin.org/anything",
 			"organisatie": 1883,
 			"applicatie": "DEC_ZKN",
 			"gebruiker": "SH2102",

@@ -48,7 +48,7 @@
 					methodType="POST"
 					contentType="application/xml">
 				</HttpSender>
-                <Param name="url" sessionKey="originalMessage" xpathExpression="app/url"/>
+                <Param name="url" sessionKey="originalMessage" xpathExpression="url"/>
                 <Forward name="success" path="echoPipe"/>
                 <Forward name="exception" path="EXCEPTION"/>
             </SenderPipe>

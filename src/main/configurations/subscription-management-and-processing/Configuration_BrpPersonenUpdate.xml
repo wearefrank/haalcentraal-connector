@@ -25,7 +25,7 @@
                     queryType="SELECT"
 					query="SELECT * FROM persoonsgegevens WHERE bsn=?{burgerservicenummer} ORDER BY registratie_datum DESC LIMIT 1"
 					includeFieldDefinition="false">
-					<Param name="burgerservicenummer" sessionKey="burgerservicenummer"/>
+					<Param name="burgerservicenummer" xpathExpression="root/burgerservicenummer"/>
             	</FixedQuerySender> 
                 <Forward name="success" path="mappingStufToJson" />
             </SenderPipe>
@@ -37,7 +37,7 @@
 				skipEmptyTags="true"
                 >
 				<Param name="varZenderOrganisatie" xpathExpression="npsLv01/gelijk/zender/organisatie" />
-                <Param name="burgerservicenummer" sessionKey="burgerservicenummer" />
+                <Param name="burgerservicenummer" xpathExpression="root/burgerservicenummer"/>
                 <Forward name="success" path="XmlToJson"/>
             </XsltPipe>
 
@@ -85,8 +85,8 @@
                 <FixedQuerySender
 					name="insertPersonenSender"
 					query="INSERT INTO persoonsgegevens(bsn, data, registratie_datum) VALUES(?,?,CURRENT_TIMESTAMP)">
-					<Param name="burgerservicenummer" sessionKey="burgerservicenummer"/>
-					<Param name="data" sessionKey="json"/>
+					<Param name="burgerservicenummer" xpathExpression="root/burgerservicenummer"/>
+					<Param name="data" sessionKey="newJSON"/>
             	</FixedQuerySender>
                 <Forward name="success" path="jsonToXml" />
             </SenderPipe>
@@ -113,15 +113,38 @@
             </SenderPipe>
 
             <!-- Retrieve all subscribers to the given bsn -->
-            <SenderPipe name="GetSubscribersToUpdatedPerson">
+            <SenderPipe name="GetSubscribersToUpdatedPerson" storeResultInSessionKey="subscribers" getInputFromSessionKey="input">
                 <FixedQuerySender 
                     name="GetSubscribersByBSNQuery" 
                     queryType="SELECT"
-                    query="SELECT app_id FROM subscripties WHERE bsn=? AND eind_datum IS NULL">
-                    <Param name="burgerservicenummer" sessionKey="burgerservicenummer"/>
+                    query="SELECT app_id FROM subscripties WHERE bsn=? AND eind_datum IS NULL"
+                    includeFieldDefinition="false">
+                    <Param name="burgerservicenummer" xpathExpression="root/burgerservicenummer"/>
                 </FixedQuerySender>
-                <Forward name="success" path="EXIT" />
+                <Forward name="success" path="FilterApplications" />
             </SenderPipe>
+            
+            <XsltPipe
+                name="FilterApplications"
+                styleSheetName="xsl/app.xslt"
+                getInputFromSessionKey="ApplicationConfig"
+                storeResultInSessionKey="callBackUrls"
+                >
+                <Param name="subscribedAppids" sessionKey="subscribers" type="DOMDOC"/>
+                <Forward name="success" path="forloop" />
+            </XsltPipe>
+
+            <!-- for each subscribed applications call it's callback url -->
+			<ForEachChildElementPipe name="forloop"
+                elementXPathExpression="root/Applications/url">
+                <IbisLocalSender
+                    name="BRP Personen callback sender"
+                    javaListener="BrpPersonenCallbackSender"
+                    >
+                    <Param name="body" sessionKey="xmlbody"/>
+                </IbisLocalSender>
+                <Forward name="success" path="EXIT" />
+            </ForEachChildElementPipe>
 
             <!-- TODO: Check if notifications need to be sent -->
 
