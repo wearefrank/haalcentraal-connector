@@ -1,0 +1,30 @@
+{
+    "type": "RaadpleegMetBurgerservicenummer",
+    "fields": [
+        "burgerservicenummer",
+        "aNummer",
+        "adressering",
+        "datumInschrijvingInGemeente",
+        "geboorte",
+        "gemeenteVanInschrijving",
+        "geslacht",
+        "leeftijd",
+        "naam",
+        "nationaliteiten",
+        "overlijden",
+        "verblijfplaats",
+        "verblijfplaatsBinnenland",
+        "adresseringBinnenland",
+        "datumEersteInschrijvingGBA",
+        "immigratie",
+        "indicatieGezagMinderjarige",
+        "verblijfstitel",
+        "europeesKiesrecht",
+        "partners.naam.geslachtsnaam",
+        "partners.naam.voorvoegsel"
+    ],
+    "gemeenteVanInschrijving": "0518",
+    "burgerservicenummer": [
+        "999991243"
+    ]
+}

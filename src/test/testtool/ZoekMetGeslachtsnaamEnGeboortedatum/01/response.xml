@@ -1,0 +1,77 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+	<soapenv:Body>
+		<BG:npsLa01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310"
+			xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:gml="http://www.opengis.net/gml"
+			xmlns:str="http://exslt.org/strings" xmlns:w="http://schemas.xmlsoap.org/wsdl/"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<BG:stuurgegevens>
+				<StUF:berichtcode>La01</StUF:berichtcode>
+				<StUF:zender>
+					<StUF:organisatie>NEDGR</StUF:organisatie>
+					<StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
+					<StUF:administratie>SH2102</StUF:administratie>
+					<StUF:gebruiker>SH2102</StUF:gebruiker>
+				</StUF:zender>
+				<StUF:ontvanger>
+					<StUF:organisatie>0518</StUF:organisatie>
+					<StUF:applicatie>DEC_ZKN</StUF:applicatie>
+					<StUF:administratie />
+					<StUF:gebruiker>SH2102</StUF:gebruiker>
+				</StUF:ontvanger>
+				<StUF:tijdstipBericht>20241015062256607</StUF:tijdstipBericht>
+				<StUF:crossRefnummer>60c50a8f-d08c-483c-be67-2ab1a6bb9224</StUF:crossRefnummer>
+				<StUF:entiteittype>NPS</StUF:entiteittype>
+			</BG:stuurgegevens>
+			<BG:parameters>
+				<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+				<StUF:indicatorAfnemerIndicatie>false</StUF:indicatorAfnemerIndicatie>
+				<StUF:aantalVoorkomens>1</StUF:aantalVoorkomens>
+			</BG:parameters>
+			<BG:antwoord>
+				<BG:object StUF:entiteittype="NPS">
+					<BG:inp.bsn>999992703</BG:inp.bsn>
+					<BG:sub.typering xsi:nil="true" StUF:noValue="waardeOnbekend" />
+					<BG:inp.a-nummer xsi:nil="true" StUF:noValue="waardeOnbekend" />
+					<BG:geslachtsnaam>Rafi</BG:geslachtsnaam>
+					<BG:voorvoegselGeslachtsnaam>El</BG:voorvoegselGeslachtsnaam>
+					<BG:voorletters>M.</BG:voorletters>
+					<BG:voornamen>Mohamed</BG:voornamen>
+					<BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend" />
+					<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend" />
+					<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend" />
+					<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend" />
+					<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend" />
+					<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="waardeOnbekend" />
+					<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
+					<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+					<BG:geboortedatum>19490228</BG:geboortedatum>
+					<BG:inp.geboorteplaats xsi:nil="true" StUF:noValue="waardeOnbekend" />
+					<BG:inp.geboorteLand xsi:nil="true" StUF:noValue="waardeOnbekend" />
+					<BG:overlijdensdatum xsi:nil="true" StUF:noValue="waardeOnbekend" />
+					<BG:inp.verblijftIn StUF:entiteittype="NPSTGO" xsi:nil="true"
+						StUF:noValue="nietGeautoriseerd" />
+					<BG:sub.verblijfBuitenland>
+						<BG:lnd.landcode xsi:nil="true" StUF:noValue="waardeOnbekend" />
+						<BG:lnd.landnaam xsi:nil="true" StUF:noValue="waardeOnbekend" />
+					</BG:sub.verblijfBuitenland>
+					<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
+					<BG:sub.faxnummer xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
+					<BG:sub.emailadres xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
+					<BG:sub.url xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
+					<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
+					<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
+					<BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend" />
+					<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
+					<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="waardeOnbekend" />
+					<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="waardeOnbekend" />
+					<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
+					<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
+					<BG:ing.indicatieGezagMinderjarige xsi:nil="true"
+						StUF:noValue="nietGeautoriseerd" />
+					<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
+					<BG:ing.indicatieBlokkering xsi:nil="true" StUF:noValue="waardeOnbekend" />
+				</BG:object>
+			</BG:antwoord>
+		</BG:npsLa01>
+	</soapenv:Body>
+</soapenv:Envelope>

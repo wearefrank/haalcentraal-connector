@@ -1,0 +1,30 @@
+{
+    "type": "ZoekMetGeslachtsnaamEnGeboortedatum",
+    "personen": [
+        {
+            "burgerservicenummer": "999993215",
+            "geboorte": {
+                "datum": {
+                    "type": "Datum",
+                    "datum": "1971-07-28",
+                    "langFormaat": "28 juli 1971"
+                }
+            },
+            "geslacht": {
+                "code": "M",
+                "omschrijving": "man"
+            },
+            "leeftijd": 53,
+            "naam": {
+                "voornamen": "Bernard",
+                "geslachtsnaam": "Schoon",
+                "voorletters": "B.",
+                "volledigeNaam": "Bernard Schoon"
+            },
+            "adressering": {
+                "adresregel1": "Polderweg 92",
+                "adresregel2": "1093 KP AMSTERDAM"
+            }
+        }
+    ]
+}
