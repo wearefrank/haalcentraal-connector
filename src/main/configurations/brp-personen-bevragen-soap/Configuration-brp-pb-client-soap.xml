@@ -69,6 +69,7 @@
 			<XsltPipe name="mappingStufToJson" getInputFromSessionKey="originalMessage"
 				styleSheetName="xsl/mappingStufToJson.xslt">
 				<Param name="varZenderOrganisatie" sessionKey="varZenderOrganisatie" />
+				<Param name="gemeenteVanInschrijving" sessionKey="gemeenteVanInschrijving" />
 				<Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
 				<Param name="inclusiefOverledenPersonen" value="${inclusiefOverledenPersonen}" />
 				<Param name="fields" sessionKey="fields" type="DOMDOC" />
