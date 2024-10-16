@@ -1,10 +1,9 @@
 <databaseChangeLog
 	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd">
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd">
 
-<!-- When using one of the following commands, a rollback script is not required
+	<!-- When using one of the following commands, a rollback script is not required
 AddColumn
 AddDefaultValue
 AddForeignKeyConstraint
@@ -23,13 +22,57 @@ RenameView
 TagDatabase
  -->
 
+	<!-- ChangeSet 2: Create 'Persoonsgegevens' table -->
 	<changeSet id="HCC-1" author="Vincent de Gans">
-		<comment>Add personen table to database</comment>
-		<createTable tableName="personen">
-			<column name="burgerservicenummer" type="java.sql.Types.INTEGER"/>
-			<column name="body" type="text"/>
-			<column name="appid" type="text"/>
-            <column name="date" type="java.sql.Types.TIMESTAMP"/>
+		<comment>Create the 'Persoonsgegevens' table</comment>
+		<createTable tableName="persoonsgegevens">
+			<column name="id" type="int">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="bsn" type="int" />
+			<column name="data" type="text" />
+			<column name="registratie_datum" type="datetime" />
+		</createTable>
+		<addAutoIncrement tableName="persoonsgegevens" columnName="id" />
+	</changeSet>
+
+	<!-- ChangeSet 3: Create 'Applicaties' table -->
+	<changeSet id="HCC-2" author="Vincent de Gans">
+		<comment>Create the 'Applicaties' table</comment>
+		<createTable tableName="applicaties">
+			<column name="id" type="varchar(255)">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="naam" type="varchar(255)" />
+			<column name="organisatie" type="varchar(255)" />
+			<column name="callback_url" type="varchar(2048)" />
+			<column name="sleutel_verzendend" type="text" />
 		</createTable>
 	</changeSet>
+
+	<!-- ChangeSet 4: Create 'Subscripties' table -->
+	<changeSet id="HCC-3" author="Vincent de Gans">
+		<comment>Create the 'Subscripties' table</comment>
+		<createTable tableName="subscripties">
+			<column name="id" type="int">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="bsn" type="int" />
+			<column name="app_id" type="varchar(255)" />
+			<column name="begin_datum" type="datetime" />
+			<column name="eind_datum" type="datetime" />
+		</createTable>
+		<addAutoIncrement tableName="subscripties" columnName="id" />
+	</changeSet>
+
+	<!-- ChangeSet 5: Add foreign key constraint for 'Subscripties.app_id' -->
+	<!-- TODO: Add FK contraint when applications are stored in the database  -->
+	<!-- <changeSet id="HCC-4" author="Vincent de Gans">
+		<comment>Add foreign key constraint between 'Subscripties' and 'Applicaties' on app_id</comment>
+		<addForeignKeyConstraint baseTableName="subscripties"
+			baseColumnNames="app_id"
+			referencedTableName="applicaties"
+			referencedColumnNames="id"
+			constraintName="fk_subscripties_app_id" />
+	</changeSet> -->
 </databaseChangeLog>

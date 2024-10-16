@@ -1,11 +1,11 @@
 <Module 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
-	<Adapter name="BRP Personen query sender"
+	<Adapter name="BrpPersonenQuerySender"
 		description="query sender voor brp personen">
 
-		<Receiver name="BRP Personen query sender">
-			<JavaListener name="BRP Personen query sender" />
+		<Receiver name="BrpPersonenQuerySender">
+			<JavaListener name="BrpPersonenQuerySender" />
 		</Receiver>
 
 		<Pipeline>
@@ -26,18 +26,19 @@
 			<SenderPipe name="BRPPersonenBevragen">
 				<IbisLocalSender name="BPRPersonenBevragen" javaListener="BrpPbClientSoapListener"
 				returnedSessionKeys="Error,body,xmlbody,MapResponse" />
-				<Forward name="success" path="WrapResponse" />
+				<Forward name="success" path="BRP Personen query" />
 				<Forward name="exception" path="ErrorJsonToXml" />
 			</SenderPipe>
 
+			<!-- Add persoonsgegevens entry for each person retrieved from the BRP -->
 			<ForEachChildElementPipe name="BRP Personen query"
 				elementXPathExpression="root/personen"
 				getInputFromSessionKey="xmlbody">
                 <FixedQuerySender
 					name="insertPersonenSender"
-					query="INSERT INTO personen VALUES(?,?,'{}',CURRENT_TIMESTAMP)">
+					query="INSERT INTO persoonsgegevens(bsn, data, registratie_datum) VALUES(?,?,CURRENT_TIMESTAMP)">
 					<Param name="burgerservicenummer" xpathExpression="personen/burgerservicenummer" type="INTEGER"/>
-					<Param name="body" sessionKey="body"/>
+					<Param name="data" sessionKey="body" type="STRING"/>
             	</FixedQuerySender>
 				<Forward name="success" path="WrapResponse"/>
 				<Forward name="exception" path="ErrorJsonToXml" />
