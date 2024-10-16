@@ -1,5 +1,41 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.5...v1.7.6) (2024-10-15)
+
+### 🐛 Bug Fixes
+
+* restore oauth url ([bb207ed](https://github.com/wearefrank/haalcentraal-connector/commit/bb207ede805880ad8b1a374ba100cb279da8f820))
+
+## [1.7.5](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.4...v1.7.5) (2024-10-15)
+
+### 🐛 Bug Fixes
+
+* Merge pull request [#40](https://github.com/wearefrank/haalcentraal-connector/issues/40) from wearefrank/version-bump ([00e306d](https://github.com/wearefrank/haalcentraal-connector/commit/00e306d873c33f9024cc3cd98e3f23efd136e302))
+
+## [1.7.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.3...v1.7.4) (2024-10-10)
+
+### 🐛 Bug Fixes
+
+* oauth url ([bc4e424](https://github.com/wearefrank/haalcentraal-connector/commit/bc4e42446a8ba1e0b944179dc1a090d6b6b2ca85))
+
+## [1.7.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.2...v1.7.3) (2024-10-10)
+
+### 🐛 Bug Fixes
+
+* temporarily change oauth url to ip ([7e83aab](https://github.com/wearefrank/haalcentraal-connector/commit/7e83aab69cc08bdff66e8aa965feb8534fbdd387))
+
+## [1.7.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.1...v1.7.2) (2024-10-09)
+
+### 🐛 Bug Fixes
+
+* turn off console security for now ([0cbd11e](https://github.com/wearefrank/haalcentraal-connector/commit/0cbd11e148832de76cc34821cbb6f1bf71f71b34))
+
+## [1.7.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.0...v1.7.1) (2024-10-09)
+
+### 🐛 Bug Fixes
+
+* remove cert for now ([d8fc762](https://github.com/wearefrank/haalcentraal-connector/commit/d8fc7624abac4d54d6912da827b2284c84c9b71d))
+
 ## [1.7.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.6.0...v1.7.0) (2024-09-27)
 
 ### 🍕 Features

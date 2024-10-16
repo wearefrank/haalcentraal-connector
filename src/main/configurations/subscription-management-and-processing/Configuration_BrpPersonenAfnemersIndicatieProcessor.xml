@@ -79,7 +79,6 @@
             </XmlIfPipe>
 
             <!-- Insert the new subscriber into the database -->
-            <!-- TODO: Map subscriber from messagestore to actual app_id -->
             <SenderPipe name="InsertNewSubscription" getInputFromSessionKey="originalMessage">
                 <FixedQuerySender
                     name="InsertSubscriptionSender"

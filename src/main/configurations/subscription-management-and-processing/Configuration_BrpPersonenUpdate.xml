@@ -121,7 +121,6 @@
                 <Forward name="success" path="jsonToXml" />
             </SenderPipe>
 
-            <!-- TODO: Get subscribers and send notification -->
 			<JsonPipe
                 name="jsonToXml"
 				getInputFromSessionKey="json"

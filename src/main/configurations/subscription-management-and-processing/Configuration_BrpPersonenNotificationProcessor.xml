@@ -2,10 +2,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
 
-	<Adapter name="brp personen notification processor"
+	<Adapter name="BrpPersonenNotificationProcessor"
 		description="brp personen notification processor">
 
-		<Receiver name="brp personen notification processor" checkForDuplicates="true" maxRetries="0" >
+		<Receiver name="BrpPersonenNotificationProcessor" checkForDuplicates="true" maxRetries="0" >
 			<MessageStoreListener slotId="${instance.name}/notificationStore" statusValueInProcess="I"/>
 		</Receiver>
 
