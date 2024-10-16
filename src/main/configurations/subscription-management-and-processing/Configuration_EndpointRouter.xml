@@ -70,8 +70,8 @@
             <SenderPipe
                 name="http:__www.egem.nl_StUF_sector_bg_0310_npsLk01">
                 <IbisLocalSender
-                    name="BRP Personen afnemers indicatie receiver"
-                    javaListener="BRP Personen afnemers indicatie receiver"
+                    name="BrpPersonenAfnemersIndicatieReceiver"
+                    javaListener="BrpPersonenAfnemersIndicatieReceiver"
                     returnedSessionKeys="Error">
                 </IbisLocalSender>
                 <Forward name="success" path="EXIT" />
@@ -81,8 +81,8 @@
             <SenderPipe
                 name="http:__www.egem.nl_StUF_sector_bg_0310_npsLv01">
                 <IbisLocalSender
-                    name="BRP Personen query sender"
-                    javaListener="BRP Personen query sender"
+                    name="BrpPersonenQuerySender"
+                    javaListener="BrpPersonenQuerySender"
                     returnedSessionKeys="Error">
                 </IbisLocalSender>
                 <Forward name="success" path="EXIT" />

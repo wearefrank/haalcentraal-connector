@@ -1,0 +1,65 @@
+<Module 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+	<Adapter name="BrpPersonenSubscribe"
+		description="BRP Personen subscribe">
+
+		<Receiver name="BrpPersonenSubscribe">
+			<JavaListener name="BrpPersonenSubscribe" />
+		</Receiver>
+
+		<Pipeline>
+			<Exits>
+				<Exit name="Exit" state="SUCCESS" />
+				<Exit name="Exception" state="ERROR" />
+				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
+				<Exit name="NotAuthorized" state="ERROR" code="401" empty="true" />
+				<Exit name="Forbidden" state="ERROR" code="403" empty="true" />
+				<Exit name="NotFound" state="ERROR" code="404" empty="true" />
+				<Exit name="NotAcceptable" state="ERROR" code="406" empty="true" />
+				<Exit name="UnsupportedMediaType" state="ERROR" code="415" empty="true" />
+				<Exit name="TooManyRequest" state="ERROR" code="429" empty="true" />
+				<Exit name="ServerError" state="ERROR" code="500" />
+				<Exit name="ServiceUnavailable" state="ERROR" code="503" />
+			</Exits>
+			
+            <SenderPipe name="BRPPersonenBevragen">
+				<IbisLocalSender name="BPRPersonenBevragen" javaListener="BrpPbClientSoapListener"
+				returnedSessionKeys="xmlbody,body,MapResponse" />
+				<Forward name="success" path="BRP Personen query"/>
+				<Forward name="exception" path="ErrorJsonToXml" />
+			</SenderPipe>
+
+			<ForEachChildElementPipe name="BRP Personen query"
+				elementXPathExpression="root/personen"
+				getInputFromSessionKey="xmlbody">
+				<IbisLocalSender
+					name="BrpPersonenQuerySender"
+					javaListener="BrpPersonenQuerySender"
+					returnedSessionKeys="Error">
+				</IbisLocalSender>
+				<Param name="body" sessionKey="body"/>
+				<Forward name="success" path="Response"/>
+				<Forward name="exception" path="ErrorJsonToXml" />
+			</ForEachChildElementPipe>  
+
+			<JsonPipe
+                name="ErrorJsonToXml">
+                <Forward name="success" path="buildErrorMsg" />
+            </JsonPipe>
+
+            <XsltPipe
+                name="buildErrorMsg"
+                styleSheetName="xsl/ParseNegativeHttpResult.xsl"
+                >
+                <Param name="senderPipeName" value="PostBRPPersonenBevragenTestEnv" />
+                <Forward name="success" path="Exception" />
+            </XsltPipe>
+			
+            <EchoPipe name="Response" getInputFromSessionKey="MapResponse">
+				<Forward name="success" path="Exit" />
+			</EchoPipe>
+
+		</Pipeline>
+	</Adapter>
+</Module>

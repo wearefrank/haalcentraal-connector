@@ -1,5 +1,17 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.5...v1.7.6) (2024-10-15)
+
+### 🐛 Bug Fixes
+
+* restore oauth url ([bb207ed](https://github.com/wearefrank/haalcentraal-connector/commit/bb207ede805880ad8b1a374ba100cb279da8f820))
+
+## [1.7.5](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.4...v1.7.5) (2024-10-15)
+
+### 🐛 Bug Fixes
+
+* Merge pull request [#40](https://github.com/wearefrank/haalcentraal-connector/issues/40) from wearefrank/version-bump ([00e306d](https://github.com/wearefrank/haalcentraal-connector/commit/00e306d873c33f9024cc3cd98e3f23efd136e302))
+
 ## [1.7.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.3...v1.7.4) (2024-10-10)
 
 ### 🐛 Bug Fixes
