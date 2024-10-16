@@ -3,6 +3,7 @@
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
     <xsl:param name="varZenderOrganisatie" />
     <xsl:param name="varZenderApplicatie" />
+    <xsl:param name="gemeenteVanInschrijving" />
     <xsl:param name="inclusiefOverledenPersonen" />
     <xsl:param name="fields" as="node()?" />
     <xsl:template match="/">
@@ -51,10 +52,10 @@
                         </xsl:when>
                     </xsl:choose>
                     <xsl:choose>
-                        <xsl:when test="$varZenderOrganisatie !=''">
+                        <xsl:when test="$gemeenteVanInschrijving !=''">
                             <gemeenteVanInschrijving>
                                 <xsl:value-of
-                                    select="$varZenderOrganisatie" />
+                                    select="$gemeenteVanInschrijving" />
                             </gemeenteVanInschrijving>
                         </xsl:when>
                         <xsl:otherwise></xsl:otherwise>
@@ -86,10 +87,10 @@
                         </fields>
                     </xsl:for-each>
             <xsl:choose>
-                        <xsl:when test="$varZenderOrganisatie !=''">
+                        <xsl:when test="$gemeenteVanInschrijving !=''">
                             <gemeenteVanInschrijving>
                                 <xsl:value-of
-                                    select="$varZenderOrganisatie" />
+                                    select="$gemeenteVanInschrijving" />
                             </gemeenteVanInschrijving>
                         </xsl:when>
                         <xsl:otherwise></xsl:otherwise>
@@ -140,7 +141,7 @@
                 <xsl:when
                     test="((boolean(//*[contains(name(),'geslachtsnaam')]/text())) and
                         (boolean(//*[contains(name(),'voornamen')]/text())) and
-                        ($varZenderOrganisatie !='') and
+                        ($gemeenteVanInschrijving !='') and
                         (boolean(//*[contains(name(),'woonplaatsNaam')]/text())))">
                     <type>ZoekMetNaamEnGemeenteVanInschrijving</type>
                     <xsl:for-each
@@ -150,10 +151,10 @@
                         </fields>
                     </xsl:for-each>
                     <xsl:choose>
-                        <xsl:when test="$varZenderOrganisatie !=''">
+                        <xsl:when test="$gemeenteVanInschrijving !=''">
                             <gemeenteVanInschrijving>
                                 <xsl:value-of
-                                    select="$varZenderOrganisatie" />
+                                    select="$gemeenteVanInschrijving" />
                             </gemeenteVanInschrijving>
                         </xsl:when>
                         <xsl:otherwise></xsl:otherwise>
@@ -201,10 +202,10 @@
                         </fields>
                     </xsl:for-each>
                     <xsl:choose>
-                        <xsl:when test="$varZenderOrganisatie !=''">
+                        <xsl:when test="$gemeenteVanInschrijving !=''">
                             <gemeenteVanInschrijving>
                                 <xsl:value-of
-                                    select="$varZenderOrganisatie" />
+                                    select="$gemeenteVanInschrijving" />
                             </gemeenteVanInschrijving>
                         </xsl:when>
                         <xsl:otherwise></xsl:otherwise>
@@ -242,7 +243,7 @@
                 <xsl:when
                     test="((boolean(//*[contains(name(),'straatnaam')]/text())) and
                         (boolean(//*[contains(name(),'woonplaatsNaam')]/text())) and
-                        ($varZenderOrganisatie !='') and
+                        ($gemeenteVanInschrijving !='') and
                         (boolean(//*[contains(name(),'huisnummer')]/text())))">
                     <type>ZoekMetStraatHuisnummerEnGemeenteVanInschrijving</type>
                     <xsl:for-each
@@ -252,10 +253,10 @@
                         </fields>
                     </xsl:for-each>
                     <xsl:choose>
-                        <xsl:when test="$varZenderOrganisatie !=''">
+                        <xsl:when test="$gemeenteVanInschrijving !=''">
                             <gemeenteVanInschrijving>
                                 <xsl:value-of
-                                    select="$varZenderOrganisatie" />
+                                    select="$gemeenteVanInschrijving" />
                             </gemeenteVanInschrijving>
                         </xsl:when>
                         <xsl:otherwise></xsl:otherwise>
