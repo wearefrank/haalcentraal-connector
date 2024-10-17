@@ -71,8 +71,7 @@
             <SenderPipe name="InsertPersoon" preserveInput="true">
                 <FixedQuerySender
 					name="insertPersonenSender"
-					query="INSERT INTO persoonsgegevens(bsn, data, registratie_datum) VALUES(?{bsn},?{data},CURRENT_TIMESTAMP)
-						ON DUPLICATE KEY UPDATE data=?{data}">
+					query="INSERT INTO persoonsgegevens(bsn, data, registratie_datum) VALUES(?,?,CURRENT_TIMESTAMP)">
 					<Param name="bsn" sessionKey="burgerservicenummer"/>
 					<Param name="data" sessionKey="json"/>
             	</FixedQuerySender>
