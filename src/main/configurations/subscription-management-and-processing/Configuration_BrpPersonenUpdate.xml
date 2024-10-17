@@ -17,7 +17,7 @@
 
             <JsonPipe name="JsonToXmlInput"/>
 
-            <SenderPipe name="GetPersoon" storeResultInSessionKey="oldJSON">
+            <SenderPipe name="GetPersoonOldJson" storeResultInSessionKey="oldJSON">
                 <FixedQuerySender
 					name="getPersonenSender"
                     queryType="SELECT"
@@ -27,22 +27,30 @@
             	</FixedQuerySender>
             </SenderPipe>
 
-            <XsltPipe
-                name="CreateRequest"
+            <XsltPipe name="CreateRequest"
                 styleSheetName="xsl/personenRequest.xslt"
 				skipEmptyTags="true">
                 <Param name="burgerservicenummer" sessionKey="burgerservicenummer" />
             </XsltPipe>
 
-            <JsonPipe name="xml2json" direction="XML2JSON"/>
+			<!--We need to use json2xmlvalidator here to make sure burgerservicenummer becomes an array in json-->
+			<Json2XmlValidatorPipe
+					name="XmlToJson"
+					root="root"
+					schema="xsd/checkInput.xsd"
+					outputFormat="JSON"
+					compactJsonArrays="false"
+					storeResultInSessionKey="storeInput"
+					throwException="true">
+			</Json2XmlValidatorPipe>
 
 			<SenderPipe name="GetPersoon" storeResultInSessionKey="newJSON">
                 <IbisLocalSender name="GetPersoonSender" javaListener="BrpPbOutwayListener"/>
-				<Forward name="success" path="json2xml" />
+				<Forward name="success" path="persoonOld2xml" />
 				<Forward name="exception" path="BADREQUEST" />
 			</SenderPipe>
 
-            <JsonPipe name="json2xml"/>
+            <JsonPipe name="persoonOld2xml"/>
             
             <PutInSessionPipe 
                 name="storeBsnInSession">
@@ -70,7 +78,7 @@
             	</FixedQuerySender>
             </SenderPipe>
 
-			<JsonPipe name="json2xml"/>
+			<JsonPipe name="persoonNew2xml"/>
 
             <SenderPipe name="GetApplicationConfigFromLocalFS"
                 storeResultInSessionKey="ApplicationConfig"
