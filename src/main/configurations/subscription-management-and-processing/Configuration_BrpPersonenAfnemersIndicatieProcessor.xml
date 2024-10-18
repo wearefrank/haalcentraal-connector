@@ -64,7 +64,7 @@
 
             <!-- Add persoonsgegevens to db if none are found -->
             <SenderPipe name="InsertNewPerson">
-                <IbisLocalSender name="InsertNewPersonSender" javaListener="BrpPersonenUpdate">
+                <IbisLocalSender name="InsertNewPersonSender" javaListener="BrpPersonenUpdateAndNotify">
                     <Param name="burgerservicenummer" sessionKey="originalMessage"
                         xpathExpression="npsLk01/object/inp.bsn" />
                 </IbisLocalSender>

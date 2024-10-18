@@ -1,0 +1,61 @@
+<Module
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../FrankConfig.xsd"> 
+	<Adapter name="BrpPersonenUpdateAndNotify"
+		description="BrpPersonenUpdateAndNotify">
+
+		<Receiver name="BrpPersonenUpdateAndNotify">
+			<JavaListener name="BrpPersonenUpdateAndNotify" />
+		</Receiver>
+
+        <Pipeline>
+			<Exits>
+				<Exit name="EXIT" state="SUCCESS" code="200"/>
+				<Exit name="EXCEPTION" state="ERROR" code="500"/>
+				<Exit name="BADREQUEST" state="ERROR" code="400" />
+			</Exits>
+
+			<SenderPipe name="BRPPersonenSynchronizePersoon">
+				<IbisLocalSender name="BRPPersonenSynchronizePersoon" javaListener="BRPPersonenSynchronizePersoon">
+					<Param name="burgerservicenummer" sessionKey="burgerservicenummer"/>
+				</IbisLocalSender>
+				<Forward name="success" path=""/>
+				<Forward name="exception" path="Error" />
+			</SenderPipe>
+
+			<JsonPipe name="persoonNew2xml"/>
+
+            <SenderPipe name="GetApplicationConfigFromLocalFS"
+                storeResultInSessionKey="ApplicationConfig"
+            >
+                <IbisLocalSender
+                    name="CallImportFromLocalFS"
+                    javaListener="ProcessFileInputListener"
+                    returnedSessionKeys="Error">
+                    <Param name="FileName" value="${applicationConfigPath}" />
+                </IbisLocalSender>
+                <Forward name="success" path="GetSubscribersForUpdatedPerson"/>
+                <Forward name="error" path="EXCEPTION"/>
+            </SenderPipe>
+
+            <!-- Retrieve all subscribers to the given bsn -->
+            <SenderPipe name="GetSubscribersForUpdatedPerson">
+                <FixedQuerySender 
+                    name="GetSubscribersByBsnQuery"
+                    queryType="SELECT"
+                    query="SELECT app_id FROM subscripties WHERE bsn=? AND eind_datum IS NULL">
+                    <Param name="burgerservicenummer" sessionKey="burgerservicenummer"/>
+                </FixedQuerySender>
+                <Forward name="success" path="EXIT" />
+            </SenderPipe>
+
+            <!-- TODO: Check if notifications need to be sent -->
+
+            <!-- TODO: Map application_id to callback uri's -->
+            
+            <!-- TODO: Send updated data to callback uri's  -->
+
+            <ExceptionPipe name="NoUpdateFound" />
+        </Pipeline>
+    </Adapter>
+</Module>
