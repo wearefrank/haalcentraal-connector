@@ -1,0 +1,221 @@
+{
+    "type": "RaadpleegMetBurgerservicenummer",
+    "personen": [
+        {
+            "aNummer": "3461805105",
+            "burgerservicenummer": "999993628",
+            "datumEersteInschrijvingGBA": {
+                "type": "Datum",
+                "datum": "1994-09-30",
+                "langFormaat": "30 september 1994"
+            },
+            "geslacht": {
+                "code": "V",
+                "omschrijving": "vrouw"
+            },
+            "leeftijd": 123,
+            "naam": {
+                "aanduidingNaamgebruik": {
+                    "code": "V",
+                    "omschrijving": "geslachtsnaam echtgenoot/geregistreerd partner voor eigen geslachtsnaam"
+                },
+                "voornamen": "Geertje",
+                "geslachtsnaam": "Huijgen",
+                "voorletters": "G.",
+                "volledigeNaam": "Geertje Huijgen"
+            },
+            "nationaliteiten": [
+                {
+                    "type": "Nationaliteit",
+                    "datumIngangGeldigheid": {
+                        "type": "Datum",
+                        "datum": "1901-06-13",
+                        "langFormaat": "13 juni 1901"
+                    },
+                    "nationaliteit": {
+                        "code": "0001",
+                        "omschrijving": "Nederlandse"
+                    },
+                    "redenOpname": {
+                        "code": "001",
+                        "omschrijving": "Wet op het Nederlanderschap 1892, art.1, lid 1a"
+                    }
+                }
+            ],
+            "geboorte": {
+                "land": {
+                    "code": "6030",
+                    "omschrijving": "Nederland"
+                },
+                "plaats": {
+                    "code": "1088",
+                    "omschrijving": "Huisseling en Neerloon"
+                },
+                "datum": {
+                    "type": "Datum",
+                    "datum": "1901-06-13",
+                    "langFormaat": "13 juni 1901"
+                }
+            },
+            "verblijfplaats": {
+                "type": "Adres",
+                "verblijfadres": {
+                    "officieleStraatnaam": "Nieuwe Parklaan",
+                    "korteStraatnaam": "Nieuwe Parklaan",
+                    "huisnummer": 58,
+                    "postcode": "2597LD",
+                    "woonplaats": "'s-Gravenhage"
+                },
+                "functieAdres": {
+                    "code": "W",
+                    "omschrijving": "woonadres"
+                },
+                "adresseerbaarObjectIdentificatie": "0518013530058001",
+                "nummeraanduidingIdentificatie": "0518203530058001",
+                "datumVan": {
+                    "type": "Datum",
+                    "datum": "2004-04-04",
+                    "langFormaat": "4 april 2004"
+                },
+                "datumIngangGeldigheid": {
+                    "type": "Datum",
+                    "datum": "2009-11-01",
+                    "langFormaat": "1 november 2009"
+                }
+            },
+            "immigratie": {},
+            "gemeenteVanInschrijving": {
+                "code": "0518",
+                "omschrijving": "'s-Gravenhage"
+            },
+            "datumInschrijvingInGemeente": {
+                "type": "Datum",
+                "datum": "2004-04-04",
+                "langFormaat": "4 april 2004"
+            },
+            "adressering": {
+                "aanhef": "Geachte mevrouw Kierkegaard-Huijgen",
+                "aanschrijfwijze": {
+                    "naam": "G. Kierkegaard-Huijgen"
+                },
+                "gebruikInLopendeTekst": "mevrouw Kierkegaard-Huijgen",
+                "adresregel1": "Nieuwe Parklaan 58",
+                "adresregel2": "2597 LD 'S-GRAVENHAGE"
+            },
+            "ouders": [
+                {
+                    "geslacht": {
+                        "code": "V",
+                        "omschrijving": "vrouw"
+                    },
+                    "ouderAanduiding": "1",
+                    "datumIngangFamilierechtelijkeBetrekking": {
+                        "type": "Datum",
+                        "datum": "1901-06-13",
+                        "langFormaat": "13 juni 1901"
+                    },
+                    "naam": {
+                        "voornamen": "Gertruda",
+                        "geslachtsnaam": "Jansen",
+                        "voorletters": "G."
+                    },
+                    "geboorte": {
+                        "land": {
+                            "code": "6030",
+                            "omschrijving": "Nederland"
+                        },
+                        "plaats": {
+                            "code": "1088",
+                            "omschrijving": "Huisseling en Neerloon"
+                        },
+                        "datum": {
+                            "type": "Datum",
+                            "datum": "1878-02-21",
+                            "langFormaat": "21 februari 1878"
+                        }
+                    }
+                },
+                {
+                    "geslacht": {
+                        "code": "M",
+                        "omschrijving": "man"
+                    },
+                    "ouderAanduiding": "2",
+                    "datumIngangFamilierechtelijkeBetrekking": {
+                        "type": "Datum",
+                        "datum": "1901-06-13",
+                        "langFormaat": "13 juni 1901"
+                    },
+                    "naam": {
+                        "voornamen": "Jaap Jan",
+                        "geslachtsnaam": "Huijgen",
+                        "voorletters": "J.J."
+                    },
+                    "geboorte": {
+                        "land": {
+                            "code": "6030",
+                            "omschrijving": "Nederland"
+                        },
+                        "plaats": {
+                            "code": "1088",
+                            "omschrijving": "Huisseling en Neerloon"
+                        },
+                        "datum": {
+                            "type": "Datum",
+                            "datum": "1874-08-24",
+                            "langFormaat": "24 augustus 1874"
+                        }
+                    }
+                }
+            ],
+            "partners": [
+                {
+                    "burgerservicenummer": "999993859",
+                    "geslacht": {
+                        "code": "M",
+                        "omschrijving": "man"
+                    },
+                    "soortVerbintenis": {
+                        "code": "H",
+                        "omschrijving": "huwelijk"
+                    },
+                    "naam": {
+                        "voornamen": "Carolus Engelbertus Christianus",
+                        "geslachtsnaam": "Kierkegaard",
+                        "voorletters": "C.E.C."
+                    },
+                    "geboorte": {
+                        "land": {
+                            "code": "6030",
+                            "omschrijving": "Nederland"
+                        },
+                        "plaats": {
+                            "code": "1088",
+                            "omschrijving": "Huisseling en Neerloon"
+                        },
+                        "datum": {
+                            "type": "Datum",
+                            "datum": "1900-06-30",
+                            "langFormaat": "30 juni 1900"
+                        }
+                    },
+                    "aangaanHuwelijkPartnerschap": {
+                        "datum": {
+                            "type": "Datum",
+                            "datum": "1920-04-03",
+                            "langFormaat": "3 april 1920"
+                        },
+                        "land": {
+                            "code": "6030",
+                            "omschrijving": "Nederland"
+                        },
+                        "plaats": {
+                            "code": "1088",
+                            "omschrijving": "Huisseling en Neerloon"
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

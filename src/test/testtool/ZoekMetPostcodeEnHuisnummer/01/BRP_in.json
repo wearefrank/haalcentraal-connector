@@ -1,0 +1,15 @@
+{
+    "type": "ZoekMetPostcodeEnHuisnummer",
+    "fields": [
+        "adressering",
+        "burgerservicenummer",
+        "geboorte",
+        "geslacht",
+        "leeftijd",
+        "naam",
+        "adresseringBinnenland"
+    ],
+    "inclusiefOverledenPersonen": false,
+    "huisnummer": 132,
+    "postcode": "2584BZ"
+}
