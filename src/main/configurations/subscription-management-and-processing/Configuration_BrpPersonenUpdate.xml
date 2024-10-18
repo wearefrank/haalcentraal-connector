@@ -27,29 +27,8 @@
 					includeFieldDefinition="false">
 					<Param name="burgerservicenummer" sessionKey="burgerservicenummer"/>
             	</FixedQuerySender> 
-                <Forward name="success" path="PersonExists" />
-            </SenderPipe>
-            
-            <XmlIfPipe
-                name="PersonExists"
-                xpathExpression="count(result/rowset/row) = 0"
-            >
-                <Forward name="then" path="mappingStufToJson"/>
-                <Forward name="else" path="mappingStufToJson"/>
-            </XmlIfPipe>
-			
-            <!-- <PutInSessionPipe 
-                name="appId">
-                <Param name="appIds" sessionKey="oldJSON" xpathExpression="result/rowset/row/field[@name='APPID']" />
-                <Forward name="success" path="appToXml" />
-            </PutInSessionPipe> -->
-
-			<!-- <JsonPipe
-                name="appToXml"
-				getInputFromSessionKey="appIds"
-                storeResultInSessionKey="appIdsXml">
                 <Forward name="success" path="mappingStufToJson" />
-            </JsonPipe>	 -->
+            </SenderPipe>
 
             <XsltPipe
                 name="mappingStufToJson"
@@ -99,17 +78,8 @@
 				</JavascriptSender>
 				<Param name="oldJSON" sessionKey="oldJSON" xpathExpression="result/rowset/row/field[@name='DATA']"/>
 				<Param name="newJSON" sessionKey="newJSON"/>
-				<Forward name="success" path="isSubset" />
+				<Forward name="success" path="InsertPersoon" />
 			</SenderPipe>
-
-            <XmlIfPipe
-                name="isSubset"
-                regex="true"
-            >
-                <!-- Changed to always insertPersoon for testing purposes -->
-                <Forward name="then" path="EXIT"/>
-                <Forward name="else" path="InsertPersoon"/>
-            </XmlIfPipe>
 
             <SenderPipe name="InsertPersoon" getInputFromSessionKey="input">
                 <FixedQuerySender
