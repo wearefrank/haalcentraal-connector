@@ -88,6 +88,8 @@
 				<IbisLocalSender name="BPRPersonenBevragen"
 					javaListener="BrpPbOutwayListener"
 					returnedSessionKeys="Error" />
+					<Param name="gemeenteVanInschrijving" sessionKey="gemeenteVanInschrijving" defaultValue="${gemeenteVanInschrijving}" />
+                    <Param name="SOAPAction" sessionKey="SOAPAction" />
 				<Forward name="success" path="JsonToXml" />
 				<Forward name="exception" path="Exception" />
 			</SenderPipe>
