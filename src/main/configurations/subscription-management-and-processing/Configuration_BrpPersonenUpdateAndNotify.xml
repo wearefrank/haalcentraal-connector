@@ -15,8 +15,8 @@
 				<Exit name="BADREQUEST" state="ERROR" code="400" />
 			</Exits>
 
-			<SenderPipe name="BRPPersonenSynchronizePersoon">
-				<IbisLocalSender name="BRPPersonenSynchronizePersoon" javaListener="BRPPersonenSynchronizePersoon">
+			<SenderPipe name="BrpPersonenSynchronizePersoon">
+				<IbisLocalSender name="BrpPersonenSynchronizePersoon" javaListener="BrpPersonenSynchronizePersoon">
 					<Param name="burgerservicenummer" sessionKey="burgerservicenummer"/>
 				</IbisLocalSender>
 				<Forward name="success" path=""/>
