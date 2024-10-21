@@ -70,7 +70,7 @@ Build configuration from template:
   Properties specific to the LOC stage.
 
 - **json/**  
-  - `JsonValidatorSchema.json`
+  - `DataChangeNotificationSchema.json`
   - `MappingApplication.json` Contains hardcoded information about applications which are allowed to subscribe to persons.
 
 - **xsd/**  
