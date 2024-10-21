@@ -42887,6 +42887,178 @@
          </ns:object>\r
       </ns:npsLk01>\r
    </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="6027d46e-e077-46eb-bc1a-fd27033fb946"/><con:assertion type="Schema Compliance" id="3176a154-011d-4f12-be43-2721b39f423f"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="2f49681f-2392-4f4a-a2e2-870cfd26f326"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="07943a4c-1bc4-47f2-9c5d-a9a143eb4961" name="TestSuite Retry"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="1bc5ded7-154f-446d-9c53-6f392f78550b" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:settings/><con:testStep type="properties" name="properties" id="44dd9f62-0e74-4a46-9734-bfee8538563f"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>notification_id</con:name><con:value>131</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="httprequest" name="ResetMockservice" id="9d53e8f9-b8bc-438d-8626-306ccfc61b94"><con:settings/><con:config method="POST" xsi:type="con:HttpRequest" id="5b7e6973-1ec8-45dc-844d-ccf069ac9e63" name="ResetMockservice" postQueryString="false" mediaType="application/json" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8088/personen</con:endpoint><con:request>{
+	"burgerservicenummer" : [-1]
+}</con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:config></con:testStep><con:testStep type="request" name="AddPersonRecord" id="650c64bb-4500-4c1e-939e-74d5f78d14e8"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="AddPersonRecord" id="cbf9e543-f4fa-4bb6-ab8a-f219b717dd10"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <BG:stuurgegevens>
+            <StUF:berichtcode>Lv01</StUF:berichtcode>
+            <StUF:zender>
+               <StUF:organisatie>0518</StUF:organisatie>
+               <StUF:applicatie>DEC_ZKN</StUF:applicatie>
+               <StUF:gebruiker>SH2102</StUF:gebruiker>
+            </StUF:zender>
+            <StUF:ontvanger>
+               <StUF:organisatie>NEDGR</StUF:organisatie>
+               <StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
+            </StUF:ontvanger>
+            <StUF:referentienummer>e6efdf22-891e-48fa-8d21-9f4a47ac0184</StUF:referentienummer>
+            <StUF:tijdstipBericht>20240507132441526</StUF:tijdstipBericht>
+            <StUF:entiteittype>NPS</StUF:entiteittype>
+         </BG:stuurgegevens>
+         <BG:parameters>
+            <StUF:sortering>1</StUF:sortering>
+            <StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+            <StUF:maximumAantal>50</StUF:maximumAantal>
+            <StUF:indicatorAantal>true</StUF:indicatorAantal>
+         </BG:parameters>
+         <BG:gelijk StUF:entiteittype="NPS">
+            <BG:inp.bsn>123456789</BG:inp.bsn>
+         </BG:gelijk>
+         <BG:scope>
+            <BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="" StUF:sleutelGegevensbeheer="">
+               <BG:inp.bsn xsi:nil="true"/>
+               <BG:sub.typering xsi:nil="true"/>
+               <BG:inp.a-nummer xsi:nil="true"/>
+               <BG:geslachtsnaam xsi:nil="true"/>
+               <BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+               <BG:voorletters xsi:nil="true"/>
+               <BG:voornamen xsi:nil="true"/>
+               <BG:aanduidingNaamgebruik xsi:nil="true"/>
+               <BG:geslachtsnaamPartner xsi:nil="true"/>
+               <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+               <BG:aanhefAanschrijving xsi:nil="true"/>
+               <BG:voornamenAanschrijving xsi:nil="true"/>
+               <BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+               <BG:adellijkeTitelPredikaat xsi:nil="true"/>
+               <BG:geslachtsaanduiding xsi:nil="true"/>
+               <BG:geboortedatum xsi:nil="true"/>
+               <BG:inp.geboorteplaats xsi:nil="true"/>
+               <BG:inp.geboorteLand xsi:nil="true"/>
+               <BG:overlijdensdatum xsi:nil="true"/>
+               <BG:verblijfsadres>
+                  <BG:aoa.identificatie xsi:nil="true"/>
+                  <BG:wpl.identificatie xsi:nil="true"/>
+                  <BG:wpl.woonplaatsNaam xsi:nil="true"/>
+                  <BG:aoa.woonplaatsWaarinGelegen>
+                     <BG:wpl.identificatie xsi:nil="true"/>
+                     <BG:wpl.woonplaatsNaam xsi:nil="true"/>
+                  </BG:aoa.woonplaatsWaarinGelegen>
+                  <BG:gor.identificatie xsi:nil="true"/>
+                  <BG:opr.identificatie xsi:nil="true"/>
+                  <BG:gor.openbareRuimteNaam xsi:nil="true"/>
+                  <BG:gor.straatnaam xsi:nil="true"/>
+                  <BG:aoa.postcode xsi:nil="true"/>
+                  <BG:aoa.huisnummer xsi:nil="true"/>
+                  <BG:aoa.huisletter xsi:nil="true"/>
+                  <BG:aoa.huisnummertoevoeging xsi:nil="true"/>
+                  <BG:inp.locatiebeschrijving xsi:nil="true"/>
+                  <BG:begindatumVerblijf xsi:nil="true"/>
+               </BG:verblijfsadres>
+               <BG:sub.verblijfBuitenland>
+                  <BG:lnd.landcode xsi:nil="true"/>
+                  <BG:lnd.landnaam xsi:nil="true"/>
+                  <BG:sub.adresBuitenland1 xsi:nil="true"/>
+                  <BG:sub.adresBuitenland2 xsi:nil="true"/>
+                  <BG:sub.adresBuitenland3 xsi:nil="true"/>
+               </BG:sub.verblijfBuitenland>
+               <BG:sub.correspondentieAdres>
+                  <BG:typering xsi:nil="true"/>
+                  <BG:wpl.woonplaatsNaam xsi:nil="true"/>
+                  <BG:aoa.woonplaatsWaarinGelegen>
+                     <BG:wpl.identificatie xsi:nil="true"/>
+                     <BG:wpl.woonplaatsNaam xsi:nil="true"/>
+                  </BG:aoa.woonplaatsWaarinGelegen>
+                  <BG:postcode xsi:nil="true"/>
+                  <BG:aoa.identificatie xsi:nil="true"/>
+                  <BG:wpl.identificatie xsi:nil="true"/>
+                  <BG:opr.identificatie xsi:nil="true"/>
+                  <BG:gor.openbareRuimteNaam xsi:nil="true"/>
+                  <BG:gor.straatnaam xsi:nil="true"/>
+                  <BG:aoa.huisnummer xsi:nil="true"/>
+                  <BG:aoa.huisletter xsi:nil="true"/>
+                  <BG:aoa.huisnummertoevoeging xsi:nil="true"/>
+                  <BG:sub.postadresType xsi:nil="true"/>
+                  <BG:sub.postadresNummer xsi:nil="true"/>
+               </BG:sub.correspondentieAdres>
+               <BG:sub.telefoonnummer xsi:nil="true"/>
+               <BG:sub.faxnummer xsi:nil="true"/>
+               <BG:sub.emailadres xsi:nil="true"/>
+               <BG:sub.url xsi:nil="true"/>
+               <BG:sub.rekeningnummerBankGiro xsi:nil="true"/>
+               <BG:inp.burgerlijkeStaat xsi:nil="true"/>
+               <BG:inp.gemeenteVanInschrijving xsi:nil="true"/>
+               <BG:inp.datumInschrijving xsi:nil="true"/>
+               <BG:vbt.aanduidingVerblijfstitel xsi:nil="true"/>
+               <BG:inp.datumVestigingInNederland xsi:nil="true"/>
+               <BG:inp.immigratieLand xsi:nil="true"/>
+               <BG:inp.datumVertrekUitNederland xsi:nil="true"/>
+               <BG:inp.emigratieLand xsi:nil="true"/>
+               <BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+               <BG:inp.indicatieGeheim xsi:nil="true"/>
+               <BG:ing.indicatieBlokkering xsi:nil="true"/>
+            </BG:object>
+         </BG:scope>
+      </BG:npsLv01>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="8360dc45-38d6-4735-a2e3-851bbe57efab"/><con:assertion type="Schema Compliance" id="778991fb-e7e6-4448-a0be-5aefec813ee5"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="cf6911e2-f17d-4548-9998-d5cd9c1a7f5e"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="afnemersIndicatieT" id="617576be-5d90-45c7-a235-ae526dc2be35"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPOntvangAsynchroon</con:interface><con:operation>npsLk01</con:operation><con:request name="afnemersIndicatieT" id="daa6df36-a0ad-439b-8d9d-bbd8ae3a0f3b"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:npsLk01 xmlns:stuf="http://www.egem.nl/StUF/StUF0301">\r
+         <ns:stuurgegevens>\r
+            <stuf:berichtcode>Lk01</stuf:berichtcode>\r
+            <stuf:zender>\r
+               <stuf:organisatie>1883</stuf:organisatie>\r
+               <stuf:applicatie>LBA</stuf:applicatie>\r
+            </stuf:zender>\r
+            <stuf:ontvanger>\r
+               <stuf:organisatie>NEDGR</stuf:organisatie>\r
+               <stuf:applicatie>NEDMAG_VnA</stuf:applicatie>\r
+            </stuf:ontvanger>\r
+            <stuf:referentienummer>66960c945cc6</stuf:referentienummer>\r
+            <stuf:tijdstipBericht>2024071608005200</stuf:tijdstipBericht>\r
+            <stuf:entiteittype>NPS</stuf:entiteittype>\r
+         </ns:stuurgegevens>\r
+         <ns:parameters>\r
+            <stuf:mutatiesoort>T</stuf:mutatiesoort>\r
+            <stuf:indicatorOvername>V</stuf:indicatorOvername>\r
+         </ns:parameters>\r
+         <ns:object stuf:entiteittype="NPS" stuf:sleutelVerzendend="LBA.00000142157" stuf:verwerkingssoort="T">\r
+            <ns:inp.bsn>123456789</ns:inp.bsn>\r
+         </ns:object>\r
+      </ns:npsLk01>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="6027d46e-e077-46eb-bc1a-fd27033fb946"/><con:assertion type="Schema Compliance" id="3176a154-011d-4f12-be43-2721b39f423f"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="2f49681f-2392-4f4a-a2e2-870cfd26f326"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="httprequest" name="postRequest" id="d0aefc5a-3e43-4cd8-a9f3-ea357bf248de"><con:settings/><con:config method="POST" xsi:type="con:HttpRequest" id="5b7e6973-1ec8-45dc-844d-ccf069ac9e63" name="postRequest" postQueryString="false" mediaType="application/json" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080/api/webhooks_brp</con:endpoint><con:request>{
+	"burgerservicenummer" : 123456789
+}</con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:config></con:testStep><con:testStep type="transfer" name="GetNotificationId" id="434c1959-9ba6-44b2-95e9-80acd423577e"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>notification_id</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>postRequest</con:sourceStep><con:sourcePath>//id</con:sourcePath><con:targetType>notification_id</con:targetType><con:targetStep>properties</con:targetStep><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="httprequest" name="ManualRetrySchedulerRequest" id="c3507f7d-5d52-4e0e-95be-b7278125568b"><con:settings/><con:config method="POST" xsi:type="con:HttpRequest" id="5b7e6973-1ec8-45dc-844d-ccf069ac9e63" name="ManualRetrySchedulerRequest" postQueryString="false" mediaType="application/xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080/api/retry</con:endpoint><con:request>${properties#notification_id}</con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:config></con:testStep><con:testStep type="request" name="afnemersIndicatieV" id="bbce2636-18d7-4eea-99f3-68f43e4fb75c"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPOntvangAsynchroon</con:interface><con:operation>npsLk01</con:operation><con:request name="afnemersIndicatieV" id="daa6df36-a0ad-439b-8d9d-bbd8ae3a0f3b"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:npsLk01 xmlns:stuf="http://www.egem.nl/StUF/StUF0301">\r
+         <ns:stuurgegevens>\r
+            <stuf:berichtcode>Lk01</stuf:berichtcode>\r
+            <stuf:zender>\r
+               <stuf:organisatie>1883</stuf:organisatie>\r
+               <stuf:applicatie>LBA</stuf:applicatie>\r
+            </stuf:zender>\r
+            <stuf:ontvanger>\r
+               <stuf:organisatie>NEDGR</stuf:organisatie>\r
+               <stuf:applicatie>NEDMAG_VnA</stuf:applicatie>\r
+            </stuf:ontvanger>\r
+            <stuf:referentienummer>66960c945cc6</stuf:referentienummer>\r
+            <stuf:tijdstipBericht>2024071608005200</stuf:tijdstipBericht>\r
+            <stuf:entiteittype>NPS</stuf:entiteittype>\r
+         </ns:stuurgegevens>\r
+         <ns:parameters>\r
+            <stuf:mutatiesoort>T</stuf:mutatiesoort>\r
+            <stuf:indicatorOvername>V</stuf:indicatorOvername>\r
+         </ns:parameters>\r
+         <ns:object stuf:entiteittype="NPS" stuf:sleutelVerzendend="LBA.00000142157" stuf:verwerkingssoort="V">\r
+            <ns:inp.bsn>123456789</ns:inp.bsn>\r
+         </ns:object>\r
+      </ns:npsLk01>\r
+   </soapenv:Body>\r
 </soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="6027d46e-e077-46eb-bc1a-fd27033fb946"/><con:assertion type="Schema Compliance" id="3176a154-011d-4f12-be43-2721b39f423f"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="2f49681f-2392-4f4a-a2e2-870cfd26f326"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="4c04cae3-49d2-47b8-a2f4-00830bb2a00e" name="RaadpleegMetBurgerservicenummer"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="da9eb0e3-c379-4de6-891d-a70406df7c9c" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:settings/><con:testStep type="request" name="Decos request" id="64789418-cdd2-4974-8cea-c4c3a3114f51"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="Decos request" id="7cb775a1-19c7-452a-be4a-6280f1d5d440"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml">
    <soapenv:Header/>
    <soapenv:Body>
@@ -43941,7 +44113,7 @@
    </soapenv:Body>
 </soapenv:Envelope>
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="8144a047-bc6f-4594-af10-a1bd6b5e1a9b"/><con:assertion type="Schema Compliance" id="760c63db-0cc2-4386-a7d2-34f8b1214e00" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="dc210a50-a15c-4ab1-88e6-bb804b222059" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:restMockService id="ad6444b3-e753-4f03-84a1-c67ba372c0e2" port="8088" path="/" host="localhost" name="HC-Rest-Mockservice" docroot=""><con:settings/><con:properties><con:property><con:name>leeftijd</con:name><con:value>15</con:value></con:property><con:property><con:name>hasBeenUsed</con:name><con:value>false</con:value></con:property><con:property><con:name>leeftijdRetry</con:name><con:value>-1</con:value></con:property></con:properties><con:restMockAction name="personen" method="POST" resourcePath="/personen" id="237f8ec4-4d2b-466f-ab81-cbb9b8705417"><con:settings/><con:defaultResponse>205-RESET</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>import groovy.json.JsonSlurper
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="8144a047-bc6f-4594-af10-a1bd6b5e1a9b"/><con:assertion type="Schema Compliance" id="760c63db-0cc2-4386-a7d2-34f8b1214e00" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="dc210a50-a15c-4ab1-88e6-bb804b222059" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:restMockService id="ad6444b3-e753-4f03-84a1-c67ba372c0e2" port="8088" path="/" host="localhost" name="HC-Rest-Mockservice" docroot=""><con:settings/><con:properties><con:property><con:name>leeftijd</con:name><con:value>15</con:value></con:property><con:property><con:name>hasBeenUsed</con:name><con:value>false</con:value></con:property><con:property><con:name>leeftijdRetry</con:name><con:value>-1</con:value></con:property><con:property><con:name>leeftijdRandom</con:name><con:value>53</con:value></con:property></con:properties><con:restMockAction name="personen" method="POST" resourcePath="/personen" id="237f8ec4-4d2b-466f-ab81-cbb9b8705417"><con:settings/><con:defaultResponse>205-RESET</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>import groovy.json.JsonSlurper
 
 def requestBody = mockRequest.getRequestContent()
 
@@ -44087,7 +44259,7 @@ context.mockService.setPropertyValue('leeftijdRandom', "${randomValue}" )
 }</con:responseContent></con:response><con:response name="200-leeftijd_change_retry" id="ce6821b8-2f99-4ca3-95e7-7f6d1fd6bbf2" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:script>import groovy.json.JsonSlurper
 
 //Assuming that you want integer value, otherwise ignore 'as Integer' in below statement
-def leeftijd = context.mockService.getPropertyValue('leeftijdSwitch') as Integer  
+def leeftijd = context.mockService.getPropertyValue('leeftijdRetry') as Integer  
 def hasBeenUsed = context.mockService.getPropertyValue('hasBeenUsed') as String  
 
 Random rand = new Random()
@@ -44102,9 +44274,9 @@ requestContext.burgerservicenummer = burgerservicenummer
 
 if(leeftijd == -1) {
 	randomValue = rand.nextInt(100)
-	requestContext.leeftijd = leeftijd
+	requestContext.leeftijd = randomValue
    	context.mockService.setPropertyValue('hasBeenUsed', "false")
-	context.mockService.setPropertyValue('leeftijdSwitch', "${randomValue}" )
+	context.mockService.setPropertyValue('leeftijdRetry', "${randomValue}" )
 	return
 }
 
@@ -44121,7 +44293,7 @@ while(leeftijd == randomValue) {
 }
 // Assign the random value to request
 requestContext.leeftijd = randomValue
-context.mockService.setPropertyValue('leeftijdSwitch', "${randomValue}" )
+context.mockService.setPropertyValue('leeftijdRetry', "${randomValue}" )
 // You can optionally print or return the random value for debugging
 //log.info "Random age value: ${randomValue} and ${leeftijd}"
 </con:script><con:responseContent>{
@@ -44335,4 +44507,4 @@ requestContext.burgerservicenummer = burgerservicenummer</con:script><con:respon
    ]
 }</con:responseContent></con:response><con:response name="205-RESET" id="77283039-2f62-497b-be0b-8da3b82c96ae" httpResponseStatus="205"><con:settings/><con:script>
 context.mockService.setPropertyValue('hasBeenUsed', "false")
-context.mockService.setPropertyValue('leeftijdSwitch', "-1" )</con:script><con:responseContent/></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+context.mockService.setPropertyValue('leeftijdRetry', "-1" )</con:script><con:responseContent/></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
