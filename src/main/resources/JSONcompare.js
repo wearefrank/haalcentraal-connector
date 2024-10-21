@@ -1,74 +1,68 @@
-// const fs = require('fs');
-let isDifferent = false;
+function compareJsonObjects(storedJsonString, newJsonString) {
+    let hasDifferences = false; 
 
-function compareJSONFiles(oldJSON, newJSON) {
-    // check if there is oldJSON
-    if (!oldJSON) {
-        return newJSON;
+    // If storedJsonString is null or undefined, return the new JSON
+    if (!storedJsonString) {
+        return formatJsonOutput({
+            hasDifferences: true,
+            updatedJson: newJsonString
+        });
     }
-    // Read remote JSON file
-    const remoteJSON = JSON.parse(oldJSON);
 
-    // Read local JSON file
-    const localJSON = JSON.parse(newJSON);
+    // Parse both JSON strings into objects
+    const storedJson = JSON.parse(storedJsonString);
+    const newJson = JSON.parse(newJsonString);
 
-    // Compare the JSON objects and return the result as a boolean
-    const json = JSON.stringify(deepCompareJSONObjects(remoteJSON, localJSON),null,2)
-    return isDifferent ?  json : true;
+    // Perform deep comparison
+    const comparedResult = deepCompareJsonObjects(storedJson, newJson, () => hasDifferences = true);
+
+    return formatJsonOutput({
+        hasDifferences: hasDifferences,
+        updatedJson: hasDifferences ? comparedResult : null
+    });
 }
 
-function deepCompareJSONObjects(oldJson, newJson) {
-    // Check if both arguments are objects
-    if (typeof oldJson !== 'object' || typeof newJson !== 'object') {
-        if(oldJson === newJson) {
-            return oldJson
+function deepCompareJsonObjects(storedJson, newJson, setDifferenceFlag) {
+    // Create a new object to hold the merged results
+    let comparisonResult = Array.isArray(storedJson) ? [] : {};
+
+    // If both values are not objects, compare them directly
+    if (typeof storedJson !== 'object' || typeof newJson !== 'object') {
+        if (storedJson === newJson) {
+            return storedJson;
         }
-        isDifferent = true
-        return newJson
+        setDifferenceFlag(); // Mark as different when values don't match
+        return newJson;
     }
 
-    // Iterate over all keys in the newJson
+    // Compare keys in newJson and update comparisonResult
     for (let key in newJson) {
-        // Skip comparing the "type" field
+        // Skip comparing the "type" field (specific to your use case)
         if (key === 'type') {
             continue;
         }
 
-        
-        // If the key is not present in the oldJson, add it
-        if (!(key in oldJson)) {
-            oldJson[key] = newJson[key];
-            isDifferent = true;
+        // If key doesn't exist in storedJson, add it
+        if (!(key in storedJson)) {
+            comparisonResult[key] = newJson[key];
+            setDifferenceFlag(); // Mark as different since it's a new key
         } else {
-            // If the key is present in both oldJson and newJson, recursively update the value if it's different
-            oldJson[key] = deepCompareJSONObjects(oldJson[key], newJson[key]);
+            // If key exists in both, recursively compare values
+            comparisonResult[key] = deepCompareJsonObjects(storedJson[key], newJson[key], setDifferenceFlag);
         }
     }
 
-    return oldJson;
+    // Retain keys from storedJson that are not present in newJson
+    for (let key in storedJson) {
+        if (!(key in newJson)) {
+            comparisonResult[key] = storedJson[key];
+        }
+    }
+
+    return comparisonResult;
 }
 
-// function deepCompareJSONObjects(obj1, obj2) {
-//     // Check if both arguments are objects
-//     if (typeof obj1 !== 'object' || typeof obj2 !== 'object') {
-//         return obj1 === obj2;
-//     }
-
-//     // Check if obj2 is a subset of obj1
-//     for (let key in obj2) {
-//         if (key === 'type') {
-//             continue; // Skip comparing this key
-//         }
-//         if (!deepCompareJSONObjects(obj1[key], obj2[key])) {
-//             return false; // Recursively compare nested objects
-//         }
-//     }
-
-//     return true;
-// }
-
-// Usage
-// const remoteFilePath = 'test.json';
-// const localFilePath = 'testCompare.json';
-// const result = compareJSONFiles(remoteFilePath, localFilePath);
-// console.log(result);
+// Helper function for formatting the JSON output with indentation
+function formatJsonOutput(jsonObject) {
+    return JSON.stringify(jsonObject, null, 2);
+}

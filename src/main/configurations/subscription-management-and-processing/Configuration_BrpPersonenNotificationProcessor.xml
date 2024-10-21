@@ -43,7 +43,7 @@
 			<SenderPipe name="processNotifications" getInputFromSessionKey="originalMessage">
                 <IbisLocalSender
                     name="personenUpdater"
-                    javaListener="BrpPersonenUpdate">
+                    javaListener="BrpPersonenUpdateAndNotify">
                 </IbisLocalSender>
 			</SenderPipe>
 
