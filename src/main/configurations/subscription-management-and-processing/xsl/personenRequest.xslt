@@ -8,7 +8,7 @@
     <xsl:param name="burgerservicenummer"/>
     
     <!-- Template to match the root element of the input XML -->
-    <xsl:template match="/root">
+    <xsl:template match="/">
         <root>
             <type>RaadpleegMetBurgerservicenummer</type>
 
