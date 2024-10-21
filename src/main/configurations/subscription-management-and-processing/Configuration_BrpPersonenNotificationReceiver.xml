@@ -23,7 +23,7 @@
                 <Forward name="exception" path="BadRequest" />
             </JsonValidatorPipe>
 
-            <JsonPipe name="JsonToXml">
+            <JsonPipe name="JsonToXml" prettyPrint="true">
                 <Forward name="success" path="ExtractIncomingNotificationData"/>
             </JsonPipe>
 
