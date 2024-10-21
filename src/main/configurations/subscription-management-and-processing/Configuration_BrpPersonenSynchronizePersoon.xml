@@ -52,7 +52,7 @@
         <SenderPipe name="GetPersoon" storeResultInSessionKey="newJSON">
             <IbisLocalSender name="GetPersoonSender" javaListener="BrpPbOutwayListener" />
             <Forward name="success" path="persoonOld2xml" />
-            <Forward name="exception" path="BADREQUEST" />
+            <Forward name="exception" path="BadRequest" />
         </SenderPipe>
 
         <JsonPipe name="persoonOld2xml" />
@@ -84,7 +84,7 @@
 
         <!--If the value is 'true', this means the data shouldn't be updated, so just exit the pipeline-->
         <XmlIfPipe name="ShouldNotInsert" expressionValue="true">
-            <Forward name="then" path="EXIT" />
+            <Forward name="then" path="Exit" />
             <Forward name="else" path="InsertPersoon" />
         </XmlIfPipe>
 
