@@ -1,5 +1,5 @@
 <Adapter name="BrpPersonenSynchronizePersoon"
-         description="BRP Personen Synchronize Persoon">
+    description="BRP Personen Synchronize Persoon">
 
     <Receiver name="BrpPersonenSynchronizePersoon">
         <JavaListener name="BrpPersonenSynchronizePersoon" />
@@ -20,71 +20,80 @@
             <Exit name="ServiceUnavailable" state="ERROR" code="503" />
         </Exits>
 
-        <JsonPipe name="JsonToXmlInput"/>
+        <JsonPipe name="JsonToXmlInput" />
 
         <SenderPipe name="GetPersoonOldJson" storeResultInSessionKey="oldJSON">
             <FixedQuerySender
-                    name="getPersonenSender"
-                    queryType="SELECT"
-                    query="SELECT * FROM persoonsgegevens WHERE bsn=?{burgerservicenummer} ORDER BY registratie_datum DESC LIMIT 1"
-                    includeFieldDefinition="false">
-                <Param name="burgerservicenummer" sessionKey="burgerservicenummer"/>
+                name="getPersonenSender"
+                queryType="SELECT"
+                query="SELECT * FROM persoonsgegevens WHERE bsn=?{burgerservicenummer} ORDER BY registratie_datum DESC LIMIT 1"
+                includeFieldDefinition="false">
+                <Param name="burgerservicenummer" sessionKey="burgerservicenummer" />
             </FixedQuerySender>
         </SenderPipe>
 
         <XsltPipe name="CreateRequest"
-                  styleSheetName="xsl/personenRequest.xslt"
-                  skipEmptyTags="true">
+            styleSheetName="xsl/personenRequest.xslt"
+            skipEmptyTags="true">
             <Param name="burgerservicenummer" sessionKey="burgerservicenummer" />
         </XsltPipe>
 
         <!--We need to use json2xmlvalidator here to make sure burgerservicenummer becomes an array in json-->
         <Json2XmlValidatorPipe
-                name="XmlToJson"
-                root="root"
-                schema="xsd/checkInput.xsd"
-                outputFormat="JSON"
-                compactJsonArrays="false"
-                storeResultInSessionKey="storeInput"
-                throwException="true">
+            name="XmlToJson"
+            root="root"
+            schema="xsd/checkInput.xsd"
+            outputFormat="JSON"
+            compactJsonArrays="false"
+            storeResultInSessionKey="storeInput"
+            throwException="true">
         </Json2XmlValidatorPipe>
 
         <SenderPipe name="GetPersoon" storeResultInSessionKey="newJSON">
-            <IbisLocalSender name="GetPersoonSender" javaListener="BrpPbOutwayListener"/>
+            <IbisLocalSender name="GetPersoonSender" javaListener="BrpPbOutwayListener" />
             <Forward name="success" path="persoonOld2xml" />
             <Forward name="exception" path="BADREQUEST" />
         </SenderPipe>
 
-        <JsonPipe name="persoonOld2xml"/>
+        <JsonPipe name="persoonOld2xml" />
 
         <PutInSessionPipe
-                name="storeBsnInSession">
+            name="storeBsnInSession">
             <Param name="burgerservicenummer" xpathExpression='//burgerservicenummer/text()' />
         </PutInSessionPipe>
 
-        <!-- returns true if it's a subset, else returns a combined json version that can be immediately put in the database-->
-        <SenderPipe name="JsonComparer" storeResultInSessionKey="json">
+        <!-- returns true if it's a subset, else returns a combined json version that can be
+        immediately put in the database-->
+        <SenderPipe name="JsonComparator" storeResultInSessionKey="json">
             <JavascriptSender
-                    jsFileName="JSONcompare.js"
-                    jsFunctionName="compareJSONFiles"
+                jsFileName="JSONCompare.js"
+                jsFunctionName="compareJsonObjects"
             >
             </JavascriptSender>
-            <Param name="oldJSON" sessionKey="oldJSON" xpathExpression="result/rowset/row/field[@name='DATA']"/>
-            <Param name="newJSON" sessionKey="newJSON"/>
+            <Param name="oldJSON" sessionKey="oldJSON"
+                xpathExpression="result/rowset/row/field[@name='DATA']" />
+            <Param name="newJSON" sessionKey="newJSON" />
         </SenderPipe>
+
+        <JsonPipe name="ConvertJavascriptResultToXml" />
+
+        <PutInSessionPipe name="StoreJavascriptResults">
+            <Param name="ShouldNotInsert" xpathExpression="root/isDifferent" />
+            <Param name="updatedJson" xpathExpression="root/updatedJson" />
+        </PutInSessionPipe>
 
         <!--If the value is 'true', this means the data shouldn't be updated, so just exit the pipeline-->
         <XmlIfPipe name="ShouldNotInsert" expressionValue="true">
-            <Forward name="then" path="EXIT"/>
-            <Forward name="else" path="InsertPersoon"/>
+            <Forward name="then" path="EXIT" />
+            <Forward name="else" path="InsertPersoon" />
         </XmlIfPipe>
 
         <SenderPipe name="InsertPersoon" preserveInput="true">
             <FixedQuerySender
-                    name="insertPersonenSender"
-                    query="INSERT INTO persoonsgegevens(bsn, data, registratie_datum) VALUES(?,?,CURRENT_TIMESTAMP)">
-                <Param name="bsn" sessionKey="burgerservicenummer"/>
-                <Param name="data" sessionKey="json"/>
+                name="insertPersonenSender"
+                query="INSERT INTO persoonsgegevens(bsn, data, registratie_datum) VALUES(?,?,CURRENT_TIMESTAMP)">
+                <Param name="bsn" sessionKey="burgerservicenummer" />
+                <Param name="data" sessionKey="updatedJson" />
             </FixedQuerySender>
         </SenderPipe>
 
