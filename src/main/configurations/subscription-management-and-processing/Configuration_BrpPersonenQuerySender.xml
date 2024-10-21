@@ -26,6 +26,8 @@
 			<SenderPipe name="BRPPersonenBevragen">
 				<IbisLocalSender name="BPRPersonenBevragen" javaListener="BrpPbClientSoapListener"
 				returnedSessionKeys="Error,body,xmlbody,MapResponse" />
+				<Param name="gemeenteVanInschrijving" sessionKey="gemeenteVanInschrijving" defaultValue="${gemeenteVanInschrijving}" />
+        <Param name="SOAPAction" sessionKey="SOAPAction" />
 				<Forward name="success" path="BRP Personen query" />
 				<Forward name="exception" path="ErrorJsonToXml" />
 			</SenderPipe>
