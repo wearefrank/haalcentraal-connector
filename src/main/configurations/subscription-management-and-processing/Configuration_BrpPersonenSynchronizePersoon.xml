@@ -64,16 +64,23 @@
 
         <!-- returns true if it's a subset, else returns a combined json version that can be
         immediately put in the database-->
-        <SenderPipe name="JsonComparer" storeResultInSessionKey="json">
+        <SenderPipe name="JsonComparator" storeResultInSessionKey="json">
             <JavascriptSender
-                jsFileName="JSONcompare.js"
-                jsFunctionName="compareJSONFiles"
+                jsFileName="JsonCompare.js"
+                jsFunctionName="compareJsonObjects"
             >
             </JavascriptSender>
             <Param name="oldJSON" sessionKey="oldJSON"
                 xpathExpression="result/rowset/row/field[@name='DATA']" />
             <Param name="newJSON" sessionKey="newJSON" />
         </SenderPipe>
+
+        <JsonPipe name="ConvertJavascriptResultToXml" />
+
+        <PutInSessionPipe name="StoreJavascriptResults">
+            <Param name="ShouldNotInsert" xpathExpression="root/isDifferent" />
+            <Param name="updatedJson" xpathExpression="root/updatedJson" />
+        </PutInSessionPipe>
 
         <!--If the value is 'true', this means the data shouldn't be updated, so just exit the pipeline-->
         <XmlIfPipe name="ShouldNotInsert" expressionValue="true">
@@ -86,7 +93,7 @@
                 name="insertPersonenSender"
                 query="INSERT INTO persoonsgegevens(bsn, data, registratie_datum) VALUES(?,?,CURRENT_TIMESTAMP)">
                 <Param name="bsn" sessionKey="burgerservicenummer" />
-                <Param name="data" sessionKey="json" />
+                <Param name="data" sessionKey="updatedJson" />
             </FixedQuerySender>
         </SenderPipe>
 
