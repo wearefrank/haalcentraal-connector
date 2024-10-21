@@ -63,7 +63,7 @@
         </PutInSessionPipe>
 
         <!-- returns true if it's a subset, else returns a combined json version that can be immediately put in the database-->
-        <SenderPipe name="JsonComparer">
+        <SenderPipe name="JsonComparer" storeResultInSessionKey="json">
             <JavascriptSender
                     jsFileName="JSONcompare.js"
                     jsFunctionName="compareJSONFiles"
