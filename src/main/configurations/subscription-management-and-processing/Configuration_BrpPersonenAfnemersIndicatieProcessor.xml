@@ -71,7 +71,7 @@
             </SenderPipe>
 
             <!-- Check if a subscriber needs to be either added or removed -->
-            <XmlIfPipe name="CheckVerwerkingssoort" xpathExpression="$originalMessage = 'T'">
+            <XmlIfPipe name="CheckVerwerkingssoort" xpathExpression="$originalMessage = 'T'" getInputFromSessionKey="originalMessage">
                 <Param name="originalMessage" sessionKey="originalMessage"
                     xpathExpression="npsLk01/object/@verwerkingssoort" />
                 <Forward name="then" path="InsertNewSubscription" />

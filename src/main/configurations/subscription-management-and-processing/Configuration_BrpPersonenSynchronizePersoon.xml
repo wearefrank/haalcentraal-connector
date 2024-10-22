@@ -96,6 +96,5 @@
                 <Param name="data" sessionKey="updatedJson" />
             </FixedQuerySender>
         </SenderPipe>
-
     </Pipeline>
 </Adapter>
