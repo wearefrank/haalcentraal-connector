@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.8](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.7...v1.7.8) (2024-10-22)
+
+### 🐛 Bug Fixes
+
+* make default datasource jdbc/haalcentraal-connector ([aab8960](https://github.com/wearefrank/haalcentraal-connector/commit/aab8960e5978e96093b2df48a3709c9c4afb82ee))
+
 ## [1.7.7](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.6...v1.7.7) (2024-10-21)
 
 ### 🐛 Bug Fixes
