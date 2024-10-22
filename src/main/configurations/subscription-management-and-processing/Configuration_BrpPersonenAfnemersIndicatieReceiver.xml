@@ -17,13 +17,6 @@
 				<Exit name="Exception" state="ERROR" empty="true" />
 			</Exits>
 
-			<!-- <SenderPipe name="InsertNotification" getInputFromSessionKey="originalMessage">
-				<MessageStoreSender
-					slotId="${instance.name}/afnemersIndicatieStore"
-				/>
-				<Forward name="success" path="WrapBv03Response" />
-			</SenderPipe> -->
-
 			<!-- Retrieve the application configuration from the local file system -->
 			<SenderPipe
 				name="LoadApplicationConfig"
