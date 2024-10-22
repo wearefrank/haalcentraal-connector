@@ -26,33 +26,31 @@
 
             <JsonPipe name="persoonNew2xml" />
 
-            <SenderPipe name="GetApplicationConfigFromLocalFS"
-                storeResultInSessionKey="ApplicationConfig"
-            >
-                <IbisLocalSender
-                    name="CallImportFromLocalFS"
-                    javaListener="ProcessFileInputListener"
-                    returnedSessionKeys="Error">
-                    <Param name="FileName" value="${applicationConfigPath}" />
-                </IbisLocalSender>
+            <LocalFileSystemPipe name="GetApplicationConfig" action="read" storeResultInSessionKey="applicationConfig">
+                <Param name="filename" value="${applicationConfigPath}" />
                 <Forward name="success" path="GetSubscribersForUpdatedPerson" />
-                <Forward name="error" path="EXCEPTION" />
-            </SenderPipe>
+            </LocalFileSystemPipe>
 
             <!-- Retrieve all subscribers to the given bsn -->
             <SenderPipe name="GetSubscribersForUpdatedPerson">
                 <FixedQuerySender
                     name="GetSubscribersByBsnQuery"
                     queryType="SELECT"
-                    query="SELECT app_id FROM subscripties WHERE bsn=? AND eind_datum IS NULL">
-                    <Param name="burgerservicenummer" sessionKey="burgerservicenummer" />
+                    query="SELECT app_id FROM subscripties WHERE bsn=? AND eind_datum IS NULL"
+                    outputFormat="JSON">
+                    <Param name="burgerservicenummer" sessionKey="burgerservicenummer"/>
                 </FixedQuerySender>
-                <Forward name="success" path="EXIT" />
+                <Forward name="success" path="TransformApplicationData" />
             </SenderPipe>
 
             <!-- TODO: Check if notifications need to be sent -->
-
-            <!-- TODO: Map application_id to callback uri's -->
+            
+            <!-- Map application_id to callback uri's -->
+            <DataSonnetPipe name="TransformApplicationData"
+                styleSheetName="jsonnet/ApplicationsFilter.jsonnet">
+                <Param name="applicationConfig" sessionKey="applicationConfig" />
+                <Forward name="success" path="EXIT" />
+            </DataSonnetPipe>
 
             <!-- TODO: Send updated data to callback uri's  -->
 
