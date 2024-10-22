@@ -20,7 +20,7 @@
 					<Param name="burgerservicenummer" sessionKey="burgerservicenummer"/>
 				</IbisLocalSender>
 				<Forward name="success" path="persoonNew2xml"/>
-				<Forward name="exception" path="Error" />
+				<Forward name="exception" path="EXCEPTION" />
 			</SenderPipe>
 
 			<JsonPipe name="persoonNew2xml"/>

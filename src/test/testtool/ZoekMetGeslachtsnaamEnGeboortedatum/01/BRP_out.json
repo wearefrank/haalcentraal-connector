@@ -1,0 +1,39 @@
+{
+    "type": "ZoekMetGeslachtsnaamEnGeboortedatum",
+    "personen": [
+        {
+            "burgerservicenummer": "999992703",
+            "geboorte": {
+                "datum": {
+                    "type": "Datum",
+                    "datum": "1949-02-28",
+                    "langFormaat": "28 februari 1949"
+                }
+            },
+            "geslacht": {
+                "code": "M",
+                "omschrijving": "man"
+            },
+            "leeftijd": 75,
+            "naam": {
+                "voornamen": "Mohamed",
+                "voorvoegsel": "El",
+                "geslachtsnaam": "Rafi",
+                "voorletters": "M.",
+                "volledigeNaam": "Mohamed El Rafi"
+            },
+            "adressering": {
+                "inOnderzoek": {
+                    "adresregel1": true,
+                    "datumIngangOnderzoekVerblijfplaats": {
+                        "type": "Datum",
+                        "datum": "2021-08-01",
+                        "langFormaat": "1 augustus 2021"
+                    }
+                },
+                "adresregel1": "Ivoorhorst 155",
+                "adresregel2": "2592 TH 'S-GRAVENHAGE"
+            }
+        }
+    ]
+}
