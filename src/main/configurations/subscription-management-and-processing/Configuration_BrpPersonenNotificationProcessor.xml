@@ -36,14 +36,25 @@
 			</XmlIfPipe>
 			
 			<XmlIfPipe name="CheckLabelForMaxTries" xpathExpression="result/rowset/row/field[@name='LABEL' and @null='true'] or ${MAX_RETRIES} > result/rowset/row/field[@name='LABEL']">
-				<Forward name="then" path="processNotifications" />
+				<Forward name="then" path="ConvertInputMessageToXml" />
 				<Forward name="else" path="echoPipe" />
 			</XmlIfPipe>
 
-			<SenderPipe name="processNotifications" getInputFromSessionKey="originalMessage">
+			<JsonPipe name="ConvertInputMessageToXml" prettyPrint="true" getInputFromSessionKey="originalMessage">
+                <Forward name="success" path="ExtractIncomingNotificationData"/>
+            </JsonPipe>
+
+            <PutInSessionPipe name="ExtractIncomingNotificationData">
+                <Param name="bsn" xpathExpression="root/data/bsn" />
+                <Param name="historicBsns" xpathExpression="root/data/historicBsns" />
+                <Forward name="success" path="processNotifications"/>
+            </PutInSessionPipe>
+
+			<SenderPipe name="processNotifications">
                 <IbisLocalSender
                     name="personenUpdater"
                     javaListener="BrpPersonenUpdateAndNotify">
+					<Param name="burgerservicenummer" sessionKey="bsn" />
                 </IbisLocalSender>
 			</SenderPipe>
 
