@@ -78,14 +78,14 @@
         <JsonPipe name="ConvertJavascriptResultToXml" />
 
         <PutInSessionPipe name="StoreJavascriptResults">
-            <Param name="ShouldNotInsert" xpathExpression="root/isDifferent" />
+            <Param name="ShouldInsert" xpathExpression="root/isDifferent" />
             <Param name="updatedJson" xpathExpression="root/updatedJson" />
         </PutInSessionPipe>
 
         <!--If the value is 'true', this means the data shouldn't be updated, so just exit the pipeline-->
-        <XmlIfPipe name="ShouldNotInsert" expressionValue="true">
-            <Forward name="then" path="Exit" />
-            <Forward name="else" path="InsertPersoon" />
+        <XmlIfPipe name="ShouldInsert" expressionValue="true" getInputFromSessionKey="ShouldInsert">
+            <Forward name="then" path="InsertPersoon" />
+            <Forward name="else" path="Exit" />
         </XmlIfPipe>
 
         <SenderPipe name="InsertPersoon" preserveInput="true">
