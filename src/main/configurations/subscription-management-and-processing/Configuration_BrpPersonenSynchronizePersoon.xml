@@ -75,11 +75,12 @@
             <Param name="newJSON" sessionKey="newJSON" />
         </SenderPipe>
 
+        <DataSonnetPipe name="ExtractPersonenBody" preserveInput="true" storeResultInSessionKey="updatedJson" styleSheetName="jsonnet/ExtractBody.jsonnet" />
+
         <JsonPipe name="ConvertJavascriptResultToXml" />
 
         <PutInSessionPipe name="StoreJavascriptResults">
-            <Param name="ShouldInsert" xpathExpression="root/isDifferent" />
-            <Param name="updatedJson" xpathExpression="root/updatedJson" />
+            <Param name="ShouldInsert" xpathExpression="root/hasDifferences" />
         </PutInSessionPipe>
 
         <!--If the value is 'true', this means the data shouldn't be updated, so just exit the pipeline-->
