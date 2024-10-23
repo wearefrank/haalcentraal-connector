@@ -15,7 +15,7 @@
 		<Pipeline>
 			<Exits>
 				<Exit name="EXIT" state="SUCCESS" code="202" />
-				<Exit name="BadRequest" state="ERROR" code="400" />
+				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
 			</Exits>
 
 			<JsonValidatorPipe name="jsonValidator" schema="json/DataChangeNotificationSchema.json" onlyIfSessionKey="HttpMethod">
@@ -26,14 +26,35 @@
             <JsonPipe name="JsonToXml" prettyPrint="true">
                 <Forward name="success" path="ExtractIncomingNotificationData"/>
             </JsonPipe>
-
-            <!-- TODO: Process historic bsns correctly -->
+            
             <PutInSessionPipe name="ExtractIncomingNotificationData">
                 <Param name="bsn" xpathExpression="root/data/bsn" />
-                <Param name="historicBsns" xpathExpression="root/data/historicBsns" />
-                <Forward name="success" path="GetPersoon"/>
+                <Forward name="success" path="ExtractHistoricBsns"/>
             </PutInSessionPipe>
 
+            <XsltPipe name="ExtractHistoricBsns"
+                styleSheetName="xsl/historicBsns.xslt" storeResultInSessionKey="historicBsns">
+                <Forward name="success" path="historicBsnIterator"/>
+            </XsltPipe>
+
+			<!-- Add persoonsgegevens entry for each person retrieved from the BRP -->
+			<ForEachChildElementPipe name="historicBsnIterator"
+				elementXPathExpression="historicBsns/bsn">
+                <FixedQuerySender
+					name="insertPersonenSender"
+					query="UPDATE subscripties SET bsn = ? WHERE bsn = ? ">
+					<Param name="currentBsn" sessionKey="bsn" type="INTEGER"/>
+					<Param name="historicBsn" xpathExpression="." type="INTEGER"/>
+            	</FixedQuerySender>
+				<Forward name="success" path="checkBsnChange"/>
+				<Forward name="exception" path="EXIT" />
+			</ForEachChildElementPipe>  
+
+            <XmlIfPipe name="checkBsnChange" xpathExpression="//result[rowsupdated != 0]">
+                <Forward name="then" path="InsertNotification"/>
+                <Forward name="else" path="GetPersoon"/>
+            </XmlIfPipe>
+            
             <!-- TODO: Check if person has historic bsns -->
 
             <!-- TODO: Update subscriptions to historic bsns to new bsn -->
@@ -49,7 +70,7 @@
                 <Forward name="success" path="PersonExists" />
                 <Forward name="exception" path="BadRequest" />
             </SenderPipe>
-            
+
             <XmlIfPipe
                 name="PersonExists"
                 xpathExpression="count(result/rowset/row) = 1"
