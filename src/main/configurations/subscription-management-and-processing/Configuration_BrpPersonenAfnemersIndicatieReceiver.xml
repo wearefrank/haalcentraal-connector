@@ -11,7 +11,7 @@
 		<Pipeline>
 			<Exits>
 				<Exit name="EXIT" state="SUCCESS" />
-				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
+				<Exit name="BadRequest" state="ERROR" code="400" />
 			</Exits>
 
             <SenderPipe name="InsertNotification" getInputFromSessionKey="originalMessage">
