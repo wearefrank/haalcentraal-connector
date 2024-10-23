@@ -1,5 +1,17 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.10](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.9...v1.7.10) (2024-10-23)
+
+### 🧑‍💻 Code Refactoring
+
+* add active to scheduler ([7d1720d](https://github.com/wearefrank/haalcentraal-connector/commit/7d1720d6e88f03cbfcbc9b9c3054979141eeaf3c))
+* change url and headers for testcase 1 and testcase retry ([27562b3](https://github.com/wearefrank/haalcentraal-connector/commit/27562b3b52042bc90dd510491c62fa5bbf9e0e2b))
+* error message now keep their error after 3 tries ([b54fb2b](https://github.com/wearefrank/haalcentraal-connector/commit/b54fb2bc23f492aa5db30ab42d514c214b23c7e6))
+
+### ✅ Tests
+
+* retry test case ([31a5a59](https://github.com/wearefrank/haalcentraal-connector/commit/31a5a5948e4c3404c789aa924fe8c74f18006b71))
+
 ## [1.7.9](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.8...v1.7.9) (2024-10-23)
 
 ### 🧑‍💻 Code Refactoring
