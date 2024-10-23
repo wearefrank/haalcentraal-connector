@@ -1,0 +1,9 @@
+<project default="runXsl">
+    <target name="runXsl">
+        <xslt style="mappingJsonToStuf2.xsl"
+              in="testInput.xml"
+              out="testOutput.xml"
+              classpath="C:\Users\lenard\programs\saxon-9.0.jar">
+        </xslt>
+    </target>
+</project>
