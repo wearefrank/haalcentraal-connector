@@ -1,5 +1,24 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.8](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.7...v1.7.8) (2024-10-22)
+
+### 🐛 Bug Fixes
+
+* make default datasource jdbc/haalcentraal-connector ([aab8960](https://github.com/wearefrank/haalcentraal-connector/commit/aab8960e5978e96093b2df48a3709c9c4afb82ee))
+
+## [1.7.7](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.6...v1.7.7) (2024-10-21)
+
+### 🐛 Bug Fixes
+
+* personenRequest.xsl to work without input ([82214aa](https://github.com/wearefrank/haalcentraal-connector/commit/82214aa6c6223ebfa54a4e16e229380b0e8d52cf))
+* small problems ([a3641dd](https://github.com/wearefrank/haalcentraal-connector/commit/a3641dd47eb1ab98ce1b379cec277c2c7644fa83))
+
+### 🧑‍💻 Code Refactoring
+
+* brpPersonenUpdate adapter ([6e08a9e](https://github.com/wearefrank/haalcentraal-connector/commit/6e08a9e3b84eca3e808473c77734f4d91f6c7fa6))
+* PersonenUpdate into 2 adapters for better reusability ([87b5f19](https://github.com/wearefrank/haalcentraal-connector/commit/87b5f19d731027ffaf513c8cb6b0f1977ee829d5))
+* senders using the newly split up adapter ([30e2b1d](https://github.com/wearefrank/haalcentraal-connector/commit/30e2b1dd77b021f5dafa56ffee6776ccb599baed))
+
 ## [1.7.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.5...v1.7.6) (2024-10-15)
 
 ### 🐛 Bug Fixes

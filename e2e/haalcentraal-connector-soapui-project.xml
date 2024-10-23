@@ -42858,8 +42858,21 @@
          </ns:object>\r
       </ns:npsLk01>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="6027d46e-e077-46eb-bc1a-fd27033fb946"/><con:assertion type="Schema Compliance" id="3176a154-011d-4f12-be43-2721b39f423f"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="2f49681f-2392-4f4a-a2e2-870cfd26f326"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="httprequest" name="postRequest" id="288c92d9-b37f-4054-bba2-d9b02538f128"><con:settings/><con:config method="POST" xsi:type="con:HttpRequest" id="5b7e6973-1ec8-45dc-844d-ccf069ac9e63" name="postRequest" postQueryString="false" mediaType="application/json" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080/api/webhooks_brp</con:endpoint><con:request>{
-	"burgerservicenummer" : 555555021
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="6027d46e-e077-46eb-bc1a-fd27033fb946"/><con:assertion type="Schema Compliance" id="3176a154-011d-4f12-be43-2721b39f423f"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="2f49681f-2392-4f4a-a2e2-870cfd26f326"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="httprequest" name="postRequest" id="288c92d9-b37f-4054-bba2-d9b02538f128"><con:settings/><con:config method="POST" xsi:type="con:HttpRequest" id="5b7e6973-1ec8-45dc-844d-ccf069ac9e63" name="postRequest" postQueryString="false" mediaType="application/json" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080/api/webhooks_brp</con:endpoint><con:request> {
+	"specversion": "1.0",
+	"type": "vrijbrp.pl.mutation.v1",
+	"source": "/vrijbrp",
+	"subject": null,
+	"id":"000000000001",
+	"time": "2024-10-08T16:05:27.618+02:00",
+	"datacontenttype": "application/json",
+	"data" : {
+		"brpMessageId" : "Lg01",
+		"brpMessageDescription": "Synchronisatiebericht",
+		"bsn": "555555021",
+		"anr":"1373215326",
+		"historicBsns": [ "555555020" ]
+	}
 }</con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:config></con:testStep><con:testStep type="request" name="afnemersIndicatieV" id="9c42ad49-9b4a-407a-96f6-1f731ef8809d"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPOntvangAsynchroon</con:interface><con:operation>npsLk01</con:operation><con:request name="afnemersIndicatieV" id="daa6df36-a0ad-439b-8d9d-bbd8ae3a0f3b"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
@@ -42887,9 +42900,9 @@
          </ns:object>\r
       </ns:npsLk01>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="6027d46e-e077-46eb-bc1a-fd27033fb946"/><con:assertion type="Schema Compliance" id="3176a154-011d-4f12-be43-2721b39f423f"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="2f49681f-2392-4f4a-a2e2-870cfd26f326"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="07943a4c-1bc4-47f2-9c5d-a9a143eb4961" name="TestSuite Retry"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="1bc5ded7-154f-446d-9c53-6f392f78550b" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:settings/><con:testStep type="properties" name="properties" id="44dd9f62-0e74-4a46-9734-bfee8538563f"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>notification_id</con:name><con:value>131</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="httprequest" name="ResetMockservice" id="9d53e8f9-b8bc-438d-8626-306ccfc61b94"><con:settings/><con:config method="POST" xsi:type="con:HttpRequest" id="5b7e6973-1ec8-45dc-844d-ccf069ac9e63" name="ResetMockservice" postQueryString="false" mediaType="application/json" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8088/personen</con:endpoint><con:request>{
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="6027d46e-e077-46eb-bc1a-fd27033fb946"/><con:assertion type="Schema Compliance" id="3176a154-011d-4f12-be43-2721b39f423f"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="2f49681f-2392-4f4a-a2e2-870cfd26f326"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="a3b3331f-a1ad-4370-890f-279e4731b371" name="TestSuite Retry"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="3f3bdc21-3434-4cf9-bb53-494f5a5acfe8" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:settings/><con:testStep type="properties" name="properties" id="e5058230-a6f5-494a-ba30-62e32b50562a"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>notification_id</con:name><con:value>131</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="httprequest" name="ResetMockservice" id="c72018b6-ddce-49a4-a142-fec421b12998"><con:settings/><con:config method="POST" xsi:type="con:HttpRequest" id="5b7e6973-1ec8-45dc-844d-ccf069ac9e63" name="ResetMockservice" postQueryString="false" mediaType="application/json" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8088/personen</con:endpoint><con:request>{
 	"burgerservicenummer" : [-1]
-}</con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:config></con:testStep><con:testStep type="request" name="AddPersonRecord" id="650c64bb-4500-4c1e-939e-74d5f78d14e8"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="AddPersonRecord" id="cbf9e543-f4fa-4bb6-ab8a-f219b717dd10"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml">
+}</con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:config></con:testStep><con:testStep type="request" name="AddPersonRecord" id="bfbebf7b-3573-4ee4-8a62-2682f806eb2f"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="AddPersonRecord" id="cbf9e543-f4fa-4bb6-ab8a-f219b717dd10"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml">
    <soapenv:Header/>
    <soapenv:Body>
       <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -43003,7 +43016,7 @@
          </BG:scope>
       </BG:npsLv01>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="8360dc45-38d6-4735-a2e3-851bbe57efab"/><con:assertion type="Schema Compliance" id="778991fb-e7e6-4448-a0be-5aefec813ee5"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="cf6911e2-f17d-4548-9998-d5cd9c1a7f5e"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="afnemersIndicatieT" id="617576be-5d90-45c7-a235-ae526dc2be35"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPOntvangAsynchroon</con:interface><con:operation>npsLk01</con:operation><con:request name="afnemersIndicatieT" id="daa6df36-a0ad-439b-8d9d-bbd8ae3a0f3b"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="8360dc45-38d6-4735-a2e3-851bbe57efab"/><con:assertion type="Schema Compliance" id="778991fb-e7e6-4448-a0be-5aefec813ee5"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="cf6911e2-f17d-4548-9998-d5cd9c1a7f5e"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="afnemersIndicatieT" id="93e53bc7-2f7a-4bf5-bd91-5b8ceca56324"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPOntvangAsynchroon</con:interface><con:operation>npsLk01</con:operation><con:request name="afnemersIndicatieT" id="daa6df36-a0ad-439b-8d9d-bbd8ae3a0f3b"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <ns:npsLk01 xmlns:stuf="http://www.egem.nl/StUF/StUF0301">\r
@@ -43030,9 +43043,9 @@
          </ns:object>\r
       </ns:npsLk01>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="6027d46e-e077-46eb-bc1a-fd27033fb946"/><con:assertion type="Schema Compliance" id="3176a154-011d-4f12-be43-2721b39f423f"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="2f49681f-2392-4f4a-a2e2-870cfd26f326"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="httprequest" name="postRequest" id="d0aefc5a-3e43-4cd8-a9f3-ea357bf248de"><con:settings/><con:config method="POST" xsi:type="con:HttpRequest" id="5b7e6973-1ec8-45dc-844d-ccf069ac9e63" name="postRequest" postQueryString="false" mediaType="application/json" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080/api/webhooks_brp</con:endpoint><con:request>{
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="6027d46e-e077-46eb-bc1a-fd27033fb946"/><con:assertion type="Schema Compliance" id="3176a154-011d-4f12-be43-2721b39f423f"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="2f49681f-2392-4f4a-a2e2-870cfd26f326"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="httprequest" name="postRequest" id="7825fb27-193e-4b0d-9479-3f885ea18cbb"><con:settings/><con:config method="POST" xsi:type="con:HttpRequest" id="5b7e6973-1ec8-45dc-844d-ccf069ac9e63" name="postRequest" postQueryString="false" mediaType="application/json" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080/api/webhooks_brp</con:endpoint><con:request>{
 	"burgerservicenummer" : 123456789
-}</con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:config></con:testStep><con:testStep type="transfer" name="GetNotificationId" id="434c1959-9ba6-44b2-95e9-80acd423577e"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>notification_id</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>postRequest</con:sourceStep><con:sourcePath>//id</con:sourcePath><con:targetType>notification_id</con:targetType><con:targetStep>properties</con:targetStep><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="httprequest" name="ManualRetrySchedulerRequest" id="c3507f7d-5d52-4e0e-95be-b7278125568b"><con:settings/><con:config method="POST" xsi:type="con:HttpRequest" id="5b7e6973-1ec8-45dc-844d-ccf069ac9e63" name="ManualRetrySchedulerRequest" postQueryString="false" mediaType="application/xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080/api/retry</con:endpoint><con:request>${properties#notification_id}</con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:config></con:testStep><con:testStep type="request" name="afnemersIndicatieV" id="bbce2636-18d7-4eea-99f3-68f43e4fb75c"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPOntvangAsynchroon</con:interface><con:operation>npsLk01</con:operation><con:request name="afnemersIndicatieV" id="daa6df36-a0ad-439b-8d9d-bbd8ae3a0f3b"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">\r
+}</con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:config></con:testStep><con:testStep type="transfer" name="GetNotificationId" id="39a8f270-da20-4e57-9103-3e3fa1e6d22b"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>notification_id</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>postRequest</con:sourceStep><con:sourcePath>//id</con:sourcePath><con:targetType>notification_id</con:targetType><con:targetStep>properties</con:targetStep><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="httprequest" name="ManualRetrySchedulerRequest" id="31ef754c-d414-4baa-8efa-44ebc3f5e0e0"><con:settings/><con:config method="POST" xsi:type="con:HttpRequest" id="5b7e6973-1ec8-45dc-844d-ccf069ac9e63" name="ManualRetrySchedulerRequest" postQueryString="false" mediaType="application/xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080/api/retry</con:endpoint><con:request>${properties#notification_id}</con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:config></con:testStep><con:testStep type="request" name="afnemersIndicatieV" id="89c447bf-73e6-49f1-bd14-5551f161af61"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPOntvangAsynchroon</con:interface><con:operation>npsLk01</con:operation><con:request name="afnemersIndicatieV" id="daa6df36-a0ad-439b-8d9d-bbd8ae3a0f3b"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <ns:npsLk01 xmlns:stuf="http://www.egem.nl/StUF/StUF0301">\r
@@ -43066,129 +43079,15 @@
 	<BG:stuurgegevens>
 		<StUF:berichtcode>Lv01</StUF:berichtcode>
 		<StUF:zender>
-			<StUF:organisatie>0518</StUF:organisatie>
-			<StUF:applicatie>DEC_ZKN</StUF:applicatie>
-			<StUF:gebruiker>PROWEB</StUF:gebruiker>
-		</StUF:zender>
-		<StUF:ontvanger>
-			<StUF:organisatie>NEDGR</StUF:organisatie>
-			<StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
-		</StUF:ontvanger>
-		<StUF:referentienummer>${=java.util.UUID.randomUUID().toString() }</StUF:referentienummer>
-		<StUF:tijdstipBericht>${=import java.text.SimpleDateFormat; SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS"); sdf.setTimeZone(TimeZone.getTimeZone("${#Project#ZdsTimezone}")); sdf.format(new Date());}</StUF:tijdstipBericht>
-		<StUF:entiteittype>NPS</StUF:entiteittype>
-	</BG:stuurgegevens>
-	<BG:parameters>
-		<StUF:sortering>1</StUF:sortering>
-		<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
-		<StUF:maximumAantal>50</StUF:maximumAantal>
-		<StUF:indicatorAantal>true</StUF:indicatorAantal>
-	</BG:parameters>
-	<BG:gelijk StUF:entiteittype="NPS">
-		<BG:inp.bsn>999993628</BG:inp.bsn>
-	</BG:gelijk>
-	<BG:scope>
-		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="" StUF:sleutelGegevensbeheer="">
-			<BG:inp.bsn xsi:nil="true"/>
-			<BG:sub.typering xsi:nil="true"/>
-			<BG:inp.a-nummer xsi:nil="true"/>
-			<BG:geslachtsnaam xsi:nil="true"/>
-			<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
-			<BG:voorletters xsi:nil="true"/>
-			<BG:voornamen xsi:nil="true"/>
-			<BG:aanduidingNaamgebruik xsi:nil="true"/>
-			<BG:geslachtsnaamPartner xsi:nil="true"/>
-			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
-			<BG:aanhefAanschrijving xsi:nil="true"/>
-			<BG:voornamenAanschrijving xsi:nil="true"/>
-			<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
-			<BG:adellijkeTitelPredikaat xsi:nil="true"/>
-			<BG:geslachtsaanduiding xsi:nil="true"/>
-			<BG:geboortedatum xsi:nil="true"/>
-			<BG:inp.geboorteplaats xsi:nil="true"/>
-			<BG:inp.geboorteLand xsi:nil="true"/>
-			<BG:overlijdensdatum xsi:nil="true"/>
-			<BG:verblijfsadres>
-				<BG:aoa.identificatie xsi:nil="true"/>
-				<BG:wpl.identificatie xsi:nil="true"/>
-				<BG:wpl.woonplaatsNaam xsi:nil="true"/>
-				<BG:aoa.woonplaatsWaarinGelegen>
-					<BG:wpl.identificatie xsi:nil="true"/>
-					<BG:wpl.woonplaatsNaam xsi:nil="true"/>
-				</BG:aoa.woonplaatsWaarinGelegen>
-				<BG:gor.identificatie xsi:nil="true"/>
-				<BG:opr.identificatie xsi:nil="true"/>
-				<BG:gor.openbareRuimteNaam xsi:nil="true"/>
-				<BG:gor.straatnaam xsi:nil="true"/>
-				<BG:aoa.postcode xsi:nil="true"/>
-				<BG:aoa.huisnummer xsi:nil="true"/>
-				<BG:aoa.huisletter xsi:nil="true"/>
-				<BG:aoa.huisnummertoevoeging xsi:nil="true"/>
-				<BG:inp.locatiebeschrijving xsi:nil="true"/>
-				<BG:begindatumVerblijf xsi:nil="true"/>
-			</BG:verblijfsadres>
-			<BG:sub.verblijfBuitenland>
-				<BG:lnd.landcode xsi:nil="true"/>
-				<BG:lnd.landnaam xsi:nil="true"/>
-				<BG:sub.adresBuitenland1 xsi:nil="true"/>
-				<BG:sub.adresBuitenland2 xsi:nil="true"/>
-				<BG:sub.adresBuitenland3 xsi:nil="true"/>
-			</BG:sub.verblijfBuitenland>
-			<BG:sub.correspondentieAdres>
-				<BG:typering xsi:nil="true"/>
-				<BG:wpl.woonplaatsNaam xsi:nil="true"/>
-				<BG:aoa.woonplaatsWaarinGelegen>
-					<BG:wpl.identificatie xsi:nil="true"/>
-					<BG:wpl.woonplaatsNaam xsi:nil="true"/>
-				</BG:aoa.woonplaatsWaarinGelegen>
-				<BG:postcode xsi:nil="true"/>
-				<BG:aoa.identificatie xsi:nil="true"/>
-				<BG:wpl.identificatie xsi:nil="true"/>
-				<BG:opr.identificatie xsi:nil="true"/>
-				<BG:gor.openbareRuimteNaam xsi:nil="true"/>
-				<BG:gor.straatnaam xsi:nil="true"/>
-				<BG:aoa.huisnummer xsi:nil="true"/>
-				<BG:aoa.huisletter xsi:nil="true"/>
-				<BG:aoa.huisnummertoevoeging xsi:nil="true"/>
-				<BG:sub.postadresType xsi:nil="true"/>
-				<BG:sub.postadresNummer xsi:nil="true"/>
-			</BG:sub.correspondentieAdres>
-			<BG:sub.telefoonnummer xsi:nil="true"/>
-			<BG:sub.faxnummer xsi:nil="true"/>
-			<BG:sub.emailadres xsi:nil="true"/>
-			<BG:sub.url xsi:nil="true"/>
-			<BG:sub.rekeningnummerBankGiro xsi:nil="true"/>
-			<BG:inp.burgerlijkeStaat xsi:nil="true"/>
-			<BG:inp.gemeenteVanInschrijving xsi:nil="true"/>
-			<BG:inp.datumInschrijving xsi:nil="true"/>
-			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true"/>
-			<BG:inp.datumVestigingInNederland xsi:nil="true"/>
-			<BG:inp.immigratieLand xsi:nil="true"/>
-			<BG:inp.datumVertrekUitNederland xsi:nil="true"/>
-			<BG:inp.emigratieLand xsi:nil="true"/>
-			<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
-			<BG:inp.indicatieGeheim xsi:nil="true"/>
-			<BG:ing.indicatieBlokkering xsi:nil="true"/>
-		</BG:object>
-	</BG:scope>
-</BG:npsLv01>	
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="f00d8219-0300-4154-8db1-c9e393d7f464"/><con:assertion type="Schema Compliance" id="9ba661f8-f96e-4f2d-b539-0ea8d5bba9a5" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="d5e6a44a-b8fe-4e07-b267-154ab1c91fc4" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="GWS request" id="9be80099-dacf-4017-95c3-01b05749f2ac"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="GWS request" id="104010ad-17c4-4a96-ac1a-b6e4ed150df5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<BG:stuurgegevens>
-		<StUF:berichtcode>Lv01</StUF:berichtcode>
-		<StUF:zender>
 			<StUF:applicatie>GWS</StUF:applicatie>
-			<StUF:gebruiker>PROD</StUF:gebruiker>
+			<StUF:gebruiker>test</StUF:gebruiker>
 		</StUF:zender>
 		<StUF:ontvanger>
-			<StUF:organisatie>NEDGR</StUF:organisatie>
-			<StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
+			<StUF:organisatie>test123</StUF:organisatie>
+			<StUF:applicatie>test_A</StUF:applicatie>
 		</StUF:ontvanger>
-		<StUF:referentienummer>${=java.util.UUID.randomUUID().toString() }</StUF:referentienummer>
-		<StUF:tijdstipBericht>${=import java.text.SimpleDateFormat; SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS"); sdf.setTimeZone(TimeZone.getTimeZone("${#Project#ZdsTimezone}")); sdf.format(new Date());}</StUF:tijdstipBericht>
+		<StUF:referentienummer>10941b75-e459-4473-8bf6-6e769c84a252</StUF:referentienummer>
+		<StUF:tijdstipBericht>20241014151308739</StUF:tijdstipBericht>
 		<StUF:entiteittype>NPS</StUF:entiteittype>
 	</BG:stuurgegevens>
 	<BG:parameters>
@@ -43290,7 +43189,180 @@
 	</BG:scope>
 </BG:npsLv01>	
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="bbe5e8c0-1464-46ce-996b-62e2e24764b5"/><con:assertion type="Schema Compliance" id="2963186d-4020-417b-b491-9bdabc2bde23" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="7c00e870-b648-49b1-bfed-d5f8ce59d6e3" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="LBA request" id="48e38414-4daa-4a79-ab92-a801c474fc91"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="LBA request" id="889c1c68-5a9c-4bc6-82df-83e911cbe5a3"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml">
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="bbe5e8c0-1464-46ce-996b-62e2e24764b5"/><con:assertion type="Schema Compliance" id="2963186d-4020-417b-b491-9bdabc2bde23" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="7c00e870-b648-49b1-bfed-d5f8ce59d6e3" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="GWS request2" id="0161171f-651c-4e30-a273-f5c70df14fcf"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="GWS request2" id="104010ad-17c4-4a96-ac1a-b6e4ed150df5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xlink="http://www.w3.org/1999/xlink">
+<soapenv:Header/>
+<soapenv:Body>
+<BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<BG:stuurgegevens>
+<StUF:berichtcode>Lv01</StUF:berichtcode>
+<StUF:zender>
+<StUF:applicatie>GWS</StUF:applicatie>
+<StUF:gebruiker>test_1</StUF:gebruiker>
+</StUF:zender>
+<StUF:ontvanger>
+<StUF:organisatie>test</StUF:organisatie>
+<StUF:applicatie>test123</StUF:applicatie>
+</StUF:ontvanger>
+<StUF:referentienummer>10941b75-e459-4473-8bf6-6e769c84a252</StUF:referentienummer>
+<StUF:tijdstipBericht>20241014151308739</StUF:tijdstipBericht>
+<StUF:entiteittype>NPS</StUF:entiteittype>
+</BG:stuurgegevens>
+<BG:parameters>
+<StUF:sortering>7</StUF:sortering>
+<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+<StUF:maximumAantal>30</StUF:maximumAantal>
+</BG:parameters>
+<BG:vanaf StUF:entiteittype="NPS">
+<BG:inp.bsn>999993628</BG:inp.bsn>
+</BG:vanaf>
+<BG:totEnMet StUF:entiteittype="NPS">
+<BG:inp.bsn>999993628</BG:inp.bsn>
+</BG:totEnMet>
+<BG:scope>
+<BG:object StUF:entiteittype="NPS">
+<BG:inp.bsn xsi:nil="true"/>
+<BG:geslachtsnaam xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+<BG:voornamen xsi:nil="true"/>
+<BG:aanduidingNaamgebruik xsi:nil="true"/>
+<BG:geslachtsaanduiding xsi:nil="true"/>
+<BG:geboortedatum xsi:nil="true"/>
+<BG:inp.geboorteplaats xsi:nil="true"/>
+<BG:inp.geboorteLand xsi:nil="true"/>
+<BG:overlijdensdatum xsi:nil="true"/>
+<BG:inp.verblijftIn StUF:entiteittype="NPSTGO">
+<BG:gerelateerde StUF:entiteittype="TGO">
+<BG:adresAanduidingGrp>
+<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+<BG:gor.straatnaam xsi:nil="true"/>
+<BG:aoa.postcode xsi:nil="true"/>
+<BG:aoa.huisnummer xsi:nil="true"/>
+<BG:aoa.huisletter xsi:nil="true"/>
+<BG:aoa.huisnummertoevoeging xsi:nil="true"/>
+</BG:adresAanduidingGrp>
+</BG:gerelateerde>
+<StUF:tijdvakRelatie>
+<StUF:beginRelatie xsi:nil="true"/>
+<StUF:eindRelatie xsi:nil="true"/>
+</StUF:tijdvakRelatie>
+</BG:inp.verblijftIn>
+<BG:verblijfsadres>
+<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+<BG:gor.straatnaam xsi:nil="true"/>
+<BG:aoa.postcode xsi:nil="true"/>
+<BG:aoa.huisnummer xsi:nil="true"/>
+<BG:aoa.huisletter xsi:nil="true"/>
+<BG:aoa.huisnummertoevoeging xsi:nil="true"/>
+<BG:begindatumVerblijf xsi:nil="true"/>
+</BG:verblijfsadres>
+<BG:sub.verblijfBuitenland>
+<BG:lnd.landcode xsi:nil="true"/>
+<BG:sub.adresBuitenland1 xsi:nil="true"/>
+<BG:sub.adresBuitenland2 xsi:nil="true"/>
+<BG:sub.adresBuitenland3 xsi:nil="true"/>
+</BG:sub.verblijfBuitenland>
+<BG:inp.adresHerkomst xsi:nil="true"/>
+<BG:sub.correspondentieAdres>
+<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+<BG:postcode xsi:nil="true"/>
+<BG:gor.straatnaam xsi:nil="true"/>
+<BG:aoa.huisnummer xsi:nil="true"/>
+<BG:aoa.huisletter xsi:nil="true"/>
+<BG:aoa.huisnummertoevoeging xsi:nil="true"/>
+</BG:sub.correspondentieAdres>
+<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+<BG:inp.gemeenteVanInschrijving xsi:nil="true"/>
+<BG:inp.datumInschrijving xsi:nil="true"/>
+<BG:vbt.aanduidingVerblijfstitel xsi:nil="true"/>
+<BG:ing.datumVerkrijgingVerblijfstitel xsi:nil="true"/>
+<BG:ing.datumVerliesVerblijfstitel xsi:nil="true"/>
+<BG:inp.datumVertrekUitNederland xsi:nil="true"/>
+<BG:inp.emigratieLand xsi:nil="true"/>
+<BG:inp.aanduidingBijzonderNederlanderschap xsi:nil="true"/>
+<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+<BG:inp.indicatieGeheim xsi:nil="true"/>
+<BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
+<BG:gerelateerde StUF:entiteittype="NPS">
+<BG:inp.bsn xsi:nil="true"/>
+<BG:anp.identificatie xsi:nil="true"/>
+<BG:sub.typering xsi:nil="true"/>
+<BG:geslachtsnaam xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+<BG:voorletters xsi:nil="true"/>
+<BG:voornamen xsi:nil="true"/>
+<BG:aanduidingNaamgebruik xsi:nil="true"/>
+<BG:geslachtsnaamPartner xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+<BG:aanhefAanschrijving xsi:nil="true"/>
+<BG:voornamenAanschrijving xsi:nil="true"/>
+<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+<BG:geslachtsaanduiding xsi:nil="true"/>
+<BG:geboortedatum xsi:nil="true"/>
+<BG:overlijdensdatum xsi:nil="true"/>
+<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+<BG:inp.indicatieGeheim xsi:nil="true"/>
+</BG:gerelateerde>
+<BG:soortVerbintenis xsi:nil="true"/>
+<BG:datumSluiting xsi:nil="true"/>
+<BG:datumOntbinding xsi:nil="true"/>
+</BG:inp.heeftAlsEchtgenootPartner>
+<BG:inp.heeftAlsKinderen StUF:entiteittype="NPSNPSKND">
+<BG:gerelateerde StUF:entiteittype="NPS">
+<BG:inp.bsn xsi:nil="true"/>
+<BG:anp.identificatie xsi:nil="true"/>
+<BG:sub.typering xsi:nil="true"/>
+<BG:geslachtsnaam xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+<BG:voorletters xsi:nil="true"/>
+<BG:voornamen xsi:nil="true"/>
+<BG:aanduidingNaamgebruik xsi:nil="true"/>
+<BG:geslachtsnaamPartner xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+<BG:aanhefAanschrijving xsi:nil="true"/>
+<BG:voornamenAanschrijving xsi:nil="true"/>
+<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+<BG:geslachtsaanduiding xsi:nil="true"/>
+<BG:geboortedatum xsi:nil="true"/>
+<BG:overlijdensdatum xsi:nil="true"/>
+<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+<BG:inp.indicatieGeheim xsi:nil="true"/>
+</BG:gerelateerde>
+</BG:inp.heeftAlsKinderen>
+<BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
+<BG:gerelateerde StUF:entiteittype="NPS">
+<BG:inp.bsn xsi:nil="true"/>
+<BG:anp.identificatie xsi:nil="true"/>
+<BG:sub.typering xsi:nil="true"/>
+<BG:geslachtsnaam xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+<BG:voorletters xsi:nil="true"/>
+<BG:voornamen xsi:nil="true"/>
+<BG:aanduidingNaamgebruik xsi:nil="true"/>
+<BG:geslachtsnaamPartner xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+<BG:aanhefAanschrijving xsi:nil="true"/>
+<BG:voornamenAanschrijving xsi:nil="true"/>
+<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+<BG:geslachtsaanduiding xsi:nil="true"/>
+<BG:geboortedatum xsi:nil="true"/>
+<BG:overlijdensdatum xsi:nil="true"/>
+<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+<BG:inp.indicatieGeheim xsi:nil="true"/>
+</BG:gerelateerde>
+</BG:inp.heeftAlsOuders>
+<BG:inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT">
+<BG:gerelateerde StUF:entiteittype="NAT">
+<BG:code xsi:nil="true"/>
+</BG:gerelateerde>
+</BG:inp.heeftAlsNationaliteit>
+</BG:object>
+</BG:scope>
+</BG:npsLv01>
+</soapenv:Body></soapenv:Envelope>
+]]></con:request><con:assertion type="SOAP Response" id="bbe5e8c0-1464-46ce-996b-62e2e24764b5"/><con:assertion type="Schema Compliance" id="2963186d-4020-417b-b491-9bdabc2bde23" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="7c00e870-b648-49b1-bfed-d5f8ce59d6e3" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="LBA request1" id="48e38414-4daa-4a79-ab92-a801c474fc91"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="LBA request1" id="889c1c68-5a9c-4bc6-82df-83e911cbe5a3"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml">
    <soapenv:Header/>
    <soapenv:Body>
       <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -43301,11 +43373,11 @@
 			<StUF:applicatie>LBA</StUF:applicatie>
 		</StUF:zender>
 		<StUF:ontvanger>
-			<StUF:organisatie>NEDGR</StUF:organisatie>
-			<StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
+			<StUF:organisatie>test1</StUF:organisatie>
+			<StUF:applicatie>test</StUF:applicatie>
 		</StUF:ontvanger>
-		<StUF:referentienummer>${=java.util.UUID.randomUUID().toString() }</StUF:referentienummer>
-		<StUF:tijdstipBericht>${=import java.text.SimpleDateFormat; SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS"); sdf.setTimeZone(TimeZone.getTimeZone("${#Project#ZdsTimezone}")); sdf.format(new Date());}</StUF:tijdstipBericht>
+		<StUF:referentienummer>3f8aed9f-307d-4bca-8081-aaabaa9202df</StUF:referentienummer>
+		<StUF:tijdstipBericht>20241014193057291</StUF:tijdstipBericht>
 		<StUF:entiteittype>NPS</StUF:entiteittype>
 	</BG:stuurgegevens>
 	<BG:parameters>
@@ -43378,7 +43450,167 @@
 	</BG:scope>
 </BG:npsLv01>	
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="39673be7-12b6-440e-8499-dc77afe662ec"/><con:assertion type="Schema Compliance" id="b1ed6640-b103-4959-8f18-d3c327a1783b" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="4ebe3812-e268-46ce-8dc6-1d97944c9893" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="TOP request" id="3a11b34c-81f9-4cbd-a6ae-fcd5a15fdc47"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="TOP request" id="48200b66-cfc0-45d4-b2a8-894f4d02dcf4"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml">
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="39673be7-12b6-440e-8499-dc77afe662ec"/><con:assertion type="Schema Compliance" id="b1ed6640-b103-4959-8f18-d3c327a1783b" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="4ebe3812-e268-46ce-8dc6-1d97944c9893" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="LBA request2" id="4194e83a-f4af-453d-b19a-7ba23e22d110"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="LBA request2" id="889c1c68-5a9c-4bc6-82df-83e911cbe5a3"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xlink="http://www.w3.org/1999/xlink">
+<soapenv:Header/>
+<soapenv:Body>
+<BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<BG:stuurgegevens>
+<StUF:berichtcode>Lv01</StUF:berichtcode>
+<StUF:zender>
+<StUF:organisatie>0518</StUF:organisatie>
+<StUF:applicatie>LBA</StUF:applicatie>
+</StUF:zender>
+<StUF:ontvanger>
+<StUF:organisatie>test1</StUF:organisatie>
+<StUF:applicatie>test</StUF:applicatie>
+</StUF:ontvanger>
+<StUF:referentienummer>3f8aed9f-307d-4bca-8081-aaabaa9202df</StUF:referentienummer>
+<StUF:tijdstipBericht>20241014193057291</StUF:tijdstipBericht>
+<StUF:entiteittype>NPS</StUF:entiteittype>
+</BG:stuurgegevens>
+<BG:parameters>
+<StUF:sortering>1</StUF:sortering>
+<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+<StUF:maximumAantal>9</StUF:maximumAantal>
+</BG:parameters>
+<BG:gelijk StUF:entiteittype="NPS">
+<BG:inp.bsn>999993628</BG:inp.bsn>
+</BG:gelijk>
+<BG:scope>
+<BG:object StUF:entiteittype="NPS">
+<BG:inp.bsn xsi:nil="true"/>
+<BG:inp.a-nummer xsi:nil="true"/>
+<BG:geslachtsnaam xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+<BG:voorletters xsi:nil="true"/>
+<BG:voornamen xsi:nil="true"/>
+<BG:aanduidingNaamgebruik xsi:nil="true"/>
+<BG:geslachtsnaamPartner xsi:nil="true"/>
+<BG:geslachtsaanduiding xsi:nil="true"/>
+<BG:geboortedatum xsi:nil="true"/>
+<BG:inp.geboorteplaats xsi:nil="true"/>
+<BG:inp.geboorteLand xsi:nil="true"/>
+<BG:overlijdensdatum xsi:nil="true"/>
+<BG:inp.overlijdenplaats xsi:nil="true"/>
+<BG:inp.overlijdenLand xsi:nil="true"/>
+<BG:verblijfsadres>
+<BG:aoa.identificatie xsi:nil="true"/>
+<BG:wpl.identificatie xsi:nil="true"/>
+<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+<BG:aoa.woonplaatsWaarinGelegen>
+<BG:wpl.identificatie xsi:nil="true"/>
+<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+</BG:aoa.woonplaatsWaarinGelegen>
+<BG:gor.identificatie xsi:nil="true"/>
+<BG:opr.identificatie xsi:nil="true"/>
+<BG:gor.openbareRuimteNaam xsi:nil="true"/>
+<BG:gor.straatnaam xsi:nil="true"/>
+<BG:aoa.postcode xsi:nil="true"/>
+<BG:aoa.huisnummer xsi:nil="true"/>
+<BG:aoa.huisletter xsi:nil="true"/>
+<BG:aoa.huisnummertoevoeging xsi:nil="true"/>
+<BG:inp.locatiebeschrijving xsi:nil="true"/>
+<BG:begindatumVerblijf xsi:nil="true"/>
+</BG:verblijfsadres>
+<BG:inp.adresHerkomst xsi:nil="true"/>
+<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+<BG:inp.gemeenteVanInschrijving xsi:nil="true"/>
+<BG:inp.datumInschrijving xsi:nil="true"/>
+<BG:inp.indicatieGeheim xsi:nil="true"/>
+<BG:ing.indicatieBlokkering xsi:nil="true"/>
+<BG:aanduidingStrijdigheidNietigheid xsi:nil="true"/>
+<StUF:tijdvakGeldigheid>
+<StUF:beginGeldigheid xsi:nil="true"/>
+<StUF:eindGeldigheid xsi:nil="true"/>
+</StUF:tijdvakGeldigheid>
+<StUF:tijdstipRegistratie xsi:nil="true"/>
+<BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
+<BG:gerelateerde StUF:entiteittype="NPS">
+<BG:inp.bsn xsi:nil="true"/>
+<BG:anp.identificatie xsi:nil="true"/>
+<BG:sub.typering xsi:nil="true"/>
+<BG:geslachtsnaam xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+<BG:voorletters xsi:nil="true"/>
+<BG:voornamen xsi:nil="true"/>
+<BG:aanduidingNaamgebruik xsi:nil="true"/>
+<BG:geslachtsnaamPartner xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+<BG:aanhefAanschrijving xsi:nil="true"/>
+<BG:voornamenAanschrijving xsi:nil="true"/>
+<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+<BG:geslachtsaanduiding xsi:nil="true"/>
+<BG:geboortedatum xsi:nil="true"/>
+<BG:overlijdensdatum xsi:nil="true"/>
+<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+<BG:inp.indicatieGeheim xsi:nil="true"/>
+</BG:gerelateerde>
+<BG:soortVerbintenis xsi:nil="true"/>
+<BG:datumSluiting xsi:nil="true"/>
+<BG:datumOntbinding xsi:nil="true"/>
+</BG:inp.heeftAlsEchtgenootPartner>
+<BG:inp.heeftAlsKinderen StUF:entiteittype="NPSNPSKND">
+<BG:gerelateerde StUF:entiteittype="NPS">
+<BG:inp.bsn xsi:nil="true"/>
+<BG:anp.identificatie xsi:nil="true"/>
+<BG:sub.typering xsi:nil="true"/>
+<BG:geslachtsnaam xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+<BG:voorletters xsi:nil="true"/>
+<BG:voornamen xsi:nil="true"/>
+<BG:aanduidingNaamgebruik xsi:nil="true"/>
+<BG:geslachtsnaamPartner xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+<BG:aanhefAanschrijving xsi:nil="true"/>
+<BG:voornamenAanschrijving xsi:nil="true"/>
+<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+<BG:geslachtsaanduiding xsi:nil="true"/>
+<BG:geboortedatum xsi:nil="true"/>
+<BG:overlijdensdatum xsi:nil="true"/>
+<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+<BG:inp.indicatieGeheim xsi:nil="true"/>
+</BG:gerelateerde>
+</BG:inp.heeftAlsKinderen>
+<BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
+<BG:gerelateerde StUF:entiteittype="NPS">
+<BG:inp.bsn xsi:nil="true"/>
+<BG:anp.identificatie xsi:nil="true"/>
+<BG:sub.typering xsi:nil="true"/>
+<BG:geslachtsnaam xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+<BG:voorletters xsi:nil="true"/>
+<BG:voornamen xsi:nil="true"/>
+<BG:aanduidingNaamgebruik xsi:nil="true"/>
+<BG:geslachtsnaamPartner xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+<BG:aanhefAanschrijving xsi:nil="true"/>
+<BG:voornamenAanschrijving xsi:nil="true"/>
+<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+<BG:geslachtsaanduiding xsi:nil="true"/>
+<BG:geboortedatum xsi:nil="true"/>
+<BG:overlijdensdatum xsi:nil="true"/>
+<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+<BG:inp.indicatieGeheim xsi:nil="true"/>
+</BG:gerelateerde>
+</BG:inp.heeftAlsOuders>
+<BG:inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT">
+<BG:gerelateerde StUF:entiteittype="NAT">
+<BG:code xsi:nil="true"/>
+<BG:omschrijving xsi:nil="true"/>
+</BG:gerelateerde>
+<BG:inp.redenVerkrijging xsi:nil="true"/>
+<BG:inp.datumVerkrijging xsi:nil="true"/>
+<BG:inp.redenVerlies xsi:nil="true"/>
+<BG:inp.datumVerlies xsi:nil="true"/>
+</BG:inp.heeftAlsNationaliteit>
+</BG:object>
+</BG:scope>
+</BG:npsLv01>
+</soapenv:Body></soapenv:Envelope>
+]]></con:request><con:assertion type="SOAP Response" id="39673be7-12b6-440e-8499-dc77afe662ec"/><con:assertion type="Schema Compliance" id="b1ed6640-b103-4959-8f18-d3c327a1783b" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="4ebe3812-e268-46ce-8dc6-1d97944c9893" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="TOP request1" id="3a11b34c-81f9-4cbd-a6ae-fcd5a15fdc47"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="TOP request1" id="48200b66-cfc0-45d4-b2a8-894f4d02dcf4"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml">
    <soapenv:Header/>
    <soapenv:Body>
       <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -43392,8 +43624,8 @@
 			<StUF:organisatie>NEDGR</StUF:organisatie>
 			<StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
 		</StUF:ontvanger>
-		<StUF:referentienummer>${=java.util.UUID.randomUUID().toString() }</StUF:referentienummer>
-		<StUF:tijdstipBericht>${=import java.text.SimpleDateFormat; SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS"); sdf.setTimeZone(TimeZone.getTimeZone("${#Project#ZdsTimezone}")); sdf.format(new Date());}</StUF:tijdstipBericht>
+		<StUF:referentienummer>647608bf-81b6-4133-a5e7-a384671564a3</StUF:referentienummer>
+		<StUF:tijdstipBericht>20241014193107237</StUF:tijdstipBericht>
 		<StUF:entiteittype>NPS</StUF:entiteittype>
 	</BG:stuurgegevens>
 	<BG:parameters>
@@ -43552,7 +43784,181 @@
 	</BG:scope>
 </BG:npsLv01>	
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="bff7a147-6d44-4250-b661-2442161c2bf1"/><con:assertion type="Schema Compliance" id="9dc0c916-58d5-4bcc-978f-7e64f75adf2b" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="d7ad0793-2ac8-41bb-a379-9312851d03c6" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="PGAx request" id="70c76a5b-54ce-42d2-9161-188a4ed66107"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="PGAx request" id="9fc1d8dd-60e8-40d6-ae90-cfec516e7add"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml">
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="bff7a147-6d44-4250-b661-2442161c2bf1"/><con:assertion type="Schema Compliance" id="9dc0c916-58d5-4bcc-978f-7e64f75adf2b" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="d7ad0793-2ac8-41bb-a379-9312851d03c6" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="TOP request2" id="1ee95e5c-f26d-4cde-98aa-ec58a2f96dc6"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="TOP request2" id="48200b66-cfc0-45d4-b2a8-894f4d02dcf4"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xlink="http://www.w3.org/1999/xlink">
+<soapenv:Header/>
+<soapenv:Body>
+<BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<BG:stuurgegevens>
+<StUF:berichtcode>Lv01</StUF:berichtcode>
+<StUF:zender>
+<StUF:organisatie>0518</StUF:organisatie>
+<StUF:applicatie>TOP</StUF:applicatie>
+</StUF:zender>
+<StUF:ontvanger>
+<StUF:organisatie>test</StUF:organisatie>
+<StUF:applicatie>test1</StUF:applicatie>
+</StUF:ontvanger>
+<StUF:referentienummer>647608bf-81b6-4133-a5e7-a384671564a3</StUF:referentienummer>
+<StUF:tijdstipBericht>20241014193107237</StUF:tijdstipBericht>
+<StUF:entiteittype>NPS</StUF:entiteittype>
+</BG:stuurgegevens>
+<BG:parameters>
+<StUF:sortering>0</StUF:sortering>
+<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+<StUF:maximumAantal>1</StUF:maximumAantal>
+</BG:parameters>
+<BG:gelijk StUF:entiteittype="NPS">
+<BG:inp.bsn>999993628</BG:inp.bsn>
+</BG:gelijk>
+<BG:scope>
+<BG:object StUF:entiteittype="NPS">
+<BG:inp.bsn xsi:nil="true"/>
+<BG:sub.typering xsi:nil="true"/>
+<BG:geslachtsnaam xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+<BG:voorletters xsi:nil="true"/>
+<BG:voornamen xsi:nil="true"/>
+<BG:aanduidingNaamgebruik xsi:nil="true"/>
+<BG:geslachtsnaamPartner xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+<BG:aanhefAanschrijving xsi:nil="true"/>
+<BG:voornamenAanschrijving xsi:nil="true"/>
+<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+<BG:geslachtsaanduiding xsi:nil="true"/>
+<BG:geboortedatum xsi:nil="true"/>
+<BG:inp.geboorteplaats xsi:nil="true"/>
+<BG:inp.geboorteLand xsi:nil="true"/>
+<BG:overlijdensdatum xsi:nil="true"/>
+<BG:inp.verblijftIn StUF:entiteittype="NPSTGO">
+<BG:gerelateerde StUF:entiteittype="TGO">
+<BG:adresAanduidingGrp>
+<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+<BG:aoa.woonplaatsWaarinGelegen>
+<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+</BG:aoa.woonplaatsWaarinGelegen>
+<BG:gor.openbareRuimteNaam xsi:nil="true"/>
+<BG:aoa.postcode xsi:nil="true"/>
+<BG:aoa.huisnummer xsi:nil="true"/>
+<BG:aoa.huisletter xsi:nil="true"/>
+<BG:aoa.huisnummertoevoeging xsi:nil="true"/>
+</BG:adresAanduidingGrp>
+</BG:gerelateerde>
+</BG:inp.verblijftIn>
+<BG:verblijfsadres>
+<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+<BG:aoa.woonplaatsWaarinGelegen>
+<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+</BG:aoa.woonplaatsWaarinGelegen>
+<BG:gor.openbareRuimteNaam xsi:nil="true"/>
+<BG:aoa.postcode xsi:nil="true"/>
+<BG:aoa.huisnummer xsi:nil="true"/>
+<BG:aoa.huisletter xsi:nil="true"/>
+<BG:aoa.huisnummertoevoeging xsi:nil="true"/>
+<BG:inp.locatiebeschrijving xsi:nil="true"/>
+</BG:verblijfsadres>
+<BG:sub.correspondentieAdres>
+<BG:typering xsi:nil="true"/>
+<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+<BG:aoa.woonplaatsWaarinGelegen>
+<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+</BG:aoa.woonplaatsWaarinGelegen>
+<BG:postcode xsi:nil="true"/>
+<BG:gor.openbareRuimteNaam xsi:nil="true"/>
+<BG:aoa.huisnummer xsi:nil="true"/>
+<BG:aoa.huisletter xsi:nil="true"/>
+<BG:aoa.huisnummertoevoeging xsi:nil="true"/>
+<BG:sub.postadresType xsi:nil="true"/>
+<BG:sub.postadresNummer xsi:nil="true"/>
+</BG:sub.correspondentieAdres>
+<BG:sub.telefoonnummer xsi:nil="true"/>
+<BG:sub.emailadres xsi:nil="true"/>
+<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+<BG:inp.gemeenteVanInschrijving xsi:nil="true"/>
+<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+<BG:inp.indicatieGeheim xsi:nil="true"/>
+<BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
+<BG:gerelateerde StUF:entiteittype="NPS">
+<BG:inp.bsn xsi:nil="true"/>
+<BG:anp.identificatie xsi:nil="true"/>
+<BG:sub.typering xsi:nil="true"/>
+<BG:geslachtsnaam xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+<BG:voorletters xsi:nil="true"/>
+<BG:voornamen xsi:nil="true"/>
+<BG:aanduidingNaamgebruik xsi:nil="true"/>
+<BG:geslachtsnaamPartner xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+<BG:aanhefAanschrijving xsi:nil="true"/>
+<BG:voornamenAanschrijving xsi:nil="true"/>
+<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+<BG:geslachtsaanduiding xsi:nil="true"/>
+<BG:geboortedatum xsi:nil="true"/>
+<BG:overlijdensdatum xsi:nil="true"/>
+<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+<BG:inp.indicatieGeheim xsi:nil="true"/>
+</BG:gerelateerde>
+<BG:soortVerbintenis xsi:nil="true"/>
+<BG:datumSluiting xsi:nil="true"/>
+<BG:datumOntbinding xsi:nil="true"/>
+</BG:inp.heeftAlsEchtgenootPartner>
+<BG:inp.heeftAlsKinderen StUF:entiteittype="NPSNPSKND">
+<BG:gerelateerde StUF:entiteittype="NPS">
+<BG:inp.bsn xsi:nil="true"/>
+<BG:anp.identificatie xsi:nil="true"/>
+<BG:sub.typering xsi:nil="true"/>
+<BG:geslachtsnaam xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+<BG:voorletters xsi:nil="true"/>
+<BG:voornamen xsi:nil="true"/>
+<BG:aanduidingNaamgebruik xsi:nil="true"/>
+<BG:geslachtsnaamPartner xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+<BG:aanhefAanschrijving xsi:nil="true"/>
+<BG:voornamenAanschrijving xsi:nil="true"/>
+<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+<BG:geslachtsaanduiding xsi:nil="true"/>
+<BG:geboortedatum xsi:nil="true"/>
+<BG:overlijdensdatum xsi:nil="true"/>
+<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+<BG:inp.indicatieGeheim xsi:nil="true"/>
+</BG:gerelateerde>
+</BG:inp.heeftAlsKinderen>
+<BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
+<BG:gerelateerde StUF:entiteittype="NPS">
+<BG:inp.bsn xsi:nil="true"/>
+<BG:anp.identificatie xsi:nil="true"/>
+<BG:sub.typering xsi:nil="true"/>
+<BG:geslachtsnaam xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+<BG:voorletters xsi:nil="true"/>
+<BG:voornamen xsi:nil="true"/>
+<BG:aanduidingNaamgebruik xsi:nil="true"/>
+<BG:geslachtsnaamPartner xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+<BG:aanhefAanschrijving xsi:nil="true"/>
+<BG:voornamenAanschrijving xsi:nil="true"/>
+<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+<BG:geslachtsaanduiding xsi:nil="true"/>
+<BG:geboortedatum xsi:nil="true"/>
+<BG:overlijdensdatum xsi:nil="true"/>
+<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+<BG:inp.indicatieGeheim xsi:nil="true"/>
+</BG:gerelateerde>
+</BG:inp.heeftAlsOuders>
+<BG:inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT">
+<BG:gerelateerde StUF:entiteittype="NAT">
+<BG:code xsi:nil="true"/>
+</BG:gerelateerde>
+<BG:inp.datumVerkrijging xsi:nil="true"/>
+</BG:inp.heeftAlsNationaliteit>
+</BG:object>
+</BG:scope>
+</BG:npsLv01>
+</soapenv:Body></soapenv:Envelope>
+]]></con:request><con:assertion type="SOAP Response" id="bff7a147-6d44-4250-b661-2442161c2bf1"/><con:assertion type="Schema Compliance" id="9dc0c916-58d5-4bcc-978f-7e64f75adf2b" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="d7ad0793-2ac8-41bb-a379-9312851d03c6" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="PGAx request1" id="70c76a5b-54ce-42d2-9161-188a4ed66107"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="PGAx request1" id="9fc1d8dd-60e8-40d6-ae90-cfec516e7add"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml">
    <soapenv:Header/>
    <soapenv:Body>
  <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -43563,11 +43969,11 @@
 			<StUF:applicatie>PGAx-SG-ZVH</StUF:applicatie>
 		</StUF:zender>
 		<StUF:ontvanger>
-			<StUF:organisatie>NEDGR</StUF:organisatie>
-			<StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
+			<StUF:organisatie>TEST</StUF:organisatie>
+			<StUF:applicatie>TEST123</StUF:applicatie>
 		</StUF:ontvanger>
-		<StUF:referentienummer>${=java.util.UUID.randomUUID().toString() }</StUF:referentienummer>
-		<StUF:tijdstipBericht>${=import java.text.SimpleDateFormat; SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS"); sdf.setTimeZone(TimeZone.getTimeZone("${#Project#ZdsTimezone}")); sdf.format(new Date());}</StUF:tijdstipBericht>
+		<StUF:referentienummer>fa7a5aed-d384-44c6-80ae-8ead1bc9c5e2</StUF:referentienummer>
+		<StUF:tijdstipBericht>20241014193117830</StUF:tijdstipBericht>
 		<StUF:entiteittype>NPS</StUF:entiteittype>
 	</BG:stuurgegevens>
 	<BG:parameters>
@@ -43640,7 +44046,166 @@
 	</BG:scope>
 </BG:npsLv01>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="3eeaf40f-127e-479b-aaec-0a607f68f48f"/><con:assertion type="Schema Compliance" id="3d07a21c-b717-42b8-a147-673cab79d5f9" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="9b304ab6-a647-4d7d-97eb-38e17f2422c4" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="23fa87c5-8e71-4af2-8af2-a4bb7d7db37f" name="ZoekMetGeslachtsnaamEnGeboortedatum"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="f02e1f76-641f-46de-8f82-cbfe5accb35d" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:settings/><con:testStep type="request" name="Decos request" id="ddbc4b1b-6517-410f-82e5-83f0f1dc10f7"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="Decos request" id="6dbe1c9f-fb26-4847-94b5-3f0724156c12"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:stuf="http://www.egem.nl/StUF/StUF0301">\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="3eeaf40f-127e-479b-aaec-0a607f68f48f"/><con:assertion type="Schema Compliance" id="3d07a21c-b717-42b8-a147-673cab79d5f9" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="9b304ab6-a647-4d7d-97eb-38e17f2422c4" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="PGAx request2" id="bfe35ec7-0be1-472a-9077-9441bbf0949d"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="PGAx request2" id="9fc1d8dd-60e8-40d6-ae90-cfec516e7add"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xlink="http://www.w3.org/1999/xlink">
+<soapenv:Header/>
+<soapenv:Body>
+<BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<BG:stuurgegevens>
+<StUF:berichtcode>Lv01</StUF:berichtcode>
+<StUF:zender>
+<StUF:organisatie>0518</StUF:organisatie>
+<StUF:applicatie>PGAx-SG-ZVH</StUF:applicatie>
+</StUF:zender>
+<StUF:ontvanger>
+<StUF:organisatie>TEST</StUF:organisatie>
+<StUF:applicatie>TEST123</StUF:applicatie>
+</StUF:ontvanger>
+<StUF:referentienummer>fa7a5aed-d384-44c6-80ae-8ead1bc9c5e2</StUF:referentienummer>
+<StUF:tijdstipBericht>20241014193117830</StUF:tijdstipBericht>
+<StUF:entiteittype>NPS</StUF:entiteittype>
+</BG:stuurgegevens>
+<BG:parameters>
+<StUF:sortering>1</StUF:sortering>
+<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+<StUF:maximumAantal>9</StUF:maximumAantal>
+</BG:parameters>
+<BG:gelijk StUF:entiteittype="NPS">
+<BG:inp.bsn>555555021</BG:inp.bsn>
+</BG:gelijk>
+<BG:scope>
+<BG:object StUF:entiteittype="NPS">
+<BG:inp.bsn xsi:nil="true"/>
+<BG:inp.a-nummer xsi:nil="true"/>
+<BG:geslachtsnaam xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+<BG:voorletters xsi:nil="true"/>
+<BG:voornamen xsi:nil="true"/>
+<BG:aanduidingNaamgebruik xsi:nil="true"/>
+<BG:geslachtsnaamPartner xsi:nil="true"/>
+<BG:geslachtsaanduiding xsi:nil="true"/>
+<BG:geboortedatum xsi:nil="true"/>
+<BG:inp.geboorteplaats xsi:nil="true"/>
+<BG:inp.geboorteLand xsi:nil="true"/>
+<BG:overlijdensdatum xsi:nil="true"/>
+<BG:inp.overlijdenplaats xsi:nil="true"/>
+<BG:inp.overlijdenLand xsi:nil="true"/>
+<BG:verblijfsadres>
+<BG:aoa.identificatie xsi:nil="true"/>
+<BG:wpl.identificatie xsi:nil="true"/>
+<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+<BG:aoa.woonplaatsWaarinGelegen>
+<BG:wpl.identificatie xsi:nil="true"/>
+<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+</BG:aoa.woonplaatsWaarinGelegen>
+<BG:gor.identificatie xsi:nil="true"/>
+<BG:opr.identificatie xsi:nil="true"/>
+<BG:gor.openbareRuimteNaam xsi:nil="true"/>
+<BG:gor.straatnaam xsi:nil="true"/>
+<BG:aoa.postcode xsi:nil="true"/>
+<BG:aoa.huisnummer xsi:nil="true"/>
+<BG:aoa.huisletter xsi:nil="true"/>
+<BG:aoa.huisnummertoevoeging xsi:nil="true"/>
+<BG:inp.locatiebeschrijving xsi:nil="true"/>
+<BG:begindatumVerblijf xsi:nil="true"/>
+</BG:verblijfsadres>
+<BG:inp.adresHerkomst xsi:nil="true"/>
+<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+<BG:inp.gemeenteVanInschrijving xsi:nil="true"/>
+<BG:inp.datumInschrijving xsi:nil="true"/>
+<BG:inp.indicatieGeheim xsi:nil="true"/>
+<BG:ing.indicatieBlokkering xsi:nil="true"/>
+<BG:aanduidingStrijdigheidNietigheid xsi:nil="true"/>
+<StUF:tijdvakGeldigheid>
+<StUF:beginGeldigheid xsi:nil="true"/>
+<StUF:eindGeldigheid xsi:nil="true"/>
+</StUF:tijdvakGeldigheid>
+<StUF:tijdstipRegistratie xsi:nil="true"/>
+<BG:inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT">
+<BG:gerelateerde StUF:entiteittype="NAT">
+<BG:code xsi:nil="true"/>
+<BG:omschrijving xsi:nil="true"/>
+</BG:gerelateerde>
+<BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
+<BG:gerelateerde StUF:entiteittype="NPS">
+<BG:inp.bsn xsi:nil="true"/>
+<BG:anp.identificatie xsi:nil="true"/>
+<BG:sub.typering xsi:nil="true"/>
+<BG:geslachtsnaam xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+<BG:voorletters xsi:nil="true"/>
+<BG:voornamen xsi:nil="true"/>
+<BG:aanduidingNaamgebruik xsi:nil="true"/>
+<BG:geslachtsnaamPartner xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+<BG:aanhefAanschrijving xsi:nil="true"/>
+<BG:voornamenAanschrijving xsi:nil="true"/>
+<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+<BG:geslachtsaanduiding xsi:nil="true"/>
+<BG:geboortedatum xsi:nil="true"/>
+<BG:overlijdensdatum xsi:nil="true"/>
+<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+<BG:inp.indicatieGeheim xsi:nil="true"/>
+</BG:gerelateerde>
+<BG:soortVerbintenis xsi:nil="true"/>
+<BG:datumSluiting xsi:nil="true"/>
+<BG:datumOntbinding xsi:nil="true"/>
+</BG:inp.heeftAlsEchtgenootPartner>
+<BG:inp.heeftAlsKinderen StUF:entiteittype="NPSNPSKND">
+<BG:gerelateerde StUF:entiteittype="NPS">
+<BG:inp.bsn xsi:nil="true"/>
+<BG:anp.identificatie xsi:nil="true"/>
+<BG:sub.typering xsi:nil="true"/>
+<BG:geslachtsnaam xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+<BG:voorletters xsi:nil="true"/>
+<BG:voornamen xsi:nil="true"/>
+<BG:aanduidingNaamgebruik xsi:nil="true"/>
+<BG:geslachtsnaamPartner xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+<BG:aanhefAanschrijving xsi:nil="true"/>
+<BG:voornamenAanschrijving xsi:nil="true"/>
+<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+<BG:geslachtsaanduiding xsi:nil="true"/>
+<BG:geboortedatum xsi:nil="true"/>
+<BG:overlijdensdatum xsi:nil="true"/>
+<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+<BG:inp.indicatieGeheim xsi:nil="true"/>
+</BG:gerelateerde>
+</BG:inp.heeftAlsKinderen>
+<BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
+<BG:gerelateerde StUF:entiteittype="NPS">
+<BG:inp.bsn xsi:nil="true"/>
+<BG:anp.identificatie xsi:nil="true"/>
+<BG:sub.typering xsi:nil="true"/>
+<BG:geslachtsnaam xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+<BG:voorletters xsi:nil="true"/>
+<BG:voornamen xsi:nil="true"/>
+<BG:aanduidingNaamgebruik xsi:nil="true"/>
+<BG:geslachtsnaamPartner xsi:nil="true"/>
+<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+<BG:aanhefAanschrijving xsi:nil="true"/>
+<BG:voornamenAanschrijving xsi:nil="true"/>
+<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+<BG:geslachtsaanduiding xsi:nil="true"/>
+<BG:geboortedatum xsi:nil="true"/>
+<BG:overlijdensdatum xsi:nil="true"/>
+<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+<BG:inp.indicatieGeheim xsi:nil="true"/>
+</BG:gerelateerde>
+</BG:inp.heeftAlsOuders>
+<BG:inp.redenVerkrijging xsi:nil="true"/>
+<BG:inp.datumVerkrijging xsi:nil="true"/>
+<BG:inp.redenVerlies xsi:nil="true"/>
+<BG:inp.datumVerlies xsi:nil="true"/>
+</BG:inp.heeftAlsNationaliteit>
+</BG:object>
+</BG:scope>
+</BG:npsLv01>
+</soapenv:Body></soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="3eeaf40f-127e-479b-aaec-0a607f68f48f"/><con:assertion type="Schema Compliance" id="3d07a21c-b717-42b8-a147-673cab79d5f9" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="9b304ab6-a647-4d7d-97eb-38e17f2422c4" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="23fa87c5-8e71-4af2-8af2-a4bb7d7db37f" name="ZoekMetGeslachtsnaamEnGeboortedatum"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="f02e1f76-641f-46de-8f82-cbfe5accb35d" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:settings/><con:testStep type="request" name="Decos request1" id="ddbc4b1b-6517-410f-82e5-83f0f1dc10f7"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="Decos request1" id="6dbe1c9f-fb26-4847-94b5-3f0724156c12"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:stuf="http://www.egem.nl/StUF/StUF0301">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -43649,14 +44214,14 @@
 		<StUF:zender>
 			<StUF:organisatie>0518</StUF:organisatie>
 			<StUF:applicatie>DEC_ZKN</StUF:applicatie>
-			<StUF:gebruiker>SH2102</StUF:gebruiker>
+			<StUF:gebruiker>TEST1</StUF:gebruiker>
 		</StUF:zender>
 		<StUF:ontvanger>
-			<StUF:organisatie>NEDGR</StUF:organisatie>
-			<StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
+			<StUF:organisatie>TEST</StUF:organisatie>
+			<StUF:applicatie>TEST123</StUF:applicatie>
 		</StUF:ontvanger>
-		<StUF:referentienummer>${=java.util.UUID.randomUUID().toString() }</StUF:referentienummer>
-		<StUF:tijdstipBericht>${=import java.text.SimpleDateFormat; SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS"); sdf.setTimeZone(TimeZone.getTimeZone("${#Project#ZdsTimezone}")); sdf.format(new Date());}</StUF:tijdstipBericht>
+		<StUF:referentienummer>659bf66e3ee6</StUF:referentienummer>
+		<StUF:tijdstipBericht>2024010814194200</StUF:tijdstipBericht>
 		<StUF:entiteittype>NPS</StUF:entiteittype>
 	</BG:stuurgegevens>
 	<BG:parameters>
@@ -43755,7 +44320,957 @@
 	</BG:scope>
 </BG:npsLv01>	
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="fb0e5d1c-5173-4348-87ef-14c6231b8f7f"/><con:assertion type="Schema Compliance" id="aa2523a2-97dd-45f5-88cd-d90fd6c52094" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="e6a532ac-7377-42e0-b51f-c888ac04c724" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="3cd4cf9c-3d99-4b36-a48b-fc8b092e8213" name="ZoekMetPostcodeEnHuisnummer"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="f010a89e-a728-44b3-ab08-005ca5541ecb" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:settings/><con:testStep type="request" name="Decos request" id="61f7c189-5da5-4a32-bc4f-5b4940622fdf"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="Decos request" id="fa88ab21-9993-457f-a78d-8280a560b6c5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:stuf="http://www.egem.nl/StUF/StUF0301">
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="fb0e5d1c-5173-4348-87ef-14c6231b8f7f"/><con:assertion type="Schema Compliance" id="aa2523a2-97dd-45f5-88cd-d90fd6c52094" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="e6a532ac-7377-42e0-b51f-c888ac04c724" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Decos request2" id="b8b38230-083b-45a0-afff-1267a608eee9"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="Decos request2" id="6dbe1c9f-fb26-4847-94b5-3f0724156c12"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:stuf="http://www.egem.nl/StUF/StUF0301">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<BG:stuurgegevens>
+		<StUF:berichtcode>Lv01</StUF:berichtcode>
+		<StUF:zender>
+			<StUF:organisatie/>
+			<StUF:applicatie>DEC_ZKN</StUF:applicatie>
+			<StUF:gebruiker>TEST1</StUF:gebruiker>
+		</StUF:zender>
+		<StUF:ontvanger>
+			<StUF:organisatie>TEST</StUF:organisatie>
+			<StUF:applicatie>TEST123</StUF:applicatie>
+		</StUF:ontvanger>
+		<StUF:referentienummer>659bf66e3ee6</StUF:referentienummer>
+		<StUF:tijdstipBericht>2024010814194200</StUF:tijdstipBericht>
+        <StUF:entiteittype>NPS</StUF:entiteittype>
+	</BG:stuurgegevens>
+	<BG:parameters>
+		<StUF:sortering>1</StUF:sortering>
+		<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+		<StUF:maximumAantal>50</StUF:maximumAantal>
+		<StUF:indicatorAantal>true</StUF:indicatorAantal>
+	</BG:parameters>
+	<BG:gelijk StUF:entiteittype="NPS">
+		<BG:geslachtsnaam StUF:exact="false">Schoon</BG:geslachtsnaam>
+		<BG:geboortedatum>19710728</BG:geboortedatum>
+	</BG:gelijk>
+	<BG:scope>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="" StUF:sleutelGegevensbeheer="">
+			<BG:inp.bsn xsi:nil="true"/>
+			<BG:sub.typering xsi:nil="true"/>
+			<BG:inp.a-nummer xsi:nil="true"/>
+			<BG:geslachtsnaam xsi:nil="true"/>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+			<BG:voorletters xsi:nil="true"/>
+			<BG:voornamen xsi:nil="true"/>
+			<BG:aanduidingNaamgebruik xsi:nil="true"/>
+			<BG:geslachtsnaamPartner xsi:nil="true"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+			<BG:aanhefAanschrijving xsi:nil="true"/>
+			<BG:voornamenAanschrijving xsi:nil="true"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true"/>
+			<BG:geslachtsaanduiding xsi:nil="true"/>
+			<BG:geboortedatum xsi:nil="true"/>
+			<BG:inp.geboorteplaats xsi:nil="true"/>
+			<BG:inp.geboorteLand xsi:nil="true"/>
+			<BG:overlijdensdatum xsi:nil="true"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie xsi:nil="true"/>
+				<BG:wpl.identificatie xsi:nil="true"/>
+				<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true"/>
+				<BG:opr.identificatie xsi:nil="true"/>
+				<BG:gor.openbareRuimteNaam xsi:nil="true"/>
+				<BG:gor.straatnaam xsi:nil="true"/>
+				<BG:aoa.postcode xsi:nil="true"/>
+				<BG:aoa.huisnummer xsi:nil="true"/>
+				<BG:aoa.huisletter xsi:nil="true"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true"/>
+				<BG:begindatumVerblijf xsi:nil="true"/>
+			</BG:verblijfsadres>
+			<BG:sub.verblijfBuitenland>
+				<BG:lnd.landcode xsi:nil="true"/>
+				<BG:lnd.landnaam xsi:nil="true"/>
+				<BG:sub.adresBuitenland1 xsi:nil="true"/>
+				<BG:sub.adresBuitenland2 xsi:nil="true"/>
+				<BG:sub.adresBuitenland3 xsi:nil="true"/>
+			</BG:sub.verblijfBuitenland>
+			<BG:sub.correspondentieAdres>
+				<BG:typering xsi:nil="true"/>
+				<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:postcode xsi:nil="true"/>
+				<BG:aoa.identificatie xsi:nil="true"/>
+				<BG:wpl.identificatie xsi:nil="true"/>
+				<BG:opr.identificatie xsi:nil="true"/>
+				<BG:gor.openbareRuimteNaam xsi:nil="true"/>
+				<BG:gor.straatnaam xsi:nil="true"/>
+				<BG:aoa.huisnummer xsi:nil="true"/>
+				<BG:aoa.huisletter xsi:nil="true"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true"/>
+				<BG:sub.postadresType xsi:nil="true"/>
+				<BG:sub.postadresNummer xsi:nil="true"/>
+			</BG:sub.correspondentieAdres>
+			<BG:sub.telefoonnummer xsi:nil="true"/>
+			<BG:sub.faxnummer xsi:nil="true"/>
+			<BG:sub.emailadres xsi:nil="true"/>
+			<BG:sub.url xsi:nil="true"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true"/>
+			<BG:inp.datumInschrijving xsi:nil="true"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true"/>
+			<BG:inp.immigratieLand xsi:nil="true"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true"/>
+			<BG:inp.emigratieLand xsi:nil="true"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+			<BG:inp.indicatieGeheim xsi:nil="true"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true"/>
+			<BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
+				<BG:gerelateerde StUF:entiteittype="NPS">
+					<BG:inp.bsn xsi:nil="true"/>
+					<BG:anp.identificatie xsi:nil="true"/>
+					<BG:sub.typering xsi:nil="true"/>
+					<BG:geslachtsnaam xsi:nil="true"/>
+					<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+					<BG:voorletters xsi:nil="true"/>
+					<BG:voornamen xsi:nil="true"/>
+					<BG:aanduidingNaamgebruik xsi:nil="true"/>
+					<BG:geslachtsnaamPartner xsi:nil="true"/>
+					<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+					<BG:aanhefAanschrijving xsi:nil="true"/>
+					<BG:voornamenAanschrijving xsi:nil="true"/>
+					<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+					<BG:geslachtsaanduiding xsi:nil="true"/>
+					<BG:geboortedatum xsi:nil="true"/>
+					<BG:overlijdensdatum xsi:nil="true"/>
+					<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+					<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+					<BG:inp.indicatieGeheim xsi:nil="true"/>
+				</BG:gerelateerde>
+				<BG:soortVerbintenis xsi:nil="true"/>
+				<BG:datumSluiting xsi:nil="true"/>
+				<BG:datumOntbinding xsi:nil="true"/>
+			</BG:inp.heeftAlsEchtgenootPartner>
+			<BG:inp.heeftAlsKinderen StUF:entiteittype="NPSNPSKND">
+				<BG:gerelateerde StUF:entiteittype="NPS">
+					<BG:inp.bsn xsi:nil="true"/>
+					<BG:anp.identificatie xsi:nil="true"/>
+					<BG:sub.typering xsi:nil="true"/>
+					<BG:geslachtsnaam xsi:nil="true"/>
+					<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+					<BG:voorletters xsi:nil="true"/>
+					<BG:voornamen xsi:nil="true"/>
+					<BG:aanduidingNaamgebruik xsi:nil="true"/>
+					<BG:geslachtsnaamPartner xsi:nil="true"/>
+					<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+					<BG:aanhefAanschrijving xsi:nil="true"/>
+					<BG:voornamenAanschrijving xsi:nil="true"/>
+					<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+					<BG:geslachtsaanduiding xsi:nil="true"/>
+					<BG:geboortedatum xsi:nil="true"/>
+					<BG:overlijdensdatum xsi:nil="true"/>
+					<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+					<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+					<BG:inp.indicatieGeheim xsi:nil="true"/>
+				</BG:gerelateerde>
+			</BG:inp.heeftAlsKinderen>
+			<BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
+				<BG:gerelateerde StUF:entiteittype="NPS">
+					<BG:inp.bsn xsi:nil="true"/>
+					<BG:anp.identificatie xsi:nil="true"/>
+					<BG:sub.typering xsi:nil="true"/>
+					<BG:geslachtsnaam xsi:nil="true"/>
+					<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+					<BG:voorletters xsi:nil="true"/>
+					<BG:voornamen xsi:nil="true"/>
+					<BG:aanduidingNaamgebruik xsi:nil="true"/>
+					<BG:geslachtsnaamPartner xsi:nil="true"/>
+					<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+					<BG:aanhefAanschrijving xsi:nil="true"/>
+					<BG:voornamenAanschrijving xsi:nil="true"/>
+					<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+					<BG:geslachtsaanduiding xsi:nil="true"/>
+					<BG:geboortedatum xsi:nil="true"/>
+					<BG:overlijdensdatum xsi:nil="true"/>
+					<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+					<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+					<BG:inp.indicatieGeheim xsi:nil="true"/>
+				</BG:gerelateerde>
+			</BG:inp.heeftAlsOuders>
+		</BG:object>
+	</BG:scope>
+</BG:npsLv01>	
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="fb0e5d1c-5173-4348-87ef-14c6231b8f7f"/><con:assertion type="Schema Compliance" id="aa2523a2-97dd-45f5-88cd-d90fd6c52094" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="e6a532ac-7377-42e0-b51f-c888ac04c724" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Decos request3" id="fec2de43-7f22-4924-aada-d77a0c0977a2"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="Decos request3" id="6dbe1c9f-fb26-4847-94b5-3f0724156c12"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:stuf="http://www.egem.nl/StUF/StUF0301">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<BG:stuurgegevens>
+		<StUF:berichtcode>Lv01</StUF:berichtcode>
+		<StUF:zender>
+			<StUF:organisatie/>
+			<StUF:applicatie>DEC_ZKN</StUF:applicatie>
+			<StUF:gebruiker>TEST1</StUF:gebruiker>
+		</StUF:zender>
+		<StUF:ontvanger>
+			<StUF:organisatie>TEST</StUF:organisatie>
+			<StUF:applicatie>TEST123</StUF:applicatie>
+		</StUF:ontvanger>
+		<StUF:referentienummer>659bf66e3ee6</StUF:referentienummer>
+		<StUF:tijdstipBericht>2024010814194200</StUF:tijdstipBericht>
+        <StUF:entiteittype>NPS</StUF:entiteittype>
+	</BG:stuurgegevens>
+	<BG:parameters>
+		<StUF:sortering>1</StUF:sortering>
+		<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+		<StUF:maximumAantal>50</StUF:maximumAantal>
+		<StUF:indicatorAantal>true</StUF:indicatorAantal>
+	</BG:parameters>
+	<BG:gelijk StUF:entiteittype="NPS">
+		<BG:geslachtsnaam StUF:exact="false">Verstratenmaker</BG:geslachtsnaam>
+		<BG:geboortedatum>19390315</BG:geboortedatum>
+	</BG:gelijk>
+	<BG:scope>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="" StUF:sleutelGegevensbeheer="">
+			<BG:inp.bsn xsi:nil="true"/>
+			<BG:sub.typering xsi:nil="true"/>
+			<BG:inp.a-nummer xsi:nil="true"/>
+			<BG:geslachtsnaam xsi:nil="true"/>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+			<BG:voorletters xsi:nil="true"/>
+			<BG:voornamen xsi:nil="true"/>
+			<BG:aanduidingNaamgebruik xsi:nil="true"/>
+			<BG:geslachtsnaamPartner xsi:nil="true"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+			<BG:aanhefAanschrijving xsi:nil="true"/>
+			<BG:voornamenAanschrijving xsi:nil="true"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true"/>
+			<BG:geslachtsaanduiding xsi:nil="true"/>
+			<BG:geboortedatum xsi:nil="true"/>
+			<BG:inp.geboorteplaats xsi:nil="true"/>
+			<BG:inp.geboorteLand xsi:nil="true"/>
+			<BG:overlijdensdatum xsi:nil="true"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie xsi:nil="true"/>
+				<BG:wpl.identificatie xsi:nil="true"/>
+				<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true"/>
+				<BG:opr.identificatie xsi:nil="true"/>
+				<BG:gor.openbareRuimteNaam xsi:nil="true"/>
+				<BG:gor.straatnaam xsi:nil="true"/>
+				<BG:aoa.postcode xsi:nil="true"/>
+				<BG:aoa.huisnummer xsi:nil="true"/>
+				<BG:aoa.huisletter xsi:nil="true"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true"/>
+				<BG:begindatumVerblijf xsi:nil="true"/>
+			</BG:verblijfsadres>
+			<BG:sub.verblijfBuitenland>
+				<BG:lnd.landcode xsi:nil="true"/>
+				<BG:lnd.landnaam xsi:nil="true"/>
+				<BG:sub.adresBuitenland1 xsi:nil="true"/>
+				<BG:sub.adresBuitenland2 xsi:nil="true"/>
+				<BG:sub.adresBuitenland3 xsi:nil="true"/>
+			</BG:sub.verblijfBuitenland>
+			<BG:sub.correspondentieAdres>
+				<BG:typering xsi:nil="true"/>
+				<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:postcode xsi:nil="true"/>
+				<BG:aoa.identificatie xsi:nil="true"/>
+				<BG:wpl.identificatie xsi:nil="true"/>
+				<BG:opr.identificatie xsi:nil="true"/>
+				<BG:gor.openbareRuimteNaam xsi:nil="true"/>
+				<BG:gor.straatnaam xsi:nil="true"/>
+				<BG:aoa.huisnummer xsi:nil="true"/>
+				<BG:aoa.huisletter xsi:nil="true"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true"/>
+				<BG:sub.postadresType xsi:nil="true"/>
+				<BG:sub.postadresNummer xsi:nil="true"/>
+			</BG:sub.correspondentieAdres>
+			<BG:sub.telefoonnummer xsi:nil="true"/>
+			<BG:sub.faxnummer xsi:nil="true"/>
+			<BG:sub.emailadres xsi:nil="true"/>
+			<BG:sub.url xsi:nil="true"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true"/>
+			<BG:inp.datumInschrijving xsi:nil="true"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true"/>
+			<BG:inp.immigratieLand xsi:nil="true"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true"/>
+			<BG:inp.emigratieLand xsi:nil="true"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+			<BG:inp.indicatieGeheim xsi:nil="true"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true"/>
+			<BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
+				<BG:gerelateerde StUF:entiteittype="NPS">
+					<BG:inp.bsn xsi:nil="true"/>
+					<BG:anp.identificatie xsi:nil="true"/>
+					<BG:sub.typering xsi:nil="true"/>
+					<BG:geslachtsnaam xsi:nil="true"/>
+					<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+					<BG:voorletters xsi:nil="true"/>
+					<BG:voornamen xsi:nil="true"/>
+					<BG:aanduidingNaamgebruik xsi:nil="true"/>
+					<BG:geslachtsnaamPartner xsi:nil="true"/>
+					<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+					<BG:aanhefAanschrijving xsi:nil="true"/>
+					<BG:voornamenAanschrijving xsi:nil="true"/>
+					<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+					<BG:geslachtsaanduiding xsi:nil="true"/>
+					<BG:geboortedatum xsi:nil="true"/>
+					<BG:overlijdensdatum xsi:nil="true"/>
+					<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+					<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+					<BG:inp.indicatieGeheim xsi:nil="true"/>
+				</BG:gerelateerde>
+				<BG:soortVerbintenis xsi:nil="true"/>
+				<BG:datumSluiting xsi:nil="true"/>
+				<BG:datumOntbinding xsi:nil="true"/>
+			</BG:inp.heeftAlsEchtgenootPartner>
+			<BG:inp.heeftAlsKinderen StUF:entiteittype="NPSNPSKND">
+				<BG:gerelateerde StUF:entiteittype="NPS">
+					<BG:inp.bsn xsi:nil="true"/>
+					<BG:anp.identificatie xsi:nil="true"/>
+					<BG:sub.typering xsi:nil="true"/>
+					<BG:geslachtsnaam xsi:nil="true"/>
+					<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+					<BG:voorletters xsi:nil="true"/>
+					<BG:voornamen xsi:nil="true"/>
+					<BG:aanduidingNaamgebruik xsi:nil="true"/>
+					<BG:geslachtsnaamPartner xsi:nil="true"/>
+					<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+					<BG:aanhefAanschrijving xsi:nil="true"/>
+					<BG:voornamenAanschrijving xsi:nil="true"/>
+					<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+					<BG:geslachtsaanduiding xsi:nil="true"/>
+					<BG:geboortedatum xsi:nil="true"/>
+					<BG:overlijdensdatum xsi:nil="true"/>
+					<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+					<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+					<BG:inp.indicatieGeheim xsi:nil="true"/>
+				</BG:gerelateerde>
+			</BG:inp.heeftAlsKinderen>
+			<BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
+				<BG:gerelateerde StUF:entiteittype="NPS">
+					<BG:inp.bsn xsi:nil="true"/>
+					<BG:anp.identificatie xsi:nil="true"/>
+					<BG:sub.typering xsi:nil="true"/>
+					<BG:geslachtsnaam xsi:nil="true"/>
+					<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+					<BG:voorletters xsi:nil="true"/>
+					<BG:voornamen xsi:nil="true"/>
+					<BG:aanduidingNaamgebruik xsi:nil="true"/>
+					<BG:geslachtsnaamPartner xsi:nil="true"/>
+					<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+					<BG:aanhefAanschrijving xsi:nil="true"/>
+					<BG:voornamenAanschrijving xsi:nil="true"/>
+					<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+					<BG:geslachtsaanduiding xsi:nil="true"/>
+					<BG:geboortedatum xsi:nil="true"/>
+					<BG:overlijdensdatum xsi:nil="true"/>
+					<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+					<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+					<BG:inp.indicatieGeheim xsi:nil="true"/>
+				</BG:gerelateerde>
+			</BG:inp.heeftAlsOuders>
+		</BG:object>
+	</BG:scope>
+</BG:npsLv01>	
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="fb0e5d1c-5173-4348-87ef-14c6231b8f7f"/><con:assertion type="Schema Compliance" id="aa2523a2-97dd-45f5-88cd-d90fd6c52094" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="e6a532ac-7377-42e0-b51f-c888ac04c724" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="LBA request1" id="ab0b0d3d-8a62-432b-980a-f268e3bce4a0"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="LBA request1" id="fa88ab21-9993-457f-a78d-8280a560b6c5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310"
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:stuf="http://www.egem.nl/StUF/StUF0301">
+    <soapenv:Header />
+    <soapenv:Body>
+        <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310"
+            xmlns:StUF="http://www.egem.nl/StUF/StUF0301"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <BG:stuurgegevens>
+                <StUF:berichtcode>Lv01</StUF:berichtcode>
+                <StUF:zender>
+                    <StUF:organisatie />
+                    <StUF:applicatie>LBA</StUF:applicatie>
+                    <StUF:gebruiker>SH2102</StUF:gebruiker>
+                </StUF:zender>
+                <StUF:ontvanger>
+                    <StUF:organisatie>NEDGR</StUF:organisatie>
+                    <StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
+                </StUF:ontvanger>
+                <StUF:referentienummer>659bf66e3ee6</StUF:referentienummer>
+                <StUF:tijdstipBericht>2024010814194200</StUF:tijdstipBericht>
+                <StUF:entiteittype>NPS</StUF:entiteittype>
+            </BG:stuurgegevens>
+            <BG:parameters>
+                <StUF:sortering>1</StUF:sortering>
+                <StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+                <StUF:maximumAantal>50</StUF:maximumAantal>
+                <StUF:indicatorAantal>true</StUF:indicatorAantal>
+            </BG:parameters>
+            <BG:gelijk StUF:entiteittype="NPS">
+                <BG:geslachtsnaam StUF:exact="false">Schoon</BG:geslachtsnaam>
+                <BG:geboortedatum>19710728</BG:geboortedatum>
+            </BG:gelijk>
+            <BG:scope>
+                <BG:object StUF:entiteittype="NPS" StUF:sleutelGegevensbeheer=""
+                    StUF:sleutelVerzendend="">
+                    <BG:inp.bsn xsi:nil="true" />
+                    <BG:sub.typering xsi:nil="true" />
+                    <BG:inp.a-nummer xsi:nil="true" />
+                    <BG:geslachtsnaam xsi:nil="true" />
+                    <BG:voorvoegselGeslachtsnaam xsi:nil="true" />
+                    <BG:voorletters xsi:nil="true" />
+                    <BG:voornamen xsi:nil="true" />
+                    <BG:aanduidingNaamgebruik xsi:nil="true" />
+                    <BG:geslachtsnaamPartner xsi:nil="true" />
+                    <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" />
+                    <BG:aanhefAanschrijving xsi:nil="true" />
+                    <BG:voornamenAanschrijving xsi:nil="true" />
+                    <BG:geslachtsnaamAanschrijving xsi:nil="true" />
+                    <BG:adellijkeTitelPredikaat xsi:nil="true" />
+                    <BG:geslachtsaanduiding xsi:nil="true" />
+                    <BG:geboortedatum xsi:nil="true" />
+                    <BG:inp.geboorteplaats xsi:nil="true" />
+                    <BG:inp.geboorteLand xsi:nil="true" />
+                    <BG:overlijdensdatum xsi:nil="true" />
+                    <BG:verblijfsadres>
+                        <BG:aoa.identificatie xsi:nil="true" />
+                        <BG:wpl.identificatie xsi:nil="true" />
+                        <BG:wpl.woonplaatsNaam xsi:nil="true" />
+                        <BG:aoa.woonplaatsWaarinGelegen>
+                            <BG:wpl.identificatie xsi:nil="true" />
+                            <BG:wpl.woonplaatsNaam xsi:nil="true" />
+                        </BG:aoa.woonplaatsWaarinGelegen>
+                        <BG:gor.identificatie xsi:nil="true" />
+                        <BG:opr.identificatie xsi:nil="true" />
+                        <BG:gor.openbareRuimteNaam xsi:nil="true" />
+                        <BG:gor.straatnaam xsi:nil="true" />
+                        <BG:aoa.postcode xsi:nil="true" />
+                        <BG:aoa.huisnummer xsi:nil="true" />
+                        <BG:aoa.huisletter xsi:nil="true" />
+                        <BG:aoa.huisnummertoevoeging xsi:nil="true" />
+                        <BG:inp.locatiebeschrijving xsi:nil="true" />
+                        <BG:begindatumVerblijf xsi:nil="true" />
+                    </BG:verblijfsadres>
+                    <BG:sub.verblijfBuitenland>
+                        <BG:lnd.landcode xsi:nil="true" />
+                        <BG:lnd.landnaam xsi:nil="true" />
+                        <BG:sub.adresBuitenland1 xsi:nil="true" />
+                        <BG:sub.adresBuitenland2 xsi:nil="true" />
+                        <BG:sub.adresBuitenland3 xsi:nil="true" />
+                    </BG:sub.verblijfBuitenland>
+                    <BG:sub.correspondentieAdres>
+                        <BG:typering xsi:nil="true" />
+                        <BG:wpl.woonplaatsNaam xsi:nil="true" />
+                        <BG:aoa.woonplaatsWaarinGelegen>
+                            <BG:wpl.identificatie xsi:nil="true" />
+                            <BG:wpl.woonplaatsNaam xsi:nil="true" />
+                        </BG:aoa.woonplaatsWaarinGelegen>
+                        <BG:postcode xsi:nil="true" />
+                        <BG:aoa.identificatie xsi:nil="true" />
+                        <BG:wpl.identificatie xsi:nil="true" />
+                        <BG:opr.identificatie xsi:nil="true" />
+                        <BG:gor.openbareRuimteNaam xsi:nil="true" />
+                        <BG:gor.straatnaam xsi:nil="true" />
+                        <BG:aoa.huisnummer xsi:nil="true" />
+                        <BG:aoa.huisletter xsi:nil="true" />
+                        <BG:aoa.huisnummertoevoeging xsi:nil="true" />
+                        <BG:sub.postadresType xsi:nil="true" />
+                        <BG:sub.postadresNummer xsi:nil="true" />
+                    </BG:sub.correspondentieAdres>
+                    <BG:sub.telefoonnummer xsi:nil="true" />
+                    <BG:sub.faxnummer xsi:nil="true" />
+                    <BG:sub.emailadres xsi:nil="true" />
+                    <BG:sub.url xsi:nil="true" />
+                    <BG:sub.rekeningnummerBankGiro xsi:nil="true" />
+                    <BG:inp.burgerlijkeStaat xsi:nil="true" />
+                    <BG:inp.gemeenteVanInschrijving xsi:nil="true" />
+                    <BG:inp.datumInschrijving xsi:nil="true" />
+                    <BG:vbt.aanduidingVerblijfstitel xsi:nil="true" />
+                    <BG:inp.datumVestigingInNederland xsi:nil="true" />
+                    <BG:inp.immigratieLand xsi:nil="true" />
+                    <BG:inp.datumVertrekUitNederland xsi:nil="true" />
+                    <BG:inp.emigratieLand xsi:nil="true" />
+                    <BG:ing.indicatieGezagMinderjarige xsi:nil="true" />
+                    <BG:inp.indicatieGeheim xsi:nil="true" />
+                    <BG:ing.indicatieBlokkering xsi:nil="true" />
+                    <BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
+                        <BG:gerelateerde StUF:entiteittype="NPS">
+                            <BG:inp.bsn xsi:nil="true" />
+                            <BG:anp.identificatie xsi:nil="true" />
+                            <BG:sub.typering xsi:nil="true" />
+                            <BG:geslachtsnaam xsi:nil="true" />
+                            <BG:voorvoegselGeslachtsnaam xsi:nil="true" />
+                            <BG:voorletters xsi:nil="true" />
+                            <BG:voornamen xsi:nil="true" />
+                            <BG:aanduidingNaamgebruik xsi:nil="true" />
+                            <BG:geslachtsnaamPartner xsi:nil="true" />
+                            <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" />
+                            <BG:aanhefAanschrijving xsi:nil="true" />
+                            <BG:voornamenAanschrijving xsi:nil="true" />
+                            <BG:geslachtsnaamAanschrijving xsi:nil="true" />
+                            <BG:geslachtsaanduiding xsi:nil="true" />
+                            <BG:geboortedatum xsi:nil="true" />
+                            <BG:overlijdensdatum xsi:nil="true" />
+                            <BG:inp.burgerlijkeStaat xsi:nil="true" />
+                            <BG:ing.indicatieGezagMinderjarige xsi:nil="true" />
+                            <BG:inp.indicatieGeheim xsi:nil="true" />
+                        </BG:gerelateerde>
+                        <BG:soortVerbintenis xsi:nil="true" />
+                        <BG:datumSluiting xsi:nil="true" />
+                        <BG:datumOntbinding xsi:nil="true" />
+                    </BG:inp.heeftAlsEchtgenootPartner>
+                    <BG:inp.heeftAlsKinderen StUF:entiteittype="NPSNPSKND">
+                        <BG:gerelateerde StUF:entiteittype="NPS">
+                            <BG:inp.bsn xsi:nil="true" />
+                            <BG:anp.identificatie xsi:nil="true" />
+                            <BG:sub.typering xsi:nil="true" />
+                            <BG:geslachtsnaam xsi:nil="true" />
+                            <BG:voorvoegselGeslachtsnaam xsi:nil="true" />
+                            <BG:voorletters xsi:nil="true" />
+                            <BG:voornamen xsi:nil="true" />
+                            <BG:aanduidingNaamgebruik xsi:nil="true" />
+                            <BG:geslachtsnaamPartner xsi:nil="true" />
+                            <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" />
+                            <BG:aanhefAanschrijving xsi:nil="true" />
+                            <BG:voornamenAanschrijving xsi:nil="true" />
+                            <BG:geslachtsnaamAanschrijving xsi:nil="true" />
+                            <BG:geslachtsaanduiding xsi:nil="true" />
+                            <BG:geboortedatum xsi:nil="true" />
+                            <BG:overlijdensdatum xsi:nil="true" />
+                            <BG:inp.burgerlijkeStaat xsi:nil="true" />
+                            <BG:ing.indicatieGezagMinderjarige xsi:nil="true" />
+                            <BG:inp.indicatieGeheim xsi:nil="true" />
+                        </BG:gerelateerde>
+                    </BG:inp.heeftAlsKinderen>
+                    <BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
+                        <BG:gerelateerde StUF:entiteittype="NPS">
+                            <BG:inp.bsn xsi:nil="true" />
+                            <BG:anp.identificatie xsi:nil="true" />
+                            <BG:sub.typering xsi:nil="true" />
+                            <BG:geslachtsnaam xsi:nil="true" />
+                            <BG:voorvoegselGeslachtsnaam xsi:nil="true" />
+                            <BG:voorletters xsi:nil="true" />
+                            <BG:voornamen xsi:nil="true" />
+                            <BG:aanduidingNaamgebruik xsi:nil="true" />
+                            <BG:geslachtsnaamPartner xsi:nil="true" />
+                            <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" />
+                            <BG:aanhefAanschrijving xsi:nil="true" />
+                            <BG:voornamenAanschrijving xsi:nil="true" />
+                            <BG:geslachtsnaamAanschrijving xsi:nil="true" />
+                            <BG:geslachtsaanduiding xsi:nil="true" />
+                            <BG:geboortedatum xsi:nil="true" />
+                            <BG:overlijdensdatum xsi:nil="true" />
+                            <BG:inp.burgerlijkeStaat xsi:nil="true" />
+                            <BG:ing.indicatieGezagMinderjarige xsi:nil="true" />
+                            <BG:inp.indicatieGeheim xsi:nil="true" />
+                        </BG:gerelateerde>
+                    </BG:inp.heeftAlsOuders>
+                </BG:object>
+            </BG:scope>
+        </BG:npsLv01>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c49c8837-887d-49fd-aaae-0223d1b6b1de"/><con:assertion type="Schema Compliance" id="fbf72b39-bdb6-471e-91f0-e698aa16d74b" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="b67fd192-8918-4946-8364-ef5af2f220b7" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="LBA request2" id="a09ba610-183f-483f-bb5d-b9d78cd77a82"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="LBA request2" id="fa88ab21-9993-457f-a78d-8280a560b6c5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310"
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:stuf="http://www.egem.nl/StUF/StUF0301">
+    <soapenv:Header />
+    <soapenv:Body>
+        <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310"
+            xmlns:StUF="http://www.egem.nl/StUF/StUF0301"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <BG:stuurgegevens>
+                <StUF:berichtcode>Lv01</StUF:berichtcode>
+                <StUF:zender>
+                    <StUF:organisatie />
+                    <StUF:applicatie>LBA</StUF:applicatie>
+                    <StUF:gebruiker>SH2102</StUF:gebruiker>
+                </StUF:zender>
+                <StUF:ontvanger>
+                    <StUF:organisatie>NEDGR</StUF:organisatie>
+                    <StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
+                </StUF:ontvanger>
+                <StUF:referentienummer>659bf66e3ee6</StUF:referentienummer>
+                <StUF:tijdstipBericht>2024010814194200</StUF:tijdstipBericht>
+                <StUF:entiteittype>NPS</StUF:entiteittype>
+            </BG:stuurgegevens>
+            <BG:parameters>
+                <StUF:sortering>1</StUF:sortering>
+                <StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+                <StUF:maximumAantal>50</StUF:maximumAantal>
+                <StUF:indicatorAantal>true</StUF:indicatorAantal>
+            </BG:parameters>
+            <BG:gelijk StUF:entiteittype="NPS">
+                <BG:geslachtsnaam StUF:exact="false">Djibet</BG:geslachtsnaam>
+                <BG:geboortedatum>19771111</BG:geboortedatum>
+            </BG:gelijk>
+            <BG:scope>
+                <BG:object StUF:entiteittype="NPS" StUF:sleutelGegevensbeheer=""
+                    StUF:sleutelVerzendend="">
+                    <BG:inp.bsn xsi:nil="true" />
+                    <BG:sub.typering xsi:nil="true" />
+                    <BG:inp.a-nummer xsi:nil="true" />
+                    <BG:geslachtsnaam xsi:nil="true" />
+                    <BG:voorvoegselGeslachtsnaam xsi:nil="true" />
+                    <BG:voorletters xsi:nil="true" />
+                    <BG:voornamen xsi:nil="true" />
+                    <BG:aanduidingNaamgebruik xsi:nil="true" />
+                    <BG:geslachtsnaamPartner xsi:nil="true" />
+                    <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" />
+                    <BG:aanhefAanschrijving xsi:nil="true" />
+                    <BG:voornamenAanschrijving xsi:nil="true" />
+                    <BG:geslachtsnaamAanschrijving xsi:nil="true" />
+                    <BG:adellijkeTitelPredikaat xsi:nil="true" />
+                    <BG:geslachtsaanduiding xsi:nil="true" />
+                    <BG:geboortedatum xsi:nil="true" />
+                    <BG:inp.geboorteplaats xsi:nil="true" />
+                    <BG:inp.geboorteLand xsi:nil="true" />
+                    <BG:overlijdensdatum xsi:nil="true" />
+                    <BG:verblijfsadres>
+                        <BG:aoa.identificatie xsi:nil="true" />
+                        <BG:wpl.identificatie xsi:nil="true" />
+                        <BG:wpl.woonplaatsNaam xsi:nil="true" />
+                        <BG:aoa.woonplaatsWaarinGelegen>
+                            <BG:wpl.identificatie xsi:nil="true" />
+                            <BG:wpl.woonplaatsNaam xsi:nil="true" />
+                        </BG:aoa.woonplaatsWaarinGelegen>
+                        <BG:gor.identificatie xsi:nil="true" />
+                        <BG:opr.identificatie xsi:nil="true" />
+                        <BG:gor.openbareRuimteNaam xsi:nil="true" />
+                        <BG:gor.straatnaam xsi:nil="true" />
+                        <BG:aoa.postcode xsi:nil="true" />
+                        <BG:aoa.huisnummer xsi:nil="true" />
+                        <BG:aoa.huisletter xsi:nil="true" />
+                        <BG:aoa.huisnummertoevoeging xsi:nil="true" />
+                        <BG:inp.locatiebeschrijving xsi:nil="true" />
+                        <BG:begindatumVerblijf xsi:nil="true" />
+                    </BG:verblijfsadres>
+                    <BG:sub.verblijfBuitenland>
+                        <BG:lnd.landcode xsi:nil="true" />
+                        <BG:lnd.landnaam xsi:nil="true" />
+                        <BG:sub.adresBuitenland1 xsi:nil="true" />
+                        <BG:sub.adresBuitenland2 xsi:nil="true" />
+                        <BG:sub.adresBuitenland3 xsi:nil="true" />
+                    </BG:sub.verblijfBuitenland>
+                    <BG:sub.correspondentieAdres>
+                        <BG:typering xsi:nil="true" />
+                        <BG:wpl.woonplaatsNaam xsi:nil="true" />
+                        <BG:aoa.woonplaatsWaarinGelegen>
+                            <BG:wpl.identificatie xsi:nil="true" />
+                            <BG:wpl.woonplaatsNaam xsi:nil="true" />
+                        </BG:aoa.woonplaatsWaarinGelegen>
+                        <BG:postcode xsi:nil="true" />
+                        <BG:aoa.identificatie xsi:nil="true" />
+                        <BG:wpl.identificatie xsi:nil="true" />
+                        <BG:opr.identificatie xsi:nil="true" />
+                        <BG:gor.openbareRuimteNaam xsi:nil="true" />
+                        <BG:gor.straatnaam xsi:nil="true" />
+                        <BG:aoa.huisnummer xsi:nil="true" />
+                        <BG:aoa.huisletter xsi:nil="true" />
+                        <BG:aoa.huisnummertoevoeging xsi:nil="true" />
+                        <BG:sub.postadresType xsi:nil="true" />
+                        <BG:sub.postadresNummer xsi:nil="true" />
+                    </BG:sub.correspondentieAdres>
+                    <BG:sub.telefoonnummer xsi:nil="true" />
+                    <BG:sub.faxnummer xsi:nil="true" />
+                    <BG:sub.emailadres xsi:nil="true" />
+                    <BG:sub.url xsi:nil="true" />
+                    <BG:sub.rekeningnummerBankGiro xsi:nil="true" />
+                    <BG:inp.burgerlijkeStaat xsi:nil="true" />
+                    <BG:inp.gemeenteVanInschrijving xsi:nil="true" />
+                    <BG:inp.datumInschrijving xsi:nil="true" />
+                    <BG:vbt.aanduidingVerblijfstitel xsi:nil="true" />
+                    <BG:inp.datumVestigingInNederland xsi:nil="true" />
+                    <BG:inp.immigratieLand xsi:nil="true" />
+                    <BG:inp.datumVertrekUitNederland xsi:nil="true" />
+                    <BG:inp.emigratieLand xsi:nil="true" />
+                    <BG:ing.indicatieGezagMinderjarige xsi:nil="true" />
+                    <BG:inp.indicatieGeheim xsi:nil="true" />
+                    <BG:ing.indicatieBlokkering xsi:nil="true" />
+                    <BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
+                        <BG:gerelateerde StUF:entiteittype="NPS">
+                            <BG:inp.bsn xsi:nil="true" />
+                            <BG:anp.identificatie xsi:nil="true" />
+                            <BG:sub.typering xsi:nil="true" />
+                            <BG:geslachtsnaam xsi:nil="true" />
+                            <BG:voorvoegselGeslachtsnaam xsi:nil="true" />
+                            <BG:voorletters xsi:nil="true" />
+                            <BG:voornamen xsi:nil="true" />
+                            <BG:aanduidingNaamgebruik xsi:nil="true" />
+                            <BG:geslachtsnaamPartner xsi:nil="true" />
+                            <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" />
+                            <BG:aanhefAanschrijving xsi:nil="true" />
+                            <BG:voornamenAanschrijving xsi:nil="true" />
+                            <BG:geslachtsnaamAanschrijving xsi:nil="true" />
+                            <BG:geslachtsaanduiding xsi:nil="true" />
+                            <BG:geboortedatum xsi:nil="true" />
+                            <BG:overlijdensdatum xsi:nil="true" />
+                            <BG:inp.burgerlijkeStaat xsi:nil="true" />
+                            <BG:ing.indicatieGezagMinderjarige xsi:nil="true" />
+                            <BG:inp.indicatieGeheim xsi:nil="true" />
+                        </BG:gerelateerde>
+                        <BG:soortVerbintenis xsi:nil="true" />
+                        <BG:datumSluiting xsi:nil="true" />
+                        <BG:datumOntbinding xsi:nil="true" />
+                    </BG:inp.heeftAlsEchtgenootPartner>
+                    <BG:inp.heeftAlsKinderen StUF:entiteittype="NPSNPSKND">
+                        <BG:gerelateerde StUF:entiteittype="NPS">
+                            <BG:inp.bsn xsi:nil="true" />
+                            <BG:anp.identificatie xsi:nil="true" />
+                            <BG:sub.typering xsi:nil="true" />
+                            <BG:geslachtsnaam xsi:nil="true" />
+                            <BG:voorvoegselGeslachtsnaam xsi:nil="true" />
+                            <BG:voorletters xsi:nil="true" />
+                            <BG:voornamen xsi:nil="true" />
+                            <BG:aanduidingNaamgebruik xsi:nil="true" />
+                            <BG:geslachtsnaamPartner xsi:nil="true" />
+                            <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" />
+                            <BG:aanhefAanschrijving xsi:nil="true" />
+                            <BG:voornamenAanschrijving xsi:nil="true" />
+                            <BG:geslachtsnaamAanschrijving xsi:nil="true" />
+                            <BG:geslachtsaanduiding xsi:nil="true" />
+                            <BG:geboortedatum xsi:nil="true" />
+                            <BG:overlijdensdatum xsi:nil="true" />
+                            <BG:inp.burgerlijkeStaat xsi:nil="true" />
+                            <BG:ing.indicatieGezagMinderjarige xsi:nil="true" />
+                            <BG:inp.indicatieGeheim xsi:nil="true" />
+                        </BG:gerelateerde>
+                    </BG:inp.heeftAlsKinderen>
+                    <BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
+                        <BG:gerelateerde StUF:entiteittype="NPS">
+                            <BG:inp.bsn xsi:nil="true" />
+                            <BG:anp.identificatie xsi:nil="true" />
+                            <BG:sub.typering xsi:nil="true" />
+                            <BG:geslachtsnaam xsi:nil="true" />
+                            <BG:voorvoegselGeslachtsnaam xsi:nil="true" />
+                            <BG:voorletters xsi:nil="true" />
+                            <BG:voornamen xsi:nil="true" />
+                            <BG:aanduidingNaamgebruik xsi:nil="true" />
+                            <BG:geslachtsnaamPartner xsi:nil="true" />
+                            <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" />
+                            <BG:aanhefAanschrijving xsi:nil="true" />
+                            <BG:voornamenAanschrijving xsi:nil="true" />
+                            <BG:geslachtsnaamAanschrijving xsi:nil="true" />
+                            <BG:geslachtsaanduiding xsi:nil="true" />
+                            <BG:geboortedatum xsi:nil="true" />
+                            <BG:overlijdensdatum xsi:nil="true" />
+                            <BG:inp.burgerlijkeStaat xsi:nil="true" />
+                            <BG:ing.indicatieGezagMinderjarige xsi:nil="true" />
+                            <BG:inp.indicatieGeheim xsi:nil="true" />
+                        </BG:gerelateerde>
+                    </BG:inp.heeftAlsOuders>
+                </BG:object>
+            </BG:scope>
+        </BG:npsLv01>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c49c8837-887d-49fd-aaae-0223d1b6b1de"/><con:assertion type="Schema Compliance" id="fbf72b39-bdb6-471e-91f0-e698aa16d74b" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="b67fd192-8918-4946-8364-ef5af2f220b7" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="TOP request1" id="96499ec5-180f-4bcf-8534-62775d64c37a"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="TOP request1" id="fa88ab21-9993-457f-a78d-8280a560b6c5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310"
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:stuf="http://www.egem.nl/StUF/StUF0301">
+    <soapenv:Header />
+    <soapenv:Body>
+        <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310"
+            xmlns:StUF="http://www.egem.nl/StUF/StUF0301"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <BG:stuurgegevens>
+                <StUF:berichtcode>Lv01</StUF:berichtcode>
+                <StUF:zender>
+                    <StUF:organisatie />
+                    <StUF:applicatie>TOP</StUF:applicatie>
+                    <StUF:gebruiker>SH2102</StUF:gebruiker>
+                </StUF:zender>
+                <StUF:ontvanger>
+                    <StUF:organisatie>NEDGR</StUF:organisatie>
+                    <StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
+                </StUF:ontvanger>
+                <StUF:referentienummer>659bf66e3ee6</StUF:referentienummer>
+                <StUF:tijdstipBericht>2024010814194200</StUF:tijdstipBericht>
+                <StUF:entiteittype>NPS</StUF:entiteittype>
+            </BG:stuurgegevens>
+            <BG:parameters>
+                <StUF:sortering>1</StUF:sortering>
+                <StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+                <StUF:maximumAantal>50</StUF:maximumAantal>
+                <StUF:indicatorAantal>true</StUF:indicatorAantal>
+            </BG:parameters>
+            <BG:gelijk StUF:entiteittype="NPS">
+                <BG:geslachtsnaam StUF:exact="false">Djibet</BG:geslachtsnaam>
+                <BG:geboortedatum>19771111</BG:geboortedatum>
+            </BG:gelijk>
+            <BG:scope>
+                <BG:object StUF:entiteittype="NPS" StUF:sleutelGegevensbeheer=""
+                    StUF:sleutelVerzendend="">
+                    <BG:inp.bsn xsi:nil="true" />
+                    <BG:sub.typering xsi:nil="true" />
+                    <BG:inp.a-nummer xsi:nil="true" />
+                    <BG:geslachtsnaam xsi:nil="true" />
+                    <BG:voorvoegselGeslachtsnaam xsi:nil="true" />
+                    <BG:voorletters xsi:nil="true" />
+                    <BG:voornamen xsi:nil="true" />
+                    <BG:aanduidingNaamgebruik xsi:nil="true" />
+                    <BG:geslachtsnaamPartner xsi:nil="true" />
+                    <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" />
+                    <BG:aanhefAanschrijving xsi:nil="true" />
+                    <BG:voornamenAanschrijving xsi:nil="true" />
+                    <BG:geslachtsnaamAanschrijving xsi:nil="true" />
+                    <BG:adellijkeTitelPredikaat xsi:nil="true" />
+                    <BG:geslachtsaanduiding xsi:nil="true" />
+                    <BG:geboortedatum xsi:nil="true" />
+                    <BG:inp.geboorteplaats xsi:nil="true" />
+                    <BG:inp.geboorteLand xsi:nil="true" />
+                    <BG:overlijdensdatum xsi:nil="true" />
+                    <BG:verblijfsadres>
+                        <BG:aoa.identificatie xsi:nil="true" />
+                        <BG:wpl.identificatie xsi:nil="true" />
+                        <BG:wpl.woonplaatsNaam xsi:nil="true" />
+                        <BG:aoa.woonplaatsWaarinGelegen>
+                            <BG:wpl.identificatie xsi:nil="true" />
+                            <BG:wpl.woonplaatsNaam xsi:nil="true" />
+                        </BG:aoa.woonplaatsWaarinGelegen>
+                        <BG:gor.identificatie xsi:nil="true" />
+                        <BG:opr.identificatie xsi:nil="true" />
+                        <BG:gor.openbareRuimteNaam xsi:nil="true" />
+                        <BG:gor.straatnaam xsi:nil="true" />
+                        <BG:aoa.postcode xsi:nil="true" />
+                        <BG:aoa.huisnummer xsi:nil="true" />
+                        <BG:aoa.huisletter xsi:nil="true" />
+                        <BG:aoa.huisnummertoevoeging xsi:nil="true" />
+                        <BG:inp.locatiebeschrijving xsi:nil="true" />
+                        <BG:begindatumVerblijf xsi:nil="true" />
+                    </BG:verblijfsadres>
+                    <BG:sub.verblijfBuitenland>
+                        <BG:lnd.landcode xsi:nil="true" />
+                        <BG:lnd.landnaam xsi:nil="true" />
+                        <BG:sub.adresBuitenland1 xsi:nil="true" />
+                        <BG:sub.adresBuitenland2 xsi:nil="true" />
+                        <BG:sub.adresBuitenland3 xsi:nil="true" />
+                    </BG:sub.verblijfBuitenland>
+                    <BG:sub.correspondentieAdres>
+                        <BG:typering xsi:nil="true" />
+                        <BG:wpl.woonplaatsNaam xsi:nil="true" />
+                        <BG:aoa.woonplaatsWaarinGelegen>
+                            <BG:wpl.identificatie xsi:nil="true" />
+                            <BG:wpl.woonplaatsNaam xsi:nil="true" />
+                        </BG:aoa.woonplaatsWaarinGelegen>
+                        <BG:postcode xsi:nil="true" />
+                        <BG:aoa.identificatie xsi:nil="true" />
+                        <BG:wpl.identificatie xsi:nil="true" />
+                        <BG:opr.identificatie xsi:nil="true" />
+                        <BG:gor.openbareRuimteNaam xsi:nil="true" />
+                        <BG:gor.straatnaam xsi:nil="true" />
+                        <BG:aoa.huisnummer xsi:nil="true" />
+                        <BG:aoa.huisletter xsi:nil="true" />
+                        <BG:aoa.huisnummertoevoeging xsi:nil="true" />
+                        <BG:sub.postadresType xsi:nil="true" />
+                        <BG:sub.postadresNummer xsi:nil="true" />
+                    </BG:sub.correspondentieAdres>
+                    <BG:sub.telefoonnummer xsi:nil="true" />
+                    <BG:sub.faxnummer xsi:nil="true" />
+                    <BG:sub.emailadres xsi:nil="true" />
+                    <BG:sub.url xsi:nil="true" />
+                    <BG:sub.rekeningnummerBankGiro xsi:nil="true" />
+                    <BG:inp.burgerlijkeStaat xsi:nil="true" />
+                    <BG:inp.gemeenteVanInschrijving xsi:nil="true" />
+                    <BG:inp.datumInschrijving xsi:nil="true" />
+                    <BG:vbt.aanduidingVerblijfstitel xsi:nil="true" />
+                    <BG:inp.datumVestigingInNederland xsi:nil="true" />
+                    <BG:inp.immigratieLand xsi:nil="true" />
+                    <BG:inp.datumVertrekUitNederland xsi:nil="true" />
+                    <BG:inp.emigratieLand xsi:nil="true" />
+                    <BG:ing.indicatieGezagMinderjarige xsi:nil="true" />
+                    <BG:inp.indicatieGeheim xsi:nil="true" />
+                    <BG:ing.indicatieBlokkering xsi:nil="true" />
+                    <BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
+                        <BG:gerelateerde StUF:entiteittype="NPS">
+                            <BG:inp.bsn xsi:nil="true" />
+                            <BG:anp.identificatie xsi:nil="true" />
+                            <BG:sub.typering xsi:nil="true" />
+                            <BG:geslachtsnaam xsi:nil="true" />
+                            <BG:voorvoegselGeslachtsnaam xsi:nil="true" />
+                            <BG:voorletters xsi:nil="true" />
+                            <BG:voornamen xsi:nil="true" />
+                            <BG:aanduidingNaamgebruik xsi:nil="true" />
+                            <BG:geslachtsnaamPartner xsi:nil="true" />
+                            <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" />
+                            <BG:aanhefAanschrijving xsi:nil="true" />
+                            <BG:voornamenAanschrijving xsi:nil="true" />
+                            <BG:geslachtsnaamAanschrijving xsi:nil="true" />
+                            <BG:geslachtsaanduiding xsi:nil="true" />
+                            <BG:geboortedatum xsi:nil="true" />
+                            <BG:overlijdensdatum xsi:nil="true" />
+                            <BG:inp.burgerlijkeStaat xsi:nil="true" />
+                            <BG:ing.indicatieGezagMinderjarige xsi:nil="true" />
+                            <BG:inp.indicatieGeheim xsi:nil="true" />
+                        </BG:gerelateerde>
+                        <BG:soortVerbintenis xsi:nil="true" />
+                        <BG:datumSluiting xsi:nil="true" />
+                        <BG:datumOntbinding xsi:nil="true" />
+                    </BG:inp.heeftAlsEchtgenootPartner>
+                    <BG:inp.heeftAlsKinderen StUF:entiteittype="NPSNPSKND">
+                        <BG:gerelateerde StUF:entiteittype="NPS">
+                            <BG:inp.bsn xsi:nil="true" />
+                            <BG:anp.identificatie xsi:nil="true" />
+                            <BG:sub.typering xsi:nil="true" />
+                            <BG:geslachtsnaam xsi:nil="true" />
+                            <BG:voorvoegselGeslachtsnaam xsi:nil="true" />
+                            <BG:voorletters xsi:nil="true" />
+                            <BG:voornamen xsi:nil="true" />
+                            <BG:aanduidingNaamgebruik xsi:nil="true" />
+                            <BG:geslachtsnaamPartner xsi:nil="true" />
+                            <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" />
+                            <BG:aanhefAanschrijving xsi:nil="true" />
+                            <BG:voornamenAanschrijving xsi:nil="true" />
+                            <BG:geslachtsnaamAanschrijving xsi:nil="true" />
+                            <BG:geslachtsaanduiding xsi:nil="true" />
+                            <BG:geboortedatum xsi:nil="true" />
+                            <BG:overlijdensdatum xsi:nil="true" />
+                            <BG:inp.burgerlijkeStaat xsi:nil="true" />
+                            <BG:ing.indicatieGezagMinderjarige xsi:nil="true" />
+                            <BG:inp.indicatieGeheim xsi:nil="true" />
+                        </BG:gerelateerde>
+                    </BG:inp.heeftAlsKinderen>
+                    <BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
+                        <BG:gerelateerde StUF:entiteittype="NPS">
+                            <BG:inp.bsn xsi:nil="true" />
+                            <BG:anp.identificatie xsi:nil="true" />
+                            <BG:sub.typering xsi:nil="true" />
+                            <BG:geslachtsnaam xsi:nil="true" />
+                            <BG:voorvoegselGeslachtsnaam xsi:nil="true" />
+                            <BG:voorletters xsi:nil="true" />
+                            <BG:voornamen xsi:nil="true" />
+                            <BG:aanduidingNaamgebruik xsi:nil="true" />
+                            <BG:geslachtsnaamPartner xsi:nil="true" />
+                            <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" />
+                            <BG:aanhefAanschrijving xsi:nil="true" />
+                            <BG:voornamenAanschrijving xsi:nil="true" />
+                            <BG:geslachtsnaamAanschrijving xsi:nil="true" />
+                            <BG:geslachtsaanduiding xsi:nil="true" />
+                            <BG:geboortedatum xsi:nil="true" />
+                            <BG:overlijdensdatum xsi:nil="true" />
+                            <BG:inp.burgerlijkeStaat xsi:nil="true" />
+                            <BG:ing.indicatieGezagMinderjarige xsi:nil="true" />
+                            <BG:inp.indicatieGeheim xsi:nil="true" />
+                        </BG:gerelateerde>
+                    </BG:inp.heeftAlsOuders>
+                </BG:object>
+            </BG:scope>
+        </BG:npsLv01>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c49c8837-887d-49fd-aaae-0223d1b6b1de"/><con:assertion type="Schema Compliance" id="fbf72b39-bdb6-471e-91f0-e698aa16d74b" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="b67fd192-8918-4946-8364-ef5af2f220b7" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="3cd4cf9c-3d99-4b36-a48b-fc8b092e8213" name="ZoekMetPostcodeEnHuisnummer"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="f010a89e-a728-44b3-ab08-005ca5541ecb" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:settings/><con:testStep type="request" name="Decos request1" id="61f7c189-5da5-4a32-bc4f-5b4940622fdf"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="Decos request1" id="fa88ab21-9993-457f-a78d-8280a560b6c5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:stuf="http://www.egem.nl/StUF/StUF0301">
    <soapenv:Header/>
    <soapenv:Body>
       <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -43764,14 +45279,14 @@
 		<StUF:zender>
 			<StUF:organisatie/>
 			<StUF:applicatie>DEC_ZKN</StUF:applicatie>
-			<StUF:gebruiker>SH2102</StUF:gebruiker>
+			<StUF:gebruiker>TEST</StUF:gebruiker>
 		</StUF:zender>
 		<StUF:ontvanger>
-			<StUF:organisatie>NEDGR</StUF:organisatie>
-			<StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
+			<StUF:organisatie>test</StUF:organisatie>
+			<StUF:applicatie>test123</StUF:applicatie>
 		</StUF:ontvanger>
-		<StUF:referentienummer>${=java.util.UUID.randomUUID().toString() }</StUF:referentienummer>
-		<StUF:tijdstipBericht>${=import java.text.SimpleDateFormat; SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS"); sdf.setTimeZone(TimeZone.getTimeZone("${#Project#ZdsTimezone}")); sdf.format(new Date());}</StUF:tijdstipBericht>
+		<StUF:referentienummer>fa7a5aed-d384-44c6-80ae-8ead1bc9c5e2</StUF:referentienummer>
+		<StUF:tijdstipBericht>20241014193117830</StUF:tijdstipBericht>
 		<StUF:entiteittype>NPS</StUF:entiteittype>
 	</BG:stuurgegevens>
 	<BG:parameters>
@@ -43872,7 +45387,475 @@
 	</BG:scope>
 </BG:npsLv01>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c49c8837-887d-49fd-aaae-0223d1b6b1de"/><con:assertion type="Schema Compliance" id="fbf72b39-bdb6-471e-91f0-e698aa16d74b" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="b67fd192-8918-4946-8364-ef5af2f220b7" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="200d6be3-d28e-43c9-bf33-a4f32daa8d3e" name="ZoekMetStraatHuisnummerEnGemeenteVanInschrijving"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="27090202-0427-4e29-bf6f-5feee703d1a1" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:settings/><con:testStep type="request" name="Decos request" id="6464c62b-5b4f-4c15-91a0-5794a1694a53"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="Decos request" id="a36782dc-7732-4d69-8528-78b5fe404f68"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:stuf="http://www.egem.nl/StUF/StUF0301">
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c49c8837-887d-49fd-aaae-0223d1b6b1de"/><con:assertion type="Schema Compliance" id="fbf72b39-bdb6-471e-91f0-e698aa16d74b" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="b67fd192-8918-4946-8364-ef5af2f220b7" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Decos request2" id="099fb9a8-ce6c-46be-905c-1a14eacdac98"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="Decos request2" id="fa88ab21-9993-457f-a78d-8280a560b6c5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:stuf="http://www.egem.nl/StUF/StUF0301">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<BG:stuurgegevens>
+		<StUF:berichtcode>Lv01</StUF:berichtcode>
+		<StUF:zender>
+			<StUF:organisatie/>
+			<StUF:applicatie>DEC_ZKN</StUF:applicatie>
+			<StUF:gebruiker>TEST</StUF:gebruiker>
+		</StUF:zender>
+		<StUF:ontvanger>
+			<StUF:organisatie>test</StUF:organisatie>
+			<StUF:applicatie>test123</StUF:applicatie>
+		</StUF:ontvanger>
+		<StUF:referentienummer>c4195cfb-ef02-4dc6-8407-a8f587dcd021</StUF:referentienummer>
+		<StUF:tijdstipBericht>20241015062806664</StUF:tijdstipBericht>
+		<StUF:entiteittype>NPS</StUF:entiteittype>
+	</BG:stuurgegevens>
+	<BG:parameters>
+		<StUF:sortering>01</StUF:sortering>
+		<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+		<StUF:maximumAantal>50</StUF:maximumAantal>
+		<StUF:indicatorAantal>true</StUF:indicatorAantal>
+	</BG:parameters>
+	<BG:gelijk StUF:entiteittype="NPS">
+		<BG:verblijfsadres>
+			<BG:aoa.postcode>2548AE</BG:aoa.postcode>
+			<BG:aoa.huisnummer>1485</BG:aoa.huisnummer>
+		</BG:verblijfsadres>
+	</BG:gelijk>
+	<BG:scope>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelGegevensbeheer="" StUF:sleutelVerzendend="">
+			<BG:inp.bsn xsi:nil="true"/>
+			<BG:sub.typering xsi:nil="true"/>
+			<BG:inp.a-nummer xsi:nil="true"/>
+			<BG:geslachtsnaam xsi:nil="true"/>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+			<BG:voorletters xsi:nil="true"/>
+			<BG:voornamen xsi:nil="true"/>
+			<BG:aanduidingNaamgebruik xsi:nil="true"/>
+			<BG:geslachtsnaamPartner xsi:nil="true"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+			<BG:aanhefAanschrijving xsi:nil="true"/>
+			<BG:voornamenAanschrijving xsi:nil="true"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true"/>
+			<BG:geslachtsaanduiding xsi:nil="true"/>
+			<BG:geboortedatum xsi:nil="true"/>
+			<BG:inp.geboorteplaats xsi:nil="true"/>
+			<BG:inp.geboorteLand xsi:nil="true"/>
+			<BG:overlijdensdatum xsi:nil="true"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie xsi:nil="true"/>
+				<BG:wpl.identificatie xsi:nil="true"/>
+				<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true"/>
+				<BG:opr.identificatie xsi:nil="true"/>
+				<BG:gor.openbareRuimteNaam xsi:nil="true"/>
+				<BG:gor.straatnaam xsi:nil="true"/>
+				<BG:aoa.postcode xsi:nil="true"/>
+				<BG:aoa.huisnummer xsi:nil="true"/>
+				<BG:aoa.huisletter xsi:nil="true"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true"/>
+				<BG:begindatumVerblijf xsi:nil="true"/>
+			</BG:verblijfsadres>
+			<BG:sub.verblijfBuitenland>
+				<BG:lnd.landcode xsi:nil="true"/>
+				<BG:lnd.landnaam xsi:nil="true"/>
+				<BG:sub.adresBuitenland1 xsi:nil="true"/>
+				<BG:sub.adresBuitenland2 xsi:nil="true"/>
+				<BG:sub.adresBuitenland3 xsi:nil="true"/>
+			</BG:sub.verblijfBuitenland>
+			<BG:sub.correspondentieAdres>
+				<BG:typering xsi:nil="true"/>
+				<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:postcode xsi:nil="true"/>
+				<BG:aoa.identificatie xsi:nil="true"/>
+				<BG:wpl.identificatie xsi:nil="true"/>
+				<BG:opr.identificatie xsi:nil="true"/>
+				<BG:gor.openbareRuimteNaam xsi:nil="true"/>
+				<BG:gor.straatnaam xsi:nil="true"/>
+				<BG:aoa.huisnummer xsi:nil="true"/>
+				<BG:aoa.huisletter xsi:nil="true"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true"/>
+				<BG:sub.postadresType xsi:nil="true"/>
+				<BG:sub.postadresNummer xsi:nil="true"/>
+			</BG:sub.correspondentieAdres>
+			<BG:sub.telefoonnummer xsi:nil="true"/>
+			<BG:sub.faxnummer xsi:nil="true"/>
+			<BG:sub.emailadres xsi:nil="true"/>
+			<BG:sub.url xsi:nil="true"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true"/>
+			<BG:inp.datumInschrijving xsi:nil="true"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true"/>
+			<BG:inp.immigratieLand xsi:nil="true"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true"/>
+			<BG:inp.emigratieLand xsi:nil="true"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+			<BG:inp.indicatieGeheim xsi:nil="true"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true"/>
+		</BG:object>
+	</BG:scope>
+</BG:npsLv01>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c49c8837-887d-49fd-aaae-0223d1b6b1de"/><con:assertion type="Schema Compliance" id="fbf72b39-bdb6-471e-91f0-e698aa16d74b" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="b67fd192-8918-4946-8364-ef5af2f220b7" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Decos request3" id="f0e4c184-929c-49ac-bb90-4305403c8011"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="Decos request3" id="fa88ab21-9993-457f-a78d-8280a560b6c5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:stuf="http://www.egem.nl/StUF/StUF0301">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<BG:stuurgegevens>
+		<StUF:berichtcode>Lv01</StUF:berichtcode>
+		<StUF:zender>
+			<StUF:organisatie/>
+			<StUF:applicatie>DEC_ZKN</StUF:applicatie>
+			<StUF:gebruiker>TEST</StUF:gebruiker>
+		</StUF:zender>
+		<StUF:ontvanger>
+			<StUF:organisatie>test</StUF:organisatie>
+			<StUF:applicatie>test123</StUF:applicatie>
+		</StUF:ontvanger>
+		<StUF:referentienummer>6bdd32e3-91bb-44ac-befb-cccc3ec661fe</StUF:referentienummer>
+		<StUF:tijdstipBericht>20241015062939134</StUF:tijdstipBericht>
+		<StUF:entiteittype>NPS</StUF:entiteittype>
+	</BG:stuurgegevens>
+	<BG:parameters>
+		<StUF:sortering>01</StUF:sortering>
+		<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+		<StUF:maximumAantal>50</StUF:maximumAantal>
+		<StUF:indicatorAantal>true</StUF:indicatorAantal>
+	</BG:parameters>
+	<BG:gelijk StUF:entiteittype="NPS">
+		<BG:verblijfsadres>
+			<BG:aoa.postcode>2497BV</BG:aoa.postcode>
+			<BG:aoa.huisnummer>88</BG:aoa.huisnummer>
+		</BG:verblijfsadres>
+	</BG:gelijk>
+	<BG:scope>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelGegevensbeheer="" StUF:sleutelVerzendend="">
+			<BG:inp.bsn xsi:nil="true"/>
+			<BG:sub.typering xsi:nil="true"/>
+			<BG:inp.a-nummer xsi:nil="true"/>
+			<BG:geslachtsnaam xsi:nil="true"/>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+			<BG:voorletters xsi:nil="true"/>
+			<BG:voornamen xsi:nil="true"/>
+			<BG:aanduidingNaamgebruik xsi:nil="true"/>
+			<BG:geslachtsnaamPartner xsi:nil="true"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+			<BG:aanhefAanschrijving xsi:nil="true"/>
+			<BG:voornamenAanschrijving xsi:nil="true"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true"/>
+			<BG:geslachtsaanduiding xsi:nil="true"/>
+			<BG:geboortedatum xsi:nil="true"/>
+			<BG:inp.geboorteplaats xsi:nil="true"/>
+			<BG:inp.geboorteLand xsi:nil="true"/>
+			<BG:overlijdensdatum xsi:nil="true"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie xsi:nil="true"/>
+				<BG:wpl.identificatie xsi:nil="true"/>
+				<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true"/>
+				<BG:opr.identificatie xsi:nil="true"/>
+				<BG:gor.openbareRuimteNaam xsi:nil="true"/>
+				<BG:gor.straatnaam xsi:nil="true"/>
+				<BG:aoa.postcode xsi:nil="true"/>
+				<BG:aoa.huisnummer xsi:nil="true"/>
+				<BG:aoa.huisletter xsi:nil="true"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true"/>
+				<BG:begindatumVerblijf xsi:nil="true"/>
+			</BG:verblijfsadres>
+			<BG:sub.verblijfBuitenland>
+				<BG:lnd.landcode xsi:nil="true"/>
+				<BG:lnd.landnaam xsi:nil="true"/>
+				<BG:sub.adresBuitenland1 xsi:nil="true"/>
+				<BG:sub.adresBuitenland2 xsi:nil="true"/>
+				<BG:sub.adresBuitenland3 xsi:nil="true"/>
+			</BG:sub.verblijfBuitenland>
+			<BG:sub.correspondentieAdres>
+				<BG:typering xsi:nil="true"/>
+				<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:postcode xsi:nil="true"/>
+				<BG:aoa.identificatie xsi:nil="true"/>
+				<BG:wpl.identificatie xsi:nil="true"/>
+				<BG:opr.identificatie xsi:nil="true"/>
+				<BG:gor.openbareRuimteNaam xsi:nil="true"/>
+				<BG:gor.straatnaam xsi:nil="true"/>
+				<BG:aoa.huisnummer xsi:nil="true"/>
+				<BG:aoa.huisletter xsi:nil="true"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true"/>
+				<BG:sub.postadresType xsi:nil="true"/>
+				<BG:sub.postadresNummer xsi:nil="true"/>
+			</BG:sub.correspondentieAdres>
+			<BG:sub.telefoonnummer xsi:nil="true"/>
+			<BG:sub.faxnummer xsi:nil="true"/>
+			<BG:sub.emailadres xsi:nil="true"/>
+			<BG:sub.url xsi:nil="true"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true"/>
+			<BG:inp.datumInschrijving xsi:nil="true"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true"/>
+			<BG:inp.immigratieLand xsi:nil="true"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true"/>
+			<BG:inp.emigratieLand xsi:nil="true"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+			<BG:inp.indicatieGeheim xsi:nil="true"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true"/>
+		</BG:object>
+	</BG:scope>
+</BG:npsLv01>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c49c8837-887d-49fd-aaae-0223d1b6b1de"/><con:assertion type="Schema Compliance" id="fbf72b39-bdb6-471e-91f0-e698aa16d74b" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="b67fd192-8918-4946-8364-ef5af2f220b7" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="LBA request1" id="61341fb4-7e51-474a-91cb-7a3a0e00504e"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="LBA request1" id="fa88ab21-9993-457f-a78d-8280a560b6c5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:stuf="http://www.egem.nl/StUF/StUF0301">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<BG:stuurgegevens>
+		<StUF:berichtcode>Lv01</StUF:berichtcode>
+		<StUF:zender>
+			<StUF:organisatie/>
+			<StUF:applicatie>LBA</StUF:applicatie>
+			<StUF:gebruiker>TEST</StUF:gebruiker>
+		</StUF:zender>
+		<StUF:ontvanger>
+			<StUF:organisatie>test</StUF:organisatie>
+			<StUF:applicatie>test123</StUF:applicatie>
+		</StUF:ontvanger>
+		<StUF:referentienummer>6bdd32e3-91bb-44ac-befb-cccc3ec661fe</StUF:referentienummer>
+		<StUF:tijdstipBericht>20241015062939134</StUF:tijdstipBericht>
+		<StUF:entiteittype>NPS</StUF:entiteittype>
+	</BG:stuurgegevens>
+	<BG:parameters>
+		<StUF:sortering>01</StUF:sortering>
+		<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+		<StUF:maximumAantal>50</StUF:maximumAantal>
+		<StUF:indicatorAantal>true</StUF:indicatorAantal>
+	</BG:parameters>
+	<BG:gelijk StUF:entiteittype="NPS">
+		<BG:verblijfsadres>
+			<BG:aoa.postcode>2497BV</BG:aoa.postcode>
+			<BG:aoa.huisnummer>88</BG:aoa.huisnummer>
+		</BG:verblijfsadres>
+	</BG:gelijk>
+	<BG:scope>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelGegevensbeheer="" StUF:sleutelVerzendend="">
+			<BG:inp.bsn xsi:nil="true"/>
+			<BG:sub.typering xsi:nil="true"/>
+			<BG:inp.a-nummer xsi:nil="true"/>
+			<BG:geslachtsnaam xsi:nil="true"/>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+			<BG:voorletters xsi:nil="true"/>
+			<BG:voornamen xsi:nil="true"/>
+			<BG:aanduidingNaamgebruik xsi:nil="true"/>
+			<BG:geslachtsnaamPartner xsi:nil="true"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+			<BG:aanhefAanschrijving xsi:nil="true"/>
+			<BG:voornamenAanschrijving xsi:nil="true"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true"/>
+			<BG:geslachtsaanduiding xsi:nil="true"/>
+			<BG:geboortedatum xsi:nil="true"/>
+			<BG:inp.geboorteplaats xsi:nil="true"/>
+			<BG:inp.geboorteLand xsi:nil="true"/>
+			<BG:overlijdensdatum xsi:nil="true"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie xsi:nil="true"/>
+				<BG:wpl.identificatie xsi:nil="true"/>
+				<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true"/>
+				<BG:opr.identificatie xsi:nil="true"/>
+				<BG:gor.openbareRuimteNaam xsi:nil="true"/>
+				<BG:gor.straatnaam xsi:nil="true"/>
+				<BG:aoa.postcode xsi:nil="true"/>
+				<BG:aoa.huisnummer xsi:nil="true"/>
+				<BG:aoa.huisletter xsi:nil="true"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true"/>
+				<BG:begindatumVerblijf xsi:nil="true"/>
+			</BG:verblijfsadres>
+			<BG:sub.verblijfBuitenland>
+				<BG:lnd.landcode xsi:nil="true"/>
+				<BG:lnd.landnaam xsi:nil="true"/>
+				<BG:sub.adresBuitenland1 xsi:nil="true"/>
+				<BG:sub.adresBuitenland2 xsi:nil="true"/>
+				<BG:sub.adresBuitenland3 xsi:nil="true"/>
+			</BG:sub.verblijfBuitenland>
+			<BG:sub.correspondentieAdres>
+				<BG:typering xsi:nil="true"/>
+				<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:postcode xsi:nil="true"/>
+				<BG:aoa.identificatie xsi:nil="true"/>
+				<BG:wpl.identificatie xsi:nil="true"/>
+				<BG:opr.identificatie xsi:nil="true"/>
+				<BG:gor.openbareRuimteNaam xsi:nil="true"/>
+				<BG:gor.straatnaam xsi:nil="true"/>
+				<BG:aoa.huisnummer xsi:nil="true"/>
+				<BG:aoa.huisletter xsi:nil="true"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true"/>
+				<BG:sub.postadresType xsi:nil="true"/>
+				<BG:sub.postadresNummer xsi:nil="true"/>
+			</BG:sub.correspondentieAdres>
+			<BG:sub.telefoonnummer xsi:nil="true"/>
+			<BG:sub.faxnummer xsi:nil="true"/>
+			<BG:sub.emailadres xsi:nil="true"/>
+			<BG:sub.url xsi:nil="true"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true"/>
+			<BG:inp.datumInschrijving xsi:nil="true"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true"/>
+			<BG:inp.immigratieLand xsi:nil="true"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true"/>
+			<BG:inp.emigratieLand xsi:nil="true"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+			<BG:inp.indicatieGeheim xsi:nil="true"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true"/>
+		</BG:object>
+	</BG:scope>
+</BG:npsLv01>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c49c8837-887d-49fd-aaae-0223d1b6b1de"/><con:assertion type="Schema Compliance" id="fbf72b39-bdb6-471e-91f0-e698aa16d74b" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="b67fd192-8918-4946-8364-ef5af2f220b7" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="TOP request1" id="9b454900-e589-419c-bbde-26799d79cc77"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="TOP request1" id="fa88ab21-9993-457f-a78d-8280a560b6c5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:stuf="http://www.egem.nl/StUF/StUF0301">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<BG:stuurgegevens>
+		<StUF:berichtcode>Lv01</StUF:berichtcode>
+		<StUF:zender>
+			<StUF:organisatie/>
+			<StUF:applicatie>TOP</StUF:applicatie>
+			<StUF:gebruiker>TEST</StUF:gebruiker>
+		</StUF:zender>
+		<StUF:ontvanger>
+			<StUF:organisatie>test</StUF:organisatie>
+			<StUF:applicatie>test123</StUF:applicatie>
+		</StUF:ontvanger>
+		<StUF:referentienummer>6bdd32e3-91bb-44ac-befb-cccc3ec661fe</StUF:referentienummer>
+		<StUF:tijdstipBericht>20241015062939134</StUF:tijdstipBericht>
+		<StUF:entiteittype>NPS</StUF:entiteittype>
+	</BG:stuurgegevens>
+	<BG:parameters>
+		<StUF:sortering>01</StUF:sortering>
+		<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+		<StUF:maximumAantal>50</StUF:maximumAantal>
+		<StUF:indicatorAantal>true</StUF:indicatorAantal>
+	</BG:parameters>
+	<BG:gelijk StUF:entiteittype="NPS">
+		<BG:verblijfsadres>
+			<BG:aoa.postcode>2497BV</BG:aoa.postcode>
+			<BG:aoa.huisnummer>88</BG:aoa.huisnummer>
+		</BG:verblijfsadres>
+	</BG:gelijk>
+	<BG:scope>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelGegevensbeheer="" StUF:sleutelVerzendend="">
+			<BG:inp.bsn xsi:nil="true"/>
+			<BG:sub.typering xsi:nil="true"/>
+			<BG:inp.a-nummer xsi:nil="true"/>
+			<BG:geslachtsnaam xsi:nil="true"/>
+			<BG:voorvoegselGeslachtsnaam xsi:nil="true"/>
+			<BG:voorletters xsi:nil="true"/>
+			<BG:voornamen xsi:nil="true"/>
+			<BG:aanduidingNaamgebruik xsi:nil="true"/>
+			<BG:geslachtsnaamPartner xsi:nil="true"/>
+			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"/>
+			<BG:aanhefAanschrijving xsi:nil="true"/>
+			<BG:voornamenAanschrijving xsi:nil="true"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true"/>
+			<BG:geslachtsaanduiding xsi:nil="true"/>
+			<BG:geboortedatum xsi:nil="true"/>
+			<BG:inp.geboorteplaats xsi:nil="true"/>
+			<BG:inp.geboorteLand xsi:nil="true"/>
+			<BG:overlijdensdatum xsi:nil="true"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie xsi:nil="true"/>
+				<BG:wpl.identificatie xsi:nil="true"/>
+				<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true"/>
+				<BG:opr.identificatie xsi:nil="true"/>
+				<BG:gor.openbareRuimteNaam xsi:nil="true"/>
+				<BG:gor.straatnaam xsi:nil="true"/>
+				<BG:aoa.postcode xsi:nil="true"/>
+				<BG:aoa.huisnummer xsi:nil="true"/>
+				<BG:aoa.huisletter xsi:nil="true"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true"/>
+				<BG:begindatumVerblijf xsi:nil="true"/>
+			</BG:verblijfsadres>
+			<BG:sub.verblijfBuitenland>
+				<BG:lnd.landcode xsi:nil="true"/>
+				<BG:lnd.landnaam xsi:nil="true"/>
+				<BG:sub.adresBuitenland1 xsi:nil="true"/>
+				<BG:sub.adresBuitenland2 xsi:nil="true"/>
+				<BG:sub.adresBuitenland3 xsi:nil="true"/>
+			</BG:sub.verblijfBuitenland>
+			<BG:sub.correspondentieAdres>
+				<BG:typering xsi:nil="true"/>
+				<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:postcode xsi:nil="true"/>
+				<BG:aoa.identificatie xsi:nil="true"/>
+				<BG:wpl.identificatie xsi:nil="true"/>
+				<BG:opr.identificatie xsi:nil="true"/>
+				<BG:gor.openbareRuimteNaam xsi:nil="true"/>
+				<BG:gor.straatnaam xsi:nil="true"/>
+				<BG:aoa.huisnummer xsi:nil="true"/>
+				<BG:aoa.huisletter xsi:nil="true"/>
+				<BG:aoa.huisnummertoevoeging xsi:nil="true"/>
+				<BG:sub.postadresType xsi:nil="true"/>
+				<BG:sub.postadresNummer xsi:nil="true"/>
+			</BG:sub.correspondentieAdres>
+			<BG:sub.telefoonnummer xsi:nil="true"/>
+			<BG:sub.faxnummer xsi:nil="true"/>
+			<BG:sub.emailadres xsi:nil="true"/>
+			<BG:sub.url xsi:nil="true"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true"/>
+			<BG:inp.burgerlijkeStaat xsi:nil="true"/>
+			<BG:inp.gemeenteVanInschrijving xsi:nil="true"/>
+			<BG:inp.datumInschrijving xsi:nil="true"/>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true"/>
+			<BG:inp.immigratieLand xsi:nil="true"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true"/>
+			<BG:inp.emigratieLand xsi:nil="true"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true"/>
+			<BG:inp.indicatieGeheim xsi:nil="true"/>
+			<BG:ing.indicatieBlokkering xsi:nil="true"/>
+		</BG:object>
+	</BG:scope>
+</BG:npsLv01>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c49c8837-887d-49fd-aaae-0223d1b6b1de"/><con:assertion type="Schema Compliance" id="fbf72b39-bdb6-471e-91f0-e698aa16d74b" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="b67fd192-8918-4946-8364-ef5af2f220b7" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="200d6be3-d28e-43c9-bf33-a4f32daa8d3e" name="ZoekMetStraatHuisnummerEnGemeenteVanInschrijving" disabled="true"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="27090202-0427-4e29-bf6f-5feee703d1a1" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:settings/><con:testStep type="request" name="Decos request" id="6464c62b-5b4f-4c15-91a0-5794a1694a53"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="Decos request" id="a36782dc-7732-4d69-8528-78b5fe404f68"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:stuf="http://www.egem.nl/StUF/StUF0301">
    <soapenv:Header/>
    <soapenv:Body>
       <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -43990,7 +45973,7 @@
 	</BG:scope>
 </BG:npsLv01>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="7bae5904-948d-4d71-b746-88a213467f29"/><con:assertion type="Schema Compliance" id="a8902f89-4fce-4539-965c-448b46d98ba2" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="593b69c8-078e-46f9-b41f-5272bb6bc6be" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="e99542ca-5bdc-4d68-8d7b-b7c6953850ce" name="ZoekMetNaamEnGemeenteVanInschrijving"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="e2c495f4-62fa-4a50-b74b-8383578a189a" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:settings/><con:testStep type="request" name="Decos request" id="4083fa8e-328c-4d8b-9c89-b981f08461b7"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="Decos request" id="b982cbb8-6409-437f-abfb-9040a91bbb69"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:stuf="http://www.egem.nl/StUF/StUF0301">\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="7bae5904-948d-4d71-b746-88a213467f29"/><con:assertion type="Schema Compliance" id="a8902f89-4fce-4539-965c-448b46d98ba2" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="593b69c8-078e-46f9-b41f-5272bb6bc6be" name="Not SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="e99542ca-5bdc-4d68-8d7b-b7c6953850ce" name="ZoekMetNaamEnGemeenteVanInschrijving" disabled="true"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="e2c495f4-62fa-4a50-b74b-8383578a189a" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:settings/><con:testStep type="request" name="Decos request" id="4083fa8e-328c-4d8b-9c89-b981f08461b7"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SOAPBeantwoordVraag</con:interface><con:operation>npsLv01</con:operation><con:request name="Decos request" id="b982cbb8-6409-437f-abfb-9040a91bbb69"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost/services/haalcentraal_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:stuf="http://www.egem.nl/StUF/StUF0301">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:stuf="http://www.egem.nl/StUF/StUF0301">

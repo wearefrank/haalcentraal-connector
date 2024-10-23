@@ -1,6 +1,6 @@
 <!DOCTYPE Configuration [
-    <!ENTITY BrpPersonenSubscribe SYSTEM "Configuration_BrpPersonenSubscribe.xml">
-    <!ENTITY BrpPersonenUpdate SYSTEM "Configuration_BrpPersonenUpdate.xml">
+    <!ENTITY BrpPersonenUpdateAndNotify SYSTEM "Configuration_BrpPersonenUpdateAndNotify.xml">
+    <!ENTITY BrpPersonenSynchronizePersoon SYSTEM "Configuration_BrpPersonenSynchronizePersoon.xml">
     <!ENTITY BrpPersonenQuerySender SYSTEM "Configuration_BrpPersonenQuerySender.xml">
     <!ENTITY XmlFileAdapter SYSTEM "Configuration_XmlFileAdapter.xml">
     <!ENTITY BrpPersonenNotificationProcessor SYSTEM "Configuration_BrpPersonenNotificationProcessor.xml">
@@ -8,13 +8,12 @@
     <!ENTITY BrpPersonenNotificationRetryScheduler SYSTEM "Configuration_BrpPersonenNotificationRetryScheduler.xml">
     <!ENTITY BrpPersonenCallbackSender SYSTEM "Configuration_BrpPersonenCallbackSender.xml">
     <!ENTITY EndpointRouter SYSTEM "Configuration_EndpointRouter.xml">
-    <!ENTITY BrpPersonenAfnemersIndicatieProcessor SYSTEM "Configuration_BrpPersonenAfnemersIndicatieProcessor.xml">
     <!ENTITY BrpPersonenAfnemersIndicatieReceiver SYSTEM "Configuration_BrpPersonenAfnemersIndicatieReceiver.xml">
 ]>
 
 <Configuration name="subscription-management-and-processing">
-	&BrpPersonenSubscribe;
-	&BrpPersonenUpdate;
+	&BrpPersonenUpdateAndNotify;
+	&BrpPersonenSynchronizePersoon;
 	&BrpPersonenQuerySender;
 	&XmlFileAdapter;
 	&BrpPersonenNotificationProcessor;
@@ -22,6 +21,5 @@
 	&BrpPersonenNotificationRetryScheduler;
 	&BrpPersonenCallbackSender;
 	&EndpointRouter;
-	&BrpPersonenAfnemersIndicatieProcessor;
 	&BrpPersonenAfnemersIndicatieReceiver;
 </Configuration>

@@ -2,7 +2,7 @@
     <Adapter name="EndpointRouter"
         description="">
         <Receiver name="SoapEndpointRouter">
-            <WebServiceListener name="SoapEndpointRouter" address="${haalcentraal_connector.soap.endpoint}" soap="false"/>
+            <ApiListener name="SoapEndpointRouter" uriPattern="${haalcentraal_connector.soap.endpoint}" method="POST" headerParams="gemeenteVanInschrijving,SOAPAction"/>
         </Receiver>
 
         <Pipeline>
@@ -12,9 +12,15 @@
                 <Exit name="202" state="SUCCESS" code="202"/>
                 <Exit name="400" state="ERROR" code="400"/>
             </Exits>
+            <PutInSessionPipe name="storeValues">
+				<Param name="SOAPAction" sessionKey="headers" xpathExpression="/headers/header[@name = 'SOAPAction']/text()" />
+				<Param name="gemeenteVanInschrijving" sessionKey="headers" xpathExpression="/headers/header[@name = 'gemeenteVanInschrijving']/text() " />
+				<Forward name="success" path="ValidateInput" />
+			</PutInSessionPipe>
 
             <WsdlXmlValidatorPipe 
                 name="ValidateInput"
+                getInputFromSessionKey="originalMessage"
                 ignoreUnknownNamespaces="true"
                 wsdl="xsd/Bg0310_20211208_patch32/WSC_HLN_BG310_Volgindicatie_172030028052150900416737000015.wsdl"
                 >
@@ -84,6 +90,8 @@
                     name="BrpPersonenQuerySender"
                     javaListener="BrpPersonenQuerySender"
                     returnedSessionKeys="Error">
+                    <Param name="gemeenteVanInschrijving" sessionKey="gemeenteVanInschrijving" defaultValue="${gemeenteVanInschrijving}"/>
+                    <Param name="SOAPAction" sessionKey="SOAPAction" />
                 </IbisLocalSender>
                 <Forward name="success" path="EXIT" />
                 <Forward name="exception" path="BackEndError" />
