@@ -42,9 +42,6 @@ Build configuration from template:
 - **configuration-brp-personen_query_sender.xml**  
     Sends a query to the BRP to retrieve the specified person information.
 
-- **configuration-brp-personen_subscribe.xml**  
-    WIP
-
 - **configuration-brp-personen_update.xml**  
     Updates/enters the person information in the database, if the retrieved person information has changed, or no previous entry was found in the database.
 
