@@ -9,7 +9,7 @@
 		</Receiver>
         
         <Receiver name="RestEndpoint_RetryScheduler">
-			<ApiListener name="RestEndpoint_RetryScheduler" uriPattern="${haalcentraal_connector.notification.retry.scheduler.rest.endpoint}" method="POST"/>
+			<ApiListener name="RestEndpoint_RetryScheduler" uriPattern="${haalcentraal_connector.notification.retry.scheduler.rest.endpoint}" method="POST" active="${RestEndpoint_RetryScheduler.Active}"/>
 		</Receiver>
 
 		<Pipeline>
