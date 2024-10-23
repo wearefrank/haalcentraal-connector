@@ -1,0 +1,165 @@
+<Module
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../FrankConfig.xsd"> 
+	<Adapter name="BrpPersonenUpdate"
+		description="BrpPersonenUpdate">
+
+		<Receiver name="BrpPersonenUpdate">
+			<JavaListener name="BrpPersonenUpdate" />
+		</Receiver>
+
+        <Pipeline>
+			<Exits>
+				<Exit name="EXIT" state="SUCCESS" />
+				<Exit name="EXCEPTION" state="ERROR" />
+				<Exit name="BADREQUEST" state="ERROR" code="400" />
+			</Exits>
+
+            <JsonPipe name="JsonToXmlInput" storeResultInSessionKey="input">
+                <Forward name="success" path="GetPersoon"/>
+            </JsonPipe>
+
+            <SenderPipe name="GetPersoon" storeResultInSessionKey="oldJSON" getInputFromSessionKey="input">
+                <FixedQuerySender
+					name="getPersonenSender"
+                    queryType="SELECT"
+					query="SELECT * FROM persoonsgegevens WHERE bsn=?{burgerservicenummer} ORDER BY registratie_datum DESC LIMIT 1"
+					includeFieldDefinition="false">
+					<Param name="burgerservicenummer" xpathExpression="root/burgerservicenummer"/>
+            	</FixedQuerySender> 
+                <Forward name="success" path="PersonExists" />
+            </SenderPipe>
+            
+            <XmlIfPipe
+                name="PersonExists"
+                xpathExpression="count(result/rowset/row) = 0"
+            >
+                <Forward name="then" path="mappingStufToJson"/>
+                <Forward name="else" path="mappingStufToJson"/>
+            </XmlIfPipe>
+			
+            <!-- <PutInSessionPipe 
+                name="appId">
+                <Param name="appIds" sessionKey="oldJSON" xpathExpression="result/rowset/row/field[@name='APPID']" />
+                <Forward name="success" path="appToXml" />
+            </PutInSessionPipe> -->
+
+			<!-- <JsonPipe
+                name="appToXml"
+				getInputFromSessionKey="appIds"
+                storeResultInSessionKey="appIdsXml">
+                <Forward name="success" path="mappingStufToJson" />
+            </JsonPipe>	 -->
+
+            <XsltPipe
+                name="mappingStufToJson"
+				getInputFromSessionKey="input"
+                styleSheetName="xsl/personenRequest.xslt"
+				skipEmptyTags="true"
+                >
+				<Param name="varZenderOrganisatie" xpathExpression="npsLv01/gelijk/zender/organisatie" />
+                <Param name="burgerservicenummer" xpathExpression="root/burgerservicenummer"/>
+                <Forward name="success" path="XmlToJson"/>
+            </XsltPipe>
+
+            <Json2XmlValidatorPipe
+                name="XmlToJson"
+                root="root"
+                schema="xsd/checkInput.xsd"
+                outputFormat="JSON"
+                compactJsonArrays="false"
+                storeResultInSessionKey="storeInput"
+                throwException="true">
+                <Forward name="success" path="PostBRPPersonenBevragen" />
+            </Json2XmlValidatorPipe>
+
+			<SenderPipe name="PostBRPPersonenBevragen" storeResultInSessionKey="newJSON">
+                <IbisLocalSender name="BPRPersonenBevragen" javaListener="BrpPbOutwayListener"/>
+				<Forward name="success" path="PersoonToXml" />
+				<Forward name="exception" path="BADREQUEST" />
+			</SenderPipe>
+
+            <JsonPipe name="PersoonToXml">
+                <Forward name="success" path="hasBurgerservicenummer"/>
+            </JsonPipe>
+            
+            <PutInSessionPipe 
+                name="hasBurgerservicenummer">
+                <Param name="burgerservicenummer" xpathExpression='//burgerservicenummer/text()' />
+                <Forward name="success" path="JsonComparer" />
+            </PutInSessionPipe>
+            
+            <!-- returns true if it's a subset, else returns a combined json version that can be immediately put in the database-->
+			<SenderPipe name="JsonComparer"
+                storeResultInSessionKey="json">
+				<JavascriptSender
+                    jsFileName="JSONcompare.js"
+                    jsFunctionName="compareJSONFiles"
+				>
+				</JavascriptSender>
+				<Param name="oldJSON" sessionKey="oldJSON" xpathExpression="result/rowset/row/field[@name='DATA']"/>
+				<Param name="newJSON" sessionKey="newJSON"/>
+				<Forward name="success" path="isSubset" />
+			</SenderPipe>
+
+            <XmlIfPipe
+                name="isSubset"
+                regex="true"
+            >
+                <!-- Changed to always insertPersoon for testing purposes -->
+                <Forward name="then" path="NoUpdateFound"/>
+                <Forward name="else" path="InsertPersoon"/>
+            </XmlIfPipe>
+
+            <SenderPipe name="InsertPersoon" getInputFromSessionKey="input">
+                <FixedQuerySender
+					name="insertPersonenSender"
+					query="INSERT INTO persoonsgegevens(bsn, data, registratie_datum) VALUES(?,?,CURRENT_TIMESTAMP)">
+					<Param name="burgerservicenummer" sessionKey="burgerservicenummer"/>
+					<Param name="data" sessionKey="json"/>
+            	</FixedQuerySender>
+                <Forward name="success" path="jsonToXml" />
+            </SenderPipe>
+
+			<JsonPipe
+                name="jsonToXml"
+				getInputFromSessionKey="json"
+				storeResultInSessionKey="xmlbody">
+                <Forward name="success" path="GetApplicationConfigFromLocalFS" />
+            </JsonPipe>	
+
+            <SenderPipe 
+                name="GetApplicationConfigFromLocalFS"
+                storeResultInSessionKey="ApplicationConfig"
+                >
+                <IbisLocalSender
+                    name="CallImportFromLocalFS"
+                    javaListener="ProcessFileInputListener"
+                    returnedSessionKeys="Error">
+                    <Param name="FileName" value="${applicationConfigPath}" />
+                </IbisLocalSender>
+                <Forward name="success" path="GetSubscribersToUpdatedPerson"/>
+                <Forward name="error" path="EXCEPTION"/>
+            </SenderPipe>
+
+            <!-- Retrieve all subscribers to the given bsn -->
+            <SenderPipe name="GetSubscribersToUpdatedPerson">
+                <FixedQuerySender 
+                    name="GetSubscribersByBSNQuery" 
+                    queryType="SELECT"
+                    query="SELECT app_id FROM subscripties WHERE bsn=? AND eind_datum IS NULL">
+                    <Param name="burgerservicenummer" sessionKey="burgerservicenummer"/>
+                </FixedQuerySender>
+                <Forward name="success" path="EXIT" />
+            </SenderPipe>
+
+            <!-- TODO: Check if notifications need to be sent -->
+
+            <!-- TODO: Map application_id to callback uri's -->
+            
+            <!-- TODO: Send updated data to callback uri's  -->
+
+            <ExceptionPipe name="NoUpdateFound" />
+        </Pipeline>
+    </Adapter>
+</Module>

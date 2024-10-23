@@ -82,7 +82,8 @@
 
 			<PutInSessionPipe name="PutLoopPreventionInSession" sessionKey="loopPrevention"
 				value="true" active="${isDiginetwerk}" />
-
+			
+			<!-- url="${mockservive.haalcentraal.BRP.personen.bevragen.endpoint}/personen" -->
 			<!--If
 			the error was caused by something else than an expired token, then go to exit
 			'forbidden',
