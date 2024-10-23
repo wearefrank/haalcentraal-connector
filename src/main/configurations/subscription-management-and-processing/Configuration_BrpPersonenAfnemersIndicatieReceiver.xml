@@ -11,9 +11,9 @@
 		<Pipeline>
 			<Exits>
 				<Exit name="EXIT" state="SUCCESS" />
-				<Exit name="BadRequest" state="SUCCESS" code="400" empty="true" />
-				<Exit name="AlreadySubscribed" state="SUCCESS" code="409" empty="true" />
-				<Exit name="NoSubscriptionFound" state="SUCCESS" code="404" empty="true" />
+				<Exit name="BadRequest" state="SUCCESS" code="400" empty="false" />
+				<Exit name="AlreadySubscribed" state="SUCCESS" code="409" empty="false" />
+				<Exit name="NoSubscriptionFound" state="SUCCESS" code="404" empty="false" />
 				<Exit name="Exception" state="ERROR" empty="true" />
 			</Exits>
 
