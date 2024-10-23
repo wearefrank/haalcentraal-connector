@@ -27,11 +27,16 @@
                 <Forward name="success" path="ExtractIncomingNotificationData"/>
             </JsonPipe>
 
+            <!-- TODO: Process historic bsns correctly -->
             <PutInSessionPipe name="ExtractIncomingNotificationData">
                 <Param name="bsn" xpathExpression="root/data/bsn" />
                 <Param name="historicBsns" xpathExpression="root/data/historicBsns" />
                 <Forward name="success" path="GetPersoon"/>
             </PutInSessionPipe>
+
+            <!-- TODO: Check if person has historic bsns -->
+
+            <!-- TODO: Update subscriptions to historic bsns to new bsn -->
 
             <SenderPipe name="GetPersoon">
                 <FixedQuerySender
