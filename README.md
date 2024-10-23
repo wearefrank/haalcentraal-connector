@@ -20,12 +20,9 @@ Build configuration from template:
 
 - **BuildInfo.properties**  
     Contains build-related information.
-  
-- **configuration-brp-personen_afnemers_indicatie_processor.xml**  
-    Reads the subscription (add/remove) request from the message store and processes it.
 
 - **configuration-brp-personen_afnemers_indicatie_receiver.xml**  
-    API endpoint that places the subscription (add/remove) request in the message store.
+    API endpoint that processes the subscription (add/remove) request.
 
 - **configuration-brp-personen_callback_sender.xml**  
     Notifies the subscribed applications about the changes in the BRP persons' data, via their callback URLs.
