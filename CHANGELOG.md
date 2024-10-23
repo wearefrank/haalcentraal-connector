@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.9](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.8...v1.7.9) (2024-10-23)
+
+### 🧑‍💻 Code Refactoring
+
+* remove unused file ([427e011](https://github.com/wearefrank/haalcentraal-connector/commit/427e0118476d25ac9b62a94816cd67feb4a47ee3))
+
 ## [1.7.8](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.7...v1.7.8) (2024-10-22)
 
 ### 🐛 Bug Fixes
