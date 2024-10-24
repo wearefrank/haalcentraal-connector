@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.12](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.11...v1.7.12) (2024-10-24)
+
+### 🧑‍💻 Code Refactoring
+
+* HistoricBSN reformated for itteration ([51e776a](https://github.com/wearefrank/haalcentraal-connector/commit/51e776a06b85da75eab499481c3ab31d03da0997))
+
 ## [1.7.11](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.10...v1.7.11) (2024-10-24)
 
 ### 🐛 Bug Fixes
