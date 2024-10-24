@@ -37,7 +37,7 @@
 				elementXPathExpression="root/data/historicBsns">
                 <FixedQuerySender
 					name="UpdateSubscriptionsToHistoricBsn"
-					query="UPDATE subscripties SET bsn = ?{currentBsn} WHERE bsn = ?{historicBsn}">
+					query="UPDATE subscripties SET bsn = ?{currentBsn} WHERE bsn = ?{historicBsn} AND eind_datum IS NULL">
 					<Param name="currentBsn" sessionKey="bsn" type="INTEGER"/>
 					<Param name="historicBsn" xpathExpression="." type="INTEGER"/>
             	</FixedQuerySender>
