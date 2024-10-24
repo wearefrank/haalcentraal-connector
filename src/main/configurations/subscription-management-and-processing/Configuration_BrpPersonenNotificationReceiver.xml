@@ -15,6 +15,7 @@
 		<Pipeline>
 			<Exits>
 				<Exit name="EXIT" state="SUCCESS" code="202" />
+				<Exit name="NoSubscribersToPerson" state="SUCCESS" code="201" />
 				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
 			</Exits>
 
@@ -47,30 +48,33 @@
 
             <XmlIfPipe name="checkBsnChange" xpathExpression="//result[rowsupdated != 0]">
                 <Forward name="then" path="InsertNotification"/>
-                <Forward name="else" path="GetPersoon"/>
+                <Forward name="else" path="GetSubscribers"/>
             </XmlIfPipe>
 
-            <SenderPipe name="GetPersoon">
+            <!-- Retrieve acrive subscriptions to current bsn -->
+            <SenderPipe name="GetSubscribers">
                 <FixedQuerySender
 					name="getPersonenSender"
                     queryType="SELECT"
-					query="SELECT * FROM persoonsgegevens WHERE bsn=?{burgerservicenummer} ORDER BY registratie_datum DESC LIMIT 1"
+					query="SELECT 1 FROM subscripties WHERE bsn=?{burgerservicenummer} AND eind_datum IS NULL"
 					includeFieldDefinition="false">
 					<Param name="burgerservicenummer" sessionKey="bsn"/>
             	</FixedQuerySender> 
-                <Forward name="success" path="PersonExists" />
+                <Forward name="success" path="CheckSubscriptionCount" />
                 <Forward name="exception" path="BadRequest" />
             </SenderPipe>
 
+            <!-- Check if subscriptions are found -->
             <XmlIfPipe
-                name="PersonExists"
-                xpathExpression="count(result/rowset/row) = 1"
+                name="CheckSubscriptionCount"
+                xpathExpression="count(result/rowset/row) > 0"
             >
                 <Forward name="then" path="InsertNotification"/>
                 <Forward name="else" path="NoSubscribersToPerson"/>
                 <Forward name="exception" path="BadRequest"/>
             </XmlIfPipe>
 
+            <!-- Add bsn to to the update processing queue -->
             <SenderPipe name="InsertNotification" getInputFromSessionKey="originalMessage">
 				<MessageStoreSender
 					slotId="${instance.name}/notificationStore"
