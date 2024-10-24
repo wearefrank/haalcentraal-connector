@@ -21,9 +21,9 @@
                         headersParams="Accept, Content-Type, Digest, Date, TPP-Signature-Certificate, authorization"
                         treatInputMessageAsParameters="false" />
                 <Param name="grant_type" value="client_credentials" />
-                <Param name="client_id" pattern="${oauth.client-id}" />
-                <Param name="client_secret" pattern="${oauth.client-secret}" />
-                <Param name="scope" value="${oauth.scope}" />
+                <Param name="client_id" pattern="${oauth.client-id}" hidden="true"/>
+                <Param name="client_secret" pattern="${oauth.client-secret}" hidden="true"/>
+                <Param name="scope" value="${oauth.scope}" hidden="true"/>
                 <Param name="resourceServer" value="ResourceServer01" />
                 <Param name="Accept" value="application/json" />
                 <Param name="Content-Type" value="application/x-www-form-urlencoded" />
