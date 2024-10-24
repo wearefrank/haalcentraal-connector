@@ -26,6 +26,11 @@
 
             <JsonPipe name="persoonNew2xml" />
 
+            <XmlIfPipe name="ShouldNotifySubscribers" expressionValue="true" xpathExpression="/root">
+                <Forward name="then" path="GetApplicationConfig" />
+                <Forward name="else" path="EXIT" />
+            </XmlIfPipe>
+
             <LocalFileSystemPipe name="GetApplicationConfig" action="read" storeResultInSessionKey="applicationConfig">
                 <Param name="filename" value="${applicationConfigPath}" />
                 <Forward name="success" path="GetSubscribersForUpdatedPerson" />
@@ -53,8 +58,6 @@
             </DataSonnetPipe>
 
             <!-- TODO: Send updated data to callback uri's  -->
-
-            <ExceptionPipe name="NoUpdateFound" />
         </Pipeline>
     </Adapter>
 </Module>

@@ -15,50 +15,66 @@
 		<Pipeline>
 			<Exits>
 				<Exit name="EXIT" state="SUCCESS" code="202" />
-				<Exit name="BadRequest" state="ERROR" code="400" />
+				<Exit name="NoSubscribersToPerson" state="SUCCESS" code="201" />
+				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
 			</Exits>
 
 			<JsonValidatorPipe name="jsonValidator" schema="json/DataChangeNotificationSchema.json" onlyIfSessionKey="HttpMethod">
-                <Forward name="success" path="JsonToXml" />
+                <Forward name="success" path="InputJsonToXml" />
                 <Forward name="exception" path="BadRequest" />
             </JsonValidatorPipe>
 
-            <JsonPipe name="JsonToXml" prettyPrint="true">
+            <JsonPipe name="InputJsonToXml" prettyPrint="true" storeResultInSessionKey="xmlInputMessage">
                 <Forward name="success" path="ExtractIncomingNotificationData"/>
             </JsonPipe>
-
-            <!-- TODO: Process historic bsns correctly -->
+            
             <PutInSessionPipe name="ExtractIncomingNotificationData">
                 <Param name="bsn" xpathExpression="root/data/bsn" />
-                <Param name="historicBsns" xpathExpression="root/data/historicBsns" />
-                <Forward name="success" path="GetPersoon"/>
+                <Forward name="success" path="historicBsnIterator"/>
             </PutInSessionPipe>
 
-            <!-- TODO: Check if person has historic bsns -->
+			<!-- Update subscriptions to historic bsns to current bsn -->
+			<ForEachChildElementPipe name="historicBsnIterator" getInputFromSessionKey="xmlInputMessage"
+				elementXPathExpression="root/data/historicBsns">
+                <FixedQuerySender
+					name="UpdateSubscriptionsToHistoricBsn"
+					query="UPDATE subscripties SET bsn = ?{currentBsn} WHERE bsn = ?{historicBsn} AND eind_datum IS NULL">
+					<Param name="currentBsn" sessionKey="bsn" type="INTEGER"/>
+					<Param name="historicBsn" xpathExpression="." type="INTEGER"/>
+            	</FixedQuerySender>
+				<Forward name="success" path="checkBsnChange"/>
+				<Forward name="exception" path="EXIT" />
+			</ForEachChildElementPipe>  
 
-            <!-- TODO: Update subscriptions to historic bsns to new bsn -->
+            <XmlIfPipe name="checkBsnChange" xpathExpression="//result[rowsupdated != 0]">
+                <Forward name="then" path="InsertNotification"/>
+                <Forward name="else" path="GetSubscribers"/>
+            </XmlIfPipe>
 
-            <SenderPipe name="GetPersoon">
+            <!-- Retrieve acrive subscriptions to current bsn -->
+            <SenderPipe name="GetSubscribers">
                 <FixedQuerySender
 					name="getPersonenSender"
                     queryType="SELECT"
-					query="SELECT * FROM persoonsgegevens WHERE bsn=?{burgerservicenummer} ORDER BY registratie_datum DESC LIMIT 1"
+					query="SELECT 1 FROM subscripties WHERE bsn=?{burgerservicenummer} AND eind_datum IS NULL"
 					includeFieldDefinition="false">
 					<Param name="burgerservicenummer" sessionKey="bsn"/>
             	</FixedQuerySender> 
-                <Forward name="success" path="PersonExists" />
+                <Forward name="success" path="CheckSubscriptionCount" />
                 <Forward name="exception" path="BadRequest" />
             </SenderPipe>
-            
+
+            <!-- Check if subscriptions are found -->
             <XmlIfPipe
-                name="PersonExists"
-                xpathExpression="count(result/rowset/row) = 1"
+                name="CheckSubscriptionCount"
+                xpathExpression="count(result/rowset/row) > 0"
             >
                 <Forward name="then" path="InsertNotification"/>
-                <Forward name="else" path="BadRequest"/>
+                <Forward name="else" path="NoSubscribersToPerson"/>
                 <Forward name="exception" path="BadRequest"/>
             </XmlIfPipe>
 
+            <!-- Add bsn to to the update processing queue -->
             <SenderPipe name="InsertNotification" getInputFromSessionKey="originalMessage">
 				<MessageStoreSender
 					slotId="${instance.name}/notificationStore"

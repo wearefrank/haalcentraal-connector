@@ -5,7 +5,7 @@ function compareJsonObjects(storedJsonString, newJsonString) {
     if (!storedJsonString) {
         return formatJsonOutput({
             hasDifferences: true,
-            updatedJson: newJsonString
+            updatedJson: JSON.parse(newJsonString)
         });
     }
 
