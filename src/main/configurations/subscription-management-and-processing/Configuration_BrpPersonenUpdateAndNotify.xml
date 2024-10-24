@@ -12,6 +12,7 @@
             <Exits>
                 <Exit name="EXIT" state="SUCCESS" code="200" />
                 <Exit name="EXCEPTION" state="ERROR" code="500" />
+                <Exit name="NoUpdateFound" state="ERROR" code="500" />
                 <Exit name="BADREQUEST" state="ERROR" code="400" />
             </Exits>
 
@@ -25,6 +26,11 @@
             </SenderPipe>
 
             <JsonPipe name="persoonNew2xml" />
+
+            <XmlIfPipe name="ShouldNotifySubscribers" xpathExpression="/root/">
+                <Forward name="then" path="GetApplicationConfig" />
+                <Forward name="else" path="NoUpdateFound" />
+            </XmlIfPipe>
 
             <LocalFileSystemPipe name="GetApplicationConfig" action="read" storeResultInSessionKey="applicationConfig">
                 <Param name="filename" value="${applicationConfigPath}" />
