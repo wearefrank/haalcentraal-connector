@@ -1,6 +1,6 @@
-<Module 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+<Module
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
 	<Adapter name="BrpPersonenAfnemersIndicatieReceiver"
 		description="brp personen afnemers indicatie receiver">
 
@@ -11,25 +11,123 @@
 		<Pipeline>
 			<Exits>
 				<Exit name="EXIT" state="SUCCESS" />
-				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
+				<Exit name="BadRequest" state="SUCCESS" code="400" empty="false" />
+				<Exit name="AlreadySubscribed" state="SUCCESS" code="409" empty="false" />
+				<Exit name="NoSubscriptionFound" state="SUCCESS" code="404" empty="false" />
+				<Exit name="Exception" state="ERROR" empty="true" />
 			</Exits>
 
-            <SenderPipe name="InsertNotification" getInputFromSessionKey="originalMessage">
-				<MessageStoreSender
-					slotId="${instance.name}/afnemersIndicatieStore"
-				/>
-                <Forward name="success" path="WrapBv03Response" />
-            </SenderPipe>
+			<!-- Retrieve the application configuration from the local file system -->
+			<SenderPipe
+				name="LoadApplicationConfig"
+				storeResultInSessionKey="ApplicationConfig">
+				<IbisLocalSender
+					name="GetApplicationConfigFromLocalFileSystem"
+					javaListener="ProcessFileInputListener"
+					returnedSessionKeys="Error">
+					<Param name="FileName" value="${applicationConfigPath}" />
+				</IbisLocalSender>
+				<Forward name="success" path="ConvertInputToAppId" />
+				<Forward name="exception" path="Exception" />
+			</SenderPipe>
 
-            <SoapWrapperPipe
+			<!-- Get the appid of the application related to the subscription action -->
+			<XsltPipe name="ConvertInputToAppId"
+				xpathExpression="/root/Applications[organisatie = $inputOrganisatie and applicatie = $inputApplicatie]/appId"
+				storeResultInSessionKey="ApplicationId">
+				<Param name="inputApplicatie" sessionKey="originalMessage"
+					xpathExpression="npsLk01/stuurgegevens/zender/applicatie" />
+				<Param name="inputOrganisatie" sessionKey="originalMessage"
+					xpathExpression="npsLk01/stuurgegevens/zender/organisatie" />
+			</XsltPipe>
+
+			<!-- Retrieve the person by BSN -->
+			<SenderPipe name="FetchPersonByBsn" storeResultInSessionKey="fetchedPersonEntries">
+				<FixedQuerySender
+					name="FetchPersonSender"
+					queryType="SELECT"
+					query="SELECT * FROM persoonsgegevens WHERE bsn=?{burgerservicenummer}"
+					includeFieldDefinition="false">
+					<Param name="burgerservicenummer" sessionKey="originalMessage"
+						xpathExpression="npsLk01/object/inp.bsn" type="INTEGER" />
+				</FixedQuerySender>
+				<Forward name="success" path="CheckIfPersonExists" />
+				<Forward name="exception" path="Exception" />
+			</SenderPipe>
+
+			<!-- Check if a person was found with the given BSN -->
+			<XmlIfPipe name="CheckIfPersonExists" getInputFromSessionKey="fetchedPersonEntries"
+				xpathExpression="/result/rowset/row">
+				<Forward name="then" path="CheckVerwerkingssoort" />
+				<Forward name="else" path="InsertNewPerson" />
+			</XmlIfPipe>
+
+			<!-- Add persoonsgegevens to db if none are found -->
+			<SenderPipe name="InsertNewPerson">
+				<IbisLocalSender name="InsertNewPersonSender"
+					javaListener="BrpPersonenUpdateAndNotify">
+					<Param name="burgerservicenummer" sessionKey="originalMessage"
+						xpathExpression="npsLk01/object/inp.bsn" />
+				</IbisLocalSender>
+			</SenderPipe>
+
+			<!-- Check if a subscriber needs to be either added or removed -->
+			<XmlIfPipe name="CheckVerwerkingssoort" xpathExpression="$originalMessage = 'T'"
+				getInputFromSessionKey="originalMessage">
+				<Param name="originalMessage" sessionKey="originalMessage"
+					xpathExpression="npsLk01/object/@verwerkingssoort" />
+				<Forward name="then" path="InsertNewSubscription" />
+				<Forward name="else" path="EndSubscription" />
+			</XmlIfPipe>
+
+			<!-- Insert the new subscriber into the database -->
+			<SenderPipe name="InsertNewSubscription" getInputFromSessionKey="originalMessage">
+				<FixedQuerySender
+					name="InsertSubscriptionSender"
+					query="
+						INSERT INTO subscripties (bsn, app_id, begin_datum)
+						SELECT ?{burgerservicenummer}, ?{appId}, CURRENT_TIMESTAMP
+						WHERE NOT EXISTS (
+							SELECT 1
+							FROM subscripties
+							WHERE bsn = ?{burgerservicenummer}
+							AND app_id = ?{appId}
+							AND eind_datum IS NULL
+						);">
+					<Param name="burgerservicenummer" sessionKey="originalMessage"
+						xpathExpression="npsLk01/object/inp.bsn" />
+					<Param name="appId" sessionKey="ApplicationId" />
+				</FixedQuerySender>
+			</SenderPipe>
+			<XmlIfPipe name="CheckNoSubscriptionAdded" xpathExpression="/result/rowsupdated = 0">
+				<Forward name="then" path="AlreadySubscribed" />
+				<Forward name="else" path="WrapBv03Response" />
+			</XmlIfPipe>
+
+			<!-- Set the end date for the specified subscription to now -->
+			<SenderPipe name="EndSubscription" getInputFromSessionKey="originalMessage">
+				<FixedQuerySender
+					name="EndSubscriptionSender"
+					query="UPDATE subscripties SET eind_datum = CURRENT_TIMESTAMP WHERE bsn=?{burgerservicenummer} AND app_id=?{appId} AND eind_datum IS NULL">
+					<Param name="burgerservicenummer" sessionKey="originalMessage"
+						xpathExpression="npsLk01/object/inp.bsn" />
+					<Param name="appId" sessionKey="ApplicationId" />
+				</FixedQuerySender>
+			</SenderPipe>
+			<XmlIfPipe name="CheckNoSubscriptionEnded" xpathExpression="/result/rowsupdated = 0">
+				<Forward name="then" path="NoSubscriptionFound" />
+				<Forward name="else" path="WrapBv03Response" />
+			</XmlIfPipe>
+
+			<SoapWrapperPipe
 				getInputFromSessionKey="originalMessage"
-                name="WrapBv03Response"
+				name="WrapBv03Response"
 				soapBodyStyleSheet="xsl/CreateBv03Response.xslt"
-                >
-                <Param name="Stuurgegevens" xpathExpression="/*/stuurgegevens" defaultValue="&lt;stuurgegevens/&gt;" type="DOMDOC" />
-                <Forward name="success" path="EXIT"/>
-            </SoapWrapperPipe>
-
+			>
+				<Param name="Stuurgegevens" xpathExpression="/*/stuurgegevens"
+					defaultValue="&lt;stuurgegevens/&gt;" type="DOMDOC" />
+				<Forward name="success" path="EXIT" />
+			</SoapWrapperPipe>
 		</Pipeline>
 	</Adapter>
 </Module>

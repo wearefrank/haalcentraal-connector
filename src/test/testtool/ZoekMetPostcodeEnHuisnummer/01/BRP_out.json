@@ -1,0 +1,81 @@
+{
+    "type": "ZoekMetPostcodeEnHuisnummer",
+    "personen": [
+        {
+            "burgerservicenummer": "999990639",
+            "geboorte": {
+                "datum": {
+                    "type": "Datum",
+                    "datum": "1922-09-25",
+                    "langFormaat": "25 september 1922"
+                }
+            },
+            "geslacht": {
+                "code": "M",
+                "omschrijving": "man"
+            },
+            "leeftijd": 102,
+            "naam": {
+                "voornamen": "Mattheus",
+                "voorvoegsel": "du",
+                "geslachtsnaam": "Burck",
+                "voorletters": "M.",
+                "volledigeNaam": "Mattheus du Burck"
+            },
+            "adressering": {
+                "adresregel1": "Zeeruststraat 132",
+                "adresregel2": "2584 BZ 'S-GRAVENHAGE"
+            }
+        },
+        {
+            "burgerservicenummer": "999993161",
+            "geboorte": {
+                "datum": {
+                    "type": "Datum",
+                    "datum": "1898-01-02",
+                    "langFormaat": "2 januari 1898"
+                }
+            },
+            "geslacht": {
+                "code": "M",
+                "omschrijving": "man"
+            },
+            "leeftijd": 126,
+            "naam": {
+                "voornamen": "Pieter Jozef Hubert",
+                "geslachtsnaam": "Maassen",
+                "voorletters": "P.J.H.",
+                "volledigeNaam": "Pieter Jozef Hubert Maassen"
+            },
+            "adressering": {
+                "adresregel1": "Zeeruststraat 132",
+                "adresregel2": "2584 BZ 'S-GRAVENHAGE"
+            }
+        },
+        {
+            "burgerservicenummer": "999991590",
+            "geboorte": {
+                "datum": {
+                    "type": "Datum",
+                    "datum": "1899-04-04",
+                    "langFormaat": "4 april 1899"
+                }
+            },
+            "geslacht": {
+                "code": "V",
+                "omschrijving": "vrouw"
+            },
+            "leeftijd": 125,
+            "naam": {
+                "voornamen": "Maria Gertrudis",
+                "geslachtsnaam": "Pluis",
+                "voorletters": "M.G.",
+                "volledigeNaam": "Maria Gertrudis Pluis"
+            },
+            "adressering": {
+                "adresregel1": "Zeeruststraat 132",
+                "adresregel2": "2584 BZ 'S-GRAVENHAGE"
+            }
+        }
+    ]
+}

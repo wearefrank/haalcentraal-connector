@@ -7,11 +7,15 @@
 		<Receiver>
 			<JavaListener name="BrpPersonenNotificationRetryScheduler" />
 		</Receiver>
+        
+        <Receiver name="RestEndpoint_RetryScheduler">
+			<ApiListener name="RestEndpoint_RetryScheduler" uriPattern="${haalcentraal_connector.notification.retry.scheduler.rest.endpoint}" method="POST" active="${RestEndpoint_RetryScheduler.Active}"/>
+		</Receiver>
 
 		<Pipeline>
 			<Exits>
 				<Exit name="EXIT" state="SUCCESS" />
-				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
+				<Exit name="BadRequest" state="ERROR" code="400" />
 			</Exits>
 
 			<SenderPipe name="addLabel">
@@ -20,27 +24,30 @@
 					query="UPDATE IBISSTORE SET LABEL = '0' WHERE LABEL IS NULL AND TYPE = 'E'" />
 					<Forward name="success" path="incrementRetry" />
 			</SenderPipe>
-
+			<!-- TODO: Might wanna use sessionkey __isManualRetry for distinguishing retries-->
 			<SenderPipe name="incrementRetry">
 				<FixedQuerySender query="UPDATE IBISSTORE
 					SET label = CASE
-						WHEN label ~ '^[0-9]+$' THEN CAST(CAST(label AS INTEGER) + 1 AS VARCHAR)
+						WHEN label ~ '^[0-9]+$' AND CAST(label AS INTEGER) &lt; ${MAX_RETRIES} THEN CAST(CAST(label AS INTEGER) + 1 AS VARCHAR)
 						ELSE label
 					END
-					WHERE TYPE = 'E'">
+					WHERE TYPE = 'E' AND (MESSAGEKEY = ?{notification_id} OR ?{notification_id} = -1) AND  CAST(label AS INTEGER) &lt; ${MAX_RETRIES}">
 				</FixedQuerySender>
+				<Param name="notification_id" sessionKey="originalMessage" defaultValue="-1" type="INTEGER"/>
 				<Forward name="success" path="changeType" />
 			</SenderPipe>
 
 			<SenderPipe name="changeType">
-				<FixedQuerySender query="UPDATE IBISSTORE SET TYPE = 'M' WHERE TYPE = 'E'">
+				<FixedQuerySender query="UPDATE IBISSTORE SET TYPE = 'M' WHERE TYPE = 'E' AND CAST(label AS INTEGER) &lt; ${MAX_RETRIES} 
+				 						AND (MESSAGEKEY = ?{notification_id} OR ?{notification_id} = -1)">
 				</FixedQuerySender>
+				<Param name="notification_id" sessionKey="originalMessage" defaultValue="-1" type="INTEGER"/>
 				<Forward name="success" path="EXIT" />
 			</SenderPipe>
 
 		</Pipeline>
 	</Adapter>
-
+	<!-- cronExpression="0 * * * * ?" for every minute-->
 	<Scheduler>
 		<Job
 			name="process notifications"

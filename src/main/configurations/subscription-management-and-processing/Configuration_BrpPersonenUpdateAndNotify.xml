@@ -1,0 +1,60 @@
+<Module
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+    <Adapter name="BrpPersonenUpdateAndNotify"
+        description="BrpPersonenUpdateAndNotify">
+
+        <Receiver name="BrpPersonenUpdateAndNotify">
+            <JavaListener name="BrpPersonenUpdateAndNotify" />
+        </Receiver>
+
+        <Pipeline>
+            <Exits>
+                <Exit name="EXIT" state="SUCCESS" code="200" />
+                <Exit name="EXCEPTION" state="ERROR" code="500" />
+                <Exit name="BADREQUEST" state="ERROR" code="400" />
+            </Exits>
+
+            <SenderPipe name="BrpPersonenSynchronizePersoon">
+                <IbisLocalSender name="BrpPersonenSynchronizePersoon"
+                    javaListener="BrpPersonenSynchronizePersoon">
+                    <Param name="burgerservicenummer" sessionKey="burgerservicenummer" />
+                </IbisLocalSender>
+                <Forward name="success" path="persoonNew2xml" />
+                <Forward name="exception" path="EXCEPTION" />
+            </SenderPipe>
+
+            <JsonPipe name="persoonNew2xml" />
+
+            <LocalFileSystemPipe name="GetApplicationConfig" action="read" storeResultInSessionKey="applicationConfig">
+                <Param name="filename" value="${applicationConfigPath}" />
+                <Forward name="success" path="GetSubscribersForUpdatedPerson" />
+            </LocalFileSystemPipe>
+
+            <!-- Retrieve all subscribers to the given bsn -->
+            <SenderPipe name="GetSubscribersForUpdatedPerson">
+                <FixedQuerySender
+                    name="GetSubscribersByBsnQuery"
+                    queryType="SELECT"
+                    query="SELECT app_id FROM subscripties WHERE bsn=? AND eind_datum IS NULL"
+                    outputFormat="JSON">
+                    <Param name="burgerservicenummer" sessionKey="burgerservicenummer"/>
+                </FixedQuerySender>
+                <Forward name="success" path="TransformApplicationData" />
+            </SenderPipe>
+
+            <!-- TODO: Check if notifications need to be sent -->
+            
+            <!-- Map application_id to callback uri's -->
+            <DataSonnetPipe name="TransformApplicationData"
+                styleSheetName="jsonnet/ApplicationsFilter.jsonnet">
+                <Param name="applicationConfig" sessionKey="applicationConfig" />
+                <Forward name="success" path="EXIT" />
+            </DataSonnetPipe>
+
+            <!-- TODO: Send updated data to callback uri's  -->
+
+            <ExceptionPipe name="NoUpdateFound" />
+        </Pipeline>
+    </Adapter>
+</Module>
