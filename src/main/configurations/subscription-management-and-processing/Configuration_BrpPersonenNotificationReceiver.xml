@@ -19,11 +19,11 @@
 			</Exits>
 
 			<JsonValidatorPipe name="jsonValidator" schema="json/DataChangeNotificationSchema.json" onlyIfSessionKey="HttpMethod">
-                <Forward name="success" path="JsonToXml" />
+                <Forward name="success" path="InputJsonToXml" />
                 <Forward name="exception" path="BadRequest" />
             </JsonValidatorPipe>
 
-            <JsonPipe name="JsonToXml" prettyPrint="true">
+            <JsonPipe name="InputJsonToXml" prettyPrint="true" storeResultInSessionKey="xmlInputMessage">
                 <Forward name="success" path="ExtractIncomingNotificationData"/>
             </JsonPipe>
             
