@@ -26,7 +26,7 @@
 
             <JsonPipe name="persoonNew2xml" />
 
-            <XmlIfPipe name="ShouldNotifySubscribers" xpathExpression="root/ = true">
+            <XmlIfPipe name="ShouldNotifySubscribers" expressionValue="true" xpathExpression="/root">
                 <Forward name="then" path="GetApplicationConfig" />
                 <Forward name="else" path="EXIT" />
             </XmlIfPipe>
