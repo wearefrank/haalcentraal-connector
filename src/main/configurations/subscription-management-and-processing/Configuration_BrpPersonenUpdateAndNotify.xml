@@ -59,8 +59,6 @@
             </DataSonnetPipe>
 
             <!-- TODO: Send updated data to callback uri's  -->
-
-            <ExceptionPipe name="NoUpdateFound" />
         </Pipeline>
     </Adapter>
 </Module>
