@@ -54,10 +54,6 @@
                 <Forward name="then" path="InsertNotification"/>
                 <Forward name="else" path="GetPersoon"/>
             </XmlIfPipe>
-            
-            <!-- TODO: Check if person has historic bsns -->
-
-            <!-- TODO: Update subscriptions to historic bsns to new bsn -->
 
             <SenderPipe name="GetPersoon">
                 <FixedQuerySender
