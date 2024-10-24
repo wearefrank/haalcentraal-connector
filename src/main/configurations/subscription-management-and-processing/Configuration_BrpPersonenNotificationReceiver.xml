@@ -67,7 +67,7 @@
                 xpathExpression="count(result/rowset/row) = 1"
             >
                 <Forward name="then" path="InsertNotification"/>
-                <Forward name="else" path="BadRequest"/>
+                <Forward name="else" path="NoSubscribersToPerson"/>
                 <Forward name="exception" path="BadRequest"/>
             </XmlIfPipe>
 
