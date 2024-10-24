@@ -12,7 +12,7 @@
             <Exits>
                 <Exit name="EXIT" state="SUCCESS" code="200" />
                 <Exit name="EXCEPTION" state="ERROR" code="500" />
-                <Exit name="NoUpdateFound" state="ERROR" code="500" />
+                <Exit name="NoUpdateFound" state="SUCCESS" code="200" />
                 <Exit name="BADREQUEST" state="ERROR" code="400" />
             </Exits>
 
