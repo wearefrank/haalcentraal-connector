@@ -97,5 +97,7 @@
                 <Param name="data" sessionKey="updatedJson" />
             </FixedQuerySender>
         </SenderPipe>
+
+        <EchoPipe name="PersonHasBeenUpdated" getInputFromFixedValue="true" />
     </Pipeline>
 </Adapter>
