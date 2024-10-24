@@ -29,20 +29,15 @@
             
             <PutInSessionPipe name="ExtractIncomingNotificationData">
                 <Param name="bsn" xpathExpression="root/data/bsn" />
-                <Forward name="success" path="ExtractHistoricBsns"/>
+                <Forward name="success" path="historicBsnIterator"/>
             </PutInSessionPipe>
 
-            <XsltPipe name="ExtractHistoricBsns"
-                styleSheetName="xsl/historicBsns.xslt" storeResultInSessionKey="historicBsns">
-                <Forward name="success" path="historicBsnIterator"/>
-            </XsltPipe>
-
-			<!-- Add persoonsgegevens entry for each person retrieved from the BRP -->
-			<ForEachChildElementPipe name="historicBsnIterator"
-				elementXPathExpression="historicBsns/bsn">
+			<!-- Update subscriptions to historic bsns to current bsn -->
+			<ForEachChildElementPipe name="historicBsnIterator" getInputFromSessionKey="xmlInputMessage"
+				elementXPathExpression="root/data/historicBsns">
                 <FixedQuerySender
-					name="insertPersonenSender"
-					query="UPDATE subscripties SET bsn = ? WHERE bsn = ? ">
+					name="UpdateSubscriptionsToHistoricBsn"
+					query="UPDATE subscripties SET bsn = ?{currentBsn} WHERE bsn = ?{historicBsn}">
 					<Param name="currentBsn" sessionKey="bsn" type="INTEGER"/>
 					<Param name="historicBsn" xpathExpression="." type="INTEGER"/>
             	</FixedQuerySender>
