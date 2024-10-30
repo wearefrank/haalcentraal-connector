@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.14](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.13...v1.7.14) (2024-10-30)
+
+### 🐛 Bug Fixes
+
+* switch to stable ff 8.3.1 release until there is a stable 9.x release ([59ddd7d](https://github.com/wearefrank/haalcentraal-connector/commit/59ddd7d18ddd18ecdda3aae867c089f7f514df6c))
+
 ## [1.7.13](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.12...v1.7.13) (2024-10-30)
 
 ### 🐛 Bug Fixes
