@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.15](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.14...v1.7.15) (2024-10-30)
+
+### 🐛 Bug Fixes
+
+* update ff version to 8.3.0 in hopes of fixing console issues ([e24c649](https://github.com/wearefrank/haalcentraal-connector/commit/e24c64942a2a0faf45d16efd01e9f974102fa91d))
+
 ## [1.7.14](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.13...v1.7.14) (2024-10-30)
 
 ### 🐛 Bug Fixes
