@@ -5,153 +5,47 @@
                 xmlns:w="http://schemas.xmlsoap.org/wsdl/"
                 xmlns:gml="http://www.opengis.net/gml"
                 xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
->
+                xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                exclude-result-prefixes="ns xlink"
+    >
+    
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
-    <xsl:param name="berichtcode" />
-    <xsl:param name="varZenderApplicatie">GWS</xsl:param>
-    <xsl:param name="varZenderOrganisatie" />
-    <xsl:param name="administratie" />
-    <xsl:param name="varZenderGebruiker" />
-    <xsl:param name="varOntvangerApplicatie" />
-    <xsl:param name="varOntvangerOrganisatie" />
-    <xsl:param name="varOntvangerAdministratie" />
+    <xsl:param name="berichtcode">La01</xsl:param>
+    <xsl:param name="varZenderApplicatie" />
     <xsl:param name="varReferentienummer" />
-    <xsl:param name="varOntvangerGebruiker" />
     <xsl:param name="varEntiteittype" />
     <xsl:param name="tijdstipBericht" />
     <xsl:param name="indicatorVervolgvraag" />
-    <xsl:param name="soapMessage" as="node()?" >
-        <soapenv:Envelope xmlns:StUF="http://www.egem.nl/StUF/StUF0301"
-                          xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310"
-                          xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
-                          xmlns:xlink="http://www.w3.org/1999/xlink">
-            <soapenv:Header />
-            <soapenv:Body>
-                <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310"
-                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                    <BG:stuurgegevens>
-                        <StUF:berichtcode>Lv01</StUF:berichtcode>
-                        <StUF:zender>
-                            <StUF:organisatie>0518</StUF:organisatie>
-                            <StUF:applicatie>LBA</StUF:applicatie>
-                        </StUF:zender>
-                        <StUF:ontvanger>
-                            <StUF:organisatie>test1</StUF:organisatie>
-                            <StUF:applicatie>test123</StUF:applicatie>
-                        </StUF:ontvanger>
-                        <StUF:referentienummer>af20ca23-3955-4406-89d2-3048f0017564</StUF:referentienummer>
-                        <StUF:tijdstipBericht>20241014193050762</StUF:tijdstipBericht>
-                        <StUF:entiteittype>NPS</StUF:entiteittype>
-                    </BG:stuurgegevens>
-                    <BG:parameters>
-                        <StUF:sortering>1</StUF:sortering>
-                        <StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
-                        <StUF:maximumAantal>9</StUF:maximumAantal>
-                    </BG:parameters>
-                    <BG:gelijk StUF:entiteittype="NPS">
-                        <BG:inp.bsn>555555021</BG:inp.bsn>
-                    </BG:gelijk>
-                    <BG:scope>
-                        <BG:object StUF:entiteittype="NPS">
-                            <BG:inp.bsn xsi:nil="true" />
-                            <BG:inp.a-nummer xsi:nil="true" />
-                            <BG:geslachtsnaam xsi:nil="true" />
-                            <BG:voorvoegselGeslachtsnaam xsi:nil="true" />
-                            <BG:voorletters xsi:nil="true" />
-                            <BG:voornamen xsi:nil="true" />
-                            <BG:aanduidingNaamgebruik xsi:nil="true" />
-                            <BG:geslachtsnaamPartner xsi:nil="true" />
-                            <BG:geslachtsaanduiding xsi:nil="true" />
-                            <BG:geslachtsnaamAanschrijving xsi:nil="true" />
-                            <BG:geboortedatum xsi:nil="true" />
-                            <BG:inp.geboorteplaats xsi:nil="true" />
-                            <BG:inp.geboorteLand xsi:nil="true" />
-                            <BG:overlijdensdatum xsi:nil="true" />
-                            <BG:inp.overlijdenplaats xsi:nil="true" />
-                            <BG:inp.overlijdenLand xsi:nil="true" />
-                            <BG:verblijfsadres>
-                                <BG:aoa.identificatie xsi:nil="true" />
-                                <BG:wpl.identificatie xsi:nil="true" />
-                                <BG:wpl.woonplaatsNaam xsi:nil="true" />
-                                <BG:aoa.woonplaatsWaarinGelegen>
-                                    <BG:wpl.identificatie xsi:nil="true" />
-                                    <BG:wpl.woonplaatsNaam xsi:nil="true" />
-                                </BG:aoa.woonplaatsWaarinGelegen>
-                                <BG:gor.identificatie xsi:nil="true" />
-                                <BG:opr.identificatie xsi:nil="true" />
-                                <BG:gor.openbareRuimteNaam xsi:nil="true" />
-                                <BG:gor.straatnaam xsi:nil="true" />
-                                <BG:aoa.postcode xsi:nil="true" />
-                                <BG:aoa.huisnummer xsi:nil="true" />
-                                <BG:aoa.huisletter xsi:nil="true" />
-                                <BG:aoa.huisnummertoevoeging xsi:nil="true" />
-                                <BG:inp.locatiebeschrijving xsi:nil="true" />
-                                <BG:begindatumVerblijf xsi:nil="true" />
-                            </BG:verblijfsadres>
-                            <BG:inp.adresHerkomst xsi:nil="true" />
-                            <BG:inp.burgerlijkeStaat xsi:nil="true" />
-                            <BG:inp.gemeenteVanInschrijving xsi:nil="true" />
-                            <BG:inp.datumInschrijving xsi:nil="true" />
-                            <BG:inp.indicatieGeheim xsi:nil="true" />
-                            <BG:ing.indicatieBlokkering xsi:nil="true" />
-                            <BG:aanduidingStrijdigheidNietigheid xsi:nil="true" />
-                            <StUF:tijdvakGeldigheid>
-                                <StUF:beginGeldigheid xsi:nil="true" />
-                                <StUF:eindGeldigheid xsi:nil="true" />
-                            </StUF:tijdvakGeldigheid>
-                            <StUF:tijdstipRegistratie xsi:nil="true" />
-                            <BG:inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT">
-                                <BG:gerelateerde StUF:entiteittype="NAT">
-                                    <BG:code xsi:nil="true" />
-                                    <BG:omschrijving xsi:nil="true" />
-                                </BG:gerelateerde>
-                                <BG:inp.redenVerkrijging xsi:nil="true" />
-                                <BG:inp.datumVerkrijging xsi:nil="true" />
-                                <BG:inp.redenVerlies xsi:nil="true" />
-                                <BG:inp.datumVerlies xsi:nil="true" />
-                            </BG:inp.heeftAlsNationaliteit>
-                            <BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
-                                <BG:gerelateerde StUF:entiteittype="NPS">
-                                    <BG:inp.bsn xsi:nil="true" />
-                                    <BG:geslachtsnaam xsi:nil="true" />
-                                    <BG:voorvoegselGeslachtsnaam xsi:nil="true" />
-                                </BG:gerelateerde>
-                                <BG:datumSluiting xsi:nil="true" />
-                                <BG:datumOntbinding xsi:nil="true" />
-                                <BG:redenOntbinding xsi:nil="true" />
-                            </BG:inp.heeftAlsEchtgenootPartner>
-                        </BG:object>
-                    </BG:scope>
-                </BG:npsLv01>
-            </soapenv:Body>
-        </soapenv:Envelope>
-    </xsl:param>
-    <xsl:variable name="originalMessage" select="."/>
+    <xsl:param name="aantalVoorkomens"><xsl:value-of select="count(/root/personen)"/></xsl:param>
+    <xsl:param name="originalMessage" as="node()?" />
     <xsl:variable name="geenWaarde">geenWaarde</xsl:variable>
     <xsl:variable name="waardeOnbekend">waardeOnbekend</xsl:variable>
     <xsl:variable name="nietGeautoriseerd">nietGeautoriseerd</xsl:variable>
     <xsl:variable name="woonplaats"><xsl:value-of
             select="root/personen/verblijfplaats/verblijfadres/woonplaats" /></xsl:variable>
     <xsl:variable name="external-data" select="document('woonplaatsen.xml')" as="node()?" />
-    <xsl:variable name="woonplaatsen"><xsl:copy-of select="$external-data" /></xsl:variable>
-
+   <xsl:param name="geslachtsnaam"><xsl:value-of select="/root/personen/naam/geslachtsnaam"/></xsl:param>
+   <xsl:param name="voorvoegsel"><xsl:value-of select="count(/root/personen/naam/voorvoegsel)"/></xsl:param>
     <xsl:template match="/">
         <xsl:apply-templates select="root/personen" mode="inputMessage"/>
     </xsl:template>
-
+    
     <xsl:template match="personen" mode="inputMessage">
         <xsl:variable name="mapping">
             <object StUF:entiteittype="NPS">
-                <BG:inp.bsn xsi:nil="true" />
-                <BG:inp.a-nummer xsi:nil="true" />
+                <inp.bsn><xsl:copy-of select="burgerservicenummer" /></inp.bsn>
+                <inp.a-nummer authorizedApplications="DEC_ZKN,GWS,LBA"><xsl:copy-of select="aNummer" /></inp.a-nummer>
                 <geslachtsnaam><xsl:copy-of select="naam/geslachtsnaam" /></geslachtsnaam>
-                <BG:voorvoegselGeslachtsnaam xsi:nil="true" />
+                <voorvoegselGeslachtsnaam><xsl:copy-of select="naam/voorvoegsel" /></voorvoegselGeslachtsnaam>
                 <voorletters><xsl:copy-of select="naam/voorletters" /></voorletters>
                 <voornamen><xsl:copy-of select="naam/voornamen" /></voornamen>
-                <BG:aanduidingNaamgebruik xsi:nil="true" />
-                <BG:geslachtsnaamPartner xsi:nil="true" />
-                <BG:geslachtsaanduiding xsi:nil="true" />
-                <geslachtsnaamAanschrijving>
+                <aanduidingNaamgebruik><xsl:copy-of select="naam/aanduidingNaamgebruik/code" /></aanduidingNaamgebruik>
+                <geslachtsnaamPartner authorizedApplications="DEC_ZKN,GWS"><xsl:copy-of select="partners/naam/geslachtsnaam" /></geslachtsnaamPartner>
+                <voorvoegselGeslachtsnaamPartner authorizedApplications="DEC_ZKN,GWS,TOP"><xsl:copy-of select="partners/naam/voorvoegsel" /></voorvoegselGeslachtsnaamPartner>
+                <aanhefAanschrijving authorizedApplications="DEC_ZKN,PGAx-SG-ZVH"><xsl:copy-of select="adressering/aanhef" /></aanhefAanschrijving>
+                <voornamenAanschrijving authorizedApplications="DEC_ZKN,PGAx-SG-ZVH"></voornamenAanschrijving>
+                <geslachtsnaamAanschrijving authorizedApplications="DEC_ZKN,PGAx-SG-ZVH">
                     <text>
                         <xsl:choose>
                             <xsl:when test="naam/aanduidingNaamgebruik/code = 'E'">
@@ -159,45 +53,100 @@
                             </xsl:when>
                             <xsl:when test="naam/aanduidingNaamgebruik/code = 'N'">
                                 <xsl:value-of
-                                        select="concat(naam/geslachtsnaam, '-',partners/naam/geslachtsnaam)" />
+                                    select="concat(naam/geslachtsnaam, '-',partners/naam/geslachtsnaam)" />
                             </xsl:when>
                             <xsl:when test="naam/aanduidingNaamgebruik/code = 'P'">
                                 <xsl:value-of select="partners/naam/geslachtsnaam" />
                             </xsl:when>
                             <xsl:when test="naam/aanduidingNaamgebruik/code = 'V'">
                                 <xsl:value-of
-                                        select="concat(partners/naam/geslachtsnaam, '-',naam/geslachtsnaam)" />
+                                    select="concat(partners/naam/geslachtsnaam, '-',naam/geslachtsnaam)" />
                             </xsl:when>
                         </xsl:choose>
                     </text>
                 </geslachtsnaamAanschrijving>
-                <BG:geboortedatum xsi:nil="true" />
-                <BG:inp.geboorteplaats xsi:nil="true" />
-                <BG:inp.geboorteLand xsi:nil="true" />
-                <BG:overlijdensdatum xsi:nil="true" />
-                <BG:inp.overlijdenplaats xsi:nil="true" />
-                <BG:inp.overlijdenLand xsi:nil="true" />
-                <BG:verblijfsadres>
-                    <BG:aoa.identificatie xsi:nil="true" />
-                    <BG:wpl.identificatie xsi:nil="true" />
-                    <BG:wpl.woonplaatsNaam xsi:nil="true" />
-                    <BG:aoa.woonplaatsWaarinGelegen>
-                        <BG:wpl.identificatie xsi:nil="true" />
-                        <BG:wpl.woonplaatsNaam xsi:nil="true" />
-                    </BG:aoa.woonplaatsWaarinGelegen>
-                    <BG:gor.identificatie xsi:nil="true" />
-                    <BG:opr.identificatie xsi:nil="true" />
-                    <BG:gor.openbareRuimteNaam xsi:nil="true" />
-                    <BG:gor.straatnaam xsi:nil="true" />
-                    <BG:aoa.postcode xsi:nil="true" />
-                    <BG:aoa.huisnummer xsi:nil="true" />
-                    <BG:aoa.huisletter xsi:nil="true" />
-                    <BG:aoa.huisnummertoevoeging xsi:nil="true" />
-                    <BG:inp.locatiebeschrijving xsi:nil="true" />
-                    <BG:begindatumVerblijf xsi:nil="true" />
-                </BG:verblijfsadres>
-                <BG:inp.adresHerkomst xsi:nil="true" />
-                <inp.burgerlijkeStaat>
+                <adellijkeTitelPredikaat authorizedApplications=""><xsl:copy-of select="naam/adellijkeTitelPredicaat/code"/></adellijkeTitelPredikaat>
+                <geslachtsaanduiding><xsl:copy-of select="geslacht/code"/></geslachtsaanduiding>
+                <geboortedatum>
+                    <test>
+                        <xsl:variable name="date" select="geboorte/datum/datum"/>
+                        <xsl:value-of select="translate($date, '-', '')" />
+                    </test>
+                </geboortedatum>
+                <inp.geboorteplaats><xsl:copy-of select="geboorte/plaats/omschrijving"/></inp.geboorteplaats>
+                <inp.geboorteLand><xsl:copy-of select="geboorte/land/code"/></inp.geboorteLand>
+                <overlijdensdatum>
+                    <test>
+                        <xsl:variable name="date" select="overlijden/datum/datum"/>
+                        <xsl:value-of select="translate($date, '-', '')" />
+                    </test>
+                </overlijdensdatum>
+                <inp.overlijdenplaats authorizedApplications="GWS,LBA"><xsl:copy-of select="overlijden/plaats/omschrijving"/></inp.overlijdenplaats>
+                <inp.overlijdenLand authorizedApplications="GWS,LBA"><xsl:copy-of select="overlijden/land/code"/></inp.overlijdenLand>
+                <inp.verblijftIn StUF:entiteittype="NPSTGO">
+                    <gerelateerde StUF:entiteittype="TGO" authorizedApplications="GWS">
+                        <adresAanduidingGrp>
+                            <num.identificatie><xsl:copy-of select="verblijfplaats/nummeraanduidingIdentificatie"/></num.identificatie>
+                            <oao.identificatie><xsl:copy-of select="verblijfplaats/adresseerbaarObjectIdentificatie"/></oao.identificatie>
+                            <wpl.identificatie authorizedApplications="DEC_ZKN">
+                                <xsl:copy-of select="$external-data/woonplaatsen/woonplaats[name = $woonplaats]/code" />
+                            </wpl.identificatie>
+                            <wpl.woonplaatsNaam><xsl:copy-of select="verblijfplaats/verblijfadres/woonplaats"/></wpl.woonplaatsNaam>
+                            <aoa.woonplaatsWaarinGelegen>
+                                <wpl.woonplaatsNaam><xsl:copy-of select="verblijfplaats/verblijfadres/woonplaats"/></wpl.woonplaatsNaam>
+                            </aoa.woonplaatsWaarinGelegen>
+                            <gor.identificatie authorizedApplications="GWS,PGAx-SG-ZVH"></gor.identificatie>
+                            <opr.identificatie authorizedApplications="GWS,PGAx-SG-ZVH"></opr.identificatie>
+                            <gor.openbareRuimteNaam><xsl:copy-of select="verblijfplaats/verblijfadres/officieleStraatnaam"/></gor.openbareRuimteNaam>
+                            <gor.straatnaam><xsl:copy-of select="verblijfplaats/verblijfadres/korteStraatnaam"/></gor.straatnaam>
+                            <aoa.postcode><xsl:copy-of select="verblijfplaats/verblijfadres/postcode"/></aoa.postcode>
+                            <aoa.huisnummer><xsl:copy-of select="verblijfplaats/verblijfadres/huisnummer"/></aoa.huisnummer>
+                            <aoa.huisletter><xsl:copy-of select="verblijfplaats/verblijfadres/huisletter"/></aoa.huisletter>
+                            <aoa.huisnummertoevoeging><xsl:copy-of select="verblijfplaats/verblijfadres/huisnummertoevoeging"/></aoa.huisnummertoevoeging>
+                            <ogo.locatieAanduiding authorizedApplications="DEC_ZKN,TOP,LBA,PGAx-SG-ZVH"><xsl:copy-of select="verblijfplaats/verblijfadres/locatiebeschrijving"/></ogo.locatieAanduiding>
+                        </adresAanduidingGrp>
+                    </gerelateerde>
+                </inp.verblijftIn>
+                <verblijfsadres>
+                    <aoa.identificatie authorizedApplications="DEC_ZKN,GWS,TOP,PGAx-SG-ZVH"><xsl:copy-of select="verblijfplaats/adresseerbaarObjectIdentificatie"/></aoa.identificatie>
+                    <wpl.identificatie authorizedApplications="DEC_ZKN">
+                        <xsl:copy-of select="$external-data/woonplaatsen/woonplaats[name = $woonplaats]/code"/>
+                    </wpl.identificatie>
+                    <wpl.woonplaatsNaam><xsl:copy-of select="verblijfplaats/verblijfadres/woonplaats"/></wpl.woonplaatsNaam>
+                    <aoa.woonplaatsWaarinGelegen>
+                        <wpl.identificatie authorizedApplications="GWS,PGAx-SG-ZVH"></wpl.identificatie>
+                        <wpl.woonplaatsNaam authorizedApplications="GWS,PGAx-SG-ZVH"></wpl.woonplaatsNaam>
+                    </aoa.woonplaatsWaarinGelegen>
+                    <gor.identificatie authorizedApplications="GWS,PGAx-SG-ZVH"></gor.identificatie>
+                    <opr.identificatie authorizedApplications="GWS,PGAx-SG-ZVH"></opr.identificatie>
+                    <gor.openbareRuimteNaam><xsl:copy-of select="verblijfplaats/naamOpenbareRuimte"/></gor.openbareRuimteNaam>
+                    <gor.straatnaam><xsl:copy-of select="verblijfplaats/verblijfadres/korteStraatnaam"/></gor.straatnaam>
+                    <aoa.postcode><xsl:copy-of select="verblijfplaats/verblijfadres/postcode"/></aoa.postcode>
+                    <aoa.huisnummer><xsl:copy-of select="verblijfplaats/verblijfadres/huisnummer"/></aoa.huisnummer>
+                    <aoa.huisletter><xsl:copy-of select="verblijfplaats/verblijfadres/huisletter"/></aoa.huisletter>
+                    <aoa.huisnummertoevoeging><xsl:copy-of select="verblijfplaats/verblijfadres/huisnummertoevoeging"/></aoa.huisnummertoevoeging>
+                    <inp.locatiebeschrijving authorizedApplications="DEC_ZKN,TOP,LBA,PGAx-SG-ZVH"><xsl:copy-of select="verblijfplaats/verblijfadres/locatiebeschrijving"/></inp.locatiebeschrijving>
+                    <begindatumVerblijf>
+                        <test>
+                            <xsl:variable name="date" select="verblijfplaats/datumVan/datum"/>
+                            <xsl:value-of select="translate($date, '-', '')" />
+                        </test>
+                    </begindatumVerblijf>
+                </verblijfsadres>
+                <sub.verblijfBuitenland>
+                    <lnd.landcode authorizedApplications="DEC_ZKN,GWS,TOP,LBA"><xsl:copy-of select="verblijfplaats/verblijfadres/land/code"/></lnd.landcode>
+                    <lnd.landnaam><xsl:copy-of select="verblijfplaats/verblijfadres/land/omschrijving"/></lnd.landnaam>
+                    <sub.adresBuitenland1><xsl:copy-of select="verblijfplaats/verblijfadres/regel1"/></sub.adresBuitenland1>
+                    <sub.adresBuitenland2><xsl:copy-of select="verblijfplaats/verblijfadres/regel2"/></sub.adresBuitenland2>
+                    <sub.adresBuitenland3><xsl:copy-of select="verblijfplaats/verblijfadres/regel3"/></sub.adresBuitenland3>
+                </sub.verblijfBuitenland>
+                <inp.adresHerkomst><xsl:copy-of select="verblijfplaats/functieAdres/code"/></inp.adresHerkomst>
+                <sub.telefoonnummer authorizedApplications="TOP"></sub.telefoonnummer>
+                <sub.faxnummer authorizedApplications=""></sub.faxnummer>
+                <sub.emailadres authorizedApplications="TOP"></sub.emailadres>
+                <sub.url authorizedApplications=""></sub.url>
+                <sub.rekeningnummerBankGiro authorizedApplications=""></sub.rekeningnummerBankGiro>
+                <inp.burgerlijkeStaat authorizedApplications="TOP,GWS">
                     <number>
                         <xsl:choose>
                             <xsl:when test="./partners !=''">
@@ -230,43 +179,139 @@
                         </xsl:choose>
                     </number>
                 </inp.burgerlijkeStaat>
-                <BG:inp.gemeenteVanInschrijving xsi:nil="true" />
-                <BG:inp.datumInschrijving xsi:nil="true" />
-                <BG:inp.indicatieGeheim xsi:nil="true" />
-                <BG:ing.indicatieBlokkering xsi:nil="true" />
-                <BG:aanduidingStrijdigheidNietigheid xsi:nil="true" />
-                <StUF:tijdvakGeldigheid>
-                    <StUF:beginGeldigheid xsi:nil="true" />
-                    <StUF:eindGeldigheid xsi:nil="true" />
-                </StUF:tijdvakGeldigheid>
-                <StUF:tijdstipRegistratie xsi:nil="true" />
-                <BG:inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT">
-                    <BG:gerelateerde StUF:entiteittype="NAT">
-                        <BG:code xsi:nil="true" />
-                        <BG:omschrijving xsi:nil="true" />
-                    </BG:gerelateerde>
-                    <BG:inp.redenVerkrijging xsi:nil="true" />
-                    <BG:inp.datumVerkrijging xsi:nil="true" />
-                    <BG:inp.redenVerlies xsi:nil="true" />
-                    <BG:inp.datumVerlies xsi:nil="true" />
-                </BG:inp.heeftAlsNationaliteit>
+                <inp.gemeenteVanInschrijving><xsl:copy-of select="gemeenteVanInschrijving/code"/></inp.gemeenteVanInschrijving>
+                <inp.datumInschrijving>
+                    <test>
+                        <xsl:variable name="date" select="datumEersteInschrijvingGBA/datum"/>
+                        <xsl:value-of select="translate($date, '-', '')" />
+                    </test>
+                </inp.datumInschrijving>
+                <vbt.aanduidingVerblijfstitel authorizedApplications="GWS"><xsl:copy-of select="verblijfstitel/aanduiding/code"/></vbt.aanduidingVerblijfstitel>
+                <ing.datumVerkrijgingVerblijfstitel authorizedApplications="GWS"><xsl:copy-of select="verblijfstitel/datumIngang/datum"/></ing.datumVerkrijgingVerblijfstitel>
+                <ing.datumVerliesVerblijfstitel authorizedApplications="GWS">
+                    <test>
+                        <xsl:variable name="date" select="verblijfstitel/datumEinde/datum"/>
+                        <xsl:value-of select="translate($date, '-', '')" />
+                    </test>
+                </ing.datumVerliesVerblijfstitel>
+                <inp.datumVestigingInNederland authorizedApplications="LBA,DEC_ZKN">
+                    <test>
+                        <xsl:variable name="date" select="immigratie/datumVestigingInNederland/datum"/>
+                        <xsl:value-of select="translate($date, '-', '')" />
+                    </test>
+                </inp.datumVestigingInNederland>
+                <inp.immigratieLand authorizedApplications="DEC_ZKN"><xsl:copy-of select="immigratie/landVanwaarIngeschreven/omschrijving"/></inp.immigratieLand>
+                <inp.datumVertrekUitNederland authorizedApplications="LBA">
+                    <test>
+                        <xsl:variable name="date" select="immigratie/indicatieVestigingVanuitBuitenland/datum"/>
+                        <xsl:value-of select="translate($date, '-', '')" />
+                    </test>
+                </inp.datumVertrekUitNederland>
+                <inp.emigratieLand authorizedApplications="LBA,GWS">
+                    <xsl:if
+                        test="./opschortingBijhouding/reden/code/text()='E'">
+                        
+                        <xsl:if
+                            test="./verblijfplaats/type/text()='VerblijfplaatsBuitenland'">
+                            <xsl:value-of
+                                select="./verblijfplaats/verblijfadres/land/code" />
+                        </xsl:if>
+                    </xsl:if>
+                </inp.emigratieLand>
+                <aanduidingBijzonderNederlanderschap authorizedApplications="GWS"><xsl:copy-of select="nationaliteit/aanduidingBijzonderNederlanderschap"/></aanduidingBijzonderNederlanderschap>
+                <ing.aanduidingEuropeesKiesrecht authorizedApplications="DEC_ZKN"><xsl:copy-of select="europeesKiesrecht/aanduiding/code"/></ing.aanduidingEuropeesKiesrecht>
+                <ing.indicatieGezagMinderjarige authorizedApplications="LBA,GWS,TOP"><xsl:copy-of select="gezagsverhouding/indicatieGezagMinderjarige"/></ing.indicatieGezagMinderjarige>
+                <ing.indicatieCurateleRegister><xsl:copy-of select="gezagsverhouding/indicatieCurateleRegister"/></ing.indicatieCurateleRegister>
+                <inp.datumOpschortingBijhouding>
+                    <test>
+                        <xsl:variable name="date" select="opschortingBijhouding/datum/datum"/>
+                        <xsl:value-of select="translate($date, '-', '')" />
+                    </test>
+                </inp.datumOpschortingBijhouding>
+                <inp.redenOpschortingBijhouding>
+                    <xsl:choose>
+                        <xsl:when test="opschortingBijhouding/reden/text() != ''">
+                            <xsl:value-of select="./opschortingBijhouding/reden" />
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="./overlijden/indicatieOverleden" />
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </inp.redenOpschortingBijhouding>
+                <inp.indicatieGeheim authorizedApplications="LBA,GWS,TOP,PGAx-SG-ZVH"><xsl:copy-of select="geheimhoudingPersoonsgegevens"/></inp.indicatieGeheim>
+                <inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT">
+                    <gerelateerde StUF:entiteittype="NAT">
+                        <code authorizedApplications="LBA,GWS,TOP"><xsl:copy-of select="nationaliteiten/nationaliteit/code"/></code>
+                        <omschrijving authorizedApplications="LBA,TOP"><xsl:copy-of select="nationaliteiten/nationaliteit/omschrijving"/></omschrijving>
+                    </gerelateerde>
+                    <inp.redenVerkrijging><xsl:copy-of select="nationaliteiten/redenOpname/code"/></inp.redenVerkrijging>
+                    <inp.datumVerkrijging>
+                        <test>
+                            <xsl:variable name="date" select="nationaliteiten/datumIngangGeldigheid/datum"/>
+                            <xsl:value-of select="translate($date, '-', '')" />
+                        </test>
+                    </inp.datumVerkrijging>
+                </inp.heeftAlsNationaliteit>
             </object>
         </xsl:variable>
-        <xsl:apply-templates select="$soapMessage//BG:npsLv01">
+        <xsl:apply-templates select="$originalMessage//BG:npsLv01">
             <xsl:with-param name="mapping" select="$mapping" />
             <xsl:with-param name="persoon" select="." tunnel="yes"/>
         </xsl:apply-templates>
     </xsl:template>
-
+    
+    <xsl:template match="BG:stuurgegevens">
+        <xsl:element name="BG:stuurgegevens">
+            <StUF:berichtcode><xsl:value-of select="$berichtcode" /></StUF:berichtcode>
+            <StUF:zender>
+                <!-- Copy all elements inside ontvanger -->
+                <xsl:copy-of select="//StUF:ontvanger/*"/>
+            </StUF:zender>
+            
+            <StUF:ontvanger>
+                <!-- Copy all elements inside zender -->
+                <xsl:copy-of select="//StUF:zender/*"/>
+            </StUF:ontvanger>       
+            <StUF:tijdstipBericht>
+                <xsl:value-of select="$tijdstipBericht" />
+            </StUF:tijdstipBericht>
+            <StUF:crossRefnummer>
+                <xsl:value-of select="$varReferentienummer" />
+            </StUF:crossRefnummer>
+            <StUF:entiteittype>
+                <xsl:value-of select="$varEntiteittype" />
+            </StUF:entiteittype>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="BG:parameters">
+        <StUF:indicatorVervolgvraag>
+            <xsl:value-of select="$indicatorVervolgvraag" />
+        </StUF:indicatorVervolgvraag>
+        <StUF:indicatorAfnemerIndicatie>false</StUF:indicatorAfnemerIndicatie>
+        <StUF:aantalVoorkomens>
+            <xsl:value-of select="$aantalVoorkomens" />
+        </StUF:aantalVoorkomens>          
+    </xsl:template>
     <xsl:template match="BG:npsLv01">
         <xsl:param name="mapping" />
-        <BG:npsLa01>
-            <xsl:apply-templates select="BG:scope/BG:object">
-                <xsl:with-param name="mapping" select="$mapping"/>
-            </xsl:apply-templates>
-        </BG:npsLa01>
+        <xsl:choose>
+            <xsl:when test="$aantalVoorkomens = 0">
+                <BG:melding>Er zijn geen zoekresultaten gevonden</BG:melding>
+            </xsl:when>
+            <xsl:otherwise>
+                <BG:npsLa01>
+                    <xsl:apply-templates select="BG:stuurgegevens"/>
+                    <xsl:apply-templates select="BG:parameters"/>
+                    <BG:antwoord>
+                        <xsl:apply-templates select="BG:scope/BG:object">
+                            <xsl:with-param name="mapping" select="$mapping"/>
+                        </xsl:apply-templates>
+                    </BG:antwoord>
+                </BG:npsLa01>
+            </xsl:otherwise>            
+        </xsl:choose>
     </xsl:template>
-
     <xsl:template match="BG:object">
         <xsl:param name="mapping"/>
         <xsl:param name="persoon" tunnel="yes"/>
@@ -279,7 +324,7 @@
             <xsl:apply-templates select="$persoon/partners"/>
         </BG:object>
     </xsl:template>
-
+    
     <xsl:template match="*">
         <xsl:param name="mapping" />
         <xsl:copy>
@@ -288,18 +333,18 @@
             </xsl:apply-templates>
         </xsl:copy>
     </xsl:template>
-
+    
     <!--This template applies to elements inside object that have child elements. Their attributes should be copied-->
     <xsl:template match="BG:object//*[*]">
-        <xsl:param name="mapping" />
-        <xsl:copy>
-            <xsl:copy-of select="@*"/>
-            <xsl:apply-templates select="*">
-                <xsl:with-param name="mapping" select="$mapping/*[name()=current()/local-name()]"/>
-            </xsl:apply-templates>
-        </xsl:copy>
+         <xsl:param name="mapping" />
+         <xsl:copy>
+         <xsl:copy-of select="@*"/>
+         <xsl:apply-templates select="*">
+         <xsl:with-param name="mapping" select="$mapping/*[name()=current()/local-name()]"/>
+         </xsl:apply-templates>
+         </xsl:copy>
     </xsl:template>
-
+    
     <xsl:template match="BG:object//*[not(*)]">
         <xsl:param name="mapping" />
         <xsl:variable name="mappedElement" select="$mapping/*[name()=current()/local-name()]"/>
@@ -313,13 +358,13 @@
                         <xsl:when test="$mappedElement/*/text() = ''">
                             <xsl:attribute name="xsi:nil">true</xsl:attribute>
                             <xsl:attribute
-                                    name="StUF:noValue"><xsl:value-of
+                                name="StUF:noValue"><xsl:value-of
                                     select="$geenWaarde" /></xsl:attribute>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:attribute name="xsi:nil">true</xsl:attribute>
                             <xsl:attribute
-                                    name="StUF:noValue"><xsl:value-of
+                                name="StUF:noValue"><xsl:value-of
                                     select="$waardeOnbekend" /></xsl:attribute>
                         </xsl:otherwise>
                     </xsl:choose>
@@ -328,42 +373,79 @@
                     <xsl:attribute name="xsi:nil">true</xsl:attribute>
                     <xsl:attribute
                         name="StUF:noValue"><xsl:value-of
-                        select="$nietGeautoriseerd" /></xsl:attribute>
+                            select="$nietGeautoriseerd" /></xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:copy>
     </xsl:template>
-
-    <xsl:template match="ouders">
-        <xsl:variable name="mapping">
-
-        </xsl:variable>
-    </xsl:template>
-
-    <xsl:template match="kinderen">
-        <xsl:variable name="mapping">
-
-        </xsl:variable>
-    </xsl:template>
-
+    
     <xsl:template match="partners">
         <xsl:variable name="mapping">
             <inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
                 <gerelateerde StUF:entiteittype="NPS">
                     <inp.bsn authorizedApplications="TOP,GWS"><xsl:copy-of select="burgerservicenummer" /></inp.bsn>
-                    <geslachtsnaam />
-                    <voorvoegselGeslachtsnaam />
+                    <geslachtsnaam><xsl:copy-of select="naam/geslachtsnaam"/></geslachtsnaam>  
+                    <voorvoegselGeslachtsnaam><xsl:copy-of select="naam/voorvoegsel"/></voorvoegselGeslachtsnaam>
+                    <voorletters><xsl:copy-of select="naam/voorletters"/></voorletters>
+                    <voornamen><xsl:copy-of select="naam/voornamen"/></voornamen>
+                    <geslachtsnaamPartner authorizedApplications="DEC_ZKN,GWS"><xsl:value-of select="$geslachtsnaam"/></geslachtsnaamPartner>
+                    <voorvoegselGeslachtsnaamPartner><xsl:value-of select="$voorvoegsel"/></voorvoegselGeslachtsnaamPartner>
+                    <adellijkeTitelPredikaat authorizedApplications=""><xsl:copy-of select="naam/adellijkeTitelPredicaat/code"/></adellijkeTitelPredikaat>
+                    <geslachtsaanduiding authorizedApplications="TOP"><xsl:copy-of select="geslacht/code"/></geslachtsaanduiding>
+                    <geboortedatum>
+                        <test>
+                            <xsl:variable name="date" select="geboorte/datum/datum"/>
+                            <xsl:value-of select="translate($date, '-', '')" />
+                        </test>
+                    </geboortedatum>
+                    <inp.geboorteplaats><xsl:copy-of select="geboorte/plaats/omschrijving"/></inp.geboorteplaats>
+                    <inp.geboorteLand><xsl:copy-of select="geboorte/land/code"/></inp.geboorteLand>
+                    <verblijfsadres>
+                        <aoa.identificatie authorizedApplications="DEC_ZKN,GWS,TOP,PGAx-SG-ZVH"></aoa.identificatie>
+                    </verblijfsadres>
+                    <inp.burgerlijkeStaat authorizedApplications="TOP,GWS">
+                        <xsl:choose>
+                            <xsl:when
+                                test=". !=''">
+                                <xsl:choose>
+                                    <xsl:when
+                                        test="./soortVerbintenis/code/text() ='H'">
+                                        <xsl:choose>
+                                            <xsl:when test="./ontbindingHuwelijkPartnerschap/text() !=''">
+                                                <xsl:value-of select="3" />
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:value-of select="2" />
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:when>
+                                    <xsl:when
+                                        test="./soortVerbintenis/code/text() ='P'">
+                                        <xsl:choose>
+                                            <xsl:when test="./ontbindingHuwelijkPartnerschap/text() !=''">
+                                                <xsl:value-of select="6" />
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:value-of select="5" />
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:when>
+                                </xsl:choose>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="1" />
+                            </xsl:otherwise>
+                        </xsl:choose>                                                                                    
+                    </inp.burgerlijkeStaat>
                 </gerelateerde>
-                <datumSluiting />
-                <datumOntbinding />
-                <redenOntbinding />
+                <soortVerbintenis authorizedApplications="GWS,TOP"><xsl:copy-of select="soortVerbintenis/code"/></soortVerbintenis>
             </inp.heeftAlsEchtgenootPartner>
         </xsl:variable>
-        <xsl:apply-templates select="$soapMessage//BG:inp.heeftAlsEchtgenootPartner">
+        <xsl:apply-templates select="$originalMessage//BG:inp.heeftAlsEchtgenootPartner">
             <xsl:with-param name="mapping" select="$mapping"/>
         </xsl:apply-templates>
     </xsl:template>
-
+    
     <xsl:template match="BG:inp.heeftAlsEchtgenootPartner">
         <xsl:param name="mapping"/>
         <BG:inp.heeftAlsEchtgenootPartner>
@@ -372,5 +454,86 @@
             </xsl:apply-templates>
         </BG:inp.heeftAlsEchtgenootPartner>
     </xsl:template>
-
+    <xsl:template match="kinderen">
+        <xsl:variable name="mapping">
+            <inp.heeftAlsKinderen StUF:entiteittype="NPSNPSKND">
+                <gerelateerde StUF:entiteittype="NPS">
+                    <inp.bsn authorizedApplications="GWS,TOP"><xsl:copy-of select="burgerservicenummer"/></inp.bsn>
+                    <geslachtsnaam authorizedApplications="GWS,TOP"><xsl:copy-of select="naam/geslachtsnaam"/></geslachtsnaam>
+                    <voorvoegselGeslachtsnaam authorizedApplications="GWS,TOP"><xsl:copy-of select="naam/voorvoegsel"/></voorvoegselGeslachtsnaam>
+                    <voorletters authorizedApplications="GWS,TOP"><xsl:copy-of select="naam/voorletters"/></voorletters>
+                    <voornamen authorizedApplications="GWS,TOP"><xsl:copy-of select="naam/voornamen"/></voornamen>
+                    <aanduidingNaamgebruik authorizedApplications="TOP"></aanduidingNaamgebruik>
+                    <aanhefAanschrijving authorizedApplications="TOP"></aanhefAanschrijving>
+                    <adellijkeTitelPredikaat authorizedApplications=""><xsl:copy-of select="naam/adellijkeTitelPredicaat/code"/></adellijkeTitelPredikaat>
+                    <geboortedatum authorizedApplications="GWS,TOP">
+                        <test>
+                            <xsl:variable name="date" select="geboorte/datum/datum"/>
+                            <xsl:value-of select="translate($date, '-', '')" />
+                        </test>
+                    </geboortedatum>
+                    <inp.geboorteplaats authorizedApplications="TOP"><xsl:copy-of select="geboorte/plaats/omschrijving"/></inp.geboorteplaats>
+                    <inp.geboorteLand authorizedApplications="TOP"><xsl:copy-of select="geboorte/land/code"/></inp.geboorteLand>
+                    <inp.indicatieGeheim authorizedApplications="TOP"></inp.indicatieGeheim>
+                </gerelateerde>
+            </inp.heeftAlsKinderen>
+        </xsl:variable>
+    </xsl:template>
+    
+    <xsl:template match="BG:inp.heeftAlsKinderen">
+        <xsl:param name="mapping"/>
+        <BG:inp.heeftAlsKinderen>
+            <xsl:apply-templates select="*">
+                <xsl:with-param name="mapping" select="$mapping"/>
+            </xsl:apply-templates>
+        </BG:inp.heeftAlsKinderen>
+    </xsl:template>
+    <xsl:template match="ouders">
+        <xsl:variable name="mapping">
+            <inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD" authorizedApplications="LBA,TOP,GWS">
+                <gerelateerde StUF:entiteittype="NPS">
+                    <inp.bsn><xsl:copy-of select="burgerservicenummer" /></inp.bsn>
+                    <geslachtsnaam><xsl:copy-of select="naam/geslachtsnaam"/></geslachtsnaam>  
+                    <voorvoegselGeslachtsnaam><xsl:copy-of select="naam/voorvoegsel"/></voorvoegselGeslachtsnaam>
+                    <voorletters><xsl:copy-of select="naam/voorletters"/></voorletters>
+                    <voornamen><xsl:copy-of select="naam/voornamen"/></voornamen>
+                    <adellijkeTitelPredikaat authorizedApplications=""><xsl:copy-of select="naam/adellijkeTitelPredicaat/code"/></adellijkeTitelPredikaat>
+                    <geslachtsaanduiding><xsl:copy-of select="geslacht/code"/></geslachtsaanduiding>
+                    <geboortedatum>
+                        <test>
+                            <xsl:variable name="date" select="geboorte/datum/datum"/>
+                            <xsl:value-of select="translate($date, '-', '')" />
+                        </test>
+                    </geboortedatum>
+                    <inp.geboorteplaats authorizedApplications="GWS"><xsl:copy-of select="geboorte/plaats/omschrijving"/></inp.geboorteplaats>
+                    <inp.geboorteLand authorizedApplications="GWS"><xsl:copy-of select="geboorte/land/code"/></inp.geboorteLand>
+                    <inp.indicatieGeheim authorizedApplications="TOP"></inp.indicatieGeheim>
+                </gerelateerde>
+                <ouderAanduiding>
+                    <test>
+                        <xsl:value-of select="concat('Ouder',./ouderAanduiding)" />
+                    </test>
+                </ouderAanduiding>
+                <datumIngangFamilierechtelijkeBetrekking authorizedApplications="GWS">
+                    <test>
+                        <xsl:variable name="date" select="datumIngangFamilierechtelijkeBetrekking/datum"/>
+                        <xsl:value-of select="translate($date, '-', '')" />
+                    </test>
+                </datumIngangFamilierechtelijkeBetrekking>
+            </inp.heeftAlsOuders>
+        </xsl:variable>
+        <xsl:apply-templates select="$originalMessage//BG:inp.heeftAlsOuders">
+            <xsl:with-param name="mapping" select="$mapping"/>
+        </xsl:apply-templates>
+    </xsl:template>
+    
+    <xsl:template match="BG:inp.heeftAlsOuders">
+        <xsl:param name="mapping"/>
+        <BG:inp.heeftAlsOuders>
+            <xsl:apply-templates select="*">
+                <xsl:with-param name="mapping" select="$mapping"/>
+            </xsl:apply-templates>
+        </BG:inp.heeftAlsOuders>
+    </xsl:template>
+    
 </xsl:stylesheet>

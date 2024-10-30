@@ -30,25 +30,10 @@
 				<Forward name="success" path="storeValues" />
 			</XsltPipe>
 
-			<PutInSessionPipe name="storeValues">
-				<Param name="berichtcode" xpathExpression="Root/Record/berichtcode" />
+			<PutInSessionPipe name="storeValues">			
 				<Param name="varZenderApplicatie" xpathExpression="Root/Record/varZenderApplicatie" />
-				<Param name="varZenderOrganisatie"
-					xpathExpression="Root/Record/varZenderOrganisatie" />
-				<Param name="administratie"
-					xpathExpression="Root/Record/administratie" />
-				<Param name="varZenderGebruiker"
-					xpathExpression="Root/Record/varZenderGebruiker" />
-				<Param name="varOntvangerApplicatie"
-					xpathExpression="Root/Record/varOntvangerApplicatie" />
-				<Param name="varOntvangerOrganisatie"
-					xpathExpression="Root/Record/varOntvangerOrganisatie" />
-				<Param name="varOntvangerAdministratie"
-					xpathExpression="Root/Record/varZenderGebruiker" />
 				<Param name="varReferentienummer"
 					xpathExpression="Root/Record/varReferentienummer" />
-				<Param name="varOntvangerGebruiker"
-					xpathExpression="Root/Record/varOntvangerGebruiker" />
 				<Param name="varEntiteittype"
 					xpathExpression="Root/Record/varEntiteittype" />
 				<Param name="tijdstipBericht"
@@ -97,18 +82,10 @@
 			<JsonPipe name="JsonToXml" storeResultInSessionKey="xmlbody" />
 
 			<XsltPipe name="MapResponse"
-				styleSheetName="xsl/mappingJsonToStuf.xslt"
+				styleSheetName="xsl/mappingJsonToStuf2.xsl"
 				storeResultInSessionKey="MapResponse">
-				<Param name="berichtcode" sessionKey="berichtcode" />
 				<Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
-				<Param name="varZenderOrganisatie" sessionKey="varZenderOrganisatie" />
-				<Param name="administratie" sessionKey="administratie" />
-				<Param name="varZenderGebruiker" sessionKey="varZenderGebruiker" />
-				<Param name="varOntvangerApplicatie" sessionKey="varOntvangerApplicatie" />
-				<Param name="varOntvangerOrganisatie" sessionKey="varOntvangerOrganisatie" />
-				<Param name="varOntvangerAdministratie" sessionKey="varZenderGebruiker" />
 				<Param name="varReferentienummer" sessionKey="varReferentienummer" />
-				<Param name="varOntvangerGebruiker" sessionKey="varOntvangerGebruiker" />
 				<Param name="varEntiteittype" sessionKey="varEntiteittype" />
 				<Param name="tijdstipBericht" sessionKey="tijdstipBericht" />
 				<Param name="indicatorVervolgvraag" sessionKey="indicatorVervolgvraag" />
