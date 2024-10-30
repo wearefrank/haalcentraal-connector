@@ -1,4 +1,4 @@
-ARG FF_VERSION=8.3.1-20241025.001633
+ARG FF_VERSION=8.3.0
 
 FROM frankframework/frankframework:${FF_VERSION}
 
