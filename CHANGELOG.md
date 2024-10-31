@@ -1,5 +1,12 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.16](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.15...v1.7.16) (2024-10-31)
+
+### 🐛 Bug Fixes
+
+* move active attribute to avoid receiver without listener ([90c1cce](https://github.com/wearefrank/haalcentraal-connector/commit/90c1cced63a639509780e85620a362a939ad7a1c))
+* move active attribute to avoid receiver without listener. ([be9ed59](https://github.com/wearefrank/haalcentraal-connector/commit/be9ed5907f7b2ad14f47d74a3a14418d3c290dc8))
+
 ## [1.7.15](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.14...v1.7.15) (2024-10-30)
 
 ### 🐛 Bug Fixes
