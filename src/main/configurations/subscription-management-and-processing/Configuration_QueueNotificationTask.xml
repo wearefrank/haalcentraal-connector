@@ -1,0 +1,32 @@
+<Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+    <Adapter name="QueueNotificationTask">
+        <Receiver name="QueueNotificationTask">
+            <JavaListener name="QueueNotificationTask" />
+        </Receiver>
+        <Pipeline>
+            <Exits>
+                <Exit name="Exit" state="SUCCESS" />
+                <Exit name="Exception" state="ERROR" />
+            </Exits>
+
+            <!-- Required session keys -->
+            <!-- PersonenDatabaseResult, the json record of the subscribed person -->
+            <!-- ApplicationId, the id of the subscriber -->
+
+            <PutInSessionPipe name="StoreBody">
+				<Param name="body" sessionKey="PersonenDatabaseResult" xpathExpression="substring(//field[@name='DATA'], 2)" />
+			</PutInSessionPipe>
+
+			<ReplacerPipe name="ConcatinateAppidToPersonenData" getInputFromFixedValue="{&quot;applicationId&quot;: ?{appId}, ?{body}" storeResultInSessionKey="taskBody" >
+				<Param name="appId" sessionKey="ApplicationId"/>
+				<Param name="body" sessionKey="body" />
+			</ReplacerPipe>
+
+			<SenderPipe name="PutTaskInTaskstore" getInputFromSessionKey="taskBody">
+				<MessageStoreSender slotId="${instance.name}/taskStore" />
+                <Forward name="Success" path="Exit" />
+			</SenderPipe>
+
+        </Pipeline>
+    </Adapter>
+</Module>
