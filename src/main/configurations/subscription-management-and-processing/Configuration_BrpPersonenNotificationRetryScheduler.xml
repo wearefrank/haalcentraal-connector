@@ -8,8 +8,8 @@
 			<JavaListener name="BrpPersonenNotificationRetryScheduler" />
 		</Receiver>
         
-        <Receiver name="RestEndpoint_RetryScheduler">
-			<ApiListener name="RestEndpoint_RetryScheduler" uriPattern="${haalcentraal_connector.notification.retry.scheduler.rest.endpoint}" method="POST" active="${RestEndpoint_RetryScheduler.Active}"/>
+        <Receiver name="RestEndpoint_RetryScheduler" active="${RestEndpoint_RetryScheduler.Active}">
+			<ApiListener name="RestEndpoint_RetryScheduler" uriPattern="${haalcentraal_connector.notification.retry.scheduler.rest.endpoint}" method="POST"/>
 		</Receiver>
 
 		<Pipeline>
