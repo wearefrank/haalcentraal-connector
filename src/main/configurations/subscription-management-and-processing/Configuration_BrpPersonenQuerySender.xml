@@ -32,7 +32,7 @@
 				<Forward name="exception" path="ErrorJsonToXml" />
 			</SenderPipe>
 
-			<DataSonnetPipe name="ExtractPersonenBody" preserveInput="true" storeResultInSessionKey="updatedJson" styleSheetName="jsonnet/ExtractBody.jsonnet" />
+			<DataSonnetPipe name="ExtractPersonenBody" getInputFromSessionKey="body" preserveInput="true" storeResultInSessionKey="updatedJson" styleSheetName="jsonnet/ExtractBody.jsonnet" />
 
 			<!-- Add persoonsgegevens entry for each person retrieved from the BRP -->
 			<ForEachChildElementPipe name="BRP Personen query"
