@@ -87,7 +87,7 @@
             <Forward name="else" path="Exit" />
         </XmlIfPipe>
 
-        <DataSonnetPipe name="ExtractPersonenBody" preserveInput="true" storeResultInSessionKey="updatedJson" styleSheetName="jsonnet/ExtractBody.jsonnet" getInputFromSessionKey="json"/>
+        <DataSonnetPipe name="ExtractPersonenBody" preserveInput="true" storeResultInSessionKey="updatedJson" styleSheetName="jsonnet/ExtractUpdateBody.jsonnet" getInputFromSessionKey="json"/>
 
         <SenderPipe name="InsertPersoon" preserveInput="true">
             <FixedQuerySender
