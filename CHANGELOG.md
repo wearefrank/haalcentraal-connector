@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.17](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.16...v1.7.17) (2024-11-01)
+
+### 🐛 Bug Fixes
+
+* persoon body parse ([7e83a2b](https://github.com/wearefrank/haalcentraal-connector/commit/7e83a2bc1bd62bde0abbae61c35ab045d8749fe7))
+
 ## [1.7.16](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.15...v1.7.16) (2024-10-31)
 
 ### 🐛 Bug Fixes
