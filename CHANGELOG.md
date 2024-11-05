@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.18](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.17...v1.7.18) (2024-11-05)
+
+### 🧑‍💻 Code Refactoring
+
+* Subscription check for synchronization ([3309a08](https://github.com/wearefrank/haalcentraal-connector/commit/3309a08f3030324649d8847ee6c1c3cf0a0ca215))
+
 ## [1.7.17](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.16...v1.7.17) (2024-11-01)
 
 ### 🐛 Bug Fixes
