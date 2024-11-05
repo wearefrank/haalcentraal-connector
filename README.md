@@ -21,25 +21,28 @@ Build configuration from template:
 - **BuildInfo.properties**  
     Contains build-related information.
 
-- **configuration-brp-personen_afnemers_indicatie_receiver.xml**  
+- **Configuration_BrpPersonenAfnemersIndicatieReceiver.xml**  
     API endpoint that processes the subscription (add/remove) request.
 
-- **configuration-brp-personen_callback_sender.xml**  
+- **Configuration_BrpPersonenCallbackSender.xml**  
     Notifies the subscribed applications about the changes in the BRP persons' data, via their callback URLs.
 
-- **configuration-brp-personen_notification_processor.xml**  
+- **Configuration_BrpPersonenNotificationProcessor.xml**  
     Reads the notification request from the message store and processes it.
 
-- **configuration-brp-personen_notification_receiver.xml**  
+- **Configuration_BrpPersonenNotificationReceiver.xml**  
     API endpoint that places the notification in the message store, receives identifier(s) that specify which person(s) information changed.
 
-- **configuration-brp-personen_notification_retry_scheduler.xml**  
+- **Configuration_BrpPersonenNotificationRetryScheduler.xml**  
     Schedules the retry of the notification when the retrieved person information has not changed (yet).
 
-- **configuration-brp-personen_query_sender.xml**  
+- **Configuration_BrpPersonenQuerySender.xml**  
     Sends a query to the BRP to retrieve the specified person information.
 
-- **configuration-brp-personen_update.xml**  
+- **Configuration_BrpPersonenSynchronizePersoon.xml**
+    Synchronizes the person information with the BRP.
+
+- **Configuration_BrpPersonenUpdateAndNotify**  
     Updates/enters the person information in the database, if the retrieved person information has changed, or no previous entry was found in the database.
 
 - **Configuration.xml**  
@@ -48,7 +51,7 @@ Build configuration from template:
 - **Configuration_EndpointRouter.xml**  
     Routes the incoming requests to the appropriate receivers.
 
-- **Configuration_ImportFromLocalFS.xml**  
+- **Configuration_XmlFileAdapter.xml**  
     Custom adapter to read local files. Returns XML data if the file contains XML, otherwise tries to convert the file to XML.
 
 - **DatabaseChangelog.xml**  
@@ -66,6 +69,13 @@ Build configuration from template:
 - **json/**  
   - `DataChangeNotificationSchema.json`
   - `MappingApplication.json` Contains hardcoded information about applications which are allowed to subscribe to persons.
+
+- **jsonnet**
+  - `ApplicationsFilter.jsonnet` Used for extracting the application ids from the database.
+  - `ExtractBody.jsonnet` Removes siblings from the body of a javascript response.
+  - `ExtractDatabaseRows.jsonnet` Extracts the data from the rows from a database query.
+  - `ExtractUpdateBody.jsonnet` Extracts the updated body from a javascript response.
+  - `FilterApplicationsById.jsonnet` Retrieve config information for a list of application ids.
 
 - **xsd/**  
   This directory holds XSD schema files.
