@@ -42,6 +42,7 @@
 			</XsltPipe>
 
 			<!-- Retrieve the person by BSN -->
+			<!-- TODO: Future check if latest record is still active -->
 			<SenderPipe name="FetchPersonByBsn" storeResultInSessionKey="fetchedPersonEntries">
 				<FixedQuerySender
 					name="FetchPersonSender"
@@ -81,6 +82,7 @@
 			</XmlIfPipe>
 
 			<!-- Insert the new subscriber into the database -->
+			<!-- If a subscription is already open, no new subscription will be created -->
 			<SenderPipe name="InsertNewSubscription" getInputFromSessionKey="originalMessage">
 				<FixedQuerySender
 					name="InsertSubscriptionSender"
@@ -99,10 +101,29 @@
 					<Param name="appId" sessionKey="ApplicationId" />
 				</FixedQuerySender>
 			</SenderPipe>
-			<XmlIfPipe name="CheckNoSubscriptionAdded" xpathExpression="/result/rowsupdated = 0">
-				<Forward name="then" path="AlreadySubscribed" />
-				<Forward name="else" path="WrapBv03Response" />
-			</XmlIfPipe>
+
+			<!-- Prepare the notify the subscriber of the current state of the person -->
+			<!-- Retrieve the person by BSN for the taskstore -->
+			<SenderPipe name="RetrieveBodyToReturn" storeResultInSessionKey="PersonenDatabaseResult">
+				<FixedQuerySender
+					name="FetchPersonSender"
+					queryType="SELECT"
+					query="SELECT * FROM persoonsgegevens WHERE bsn=?{burgerservicenummer} LIMIT 1"
+					includeFieldDefinition="false">
+					<Param name="burgerservicenummer" sessionKey="originalMessage"
+						xpathExpression="npsLk01/object/inp.bsn" type="INTEGER" />
+				</FixedQuerySender>
+			</SenderPipe>
+
+			<SenderPipe name="CallQueueNotificationTask">
+				<IbisLocalSender 
+					name="CallQueueNotificationsListener"
+					javaListener="QueueNotificationTask">
+					<Param name="PersonenDatabaseResult" sessionKey="PersonenDatabaseResult" />
+					<Param name="ApplicationId" sessionKey="ApplicationId" />
+				</IbisLocalSender>
+				<Forward name="success" path="WrapBv03Response" />
+			</SenderPipe>
 
 			<!-- Set the end date for the specified subscription to now -->
 			<SenderPipe name="EndSubscription" getInputFromSessionKey="originalMessage">
@@ -114,6 +135,7 @@
 					<Param name="appId" sessionKey="ApplicationId" />
 				</FixedQuerySender>
 			</SenderPipe>
+
 			<XmlIfPipe name="CheckNoSubscriptionEnded" xpathExpression="/result/rowsupdated = 0">
 				<Forward name="then" path="NoSubscriptionFound" />
 				<Forward name="else" path="WrapBv03Response" />
@@ -122,8 +144,7 @@
 			<SoapWrapperPipe
 				getInputFromSessionKey="originalMessage"
 				name="WrapBv03Response"
-				soapBodyStyleSheet="xsl/CreateBv03Response.xslt"
-			>
+				soapBodyStyleSheet="xsl/CreateBv03Response.xslt">
 				<Param name="Stuurgegevens" xpathExpression="/*/stuurgegevens"
 					defaultValue="&lt;stuurgegevens/&gt;" type="DOMDOC" />
 				<Forward name="success" path="EXIT" />

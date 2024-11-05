@@ -9,10 +9,11 @@
     <!ENTITY BrpPersonenCallbackSender SYSTEM "Configuration_BrpPersonenCallbackSender.xml">
     <!ENTITY EndpointRouter SYSTEM "Configuration_EndpointRouter.xml">
     <!ENTITY BrpPersonenAfnemersIndicatieReceiver SYSTEM "Configuration_BrpPersonenAfnemersIndicatieReceiver.xml">
+    <!ENTITY QueueNotificationTask SYSTEM "Configuration_QueueNotificationTask.xml">
 ]>
 
 <Configuration name="subscription-management-and-processing">
-	&BrpPersonenUpdateAndNotify;
+    &BrpPersonenUpdateAndNotify;
 	&BrpPersonenSynchronizePersoon;
 	&BrpPersonenQuerySender;
 	&XmlFileAdapter;
@@ -22,4 +23,5 @@
 	&BrpPersonenCallbackSender;
 	&EndpointRouter;
 	&BrpPersonenAfnemersIndicatieReceiver;
+    &QueueNotificationTask;
 </Configuration>
