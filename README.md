@@ -29,6 +29,18 @@ Build configuration from template:
 
 - **Configuration_BrpPersonenNotificationProcessor.xml**  
     Reads the notification request from the message store and processes it.
+    ```mermaid
+    flowchart TD
+        A[Receive indication to track BSN] --> B[Wait for 1 hour]
+        B --> C[Check data related to BSN]
+        C -->|Data changed| D[Notify subscribers]
+        C -->|Data not changed| E{Days since start}
+
+        E -->|More than 3 weekdays| I
+        E -->|Less than 3 weekdays| G[Schedule check in 24 hours] --> C
+
+        D --> I[End]
+    ```
 
 - **Configuration_BrpPersonenNotificationReceiver.xml**  
     API endpoint that places the notification in the message store, receives identifier(s) that specify which person(s) information changed.
