@@ -1,0 +1,68 @@
+<Module>
+    <Adapter name="UpdateSubscriptions">
+        <Receiver name="UpdateSubscriptionsReceiver">
+            <JavaListener name="UpdateSubscriptions"/>
+        </Receiver>
+        <Pipeline>
+            <CsvParserPipe name="Csv2Xml" storeResultInSessionKey="newSubscriptions"/>
+
+            <ForEachChildElementPipe name="ForEachNewPerson"
+                                     elementXPathExpression="csv/record">
+                <IbisLocalSender name="InsertNewPersonSender"
+                                 javaListener="BrpPersonenSynchronize">
+                    <Param name="burgerservicenummer" sessionKey="originalMessage"
+                           xpathExpression="record/INP_BSN" />
+                </IbisLocalSender>
+            </ForEachChildElementPipe>
+
+            <!--Get all persons that failed, so we can prevent adding their subscriptions-->
+            <XsltPipe name="CollectPersonErrors" storeResultInSessionKey="personErrors"
+                      styleSheetName="xsl/computePersonResults.xsl">
+                <Param name="newSubscriptions" sessionKey="newSubscriptions"/>
+            </XsltPipe>
+
+            <SenderPipe name="GetOldSubscriptions">
+                <FixedQuerySender name="GetOldSubscriptionsSender"
+                    query="SELECT id,app_id,bsn FROM subscripties"/>
+            </SenderPipe>
+
+            <XsltPipe name="ComputeSubscriptionStates" storeResultInSessionKey="subscriptionStates"
+                      styleSheetName="xsl/computeSubscriptionStates.xsl">
+                <Param name="newSubscriptions" sessionKey="newSubscriptions"/>
+                <Param name="personErrors" sessionKey="personErrors"/>
+            </XsltPipe>
+
+            <!--This will insert the subscriptions that don't yet exist-->
+            <ForEachChildElementPipe name="ForEachSubscriptionToBeAdded" storeResultInSessionKey="addSubscriptionsResult"
+                                     elementXPathExpression="root/toBeAdded/record">
+                <FixedQuerySender name="StoreNewSubscription"
+                                  query="INSERT INTO subscripties (bsn, app_id)
+                                  SELECT ?{bsn}, ?{application_id}
+                                  WHERE NOT EXISTS
+                                      (SELECT 1 FROM subscripties WHERE ?{bsn} = ? AND ?{app_id} = ?)"
+                >
+                    <Param name="bsn" xpathExpression="bsn"/>
+                    <Param name="app_id" xpathExpression="app_id"/>
+                </FixedQuerySender>
+            </ForEachChildElementPipe>
+
+            <ForEachChildElementPipe name="ForEachSubscriptionToDelete" getInputFromSessionKey="subscriptionStates"
+                                     elementXPathExpression="root/toBeRemoved/record">
+                <FixedQuerySender name="DeleteSubscription"
+                                  query="DELETE FROM subscripties
+                                        WHERE bsn = ?
+                                        AND app_id = ?"
+                >
+                    <Param name="bsn" xpathExpression="bsn"/>
+                    <Param name="app_id" xpathExpression="app_id"/>
+                </FixedQuerySender>
+            </ForEachChildElementPipe>
+
+            <XsltPipe name="generateReport" getInputFromSessionKey="subscriptionStates"
+                styleSheetName="generateReport.xsl"
+            >
+                <Param name="addSubscriptionsResult" sessionKey="addSubscriptionsResult"/>
+            </XsltPipe>
+        </Pipeline>
+    </Adapter>
+</Module>
