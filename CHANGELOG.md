@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.20](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.19...v1.7.20) (2024-11-07)
+
+### 🐛 Bug Fixes
+
+* exception forward ([4fb6491](https://github.com/wearefrank/haalcentraal-connector/commit/4fb64916622e03fb5c737acecbad9ba10d301bce))
+
 ## [1.7.19](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.18...v1.7.19) (2024-11-07)
 
 ### 🐛 Bug Fixes
