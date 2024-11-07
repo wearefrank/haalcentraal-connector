@@ -42,6 +42,17 @@ Build configuration from template:
         D --> I[End]
     ```
 
+Database structure for tasks:
+
+| **Column Name**     | **Data Type** | **Default Value**          | **Description**                                                                 |
+|---------------------|---------------|----------------------------|---------------------------------------------------------------------------------|
+| `task_id`           | `SERIAL`      | N/A                        | Auto-incrementing identifier for the task (Primary Key part 1).                 |
+| `created_at`        | `TIMESTAMP`   | `CURRENT_TIMESTAMP`        | The timestamp when the task was created.                                         |
+| `scheduled_start`   | `TIMESTAMP`   | `CURRENT_TIMESTAMP`        | The timestamp when the task is scheduled to start (default 1 hour after insert). |
+| `status`            | `CHAR(1)`     | `'P'`                      | The current status of the task. ('P' = Pending, other values as needed).        |
+| `is_retry`          | `BOOLEAN`     | `FALSE`                    | Indicates whether the task is a retry (Boolean value).                          |
+| `message`           | `TEXT`        | N/A                        | The message associated with the task, storing the data in JSON or plain text.    |
+
 - **Configuration_BrpPersonenNotificationReceiver.xml**  
     API endpoint that places the notification in the message store, receives identifier(s) that specify which person(s) information changed.
 
