@@ -26,6 +26,7 @@ COPY --chown=tomcat src/test/testtool/ /opt/frank/testtool/
 
 ENV credentialFactory.class=nl.nn.credentialprovider.PropertyFileCredentialFactory
 ENV credentialFactory.map.properties=/opt/frank/secrets/credentials.properties
+ENV authentication.clientSecret=dummy
 
 # COPY --chown=tomcat entrypoint.sh /scripts/entrypoint.sh
 
