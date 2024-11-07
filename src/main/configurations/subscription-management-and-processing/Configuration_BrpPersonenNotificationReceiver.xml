@@ -21,7 +21,7 @@
 
 			<JsonValidatorPipe name="jsonValidator" schema="json/DataChangeNotificationSchema.json" onlyIfSessionKey="HttpMethod">
                 <Forward name="success" path="InputJsonToXml" />
-                <Forward name="exception" path="BadRequest" />
+                <Forward name="exception" path="BadRequestPipe" />
             </JsonValidatorPipe>
 
             <JsonPipe name="InputJsonToXml" prettyPrint="true" storeResultInSessionKey="xmlInputMessage">
@@ -43,7 +43,7 @@
 					<Param name="historicBsn" xpathExpression="." type="INTEGER"/>
             	</FixedQuerySender>
 				<Forward name="success" path="checkBsnChange"/>
-				<Forward name="exception" path="EXIT" />
+				<Forward name="exception" path="ExitPipe" />
 			</ForEachChildElementPipe>  
 
             <XmlIfPipe name="checkBsnChange" xpathExpression="//result[rowsupdated != 0]">
@@ -61,7 +61,7 @@
 					<Param name="burgerservicenummer" sessionKey="bsn"/>
             	</FixedQuerySender> 
                 <Forward name="success" path="CheckSubscriptionCount" />
-                <Forward name="exception" path="BadRequest" />
+                <Forward name="exception" path="BadRequestPipe" />
             </SenderPipe>
 
             <!-- Check if subscriptions are found -->
@@ -70,21 +70,29 @@
                 xpathExpression="count(result/rowset/row) > 0"
             >
                 <Forward name="then" path="InsertNotification"/>
-                <Forward name="else" path="NoSubscribersToPerson"/>
-                <Forward name="exception" path="BadRequest"/>
+                <Forward name="else" path="NoSubscribersToPersonPipe"/>
+                <Forward name="exception" path="BadRequestPipe"/>
             </XmlIfPipe>
 
-            <!-- Add bsn to to the update processing queue -->
+            <!-- Add bsn to the update processing queue -->
             <SenderPipe name="InsertNotification" getInputFromSessionKey="originalMessage">
 				<MessageStoreSender
 					slotId="${instance.name}/notificationStore"
 				/>
-                <Forward name="success" path="echoPipe" />
+                <Forward name="success" path="ExitPipe" />
             </SenderPipe>
 
-		<EchoPipe name="echoPipe">
-			<Forward name="success" path="EXIT" />
-		</EchoPipe>
+			<JsonPipe name="ExitPipe" direction="XML2JSON">
+				<Forward name="success" path="EXIT"/>
+			</JsonPipe>
+
+			<JsonPipe name="BadRequestPipe" direction="XML2JSON">
+				<Forward name="success" path="BadRequest"/>
+			</JsonPipe>
+
+			<JsonPipe name="NoSubscribersToPersonPipe" direction="XML2JSON">
+				<Forward name="success" path="NoSubscribersToPerson"/>
+			</JsonPipe>
 
 		</Pipeline>
 	</Adapter>
