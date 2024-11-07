@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.19](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.18...v1.7.19) (2024-11-07)
+
+### 🐛 Bug Fixes
+
+* make output of BrpPersonenNotificationReceiver json ([b6d5cd5](https://github.com/wearefrank/haalcentraal-connector/commit/b6d5cd506ccae195c7bdada1295039a8dfc4ed1e))
+
 ## [1.7.18](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.17...v1.7.18) (2024-11-05)
 
 ### 🧑‍💻 Code Refactoring
