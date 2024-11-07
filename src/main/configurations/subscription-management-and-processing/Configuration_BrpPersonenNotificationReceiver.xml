@@ -43,8 +43,8 @@
 					<Param name="historicBsn" xpathExpression="." type="INTEGER"/>
             	</FixedQuerySender>
 				<Forward name="success" path="checkBsnChange"/>
-				<Forward name="exception" path="ExitPipe" />
-			</ForEachChildElementPipe>  
+				<Forward name="exception" path="BadRequestPipe"/>
+			</ForEachChildElementPipe>
 
             <XmlIfPipe name="checkBsnChange" xpathExpression="//result[rowsupdated != 0]">
                 <Forward name="then" path="InsertNotification"/>
