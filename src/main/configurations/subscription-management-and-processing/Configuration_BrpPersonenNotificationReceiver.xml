@@ -76,9 +76,12 @@
 
             <!-- Add bsn to to the update processing queue -->
             <SenderPipe name="InsertNotification" getInputFromSessionKey="originalMessage">
-				<MessageStoreSender
-					slotId="${instance.name}/notificationStore"
-				/>
+                <FixedQuerySender
+					name="CreateNewTask"
+                    queryType="OTHER"
+					query="INSERT INTO tasks (message, scheduled_start) VALUES (?, NOW() + INTERVAL '1 hour')">
+					<Param name="message" sessionKey="originalMessage" />
+            	</FixedQuerySender> 
                 <Forward name="success" path="echoPipe" />
             </SenderPipe>
 
