@@ -4,9 +4,12 @@
 
 	<Adapter name="BrpPersonenNotificationProcessor"
 		description="brp personen notification processor">
+		<Receiver name="BrpPersonenNotificationProcessorDailyTaskListener">
+			<JdbcTableListener tableName="tasks_daily" statusField="status" statusValueError="E" statusValueProcessed="C" keyField="task_id" messageField="message" />
+		</Receiver>
 
-		<Receiver name="BrpPersonenNotificationProcessor" checkForDuplicates="true" maxRetries="0" >
-			<MessageStoreListener slotId="${instance.name}/notificationStore" statusValueInProcess="I"/>
+		<Receiver name="BrpPersonenNotificationProcessorHourlyTaskListener">
+			<JdbcTableListener tableName="tasks_hourly" statusField="status" statusValueError="E" statusValueProcessed="C" keyField="task_id"  messageField="message" />
 		</Receiver>
 
 		<Pipeline>
@@ -31,6 +34,8 @@
 					<Param name="burgerservicenummer" sessionKey="bsn" />
                 </IbisLocalSender>
 			</SenderPipe>
+
+			<!-- TODO: Check if task needs to be retried -->
 
 			<EchoPipe name="echoPipe">
 				<Forward name="success" path="EXIT" />
