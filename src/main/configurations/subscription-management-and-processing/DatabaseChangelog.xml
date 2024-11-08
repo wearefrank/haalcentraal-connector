@@ -22,7 +22,7 @@ RenameView
 TagDatabase
  -->
 
-	<!-- ChangeSet 2: Create 'Persoonsgegevens' table -->
+	<!-- ChangeSet 1: Create 'Persoonsgegevens' table -->
 	<changeSet id="HCC-1" author="Vincent de Gans">
 		<comment>Create the 'Persoonsgegevens' table</comment>
 		<createTable tableName="persoonsgegevens">
@@ -36,7 +36,7 @@ TagDatabase
 		<addAutoIncrement tableName="persoonsgegevens" columnName="id" />
 	</changeSet>
 
-	<!-- ChangeSet 3: Create 'Applicaties' table -->
+	<!-- ChangeSet 2: Create 'Applicaties' table -->
 	<changeSet id="HCC-2" author="Vincent de Gans">
 		<comment>Create the 'Applicaties' table</comment>
 		<createTable tableName="applicaties">
@@ -50,7 +50,7 @@ TagDatabase
 		</createTable>
 	</changeSet>
 
-	<!-- ChangeSet 4: Create 'Subscripties' table -->
+	<!-- ChangeSet 3: Create 'Subscripties' table -->
 	<changeSet id="HCC-3" author="Vincent de Gans">
 		<comment>Create the 'Subscripties' table</comment>
 		<createTable tableName="subscripties">
@@ -63,5 +63,32 @@ TagDatabase
 			<column name="eind_datum" type="datetime" />
 		</createTable>
 		<addAutoIncrement tableName="subscripties" columnName="id" />
+	</changeSet>
+
+    <changeSet id="HCC-4" author="Vincent de Gans">
+		<preConditions onFail="HALT">
+			<dbms type="postgresql"/>
+		</preConditions>
+		<sql>
+			CREATE TABLE tasks (
+				task_id SERIAL NOT NULL,
+				created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+				scheduled_start TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,  -- Default value set to time of insertion
+				status CHAR(1) DEFAULT 'P' NOT NULL, -- Default state is P (pending)
+				is_retry BOOLEAN NOT NULL DEFAULT FALSE,
+				message TEXT NOT NULL,
+				PRIMARY KEY (task_id, is_retry)  -- Include interval_check in the primary key
+			) PARTITION BY LIST (is_retry);
+	
+			-- Create the partition for hourly tasks (interval_check = FALSE)
+			CREATE TABLE tasks_hourly PARTITION OF tasks FOR VALUES IN (FALSE);
+	
+			-- Create the partition for daily tasks (interval_check = TRUE)
+			CREATE TABLE tasks_daily PARTITION OF tasks FOR VALUES IN (TRUE);
+	
+			-- Create indexes on scheduled_start for each partition for performance optimization
+			CREATE INDEX idx_tasks_hourly_scheduled_start ON tasks_hourly (scheduled_start);
+			CREATE INDEX idx_tasks_daily_scheduled_start ON tasks_daily (scheduled_start);
+		</sql>
 	</changeSet>
 </databaseChangeLog>
