@@ -1,0 +1,19 @@
+<databaseChangeLog
+		xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd">
+
+	<changeSet id="shadow-1" author="Lenard van der Maas">
+		<comment>Create the 'shadowmessages' table</comment>
+		<createTable tableName="shadowmessages">
+			<column name="id" type="int">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="message" type="text" />
+			<column name="timestamp" type="datetime" />
+		</createTable>
+		<addAutoIncrement tableName="shadowmessages" columnName="id" columnDataType="int" />
+	</changeSet>
+
+</databaseChangeLog>

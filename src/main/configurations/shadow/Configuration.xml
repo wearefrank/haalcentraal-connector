@@ -1,0 +1,7 @@
+<!DOCTYPE Configuration [
+    <!ENTITY ShadowReceiver SYSTEM "Configuration_ShadowReceiver.xml">
+]>
+
+<Configuration name="shadow">
+    &ShadowReceiver;
+</Configuration>
