@@ -69,26 +69,44 @@ TagDatabase
 		<preConditions onFail="HALT">
 			<dbms type="postgresql"/>
 		</preConditions>
-		<sql>
-			CREATE TABLE tasks (
-				task_id SERIAL NOT NULL,
-				created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-				scheduled_start TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,  -- Default value set to time of insertion
-				status CHAR(1) DEFAULT 'P' NOT NULL, -- Default state is P (pending)
-				is_retry BOOLEAN NOT NULL DEFAULT FALSE,
-				message TEXT NOT NULL,
-				PRIMARY KEY (task_id, is_retry)  -- Include is_retry in the primary key
-			) PARTITION BY LIST (is_retry);
+		<comment>Create the 'tasks' table</comment>
+
+		<createTable tableName="tasks">
+			<column name="task_id" type="SERIAL">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+				<constraints nullable="false"/>
+			</column>
+			<column name="scheduled_start" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+				<constraints nullable="false"/>
+			</column>
+			<column name="status" type="CHAR(1)" defaultValue="P">
+				<constraints nullable="false"/>
+			</column>
+			<column name="is_retry" type="BOOLEAN" defaultValue="FALSE">
+				<constraints nullable="false"/>
+			</column>
+			<column name="bsn" type="TEXT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
 	
-			-- Create the partition for hourly tasks (is_retry = FALSE)
-			CREATE TABLE tasks_hourly PARTITION OF tasks FOR VALUES IN (FALSE);
+		<createIndex indexName="idx_tasks_scheduled_start" tableName="tasks">
+			<column name="scheduled_start"/>
+		</createIndex>
 	
-			-- Create the partition for daily tasks (is_retry = TRUE)
-			CREATE TABLE tasks_daily PARTITION OF tasks FOR VALUES IN (TRUE);
+		<createIndex indexName="idx_tasks_status" tableName="tasks">
+			<column name="status"/>
+		</createIndex>
 	
-			-- Create indexes on scheduled_start for each partition for performance optimization
-			CREATE INDEX idx_tasks_hourly_scheduled_start ON tasks_hourly (scheduled_start);
-			CREATE INDEX idx_tasks_daily_scheduled_start ON tasks_daily (scheduled_start);
-		</sql>
+		<createIndex indexName="idx_tasks_is_retry" tableName="tasks">
+			<column name="is_retry"/>
+		</createIndex>
+	</changeSet>
+
+	<changeSet id="HCC-5" author="Vincent de Gans">
+		<comment>Add not null constraint to subscripties app_id</comment>
+		<addNotNullConstraint tableName="subscripties" columnName="app_id" />
 	</changeSet>
 </databaseChangeLog>
