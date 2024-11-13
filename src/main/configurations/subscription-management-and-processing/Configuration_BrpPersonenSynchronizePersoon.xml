@@ -49,7 +49,7 @@
             throwException="true">
         </Json2XmlValidatorPipe>
 
-        <SenderPipe name="GetPersoon" storeResultInSessionKey="newJSON">
+        <SenderPipe name="GetPersoon" storeResultInSessionKey="newJSON" maxRetries="3" retryMinInterval="60" retryMaxInterval="240">
             <IbisLocalSender name="GetPersoonSender" javaListener="BrpPbOutwayListener" />
             <Forward name="success" path="persoonOld2xml" />
             <Forward name="exception" path="BadRequest" />
