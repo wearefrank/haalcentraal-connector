@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.26](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.25...v1.7.26) (2024-11-13)
+
+### 🐛 Bug Fixes
+
+* set allowSelfSignedCertificates to true for GetToken ([0f057ab](https://github.com/wearefrank/haalcentraal-connector/commit/0f057ab13fdff0ddefc9f03af8b626f4f147d17c))
+
 ## [1.7.25](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.24...v1.7.25) (2024-11-13)
 
 ### 🧑‍💻 Code Refactoring
