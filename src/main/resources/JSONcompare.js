@@ -37,11 +37,6 @@ function deepCompareJsonObjects(storedJson, newJson, setDifferenceFlag) {
 
     // Compare keys in newJson and update comparisonResult
     for (let key in newJson) {
-        // Skip comparing the "type" field (specific to your use case)
-        if (key === 'type') {
-            continue;
-        }
-
         // If key doesn't exist in storedJson, add it
         if (!(key in storedJson)) {
             comparisonResult[key] = newJson[key];
