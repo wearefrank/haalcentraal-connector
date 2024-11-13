@@ -110,7 +110,7 @@
 				<FixedQuerySender
 					name="FetchPersonSender"
 					queryType="SELECT"
-					query="SELECT * FROM persoonsgegevens WHERE bsn=?{burgerservicenummer} LIMIT 1"
+					query="SELECT * FROM persoonsgegevens WHERE bsn=?{burgerservicenummer} ORDER BY registratie_datum DESC LIMIT 1"
 					includeFieldDefinition="false">
 					<Param name="burgerservicenummer" sessionKey="originalMessage"
 						xpathExpression="npsLk01/object/inp.bsn" type="INTEGER" />
