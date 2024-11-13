@@ -80,7 +80,7 @@
 					name="CreateNewTask"
                     queryType="OTHER"
 					query="INSERT INTO tasks (message, scheduled_start) VALUES (?, NOW() + INTERVAL '1 hour')">
-					<Param name="message" sessionKey="originalMessage" />
+					<Param name="message" sessionKey="bsn" />
             	</FixedQuerySender> 
                 <Forward name="success" path="echoPipe" />
             </SenderPipe>

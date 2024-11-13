@@ -17,13 +17,8 @@
 				<Exit name="EXIT" state="SUCCESS" />
 			</Exits>
 
-			<JsonPipe name="ConvertInputMessageToXml" prettyPrint="true" getInputFromSessionKey="originalMessage">
-                <Forward name="success" path="ExtractIncomingNotificationData"/>
-            </JsonPipe>
-
             <PutInSessionPipe name="ExtractIncomingNotificationData">
-                <Param name="bsn" xpathExpression="root/data/bsn" />
-                <Param name="historicBsns" xpathExpression="root/data/historicBsns" />
+                <Param name="bsn" sessionKey="originalMessage" />
                 <Forward name="success" path="processNotifications"/>
             </PutInSessionPipe>
 
@@ -35,7 +30,20 @@
                 </IbisLocalSender>
 			</SenderPipe>
 
-			<!-- TODO: Check if task needs to be retried -->
+			<XmlIfPipe name="CheckUpdateSuccess" expressionValue="true">
+				<Forward name="then" path="echoPipe" />
+				<Forward name="else" path="RetryNotification" />
+			</XmlIfPipe>
+
+			<SenderPipe name="SetTaskToRetry">
+				<FixedQuerySender query="SetTaskToRetry">
+
+				</FixedQuerySender>
+			</SenderPipe>
+
+			<EchoPipe name="RetryNotification">
+				<Forward name="success" path="EXIT" />
+			</EchoPipe>
 
 			<EchoPipe name="echoPipe">
 				<Forward name="success" path="EXIT" />
