@@ -5,11 +5,7 @@
 	<Adapter name="BrpPersonenNotificationProcessor"
 		description="brp personen notification processor">
 		<Receiver name="BrpPersonenNotificationProcessorDailyTaskListener">
-			<JdbcTableListener tableName="tasks_daily" statusField="status" statusValueError="E" statusValueProcessed="C" keyField="task_id" messageField="bsn" />
-		</Receiver>
-
-		<Receiver name="BrpPersonenNotificationProcessorHourlyTaskListener">
-			<JdbcTableListener tableName="tasks_hourly" statusField="status" statusValueError="E" statusValueProcessed="C" keyField="task_id" messageField="bsn" />
+			<JdbcTableListener tableName="tasks" statusField="status" statusValueError="E" statusValueProcessed="C" keyField="task_id" messageField="bsn" />
 		</Receiver>
 
 		<Pipeline>
