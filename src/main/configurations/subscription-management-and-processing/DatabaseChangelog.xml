@@ -77,13 +77,13 @@ TagDatabase
 				status CHAR(1) DEFAULT 'P' NOT NULL, -- Default state is P (pending)
 				is_retry BOOLEAN NOT NULL DEFAULT FALSE,
 				message TEXT NOT NULL,
-				PRIMARY KEY (task_id, is_retry)  -- Include interval_check in the primary key
+				PRIMARY KEY (task_id, is_retry)  -- Include is_retry in the primary key
 			) PARTITION BY LIST (is_retry);
 	
-			-- Create the partition for hourly tasks (interval_check = FALSE)
+			-- Create the partition for hourly tasks (is_retry = FALSE)
 			CREATE TABLE tasks_hourly PARTITION OF tasks FOR VALUES IN (FALSE);
 	
-			-- Create the partition for daily tasks (interval_check = TRUE)
+			-- Create the partition for daily tasks (is_retry = TRUE)
 			CREATE TABLE tasks_daily PARTITION OF tasks FOR VALUES IN (TRUE);
 	
 			-- Create indexes on scheduled_start for each partition for performance optimization
