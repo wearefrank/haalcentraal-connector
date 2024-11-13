@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.25](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.24...v1.7.25) (2024-11-13)
+
+### 🧑‍💻 Code Refactoring
+
+* add order by for more robustness ([5f59bab](https://github.com/wearefrank/haalcentraal-connector/commit/5f59bab5d72814b43c199b78d2799e2ba10843a6))
+
 ## [1.7.24](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.23...v1.7.24) (2024-11-13)
 
 ### 🧑‍💻 Code Refactoring
