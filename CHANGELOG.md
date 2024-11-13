@@ -1,5 +1,53 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.26](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.25...v1.7.26) (2024-11-13)
+
+### 🐛 Bug Fixes
+
+* set allowSelfSignedCertificates to true for GetToken ([0f057ab](https://github.com/wearefrank/haalcentraal-connector/commit/0f057ab13fdff0ddefc9f03af8b626f4f147d17c))
+
+## [1.7.25](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.24...v1.7.25) (2024-11-13)
+
+### 🧑‍💻 Code Refactoring
+
+* add order by for more robustness ([5f59bab](https://github.com/wearefrank/haalcentraal-connector/commit/5f59bab5d72814b43c199b78d2799e2ba10843a6))
+
+## [1.7.24](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.23...v1.7.24) (2024-11-13)
+
+### 🧑‍💻 Code Refactoring
+
+* filter on key === 'type' ([74609e4](https://github.com/wearefrank/haalcentraal-connector/commit/74609e47d82fef9722f46bd346fd3d2df55c1125))
+
+## [1.7.23](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.22...v1.7.23) (2024-11-13)
+
+### 🐛 Bug Fixes
+
+* trigger release ([ea550ba](https://github.com/wearefrank/haalcentraal-connector/commit/ea550bafc573b7d7feab869f938deb94b3bc6aa9))
+
+## [1.7.22](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.21...v1.7.22) (2024-11-13)
+
+### 🐛 Bug Fixes
+
+* trigger release ([61dda60](https://github.com/wearefrank/haalcentraal-connector/commit/61dda60eedbed6a19ea3f6c7ae8de73b2973b407))
+
+## [1.7.21](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.20...v1.7.21) (2024-11-07)
+
+### 🐛 Bug Fixes
+
+* trigger new release ([196ca86](https://github.com/wearefrank/haalcentraal-connector/commit/196ca86dba09d9b14cbab37d001f5b537325129d))
+
+## [1.7.20](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.19...v1.7.20) (2024-11-07)
+
+### 🐛 Bug Fixes
+
+* exception forward ([4fb6491](https://github.com/wearefrank/haalcentraal-connector/commit/4fb64916622e03fb5c737acecbad9ba10d301bce))
+
+## [1.7.19](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.18...v1.7.19) (2024-11-07)
+
+### 🐛 Bug Fixes
+
+* make output of BrpPersonenNotificationReceiver json ([b6d5cd5](https://github.com/wearefrank/haalcentraal-connector/commit/b6d5cd506ccae195c7bdada1295039a8dfc4ed1e))
+
 ## [1.7.18](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.17...v1.7.18) (2024-11-05)
 
 ### 🧑‍💻 Code Refactoring

@@ -1,0 +1,16 @@
+<Adapter name="ShadowReceiver" description="">
+    <Receiver name="ShadowReceiver">
+        <ApiListener name="ShadowListener" uriPattern="${haalcentraal_connector.shadow.endpoint}" method="POST"/>
+    </Receiver>
+
+    <Pipeline>
+        <Exit name="READY" state="SUCCESS" code="200"/>
+
+        <SenderPipe name="storeMessage">
+            <FixedQuerySender name="storeMessage"
+                query="INSERT INTO shadowmessages (message, timestamp) VALUES (?, CURRENT_TIMESTAMP())">
+                <Param name="message"/>
+            </FixedQuerySender>
+        </SenderPipe>
+    </Pipeline>
+</Adapter>

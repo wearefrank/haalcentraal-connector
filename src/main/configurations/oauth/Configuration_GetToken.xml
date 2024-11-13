@@ -19,7 +19,8 @@
                         contentType="application/x-www-form-urlencoded"
                         postType="URLENCODED"
                         headersParams="Accept, Content-Type, Digest, Date, TPP-Signature-Certificate, authorization"
-                        treatInputMessageAsParameters="false" />
+                        treatInputMessageAsParameters="false"
+                        allowSelfSignedCertificates="true" />
                 <Param name="grant_type" value="client_credentials" />
                 <Param name="client_id" pattern="${oauth.client-id}" hidden="true"/>
                 <Param name="client_secret" pattern="${oauth.client-secret}" hidden="true"/>
