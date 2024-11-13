@@ -10,8 +10,8 @@
                     <xsl:copy-of select="root/toNotBeAdded/*"/>
                 </personError>
                 <insertError>
-                    <xsl:for-each select="$addSubscriptionResults/results/result/result/rowset/row">
-                        <xsl:if test="text() != '1 row(s) changed'">
+                    <xsl:for-each select="$addSubscriptionsResult/results/result/result/rowset/row">
+                        <xsl:if test="not(rowsupdated[text()='1'])">
                             <xsl:variable name="position" select="position()"/>
                             <xsl:copy-of select="$originalMessage/root/toBeAdded/record[$position]"/>
                         </xsl:if>
@@ -20,8 +20,8 @@
             </subscriptionsHadError>
             <subscriptionsAdded>
                 <!--copy all records from toBeAdded if the insert was successful-->
-                <xsl:for-each select="$addSubscriptionResults/results/result/result/rowset/row">
-                    <xsl:if test="text() = '1 row(s) changed'">
+                <xsl:for-each select="$addSubscriptionsResult/results/result/result">
+                    <xsl:if test="rowsupdated[text()='1']">
                         <xsl:variable name="position" select="position()"/>
                         <xsl:copy-of select="$originalMessage/root/toBeAdded/record[$position]"/>
                     </xsl:if>

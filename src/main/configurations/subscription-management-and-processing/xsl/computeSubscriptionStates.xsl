@@ -1,44 +1,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0">
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" omit-xml-declaration="yes"/>
-    <xsl:param name="newSubscriptions">
-        <csv>
-            <record>
-                <app_id>1</app_id>
-                <bsn>1</bsn>
-            </record>
-            <record>
-                <app_id>4</app_id>
-                <bsn>4</bsn>
-            </record>
-            <record>
-                <app_id>6</app_id>
-                <bsn>6</bsn>
-            </record>
-            <record>
-                <app_id>2</app_id>
-                <bsn>2</bsn>
-            </record>
-            <record>
-                <app_id>7</app_id>
-                <bsn>7</bsn>
-            </record>
-        </csv>
-    </xsl:param>
-    <xsl:param name="personErrors">
-        <root>
-            <failure>
-                <record>
-                    <bsn>3</bsn>
-                </record>
-                <record>
-                    <bsn>4</bsn>
-                </record>
-                <record>
-                    <bsn>6</bsn>
-                </record>
-            </failure>
-        </root>
-    </xsl:param>
+    <xsl:param name="newSubscriptions"/>
+    <xsl:param name="personErrors"/>
 
     <xsl:template match="/">
         <xsl:variable name="currentSubscriptions"><xsl:copy-of select="."/></xsl:variable>
