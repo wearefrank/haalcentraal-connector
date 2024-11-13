@@ -10,6 +10,7 @@
     <!ENTITY EndpointRouter SYSTEM "Configuration_EndpointRouter.xml">
     <!ENTITY BrpPersonenAfnemersIndicatieReceiver SYSTEM "Configuration_BrpPersonenAfnemersIndicatieReceiver.xml">
     <!ENTITY QueueNotificationTask SYSTEM "Configuration_QueueNotificationTask.xml">
+    <!ENTITY BulkImportSubscriptions SYSTEM "Configuration_BulkImportSubscriptions.xml">
 ]>
 
 <Configuration name="subscription-management-and-processing">
@@ -24,4 +25,5 @@
 	&EndpointRouter;
 	&BrpPersonenAfnemersIndicatieReceiver;
     &QueueNotificationTask;
+	&BulkImportSubscriptions;
 </Configuration>
