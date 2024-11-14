@@ -51,7 +51,8 @@
 					methodType="POST"
 					headersParams="token,Accept,Content-Type"
 					parametersToSkipWhenEmpty="Accept,Content-Type"
-					contentType="application/json">
+					contentType="application/json"
+					allowSelfSignedCertificates="true">
 					<Param name="token" sessionKey="token" />
 					<Param name="Accept" sessionKey="headerAccept"/>
 					<Param name="Content-Type" sessionKey="headerContent-Type"/>
