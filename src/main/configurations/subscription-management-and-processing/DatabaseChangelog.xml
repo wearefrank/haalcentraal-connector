@@ -65,6 +65,7 @@ TagDatabase
 		<addAutoIncrement tableName="subscripties" columnName="id" />
 	</changeSet>
 
+	<!-- ChangeSet 4: Create 'Tasks' table -->
     <changeSet id="HCC-4" author="Vincent de Gans">
 		<comment>Create the 'tasks' table</comment>
 		<createTable tableName="tasks">
@@ -100,6 +101,7 @@ TagDatabase
 		</createIndex>
 	</changeSet>
 
+	<!-- ChangeSet 5: Add not null constraint to subscripties app_id -->
 	<changeSet id="HCC-5" author="Vincent de Gans">
 		<comment>Add not null constraint to subscripties app_id</comment>
 		<addNotNullConstraint tableName="subscripties" columnName="app_id" />
