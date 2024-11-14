@@ -32,12 +32,8 @@
 				<FixedQuerySender queryType="SELECT" name="getCurrentTask" query="SELECT * FROM tasks WHERE task_id = ?">
 					<Param name="task_id" sessionKey="key" />
 				</FixedQuerySender>
-				<Forward name="success" path="storeAttemptCount" />
+				<Forward name="success" path="CheckAttemptCount" />
 			</SenderPipe>
-
-			<PutInSessionPipe name="storeAttemptCount">
-				<Param name="attempts" xpathExpression="/result/rowset/row/field[@name='ATTEMPT']" />
-			</PutInSessionPipe>
 
 			<XmlIfPipe name="CheckAttemptCount" xpathExpression="/result/rowset/row/field[@name='ATTEMPT'] > 3">
 				<Forward name="then" path="EXCEPTION" />
@@ -51,7 +47,7 @@
 			</XmlIfPipe>
 
 			<!-- Add a new task to retry synchronization -->
-            <SenderPipe name="RetryNotification" getInputFromSessionKey="originalMessage">
+            <SenderPipe name="RetryNotification">
                 <FixedQuerySender
 					name="CreateRetryTask"
                     queryType="OTHER"
