@@ -44,7 +44,7 @@
             <JsonPipe name="JsonToXml" />
             <XsltPipe name="TokenExtractor" xpathExpression="/root/access_token" storeResultInSessionKey="token" />
 
-            <LocalFileSystemPipe name="WriteTokenToFile" filename="token.txt" action="write" />
+            <LocalFileSystemPipe name="WriteTokenToFile" filename="token.txt" action="write" overwrite="true" />
         </Pipeline>
     </Adapter>
 </Module>
