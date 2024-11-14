@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.29](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.28...v1.7.29) (2024-11-14)
+
+### 🐛 Bug Fixes
+
+* make sure token write overrides old token file ([f6951e3](https://github.com/wearefrank/haalcentraal-connector/commit/f6951e335d76c9b5913754115672acc1329cfa63))
+
 ## [1.7.28](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.27...v1.7.28) (2024-11-14)
 
 ### 🐛 Bug Fixes
