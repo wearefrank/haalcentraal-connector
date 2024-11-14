@@ -79,8 +79,8 @@
                 <FixedQuerySender
 					name="CreateNewTask"
                     queryType="OTHER"
-					query="INSERT INTO tasks (message, scheduled_start) VALUES (?, NOW() + INTERVAL '1 hour')">
-					<Param name="message" sessionKey="bsn" />
+					query="INSERT INTO tasks (bsn, scheduled_start) VALUES (?, NOW() + INTERVAL '1 hour')">
+					<Param name="bsn" sessionKey="bsn" />
             	</FixedQuerySender> 
                 <Forward name="success" path="ExitPipe" />
             </SenderPipe>
