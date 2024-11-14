@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.7.28](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.27...v1.7.28) (2024-11-14)
+
+### 🐛 Bug Fixes
+
+* token response validator ([e5f78bf](https://github.com/wearefrank/haalcentraal-connector/commit/e5f78bf61aa5740bc8d472073f4221b80c37589b))
+
 ## [1.7.27](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.26...v1.7.27) (2024-11-13)
 
 ### 🐛 Bug Fixes
