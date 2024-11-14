@@ -60,7 +60,11 @@
 							SELECT
 								correlation_id,
 								CURRENT_TIMESTAMP,
-								scheduled_start + INTERVAL '24 hours',
+								CASE
+									WHEN EXTRACT(DOW FROM scheduled_start + INTERVAL '24 hours') = 6 THEN scheduled_start + INTERVAL '3 days'
+									WHEN EXTRACT(DOW FROM scheduled_start + INTERVAL '24 hours') = 0 THEN scheduled_start + INTERVAL '2 days'
+									ELSE scheduled_start + INTERVAL '24 hours'
+								END AS scheduled_start,
 								'P',
 								attempt + 1,
 								?{bsn}
