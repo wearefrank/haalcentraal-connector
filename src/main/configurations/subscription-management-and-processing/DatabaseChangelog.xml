@@ -66,11 +66,7 @@ TagDatabase
 	</changeSet>
 
     <changeSet id="HCC-4" author="Vincent de Gans">
-		<preConditions onFail="HALT">
-			<dbms type="postgresql"/>
-		</preConditions>
 		<comment>Create the 'tasks' table</comment>
-
 		<createTable tableName="tasks">
 			<column name="task_id" type="SERIAL">
 				<constraints primaryKey="true" nullable="false"/>
