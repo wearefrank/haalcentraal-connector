@@ -84,10 +84,13 @@ TagDatabase
 			<column name="status" type="CHAR(1)" defaultValue="P">
 				<constraints nullable="false"/>
 			</column>
-			<column name="is_retry" type="BOOLEAN" defaultValue="FALSE">
+			<column name="attempt" type="SMALLINT" defaultValue="1">
 				<constraints nullable="false"/>
 			</column>
 			<column name="bsn" type="TEXT">
+				<constraints nullable="false"/>
+			</column>
+			<column name="correlation_id" type="uuid">
 				<constraints nullable="false"/>
 			</column>
 		</createTable>
@@ -98,10 +101,6 @@ TagDatabase
 	
 		<createIndex indexName="idx_tasks_status" tableName="tasks">
 			<column name="status"/>
-		</createIndex>
-	
-		<createIndex indexName="idx_tasks_is_retry" tableName="tasks">
-			<column name="is_retry"/>
 		</createIndex>
 	</changeSet>
 

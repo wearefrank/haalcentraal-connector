@@ -79,7 +79,7 @@
                 <FixedQuerySender
 					name="CreateNewTask"
                     queryType="OTHER"
-					query="INSERT INTO tasks (bsn, scheduled_start) VALUES (?, NOW() + INTERVAL '1 hour')">
+					query="INSERT INTO tasks (bsn, scheduled_start, correlation_id) VALUES (?, NOW() + INTERVAL '1 hour', gen_random_uuid())">
 					<Param name="bsn" sessionKey="bsn" />
             	</FixedQuerySender> 
                 <Forward name="success" path="ExitPipe" />

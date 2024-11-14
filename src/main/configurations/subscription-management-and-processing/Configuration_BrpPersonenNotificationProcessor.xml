@@ -5,12 +5,14 @@
 	<Adapter name="BrpPersonenNotificationProcessor"
 		description="brp personen notification processor">
 		<Receiver name="BrpPersonenNotificationProcessorDailyTaskListener">
-			<JdbcTableListener tableName="tasks" statusField="status" statusValueError="E" statusValueProcessed="C" keyField="task_id" messageField="bsn" />
+			<JdbcTableListener tableName="tasks" statusField="status" statusValueError="E" statusValueProcessed="C" keyField="task_id" messageField="bsn"
+			peekQuery="SELECT * FROM tasks WHERE scheduled_start &lt;= NOW() AND status = 'P';"/>
 		</Receiver>
 
 		<Pipeline>
 			<Exits>
 				<Exit name="EXIT" state="SUCCESS" />
+				<Exit name="EXCEPTION" state="ERROR" />
 			</Exits>
 
             <PutInSessionPipe name="ExtractIncomingNotificationData">
@@ -26,24 +28,52 @@
                 </IbisLocalSender>
 			</SenderPipe>
 
+			<SenderPipe name="GetCurrentTask" >
+				<FixedQuerySender queryType="SELECT" name="getCurrentTask" query="SELECT * FROM tasks WHERE task_id = ?">
+					<Param name="task_id" sessionKey="key" />
+				</FixedQuerySender>
+				<Forward name="success" path="storeAttemptCount" />
+			</SenderPipe>
+
+			<PutInSessionPipe name="storeAttemptCount">
+				<Param name="attempts" xpathExpression="/result/rowset/row/field[@name='ATTEMPT']" />
+			</PutInSessionPipe>
+
+			<XmlIfPipe name="CheckAttemptCount" xpathExpression="/result/rowset/row/field[@name='ATTEMPT'] > 3">
+				<Forward name="then" path="EXCEPTION" />
+				<Forward name="else" path="CheckUpdateSuccess" />
+			</XmlIfPipe>
+
 			<XmlIfPipe name="CheckUpdateSuccess" expressionValue="true">
-				<Forward name="then" path="echoPipe" />
+				<Forward name="then" path="EXIT" />
+				<!-- <Forward name="else" path="EXIT" /> -->
 				<Forward name="else" path="RetryNotification" />
 			</XmlIfPipe>
 
-			<SenderPipe name="SetTaskToRetry">
-				<FixedQuerySender query="SetTaskToRetry">
-
-				</FixedQuerySender>
-			</SenderPipe>
-
-			<EchoPipe name="RetryNotification">
-				<Forward name="success" path="EXIT" />
-			</EchoPipe>
-
-			<EchoPipe name="echoPipe">
-				<Forward name="success" path="EXIT" />
-			</EchoPipe>
+			<!-- Add a new task to retry synchronization -->
+            <SenderPipe name="RetryNotification" getInputFromSessionKey="originalMessage">
+                <FixedQuerySender
+					name="CreateRetryTask"
+                    queryType="OTHER"
+					query="WITH last_attempt AS (
+								SELECT correlation_id, attempt, scheduled_start
+								FROM tasks
+								WHERE task_id = ?{task_id}
+							)
+							INSERT INTO tasks (correlation_id, created_at, scheduled_start, status, attempt, bsn)
+							SELECT
+								correlation_id,
+								CURRENT_TIMESTAMP,
+								scheduled_start + INTERVAL '24 hours',
+								'P',
+								attempt + 1,
+								?{bsn}
+							FROM last_attempt;">
+					<Param name="task_id" sessionKey="mid" type="INTEGER" />
+					<Param name="bsn" sessionKey="bsn" type="STRING" />
+            	</FixedQuerySender> 
+                <Forward name="success" path="EXIT" />
+            </SenderPipe>
 		</Pipeline>
 	</Adapter>
 </Module>
