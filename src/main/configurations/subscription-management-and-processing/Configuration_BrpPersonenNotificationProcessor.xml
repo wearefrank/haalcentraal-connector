@@ -9,6 +9,10 @@
 			peekQuery="SELECT * FROM tasks WHERE scheduled_start &lt;= NOW() AND status = 'P';"/>
 		</Receiver>
 
+		<Receiver name="NotificationProcessorApi">
+			<ApiListener name="NotificationProcessorApiListener" uriPattern="notification" />
+		</Receiver>
+
 		<Pipeline>
 			<Exits>
 				<Exit name="EXIT" state="SUCCESS" />
