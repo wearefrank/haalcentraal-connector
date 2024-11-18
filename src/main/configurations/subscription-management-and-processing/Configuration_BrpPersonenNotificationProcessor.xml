@@ -4,23 +4,24 @@
 
 	<Adapter name="BrpPersonenNotificationProcessor"
 		description="brp personen notification processor">
+		<Receiver name="BrpPersonenNotificationProcessorDailyTaskListener">
+			<JdbcTableListener tableName="tasks" statusField="status" statusValueError="E" statusValueProcessed="C" keyField="task_id" messageField="bsn"
+			selectQuery="SELECT * FROM tasks WHERE status = 'P'"
+			selectCondition="scheduled_start &lt;= NOW()"/>
+		</Receiver>
 
-		<Receiver name="BrpPersonenNotificationProcessor" checkForDuplicates="true" maxRetries="0" >
-			<MessageStoreListener slotId="${instance.name}/notificationStore" statusValueInProcess="I"/>
+		<Receiver name="NotificationProcessorApi">
+			<ApiListener name="NotificationProcessorApiListener" uriPattern="notification" />
 		</Receiver>
 
 		<Pipeline>
 			<Exits>
 				<Exit name="EXIT" state="SUCCESS" />
+				<Exit name="EXCEPTION" state="ERROR" />
 			</Exits>
 
-			<JsonPipe name="ConvertInputMessageToXml" prettyPrint="true" getInputFromSessionKey="originalMessage">
-                <Forward name="success" path="ExtractIncomingNotificationData"/>
-            </JsonPipe>
-
             <PutInSessionPipe name="ExtractIncomingNotificationData">
-                <Param name="bsn" xpathExpression="root/data/bsn" />
-                <Param name="historicBsns" xpathExpression="root/data/historicBsns" />
+                <Param name="bsn" sessionKey="originalMessage" />
                 <Forward name="success" path="processNotifications"/>
             </PutInSessionPipe>
 
@@ -32,9 +33,52 @@
                 </IbisLocalSender>
 			</SenderPipe>
 
-			<EchoPipe name="echoPipe">
-				<Forward name="success" path="EXIT" />
-			</EchoPipe>
+			<SenderPipe name="GetCurrentTask" >
+				<FixedQuerySender queryType="SELECT" name="getCurrentTask" query="SELECT * FROM tasks WHERE task_id = ?">
+					<Param name="task_id" sessionKey="key" />
+				</FixedQuerySender>
+				<Forward name="success" path="CheckAttemptCount" />
+			</SenderPipe>
+
+			<XmlIfPipe name="CheckAttemptCount" xpathExpression="/result/rowset/row/field[@name='ATTEMPT'] > 3">
+				<Forward name="then" path="EXCEPTION" />
+				<Forward name="else" path="CheckUpdateSuccess" />
+			</XmlIfPipe>
+
+			<XmlIfPipe name="CheckUpdateSuccess" expressionValue="true">
+				<Forward name="then" path="EXIT" />
+				<!-- <Forward name="else" path="EXIT" /> -->
+				<Forward name="else" path="RetryNotification" />
+			</XmlIfPipe>
+
+			<!-- Add a new task to retry synchronization -->
+            <SenderPipe name="RetryNotification">
+                <FixedQuerySender
+					name="CreateRetryTask"
+                    queryType="OTHER"
+					query="WITH last_attempt AS (
+								SELECT correlation_id, attempt, scheduled_start
+								FROM tasks
+								WHERE task_id = ?{task_id}
+							)
+							INSERT INTO tasks (correlation_id, created_at, scheduled_start, status, attempt, bsn)
+							SELECT
+								correlation_id,
+								CURRENT_TIMESTAMP,
+								CASE
+									WHEN EXTRACT(DOW FROM scheduled_start + INTERVAL '24 hours') = 6 THEN scheduled_start + INTERVAL '3 days'
+									WHEN EXTRACT(DOW FROM scheduled_start + INTERVAL '24 hours') = 0 THEN scheduled_start + INTERVAL '2 days'
+									ELSE scheduled_start + INTERVAL '24 hours'
+								END AS scheduled_start,
+								'P',
+								attempt + 1,
+								?{bsn}
+							FROM last_attempt;">
+					<Param name="task_id" sessionKey="mid" type="INTEGER" />
+					<Param name="bsn" sessionKey="bsn" type="STRING" />
+            	</FixedQuerySender> 
+                <Forward name="success" path="EXIT" />
+            </SenderPipe>
 		</Pipeline>
 	</Adapter>
 </Module>
