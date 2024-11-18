@@ -7,8 +7,7 @@
         <Exit name="READY" state="SUCCESS" code="200"/>
 
         <SenderPipe name="storeMessage">
-            <FixedQuerySender name="storeMessage"
-                query="INSERT INTO shadowmessages (message, timestamp) VALUES (?, CURRENT_TIMESTAMP)">
+            <FixedQuerySender name="storeMessage" query="INSERT INTO shadowmessages (message, timestamp) VALUES (?, CURRENT_TIMESTAMP)">
                 <Param name="message"/>
             </FixedQuerySender>
         </SenderPipe>
