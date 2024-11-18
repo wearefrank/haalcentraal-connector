@@ -1,5 +1,12 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.8.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.31...v1.8.0) (2024-11-18)
+
+### 🍕 Features
+
+* Retry mechanism ([ebe3d09](https://github.com/wearefrank/haalcentraal-connector/commit/ebe3d097107a5e02791ffc9b96be193136bbfbd2))
+* synchronization retry mechanism ([5afb68b](https://github.com/wearefrank/haalcentraal-connector/commit/5afb68bbd058e43fbac9750b2c5b533b11d961df))
+
 ## [1.7.31](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.30...v1.7.31) (2024-11-18)
 
 ### 🐛 Bug Fixes
