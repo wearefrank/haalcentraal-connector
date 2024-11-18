@@ -27,7 +27,7 @@
 				<IbisLocalSender name="BPRPersonenBevragen" javaListener="BrpPbClientSoapListener"
 				returnedSessionKeys="Error,body,xmlbody,MapResponse" />
 				<Param name="gemeenteVanInschrijving" sessionKey="gemeenteVanInschrijving" defaultValue="${gemeenteVanInschrijving}" />
-        <Param name="SOAPAction" sessionKey="SOAPAction" />
+				<Param name="SOAPAction" sessionKey="SOAPAction" />
 				<Forward name="success" path="ExtractPersonenBody" />
 				<Forward name="exception" path="ErrorJsonToXml" />
 			</SenderPipe>
@@ -48,8 +48,7 @@
 				<Forward name="exception" path="ErrorJsonToXml" />
 			</ForEachChildElementPipe>  
 
-			<JsonPipe
-                name="ErrorJsonToXml">
+			<JsonPipe name="ErrorJsonToXml">
                 <Forward name="success" path="buildErrorMsg" />
             </JsonPipe>
 
@@ -61,10 +60,9 @@
                 <Forward name="success" path="Exception" />
             </XsltPipe>  
 
-			<SoapWrapperPipe
-                name="WrapResponse" getInputFromSessionKey="MapResponse" >
-                <Forward name="success" path="EXIT"/>
-            </SoapWrapperPipe>
+			<SoapWrapperPipe name="WrapResponse" getInputFromSessionKey="MapResponse">
+				<Forward name="success" path="EXIT"/>
+			</SoapWrapperPipe>
 		</Pipeline>
 	</Adapter>
 </Module>
