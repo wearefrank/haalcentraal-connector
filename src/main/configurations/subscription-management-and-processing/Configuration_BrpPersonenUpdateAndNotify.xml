@@ -11,7 +11,7 @@
         <Pipeline>
             <Exits>
                 <Exit name="EXIT" state="SUCCESS" code="200" />
-                <Exit name="RETRY" state="ERROR" />
+                <Exit name="RETRY" state="SUCCESS" />
                 <Exit name="EXCEPTION" state="ERROR" code="500" />
                 <Exit name="BADREQUEST" state="ERROR" code="400" />
             </Exits>
@@ -29,7 +29,7 @@
 
             <XmlIfPipe name="ShouldNotifySubscribers" expressionValue="true" xpathExpression="/root">
                 <Forward name="then" path="GetApplicationConfig" />
-                <Forward name="else" path="RETRY" />
+                <Forward name="else" path="EchoRetry" />
             </XmlIfPipe>
 
             <LocalFileSystemPipe name="GetApplicationConfig" action="read"
@@ -93,9 +93,17 @@
                     <Param name="PersonenDatabaseResult" sessionKey="PersonenDatabaseResult" />
                     <Param name="ApplicationId" xpathExpression="appIds/text()" />
                 </IbisLocalSender>
-                <Forward name="success" path="persoonNew2xml" />
+                <Forward name="success" path="EchoSuccess" />
                 <Forward name="exception" path="EXCEPTION" />
             </ForEachChildElementPipe>
+            
+            <EchoPipe name="EchoSuccess" getInputFromFixedValue="true">
+                <Forward name="success" path="EXIT" />
+            </EchoPipe>
+
+            <EchoPipe name="EchoRetry" getInputFromFixedValue="false">
+                <Forward name="success" path="RETRY" />
+            </EchoPipe>
         </Pipeline>
     </Adapter>
 </Module>

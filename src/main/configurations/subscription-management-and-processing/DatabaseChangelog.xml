@@ -3,26 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd">
 
-	<!-- When using one of the following commands, a rollback script is not required
-AddColumn
-AddDefaultValue
-AddForeignKeyConstraint
-AddLookupTable
-AddNotNullConstraint
-AddPrimaryKey
-AddUniqueConstraint
-CreateIndex
-CreateSequence
-CreateTable
-CreateView
-DropNotNullConstraint
-RenameColumn
-RenameTable
-RenameView
-TagDatabase
- -->
-
-	<!-- ChangeSet 2: Create 'Persoonsgegevens' table -->
+	<!-- ChangeSet 1: Create 'Persoonsgegevens' table -->
 	<changeSet id="HCC-1" author="Vincent de Gans">
 		<comment>Create the 'Persoonsgegevens' table</comment>
 		<createTable tableName="persoonsgegevens">
@@ -36,7 +17,7 @@ TagDatabase
 		<addAutoIncrement tableName="persoonsgegevens" columnName="id" />
 	</changeSet>
 
-	<!-- ChangeSet 3: Create 'Applicaties' table -->
+	<!-- ChangeSet 2: Create 'Applicaties' table -->
 	<changeSet id="HCC-2" author="Vincent de Gans">
 		<comment>Create the 'Applicaties' table</comment>
 		<createTable tableName="applicaties">
@@ -50,7 +31,7 @@ TagDatabase
 		</createTable>
 	</changeSet>
 
-	<!-- ChangeSet 4: Create 'Subscripties' table -->
+	<!-- ChangeSet 3: Create 'Subscripties' table -->
 	<changeSet id="HCC-3" author="Vincent de Gans">
 		<comment>Create the 'Subscripties' table</comment>
 		<createTable tableName="subscripties">
@@ -65,14 +46,45 @@ TagDatabase
 		<addAutoIncrement tableName="subscripties" columnName="id" />
 	</changeSet>
 
-	<!-- ChangeSet 5: Add foreign key constraint for 'Subscripties.app_id' -->
-	<!-- TODO: Add FK contraint when applications are stored in the database  -->
-	<!-- <changeSet id="HCC-4" author="Vincent de Gans">
-		<comment>Add foreign key constraint between 'Subscripties' and 'Applicaties' on app_id</comment>
-		<addForeignKeyConstraint baseTableName="subscripties"
-			baseColumnNames="app_id"
-			referencedTableName="applicaties"
-			referencedColumnNames="id"
-			constraintName="fk_subscripties_app_id" />
-	</changeSet> -->
+	<!-- ChangeSet 4: Create 'Tasks' table -->
+    <changeSet id="HCC-4" author="Vincent de Gans">
+		<comment>Create the 'tasks' table</comment>
+		<createTable tableName="tasks">
+			<column name="task_id" type="SERIAL">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+				<constraints nullable="false"/>
+			</column>
+			<column name="scheduled_start" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+				<constraints nullable="false"/>
+			</column>
+			<column name="status" type="CHAR(1)" defaultValue="P">
+				<constraints nullable="false"/>
+			</column>
+			<column name="attempt" type="SMALLINT" defaultValue="1">
+				<constraints nullable="false"/>
+			</column>
+			<column name="bsn" type="TEXT">
+				<constraints nullable="false"/>
+			</column>
+			<column name="correlation_id" type="uuid">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	
+		<createIndex indexName="idx_tasks_scheduled_start" tableName="tasks">
+			<column name="scheduled_start"/>
+		</createIndex>
+	
+		<createIndex indexName="idx_tasks_status" tableName="tasks">
+			<column name="status"/>
+		</createIndex>
+	</changeSet>
+
+	<!-- ChangeSet 5: Add not null constraint to subscripties app_id -->
+	<changeSet id="HCC-5" author="Vincent de Gans">
+		<comment>Add not null constraint to subscripties app_id</comment>
+		<addNotNullConstraint tableName="subscripties" columnName="app_id" />
+	</changeSet>
 </databaseChangeLog>

@@ -21,25 +21,51 @@ Build configuration from template:
 - **BuildInfo.properties**  
     Contains build-related information.
 
-- **configuration-brp-personen_afnemers_indicatie_receiver.xml**  
+- **Configuration_BrpPersonenAfnemersIndicatieReceiver.xml**  
     API endpoint that processes the subscription (add/remove) request.
 
-- **configuration-brp-personen_callback_sender.xml**  
+- **Configuration_BrpPersonenCallbackSender.xml**  
     Notifies the subscribed applications about the changes in the BRP persons' data, via their callback URLs.
 
-- **configuration-brp-personen_notification_processor.xml**  
+- **Configuration_BrpPersonenNotificationProcessor.xml**  
     Reads the notification request from the message store and processes it.
+    ```mermaid
+    flowchart TD
+        A[Receive indication to track BSN] --> B[Wait for 1 hour]
+        B --> C[Check data related to BSN]
+        C -->|Data changed| D[Notify subscribers]
+        C -->|Data not changed| E{Days since start}
 
-- **configuration-brp-personen_notification_receiver.xml**  
+        E -->|More than 3 weekdays| I
+        E -->|Less than 3 weekdays| G[Schedule check in 24 hours] --> C
+
+        D --> I[End]
+    ```
+
+Database structure for tasks:
+
+| **Column Name**     | **Data Type** | **Default Value**          | **Description**                                                                 |
+|---------------------|---------------|----------------------------|---------------------------------------------------------------------------------|
+| `task_id`           | `SERIAL`      | N/A                        | Auto-incrementing identifier for the task (Primary Key part 1).                 |
+| `created_at`        | `TIMESTAMP`   | `CURRENT_TIMESTAMP`        | The timestamp when the task was created.                                         |
+| `scheduled_start`   | `TIMESTAMP`   | `CURRENT_TIMESTAMP`        | The timestamp when the task is scheduled to start (default 1 hour after insert). |
+| `status`            | `CHAR(1)`     | `'P'`                      | The current status of the task. ('P' = Pending, other values as needed).        |
+| `is_retry`          | `BOOLEAN`     | `FALSE`                    | Indicates whether the task is a retry (Boolean value).                          |
+| `message`           | `TEXT`        | N/A                        | The message associated with the task, storing the data in JSON or plain text.    |
+
+- **Configuration_BrpPersonenNotificationReceiver.xml**  
     API endpoint that places the notification in the message store, receives identifier(s) that specify which person(s) information changed.
 
-- **configuration-brp-personen_notification_retry_scheduler.xml**  
+- **Configuration_BrpPersonenNotificationRetryScheduler.xml**  
     Schedules the retry of the notification when the retrieved person information has not changed (yet).
 
-- **configuration-brp-personen_query_sender.xml**  
+- **Configuration_BrpPersonenQuerySender.xml**  
     Sends a query to the BRP to retrieve the specified person information.
 
-- **configuration-brp-personen_update.xml**  
+- **Configuration_BrpPersonenSynchronizePersoon.xml**
+    Synchronizes the person information with the BRP.
+
+- **Configuration_BrpPersonenUpdateAndNotify**  
     Updates/enters the person information in the database, if the retrieved person information has changed, or no previous entry was found in the database.
 
 - **Configuration.xml**  
@@ -48,7 +74,7 @@ Build configuration from template:
 - **Configuration_EndpointRouter.xml**  
     Routes the incoming requests to the appropriate receivers.
 
-- **Configuration_ImportFromLocalFS.xml**  
+- **Configuration_XmlFileAdapter.xml**  
     Custom adapter to read local files. Returns XML data if the file contains XML, otherwise tries to convert the file to XML.
 
 - **DatabaseChangelog.xml**  
@@ -66,6 +92,13 @@ Build configuration from template:
 - **json/**  
   - `DataChangeNotificationSchema.json`
   - `MappingApplication.json` Contains hardcoded information about applications which are allowed to subscribe to persons.
+
+- **jsonnet**
+  - `ApplicationsFilter.jsonnet` Used for extracting the application ids from the database.
+  - `ExtractBody.jsonnet` Removes siblings from the body of a javascript response.
+  - `ExtractDatabaseRows.jsonnet` Extracts the data from the rows from a database query.
+  - `ExtractUpdateBody.jsonnet` Extracts the updated body from a javascript response.
+  - `FilterApplicationsById.jsonnet` Retrieve config information for a list of application ids.
 
 - **xsd/**  
   This directory holds XSD schema files.
