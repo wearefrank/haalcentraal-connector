@@ -65,7 +65,6 @@
                 name="WrapResponse" getInputFromSessionKey="MapResponse" >
                 <Forward name="success" path="EXIT"/>
             </SoapWrapperPipe>
-
 		</Pipeline>
 	</Adapter>
 </Module>
