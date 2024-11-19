@@ -55,7 +55,8 @@
 					keystore="${haalcentraal_cert_path}"
 					keystorePassword="${haalcentraal_cert_pass}"
 					keystoreAlias="haalcentraal"
-					keystoreType="PKCS12">
+					keystoreType="PKCS12"
+					allowSelfSignedCertificates="true">
 					<Param name="token" sessionKey="token" />
 					<Param name="Accept" sessionKey="headerAccept"/>
 					<Param name="Content-Type" sessionKey="headerContent-Type"/>
