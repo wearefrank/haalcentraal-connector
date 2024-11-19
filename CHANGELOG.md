@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.8.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.5...v1.8.6) (2024-11-19)
+
+### 🐛 Bug Fixes
+
+* trigger release ([4d86758](https://github.com/wearefrank/haalcentraal-connector/commit/4d867587ef5881e4fb1689f9b4a4eaca5a945a94))
+
 ## [1.8.5](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.4...v1.8.5) (2024-11-19)
 
 ### 🐛 Bug Fixes
