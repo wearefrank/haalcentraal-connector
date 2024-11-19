@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.8.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.1...v1.8.2) (2024-11-19)
+
+### 🐛 Bug Fixes
+
+* tablelistener attribute ([2a4e1db](https://github.com/wearefrank/haalcentraal-connector/commit/2a4e1db17a56d9a9650bf1fb4481ea3907c762f3))
+
 ## [1.8.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.0...v1.8.1) (2024-11-19)
 
 ### 🐛 Bug Fixes
