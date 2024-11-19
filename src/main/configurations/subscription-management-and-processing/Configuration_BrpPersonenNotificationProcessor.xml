@@ -5,9 +5,7 @@
 	<Adapter name="BrpPersonenNotificationProcessor"
 		description="brp personen notification processor">
 		<Receiver name="BrpPersonenNotificationProcessorDailyTaskListener">
-			<JdbcTableListener tableName="tasks" statusField="status" statusValueError="E" statusValueProcessed="C" keyField="task_id" messageField="bsn"
-			selectQuery="SELECT * FROM tasks WHERE status = 'P'"
-			selectCondition="scheduled_start &lt;= NOW()"/>
+			<JdbcTableListener tableName="tasks" statusField="status" statusValueError="E" statusValueProcessed="C" keyField="task_id" messageField="bsn" selectCondition="scheduled_start &lt;= NOW()"/>
 		</Receiver>
 
 		<Receiver name="NotificationProcessorApi">
