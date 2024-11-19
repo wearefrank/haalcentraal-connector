@@ -53,6 +53,8 @@
 					parametersToSkipWhenEmpty="Accept,Content-Type"
 					contentType="application/json"
 					keystore="${haalcentraal_cert_path}"
+					keystorePassword="${haalcentraal_cert_pass}"
+					keystoreAlias="haalcentraal"
 					keystoreType="PKCS12">
 					<Param name="token" sessionKey="token" />
 					<Param name="Accept" sessionKey="headerAccept"/>
