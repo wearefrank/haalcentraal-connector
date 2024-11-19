@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.8.8](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.7...v1.8.8) (2024-11-19)
+
+### 🐛 Bug Fixes
+
+* allow self signed certs in hc sender ([a81ef21](https://github.com/wearefrank/haalcentraal-connector/commit/a81ef21cf9f8e7ffc602431942c5501cfcf3f907))
+
 ## [1.8.7](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.6...v1.8.7) (2024-11-19)
 
 ### 🐛 Bug Fixes
