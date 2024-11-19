@@ -53,8 +53,7 @@
 					parametersToSkipWhenEmpty="Accept,Content-Type"
 					contentType="application/json"
 					keystore="${haalcentraal_cert_path}"
-					keystoreType="PEM"
-					keyManagerAlgorithm="TLS_RSA_WITH_AES_128_GCM_SHA256">
+					keystoreType="PKCS12">
 					<Param name="token" sessionKey="token" />
 					<Param name="Accept" sessionKey="headerAccept"/>
 					<Param name="Content-Type" sessionKey="headerContent-Type"/>
