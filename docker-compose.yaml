@@ -34,9 +34,9 @@ services:
         - action: sync+restart
           path: ./src/main/resources/ladybug/DatabaseChangelog_Custom.xml
           target: /opt/frank/resources/ladybug/DatabaseChangelog_Custom.xml
-        - action: sync+restart
-          path: ./src/main/resources/springIbisTestToolCustom.xml
-          target: /opt/frank/resources/springIbisTestToolCustom.xml
+#        - action: sync+restart
+#          path: ./src/main/resources/springIbisTestToolCustom.xml
+#          target: /opt/frank/resources/springIbisTestToolCustom.xml
         - action: sync+restart
           path: ./src/main/secrets
           target: /opt/frank/secrets
