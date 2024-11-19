@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.8.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.0...v1.8.1) (2024-11-19)
+
+### 🐛 Bug Fixes
+
+* add keystore reference to haalcentraal sender ([d1b8fd3](https://github.com/wearefrank/haalcentraal-connector/commit/d1b8fd3d28683d52fd39fcdb9fc2cca870ffccf1))
+
 ## [1.8.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.7.31...v1.8.0) (2024-11-18)
 
 ### 🍕 Features
