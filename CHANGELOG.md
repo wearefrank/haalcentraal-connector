@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.8.7](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.6...v1.8.7) (2024-11-19)
+
+### 🐛 Bug Fixes
+
+* add keystore pass and alias ([229b6db](https://github.com/wearefrank/haalcentraal-connector/commit/229b6db33f4623abc344df44c09befe20a7d3c09))
+
 ## [1.8.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.5...v1.8.6) (2024-11-19)
 
 ### 🐛 Bug Fixes
