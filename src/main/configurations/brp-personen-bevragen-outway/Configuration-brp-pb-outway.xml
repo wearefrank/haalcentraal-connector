@@ -52,7 +52,8 @@
 					headersParams="token,Accept,Content-Type"
 					parametersToSkipWhenEmpty="Accept,Content-Type"
 					contentType="application/json"
-					allowSelfSignedCertificates="true">
+					keystore="${haalcentraal_cert_path}"
+					keystoreType="PEM">
 					<Param name="token" sessionKey="token" />
 					<Param name="Accept" sessionKey="headerAccept"/>
 					<Param name="Content-Type" sessionKey="headerContent-Type"/>
