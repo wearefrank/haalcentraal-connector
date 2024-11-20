@@ -49,7 +49,7 @@
 				<HttpSender
 					url="${haalcentraal.BRP.personen.bevragen.endpoint}/personen"
 					methodType="POST"
-					headersParams="token,Accept,Content-Type"
+					headersParams="Authorization,Accept,Content-Type"
 					parametersToSkipWhenEmpty="Accept,Content-Type"
 					contentType="application/json"
 					keystore="${haalcentraal_cert_path}"
@@ -57,7 +57,9 @@
 					keystoreAlias="haalcentraal"
 					keystoreType="PKCS12"
 					allowSelfSignedCertificates="true">
-					<Param name="token" sessionKey="token" />
+					<Param name="Authorization" pattern="Bearer {token}">
+						<Param name="token" sessionKey="token"/>
+					</Param>
 					<Param name="Accept" sessionKey="headerAccept"/>
 					<Param name="Content-Type" sessionKey="headerContent-Type"/>
 				</HttpSender>
