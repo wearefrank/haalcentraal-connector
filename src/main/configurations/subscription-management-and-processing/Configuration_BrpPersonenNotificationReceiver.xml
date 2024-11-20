@@ -42,7 +42,7 @@
 					<Param name="currentBsn" sessionKey="bsn" type="INTEGER"/>
 					<Param name="historicBsn" xpathExpression="." type="INTEGER"/>
             	</FixedQuerySender>
-				<Forward name="success" path="checkBsnChange"/>
+				<Forward name="success" path="InsertNotification"/>
 				<Forward name="exception" path="BadRequestPipe"/>
 			</ForEachChildElementPipe>
 
