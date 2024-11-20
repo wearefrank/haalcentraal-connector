@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.8.10](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.9...v1.8.10) (2024-11-20)
+
+### 🐛 Bug Fixes
+
+* Authorization header in api call ([99b0cfa](https://github.com/wearefrank/haalcentraal-connector/commit/99b0cfa103c3a29fa8ce6912d627cbd0afc9681c))
+
 ## [1.8.9](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.8...v1.8.9) (2024-11-20)
 
 ### 🐛 Bug Fixes
