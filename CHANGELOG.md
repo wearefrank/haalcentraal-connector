@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.8.11](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.10...v1.8.11) (2024-11-20)
+
+### 🐛 Bug Fixes
+
+* haalcentraal api url ([c5b86db](https://github.com/wearefrank/haalcentraal-connector/commit/c5b86dbf581c0cbde459f9ea914009fbd2832e84))
+
 ## [1.8.10](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.9...v1.8.10) (2024-11-20)
 
 ### 🐛 Bug Fixes
