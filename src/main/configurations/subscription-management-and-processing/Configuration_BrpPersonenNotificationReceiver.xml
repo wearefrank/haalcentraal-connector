@@ -15,7 +15,6 @@
 		<Pipeline>
 			<Exits>
 				<Exit name="EXIT" state="SUCCESS" code="202" />
-				<Exit name="NoSubscribersToPerson" state="SUCCESS" code="201" />
 				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
 			</Exits>
 
@@ -91,10 +90,6 @@
 
 			<JsonPipe name="BadRequestPipe" direction="XML2JSON">
 				<Forward name="success" path="BadRequest"/>
-			</JsonPipe>
-
-			<JsonPipe name="NoSubscribersToPersonPipe" direction="XML2JSON">
-				<Forward name="success" path="NoSubscribersToPerson"/>
 			</JsonPipe>
 		</Pipeline>
 	</Adapter>
