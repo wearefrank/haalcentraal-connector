@@ -46,13 +46,13 @@
 				<Forward name="exception" path="BadRequestPipe"/>
 			</ForEachChildElementPipe>
 
-            <XmlIfPipe name="checkBsnChange" xpathExpression="//result[rowsupdated != 0]">
+            <!-- <XmlIfPipe name="checkBsnChange" xpathExpression="//result[rowsupdated != 0]">
                 <Forward name="then" path="InsertNotification"/>
                 <Forward name="else" path="GetSubscribers"/>
-            </XmlIfPipe>
+            </XmlIfPipe> -->
 
             <!-- Retrieve acrive subscriptions to current bsn -->
-            <SenderPipe name="GetSubscribers">
+            <!-- <SenderPipe name="GetSubscribers">
                 <FixedQuerySender
 					name="getPersonenSender"
                     queryType="SELECT"
@@ -62,17 +62,17 @@
             	</FixedQuerySender> 
                 <Forward name="success" path="CheckSubscriptionCount" />
                 <Forward name="exception" path="BadRequestPipe" />
-            </SenderPipe>
+            </SenderPipe> -->
 
             <!-- Check if subscriptions are found -->
-            <XmlIfPipe
+            <!-- <XmlIfPipe
                 name="CheckSubscriptionCount"
                 xpathExpression="count(result/rowset/row) > 0"
             >
                 <Forward name="then" path="InsertNotification"/>
                 <Forward name="else" path="NoSubscribersToPersonPipe"/>
                 <Forward name="exception" path="BadRequestPipe"/>
-            </XmlIfPipe>
+            </XmlIfPipe> -->
 
             <!-- Add bsn to the update processing queue -->
             <SenderPipe name="InsertNotification" getInputFromSessionKey="originalMessage">
