@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.8.12](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.11...v1.8.12) (2024-11-20)
+
+### 🐛 Bug Fixes
+
+* add truststore reference to remove allowSelfSignedCertificates=true ([bc9c51f](https://github.com/wearefrank/haalcentraal-connector/commit/bc9c51fab8f2a62a4e264f707f3c110d3a2decb0))
+
 ## [1.8.11](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.10...v1.8.11) (2024-11-20)
 
 ### 🐛 Bug Fixes
