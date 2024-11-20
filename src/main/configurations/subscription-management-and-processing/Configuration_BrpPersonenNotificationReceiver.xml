@@ -96,7 +96,6 @@
 			<JsonPipe name="NoSubscribersToPersonPipe" direction="XML2JSON">
 				<Forward name="success" path="NoSubscribersToPerson"/>
 			</JsonPipe>
-
 		</Pipeline>
 	</Adapter>
 </Module>
