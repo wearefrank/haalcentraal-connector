@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.8.15](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.14...v1.8.15) (2024-11-21)
+
+### 🐛 Bug Fixes
+
+* Subscription timing ([7393c1c](https://github.com/wearefrank/haalcentraal-connector/commit/7393c1cb6e498099ebdeaf813b25766533f8d7c8))
+
 ## [1.8.14](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.13...v1.8.14) (2024-11-21)
 
 ### 🐛 Bug Fixes
