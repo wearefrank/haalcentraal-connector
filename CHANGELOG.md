@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.8.16](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.15...v1.8.16) (2024-11-21)
+
+### 🐛 Bug Fixes
+
+* synchronizepersoon ([0ed7c7e](https://github.com/wearefrank/haalcentraal-connector/commit/0ed7c7e42107aa5aeec6962406510c59f532ffb0))
+
 ## [1.8.15](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.14...v1.8.15) (2024-11-21)
 
 ### 🐛 Bug Fixes
