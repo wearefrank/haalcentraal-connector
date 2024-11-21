@@ -15,7 +15,6 @@
 		<Pipeline>
 			<Exits>
 				<Exit name="EXIT" state="SUCCESS" code="202" />
-				<Exit name="NoSubscribersToPerson" state="SUCCESS" code="201" />
 				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
 			</Exits>
 
@@ -42,37 +41,9 @@
 					<Param name="currentBsn" sessionKey="bsn" type="INTEGER"/>
 					<Param name="historicBsn" xpathExpression="." type="INTEGER"/>
             	</FixedQuerySender>
-				<Forward name="success" path="checkBsnChange"/>
+				<Forward name="success" path="InsertNotification"/>
 				<Forward name="exception" path="BadRequestPipe"/>
 			</ForEachChildElementPipe>
-
-            <XmlIfPipe name="checkBsnChange" xpathExpression="//result[rowsupdated != 0]">
-                <Forward name="then" path="InsertNotification"/>
-                <Forward name="else" path="GetSubscribers"/>
-            </XmlIfPipe>
-
-            <!-- Retrieve acrive subscriptions to current bsn -->
-            <SenderPipe name="GetSubscribers">
-                <FixedQuerySender
-					name="getPersonenSender"
-                    queryType="SELECT"
-					query="SELECT 1 FROM subscripties WHERE bsn=?{burgerservicenummer} AND eind_datum IS NULL"
-					includeFieldDefinition="false">
-					<Param name="burgerservicenummer" sessionKey="bsn"/>
-            	</FixedQuerySender> 
-                <Forward name="success" path="CheckSubscriptionCount" />
-                <Forward name="exception" path="BadRequestPipe" />
-            </SenderPipe>
-
-            <!-- Check if subscriptions are found -->
-            <XmlIfPipe
-                name="CheckSubscriptionCount"
-                xpathExpression="count(result/rowset/row) > 0"
-            >
-                <Forward name="then" path="InsertNotification"/>
-                <Forward name="else" path="NoSubscribersToPersonPipe"/>
-                <Forward name="exception" path="BadRequestPipe"/>
-            </XmlIfPipe>
 
             <!-- Add bsn to the update processing queue -->
             <SenderPipe name="InsertNotification" getInputFromSessionKey="originalMessage">
@@ -92,11 +63,6 @@
 			<JsonPipe name="BadRequestPipe" direction="XML2JSON">
 				<Forward name="success" path="BadRequest"/>
 			</JsonPipe>
-
-			<JsonPipe name="NoSubscribersToPersonPipe" direction="XML2JSON">
-				<Forward name="success" path="NoSubscribersToPerson"/>
-			</JsonPipe>
-
 		</Pipeline>
 	</Adapter>
 </Module>

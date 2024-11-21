@@ -8,20 +8,40 @@
 			<JdbcTableListener tableName="tasks" statusField="status" statusValueError="E" statusValueProcessed="C" keyField="task_id" messageField="bsn" selectCondition="scheduled_start &lt;= NOW()"/>
 		</Receiver>
 
-		<Receiver name="NotificationProcessorApi">
-			<ApiListener name="NotificationProcessorApiListener" uriPattern="notification" />
-		</Receiver>
-
 		<Pipeline>
 			<Exits>
 				<Exit name="EXIT" state="SUCCESS" />
 				<Exit name="EXCEPTION" state="ERROR" />
+				<Exit name="NoSubscribersToPerson" state="SUCCESS" />
 			</Exits>
 
             <PutInSessionPipe name="ExtractIncomingNotificationData">
                 <Param name="bsn" sessionKey="originalMessage" />
                 <Forward name="success" path="processNotifications"/>
             </PutInSessionPipe>
+
+			<!-- Check if subscribers are found for the task bsn -->
+            <SenderPipe name="GetSubscribers">
+                <FixedQuerySender
+					name="getPersonenSender"
+                    queryType="SELECT"
+					query="SELECT 1 FROM subscripties WHERE bsn=?{bsn} AND eind_datum IS NULL"
+					includeFieldDefinition="false">
+					<Param name="bsn" sessionKey="bsn"/>
+            	</FixedQuerySender> 
+                <Forward name="success" path="CheckSubscriptionCount" />
+                <Forward name="exception" path="BadRequestPipe" />
+            </SenderPipe>
+
+            <!-- Check if subscriptions are found -->
+            <XmlIfPipe
+                name="CheckSubscriptionCount"
+                xpathExpression="count(result/rowset/row) > 0"
+            >
+				<!-- Process the task if subscribers are found, else exit -->
+                <Forward name="then" path="processNotifications"/>
+                <Forward name="else" path="NoSubscribersToPerson"/>
+            </XmlIfPipe>
 
 			<SenderPipe name="processNotifications">
                 <IbisLocalSender

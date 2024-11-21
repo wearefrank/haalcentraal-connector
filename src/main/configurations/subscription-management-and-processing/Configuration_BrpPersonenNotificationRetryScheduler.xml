@@ -44,7 +44,6 @@
 				<Param name="notification_id" sessionKey="originalMessage" defaultValue="-1" type="INTEGER"/>
 				<Forward name="success" path="EXIT" />
 			</SenderPipe>
-
 		</Pipeline>
 	</Adapter>
 	<!-- cronExpression="0 * * * * ?" for every minute-->
