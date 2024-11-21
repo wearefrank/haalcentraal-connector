@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.8.13](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.12...v1.8.13) (2024-11-21)
+
+### 🐛 Bug Fixes
+
+* Remove unused pipe ([5485e68](https://github.com/wearefrank/haalcentraal-connector/commit/5485e6869ed210b9a27708f1fe55658b6d6dbbe1))
+
 ## [1.8.12](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.11...v1.8.12) (2024-11-20)
 
 ### 🐛 Bug Fixes
