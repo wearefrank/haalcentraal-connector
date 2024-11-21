@@ -47,18 +47,12 @@
             throwException="true">
         </Json2XmlValidatorPipe>
 
-        <SenderPipe name="GetPersoon" storeResultInSessionKey="newJSON" maxRetries="3" retryMinInterval="60" retryMaxInterval="240">
+        <SenderPipe name="GetPersoon" storeResultInSessionKey="newJSON"
+                    maxRetries="3" retryMinInterval="60" retryMaxInterval="240">
             <IbisLocalSender name="GetPersoonSender" javaListener="BrpPbOutwayListener" />
-            <Forward name="success" path="persoonOld2xml" />
+            <Forward name="success" path="JsonComparator" />
             <Forward name="exception" path="BadRequest" />
         </SenderPipe>
-
-        <JsonPipe name="persoonOld2xml" />
-
-        <PutInSessionPipe
-            name="storeBsnInSession">
-            <Param name="burgerservicenummer" xpathExpression='//burgerservicenummer/text()' />
-        </PutInSessionPipe>
 
         <!-- returns true if it's a subset, else returns a combined json version that can be
         immediately put in the database-->
