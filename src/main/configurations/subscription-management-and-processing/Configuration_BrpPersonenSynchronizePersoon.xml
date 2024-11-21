@@ -20,8 +20,6 @@
             <Exit name="ServiceUnavailable" state="ERROR" code="503" />
         </Exits>
 
-        <JsonPipe name="JsonToXmlInput" />
-
         <SenderPipe name="GetPersoonOldJson" storeResultInSessionKey="oldJSON">
             <FixedQuerySender
                 name="getPersonenSender"
