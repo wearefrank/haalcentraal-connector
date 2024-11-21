@@ -22,7 +22,8 @@
                         treatInputMessageAsParameters="false"
                         truststore="${haalcentraal_cert_path}"
                         truststorePassword="${haalcentraal_cert_pass}"
-                        truststoreType="PKCS12">
+                        truststoreType="PKCS12"
+                        allowSelfSignedCertificates="true">
                     <Param name="grant_type" value="client_credentials" />
                     <Param name="client_id" pattern="${oauth.client-id}" hidden="true"/>
                     <Param name="client_secret" pattern="${oauth.client-secret}" hidden="true"/>

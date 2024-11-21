@@ -58,7 +58,8 @@
 					keystoreType="PKCS12"
 					truststore="${haalcentraal_cert_path}"
 					truststorePassword="${haalcentraal_cert_pass}"
-					truststoreType="PKCS12">
+					truststoreType="PKCS12"
+					allowSelfSignedCertificates="true">
 					<Param name="Authorization" pattern="Bearer {token}">
 						<Param name="token" sessionKey="token"/>
 					</Param>
