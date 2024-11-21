@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.8.18](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.17...v1.8.18) (2024-11-21)
+
+### 🐛 Bug Fixes
+
+* try changeing truststore to keystore properties ([bc348f9](https://github.com/wearefrank/haalcentraal-connector/commit/bc348f9c3778ea11bf715a604cf196c6d6b04bf3))
+
 ## [1.8.17](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.16...v1.8.17) (2024-11-21)
 
 ### 🐛 Bug Fixes
