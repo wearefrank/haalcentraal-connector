@@ -20,9 +20,9 @@
                         postType="URLENCODED"
                         headersParams="Accept, Content-Type"
                         treatInputMessageAsParameters="false"
-                        truststore="${haalcentraal_cert_path}"
-                        truststorePassword="${haalcentraal_cert_pass}"
-                        truststoreType="PKCS12">
+                        keystore="${haalcentraal_cert_path}"
+                        keystorePassword="${haalcentraal_cert_pass}"
+                        keystoreType="PKCS12">
                     <Param name="grant_type" value="client_credentials" />
                     <Param name="client_id" pattern="${oauth.client-id}" hidden="true"/>
                     <Param name="client_secret" pattern="${oauth.client-secret}" hidden="true"/>
