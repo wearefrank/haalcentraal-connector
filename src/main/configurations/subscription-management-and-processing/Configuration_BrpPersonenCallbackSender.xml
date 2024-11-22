@@ -71,6 +71,24 @@
 				<Param name="url" xpathExpression="root/app/url" />
 			</PutInSessionPipe>
 
+			<XmlIfPipe name="CheckCallbackAction" >
+				<Param name="action" sessionKey="skipCallback" />
+				<Forward name="then" path="sendMessageToShadowdb" />
+				<Forward name="else" path="callback" />
+			</XmlIfPipe>
+
+			<!-- TODO: Extract bsn from callback message -->
+
+			<SenderPipe name="SendMessageToShadowdb">
+				<FixedQuerySender name="storeCallbackMessage" query="INSERT INTO shadowmessages (message, app_id, bsn, timestamp) VALUES (?, ?, ?, CURRENT_TIMESTAMP)">
+					<Param name="message" sessionKey="soapMessage" />
+					<Param name="appId" xpathExpression="root/applicationId" sessionKey="inputXml"  />
+					<Param name="bsn" value="0" />
+				</FixedQuerySender>
+				<Forward name="success" path="EXIT" />
+				<Forward name="exception" path="EXCEPTION" />
+			</SenderPipe>
+
 			<SenderPipe
 				name="callback"
 				getInputFromSessionKey="soapMessage">
