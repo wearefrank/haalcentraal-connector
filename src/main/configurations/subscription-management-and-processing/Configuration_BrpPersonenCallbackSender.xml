@@ -27,6 +27,10 @@
 				<Exit name="EXCEPTION" state="ERROR" />
 			</Exits>
 
+			<PutInSessionPipe name="SendCallbackToDatabase">
+				<Param name="skipCallback" value="1" />
+			</PutInSessionPipe>
+
 			<JsonPipe name="ConvertMessageStoreToXml" storeResultInSessionKey="inputXml"/>
 
 			<!-- Read application config file -->
