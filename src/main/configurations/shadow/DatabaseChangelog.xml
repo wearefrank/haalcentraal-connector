@@ -16,4 +16,13 @@
 		<addAutoIncrement tableName="shadowmessages" columnName="id" columnDataType="int" />
 	</changeSet>
 
+	<changeSet id="shadow-2" author="Vincent de Gans">
+		<comment>Add columns to shadow table</comment>
+		<addColumn tableName="shadowmessages">
+			<column name="bsn" type="varchar(255)" />
+			<column name="app_id" type="varchar(255)" />
+			<column name="is_frank" type="boolean" />
+		</addColumn>
+	</changeSet>
+
 </databaseChangeLog>
