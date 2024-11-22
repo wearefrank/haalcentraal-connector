@@ -6,9 +6,13 @@
     <Pipeline>
         <Exit name="READY" state="SUCCESS" code="200"/>
 
+        <!-- TODO: Extract appid and bsn -->
+
         <SenderPipe name="storeMessage">
-            <FixedQuerySender name="storeMessage" query="INSERT INTO shadowmessages (message, timestamp) VALUES (?, CURRENT_TIMESTAMP)">
+            <FixedQuerySender name="storeMessage" query="INSERT INTO shadowmessages (message, app_id, bsn, timestamp) VALUES (?, ?, ?, CURRENT_TIMESTAMP)">
                 <Param name="message"/>
+                <Param name="appId" value="0" />
+                <Param name="bsn" value="0" />
             </FixedQuerySender>
         </SenderPipe>
     </Pipeline>
