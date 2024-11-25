@@ -43,6 +43,8 @@
                 <Forward name="else" path="NoSubscribersToPerson"/>
             </XmlIfPipe>
 
+			<!-- TODO: Skip sync, or update bsn for ACC -->
+
 			<SenderPipe name="processNotifications">
                 <IbisLocalSender
                     name="personenUpdater"
