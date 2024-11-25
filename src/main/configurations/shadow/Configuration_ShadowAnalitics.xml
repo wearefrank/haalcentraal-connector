@@ -1,0 +1,33 @@
+<Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+    <Adapter name="ShadowAnalitics" description="">
+        <Receiver name="ShadowAnalitics">
+            <ApiListener name="ShadowAnaliticsListener" uriPattern="${haalcentraal_connector.shadow.analitics.endpoint}" method="GET"/>
+        </Receiver>
+
+        <Pipeline>
+            <Exits>
+                <Exit name="READY" state="SUCCESS" code="200"/>
+            </Exits>
+
+            <SenderPipe name="storeMessage">
+                <FixedQuerySender name="storeMessage" queryType="SELECT" query="SELECT 
+                        (SELECT COUNT(*) FROM shadowmessages WHERE is_frank = FALSE) AS total,
+                        COUNT(DISTINCT external.id) AS matched,
+                        (SELECT COUNT(*) FROM shadowmessages WHERE is_frank = FALSE)
+                        - COUNT(DISTINCT external.id) AS unmatched,
+                        COUNT(*) AS not_frank_messages,
+                        (SELECT COUNT(*) FROM shadowmessages WHERE is_frank = TRUE) AS frank_messages
+                    FROM shadowmessages AS external
+                    LEFT JOIN shadowmessages AS internal
+                    ON external.bsn = internal.bsn
+                    AND external.app_id = internal.app_id
+                    AND internal.is_frank = TRUE
+                    AND ABS(EXTRACT(EPOCH FROM (DATE_TRUNC('second', external.timestamp) - DATE_TRUNC('second', internal.timestamp)))) &lt;= 48 * 3600
+                    WHERE external.is_frank = FALSE
+                    AND ABS(EXTRACT(EPOCH FROM (DATE_TRUNC('second', external.timestamp) - DATE_TRUNC('second', internal.timestamp)))) &lt;= 48 * 3600;
+                    ">
+                </FixedQuerySender>
+            </SenderPipe>
+        </Pipeline>
+    </Adapter>
+</Module>
