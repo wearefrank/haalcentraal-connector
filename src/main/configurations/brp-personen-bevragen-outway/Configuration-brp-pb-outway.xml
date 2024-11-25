@@ -55,7 +55,8 @@
 					keystore="${haalcentraal_cert_path}"
 					keystorePassword="${haalcentraal_cert_pass}"
 					keystoreAlias="haalcentraal"
-					keystoreType="PKCS12">
+					keystoreType="PKCS12"
+				>
 					<Param name="Authorization" pattern="Bearer {token}">
 						<Param name="token" sessionKey="token"/>
 					</Param>
@@ -64,8 +65,8 @@
 				</HttpSender>
 
 				<Forward name="success" path="ExtractPersonenBody" />
+				<Forward name="401" path="IfLoopPrevention" />
 				<Forward name="400" path="BadRequest" />
-				<Forward name="401" path="NotAuthorized" />
 				<Forward name="403" path="Forbidden" />
 				<Forward name="404" path="NotFound" />
 				<Forward name="406" path="NotAcceptable" />
@@ -77,7 +78,7 @@
 
 			<XmlIfPipe name="IfLoopPrevention" getInputFromSessionKey="loopPrevention"
 				active="${isDiginetwerk}">
-				<Forward name="then" path="Forbidden" />
+				<Forward name="then" path="NotAuthorized" />
 				<Forward name="else" path="TokenExpiryFlow" />
 			</XmlIfPipe>
 
@@ -87,17 +88,9 @@
 			</SenderPipe>
 
 			<PutInSessionPipe name="PutLoopPreventionInSession" sessionKey="loopPrevention"
-				value="true" active="${isDiginetwerk}" />
-			
-			<!-- url="${mockservive.haalcentraal.BRP.personen.bevragen.endpoint}/personen" -->
-			<!--If
-			the error was caused by something else than an expired token, then go to exit
-			'forbidden',
-				otherwise, retry the actual call with the new token-->
-			<XmlIfPipe name="IfDifferentError" expressionValue="false" active="${isDiginetwerk}">
-				<Forward name="then" path="Forbidden" />
-				<Forward name="else" path="PostBRPPersonenBevragenDiginetwerk" />
-			</XmlIfPipe>
+				value="true" active="${isDiginetwerk}">
+				<Forward name="success" path="PostBRPPersonenBevragenDiginetwerk" />
+			</PutInSessionPipe>
 
 			<SenderPipe name="PostBRPPersonenBevragenTestEnv">
 				<HttpSender
