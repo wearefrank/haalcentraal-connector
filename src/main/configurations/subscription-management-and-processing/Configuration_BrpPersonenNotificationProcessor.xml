@@ -30,7 +30,7 @@
 					<Param name="bsn" sessionKey="bsn"/>
             	</FixedQuerySender> 
                 <Forward name="success" path="CheckSubscriptionCount" />
-                <Forward name="exception" path="BadRequestPipe" />
+                <Forward name="exception" path="EXCEPTION" />
             </SenderPipe>
 
             <!-- Check if subscriptions are found -->
