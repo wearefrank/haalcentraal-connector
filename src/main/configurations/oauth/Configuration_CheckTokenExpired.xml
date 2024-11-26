@@ -11,7 +11,7 @@
 
         <JsonPipe name="Json2Xml" />
 
-        <XsltPipe name="IsTokenExpired"  xpathExpression="root/error/text() = 'token expired'" />
+        <XsltPipe name="IsTokenExpired"  xpathExpression="root/detail/text() = 'APIGW: client-access_token is not valid'" />
 
     </Pipeline>
 </Adapter>

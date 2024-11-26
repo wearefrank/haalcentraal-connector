@@ -83,7 +83,7 @@
 				<Forward name="else" path="TokenExpiryFlow"/>
 			</XmlIfPipe>
 
-			<SenderPipe name="TokenExpiryFlow" active="${isDiginetwerk}">
+			<SenderPipe name="TokenExpiryFlow" active="${isDiginetwerk}" preserveInput="true">
 				<IbisLocalSender name="TokenExpiryFlowSender" javaListener="TokenExpiryFlowListener"
 					returnedSessionKeys="token" />
 			</SenderPipe>
