@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.8.20](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.19...v1.8.20) (2024-11-26)
+
+### 🐛 Bug Fixes
+
+* enable allowSelfSignedCertificates for now ([37a8aa2](https://github.com/wearefrank/haalcentraal-connector/commit/37a8aa2e194791c39805aba0450b1ea62ecf3716))
+
 ## [1.8.19](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.18...v1.8.19) (2024-11-25)
 
 ### 🐛 Bug Fixes
