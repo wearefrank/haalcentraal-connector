@@ -76,12 +76,6 @@
 				<Forward name="503" path="ServiceUnavailable" />
 			</SenderPipe>
 
-			<XmlIfPipe name="IfLoopPrevention" getInputFromSessionKey="loopPrevention"
-				active="${isDiginetwerk}">
-				<Forward name="then" path="NotAuthorized" />
-				<Forward name="else" path="TokenExpiryFlow" />
-			</XmlIfPipe>
-
 			<EchoPipe name="ExitPipe" onlyIfSessionKey="loopPrevention">
 				<Forward name="success" path="Exit"/>
 			</EchoPipe>
