@@ -69,27 +69,22 @@
 
         <JsonPipe name="ConvertJavascriptResultToXml" />
         
-        <PutInSessionPipe name="StoreJavascriptResults">
-            <Param name="ShouldInsert" xpathExpression="root/hasDifferences" />
-        </PutInSessionPipe>
-        
         <!--If the value is 'true', this means the data shouldn't be updated, so just exit the pipeline-->
-        <XmlIfPipe name="ShouldInsert" expressionValue="true" getInputFromSessionKey="ShouldInsert">
-            <Forward name="then" path="ExtractPersonenBody" />
-            <Forward name="else" path="Exit" />
+        <XmlIfPipe name="ShouldInsert" xpathExpression="root/hasDifferences" expressionValue="true">
+            <Forward name="then" path="InsertPersoon" />
+            <Forward name="else" path="NotUpdatedExit" />
         </XmlIfPipe>
-
-        <DataSonnetPipe name="ExtractPersonenBody" preserveInput="true" storeResultInSessionKey="updatedJson" styleSheetName="jsonnet/ExtractUpdateBody.jsonnet" getInputFromSessionKey="json"/>
 
         <SenderPipe name="InsertPersoon" preserveInput="true">
             <FixedQuerySender
                 name="insertPersonenSender"
                 query="INSERT INTO persoonsgegevens(bsn, data, registratie_datum) VALUES(?,?,CURRENT_TIMESTAMP)">
                 <Param name="bsn" sessionKey="burgerservicenummer" />
-                <Param name="data" sessionKey="updatedJson" />
+                <Param name="data" sessionKey="newJSON" />
             </FixedQuerySender>
         </SenderPipe>
 
-        <EchoPipe name="PersonHasBeenUpdated" getInputFromFixedValue="true" />
+        <EchoPipe name="UpdatedExit" getInputFromFixedValue="true" />
+        <EchoPipe name="NotUpdatedExit" getInputFromFixedValue="false" />
     </Pipeline>
 </Adapter>
