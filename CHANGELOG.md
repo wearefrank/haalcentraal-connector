@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.8.21](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.20...v1.8.21) (2024-11-26)
+
+### 🐛 Bug Fixes
+
+* cleanup SynchronizePersoon pipeline ([54af4de](https://github.com/wearefrank/haalcentraal-connector/commit/54af4de054307bce524c3fe8c5dce0656dc58290))
+
 ## [1.8.20](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.19...v1.8.20) (2024-11-26)
 
 ### 🐛 Bug Fixes
