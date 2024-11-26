@@ -1,0 +1,18 @@
+<Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+    <Adapter name="CompareShadowMessage">
+        <Receiver name="CompareShadowMessageReceiver">
+            <JavaListener name="CompareShadowMessage" />
+        </Receiver>
+        <Pipeline>
+            <Exits>
+                <Exit name="Exit" state="SUCCESS" />
+                <Exit name="Exception" state="ERROR" />
+            </Exits>
+
+            <!-- Required sessionKeys: expectedMessage, actualMessage -->
+            <!-- Returns: If the messages are similar based on content (boolean) -->
+
+            <XsltPipe name="CompareMessages" styleSheetName="./xsl/CompareMessage.xsl" />
+        </Pipeline>
+    </Adapter>
+</Module>
