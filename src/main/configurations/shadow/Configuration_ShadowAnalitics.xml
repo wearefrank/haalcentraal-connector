@@ -16,8 +16,8 @@
                     AND ABS(EXTRACT(EPOCH FROM (DATE_TRUNC('second', frank.timestamp) - DATE_TRUNC('second', not_frank.timestamp)))) &lt;= 48 * 3600 
                 ">
                 <IbisLocalSender name="CompareContentSender" javaListener="CompareShadowMessage">
-                    <Param name="expected" value="1"/>
-                    <Param name="actual" value="1"/>
+                    <Param name="expected" xpathExpression="//field[@name='EXPECTED']" type="DOMDOC"/>
+                    <Param name="actual" xpathExpression="//field[@name='ACTUAL']" type="DOMDOC"/>
                 </IbisLocalSender>
             </ResultSetIteratingPipe>
         </Pipeline>
