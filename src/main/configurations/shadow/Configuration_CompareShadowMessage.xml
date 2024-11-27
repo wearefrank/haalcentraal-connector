@@ -10,7 +10,7 @@
             </Exits>
 
             <!-- Required sessionKeys: expectedMessage, actualMessage -->
-            <!-- Returns: If the messages are similar based on content (boolean) -->
+            <!-- Returns: differences between messages based on content. Empty result if there are no differences -->
 
             <XsltPipe name="CompareMessages" styleSheetName="./xsl/CompareMessage.xsl" />
         </Pipeline>
