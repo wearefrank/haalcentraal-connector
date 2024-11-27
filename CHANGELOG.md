@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.8.26](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.25...v1.8.26) (2024-11-27)
+
+### 🐛 Bug Fixes
+
+* token expiry flow ([09e64e7](https://github.com/wearefrank/haalcentraal-connector/commit/09e64e7a9c5c4f4e586fdb4bb514a8969351419e))
+
 ## [1.8.25](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.24...v1.8.25) (2024-11-26)
 
 ### 🐛 Bug Fixes
