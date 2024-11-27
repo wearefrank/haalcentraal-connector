@@ -1,6 +1,6 @@
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-    <xsl:param name="expected"><test><a b="a" c="c">d<e/>fg</a></test></xsl:param>
-    <xsl:param name="actual"><test><a b="b" c="c">d<e/>ff</a></test></xsl:param>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:param name="expected"/>
+    <xsl:param name="actual"/>
 
     <xsl:output omit-xml-declaration="yes"/>
 
