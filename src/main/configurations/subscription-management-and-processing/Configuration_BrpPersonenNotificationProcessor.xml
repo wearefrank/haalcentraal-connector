@@ -87,7 +87,7 @@
 			</XmlIfPipe>
 
 			<SenderPipe name="SetTaskStatusE" onlyIfSessionKey="HttpMethod">
-				<FixedQuerySender queryType="OTHER" name="updateScheduledStart" query="UPDATE tasks SET status = 'E' WHERE task_id = ?">
+				<FixedQuerySender queryType="SELECT" name="updateScheduledStart" query="UPDATE tasks SET status = 'E' WHERE task_id = ? RETURNING status">
 					<Param name="task_id" sessionKey="originalMessage" />
 				</FixedQuerySender>
 				<Forward name="success" path="EXCEPTION" />
