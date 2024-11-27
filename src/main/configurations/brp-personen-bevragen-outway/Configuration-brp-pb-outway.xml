@@ -45,7 +45,7 @@
 			<LocalFileSystemPipe name="ReadTokenFromFile" filename="token.txt" action="read"
 				storeResultInSessionKey="token" preserveInput="true" active="${isDiginetwerk}" />
 
-			<SenderPipe name="PostBRPPersonenBevragenDiginetwerk" active="${isDiginetwerk}">
+			<SenderPipe name="PostBRPPersonenBevragenDiginetwerk" getInputFromSessionKey="originalMessage" active="${isDiginetwerk}">
 				<HttpSender
 					url="${haalcentraal.BRP.personen.bevragen.endpoint}/personen"
 					methodType="POST"
@@ -83,7 +83,7 @@
 				<Forward name="else" path="TokenExpiryFlow"/>
 			</XmlIfPipe>
 
-			<SenderPipe name="TokenExpiryFlow" active="${isDiginetwerk}" preserveInput="true">
+			<SenderPipe name="TokenExpiryFlow" active="${isDiginetwerk}">
 				<IbisLocalSender name="TokenExpiryFlowSender" javaListener="TokenExpiryFlowListener"
 					returnedSessionKeys="token" />
 			</SenderPipe>
