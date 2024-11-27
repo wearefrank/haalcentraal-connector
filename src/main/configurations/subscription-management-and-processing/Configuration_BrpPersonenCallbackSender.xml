@@ -72,7 +72,12 @@
 				getInputFromSessionKey="soapMessage">
 				<HttpSender
 					methodType="POST"
-					contentType="application/xml">
+					contentType="application/xml"
+					keystore="${haalcentraal_cert_path}"
+					keystorePassword="${haalcentraal_cert_pass}"
+					keystoreAlias="haalcentraal"
+					keystoreType="PKCS12"
+					allowSelfSignedCertificates="true">
 				</HttpSender>
 				<Param name="url" sessionKey="url" />
 				<Forward name="success" path="echoPipe" />
