@@ -1,4 +1,4 @@
-<Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./FrankConfig.xsd">
+<Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
     <Adapter name="ShadowAnalitics" description="">
         <Receiver name="ShadowAnalitics">
             <ApiListener name="ShadowAnaliticsListener" uriPattern="${haalcentraal_connector.shadow.analitics.endpoint}" method="GET"/>
@@ -16,8 +16,8 @@
                     AND ABS(EXTRACT(EPOCH FROM (DATE_TRUNC('second', frank.timestamp) - DATE_TRUNC('second', not_frank.timestamp)))) &lt;= 48 * 3600 
                 ">
                 <IbisLocalSender name="CompareContentSender" javaListener="CompareShadowMessage">
-                    <Param name="expected" xpathExpression="//field[@name='EXPECTED']" type="DOMDOC"/>
-                    <Param name="actual" xpathExpression="//field[@name='ACTUAL']" type="DOMDOC"/>
+                    <Param name="expected" xpathExpression="//field[@name='EXPECTED']/*" type="DOMDOC"/>
+                    <Param name="actual" xpathExpression="//field[@name='ACTUAL']/*" type="DOMDOC"/>
                 </IbisLocalSender>
             </ResultSetIteratingPipe>
         </Pipeline>
