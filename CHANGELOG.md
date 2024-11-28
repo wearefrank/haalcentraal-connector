@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.8.30](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.29...v1.8.30) (2024-11-28)
+
+### 🐛 Bug Fixes
+
+* my dumbass mistake ([427af1e](https://github.com/wearefrank/haalcentraal-connector/commit/427af1e81c2e0e6821f9cf8b18c7e13b4802cdbb))
+
 ## [1.8.29](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.28...v1.8.29) (2024-11-28)
 
 ### 🐛 Bug Fixes
