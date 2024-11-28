@@ -1,4 +1,4 @@
-<Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./FrankConfig.xsd">
+<Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
     <Adapter name="ShadowAnalitics" description="">
         <Receiver name="ShadowAnalitics">
             <ApiListener name="ShadowAnaliticsListener" uriPattern="${haalcentraal_connector.shadow.analitics.endpoint}" method="GET"/>
@@ -9,16 +9,6 @@
                 <Exit name="READY" state="SUCCESS" code="200"/>
             </Exits>
 
-            <SenderPipe name="GetMatchedRows" storeResultInSessionKey="result">
-                <FixedQuerySender name="GetMatchedRows" queryType="SELECT" query="
-                    SELECT not_frank.ID, not_frank.message as expected, frank.message as actual FROM (SELECT * FROM shadowmessages WHERE is_frank = true) as frank, (SELECT * FROM shadowmessages WHERE is_frank = false) as not_frank
-                    WHERE frank.bsn = not_frank.bsn
-                    AND frank.app_id = not_frank.app_id
-                    AND ABS(EXTRACT(EPOCH FROM (DATE_TRUNC('second', frank.timestamp) - DATE_TRUNC('second', not_frank.timestamp)))) &lt;= 48 * 3600 
-                ">
-                </FixedQuerySender>
-            </SenderPipe>
-
             <ResultSetIteratingPipe name="CompareMatchedContent" query="
                     SELECT not_frank.ID, not_frank.message as expected, frank.message as actual FROM (SELECT * FROM shadowmessages WHERE is_frank = true) as frank, (SELECT * FROM shadowmessages WHERE is_frank = false) as not_frank
                     WHERE frank.bsn = not_frank.bsn
@@ -26,8 +16,8 @@
                     AND ABS(EXTRACT(EPOCH FROM (DATE_TRUNC('second', frank.timestamp) - DATE_TRUNC('second', not_frank.timestamp)))) &lt;= 48 * 3600 
                 ">
                 <IbisLocalSender name="CompareContentSender" javaListener="CompareShadowMessage">
-                    <Param name="expectedMessage" value="1"/>
-                    <Param name="actualMessage" value="1"/>
+                    <Param name="expected" xpathExpression="//field[@name='EXPECTED']/*" type="DOMDOC"/>
+                    <Param name="actual" xpathExpression="//field[@name='ACTUAL']/*" type="DOMDOC"/>
                 </IbisLocalSender>
             </ResultSetIteratingPipe>
         </Pipeline>
