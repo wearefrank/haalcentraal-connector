@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.8.29](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.28...v1.8.29) (2024-11-28)
+
+### 🐛 Bug Fixes
+
+* infinite looping in pb outway ([01a8d95](https://github.com/wearefrank/haalcentraal-connector/commit/01a8d95cd813c9c81a2227cb96babe0ac2e20515))
+
 ## [1.8.28](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.27...v1.8.28) (2024-11-28)
 
 ### 🐛 Bug Fixes
