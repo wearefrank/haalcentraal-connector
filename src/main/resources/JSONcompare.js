@@ -9,6 +9,14 @@ function compareJsonObjects(storedJsonString, newJsonString) {
         });
     }
 
+    // If no person is found, return an empty JSON (error state)
+    if (!newJsonString  || newJsonString["personen"] === undefined) {
+        return formatJsonOutput({
+            hasDifferences: false,
+            updatedJson: null
+        });
+    }
+
     // Parse both JSON strings into objects
     const storedJson = JSON.parse(storedJsonString);
     const newJson = JSON.parse(newJsonString);
