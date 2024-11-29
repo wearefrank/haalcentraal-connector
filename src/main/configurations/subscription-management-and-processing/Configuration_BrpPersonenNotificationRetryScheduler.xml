@@ -51,7 +51,7 @@
 		<Job
 			name="process notifications"
 			cronExpression="0 0 21 ? * MON-FRI"
-			javaListener="brp personen notification retry scheduler"
+			javaListener="BrpPersonenNotificationRetryScheduler"
 			function="SendMessage"
 		/>
 	</Scheduler>
