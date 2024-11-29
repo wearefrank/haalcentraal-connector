@@ -83,7 +83,7 @@
 
 			<SenderPipe name="SendMessageToShadowdb">
 				<FixedQuerySender name="storeCallbackMessage" query="INSERT INTO shadowmessages (message, app_id, bsn, is_frank, timestamp) VALUES (?, ?, ?, True, CURRENT_TIMESTAMP)">
-					<Param name="message" sessionKey="soapMessage" />
+					<Param name="message" sessionKey="soapMessage" type="BINARY" />
 					<Param name="appId" xpathExpression="root/app/applicatie" sessionKey="FilteredApplication" />
 					<Param name="bsn" sessionKey="bsn" />
 				</FixedQuerySender>

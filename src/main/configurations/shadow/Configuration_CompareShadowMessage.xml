@@ -11,10 +11,9 @@
 
             <!-- Required sessionKeys: expectedMessage, actualMessage -->
             <!-- Returns: differences between messages based on content. Empty result if there are no differences -->
-
             <XsltPipe name="CompareMessages" styleSheetName="./xsl/CompareMessage.xsl">
-                <Param name="expected" sessionKey="expected" />
-                <Param name="actual" sessionKey="actual" />
+                <Param name="expected" sessionKey="expected" type="DOMDOC" />
+                <Param name="actual" sessionKey="actual" type="DOMDOC" />
             </XsltPipe>
         </Pipeline>
     </Adapter>

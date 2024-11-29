@@ -25,4 +25,9 @@
 		</addColumn>
 	</changeSet>
 
+	<changeSet id="shadow-3" author="Vincent de Gans">
+		<comment>Update message field type</comment>
+		<modifyDataType tableName="shadowmessages" columnName="message" newDataType="bytea" />
+	</changeSet>
+
 </databaseChangeLog>
