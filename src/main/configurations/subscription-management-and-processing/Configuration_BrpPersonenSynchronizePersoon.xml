@@ -51,7 +51,7 @@
                     maxRetries="3" retryMinInterval="60" retryMaxInterval="240">
             <IbisLocalSender name="GetPersoonSender" javaListener="BrpPbOutwayListener" />
             <Forward name="success" path="JsonComparator" />
-            <Forward name="exception" path="BadRequest" />
+            <Forward name="exception" path="ServerError" />
         </SenderPipe>
 
         <!-- returns true if it's a subset, else returns a combined json version that can be
