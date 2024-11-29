@@ -33,6 +33,3 @@
         </Pipeline>
     </Adapter>
 </Module>
-
-<!-- xpathExpression="//field[@name='EXPECTED']" -->
-<!-- xpathExpression="//field[@name='ACTUAL']" -->
