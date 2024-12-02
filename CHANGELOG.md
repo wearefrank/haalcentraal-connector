@@ -1,5 +1,15 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.9.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.31...v1.9.0) (2024-12-02)
+
+### 🍕 Features
+
+* Compare rows from the shadow database ([6195b63](https://github.com/wearefrank/haalcentraal-connector/commit/6195b633666fcdcdb3ab667d1b0d3fad6f66e39b))
+
+### 🐛 Bug Fixes
+
+* upgrade stylesheet version to 2.0 ([f2b61fc](https://github.com/wearefrank/haalcentraal-connector/commit/f2b61fc72cfda668a60c7af3497259860be4b770))
+
 ## [1.8.31](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.30...v1.8.31) (2024-11-29)
 
 ### 🐛 Bug Fixes
