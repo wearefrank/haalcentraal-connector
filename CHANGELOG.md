@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.9.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.2...v1.9.3) (2024-12-02)
+
+### 🐛 Bug Fixes
+
+* trigger deploy ([a18ef06](https://github.com/wearefrank/haalcentraal-connector/commit/a18ef06da493ca2f5bfb259915a49a7a7458b88b))
+
 ## [1.9.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.1...v1.9.2) (2024-12-02)
 
 ### 🐛 Bug Fixes
