@@ -67,7 +67,7 @@
         <!-- Conditional check to insert new data if changes are detected -->
         <XmlIfPipe name="ShouldInsert" expressionValue="true">
             <Forward name="then" path="InsertPersoon" />
-            <Forward name="else" path="Exit" />
+            <Forward name="else" path="NotUpdatedExit" />
         </XmlIfPipe>
 
         <!-- Insert the new data into the database -->
@@ -80,7 +80,7 @@
             </FixedQuerySender>
         </SenderPipe>
 
-        <!-- Echo pipe to notify that the person has been updated -->
-        <EchoPipe name="PersonHasBeenUpdated" getInputFromFixedValue="true" />
+        <EchoPipe name="UpdatedExit" getInputFromFixedValue="true" />
+        <EchoPipe name="NotUpdatedExit" getInputFromFixedValue="false" />
     </Pipeline>
 </Adapter>

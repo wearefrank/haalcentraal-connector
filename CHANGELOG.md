@@ -1,5 +1,83 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.8.31](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.30...v1.8.31) (2024-11-29)
+
+### 🐛 Bug Fixes
+
+* javalistener reference ([e75be53](https://github.com/wearefrank/haalcentraal-connector/commit/e75be53c96575af7e55d7a8aa6d7ecd1db959970))
+
+## [1.8.30](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.29...v1.8.30) (2024-11-28)
+
+### 🐛 Bug Fixes
+
+* my dumbass mistake ([427af1e](https://github.com/wearefrank/haalcentraal-connector/commit/427af1e81c2e0e6821f9cf8b18c7e13b4802cdbb))
+
+## [1.8.29](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.28...v1.8.29) (2024-11-28)
+
+### 🐛 Bug Fixes
+
+* infinite looping in pb outway ([01a8d95](https://github.com/wearefrank/haalcentraal-connector/commit/01a8d95cd813c9c81a2227cb96babe0ac2e20515))
+
+## [1.8.28](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.27...v1.8.28) (2024-11-28)
+
+### 🐛 Bug Fixes
+
+* trigger release ([8707861](https://github.com/wearefrank/haalcentraal-connector/commit/870786104caf0e24b81af424f28b1bb6c3d85f19))
+
+## [1.8.27](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.26...v1.8.27) (2024-11-27)
+
+### 🐛 Bug Fixes
+
+* move HC BRP url from source code to yaml ([cdf3373](https://github.com/wearefrank/haalcentraal-connector/commit/cdf337333d15f7711670b266c0ff0c6c18761155))
+
+## [1.8.26](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.25...v1.8.26) (2024-11-27)
+
+### 🐛 Bug Fixes
+
+* token expiry flow ([09e64e7](https://github.com/wearefrank/haalcentraal-connector/commit/09e64e7a9c5c4f4e586fdb4bb514a8969351419e))
+
+## [1.8.25](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.24...v1.8.25) (2024-11-26)
+
+### 🐛 Bug Fixes
+
+* token expiry flow ([fcb8d77](https://github.com/wearefrank/haalcentraal-connector/commit/fcb8d77b85f4b4f6741496d279e4dde70bb8960c))
+
+## [1.8.24](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.23...v1.8.24) (2024-11-26)
+
+### 🐛 Bug Fixes
+
+* loop prevention in pbOutway ([1efc569](https://github.com/wearefrank/haalcentraal-connector/commit/1efc56902fce98faef8e4b247db7421dd5b9cd91))
+
+## [1.8.23](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.22...v1.8.23) (2024-11-26)
+
+### 🐛 Bug Fixes
+
+* loop prevention in pbOutway ([c45c0ba](https://github.com/wearefrank/haalcentraal-connector/commit/c45c0baf0a722f64aaf90c8ce2f37e8c48d0369c))
+
+## [1.8.22](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.21...v1.8.22) (2024-11-26)
+
+### 🐛 Bug Fixes
+
+* loop prevention in pbOutway ([ef4bd3b](https://github.com/wearefrank/haalcentraal-connector/commit/ef4bd3b2ef21e80aeb72e22bf1790373f6b68e45))
+
+## [1.8.21](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.20...v1.8.21) (2024-11-26)
+
+### 🐛 Bug Fixes
+
+* cleanup SynchronizePersoon pipeline ([54af4de](https://github.com/wearefrank/haalcentraal-connector/commit/54af4de054307bce524c3fe8c5dce0656dc58290))
+
+## [1.8.20](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.19...v1.8.20) (2024-11-26)
+
+### 🐛 Bug Fixes
+
+* enable allowSelfSignedCertificates for now ([37a8aa2](https://github.com/wearefrank/haalcentraal-connector/commit/37a8aa2e194791c39805aba0450b1ea62ecf3716))
+
+## [1.8.19](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.18...v1.8.19) (2024-11-25)
+
+### 🐛 Bug Fixes
+
+* token expiry flow ([9569331](https://github.com/wearefrank/haalcentraal-connector/commit/9569331866a650432dfdc48ea52aaa53aba28309))
+
 ## [1.8.18](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.17...v1.8.18) (2024-11-21)
 
 ### 🐛 Bug Fixes
