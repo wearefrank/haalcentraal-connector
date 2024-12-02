@@ -25,7 +25,8 @@ COPY --chown=tomcat src/main/resources/ /opt/frank/resources/
 COPY --chown=tomcat src/test/testtool/ /opt/frank/testtool/
 
 ADD kpnpkioverheidprivateservicesca-g1.cer /usr/local/share/ca-certificates/kpnpkioverheidprivateservicesca-g1.cer
-RUN #chmod 644 /usr/local/share/ca-certificates/kpnpkioverheidprivateservicesca-g1.cer
+USER root
+RUN chmod 644 /usr/local/share/ca-certificates/kpnpkioverheidprivateservicesca-g1.cer
 RUN update-ca-certificates
 
 ENV credentialFactory.class=nl.nn.credentialprovider.PropertyFileCredentialFactory
