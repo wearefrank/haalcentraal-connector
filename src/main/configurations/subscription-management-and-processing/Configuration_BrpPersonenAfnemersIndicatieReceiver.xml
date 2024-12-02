@@ -78,7 +78,7 @@
 			<SenderPipe name="SynchronizePersoon">
 				<IbisLocalSender name="SynchronizePersoonSender"
 					javaListener="BrpPersonenSynchronizePersoon">
-					<Param name="burgerservicenummer" sessionKey="originalMessage"
+					<Param name="bsn" sessionKey="originalMessage"
 						xpathExpression="npsLk01/object/inp.bsn" />
 				</IbisLocalSender>
 			</SenderPipe>
