@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.9.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.1...v1.9.2) (2024-12-02)
+
+### 🐛 Bug Fixes
+
+* try changing ca cer to pem ([6fde59b](https://github.com/wearefrank/haalcentraal-connector/commit/6fde59b28b980db4eb2b42446a34b13da69c2a52))
+
 ## [1.9.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.0...v1.9.1) (2024-12-02)
 
 ### 🐛 Bug Fixes
