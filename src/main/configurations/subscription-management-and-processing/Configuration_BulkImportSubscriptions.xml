@@ -11,7 +11,7 @@
                                      ignoreExceptions="true">
                 <IbisLocalSender name="InsertNewPersonSender"
                                  javaListener="BrpPersonenSynchronizePersoon">
-                    <Param name="burgerservicenummer" xpathExpression="record/INP_BSN" />
+                    <Param name="bsn" xpathExpression="record/INP_BSN" />
                 </IbisLocalSender>
             </ForEachChildElementPipe>
 

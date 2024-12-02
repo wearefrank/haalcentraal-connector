@@ -19,7 +19,7 @@
             <SenderPipe name="BrpPersonenSynchronizePersoon">
                 <IbisLocalSender name="BrpPersonenSynchronizePersoon"
                     javaListener="BrpPersonenSynchronizePersoon">
-                    <Param name="burgerservicenummer" sessionKey="burgerservicenummer" />
+                    <Param name="bsn" sessionKey="burgerservicenummer" />
                 </IbisLocalSender>
                 <Forward name="success" path="persoonNew2xml" />
                 <Forward name="exception" path="EXCEPTION" />
