@@ -10,7 +10,7 @@ function compareJsonObjects(storedJsonString, newJsonString) {
     }
 
     // If no person is found, return an empty JSON (error state)
-    if (!newJsonString  || newJsonString["personen"] === undefined) {
+    if (!newJsonString  || JSON.parse(newJsonString)["personen"] === undefined) {
         return formatJsonOutput({
             hasDifferences: false,
             updatedJson: null
