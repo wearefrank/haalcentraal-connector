@@ -1,5 +1,13 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.9.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.0...v1.9.1) (2024-12-02)
+
+### 🐛 Bug Fixes
+
+* do chmod as root user ([f824e50](https://github.com/wearefrank/haalcentraal-connector/commit/f824e50bcb9c26b18fbe38fa05b5b1d7ac55827b))
+* remove chmod ([02a37d1](https://github.com/wearefrank/haalcentraal-connector/commit/02a37d1cb2f68dbc4a0b2ab66ddab97a7a7eedb9))
+* trigger release ([4473210](https://github.com/wearefrank/haalcentraal-connector/commit/4473210dab3a56f0789e3b253b4cbf960c734a32))
+
 ## [1.9.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.31...v1.9.0) (2024-12-02)
 
 ### 🍕 Features
