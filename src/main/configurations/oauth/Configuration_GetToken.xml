@@ -20,11 +20,7 @@
                         contentType="application/x-www-form-urlencoded"
                         postType="URLENCODED"
                         headersParams="Accept, Content-Type"
-                        treatInputMessageAsParameters="false"
-                        keystore="${haalcentraal_cert_path}"
-                        keystorePassword="${haalcentraal_cert_pass}"
-                        keystoreType="PKCS12"
-                        allowSelfSignedCertificates="true">
+                        treatInputMessageAsParameters="false">
                     <Param name="grant_type" value="client_credentials" />
                     <Param name="client_id" pattern="${oauth.client-id}" hidden="true"/>
                     <Param name="client_secret" pattern="${oauth.client-secret}" hidden="true"/>
