@@ -24,9 +24,9 @@ COPY --chown=tomcat src/main/secrets/ /opt/frank/secrets/
 COPY --chown=tomcat src/main/resources/ /opt/frank/resources/
 COPY --chown=tomcat src/test/testtool/ /opt/frank/testtool/
 
-ADD kpnpkioverheidprivateservicesca-g1.pem /usr/local/share/ca-certificates/kpnpkioverheidprivateservicesca-g1.crt
+ADD QuoVadis-PKIoverheid-Private-Services-CA-G1-PEM.pem /usr/local/share/ca-certificates/QuoVadis-PKIoverheid-Private-Services-CA-G1-PEM.crt
 USER root
-RUN chmod 644 /usr/local/share/ca-certificates/kpnpkioverheidprivateservicesca-g1.crt
+RUN chmod 644 /usr/local/share/ca-certificates/QuoVadis-PKIoverheid-Private-Services-CA-G1-PEM.crt
 RUN update-ca-certificates
 
 ENV credentialFactory.class=nl.nn.credentialprovider.PropertyFileCredentialFactory
