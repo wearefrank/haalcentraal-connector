@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.9.5](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.4...v1.9.5) (2024-12-03)
+
+### 🐛 Bug Fixes
+
+* cast message for shadow inserter ([a7d1a3f](https://github.com/wearefrank/haalcentraal-connector/commit/a7d1a3f9c356b18a1b641050acfadcef80aeeba1))
+
 ## [1.9.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.3...v1.9.4) (2024-12-03)
 
 ### 🐛 Bug Fixes
