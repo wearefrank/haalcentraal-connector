@@ -29,7 +29,8 @@
                     )
                 "/>
             </SenderPipe> -->
-            <XsltPipe name="MakePretty" styleSheetName="xsl/prettifier.xsl" outputType="XML" />
+            
+            <!-- <XsltPipe name="MakePretty" styleSheetName="xsl/prettifier.xsl" outputType="XML" /> -->
         </Pipeline>
     </Adapter>
 </Module>
