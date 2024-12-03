@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.9.8](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.7...v1.9.8) (2024-12-03)
+
+### 🐛 Bug Fixes
+
+* try true full chain ([78134b4](https://github.com/wearefrank/haalcentraal-connector/commit/78134b41fb439ad4dd7c4cce68704e82ff66eb80))
+
 ## [1.9.7](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.6...v1.9.7) (2024-12-03)
 
 ### 🐛 Bug Fixes
