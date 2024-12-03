@@ -11,6 +11,7 @@
         <Pipeline>
             <Exits>
                 <Exit name="EXIT" state="SUCCESS" code="200" />
+                <Exit name="RETRY" state="SUCCESS" />
                 <Exit name="EXCEPTION" state="ERROR" code="500" />
                 <Exit name="BADREQUEST" state="ERROR" code="400" />
             </Exits>
@@ -18,7 +19,7 @@
             <SenderPipe name="BrpPersonenSynchronizePersoon">
                 <IbisLocalSender name="BrpPersonenSynchronizePersoon"
                     javaListener="BrpPersonenSynchronizePersoon">
-                    <Param name="burgerservicenummer" sessionKey="burgerservicenummer" />
+                    <Param name="bsn" sessionKey="burgerservicenummer" />
                 </IbisLocalSender>
                 <Forward name="success" path="persoonNew2xml" />
                 <Forward name="exception" path="EXCEPTION" />
@@ -26,7 +27,13 @@
 
             <JsonPipe name="persoonNew2xml" />
 
-            <LocalFileSystemPipe name="GetApplicationConfig" action="read" storeResultInSessionKey="applicationConfig">
+            <XmlIfPipe name="ShouldNotifySubscribers" expressionValue="true" xpathExpression="/root">
+                <Forward name="then" path="GetApplicationConfig" />
+                <Forward name="else" path="EchoRetry" />
+            </XmlIfPipe>
+
+            <LocalFileSystemPipe name="GetApplicationConfig" action="read"
+                storeResultInSessionKey="applicationConfig">
                 <Param name="filename" value="${applicationConfigPath}" />
                 <Forward name="success" path="GetSubscribersForUpdatedPerson" />
             </LocalFileSystemPipe>
@@ -38,23 +45,65 @@
                     queryType="SELECT"
                     query="SELECT app_id FROM subscripties WHERE bsn=? AND eind_datum IS NULL"
                     outputFormat="JSON">
-                    <Param name="burgerservicenummer" sessionKey="burgerservicenummer"/>
+                    <Param name="burgerservicenummer" sessionKey="burgerservicenummer" />
                 </FixedQuerySender>
                 <Forward name="success" path="TransformApplicationData" />
             </SenderPipe>
 
-            <!-- TODO: Check if notifications need to be sent -->
-            
             <!-- Map application_id to callback uri's -->
             <DataSonnetPipe name="TransformApplicationData"
                 styleSheetName="jsonnet/ApplicationsFilter.jsonnet">
                 <Param name="applicationConfig" sessionKey="applicationConfig" />
-                <Forward name="success" path="EXIT" />
+                <!-- <Forward name="success" path="EXIT" /> -->
             </DataSonnetPipe>
 
-            <!-- TODO: Send updated data to callback uri's  -->
+            <JsonPipe name="CallbackUrlToXml" storeResultInSessionKey="callbackUrls" />
 
-            <ExceptionPipe name="NoUpdateFound" />
+            <!-- retrieve latest persoonsgegevens record -->
+            <SenderPipe name="RetrieveLatestData">
+                <FixedQuerySender
+                    name="RetrieveLatestData"
+                    queryType="SELECT"
+                    query="SELECT data FROM persoonsgegevens WHERE bsn=?{burgerservicenummer} ORDER BY registratie_datum DESC LIMIT 1"
+                    outputFormat="JSON">
+                    <Param name="burgerservicenummer" sessionKey="burgerservicenummer" />
+                </FixedQuerySender>
+                <Forward name="success" path="ExtractDataField" />
+            </SenderPipe>
+
+            <DataSonnetPipe name="ExtractDataField" styleSheetName="jsonnet/ExtractDatabaseRows.jsonnet" storeResultInSessionKey="body" />
+
+            <!-- Logic for getting the data to send to subscribers -->
+            <!-- Retrieve the person by BSN for the taskstore -->
+			<SenderPipe name="RetrieveBodyToReturn" storeResultInSessionKey="PersonenDatabaseResult">
+				<FixedQuerySender
+					name="FetchPersonSender"
+					queryType="SELECT"
+					query="SELECT * FROM persoonsgegevens WHERE bsn=?{burgerservicenummer} ORDER BY registratie_datum DESC LIMIT 1"
+					includeFieldDefinition="false">
+					<Param name="burgerservicenummer" sessionKey="burgerservicenummer" />
+				</FixedQuerySender>
+			</SenderPipe>
+
+            <ForEachChildElementPipe name="ForEachId" elementXPathExpression="root/appIds" getInputFromSessionKey="callbackUrls">
+                <!-- Add a task in the messagestore to notify subscribers  -->
+                <IbisLocalSender 
+                    name="CallQueueNotificationsListener"
+                    javaListener="QueueNotificationTask">
+                    <Param name="PersonenDatabaseResult" sessionKey="PersonenDatabaseResult" />
+                    <Param name="ApplicationId" xpathExpression="appIds/text()" />
+                </IbisLocalSender>
+                <Forward name="success" path="EchoSuccess" />
+                <Forward name="exception" path="EXCEPTION" />
+            </ForEachChildElementPipe>
+            
+            <EchoPipe name="EchoSuccess" getInputFromFixedValue="true">
+                <Forward name="success" path="EXIT" />
+            </EchoPipe>
+
+            <EchoPipe name="EchoRetry" getInputFromFixedValue="false">
+                <Forward name="success" path="RETRY" />
+            </EchoPipe>
         </Pipeline>
     </Adapter>
 </Module>

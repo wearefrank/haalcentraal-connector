@@ -27,10 +27,12 @@
 				<IbisLocalSender name="BPRPersonenBevragen" javaListener="BrpPbClientSoapListener"
 				returnedSessionKeys="Error,body,xmlbody,MapResponse" />
 				<Param name="gemeenteVanInschrijving" sessionKey="gemeenteVanInschrijving" defaultValue="${gemeenteVanInschrijving}" />
-        <Param name="SOAPAction" sessionKey="SOAPAction" />
-				<Forward name="success" path="BRP Personen query" />
+				<Param name="SOAPAction" sessionKey="SOAPAction" />
+				<Forward name="success" path="ExtractPersonenBody" />
 				<Forward name="exception" path="ErrorJsonToXml" />
 			</SenderPipe>
+
+			<DataSonnetPipe name="ExtractPersonenBody" getInputFromSessionKey="body" preserveInput="true" storeResultInSessionKey="updatedJson" styleSheetName="jsonnet/ExtractBody.jsonnet" />
 
 			<!-- Add persoonsgegevens entry for each person retrieved from the BRP -->
 			<ForEachChildElementPipe name="BRP Personen query"
@@ -40,14 +42,13 @@
 					name="insertPersonenSender"
 					query="INSERT INTO persoonsgegevens(bsn, data, registratie_datum) VALUES(?,?,CURRENT_TIMESTAMP)">
 					<Param name="burgerservicenummer" xpathExpression="personen/burgerservicenummer" type="INTEGER"/>
-					<Param name="data" sessionKey="body" type="STRING"/>
+					<Param name="data" sessionKey="updatedJson" type="STRING"/>
             	</FixedQuerySender>
 				<Forward name="success" path="WrapResponse"/>
 				<Forward name="exception" path="ErrorJsonToXml" />
 			</ForEachChildElementPipe>  
 
-			<JsonPipe
-                name="ErrorJsonToXml">
+			<JsonPipe name="ErrorJsonToXml">
                 <Forward name="success" path="buildErrorMsg" />
             </JsonPipe>
 
@@ -59,11 +60,9 @@
                 <Forward name="success" path="Exception" />
             </XsltPipe>  
 
-			<SoapWrapperPipe
-                name="WrapResponse" getInputFromSessionKey="MapResponse" >
-                <Forward name="success" path="EXIT"/>
-            </SoapWrapperPipe>
-
+			<SoapWrapperPipe name="WrapResponse" getInputFromSessionKey="MapResponse">
+				<Forward name="success" path="EXIT"/>
+			</SoapWrapperPipe>
 		</Pipeline>
 	</Adapter>
 </Module>

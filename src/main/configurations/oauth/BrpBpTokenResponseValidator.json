@@ -14,7 +14,7 @@
       "type": "string",
       "description": "The type of the token issued.",
       "enum": [
-        "Bearer"
+        "bearer"
       ]
     },
     "expires_in": {
@@ -32,10 +32,8 @@
   },
   "required": [
     "access_token",
-    "refresh_token",
     "token_type",
     "expires_in",
-    "scope",
-    "refresh_token_expires_in"
+    "scope"
   ]
 }

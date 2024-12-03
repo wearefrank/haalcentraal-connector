@@ -1,0 +1,11 @@
+<!DOCTYPE Configuration [
+    <!ENTITY ShadowReceiver SYSTEM "Configuration_ShadowReceiver.xml">
+    <!ENTITY ShadowAnalitics SYSTEM "Configuration_ShadowAnalitics.xml">
+    <!ENTITY CompareShadowMessage SYSTEM "Configuration_CompareShadowMessage.xml">
+]>
+
+<Configuration name="shadow">
+    &ShadowReceiver;
+    &ShadowAnalitics;
+    &CompareShadowMessage;
+</Configuration>

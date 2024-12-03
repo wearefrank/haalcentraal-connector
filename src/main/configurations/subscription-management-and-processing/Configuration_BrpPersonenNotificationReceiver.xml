@@ -15,61 +15,54 @@
 		<Pipeline>
 			<Exits>
 				<Exit name="EXIT" state="SUCCESS" code="202" />
-				<Exit name="BadRequest" state="ERROR" code="400" />
+				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
 			</Exits>
 
 			<JsonValidatorPipe name="jsonValidator" schema="json/DataChangeNotificationSchema.json" onlyIfSessionKey="HttpMethod">
-                <Forward name="success" path="JsonToXml" />
-                <Forward name="exception" path="BadRequest" />
+                <Forward name="success" path="InputJsonToXml" />
+                <Forward name="exception" path="BadRequestPipe" />
             </JsonValidatorPipe>
 
-            <JsonPipe name="JsonToXml" prettyPrint="true">
+            <JsonPipe name="InputJsonToXml" prettyPrint="true" storeResultInSessionKey="xmlInputMessage">
                 <Forward name="success" path="ExtractIncomingNotificationData"/>
             </JsonPipe>
-
-            <!-- TODO: Process historic bsns correctly -->
+            
             <PutInSessionPipe name="ExtractIncomingNotificationData">
                 <Param name="bsn" xpathExpression="root/data/bsn" />
-                <Param name="historicBsns" xpathExpression="root/data/historicBsns" />
-                <Forward name="success" path="GetPersoon"/>
+                <Forward name="success" path="historicBsnIterator"/>
             </PutInSessionPipe>
 
-            <!-- TODO: Check if person has historic bsns -->
-
-            <!-- TODO: Update subscriptions to historic bsns to new bsn -->
-
-            <SenderPipe name="GetPersoon">
+			<!-- Update subscriptions to historic bsns to current bsn -->
+			<ForEachChildElementPipe name="historicBsnIterator" getInputFromSessionKey="xmlInputMessage"
+				elementXPathExpression="root/data/historicBsns">
                 <FixedQuerySender
-					name="getPersonenSender"
-                    queryType="SELECT"
-					query="SELECT * FROM persoonsgegevens WHERE bsn=?{burgerservicenummer} ORDER BY registratie_datum DESC LIMIT 1"
-					includeFieldDefinition="false">
-					<Param name="burgerservicenummer" sessionKey="bsn"/>
-            	</FixedQuerySender> 
-                <Forward name="success" path="PersonExists" />
-                <Forward name="exception" path="BadRequest" />
-            </SenderPipe>
-            
-            <XmlIfPipe
-                name="PersonExists"
-                xpathExpression="count(result/rowset/row) = 1"
-            >
-                <Forward name="then" path="InsertNotification"/>
-                <Forward name="else" path="BadRequest"/>
-                <Forward name="exception" path="BadRequest"/>
-            </XmlIfPipe>
+					name="UpdateSubscriptionsToHistoricBsn"
+					query="UPDATE subscripties SET bsn = ?{currentBsn} WHERE bsn = ?{historicBsn} AND eind_datum IS NULL">
+					<Param name="currentBsn" sessionKey="bsn" type="INTEGER"/>
+					<Param name="historicBsn" xpathExpression="." type="INTEGER"/>
+            	</FixedQuerySender>
+				<Forward name="success" path="InsertNotification"/>
+				<Forward name="exception" path="BadRequestPipe"/>
+			</ForEachChildElementPipe>
 
+            <!-- Add bsn to the update processing queue -->
             <SenderPipe name="InsertNotification" getInputFromSessionKey="originalMessage">
-				<MessageStoreSender
-					slotId="${instance.name}/notificationStore"
-				/>
-                <Forward name="success" path="echoPipe" />
+                <FixedQuerySender
+					name="CreateNewTask"
+                    queryType="OTHER"
+					query="INSERT INTO tasks (bsn, scheduled_start, correlation_id) VALUES (?, NOW() + INTERVAL '1 hour', gen_random_uuid())">
+					<Param name="bsn" sessionKey="bsn" />
+            	</FixedQuerySender> 
+                <Forward name="success" path="ExitPipe" />
             </SenderPipe>
 
-		<EchoPipe name="echoPipe">
-			<Forward name="success" path="EXIT" />
-		</EchoPipe>
+			<JsonPipe name="ExitPipe" direction="XML2JSON">
+				<Forward name="success" path="EXIT"/>
+			</JsonPipe>
 
+			<JsonPipe name="BadRequestPipe" direction="XML2JSON">
+				<Forward name="success" path="BadRequest"/>
+			</JsonPipe>
 		</Pipeline>
 	</Adapter>
 </Module>

@@ -1,0 +1,22 @@
+<Adapter name="ShadowReceiver" description="">
+    <Receiver name="ShadowReceiver">
+        <ApiListener name="ShadowListener" uriPattern="${haalcentraal_connector.shadow.endpoint}" method="POST"/>
+    </Receiver>
+
+    <Pipeline>
+        <Exit name="READY" state="SUCCESS" code="200"/>
+
+        <PutInSessionPipe name="ExtractIncomingNotificationData" preserveInput="true">
+            <Param name="appId" xpathExpression="npsLa01/stuurgegevens/ontvanger/applicatie" />
+            <Param name="bsn" xpathExpression="npsLa01/antwoord/object/inp.bsn" />
+        </PutInSessionPipe>
+
+        <SenderPipe name="storeMessage">
+            <FixedQuerySender name="storeMessage" query="INSERT INTO shadowmessages (message, app_id, bsn, is_frank, timestamp) VALUES (?, ?, ?, false, CURRENT_TIMESTAMP)">
+                <Param name="message"  type="BINARY" />
+                <Param name="appId" sessionKey="appId" />
+                <Param name="bsn" sessionKey="bsn" />
+            </FixedQuerySender>
+        </SenderPipe>
+    </Pipeline>
+</Adapter>

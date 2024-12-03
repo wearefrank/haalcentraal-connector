@@ -1,0 +1,33 @@
+<databaseChangeLog
+		xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd">
+
+	<changeSet id="shadow-1" author="Lenard van der Maas">
+		<comment>Create the 'shadowmessages' table</comment>
+		<createTable tableName="shadowmessages">
+			<column name="id" type="int">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="message" type="text" />
+			<column name="timestamp" type="datetime" />
+		</createTable>
+		<addAutoIncrement tableName="shadowmessages" columnName="id" columnDataType="int" />
+	</changeSet>
+
+	<changeSet id="shadow-2" author="Vincent de Gans">
+		<comment>Add columns to shadow table</comment>
+		<addColumn tableName="shadowmessages">
+			<column name="bsn" type="varchar(255)" />
+			<column name="app_id" type="varchar(255)" />
+			<column name="is_frank" type="boolean" />
+		</addColumn>
+	</changeSet>
+
+	<changeSet id="shadow-3" author="Vincent de Gans">
+		<comment>Update message field type</comment>
+		<modifyDataType tableName="shadowmessages" columnName="message" newDataType="bytea" />
+	</changeSet>
+
+</databaseChangeLog>

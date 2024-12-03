@@ -1,5 +1,6 @@
 <Module>
     <SendMessageJob name="GetTokenOnStartup" interval="0" javaListener="GetTokenListener" active="${isDiginetwerk}"/>
+    <SendMessageJob name="GetTokenEvery9Minutes" cronExpression="0 0/9 0 ? * * *" javaListener="GetTokenListener" active="${isDiginetwerk}"/>
     <Adapter name="GetToken">
         <Receiver name="GetTokenReceiver">
             <JavaListener name="GetTokenListener" returnedSessionKeys="token" />
@@ -18,15 +19,16 @@
                         methodType="POST"
                         contentType="application/x-www-form-urlencoded"
                         postType="URLENCODED"
-                        headersParams="Accept, Content-Type, Digest, Date, TPP-Signature-Certificate, authorization"
-                        treatInputMessageAsParameters="false" />
-                <Param name="grant_type" value="client_credentials" />
-                <Param name="client_id" pattern="${oauth.client-id}" />
-                <Param name="client_secret" pattern="${oauth.client-secret}" />
-                <Param name="scope" value="${oauth.scope}" />
-                <Param name="resourceServer" value="ResourceServer01" />
-                <Param name="Accept" value="application/json" />
-                <Param name="Content-Type" value="application/x-www-form-urlencoded" />
+                        headersParams="Accept, Content-Type"
+                        treatInputMessageAsParameters="false">
+                    <Param name="grant_type" value="client_credentials" />
+                    <Param name="client_id" pattern="${oauth.client-id}" hidden="true"/>
+                    <Param name="client_secret" pattern="${oauth.client-secret}" hidden="true"/>
+                    <Param name="scope" value="${oauth.scope}" hidden="true"/>
+                    <Param name="resourceServer" value="ResourceServer01" />
+                    <Param name="Accept" value="application/json" />
+                    <Param name="Content-Type" value="application/x-www-form-urlencoded" />
+                </HttpSender>
 
                 <Forward name="400" path="ERROR" />
                 <Forward name="401" path="ERROR" />
@@ -43,7 +45,7 @@
             <JsonPipe name="JsonToXml" />
             <XsltPipe name="TokenExtractor" xpathExpression="/root/access_token" storeResultInSessionKey="token" />
 
-            <LocalFileSystemPipe name="WriteTokenToFile" filename="token.txt" action="write" />
+            <LocalFileSystemPipe name="WriteTokenToFile" filename="token.txt" action="write" overwrite="true" />
         </Pipeline>
     </Adapter>
 </Module>

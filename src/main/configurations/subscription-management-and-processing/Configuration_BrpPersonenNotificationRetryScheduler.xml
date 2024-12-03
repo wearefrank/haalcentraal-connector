@@ -8,8 +8,8 @@
 			<JavaListener name="BrpPersonenNotificationRetryScheduler" />
 		</Receiver>
         
-        <Receiver name="RestEndpoint_RetryScheduler">
-			<ApiListener name="RestEndpoint_RetryScheduler" uriPattern="${haalcentraal_connector.notification.retry.scheduler.rest.endpoint}" method="POST" active="${RestEndpoint_RetryScheduler.Active}"/>
+        <Receiver name="RestEndpoint_RetryScheduler" active="${RestEndpoint_RetryScheduler.Active}">
+			<ApiListener name="RestEndpoint_RetryScheduler" uriPattern="${haalcentraal_connector.notification.retry.scheduler.rest.endpoint}" method="POST"/>
 		</Receiver>
 
 		<Pipeline>
@@ -44,7 +44,6 @@
 				<Param name="notification_id" sessionKey="originalMessage" defaultValue="-1" type="INTEGER"/>
 				<Forward name="success" path="EXIT" />
 			</SenderPipe>
-
 		</Pipeline>
 	</Adapter>
 	<!-- cronExpression="0 * * * * ?" for every minute-->
@@ -52,7 +51,7 @@
 		<Job
 			name="process notifications"
 			cronExpression="0 0 21 ? * MON-FRI"
-			javaListener="brp personen notification retry scheduler"
+			javaListener="BrpPersonenNotificationRetryScheduler"
 			function="SendMessage"
 		/>
 	</Scheduler>
