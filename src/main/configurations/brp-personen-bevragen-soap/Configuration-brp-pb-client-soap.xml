@@ -82,7 +82,7 @@
 			<JsonPipe name="JsonToXml" storeResultInSessionKey="xmlbody" />
 
 			<XsltPipe name="MapResponse"
-				styleSheetName="xsl/mappingJsonToStuf2.xsl"
+				styleSheetName="xsl/mappingJsonToStuf.xslt"
 				storeResultInSessionKey="MapResponse">
 				<Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
 				<Param name="varReferentienummer" sessionKey="varReferentienummer" />
