@@ -27,7 +27,15 @@
 				<Exit name="EXCEPTION" state="ERROR" />
 			</Exits>
 
+			<PutInSessionPipe name="SendCallbackToDatabase">
+				<Param name="skipCallback" value="1" />
+			</PutInSessionPipe>
+
 			<JsonPipe name="ConvertMessageStoreToXml" storeResultInSessionKey="inputXml"/>
+
+			<PutInSessionPipe name="StoreBsn" preserveInput="true">
+				<Param name="bsn" xpathExpression="root/personen/burgerservicenummer"/>
+			</PutInSessionPipe>
 
 			<!-- Read application config file -->
 			<LocalFileSystemPipe name="GetApplicationConfig" action="read"
@@ -66,6 +74,22 @@
 			<PutInSessionPipe name="ExtractUrl" getInputFromSessionKey="FilteredApplication">
 				<Param name="url" xpathExpression="root/app/url" />
 			</PutInSessionPipe>
+
+			<XmlIfPipe name="CheckCallbackAction" >
+				<Param name="action" sessionKey="skipCallback" />
+				<Forward name="then" path="SendMessageToShadowdb" />
+				<Forward name="else" path="callback" />
+			</XmlIfPipe>
+
+			<SenderPipe name="SendMessageToShadowdb">
+				<FixedQuerySender name="storeCallbackMessage" query="INSERT INTO shadowmessages (message, app_id, bsn, is_frank, timestamp) VALUES (?, ?, ?, True, CURRENT_TIMESTAMP)">
+					<Param name="message" sessionKey="soapMessage" type="BINARY" />
+					<Param name="appId" xpathExpression="root/app/applicatie" sessionKey="FilteredApplication" />
+					<Param name="bsn" sessionKey="bsn" />
+				</FixedQuerySender>
+				<Forward name="success" path="EXIT" />
+				<Forward name="exception" path="EXCEPTION" />
+			</SenderPipe>
 
 			<SenderPipe
 				name="callback"

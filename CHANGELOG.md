@@ -1,5 +1,101 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.9.8](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.7...v1.9.8) (2024-12-03)
+
+### 🐛 Bug Fixes
+
+* try true full chain ([78134b4](https://github.com/wearefrank/haalcentraal-connector/commit/78134b41fb439ad4dd7c4cce68704e82ff66eb80))
+
+## [1.9.7](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.6...v1.9.7) (2024-12-03)
+
+### 🐛 Bug Fixes
+
+* try with entire chain ([99d613d](https://github.com/wearefrank/haalcentraal-connector/commit/99d613d7d31c061d738e3bbc2ac30e080d645b4d))
+
+## [1.9.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.5...v1.9.6) (2024-12-03)
+
+### 🐛 Bug Fixes
+
+* try again with staat der nederlanden root ca ([8d3204a](https://github.com/wearefrank/haalcentraal-connector/commit/8d3204a0c3daec1608f9292327661f44327941da))
+
+## [1.9.5](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.4...v1.9.5) (2024-12-03)
+
+### 🐛 Bug Fixes
+
+* cast message for shadow inserter ([a7d1a3f](https://github.com/wearefrank/haalcentraal-connector/commit/a7d1a3f9c356b18a1b641050acfadcef80aeeba1))
+
+## [1.9.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.3...v1.9.4) (2024-12-03)
+
+### 🐛 Bug Fixes
+
+* trigger deploy ([253c72f](https://github.com/wearefrank/haalcentraal-connector/commit/253c72fa035bd02bdb56086d6104ea561a20fb1e))
+
+## [1.9.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.2...v1.9.3) (2024-12-02)
+
+### 🐛 Bug Fixes
+
+* trigger deploy ([a18ef06](https://github.com/wearefrank/haalcentraal-connector/commit/a18ef06da493ca2f5bfb259915a49a7a7458b88b))
+
+## [1.9.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.1...v1.9.2) (2024-12-02)
+
+### 🐛 Bug Fixes
+
+* try changing ca cer to pem ([6fde59b](https://github.com/wearefrank/haalcentraal-connector/commit/6fde59b28b980db4eb2b42446a34b13da69c2a52))
+
+## [1.9.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.0...v1.9.1) (2024-12-02)
+
+### 🐛 Bug Fixes
+
+* do chmod as root user ([f824e50](https://github.com/wearefrank/haalcentraal-connector/commit/f824e50bcb9c26b18fbe38fa05b5b1d7ac55827b))
+* remove chmod ([02a37d1](https://github.com/wearefrank/haalcentraal-connector/commit/02a37d1cb2f68dbc4a0b2ab66ddab97a7a7eedb9))
+* trigger release ([4473210](https://github.com/wearefrank/haalcentraal-connector/commit/4473210dab3a56f0789e3b253b4cbf960c734a32))
+
+## [1.9.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.31...v1.9.0) (2024-12-02)
+
+### 🍕 Features
+
+* Compare rows from the shadow database ([6195b63](https://github.com/wearefrank/haalcentraal-connector/commit/6195b633666fcdcdb3ab667d1b0d3fad6f66e39b))
+
+### 🐛 Bug Fixes
+
+* upgrade stylesheet version to 2.0 ([f2b61fc](https://github.com/wearefrank/haalcentraal-connector/commit/f2b61fc72cfda668a60c7af3497259860be4b770))
+
+## [1.8.31](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.30...v1.8.31) (2024-11-29)
+
+### 🐛 Bug Fixes
+
+* javalistener reference ([e75be53](https://github.com/wearefrank/haalcentraal-connector/commit/e75be53c96575af7e55d7a8aa6d7ecd1db959970))
+
+## [1.8.30](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.29...v1.8.30) (2024-11-28)
+
+### 🐛 Bug Fixes
+
+* my dumbass mistake ([427af1e](https://github.com/wearefrank/haalcentraal-connector/commit/427af1e81c2e0e6821f9cf8b18c7e13b4802cdbb))
+
+## [1.8.29](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.28...v1.8.29) (2024-11-28)
+
+### 🐛 Bug Fixes
+
+* infinite looping in pb outway ([01a8d95](https://github.com/wearefrank/haalcentraal-connector/commit/01a8d95cd813c9c81a2227cb96babe0ac2e20515))
+
+## [1.8.28](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.27...v1.8.28) (2024-11-28)
+
+### 🐛 Bug Fixes
+
+* trigger release ([8707861](https://github.com/wearefrank/haalcentraal-connector/commit/870786104caf0e24b81af424f28b1bb6c3d85f19))
+
+## [1.8.27](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.26...v1.8.27) (2024-11-27)
+
+### 🐛 Bug Fixes
+
+* move HC BRP url from source code to yaml ([cdf3373](https://github.com/wearefrank/haalcentraal-connector/commit/cdf337333d15f7711670b266c0ff0c6c18761155))
+
+## [1.8.26](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.25...v1.8.26) (2024-11-27)
+
+### 🐛 Bug Fixes
+
+* token expiry flow ([09e64e7](https://github.com/wearefrank/haalcentraal-connector/commit/09e64e7a9c5c4f4e586fdb4bb514a8969351419e))
+
 ## [1.8.25](https://github.com/wearefrank/haalcentraal-connector/compare/v1.8.24...v1.8.25) (2024-11-26)
 
 ### 🐛 Bug Fixes
