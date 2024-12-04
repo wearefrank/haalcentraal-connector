@@ -51,6 +51,7 @@
             <IbisLocalSender name="GetPersoonSender" javaListener="BrpPbOutwayListener" />
             <Forward name="success" path="JsonComparator" />
             <Forward name="exception" path="ServerError" />
+            <Forward name="timeout" path="ServerError" />
         </SenderPipe>
 
         <!-- Compare stored and retrieved person data -->
