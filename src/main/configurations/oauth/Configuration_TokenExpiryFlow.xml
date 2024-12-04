@@ -19,7 +19,7 @@
         </XmlIfPipe>
 
         <SenderPipe name="GetToken">
-            <IbisLocalSender name="GetTokenSender" javaListener="GetTokenListener" returnedSessionKeys="token"/>
+            <IbisLocalSender name="GetTokenSender" javaListener="UpdateTokenListener" returnedSessionKeys="token"/>
         </SenderPipe>
 
     </Pipeline>
