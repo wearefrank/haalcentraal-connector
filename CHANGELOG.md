@@ -1,5 +1,22 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.9.9](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.8...v1.9.9) (2024-12-04)
+
+### 🐛 Bug Fixes
+
+* update exit flow ([74e2957](https://github.com/wearefrank/haalcentraal-connector/commit/74e2957ef60d0c6ed95ec28640095e67ef0f51ff))
+
+### 🧑‍💻 Code Refactoring
+
+* add manual retry for Testing purposes ([cedf109](https://github.com/wearefrank/haalcentraal-connector/commit/cedf109547901e3ee56e33d285ebddd7311ddbe9))
+* give as output the task_id ([328e9c8](https://github.com/wearefrank/haalcentraal-connector/commit/328e9c8d97474887effa13e02e338a14d5efa81c))
+* mockserver url ([e2bc40f](https://github.com/wearefrank/haalcentraal-connector/commit/e2bc40f4cd41dd1ffa6c2b837b5f8bdaed10ae0c))
+* return status for testing purpose ([184f9e7](https://github.com/wearefrank/haalcentraal-connector/commit/184f9e7e18dd4741da19d6eada119d5c6e6d0a2b))
+
+### ✅ Tests
+
+* add manual retry tests and ([f4b0062](https://github.com/wearefrank/haalcentraal-connector/commit/f4b0062fc43f5d7de6796a0fbea71e706a624b9b))
+
 ## [1.9.8](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.7...v1.9.8) (2024-12-03)
 
 ### 🐛 Bug Fixes
