@@ -5,7 +5,6 @@
     <!ENTITY XmlFileAdapter SYSTEM "Configuration_XmlFileAdapter.xml">
     <!ENTITY BrpPersonenNotificationProcessor SYSTEM "Configuration_BrpPersonenNotificationProcessor.xml">
     <!ENTITY BrpPersonenNotificationReceiver SYSTEM "Configuration_BrpPersonenNotificationReceiver.xml">
-    <!ENTITY BrpPersonenNotificationRetryScheduler SYSTEM "Configuration_BrpPersonenNotificationRetryScheduler.xml">
     <!ENTITY BrpPersonenCallbackSender SYSTEM "Configuration_BrpPersonenCallbackSender.xml">
     <!ENTITY EndpointRouter SYSTEM "Configuration_EndpointRouter.xml">
     <!ENTITY BrpPersonenAfnemersIndicatieReceiver SYSTEM "Configuration_BrpPersonenAfnemersIndicatieReceiver.xml">
@@ -20,7 +19,6 @@
 	&XmlFileAdapter;
 	&BrpPersonenNotificationProcessor;
 	&BrpPersonenNotificationReceiver;
-	&BrpPersonenNotificationRetryScheduler;
 	&BrpPersonenCallbackSender;
 	&EndpointRouter;
 	&BrpPersonenAfnemersIndicatieReceiver;

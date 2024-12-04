@@ -8,6 +8,10 @@
 			<JdbcTableListener tableName="tasks" statusField="status" statusValueError="E" statusValueProcessed="C" keyField="task_id" messageField="bsn" selectCondition="scheduled_start &lt;= NOW()"/>
 		</Receiver>
 
+		<Receiver name="NotificationProcessorApi">
+			<ApiListener name="NotificationProcessorApiListener" uriPattern="notification" method="POST" active="${NotificationProcessorApi.active}" />
+		</Receiver>
+
 		<Pipeline>
 			<Exits>
 				<Exit name="EXIT" state="SUCCESS" />
@@ -15,9 +19,23 @@
 				<Exit name="NoSubscribersToPerson" state="SUCCESS" />
 			</Exits>
 
-            <PutInSessionPipe name="ExtractIncomingNotificationData">
+			<SenderPipe name="manualyStartTask" onlyIfSessionKey="HttpMethod">
+				<FixedQuerySender queryType="SELECT" name="updateScheduledStart" query="UPDATE tasks SET status = 'C' WHERE task_id = ? RETURNING bsn">
+					<Param name="task_id" sessionKey="originalMessage" />
+				</FixedQuerySender>
+				<Forward name="success" path="ExtractBsnFromTask" />
+			</SenderPipe>
+			
+            <PutInSessionPipe name="ExtractBsnFromTask" onlyIfSessionKey="HttpMethod">
+                <Param name="bsn" xpathExpression="/result/rowset/row/field[@name='BSN']" />
+                <Param name="key" sessionKey="originalMessage" />
+                <Param name="mid" sessionKey="originalMessage" />
+                <Forward name="success" path="ExtractIncomingNotificationData"/>
+            </PutInSessionPipe>
+
+            <PutInSessionPipe name="ExtractIncomingNotificationData" unlessSessionKey="HttpMethod">
                 <Param name="bsn" sessionKey="originalMessage" />
-                <Forward name="success" path="processNotifications"/>
+                <Forward name="success" path="GetSubscribers"/>
             </PutInSessionPipe>
 
 			<!-- Check if subscribers are found for the task bsn -->
@@ -64,15 +82,22 @@
 			</SenderPipe>
 
 			<XmlIfPipe name="CheckAttemptCount" xpathExpression="/result/rowset/row/field[@name='ATTEMPT'] > 3">
-				<Forward name="then" path="EXCEPTION" />
+				<Forward name="then" path="SetTaskStatusE" />
 				<Forward name="else" path="RetryNotification" />
 			</XmlIfPipe>
+
+			<SenderPipe name="SetTaskStatusE" onlyIfSessionKey="HttpMethod">
+				<FixedQuerySender queryType="SELECT" name="updateScheduledStart" query="UPDATE tasks SET status = 'E' WHERE task_id = ? RETURNING status">
+					<Param name="task_id" sessionKey="originalMessage" />
+				</FixedQuerySender>
+				<Forward name="success" path="EXCEPTION" />
+			</SenderPipe>
 
 			<!-- Add a new task to retry synchronization -->
             <SenderPipe name="RetryNotification">
                 <FixedQuerySender
 					name="CreateRetryTask"
-                    queryType="OTHER"
+                    queryType="SELECT"
 					query="WITH last_attempt AS (
 								SELECT correlation_id, attempt, scheduled_start
 								FROM tasks
@@ -90,7 +115,8 @@
 								'P',
 								attempt + 1,
 								?{bsn}
-							FROM last_attempt;">
+							FROM last_attempt
+							RETURNING task_id; ">
 					<Param name="task_id" sessionKey="mid" type="INTEGER" />
 					<Param name="bsn" sessionKey="bsn" type="STRING" />
             	</FixedQuerySender> 
