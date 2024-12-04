@@ -9,7 +9,7 @@
                 <Exit name="READY" state="SUCCESS" code="200"/>
             </Exits>
 
-            <ResultSetIteratingPipe name="CompareMatchedContent" query="
+            <ResultSetIteratingPipe name="CompareMatchedContent" storeResultInSessionKey="differences" query="
                     SELECT not_frank.ID, not_frank.message as expected, frank.message as actual FROM (SELECT * FROM shadowmessages WHERE is_frank = true) as frank, (SELECT * FROM shadowmessages WHERE is_frank = false) as not_frank
                     WHERE frank.bsn = not_frank.bsn
                     AND frank.app_id = not_frank.app_id
@@ -29,7 +29,33 @@
                     )
                 "/>
             </SenderPipe> -->
+
+            <SenderPipe name="GetDuplicateMatches" storeResultInSessionKey="overview">
+                <FixedQuerySender name="RetrieveDuplicateIds" queryType="SELECT" query="
+                    SELECT
+                    (SELECT COUNT(*) FROM shadowmessages WHERE is_frank = FALSE) AS not_frank_messages,
+                    (SELECT COUNT(*) FROM shadowmessages WHERE is_frank = TRUE) AS frank_messages,
+                    COUNT(DISTINCT external.id) AS matched,
+                    (SELECT COUNT(*) FROM shadowmessages WHERE is_frank = FALSE)
+                    - COUNT(DISTINCT external.id) AS unmatched
+                    FROM shadowmessages AS external
+                    LEFT JOIN shadowmessages AS internal
+                    ON external.bsn = internal.bsn
+                    AND external.app_id = internal.app_id
+                    AND internal.is_frank = TRUE
+                    AND ABS(EXTRACT(EPOCH FROM (DATE_TRUNC('second', external.timestamp) - DATE_TRUNC('second', internal.timestamp)))) &lt;= 48 * 3600
+                    WHERE external.is_frank = FALSE
+                    AND ABS(EXTRACT(EPOCH FROM (DATE_TRUNC('second', external.timestamp) - DATE_TRUNC('second', internal.timestamp)))) &lt;= 48 * 3600;
+                "/>
+            </SenderPipe>
+
+            <ReplacerPipe name="ConcatData" getInputFromFixedValue="&lt;overview&gt;?{overview}&lt;/overview&gt; ?{differences}">
+                <Param name="overview" sessionKey="overview" xpathExpression="//row[@number=0]/field" type="XML" />
+                <Param name="differences" sessionKey="differences" />
+            </ReplacerPipe>
             
+            <Text2XmlPipe xmlTag="data" name="OutputTextToXml" useCdataSection="false" />
+
             <!-- <XsltPipe name="MakePretty" styleSheetName="xsl/prettifier.xsl" outputType="XML" /> -->
         </Pipeline>
     </Adapter>
