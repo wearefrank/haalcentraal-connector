@@ -1,8 +1,5 @@
-<Module
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
-	<Adapter name="BrpPbOutway"
-		description="API voor het bevragen van personen uit de basisregistratie personen (BRP)">
+<Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+	<Adapter name="BrpPbOutway" description="API voor het bevragen van personen uit de basisregistratie personen (BRP)">
 
 		<Receiver name="BrpPbOutwayReceiver">
 			<JavaListener name="BrpPbOutwayListener" />
@@ -43,30 +40,30 @@
 			<!-- url="${haalcentraal.BRP.personen.bevragen.endpoint.proefomgeving}/personen" -->
 
 			<SenderPipe name="GetToken">
-				<IbisLocalSender name="GetTokenSender" javaListener="GetToken" />
+				<IbisLocalSender name="GetTokenSender" javaListener="GetToken" returnedSessionKeys="token" />
 				<Forward name="exception" path="Exception" />
 			</SenderPipe>
 
 			<PutInSessionPipe name="PutLoopPreventionFalseInSession" sessionKey="loopPrevention" value="false" active="${isDiginetwerk}"/>
 
 			<!-- Call diginetwerk sender with retry mechanism -->
-			<SenderPipe name="PostBRPPersonenBevragenDiginetwerk"  active="${isDiginetwerk}">
-				<IbisLocalSender name="RequestFromDiginetwerkSender" javaListener="BrpCallDiginetwerk" />
+			<SenderPipe name="PostBRPPersonenBevragenDiginetwerk" active="${isDiginetwerk}">
+				<IbisLocalSender name="RequestFromDiginetwerkSender" javaListener="BrpCallDiginetwerk">
+					<Param name="token" sessionKey="token" />
+				</IbisLocalSender>
+
 			</SenderPipe>
 
-			<XmlIfPipe name="IfLoopPreventionPipe" getInputFromSessionKey="loopPrevention" preserveInput="true" active="${isDiginetwerk}"
-					   expressionValue="true">
+			<XmlIfPipe name="IfLoopPreventionPipe" getInputFromSessionKey="loopPrevention" preserveInput="true" active="${isDiginetwerk}" expressionValue="true">
 				<Forward name="then" path="Exit"/>
 				<Forward name="else" path="TokenExpiryFlow"/>
 			</XmlIfPipe>
 
 			<SenderPipe name="TokenExpiryFlow" active="${isDiginetwerk}">
-				<IbisLocalSender name="TokenExpiryFlowSender" javaListener="TokenExpiryFlowListener"
-					returnedSessionKeys="token" />
+				<IbisLocalSender name="TokenExpiryFlowSender" javaListener="TokenExpiryFlowListener" returnedSessionKeys="token" />
 			</SenderPipe>
 
-			<PutInSessionPipe name="PutLoopPreventionTrueInSession" sessionKey="loopPrevention"
-				value="true" active="${isDiginetwerk}">
+			<PutInSessionPipe name="PutLoopPreventionTrueInSession" sessionKey="loopPrevention" value="true" active="${isDiginetwerk}">
 				<Forward name="success" path="PostBRPPersonenBevragenDiginetwerk" />
 			</PutInSessionPipe>
 
@@ -76,7 +73,6 @@
 			</SenderPipe>
 
 			<DataSonnetPipe name="ExtractPersonenBody" styleSheetName="jsonnet/ExtractBody.jsonnet" />
-
 		</Pipeline>
 	</Adapter>
 </Module>
