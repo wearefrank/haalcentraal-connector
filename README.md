@@ -61,10 +61,7 @@ Database structure for tasks:
 
 - **Configuration_BrpPersonenNotificationReceiver.xml**  
     API endpoint that places the notification in the message store, receives identifier(s) that specify which person(s) information changed.
-
-- **Configuration_BrpPersonenNotificationRetryScheduler.xml**  
-    Schedules the retry of the notification when the retrieved person information has not changed (yet).
-
+    
 - **Configuration_BrpPersonenQuerySender.xml**  
     Sends a query to the BRP to retrieve the specified person information.
 

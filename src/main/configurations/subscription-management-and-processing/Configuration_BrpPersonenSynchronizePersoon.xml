@@ -81,7 +81,10 @@
             </FixedQuerySender>
         </SenderPipe>
 
-        <EchoPipe name="UpdatedExit" getInputFromFixedValue="true" />
+        <EchoPipe name="UpdatedExit" getInputFromFixedValue="true">
+            <Forward name="success" path="Exit" />
+        </EchoPipe>
+        
         <EchoPipe name="NotUpdatedExit" getInputFromFixedValue="false" />
     </Pipeline>
 </Adapter>

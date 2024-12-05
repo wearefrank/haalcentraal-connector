@@ -49,8 +49,8 @@
             <SenderPipe name="InsertNotification" getInputFromSessionKey="originalMessage">
                 <FixedQuerySender
 					name="CreateNewTask"
-                    queryType="OTHER"
-					query="INSERT INTO tasks (bsn, scheduled_start, correlation_id) VALUES (?, NOW() + INTERVAL '1 hour', gen_random_uuid())">
+                    queryType="SELECT"
+					query="INSERT INTO tasks (bsn, scheduled_start, correlation_id) VALUES (?, NOW() + INTERVAL '1 hour', gen_random_uuid()) RETURNING task_id">
 					<Param name="bsn" sessionKey="bsn" />
             	</FixedQuerySender> 
                 <Forward name="success" path="ExitPipe" />

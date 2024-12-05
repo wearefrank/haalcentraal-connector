@@ -13,7 +13,7 @@
 
         <SenderPipe name="storeMessage">
             <FixedQuerySender name="storeMessage" query="INSERT INTO shadowmessages (message, app_id, bsn, is_frank, timestamp) VALUES (?, ?, ?, false, CURRENT_TIMESTAMP)">
-                <Param name="message" />
+                <Param name="message"  type="BINARY" />
                 <Param name="appId" sessionKey="appId" />
                 <Param name="bsn" sessionKey="bsn" />
             </FixedQuerySender>
