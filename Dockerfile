@@ -24,7 +24,6 @@ COPY --chown=tomcat src/main/secrets/ /opt/frank/secrets/
 COPY --chown=tomcat src/main/resources/ /opt/frank/resources/
 COPY --chown=tomcat src/test/testtool/ /opt/frank/testtool/
 
-ADD entrypoint.sh entrypoint.sh
 ADD Staat-der-Nederlanden-Private-Root-CA-G1.pem /usr/local/share/ca-certificates/Staat-der-Nederlanden-Private-Root-CA-G1.crt
 ADD DomPrivateServicesCA-G1.pem /usr/local/share/ca-certificates/DomPrivateServicesCA-G1.crt
 ADD QuoVadis-PKIoverheid-Private-Services-CA-G1-PEM.pem /usr/local/share/ca-certificates/QuoVadis-PKIoverheid-Private-Services-CA-G1-PEM.crt
@@ -33,7 +32,6 @@ RUN chmod 644 /usr/local/share/ca-certificates/Staat-der-Nederlanden-Private-Roo
 RUN chmod 644 /usr/local/share/ca-certificates/DomPrivateServicesCA-G1.crt
 RUN chmod 644 /usr/local/share/ca-certificates/QuoVadis-PKIoverheid-Private-Services-CA-G1-PEM.crt
 RUN update-ca-certificates
-RUN /entrypoint.sh
 
 RUN keytool -import -noprompt -trustcacerts -alias privateRoot -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -file /usr/local/share/ca-certificates/Staat-der-Nederlanden-Private-Root-CA-G1.crt
 RUN keytool -import -noprompt -trustcacerts -alias privateRoot -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -file /usr/local/share/ca-certificates/DomPrivateServicesCA-G1.crt
