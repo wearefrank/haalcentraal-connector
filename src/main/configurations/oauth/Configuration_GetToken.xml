@@ -9,17 +9,18 @@
                 <Exit name="Exception" state="ERROR" />
             </Exits>
 
-            <LocalFileSystemPipe name="ReadTokenFromFile" filename="token.txt" action="read"
-				storeResultInSessionKey="token" preserveInput="true" active="${isDiginetwerk}">
+            <LocalFileSystemPipe name="ReadTokenFromFile" filename="token.txt" action="read" storeResultInSessionKey="token" active="${isDiginetwerk}">
 				<Forward name="fileNotFound" path="GetNewToken" />
-                <Forward name="success" path="ReturnToken" />
+                <Forward name="success" path="Exit" />
 			</LocalFileSystemPipe>
 
             <SenderPipe name="GetNewToken" active="${isDiginetwerk}">
 				<IbisLocalSender name="GetNewTokenSender" javaListener="UpdateTokenListener" returnedSessionKeys="token" />
+                <Forward name="success" path="Exit" />
+                <Forward name="exception" path="Exception" />
 			</SenderPipe>
 
-            <EchoPipe name="ReturnToken" />
+            <EchoPipe name="ReturnValue" />
         </Pipeline>
     </Adapter>
 </Module>
