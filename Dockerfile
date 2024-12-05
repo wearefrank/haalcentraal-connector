@@ -32,9 +32,10 @@ RUN chmod 644 /usr/local/share/ca-certificates/Staat-der-Nederlanden-Private-Roo
 RUN chmod 644 /usr/local/share/ca-certificates/DomPrivateServicesCA-G1.crt
 RUN chmod 644 /usr/local/share/ca-certificates/QuoVadis-PKIoverheid-Private-Services-CA-G1-PEM.crt
 RUN update-ca-certificates
-RUN keytool -import -noprompt -trustcacerts -alias privateRoot -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass changeit -file /usr/local/share/ca-certificates/Staat-der-Nederlanden-Private-Root-CA-G1.crt
-RUN keytool -import -noprompt -trustcacerts -alias privateRoot -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass changeit -file /usr/local/share/ca-certificates/DomPrivateServicesCA-G1.crt
-RUN keytool -import -noprompt -trustcacerts -alias privateRoot -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass changeit -file /usr/local/share/ca-certificates/QuoVadis-PKIoverheid-Private-Services-CA-G1-PEM.crt
+
+RUN keytool -import -noprompt -trustcacerts -alias privateRoot -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -file /usr/local/share/ca-certificates/Staat-der-Nederlanden-Private-Root-CA-G1.crt
+RUN keytool -import -noprompt -trustcacerts -alias privateServices -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -file /usr/local/share/ca-certificates/DomPrivateServicesCA-G1.crt
+RUN keytool -import -noprompt -trustcacerts -alias privateServicesQuoVadis -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -file /usr/local/share/ca-certificates/QuoVadis-PKIoverheid-Private-Services-CA-G1-PEM.crt
 
 ENV credentialFactory.class=nl.nn.credentialprovider.PropertyFileCredentialFactory
 ENV credentialFactory.map.properties=/opt/frank/secrets/credentials.properties

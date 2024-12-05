@@ -1,5 +1,14 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.9.10](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.9...v1.9.10) (2024-12-05)
+
+### 🐛 Bug Fixes
+
+* ca cert aliases ([f2bdbe9](https://github.com/wearefrank/haalcentraal-connector/commit/f2bdbe9bd511ae855cd1e0fd4961fcbf7a3fcbf3))
+* change keystore location in keytool command ([bc9b252](https://github.com/wearefrank/haalcentraal-connector/commit/bc9b25253356306aa13b67536bc4a2d4435f3fe8))
+* don't use entrypoint.sh ([b551310](https://github.com/wearefrank/haalcentraal-connector/commit/b5513102988c3ae8b499bb036b40c2ac26b2a60b))
+* try to use keytool to import ca's into java truststore ([0a934dc](https://github.com/wearefrank/haalcentraal-connector/commit/0a934dc98a4c9cf7d82ef58f08bc546e1039f05b))
+
 ## [1.9.9](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.8...v1.9.9) (2024-12-04)
 
 ### 🐛 Bug Fixes

@@ -8,8 +8,8 @@
 			<JdbcTableListener tableName="tasks" statusField="status" statusValueError="E" statusValueProcessed="C" keyField="task_id" messageField="bsn" selectCondition="scheduled_start &lt;= NOW()"/>
 		</Receiver>
 
-		<Receiver name="NotificationProcessorApi">
-			<ApiListener name="NotificationProcessorApiListener" uriPattern="notification" method="POST" active="${NotificationProcessorApi.active}" />
+		<Receiver name="NotificationProcessorApi" active="${NotificationProcessorApi.active}">
+			<ApiListener name="NotificationProcessorApiListener" uriPattern="notification" method="POST"  />
 		</Receiver>
 
 		<Pipeline>
