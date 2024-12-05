@@ -1,7 +1,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
     xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301">
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
-    <xsl:param name="varZenderOrganisatie" />
     <xsl:param name="varZenderApplicatie" />
     <xsl:param name="gemeenteVanInschrijving" />
     <xsl:param name="inclusiefOverledenPersonen" />
