@@ -76,8 +76,7 @@
 					keystore="${haalcentraal_cert_path}"
 					keystorePassword="${haalcentraal_cert_pass}"
 					keystoreAlias="haalcentraal"
-					keystoreType="PKCS12"
-					allowSelfSignedCertificates="true">
+					keystoreType="PKCS12">
 				</HttpSender>
 				<Param name="url" sessionKey="url" />
 				<Forward name="success" path="echoPipe" />
