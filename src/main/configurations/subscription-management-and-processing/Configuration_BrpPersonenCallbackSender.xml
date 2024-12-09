@@ -27,10 +27,6 @@
 				<Exit name="EXCEPTION" state="ERROR" />
 			</Exits>
 
-			<PutInSessionPipe name="SendCallbackToDatabase">
-				<Param name="skipCallback" value="1" />
-			</PutInSessionPipe>
-
 			<JsonPipe name="ConvertMessageStoreToXml" storeResultInSessionKey="inputXml"/>
 
 			<PutInSessionPipe name="StoreBsn" preserveInput="true">
@@ -75,12 +71,6 @@
 				<Param name="url" xpathExpression="root/app/url" />
 			</PutInSessionPipe>
 
-			<XmlIfPipe name="CheckCallbackAction" >
-				<Param name="action" sessionKey="skipCallback" />
-				<Forward name="then" path="SendMessageToShadowdb" />
-				<Forward name="else" path="callback" />
-			</XmlIfPipe>
-
 			<SenderPipe name="SendMessageToShadowdb">
 				<FixedQuerySender name="storeCallbackMessage" query="INSERT INTO shadowmessages (message, app_id, bsn, is_frank, timestamp) VALUES (?, ?, ?, True, CURRENT_TIMESTAMP)">
 					<Param name="message" sessionKey="soapMessage" type="BINARY" />
@@ -93,7 +83,7 @@
 
 			<SenderPipe
 				name="callback"
-				getInputFromSessionKey="soapMessage">
+				getInputFromSessionKey="soapMessage" active="${enableCallback}">
 				<HttpSender
 					methodType="POST"
 					contentType="application/xml">
