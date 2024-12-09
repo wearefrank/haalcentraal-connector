@@ -1,7 +1,11 @@
 <!DOCTYPE Configuration [
 	<!ENTITY brp-pb-outway SYSTEM "Configuration-brp-pb-outway.xml">
+	<!ENTITY brp-call-proefomgeving SYSTEM "Configuration-brp-call-proefomgeving.xml">
+	<!ENTITY brp-call-diginetwerk SYSTEM "Configuration-brp-call-diginetwerk.xml">
 	]>
 
 <Configuration name="brp-personen-bevragen-outway">
 	&brp-pb-outway;
+	&brp-call-proefomgeving;
+	&brp-call-diginetwerk;
 </Configuration>
