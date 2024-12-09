@@ -30,7 +30,7 @@
                     <Param name="Content-Type" sessionKey="headerContent-Type"/>
                 </HttpSender>
 
-                <Forward name="success" path="ExtractPersonenBody" />
+                <Forward name="success" path="Exit" />
                 <Forward name="401" path="IfLoopPreventionPipe" />
                 <Forward name="400" path="BadRequest" />
                 <Forward name="403" path="Forbidden" />
