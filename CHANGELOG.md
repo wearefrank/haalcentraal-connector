@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.9.13](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.12...v1.9.13) (2024-12-09)
+
+### 🐛 Bug Fixes
+
+* add header to the tests ([aff4d86](https://github.com/wearefrank/haalcentraal-connector/commit/aff4d8607734c80288b1ea36608f0747f67642ad))
+
 ## [1.9.12](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.11...v1.9.12) (2024-12-05)
 
 ### 🧑‍💻 Code Refactoring
