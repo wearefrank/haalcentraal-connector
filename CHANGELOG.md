@@ -1,5 +1,18 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.9.12](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.11...v1.9.12) (2024-12-05)
+
+### 🧑‍💻 Code Refactoring
+
+* add keystore properties ([1a70586](https://github.com/wearefrank/haalcentraal-connector/commit/1a705865c18306e636c7a7325f6ab7be3b3aa51e))
+* remove selfsignedcertificates property ([2f659f8](https://github.com/wearefrank/haalcentraal-connector/commit/2f659f8aee43c583988da2787484d45a6ad14607))
+
+## [1.9.11](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.10...v1.9.11) (2024-12-05)
+
+### 🐛 Bug Fixes
+
+* receiver has no listener when inactive ([b58fd52](https://github.com/wearefrank/haalcentraal-connector/commit/b58fd52a89310ecc9345d15185966ebc8128ecd9))
+
 ## [1.9.10](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.9...v1.9.10) (2024-12-05)
 
 ### 🐛 Bug Fixes
