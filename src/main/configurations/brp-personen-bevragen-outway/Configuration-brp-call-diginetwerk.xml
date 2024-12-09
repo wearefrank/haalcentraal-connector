@@ -19,6 +19,7 @@
 			</Exits>
 
             <!-- required sessionKey: token -->
+            <EchoPipe name="PreventEmpty" />
 
             <SenderPipe name="PostBRPPersonenBevragenDiginetwerk" getInputFromSessionKey="originalMessage" active="${isDiginetwerk}">
                 <HttpSender url="${haalcentraal.BRP.personen.bevragen.endpoint}/personen" methodType="POST" headersParams="Authorization,Accept,Content-Type" parametersToSkipWhenEmpty="Accept,Content-Type" contentType="application/json" keystore="${haalcentraal_cert_path}" keystorePassword="${haalcentraal_cert_pass}" keystoreAlias="haalcentraal" keystoreType="PKCS12">
