@@ -7,8 +7,8 @@
         <Exit name="READY" state="SUCCESS" code="200"/>
 
         <PutInSessionPipe name="ExtractIncomingNotificationData" preserveInput="true">
-            <Param name="appId" xpathExpression="npsLa01/stuurgegevens/ontvanger/applicatie" />
-            <Param name="bsn" xpathExpression="npsLa01/antwoord/object/inp.bsn" />
+            <Param name="appId" xpathExpression="npsLk01/stuurgegevens/ontvanger/applicatie" />
+            <Param name="bsn" xpathExpression="npsLk01/antwoord/object/inp.bsn" />
         </PutInSessionPipe>
 
         <SenderPipe name="storeMessage">
