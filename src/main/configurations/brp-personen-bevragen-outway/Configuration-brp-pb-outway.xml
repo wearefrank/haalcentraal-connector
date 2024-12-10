@@ -37,9 +37,7 @@
 				}
 			-->
 
-			<!-- url="${haalcentraal.BRP.personen.bevragen.endpoint.proefomgeving}/personen" -->
-
-			<SenderPipe name="GetToken">
+			<SenderPipe name="GetToken" preserveInput="true">
 				<IbisLocalSender name="GetTokenSender" javaListener="GetToken" returnedSessionKeys="token" />
 				<Forward name="exception" path="Exception" />
 			</SenderPipe>
@@ -59,13 +57,16 @@
 				<Forward name="else" path="TokenExpiryFlow"/>
 			</XmlIfPipe>
 
+			<PutInSessionPipe name="PutLoopPreventionTrueInSession" sessionKey="loopPrevention" value="true" active="${isDiginetwerk}" />
+
 			<SenderPipe name="TokenExpiryFlow" active="${isDiginetwerk}">
 				<IbisLocalSender name="TokenExpiryFlowSender" javaListener="TokenExpiryFlowListener" returnedSessionKeys="token" />
 			</SenderPipe>
 
-			<PutInSessionPipe name="PutLoopPreventionTrueInSession" sessionKey="loopPrevention" value="true" active="${isDiginetwerk}">
-				<Forward name="success" path="PostBRPPersonenBevragenDiginetwerk" />
-			</PutInSessionPipe>
+			<XmlIfPipe name="IfTokenWasExpired" expressionValue="true" active="${isDiginetwerk}">
+				<Forward name="then" path="PostBRPPersonenBevragenDiginetwerk"/>
+				<Forward name="else" path="Exit"/>
+			</XmlIfPipe>
 
 			<!-- Call proefomgeving sender -->
 			<SenderPipe name="BrpCallProefomgevingSender">
