@@ -17,10 +17,7 @@
             </Exits>
 
             <SenderPipe name="BrpPersonenSynchronizePersoon">
-                <IbisLocalSender name="BrpPersonenSynchronizePersoon"
-                    javaListener="BrpPersonenSynchronizePersoon">
-                    <Param name="bsn" sessionKey="burgerservicenummer" />
-                </IbisLocalSender>
+                <IbisLocalSender name="BrpPersonenSynchronizePersoon" javaListener="BrpPersonenSynchronizePersoon" />
                 <Forward name="success" path="persoonNew2xml" />
                 <Forward name="exception" path="EXCEPTION" />
             </SenderPipe>
@@ -45,7 +42,7 @@
                     queryType="SELECT"
                     query="SELECT app_id FROM subscripties WHERE bsn=? AND eind_datum IS NULL"
                     outputFormat="JSON">
-                    <Param name="burgerservicenummer" sessionKey="burgerservicenummer" />
+                    <Param name="burgerservicenummer" sessionKey="originalMessage" />
                 </FixedQuerySender>
                 <Forward name="success" path="TransformApplicationData" />
             </SenderPipe>
@@ -66,7 +63,7 @@
                     queryType="SELECT"
                     query="SELECT data FROM persoonsgegevens WHERE bsn=?{burgerservicenummer} ORDER BY registratie_datum DESC LIMIT 1"
                     outputFormat="JSON">
-                    <Param name="burgerservicenummer" sessionKey="burgerservicenummer" />
+                    <Param name="burgerservicenummer" sessionKey="originalMessage" />
                 </FixedQuerySender>
                 <Forward name="success" path="ExtractDataField" />
             </SenderPipe>
@@ -81,7 +78,7 @@
 					queryType="SELECT"
 					query="SELECT * FROM persoonsgegevens WHERE bsn=?{burgerservicenummer} ORDER BY registratie_datum DESC LIMIT 1"
 					includeFieldDefinition="false">
-					<Param name="burgerservicenummer" sessionKey="burgerservicenummer" />
+					<Param name="burgerservicenummer" sessionKey="originalMessage" />
 				</FixedQuerySender>
 			</SenderPipe>
 

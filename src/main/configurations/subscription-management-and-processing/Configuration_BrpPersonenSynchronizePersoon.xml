@@ -25,13 +25,13 @@
                 queryType="SELECT"
                 query="SELECT * FROM persoonsgegevens WHERE bsn=?{bsn} ORDER BY registratie_datum DESC LIMIT 1"
                 includeFieldDefinition="false">
-                <Param name="bsn" sessionKey="bsn" />
+                <Param name="bsn"/>
             </FixedQuerySender>
         </SenderPipe>
 
         <!-- Create request for BRP system using XSLT -->
         <XsltPipe name="CreateRequest" styleSheetName="xsl/personenRequest.xslt" skipEmptyTags="true">
-            <Param name="burgerservicenummer" sessionKey="bsn" />
+            <Param name="burgerservicenummer" sessionKey="originalMessage" />
         </XsltPipe>
 
         <!-- Validate and transform input data to JSON format -->
@@ -76,7 +76,7 @@
             <FixedQuerySender
                 name="insertPersonenSender"
                 query="INSERT INTO persoonsgegevens(bsn, data, registratie_datum) VALUES(?,?,CURRENT_TIMESTAMP)">
-                <Param name="bsn" sessionKey="bsn" />
+                <Param name="bsn" sessionKey="originalMessage" />
                 <Param name="data" sessionKey="currentPersonData" />
             </FixedQuerySender>
         </SenderPipe>
