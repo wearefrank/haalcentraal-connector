@@ -87,4 +87,14 @@
 		<comment>Add not null constraint to subscripties app_id</comment>
 		<addNotNullConstraint tableName="subscripties" columnName="app_id" />
 	</changeSet>
+
+	<!-- ChangeSet 6: Update BSN column to TEXT in relevant tables -->
+	<changeSet id="HCC-6" author="Vincent de Gans">
+		<comment>Change bsn column to TEXT to prevent loss of first character when bsn starts with 0</comment>
+		<!-- Update BSN in persoonsgegevens -->
+        <modifyDataType tableName="persoonsgegevens" columnName="bsn" newDataType="TEXT" />
+
+        <!-- Update BSN in subscripties -->
+        <modifyDataType tableName="subscripties" columnName="bsn" newDataType="TEXT" />
+	</changeSet>
 </databaseChangeLog>
