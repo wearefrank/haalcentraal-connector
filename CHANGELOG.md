@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.9.17](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.16...v1.9.17) (2024-12-10)
+
+### 🐛 Bug Fixes
+
+* outway stuff ([3e7c3ce](https://github.com/wearefrank/haalcentraal-connector/commit/3e7c3ce44ec4f281a5a2160f8e597ba07bae53b9))
+
 ## [1.9.16](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.15...v1.9.16) (2024-12-10)
 
 ### 🐛 Bug Fixes
