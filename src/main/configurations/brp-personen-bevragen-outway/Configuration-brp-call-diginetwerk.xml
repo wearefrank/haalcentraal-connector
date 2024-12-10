@@ -31,7 +31,7 @@
                 </HttpSender>
 
                 <Forward name="success" path="Exit" />
-                <Forward name="401" path="IfLoopPreventionPipe" />
+                <Forward name="401" path="NotAuthorized" />
                 <Forward name="400" path="BadRequest" />
                 <Forward name="403" path="Forbidden" />
                 <Forward name="404" path="NotFound" />

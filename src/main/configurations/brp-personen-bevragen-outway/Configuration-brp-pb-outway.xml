@@ -51,6 +51,7 @@
 				<IbisLocalSender name="RequestFromDiginetwerkSender" javaListener="BrpCallDiginetwerk">
 					<Param name="token" sessionKey="token" />
 				</IbisLocalSender>
+				<Forward name="success" path="ExtractPersonenBody" />
 			</SenderPipe>
 
 			<XmlIfPipe name="IfLoopPreventionPipe" getInputFromSessionKey="loopPrevention" preserveInput="true" active="${isDiginetwerk}" expressionValue="true">
