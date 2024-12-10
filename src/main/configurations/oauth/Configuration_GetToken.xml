@@ -20,7 +20,7 @@
                 <Forward name="exception" path="Exception" />
 			</SenderPipe>
 
-            <EchoPipe name="ReturnValue" />
+            <EchoPipe name="PreventEmptyAdapter" />
         </Pipeline>
     </Adapter>
 </Module>
