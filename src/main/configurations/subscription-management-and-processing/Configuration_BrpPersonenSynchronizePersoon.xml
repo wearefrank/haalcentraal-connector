@@ -49,12 +49,17 @@
         <SenderPipe name="GetPersoon" storeResultInSessionKey="currentPersonData"
                     maxRetries="3" retryMinInterval="60" retryMaxInterval="240">
             <IbisLocalSender name="GetPersoonSender" javaListener="BrpPbOutwayListener" />
-            <Forward name="success" path="JsonComparator" />
+            <Forward name="success" path="CheckResult" />
             <Forward name="exception" path="ServerError" />
             <Forward name="timeout" path="ServerError" />
         </SenderPipe>
 
-		<!-- TODO: Check if person was found -->
+		<!-- Check if person was found -->
+        <IfPipe defaultMediaType="JSON" name="CheckResult" jsonPathExpression="$.personen[0].burgerservicenummer" expressionValue="${bsn}">
+            <Forward name="then" path="JsonComparator" />
+            <Forward name="else" path="ServerError" />
+            <Param name="bsn" sessionKey="originalMessage" />
+        </IfPipe>
 
         <!-- Compare stored and retrieved person data -->
         <SenderPipe name="JsonComparator">
