@@ -14,6 +14,7 @@
 				<Exit name="BadRequest" state="SUCCESS" code="400" empty="false" />
 				<Exit name="AlreadySubscribed" state="SUCCESS" code="409" empty="false" />
 				<Exit name="NoSubscriptionFound" state="SUCCESS" code="404" empty="false" />
+				<Exit name="CouldNotSynchronize" state="SUCCESS" code="500" empty="false" />
 				<Exit name="Exception" state="ERROR" empty="true" />
 			</Exits>
 
@@ -81,6 +82,7 @@
 					<Param name="bsn" sessionKey="originalMessage"
 						xpathExpression="npsLk01/object/inp.bsn" />
 				</IbisLocalSender>
+				<Forward name="exception" path="CouldNotSynchronize" />
 			</SenderPipe>
 
 			<!-- Insert the new subscriber into the database -->
