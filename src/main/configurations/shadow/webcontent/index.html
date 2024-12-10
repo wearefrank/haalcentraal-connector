@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML to HTML Transformation</title>
+    <link rel="stylesheet" href="/webcontent/shadow/index.css">
+</head>
+<body>
+    <div id="content"></div>
+
+    <script>
+        // Function to load XML data
+        const loadXML = async (url) => {
+            const response = await fetch(url);
+            const xmlText = await response.text();
+            return new window.DOMParser().parseFromString(xmlText, 'application/xml');
+        };
+
+        // Function to load XSLT (XSL) data
+        const loadXSLT = async (url) => {
+            const response = await fetch(url);
+            const xsltText = await response.text();
+            return new window.DOMParser().parseFromString(xsltText, 'application/xml');
+        };
+
+        // Function to apply XSLT transformation
+        const transformXML = async () => {
+            // Fetch XML and XSL files from the API
+            const xml = await loadXML('/api/shadow_analitics');
+            const xslt = await loadXSLT('/webcontent/shadow/prettifier.xsl');
+
+            // Initialize XSLTProcessor
+            const xsltProcessor = new XSLTProcessor();
+            xsltProcessor.importStylesheet(xslt);
+
+            // Transform XML with XSLT and get the HTML fragment
+            const resultDocument = xsltProcessor.transformToFragment(xml, document);
+
+            // Append the transformed HTML to the content div
+            document.getElementById('content').appendChild(resultDocument);
+        };
+
+        // Run the transformation when the page loads
+        window.onload = transformXML;
+    </script>
+</body>
+</html>

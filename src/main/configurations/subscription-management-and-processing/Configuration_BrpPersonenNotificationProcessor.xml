@@ -61,12 +61,8 @@
                 <Forward name="else" path="NoSubscribersToPerson"/>
             </XmlIfPipe>
 
-			<SenderPipe name="processNotifications">
-                <IbisLocalSender
-                    name="personenUpdater"
-                    javaListener="BrpPersonenUpdateAndNotify">
-					<Param name="burgerservicenummer" sessionKey="bsn" />
-                </IbisLocalSender>
+			<SenderPipe name="processNotifications" getInputFromSessionKey="bsn">
+                <IbisLocalSender name="personenUpdater" javaListener="BrpPersonenUpdateAndNotify" />
 			</SenderPipe>
 
 			<XmlIfPipe name="CheckUpdateSuccess" expressionValue="true">

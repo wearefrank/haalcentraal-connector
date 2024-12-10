@@ -1,51 +1,26 @@
-<Module>
-    <SendMessageJob name="GetTokenOnStartup" interval="0" javaListener="GetTokenListener" active="${isDiginetwerk}"/>
-    <SendMessageJob name="GetTokenEvery9Minutes" cronExpression="0 0/9 0 ? * * *" javaListener="GetTokenListener" active="${isDiginetwerk}"/>
+<Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
     <Adapter name="GetToken">
-        <Receiver name="GetTokenReceiver">
-            <JavaListener name="GetTokenListener" returnedSessionKeys="token" />
+        <Receiver name="GetToken">
+            <JavaListener name="GetToken" />
         </Receiver>
-
         <Pipeline>
             <Exits>
-                <Exit name="SUCCESS" state="SUCCESS" />
-                <Exit name="ERROR" state="ERROR" />
+                <Exit name="Exit" state="SUCCESS" />
+                <Exit name="Exception" state="ERROR" />
             </Exits>
 
-            <!-- Request an authorization token -->
-            <SenderPipe name="BrpAuthorizationRequest">
-                <HttpSender
-                        url="${oauth.token.url}"
-                        methodType="POST"
-                        contentType="application/x-www-form-urlencoded"
-                        postType="URLENCODED"
-                        headersParams="Accept, Content-Type"
-                        treatInputMessageAsParameters="false">
-                    <Param name="grant_type" value="client_credentials" />
-                    <Param name="client_id" pattern="${oauth.client-id}" hidden="true"/>
-                    <Param name="client_secret" pattern="${oauth.client-secret}" hidden="true"/>
-                    <Param name="scope" value="${oauth.scope}" hidden="true"/>
-                    <Param name="resourceServer" value="ResourceServer01" />
-                    <Param name="Accept" value="application/json" />
-                    <Param name="Content-Type" value="application/x-www-form-urlencoded" />
-                </HttpSender>
+            <LocalFileSystemPipe name="ReadTokenFromFile" filename="token.txt" action="read" storeResultInSessionKey="token" active="${isDiginetwerk}">
+				<Forward name="fileNotFound" path="GetNewToken" />
+                <Forward name="success" path="Exit" />
+			</LocalFileSystemPipe>
 
-                <Forward name="400" path="ERROR" />
-                <Forward name="401" path="ERROR" />
-                <Forward name="500" path="ERROR" />
-            </SenderPipe>
+            <SenderPipe name="GetNewToken" active="${isDiginetwerk}">
+				<IbisLocalSender name="GetNewTokenSender" javaListener="UpdateTokenListener" returnedSessionKeys="token" />
+                <Forward name="success" path="Exit" />
+                <Forward name="exception" path="Exception" />
+			</SenderPipe>
 
-            <!-- Parse the response -->
-            <JsonValidatorPipe name="BrpBpTokenResponseValidator"
-                               schema="BrpBpTokenResponseValidator.json">
-                <Forward name="failure" path="ERROR" />
-            </JsonValidatorPipe>
-
-            <!-- Extract and store required data from the response -->
-            <JsonPipe name="JsonToXml" />
-            <XsltPipe name="TokenExtractor" xpathExpression="/root/access_token" storeResultInSessionKey="token" />
-
-            <LocalFileSystemPipe name="WriteTokenToFile" filename="token.txt" action="write" overwrite="true" />
+            <EchoPipe name="PreventEmptyAdapter" />
         </Pipeline>
     </Adapter>
 </Module>
