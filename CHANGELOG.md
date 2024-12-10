@@ -1,5 +1,12 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.9.15](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.14...v1.9.15) (2024-12-10)
+
+### 🐛 Bug Fixes
+
+* Merge pull request [#72](https://github.com/wearefrank/haalcentraal-connector/issues/72) from wearefrank/shadow-display ([c70ec1d](https://github.com/wearefrank/haalcentraal-connector/commit/c70ec1d8630533e84cd2ad3913db85092b983fd1))
+* return error when maxRetries exceeded ([b6198e8](https://github.com/wearefrank/haalcentraal-connector/commit/b6198e8a581a8e0d2d726abd41cae24771833d7c))
+
 ## [1.9.14](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.13...v1.9.14) (2024-12-10)
 
 ### 🐛 Bug Fixes
