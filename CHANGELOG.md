@@ -1,5 +1,39 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.9.14](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.13...v1.9.14) (2024-12-10)
+
+### 🐛 Bug Fixes
+
+* bump ([357e3cc](https://github.com/wearefrank/haalcentraal-connector/commit/357e3cc3345d3dc3a7e887c24e7e514d41d59953))
+
+## [1.9.13](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.12...v1.9.13) (2024-12-09)
+
+### 🐛 Bug Fixes
+
+* add header to the tests ([aff4d86](https://github.com/wearefrank/haalcentraal-connector/commit/aff4d8607734c80288b1ea36608f0747f67642ad))
+
+## [1.9.12](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.11...v1.9.12) (2024-12-05)
+
+### 🧑‍💻 Code Refactoring
+
+* add keystore properties ([1a70586](https://github.com/wearefrank/haalcentraal-connector/commit/1a705865c18306e636c7a7325f6ab7be3b3aa51e))
+* remove selfsignedcertificates property ([2f659f8](https://github.com/wearefrank/haalcentraal-connector/commit/2f659f8aee43c583988da2787484d45a6ad14607))
+
+## [1.9.11](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.10...v1.9.11) (2024-12-05)
+
+### 🐛 Bug Fixes
+
+* receiver has no listener when inactive ([b58fd52](https://github.com/wearefrank/haalcentraal-connector/commit/b58fd52a89310ecc9345d15185966ebc8128ecd9))
+
+## [1.9.10](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.9...v1.9.10) (2024-12-05)
+
+### 🐛 Bug Fixes
+
+* ca cert aliases ([f2bdbe9](https://github.com/wearefrank/haalcentraal-connector/commit/f2bdbe9bd511ae855cd1e0fd4961fcbf7a3fcbf3))
+* change keystore location in keytool command ([bc9b252](https://github.com/wearefrank/haalcentraal-connector/commit/bc9b25253356306aa13b67536bc4a2d4435f3fe8))
+* don't use entrypoint.sh ([b551310](https://github.com/wearefrank/haalcentraal-connector/commit/b5513102988c3ae8b499bb036b40c2ac26b2a60b))
+* try to use keytool to import ca's into java truststore ([0a934dc](https://github.com/wearefrank/haalcentraal-connector/commit/0a934dc98a4c9cf7d82ef58f08bc546e1039f05b))
+
 ## [1.9.9](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.8...v1.9.9) (2024-12-04)
 
 ### 🐛 Bug Fixes

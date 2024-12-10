@@ -54,6 +54,8 @@
             <Forward name="timeout" path="ServerError" />
         </SenderPipe>
 
+		<!-- TODO: Check if person was found -->
+
         <!-- Compare stored and retrieved person data -->
         <SenderPipe name="JsonComparator">
             <JavascriptSender
