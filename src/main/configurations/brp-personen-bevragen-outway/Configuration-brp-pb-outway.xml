@@ -70,6 +70,7 @@
 			<!-- Call proefomgeving sender -->
 			<SenderPipe name="BrpCallProefomgevingSender">
 				<IbisLocalSender name="RequestFromProefomgevingSender" javaListener="BrpCallProefomgeving" />
+				<Forward name="exception" path="BadRequest" />
 			</SenderPipe>
 
 			<DataSonnetPipe name="ExtractPersonenBody" styleSheetName="jsonnet/ExtractBody.jsonnet" />
