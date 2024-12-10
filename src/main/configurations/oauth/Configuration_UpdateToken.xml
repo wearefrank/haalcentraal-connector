@@ -13,7 +13,7 @@
             </Exits>
 
             <!-- Request an authorization token -->
-            <SenderPipe name="BrpAuthorizationRequest">
+            <SenderPipe name="BrpAuthorizationRequest" active="${isDiginetwerk}">
                 <HttpSender
                         url="${oauth.token.url}"
                         methodType="POST"
@@ -37,15 +37,17 @@
 
             <!-- Parse the response -->
             <JsonValidatorPipe name="BrpBpTokenResponseValidator"
-                               schema="BrpBpTokenResponseValidator.json">
+                               schema="BrpBpTokenResponseValidator.json" active="${isDiginetwerk}">
                 <Forward name="failure" path="ERROR" />
             </JsonValidatorPipe>
 
             <!-- Extract and store required data from the response -->
-            <JsonPipe name="JsonToXml" />
-            <XsltPipe name="TokenExtractor" xpathExpression="/root/access_token" storeResultInSessionKey="token" />
+            <JsonPipe name="JsonToXml" active="${isDiginetwerk}" />
+            <XsltPipe name="TokenExtractor" xpathExpression="/root/access_token" storeResultInSessionKey="token" active="${isDiginetwerk}" />
 
-            <LocalFileSystemPipe name="WriteTokenToFile" filename="token.txt" action="write" overwrite="true" />
+            <LocalFileSystemPipe name="WriteTokenToFile" filename="token.txt" action="write" overwrite="true" active="${isDiginetwerk}" />
+
+            <EchoPipe name="PreventEmptyPipe" />
         </Pipeline>
     </Adapter>
 </Module>
