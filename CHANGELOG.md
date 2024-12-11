@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.9.22](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.21...v1.9.22) (2024-12-11)
+
+### 🐛 Bug Fixes
+
+* ExpiryFlow output message ([05058e1](https://github.com/wearefrank/haalcentraal-connector/commit/05058e15f62848e062566037e4fcc4c2cdd91de7))
+
 ## [1.9.21](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.20...v1.9.21) (2024-12-11)
 
 ### 🐛 Bug Fixes
