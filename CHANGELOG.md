@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.9.21](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.20...v1.9.21) (2024-12-11)
+
+### 🐛 Bug Fixes
+
+* catch other status codes ([1cf6967](https://github.com/wearefrank/haalcentraal-connector/commit/1cf69672ab56f60f8da4c31a0a4bc7cf3d8788ba))
+
 ## [1.9.20](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.19...v1.9.20) (2024-12-11)
 
 ### 🐛 Bug Fixes
