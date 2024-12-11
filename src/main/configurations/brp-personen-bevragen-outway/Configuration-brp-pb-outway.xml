@@ -50,6 +50,7 @@
 					<Param name="token" sessionKey="token" />
 				</IbisLocalSender>
 				<Forward name="success" path="ExtractPersonenBody" />
+				<Forward name="exception" path="IfLoopPreventionPipe" />
 			</SenderPipe>
 
 			<XmlIfPipe name="IfLoopPreventionPipe" getInputFromSessionKey="loopPrevention" preserveInput="true" active="${isDiginetwerk}" expressionValue="true">
