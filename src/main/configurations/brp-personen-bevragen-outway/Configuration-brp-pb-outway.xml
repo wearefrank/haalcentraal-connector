@@ -53,7 +53,6 @@
 				<Forward name="exception" path="Exception" />
 				<Forward name="400" path="BadRequest" />
 				<Forward name="401" path="IfLoopPreventionPipe" />
-                <Forward name="400" path="BadRequest" />
                 <Forward name="403" path="Forbidden" />
                 <Forward name="404" path="NotFound" />
                 <Forward name="406" path="NotAcceptable" />
