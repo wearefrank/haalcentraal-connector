@@ -1,5 +1,13 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.9.24](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.23...v1.9.24) (2024-12-11)
+
+### 🐛 Bug Fixes
+
+* forward path to new pipename ([8c21aa4](https://github.com/wearefrank/haalcentraal-connector/commit/8c21aa4d762d2aa08c34375f7f12e4e638f086df))
+* Merge pull request [#74](https://github.com/wearefrank/haalcentraal-connector/issues/74) from wearefrank/change-bsn-column-to-varchar ([9fc6c42](https://github.com/wearefrank/haalcentraal-connector/commit/9fc6c426fae6787b8e1e98d542dbf3e9ce3b9342))
+* update bsn to TEXT to prevent loss of data ([e70b7b5](https://github.com/wearefrank/haalcentraal-connector/commit/e70b7b588b371793798c4c9376ae969f185b4ea1))
+
 ## [1.9.23](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.22...v1.9.23) (2024-12-11)
 
 ### 🐛 Bug Fixes
