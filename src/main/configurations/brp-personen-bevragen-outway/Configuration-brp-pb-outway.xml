@@ -51,6 +51,7 @@
 				</IbisLocalSender>
 				<Forward name="success" path="ExtractPersonenBody" />
 				<Forward name="exception" path="IfLoopPreventionPipe" />
+				<Forward name="400" path="BadRequest" />
 			</SenderPipe>
 
 			<XmlIfPipe name="IfLoopPreventionPipe" getInputFromSessionKey="loopPrevention" preserveInput="true" active="${isDiginetwerk}" expressionValue="true">
