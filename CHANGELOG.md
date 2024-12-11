@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.9.25](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.24...v1.9.25) (2024-12-11)
+
+### 🐛 Bug Fixes
+
+* double forward name "400" ([2f0691c](https://github.com/wearefrank/haalcentraal-connector/commit/2f0691cdba50821421e9765aecef0129e55e5e25))
+
 ## [1.9.24](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.23...v1.9.24) (2024-12-11)
 
 ### 🐛 Bug Fixes
