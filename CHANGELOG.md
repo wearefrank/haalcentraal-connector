@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.9.19](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.18...v1.9.19) (2024-12-11)
+
+### 🐛 Bug Fixes
+
+* define exception forward ([8c5f118](https://github.com/wearefrank/haalcentraal-connector/commit/8c5f118119b90cda27a01d882d7c687aa94b50ca))
+
 ## [1.9.18](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.17...v1.9.18) (2024-12-10)
 
 ### 🐛 Bug Fixes
