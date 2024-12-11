@@ -14,7 +14,7 @@
         </SenderPipe>
 
         <XmlIfPipe name="IfTokenExpired" expressionValue="true">
-            <Forward name="then" path="GetToken" />
+            <Forward name="then" path="UpdateTokenSender" />
             <Forward name="else" path="SUCCESS" />
         </XmlIfPipe>
 
