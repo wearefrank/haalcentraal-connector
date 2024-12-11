@@ -45,7 +45,7 @@
 			<PutInSessionPipe name="PutLoopPreventionFalseInSession" sessionKey="loopPrevention" value="false" active="${isDiginetwerk}"/>
 
 			<!-- Call diginetwerk sender with retry mechanism -->
-			<SenderPipe name="PostBRPPersonenBevragenDiginetwerk" active="${isDiginetwerk}">
+			<SenderPipe name="PostBRPPersonenBevragenDiginetwerk" active="${isDiginetwerk}" storeResultInSessionKey="diginetwerkResult">
 				<IbisLocalSender name="RequestFromDiginetwerkSender" javaListener="BrpCallDiginetwerk">
 					<Param name="token" sessionKey="token" />
 				</IbisLocalSender>
@@ -76,8 +76,12 @@
 
 			<XmlIfPipe name="IfTokenWasExpired" expressionValue="true" active="${isDiginetwerk}">
 				<Forward name="then" path="PostBRPPersonenBevragenDiginetwerk"/>
-				<Forward name="else" path="Exit"/>
+				<Forward name="else" path="ReturnDiginetwerkResult"/>
 			</XmlIfPipe>
+
+			<EchoPipe name="ReturnDiginetwerkResult" getInputFromFixedValue="diginetwerkResult" active="${isDiginetwerk}">
+				<Forward name="success" path="Exception"/>
+			</EchoPipe>
 
 			<!-- Call proefomgeving sender -->
 			<SenderPipe name="BrpCallProefomgevingSender">
