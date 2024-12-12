@@ -8,6 +8,7 @@
                 uriPattern="haalcentraal_api"
                 method="POST"
                 headerParams="Accept,Content-Type"
+                produces="JSON"
                 />
         </Receiver>
         <Pipeline>
