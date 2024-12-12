@@ -1,5 +1,19 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.10.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.26...v1.10.0) (2024-12-12)
+
+### 🍕 Features
+
+* update the mapping ([6403b66](https://github.com/wearefrank/haalcentraal-connector/commit/6403b663480e754248404697c2c3d92c890160d8))
+
+### 🐛 Bug Fixes
+
+* small issues in json2stuf.xsl ([0dc29e5](https://github.com/wearefrank/haalcentraal-connector/commit/0dc29e5538be14e36d65b949feae4bf328928c14))
+
+### 🧑‍💻 Code Refactoring
+
+* progress toward nice xsl ([3b5882b](https://github.com/wearefrank/haalcentraal-connector/commit/3b5882bcd93919aae10fcf77c86d6bccd1d38fcc))
+
 ## [1.9.26](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.25...v1.9.26) (2024-12-12)
 
 ### 🐛 Bug Fixes
