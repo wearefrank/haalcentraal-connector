@@ -13,10 +13,10 @@
             <IbisLocalSender name="CheckTokenExpiredSender" javaListener="CheckTokenExpiredListener"/>
         </SenderPipe>
 
-        <XmlIfPipe name="IfTokenExpired" expressionValue="true">
+        <IfPipe name="IfTokenExpired" expressionValue="true">
             <Forward name="then" path="UpdateTokenSender" />
             <Forward name="else" path="SUCCESS" />
-        </XmlIfPipe>
+        </IfPipe>
 
         <SenderPipe name="UpdateTokenSender" preserveInput="true">
             <IbisLocalSender name="GetTokenSender" javaListener="UpdateTokenListener" returnedSessionKeys="token"/>

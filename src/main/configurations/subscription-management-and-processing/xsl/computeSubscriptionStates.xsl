@@ -1,7 +1,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0">
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" omit-xml-declaration="yes"/>
-    <xsl:param name="newSubscriptions"/>
-    <xsl:param name="personErrors"/>
+    <xsl:param name="incomingSubscriptions"/>
 
     <xsl:template match="/">
         <xsl:variable name="currentSubscriptions"><xsl:copy-of select="."/></xsl:variable>
@@ -17,7 +16,7 @@
             </xsl:for-each>
         </xsl:variable>
         <xsl:variable name="newSubscriptionPairs">
-            <xsl:for-each select="$newSubscriptions/csv/record">
+            <xsl:for-each select="$incomingSubscriptions/csv/record">
                 <pair>
                     <key><xsl:value-of select="concat(APPLICATION,INP_BSN)"/></key>
                     <record>
@@ -32,23 +31,14 @@
             <toBeRemoved>
                 <xsl:copy-of select="$currentSubscriptionKeys/pair[not(key/text() = $newSubscriptionPairs/pair/key/text())]/record"/>
             </toBeRemoved>
-            <toBekept>
+            <alreadyExists>
                 <xsl:copy-of select="$currentSubscriptionKeys/pair[key/text() = $newSubscriptionPairs/pair/key/text()]/record"/>
-            </toBekept>
+            </alreadyExists>
             <toBeAdded>
                 <xsl:copy-of select="$newSubscriptionPairs/pair[not(
                     key/text() = $currentSubscriptionKeys/pair/key/text()
-                    or
-                    record/bsn/text() = $personErrors/root/failure/record/bsn/text()
                 )]/record"/>
             </toBeAdded>
-            <toNotBeAdded>
-                <xsl:copy-of select="$newSubscriptionPairs/pair[
-                    not(key/text() = $currentSubscriptionKeys/pair/key/text())
-                    and
-                    record/bsn/text() = $personErrors/root/failure/record/bsn/text()
-                ]/record"/>
-            </toNotBeAdded>
         </root>
     </xsl:template>
 </xsl:stylesheet>

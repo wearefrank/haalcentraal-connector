@@ -1,0 +1,54 @@
+<Adapter name="ProcessBulkImportTask">
+    <Receiver name="ProcessBulkImportTaskReceiver">
+        <JdbcTableListener tableName="bulkimporttasks" statusField="status"
+                           statusValueInProcess="X"
+                           statusValueError="E"
+                           statusValueProcessed="C"
+                           keyField="task_id"
+                           messageField="task_id"/>
+    </Receiver>
+    <Pipeline>
+
+        <Exits>
+            <Exit name="Exit" state="success"/>
+            <Exit name="Exception" state="error"/>
+        </Exits>
+
+        <SenderPipe name="GetFullRecord">
+            <FixedQuerySender name="GetFullRecordSender" queryType="SELECT" query="SELECT bsn,applicatie FROM bulkimporttasks where task_id = ?">
+                <param name="task_id"/>
+            </FixedQuerySender>
+        </SenderPipe>
+
+        <PutInSessionPipe name="PutRecordInSession">
+            <Param name="bsn" xpathExpression="result/rowset/row/field[@name = 'BSN']"/>
+            <Param name="applicatie" xpathExpression="result/rowset/row/field[@name = 'APPLICATIE']"/>
+        </PutInSessionPipe>
+
+        <SenderPipe name="GetOldSubscription">
+            <FixedQuerySender name="GetOldSubscriptionSender" queryType="SELECT" query="SELECT id,app_id,bsn FROM subscripties where bsn = ? and app_id = ? and eind_datum IS null">
+                <Param name="bsn" sessionKey="bsn"/>
+                <Param name="applicatie" sessionKey="applicatie"/>
+            </FixedQuerySender>
+        </SenderPipe>
+
+        <IfPipe name="IfOldSubscription" xpathExpression="result/rowset/row">
+            <Forward name="then" path="Exit"/>
+            <Forward name="else" path="SynchronizePersoon"/>
+        </IfPipe>
+
+        <SenderPipe name="SynchronizePersoon" getInputFromSessionKey="bsn">
+            <FrankSender name="SynchronizePersoonSender" target="BrpPersonenSynchronizePersoon"/>
+            <Forward name="success" path="InsertNewSubscription"/>
+            <Forward name="exception" path="Exception"/>
+        </SenderPipe>
+
+        <!--This will insert the subscriptions that don't yet exist-->
+        <SenderPipe name="InsertNewSubscription">
+            <FixedQuerySender name="InsertNewSubscriptionSender" query="INSERT INTO subscripties (bsn, app_id) VALUES (?, ?)">
+                <Param name="bsn" sessionKey="bsn"/>
+                <Param name="app_id" sessionKey="applicatie"/>
+            </FixedQuerySender>
+        </SenderPipe>
+    </Pipeline>
+</Adapter>

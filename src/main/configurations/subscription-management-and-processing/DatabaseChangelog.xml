@@ -97,4 +97,19 @@
         <!-- Update BSN in subscripties -->
         <modifyDataType tableName="subscripties" columnName="bsn" newDataType="TEXT" />
 	</changeSet>
+
+	<changeSet id="HCC-7 " author="Lenard van der Maas">
+		<comment>Create the 'BulkImportTasks' table</comment>
+		<createTable tableName="bulkimporttasks">
+			<column name="task_id" type="SERIAL">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="status" type="CHAR(1)" defaultValue="P">
+				<constraints nullable="false"/>
+			</column>
+			<column name="bsn" type="TEXT" />
+			<column name="applicatie" type="varchar(255)" />
+		</createTable>
+		<addAutoIncrement tableName="bulkimporttasks" columnName="task_id" columnDataType="int"/>
+	</changeSet>
 </databaseChangeLog>

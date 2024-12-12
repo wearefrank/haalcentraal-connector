@@ -47,13 +47,13 @@
 			</XsltPipe>
 
 			<!-- Check if a subscriber needs to be either added or removed -->
-			<XmlIfPipe name="CheckVerwerkingssoort" xpathExpression="$originalMessage = 'T'"
+			<IfPipe name="CheckVerwerkingssoort" xpathExpression="$originalMessage = 'T'" expressionValue="true"
 				getInputFromSessionKey="originalMessage">
 				<Param name="originalMessage" sessionKey="originalMessage"
 					xpathExpression="npsLk01/object/@verwerkingssoort" />
 				<Forward name="then" path="GetSubscribers" />
 				<Forward name="else" path="EndSubscription" />
-			</XmlIfPipe>
+			</IfPipe>
 
             <!-- Retrieve active subscriptions to current bsn -->
             <SenderPipe name="GetSubscribers">
@@ -70,18 +70,19 @@
             </SenderPipe>
 
             <!-- Check if subscriptions are found -->
-            <XmlIfPipe
+            <IfPipe
                 name="CheckSubscriptionCount"
                 xpathExpression="count(result/rowset/row) > 0"
+				expressionValue="true"
             >
                 <Forward name="then" path="InsertNewSubscription"/>
                 <Forward name="else" path="SynchronizePersoon"/>
                 <Forward name="exception" path="BadRequest"/>
-            </XmlIfPipe>
+            </IfPipe>
 
 			<!-- Add persoonsgegevens to db if none are found -->
 			<SenderPipe name="SynchronizePersoon" getInputFromSessionKey="bsn">
-				<IbisLocalSender name="SynchronizePersoonSender" javaListener="BrpPersonenSynchronizePersoon" />
+				<FrankSender name="SynchronizePersoonSender" target="BrpPersonenSynchronizePersoon" />
 				<Forward name="exception" path="CouldNotSynchronize" />
 			</SenderPipe>
 
@@ -140,10 +141,10 @@
 				</FixedQuerySender>
 			</SenderPipe>
 
-			<XmlIfPipe name="CheckNoSubscriptionEnded" xpathExpression="/result/rowsupdated = 0">
+			<IfPipe name="CheckNoSubscriptionEnded" xpathExpression="/result/rowsupdated = 0" expressionValue="true">
 				<Forward name="then" path="NoSubscriptionFound" />
 				<Forward name="else" path="WrapBv03Response" />
-			</XmlIfPipe>
+			</IfPipe>
 
 			<SoapWrapperPipe
 				getInputFromSessionKey="originalMessage"
