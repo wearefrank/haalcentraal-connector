@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.10.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.0...v1.10.1) (2024-12-12)
+
+### 🐛 Bug Fixes
+
+* XmlIfPipe>IfPipe and fix bulk import flow ([5573c47](https://github.com/wearefrank/haalcentraal-connector/commit/5573c476303331f062bafbee72d651c0aae89c21))
+
 ## [1.10.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.26...v1.10.0) (2024-12-12)
 
 ### 🍕 Features
