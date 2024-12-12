@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.10.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.3...v1.10.4) (2024-12-12)
+
+### 🐛 Bug Fixes
+
+* updateTokenScheduler so it runs every 9 minutes regardless of the hour ([121a640](https://github.com/wearefrank/haalcentraal-connector/commit/121a640ccb1c6317db33161a838396e4385f3616))
+
 ## [1.10.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.2...v1.10.3) (2024-12-12)
 
 ### 🐛 Bug Fixes
