@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.10.7](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.6...v1.10.7) (2024-12-12)
+
+### 🐛 Bug Fixes
+
+* optimize ([4c2754a](https://github.com/wearefrank/haalcentraal-connector/commit/4c2754a31c48c8dc1607896268f948b63387e71d))
+
 ## [1.10.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.5...v1.10.6) (2024-12-12)
 
 ### 🐛 Bug Fixes
