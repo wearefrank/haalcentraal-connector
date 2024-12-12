@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.10.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.2...v1.10.3) (2024-12-12)
+
+### 🐛 Bug Fixes
+
+* remove autoincrement on bulkimporttasks.task_id ([5c42a1d](https://github.com/wearefrank/haalcentraal-connector/commit/5c42a1d1d907c69f4cca8132b33c61e60f9662cc))
+
 ## [1.10.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.1...v1.10.2) (2024-12-12)
 
 ### 🐛 Bug Fixes
