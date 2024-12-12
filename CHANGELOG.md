@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.9.26](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.25...v1.9.26) (2024-12-12)
+
+### 🐛 Bug Fixes
+
+* rename double named pipe ([967cab3](https://github.com/wearefrank/haalcentraal-connector/commit/967cab307f97315e9feb03c971e9beea279f62aa))
+
 ## [1.9.25](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.24...v1.9.25) (2024-12-11)
 
 ### 🐛 Bug Fixes
