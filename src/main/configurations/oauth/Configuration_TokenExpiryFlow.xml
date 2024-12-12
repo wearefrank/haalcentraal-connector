@@ -21,6 +21,5 @@
         <SenderPipe name="UpdateTokenSender" preserveInput="true">
             <IbisLocalSender name="GetTokenSender" javaListener="UpdateTokenListener" returnedSessionKeys="token"/>
         </SenderPipe>
-
     </Pipeline>
 </Adapter>
