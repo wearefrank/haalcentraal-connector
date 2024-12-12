@@ -110,6 +110,5 @@
 			<column name="bsn" type="TEXT" />
 			<column name="applicatie" type="varchar(255)" />
 		</createTable>
-		<addAutoIncrement tableName="bulkimporttasks" columnName="task_id" columnDataType="int"/>
 	</changeSet>
 </databaseChangeLog>
