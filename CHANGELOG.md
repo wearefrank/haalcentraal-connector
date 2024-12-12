@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.10.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.1...v1.10.2) (2024-12-12)
+
+### 🐛 Bug Fixes
+
+* new release ([d94154a](https://github.com/wearefrank/haalcentraal-connector/commit/d94154a5a346473448dd3bfdb91ec18a3171a05d))
+
 ## [1.10.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.0...v1.10.1) (2024-12-12)
 
 ### 🐛 Bug Fixes
