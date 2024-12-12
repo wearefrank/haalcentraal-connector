@@ -1,5 +1,49 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.10.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.3...v1.10.4) (2024-12-12)
+
+### 🐛 Bug Fixes
+
+* updateTokenScheduler so it runs every 9 minutes regardless of the hour ([121a640](https://github.com/wearefrank/haalcentraal-connector/commit/121a640ccb1c6317db33161a838396e4385f3616))
+
+## [1.10.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.2...v1.10.3) (2024-12-12)
+
+### 🐛 Bug Fixes
+
+* remove autoincrement on bulkimporttasks.task_id ([5c42a1d](https://github.com/wearefrank/haalcentraal-connector/commit/5c42a1d1d907c69f4cca8132b33c61e60f9662cc))
+
+## [1.10.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.1...v1.10.2) (2024-12-12)
+
+### 🐛 Bug Fixes
+
+* new release ([d94154a](https://github.com/wearefrank/haalcentraal-connector/commit/d94154a5a346473448dd3bfdb91ec18a3171a05d))
+
+## [1.10.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.0...v1.10.1) (2024-12-12)
+
+### 🐛 Bug Fixes
+
+* XmlIfPipe>IfPipe and fix bulk import flow ([5573c47](https://github.com/wearefrank/haalcentraal-connector/commit/5573c476303331f062bafbee72d651c0aae89c21))
+
+## [1.10.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.26...v1.10.0) (2024-12-12)
+
+### 🍕 Features
+
+* update the mapping ([6403b66](https://github.com/wearefrank/haalcentraal-connector/commit/6403b663480e754248404697c2c3d92c890160d8))
+
+### 🐛 Bug Fixes
+
+* small issues in json2stuf.xsl ([0dc29e5](https://github.com/wearefrank/haalcentraal-connector/commit/0dc29e5538be14e36d65b949feae4bf328928c14))
+
+### 🧑‍💻 Code Refactoring
+
+* progress toward nice xsl ([3b5882b](https://github.com/wearefrank/haalcentraal-connector/commit/3b5882bcd93919aae10fcf77c86d6bccd1d38fcc))
+
+## [1.9.26](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.25...v1.9.26) (2024-12-12)
+
+### 🐛 Bug Fixes
+
+* rename double named pipe ([967cab3](https://github.com/wearefrank/haalcentraal-connector/commit/967cab307f97315e9feb03c971e9beea279f62aa))
+
 ## [1.9.25](https://github.com/wearefrank/haalcentraal-connector/compare/v1.9.24...v1.9.25) (2024-12-11)
 
 ### 🐛 Bug Fixes

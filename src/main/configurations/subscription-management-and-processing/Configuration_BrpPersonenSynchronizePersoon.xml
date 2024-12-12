@@ -1,8 +1,4 @@
 <Adapter name="BrpPersonenSynchronizePersoon" description="BRP Personen Synchronize Persoon">
-    <Receiver name="BrpPersonenSynchronizePersoon">
-        <JavaListener name="BrpPersonenSynchronizePersoon" />
-    </Receiver>
-
     <Pipeline>
         <Exits>
             <Exit name="Exit" state="SUCCESS" />
@@ -73,10 +69,10 @@
         </SenderPipe>
 
         <!-- Conditional check to insert new data if changes are detected -->
-        <XmlIfPipe name="ShouldInsert" expressionValue="true">
+        <IfPipe name="ShouldInsert" expressionValue="true">
             <Forward name="then" path="InsertPersoon" />
             <Forward name="else" path="NotUpdatedExit" />
-        </XmlIfPipe>
+        </IfPipe>
 
         <!-- Insert the new data into the database -->
         <SenderPipe name="InsertPersoon" preserveInput="true">

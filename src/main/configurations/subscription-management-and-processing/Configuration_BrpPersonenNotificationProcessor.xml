@@ -5,7 +5,7 @@
 	<Adapter name="BrpPersonenNotificationProcessor"
 		description="brp personen notification processor">
 		<Receiver name="BrpPersonenNotificationProcessorDailyTaskListener">
-			<JdbcTableListener tableName="tasks" statusField="status" statusValueError="E" statusValueProcessed="C" keyField="task_id" messageField="bsn" selectCondition="scheduled_start &lt;= NOW()"/>
+			<JdbcTableListener tableName="tasks" statusField="status" statusValueInProcess="X" statusValueError="E" statusValueProcessed="C" keyField="task_id" messageField="bsn" selectCondition="scheduled_start &lt;= NOW()"/>
 		</Receiver>
 
 		<Receiver name="NotificationProcessorApi" active="${NotificationProcessorApi.active}">
@@ -52,23 +52,23 @@
             </SenderPipe>
 
             <!-- Check if subscriptions are found -->
-            <XmlIfPipe
+            <IfPipe
                 name="CheckSubscriptionCount"
                 xpathExpression="count(result/rowset/row) > 0"
             >
 				<!-- Process the task if subscribers are found, else exit -->
                 <Forward name="then" path="processNotifications"/>
                 <Forward name="else" path="NoSubscribersToPerson"/>
-            </XmlIfPipe>
+            </IfPipe>
 
 			<SenderPipe name="processNotifications" getInputFromSessionKey="bsn">
                 <IbisLocalSender name="personenUpdater" javaListener="BrpPersonenUpdateAndNotify" />
 			</SenderPipe>
 
-			<XmlIfPipe name="CheckUpdateSuccess" expressionValue="true">
+			<IfPipe name="CheckUpdateSuccess" expressionValue="true">
 				<Forward name="then" path="EXIT" />
 				<Forward name="else" path="GetCurrentTask" />
-			</XmlIfPipe>
+			</IfPipe>
 
 			<SenderPipe name="GetCurrentTask" >
 				<FixedQuerySender queryType="SELECT" name="getCurrentTask" query="SELECT * FROM tasks WHERE task_id = ?">
@@ -77,10 +77,10 @@
 				<Forward name="success" path="CheckAttemptCount" />
 			</SenderPipe>
 
-			<XmlIfPipe name="CheckAttemptCount" xpathExpression="/result/rowset/row/field[@name='ATTEMPT'] > 3">
+			<IfPipe name="CheckAttemptCount" xpathExpression="/result/rowset/row/field[@name='ATTEMPT'] > 3">
 				<Forward name="then" path="SetTaskStatusE" />
 				<Forward name="else" path="RetryNotification" />
-			</XmlIfPipe>
+			</IfPipe>
 
 			<SenderPipe name="SetTaskStatusE" onlyIfSessionKey="HttpMethod">
 				<FixedQuerySender queryType="SELECT" name="updateScheduledStart" query="UPDATE tasks SET status = 'E' WHERE task_id = ? RETURNING status">

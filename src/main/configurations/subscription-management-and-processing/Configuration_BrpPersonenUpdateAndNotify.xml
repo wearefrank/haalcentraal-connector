@@ -17,17 +17,17 @@
             </Exits>
 
             <SenderPipe name="BrpPersonenSynchronizePersoon">
-                <IbisLocalSender name="BrpPersonenSynchronizePersoon" javaListener="BrpPersonenSynchronizePersoon" />
+                <FrankSender name="BrpPersonenSynchronizePersoon" target="BrpPersonenSynchronizePersoon" />
                 <Forward name="success" path="persoonNew2xml" />
                 <Forward name="exception" path="EXCEPTION" />
             </SenderPipe>
 
             <JsonPipe name="persoonNew2xml" />
 
-            <XmlIfPipe name="ShouldNotifySubscribers" expressionValue="true" xpathExpression="/root">
+            <IfPipe name="ShouldNotifySubscribers" xpathExpression="/root">
                 <Forward name="then" path="GetApplicationConfig" />
                 <Forward name="else" path="EchoRetry" />
-            </XmlIfPipe>
+            </IfPipe>
 
             <LocalFileSystemPipe name="GetApplicationConfig" action="read"
                 storeResultInSessionKey="applicationConfig">

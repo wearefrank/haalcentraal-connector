@@ -37,7 +37,7 @@
 				}
 			-->
 
-			<SenderPipe name="GetToken" preserveInput="true">
+			<SenderPipe name="GetToken" preserveInput="true" active="${isDiginetwerk}">
 				<IbisLocalSender name="GetTokenSender" javaListener="GetToken" returnedSessionKeys="token" />
 				<Forward name="exception" path="Exception" />
 			</SenderPipe>
@@ -45,7 +45,7 @@
 			<PutInSessionPipe name="PutLoopPreventionFalseInSession" sessionKey="loopPrevention" value="false" active="${isDiginetwerk}"/>
 
 			<!-- Call diginetwerk sender with retry mechanism -->
-			<SenderPipe name="PostBRPPersonenBevragenDiginetwerk" active="${isDiginetwerk}" storeResultInSessionKey="diginetwerkResult">
+			<SenderPipe name="PostBRPPersonenBevragenDiginetwerk" storeResultInSessionKey="diginetwerkResult" active="${isDiginetwerk}">
 				<IbisLocalSender name="RequestFromDiginetwerkSender" javaListener="BrpCallDiginetwerk">
 					<Param name="token" sessionKey="token" />
 				</IbisLocalSender>
@@ -62,10 +62,10 @@
                 <Forward name="503" path="ServiceUnavailable" />
 			</SenderPipe>
 
-			<XmlIfPipe name="IfLoopPreventionPipe" getInputFromSessionKey="loopPrevention" preserveInput="true" active="${isDiginetwerk}" expressionValue="true">
+			<IfPipe name="IfLoopPreventionPipe" getInputFromSessionKey="loopPrevention" preserveInput="true" expressionValue="true" active="${isDiginetwerk}">
 				<Forward name="then" path="Exit"/>
 				<Forward name="else" path="TokenExpiryFlow"/>
-			</XmlIfPipe>
+			</IfPipe>
 
 			<PutInSessionPipe name="PutLoopPreventionTrueInSession" sessionKey="loopPrevention" value="true" active="${isDiginetwerk}" />
 
@@ -73,10 +73,10 @@
 				<IbisLocalSender name="TokenExpiryFlowSender" javaListener="TokenExpiryFlowListener" returnedSessionKeys="token" />
 			</SenderPipe>
 
-			<XmlIfPipe name="IfTokenWasExpired" expressionValue="true" active="${isDiginetwerk}">
+			<IfPipe name="IfTokenWasExpired" expressionValue="true" active="${isDiginetwerk}">
 				<Forward name="then" path="PostBRPPersonenBevragenDiginetwerk"/>
 				<Forward name="else" path="ReturnDiginetwerkResult"/>
-			</XmlIfPipe>
+			</IfPipe>
 
 			<EchoPipe name="ReturnDiginetwerkResult" getInputFromFixedValue="diginetwerkResult" active="${isDiginetwerk}">
 				<Forward name="success" path="Exception"/>
