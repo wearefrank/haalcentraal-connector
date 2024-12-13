@@ -5,15 +5,6 @@
     <Pipeline>
         <CsvParserPipe name="Csv2Xml" storeResultInSessionKey="incomingSubscriptions"/>
 
-        <ForEachChildElementPipe name="ForEachIncomingSubscription" elementXPathExpression="csv/record" ignoreExceptions="true">
-            <FixedQuerySender
-                    name="CreateNewTask"
-                    query="INSERT INTO bulkimporttasks (bsn, applicatie) VALUES (?, ?)">
-                <Param name="bsn" xpathExpression="record/INP_BSN" />
-                <Param name="applicatie" xpathExpression="record/APPLICATIE" />
-            </FixedQuerySender>
-        </ForEachChildElementPipe>
-
         <SenderPipe name="GetOldSubscriptions">
             <FixedQuerySender name="GetOldSubscriptionsSender" queryType="SELECT" query="SELECT id,app_id,bsn FROM subscripties where eind_datum IS null"/>
         </SenderPipe>
@@ -22,7 +13,16 @@
             <Param name="incomingSubscriptions" sessionKey="incomingSubscriptions" type="DOMDOC"/>
         </XsltPipe>
 
-        <ForEachChildElementPipe name="ForEachSubscriptionToEnd" getInputFromSessionKey="subscriptionStates" elementXPathExpression="root/toBeRemoved/record" ignoreExceptions="true" preserveInput="true">
+        <ForEachChildElementPipe name="ForEachNewSubscription" elementXPathExpression="root/toBeAdded/record" ignoreExceptions="true" preserveInput="true">
+            <FixedQuerySender
+                    name="CreateNewTask"
+                    query="INSERT INTO bulkimporttasks (bsn, applicatie) VALUES (?, ?)">
+                <Param name="bsn" xpathExpression="record/bsn" />
+                <Param name="applicatie" xpathExpression="record/app_id" />
+            </FixedQuerySender>
+        </ForEachChildElementPipe>
+
+        <ForEachChildElementPipe name="ForEachSubscriptionToEnd" elementXPathExpression="root/toBeEnded/record" ignoreExceptions="true" preserveInput="true">
             <FixedQuerySender name="EndSubscription"
                               query="UPDATE subscripties SET eind_datum = CURRENT_TIMESTAMP WHERE bsn=?{bsn} AND app_id=?{app_id} AND eind_datum IS NULL">
                 <Param name="bsn" xpathExpression="record/bsn"/>

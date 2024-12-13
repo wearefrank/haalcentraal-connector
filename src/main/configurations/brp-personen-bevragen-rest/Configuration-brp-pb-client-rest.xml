@@ -8,14 +8,21 @@
                 uriPattern="haalcentraal_api"
                 method="POST"
                 headerParams="Accept,Content-Type"
+                produces="JSON"
                 />
         </Receiver>
         <Pipeline>
+            <Exits>
+                <Exit name="Exit" state="SUCCESS"/>
+                <Exit name="Error" state="ERROR"/>
+            </Exits>
             <SenderPipe getInputFromSessionKey="originalMessage" name="requestProxyPipe">
                 <IbisLocalSender javaListener="BrpPbOutwayListener">
                     <Param name="headerAccept" sessionKey="headers" xpathExpression="/headers/header[@name = 'Accept']/text()"/>
                     <Param name="headerContent-Type" sessionKey="headers" xpathExpression="/headers/header[@name = 'Content-Type']/text()"/>
                 </IbisLocalSender>
+                <Forward name="success" path="Exit"/>
+                <Forward name="exception" path="Error"/>
             </SenderPipe>
         </Pipeline>
     </Adapter>

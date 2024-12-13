@@ -4,7 +4,7 @@
 
     <xsl:template match="/">
         <xsl:variable name="currentSubscriptions"><xsl:copy-of select="."/></xsl:variable>
-        <xsl:variable name="currentSubscriptionKeys">
+        <xsl:variable name="currentSubscriptionPairs">
             <xsl:for-each select="result/rowset/row">
                 <pair>
                     <key><xsl:value-of select="concat(field[2],field[3])"/></key>
@@ -15,12 +15,12 @@
                 </pair>
             </xsl:for-each>
         </xsl:variable>
-        <xsl:variable name="newSubscriptionPairs">
+        <xsl:variable name="incomingSubscriptionPairs">
             <xsl:for-each select="$incomingSubscriptions/csv/record">
                 <pair>
-                    <key><xsl:value-of select="concat(APPLICATION,INP_BSN)"/></key>
+                    <key><xsl:value-of select="concat(APPLICATIE,INP_BSN)"/></key>
                     <record>
-                        <app_id><xsl:value-of select="APPLICATION"/></app_id>
+                        <app_id><xsl:value-of select="APPLICATIE"/></app_id>
                         <bsn><xsl:value-of select="INP_BSN"/></bsn>
                     </record>
                 </pair>
@@ -28,15 +28,15 @@
         </xsl:variable>
 
         <root>
-            <toBeRemoved>
-                <xsl:copy-of select="$currentSubscriptionKeys/pair[not(key/text() = $newSubscriptionPairs/pair/key/text())]/record"/>
-            </toBeRemoved>
+            <toBeEnded>
+                <xsl:copy-of select="$currentSubscriptionPairs/pair[not(key/text() = $incomingSubscriptionPairs/pair/key/text())]/record"/>
+            </toBeEnded>
             <alreadyExists>
-                <xsl:copy-of select="$currentSubscriptionKeys/pair[key/text() = $newSubscriptionPairs/pair/key/text()]/record"/>
+                <xsl:copy-of select="$currentSubscriptionPairs/pair[key/text() = $incomingSubscriptionPairs/pair/key/text()]/record"/>
             </alreadyExists>
             <toBeAdded>
-                <xsl:copy-of select="$newSubscriptionPairs/pair[not(
-                    key/text() = $currentSubscriptionKeys/pair/key/text()
+                <xsl:copy-of select="$incomingSubscriptionPairs/pair[not(
+                    key/text() = $currentSubscriptionPairs/pair/key/text()
                 )]/record"/>
             </toBeAdded>
         </root>

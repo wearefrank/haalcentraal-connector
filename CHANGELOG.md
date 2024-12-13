@@ -1,5 +1,29 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.10.8](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.7...v1.10.8) (2024-12-12)
+
+### 🐛 Bug Fixes
+
+* bulkimporttasks ([71f181a](https://github.com/wearefrank/haalcentraal-connector/commit/71f181aea65da7b18f4b0aa7a633555e1f1903ed))
+
+## [1.10.7](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.6...v1.10.7) (2024-12-12)
+
+### 🐛 Bug Fixes
+
+* optimize ([4c2754a](https://github.com/wearefrank/haalcentraal-connector/commit/4c2754a31c48c8dc1607896268f948b63387e71d))
+
+## [1.10.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.5...v1.10.6) (2024-12-12)
+
+### 🐛 Bug Fixes
+
+* 2 small issues ([fe4e79e](https://github.com/wearefrank/haalcentraal-connector/commit/fe4e79e41a082a712ab881095c62581ef4856e77))
+
+## [1.10.5](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.4...v1.10.5) (2024-12-12)
+
+### 🐛 Bug Fixes
+
+* return response as JSON type ([3dad126](https://github.com/wearefrank/haalcentraal-connector/commit/3dad126757502e4cc6cae97f90a005cce311965c))
+
 ## [1.10.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.3...v1.10.4) (2024-12-12)
 
 ### 🐛 Bug Fixes
