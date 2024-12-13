@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.10.10](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.9...v1.10.10) (2024-12-13)
+
+### 🐛 Bug Fixes
+
+* Convert callback message to Lk01 ([9d7c7e3](https://github.com/wearefrank/haalcentraal-connector/commit/9d7c7e3ac6090efae0576285c1747a744ae000d1))
+
 ## [1.10.9](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.8...v1.10.9) (2024-12-13)
 
 ### 🐛 Bug Fixes
