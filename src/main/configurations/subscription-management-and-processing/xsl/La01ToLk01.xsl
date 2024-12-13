@@ -9,10 +9,10 @@
     
     <!-- Template to match the root element and replace it -->
     <xsl:template match="BG:npsLa01">
-        <BG:Lk01>
+        <BG:npsLk01>
             <!-- Copy all child elements of the old root -->
             <xsl:apply-templates select="node()|@*" />
-        </BG:Lk01>
+        </BG:npsLk01>
     </xsl:template>
     
     <!-- Template to match <StUF:berichtcode> and update its value -->
