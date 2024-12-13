@@ -38,8 +38,8 @@
                 <FixedQuerySender
 					name="UpdateSubscriptionsToHistoricBsn"
 					query="UPDATE subscripties SET bsn = ?{currentBsn} WHERE bsn = ?{historicBsn} AND eind_datum IS NULL">
-					<Param name="currentBsn" sessionKey="bsn" type="INTEGER"/>
-					<Param name="historicBsn" xpathExpression="." type="INTEGER"/>
+					<Param name="currentBsn" sessionKey="bsn" type="STRING"/>
+					<Param name="historicBsn" xpathExpression="." type="STRING"/>
             	</FixedQuerySender>
 				<Forward name="success" path="InsertNotification"/>
 				<Forward name="exception" path="BadRequestPipe"/>

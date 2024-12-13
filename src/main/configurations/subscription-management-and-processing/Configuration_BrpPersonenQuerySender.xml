@@ -41,7 +41,7 @@
                 <FixedQuerySender
 					name="insertPersonenSender"
 					query="INSERT INTO persoonsgegevens(bsn, data, registratie_datum) VALUES(?,?,CURRENT_TIMESTAMP)">
-					<Param name="burgerservicenummer" xpathExpression="personen/burgerservicenummer" type="INTEGER"/>
+					<Param name="burgerservicenummer" xpathExpression="personen/burgerservicenummer" type="STRING"/>
 					<Param name="data" sessionKey="updatedJson" type="STRING"/>
             	</FixedQuerySender>
 				<Forward name="success" path="WrapResponse"/>
