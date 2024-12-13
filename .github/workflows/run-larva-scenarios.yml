@@ -27,7 +27,7 @@ jobs:
 
       - name: Start Application
         run: |
-          docker run -d --name zaakbrug -p 8080:8080 -e dtap.stage=LOC wearefrank/haalcentraal-connector:${{ inputs.APP_VERSION }}
+          docker run -d --name zaakbrug -p 8080:8080 -e dtap.stage=LOC -e stub4testtool.configuration=true wearefrank/haalcentraal-connector:${{ inputs.APP_VERSION }}
         timeout-minutes: 2
 
       - name: Wait for Application to be Healthy
