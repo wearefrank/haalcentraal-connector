@@ -55,8 +55,6 @@
             </ReplacerPipe>
             
             <Text2XmlPipe xmlTag="data" name="OutputTextToXml" useCdataSection="false" />
-
-            <!-- <XsltPipe name="MakePretty" styleSheetName="xsl/prettifier.xsl" outputType="XML" /> -->
         </Pipeline>
     </Adapter>
 </Module>
