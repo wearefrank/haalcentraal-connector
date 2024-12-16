@@ -32,19 +32,14 @@
 					returnedSessionKeys="Error">
 					<Param name="FileName" value="${applicationConfigPath}" />
 				</IbisLocalSender>
-				<Forward name="success" path="ConvertInputToAppId" />
+				<Forward name="success" path="StoreApplicationId" />
 				<Forward name="exception" path="Exception" />
 			</SenderPipe>
 
 			<!-- Get the appid of the application related to the subscription action -->
-			<XsltPipe name="ConvertInputToAppId"
-				xpathExpression="/root/Applications[organisatie = $inputOrganisatie and applicatie = $inputApplicatie]/appId"
-				storeResultInSessionKey="ApplicationId">
-				<Param name="inputApplicatie" sessionKey="originalMessage"
-					xpathExpression="npsLk01/stuurgegevens/zender/applicatie" />
-				<Param name="inputOrganisatie" sessionKey="originalMessage"
-					xpathExpression="npsLk01/stuurgegevens/zender/organisatie" />
-			</XsltPipe>
+			<PutInSessionPipe name="StoreApplicationId">
+				<Param name="ApplicationId" sessionKey="originalMessage" xpathExpression="npsLk01/stuurgegevens/zender/applicatie" />
+			</PutInSessionPipe>
 
 			<!-- Check if a subscriber needs to be either added or removed -->
 			<IfPipe name="CheckVerwerkingssoort" xpathExpression="$originalMessage = 'T'" expressionValue="true"
