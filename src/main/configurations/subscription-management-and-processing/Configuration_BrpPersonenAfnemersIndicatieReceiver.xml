@@ -22,20 +22,6 @@
 				<Param name="bsn" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn" />
 			</PutInSessionPipe>
 
-			<!-- Retrieve the application configuration from the local file system -->
-			<SenderPipe
-				name="LoadApplicationConfig"
-				storeResultInSessionKey="ApplicationConfig">
-				<IbisLocalSender
-					name="GetApplicationConfigFromLocalFileSystem"
-					javaListener="ProcessFileInputListener"
-					returnedSessionKeys="Error">
-					<Param name="FileName" value="${applicationConfigPath}" />
-				</IbisLocalSender>
-				<Forward name="success" path="StoreApplicationId" />
-				<Forward name="exception" path="Exception" />
-			</SenderPipe>
-
 			<!-- Get the appid of the application related to the subscription action -->
 			<PutInSessionPipe name="StoreApplicationId">
 				<Param name="ApplicationId" sessionKey="originalMessage" xpathExpression="npsLk01/stuurgegevens/zender/applicatie" />
