@@ -20,10 +20,6 @@
 
 			<PutInSessionPipe name="ExtractDataFromInput">
 				<Param name="bsn" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn" />
-			</PutInSessionPipe>
-
-			<!-- Get the appid of the application related to the subscription action -->
-			<PutInSessionPipe name="StoreApplicationId">
 				<Param name="ApplicationId" sessionKey="originalMessage" xpathExpression="npsLk01/stuurgegevens/zender/applicatie" />
 			</PutInSessionPipe>
 
