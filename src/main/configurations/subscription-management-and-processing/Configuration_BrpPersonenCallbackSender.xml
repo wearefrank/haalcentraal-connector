@@ -67,6 +67,10 @@
 				<Forward name="exception" path="EXCEPTION" />
 			</XsltPipe>
 
+			<XsltPipe name="La01ToLk01" styleSheetName="xsl/La01ToLk01.xsl" storeResultInSessionKey="soapMessage">
+				<Forward name="exception" path="EXCEPTION" />
+			</XsltPipe>
+
 			<PutInSessionPipe name="ExtractUrl" getInputFromSessionKey="FilteredApplication">
 				<Param name="url" xpathExpression="root/app/url" />
 			</PutInSessionPipe>
