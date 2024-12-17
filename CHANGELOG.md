@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.10.11](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.10...v1.10.11) (2024-12-16)
+
+### 🐛 Bug Fixes
+
+* larva tests ([af74c0e](https://github.com/wearefrank/haalcentraal-connector/commit/af74c0e77ca1a4dda640c2b68b28d2fc0441988d))
+
 ## [1.10.10](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.9...v1.10.10) (2024-12-13)
 
 ### 🐛 Bug Fixes
