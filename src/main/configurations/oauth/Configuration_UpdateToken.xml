@@ -20,10 +20,9 @@
                         contentType="application/x-www-form-urlencoded"
                         postType="URLENCODED"
                         headersParams="Accept, Content-Type"
-                        treatInputMessageAsParameters="false">
+                        treatInputMessageAsParameters="false"
+                        clientAlias="oauth.credentials">
                     <Param name="grant_type" value="client_credentials" />
-                    <Param name="client_id" pattern="${oauth.client-id}" hidden="true"/>
-                    <Param name="client_secret" pattern="${oauth.client-secret}" hidden="true"/>
                     <Param name="scope" value="${oauth.scope}" hidden="true"/>
                     <Param name="resourceServer" value="ResourceServer01" />
                     <Param name="Accept" value="application/json" />
