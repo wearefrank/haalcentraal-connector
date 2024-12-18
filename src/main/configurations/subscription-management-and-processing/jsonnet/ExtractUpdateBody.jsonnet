@@ -1,7 +1,3 @@
 {
-  personen: 
-    if std.isString(payload) then
-      std.parseJson(payload).personen
-    else
-      payload.personen
+    personen: std.parseJson(payload).updatedJson.personen
 }
