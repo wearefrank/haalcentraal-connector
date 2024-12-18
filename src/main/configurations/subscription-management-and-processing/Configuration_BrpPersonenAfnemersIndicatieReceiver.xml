@@ -83,6 +83,7 @@
 			<!-- Add persoonsgegevens to db if none are found -->
 			<SenderPipe name="SynchronizePersoon" getInputFromSessionKey="bsn">
 				<FrankSender name="SynchronizePersoonSender" target="BrpPersonenSynchronizePersoon" />
+				<Forward name="400" path="BadRequest" />
 				<Forward name="exception" path="CouldNotSynchronize" />
 			</SenderPipe>
 

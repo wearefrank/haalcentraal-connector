@@ -81,6 +81,8 @@
                     returnedSessionKeys="Error">
                 </IbisLocalSender>
                 <Forward name="success" path="EXIT" />
+                <Forward name="exception" path="BackEndError" />  
+                <Forward name="400" path="BackEndError" />   
                 <Forward name="404" path="BackEndError" />
             </SenderPipe>
 
