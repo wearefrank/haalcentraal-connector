@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.10.15](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.14...v1.10.15) (2024-12-18)
+
+### 🐛 Bug Fixes
+
+* swap content of jsonnet files ([2d4dc5e](https://github.com/wearefrank/haalcentraal-connector/commit/2d4dc5efbd18317087bd591c197dd991dcd2ce52))
+
 ## [1.10.14](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.13...v1.10.14) (2024-12-18)
 
 ### 🐛 Bug Fixes
