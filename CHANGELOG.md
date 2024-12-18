@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.10.13](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.12...v1.10.13) (2024-12-18)
+
+### 🐛 Bug Fixes
+
+* parse json before extracting ([023c090](https://github.com/wearefrank/haalcentraal-connector/commit/023c090be282eb90628f29babb1a5d5bf6ee518f))
+
 ## [1.10.12](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.11...v1.10.12) (2024-12-17)
 
 ### 🐛 Bug Fixes
