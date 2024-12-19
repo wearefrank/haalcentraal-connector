@@ -1,16 +1,16 @@
 {
     "type": "ZoekMetPostcodeEnHuisnummer",
     "fields": [
-    "adressering",
-    "burgerservicenummer",
-    "geboorte",
-    "geslacht",
-    "leeftijd",
-    "naam",
-    "adresseringBinnenland"
+        "adressering",
+        "burgerservicenummer",
+        "geboorte",
+        "geslacht",
+        "leeftijd",
+        "naam",
+        "adresseringBinnenland"
     ],
+    "gemeenteVanInschrijving": "0518",
     "inclusiefOverledenPersonen": false,
     "huisnummer": 88,
     "postcode": "2497BV"
-    }
-    
+}
