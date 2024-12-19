@@ -1,5 +1,35 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.10.15](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.14...v1.10.15) (2024-12-18)
+
+### 🐛 Bug Fixes
+
+* swap content of jsonnet files ([2d4dc5e](https://github.com/wearefrank/haalcentraal-connector/commit/2d4dc5efbd18317087bd591c197dd991dcd2ce52))
+
+## [1.10.14](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.13...v1.10.14) (2024-12-18)
+
+### 🐛 Bug Fixes
+
+* check type before parsing ([8d4fbb6](https://github.com/wearefrank/haalcentraal-connector/commit/8d4fbb6d63027a84b420bbf9683b910e41a11ec8))
+
+## [1.10.13](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.12...v1.10.13) (2024-12-18)
+
+### 🐛 Bug Fixes
+
+* parse json before extracting ([023c090](https://github.com/wearefrank/haalcentraal-connector/commit/023c090be282eb90628f29babb1a5d5bf6ee518f))
+
+## [1.10.12](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.11...v1.10.12) (2024-12-17)
+
+### 🐛 Bug Fixes
+
+* make updateToken use authAlias ([e0e9671](https://github.com/wearefrank/haalcentraal-connector/commit/e0e967162d1a2a407fd8599fa3def76ea639695a))
+
+## [1.10.11](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.10...v1.10.11) (2024-12-16)
+
+### 🐛 Bug Fixes
+
+* larva tests ([af74c0e](https://github.com/wearefrank/haalcentraal-connector/commit/af74c0e77ca1a4dda640c2b68b28d2fc0441988d))
+
 ## [1.10.10](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.9...v1.10.10) (2024-12-13)
 
 ### 🐛 Bug Fixes
