@@ -1,5 +1,15 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.10.16](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.15...v1.10.16) (2024-12-19)
+
+### 🐛 Bug Fixes
+
+* prevent subscriptions to non-existant appids ([287c9b4](https://github.com/wearefrank/haalcentraal-connector/commit/287c9b44a128586ff73ace6dd4239a3c95c8676b))
+
+### 🧑‍💻 Code Refactoring
+
+* Merge pull request [#78](https://github.com/wearefrank/haalcentraal-connector/issues/78) from wearefrank/refactor-app-id ([1d9ce00](https://github.com/wearefrank/haalcentraal-connector/commit/1d9ce000ed7e9ca4e1fc8e34716f142c0b2f20a1))
+
 ## [1.10.15](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.14...v1.10.15) (2024-12-18)
 
 ### 🐛 Bug Fixes
