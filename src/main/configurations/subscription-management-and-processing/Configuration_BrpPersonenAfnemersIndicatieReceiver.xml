@@ -11,40 +11,37 @@
 		<Pipeline>
 			<Exits>
 				<Exit name="EXIT" state="SUCCESS" />
-				<Exit name="BadRequest" state="SUCCESS" code="400" empty="false" />
+				<Exit name="BadRequest" state="ERROR" code="400" empty="false" />
 				<Exit name="AlreadySubscribed" state="SUCCESS" code="409" empty="false" />
-				<Exit name="NoSubscriptionFound" state="SUCCESS" code="404" empty="false" />
-				<Exit name="CouldNotSynchronize" state="SUCCESS" code="500" empty="false" />
+				<Exit name="NoSubscriptionFound" state="ERROR" code="404" empty="false" />
+				<Exit name="CouldNotSubscribe" state="ERROR" empty="true" />
+				<Exit name="CouldNotSynchronize" state="ERROR" code="500" empty="false" />
 				<Exit name="Exception" state="ERROR" empty="true" />
 			</Exits>
 
 			<PutInSessionPipe name="ExtractDataFromInput">
 				<Param name="bsn" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn" />
+				<Param name="applicationId" sessionKey="originalMessage" xpathExpression="npsLk01/stuurgegevens/zender/applicatie" />
 			</PutInSessionPipe>
 
-			<!-- Retrieve the application configuration from the local file system -->
-			<SenderPipe
-				name="LoadApplicationConfig"
-				storeResultInSessionKey="ApplicationConfig">
-				<IbisLocalSender
-					name="GetApplicationConfigFromLocalFileSystem"
-					javaListener="ProcessFileInputListener"
-					returnedSessionKeys="Error">
-					<Param name="FileName" value="${applicationConfigPath}" />
-				</IbisLocalSender>
-				<Forward name="success" path="ConvertInputToAppId" />
-				<Forward name="exception" path="Exception" />
-			</SenderPipe>
+			<!-- Read application config file -->
+			<LocalFileSystemPipe name="GetApplicationConfig" action="read"
+				storeResultInSessionKey="applicationConfig">
+				<Param name="filename" value="${applicationConfigPath}" />
+			</LocalFileSystemPipe>
 
-			<!-- Get the appid of the application related to the subscription action -->
-			<XsltPipe name="ConvertInputToAppId"
-				xpathExpression="/root/Applications[organisatie = $inputOrganisatie and applicatie = $inputApplicatie]/appId"
-				storeResultInSessionKey="ApplicationId">
-				<Param name="inputApplicatie" sessionKey="originalMessage"
-					xpathExpression="npsLk01/stuurgegevens/zender/applicatie" />
-				<Param name="inputOrganisatie" sessionKey="originalMessage"
-					xpathExpression="npsLk01/stuurgegevens/zender/organisatie" />
-			</XsltPipe>
+			<!-- Get application information from config -->
+			<DataSonnetPipe name="TransformApplicationData"
+				storeResultInSessionKey="applicationData"
+				styleSheetName="jsonnet/FilterApplicationsById.jsonnet">
+				<Param name="applicationConfig" sessionKey="applicationConfig" />
+				<Param name="applicationId" sessionKey="applicationId" />
+			</DataSonnetPipe>
+
+			<IfPipe name="CheckApplicationExists" defaultMediaType="JSON" jsonPathExpression="$.app[0].applicatie">
+				<Forward name="then" path="CheckVerwerkingssoort" />
+				<Forward name="else" path="CouldNotSubscribe" />
+			</IfPipe>
 
 			<!-- Check if a subscriber needs to be either added or removed -->
 			<IfPipe name="CheckVerwerkingssoort" xpathExpression="$originalMessage = 'T'" expressionValue="true"
@@ -103,8 +100,9 @@
 						);">
 					<Param name="burgerservicenummer" sessionKey="originalMessage"
 						xpathExpression="npsLk01/object/inp.bsn" />
-					<Param name="appId" sessionKey="ApplicationId" />
+					<Param name="appId" sessionKey="applicationId" />
 				</FixedQuerySender>
+				<Forward name="exception" path="Exception" />
 			</SenderPipe>
 
 			<!-- Prepare the notify the subscriber of the current state of the person -->
@@ -125,7 +123,7 @@
 					name="CallQueueNotificationsListener"
 					javaListener="QueueNotificationTask">
 					<Param name="PersonenDatabaseResult" sessionKey="PersonenDatabaseResult" />
-					<Param name="ApplicationId" sessionKey="ApplicationId" />
+					<Param name="ApplicationId" sessionKey="applicationId" />
 				</IbisLocalSender>
 				<Forward name="success" path="WrapBv03Response" />
 			</SenderPipe>
@@ -137,7 +135,7 @@
 					query="UPDATE subscripties SET eind_datum = CURRENT_TIMESTAMP WHERE bsn=?{burgerservicenummer} AND app_id=?{appId} AND eind_datum IS NULL">
 					<Param name="burgerservicenummer" sessionKey="originalMessage"
 						xpathExpression="npsLk01/object/inp.bsn" />
-					<Param name="appId" sessionKey="ApplicationId" />
+					<Param name="appId" sessionKey="applicationId" />
 				</FixedQuerySender>
 			</SenderPipe>
 
