@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.11.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.3...v1.11.4) (2024-12-20)
+
+### 🐛 Bug Fixes
+
+* remove the line ([7fc3c6e](https://github.com/wearefrank/haalcentraal-connector/commit/7fc3c6e93a21f753f09bddab1bb8e4a4bb11804e))
+
 ## [1.11.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.2...v1.11.3) (2024-12-20)
 
 ### 🐛 Bug Fixes
