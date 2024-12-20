@@ -8,6 +8,7 @@
         <comment>Add column SOAPACTION</comment>
         <addColumn tableName="LADYBUG">
             <column name="SOAPACTION" type="java.sql.Types.VARCHAR(255)"/>
+            <column name="BSN" type="java.sql.Types.VARCHAR(255)"/>
         </addColumn>
     </changeSet>
 </databaseChangeLog>
