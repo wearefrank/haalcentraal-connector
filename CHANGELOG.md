@@ -1,5 +1,16 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.11.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.16...v1.11.0) (2024-12-20)
+
+### 🍕 Features
+
+* add ladybug column BSN ([030fbcf](https://github.com/wearefrank/haalcentraal-connector/commit/030fbcfa0329dc8d4d46801009b20e15114803c0))
+* add ladybug column to database ([88927b0](https://github.com/wearefrank/haalcentraal-connector/commit/88927b068bc50e3eb92fa028127cc5e11f179ec6))
+
+### 🐛 Bug Fixes
+
+* comment gemeenteVanInschrijving ([4270482](https://github.com/wearefrank/haalcentraal-connector/commit/4270482211d13f193fbb36488e13213164706c0f))
+
 ## [1.10.16](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.15...v1.10.16) (2024-12-19)
 
 ### 🐛 Bug Fixes
