@@ -1,5 +1,15 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.11.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.0...v1.11.1) (2024-12-20)
+
+### 🐛 Bug Fixes
+
+* handle person not found ([a00d715](https://github.com/wearefrank/haalcentraal-connector/commit/a00d7154b2cd4cb2b02004a8285797424ce163ee))
+
+### ⏩ Reverts
+
+* Revert "feat: add ladybug column to database" ([501dd0f](https://github.com/wearefrank/haalcentraal-connector/commit/501dd0fe2fbcee91714dbdbbe268357727739f35))
+
 ## [1.11.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.16...v1.11.0) (2024-12-20)
 
 ### 🍕 Features
