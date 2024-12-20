@@ -53,7 +53,7 @@
 		<!-- Check if person was found -->
         <IfPipe defaultMediaType="JSON" name="CheckResult" jsonPathExpression="$.personen[0].burgerservicenummer" expressionValue="${bsn}">
             <Forward name="then" path="JsonComparator" />
-            <Forward name="else" path="ServerError" />
+            <Forward name="else" path="NotFound" />
             <Param name="bsn" sessionKey="originalMessage" />
         </IfPipe>
 
