@@ -16,6 +16,12 @@
                     <property name="label" value="SOAPAction"/>
                     <property name="sessionKey" value="SOAPAction" />
                 </bean>
+                <bean class="nl.nn.testtool.metadata.SessionKeyMetadataFieldExtractor">
+                    <property name="name" value="BSN"/>
+                    <property name="label" value="BSN"/>
+                    <property name="regex" value="\b(\d{9})\b"/>
+                    <property name="sessionKey" value="originalMessage" />
+                </bean>
             </list>
         </property>
     </bean>
@@ -28,6 +34,7 @@
                 <value>duration</value>
                 <value>name</value>
                 <value>soapAction</value>
+                <value>BSN</value>
                 <value>correlationId</value>
                 <value>status</value>
                 <value>numberOfCheckpoints</value>
