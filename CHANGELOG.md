@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.11.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.1...v1.11.2) (2024-12-20)
+
+### ⏩ Reverts
+
+* Revert "feat: add ladybug column BSN" ([2650656](https://github.com/wearefrank/haalcentraal-connector/commit/26506563f77b6f00c381353b6bed9dd9280c14a0))
+
 ## [1.11.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.0...v1.11.1) (2024-12-20)
 
 ### 🐛 Bug Fixes
