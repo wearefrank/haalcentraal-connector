@@ -11,6 +11,7 @@
                 <Exit name="EXCEPTION" state="ERROR"/>
                 <Exit name="202" state="SUCCESS" code="202"/>
                 <Exit name="400" state="ERROR" code="400"/>
+                <Exit name="500" state="ERROR" code="500"/>
             </Exits>
             <PutInSessionPipe name="storeValues">
 				<Param name="SOAPAction" sessionKey="headers" xpathExpression="/headers/header[@name = 'SOAPAction']/text()" />
@@ -41,7 +42,7 @@
                 name="WsdlValidationSoftFailForwarder"
                 xpathExpression="$SoftFail = true()"
                 >
-                <Param name="SoftFail" value="true" type="BOOLEAN"/>
+                <Param name="SoftFail" value="${haalcentraal_connector.endpoint.softfail}" type="BOOLEAN"/>
                 <Forward name="true" path="UnwrapSoapMessage" />
                 <Forward name="false" path="InvalidXml" />
             </XmlSwitchPipe>
@@ -125,7 +126,7 @@
             <PutInSessionPipe name="InvalidXml">
                 <Param name="errorCode" value="INVALID_XML"/>
                 <Param name="errorReason" value="XML was invalid"/>
-                <Forward name="success" path="WrapFo03Response" />
+                <Forward name="success" path="WrapFo03Response"/>
             </PutInSessionPipe>
 
             <PutInSessionPipe name="NotWellFormed">
@@ -151,7 +152,7 @@
                 <Param name="errorReason" sessionKey="errorReason"/>
                 <Param name="errorDetailText" sessionKey="errorDetailText"/>
                 <Param name="errorDetailXML" sessionKey="errorDetailXML" type="DOMDOC"/>
-                <Forward name="success" path="EXIT"/>
+                <Forward name="success" path="500"/>
             </SoapWrapperPipe>
         </Pipeline>
     </Adapter>
