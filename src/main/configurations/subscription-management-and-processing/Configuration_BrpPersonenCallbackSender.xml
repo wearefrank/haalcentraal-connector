@@ -67,13 +67,7 @@
 					xpathExpression="root/app/gebruiker" />
 				<Param name="varReferentienummer" sessionKey="FilteredApplication"
 					xpathExpression="root/app/referentienummer" />
-				<Param name="varOntvangerApplicatie" value="NEDMAG_VnA" />
-				<Param name="varOntvangerOrganisatie" value="NEDGR" />
 				<!-- <Forward name="success" path="callback" /> -->
-				<Forward name="exception" path="EXCEPTION" />
-			</XsltPipe>
-
-			<XsltPipe name="La01ToLk01" styleSheetName="xsl/La01ToLk01.xsl" storeResultInSessionKey="soapMessage">
 				<Forward name="exception" path="EXCEPTION" />
 			</XsltPipe>
 
