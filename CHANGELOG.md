@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.11.5](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.4...v1.11.5) (2024-12-31)
+
+### 🐛 Bug Fixes
+
+* npsLk01 mapping ([d84157e](https://github.com/wearefrank/haalcentraal-connector/commit/d84157e27d3eff27e68f9b4ea3e84405194d88ab))
+
 ## [1.11.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.3...v1.11.4) (2024-12-20)
 
 ### 🐛 Bug Fixes
