@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.11.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.5...v1.11.6) (2024-12-31)
+
+### 🐛 Bug Fixes
+
+* modify column Bsn ([77a222c](https://github.com/wearefrank/haalcentraal-connector/commit/77a222cbec6fd3bef09e4c08ea3911c3b610f399))
+
 ## [1.11.5](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.4...v1.11.5) (2024-12-31)
 
 ### 🐛 Bug Fixes
