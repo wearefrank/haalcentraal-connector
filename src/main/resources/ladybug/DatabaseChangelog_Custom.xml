@@ -16,4 +16,8 @@
             <column name="BSN" type="java.sql.Types.VARCHAR(255)"/>
         </addColumn>
     </changeSet>
+    <changeSet id="modifyColumnBsn" author="Rayet Sena Akcan">
+        <comment>Modify column BSN</comment>
+        <modifyDataType tableName="LADYBUG" columnName="BSN" newDataType="java.sql.Types.VARCHAR(9)"/>
+    </changeSet>
 </databaseChangeLog>
