@@ -1,5 +1,12 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.11.7](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.6...v1.11.7) (2025-01-02)
+
+### 🐛 Bug Fixes
+
+* no personen informatie ([5fc1f0e](https://github.com/wearefrank/haalcentraal-connector/commit/5fc1f0efc0d4ddbfb4c5d3ba9623b76c63233012))
+* return 4xx error ([11ecae2](https://github.com/wearefrank/haalcentraal-connector/commit/11ecae297aaaf201cc340d48834b1ce87eb715c4))
+
 ## [1.11.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.5...v1.11.6) (2024-12-31)
 
 ### 🐛 Bug Fixes
