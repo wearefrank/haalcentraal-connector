@@ -81,8 +81,8 @@
                     returnedSessionKeys="Error">
                 </IbisLocalSender>
                 <Forward name="success" path="EXIT" />
-                <Forward name="exception" path="BackEndError" />  
-                <Forward name="400" path="BackEndError" />   
+                <Forward name="exception" path="ServerError" />  
+                <Forward name="400" path="ServerError" />   
                 <Forward name="404" path="BackEndError" />
             </SenderPipe>
 
@@ -143,6 +143,19 @@
                 <Param name="errorDetailXML" xpathExpression="/error/detailsXml" type="DOMDOC" />
                 <Forward name="success" path="WrapFo03Response"/>
             </PutInSessionPipe>
+
+            <XsltPipe
+                name="ServerError"
+                getInputFromFixedValue="&lt;dummy/&gt;"
+                styleSheetName="xsl/BuildError.xsl"
+                storeResultInSessionKey="Error"
+                >
+                <Param name="cause" sessionKey="Error" type="DOMDOC" />
+                <Param name="code" value="TechnicalError" />
+                <Param name="detailsXml" type="DOMDOC" />
+                <Forward name="success" path="WrapFo03Response" />
+                <Forward name="exception" path="WrapFo03Response" />
+            </XsltPipe>
             
             <SoapWrapperPipe
                 name="WrapFo03Response"
@@ -153,7 +166,7 @@
                 <Param name="errorReason" sessionKey="errorReason"/>
                 <Param name="errorDetailText" sessionKey="errorDetailText"/>
                 <Param name="errorDetailXML" sessionKey="errorDetailXML" type="DOMDOC"/>
-                <Forward name="success" path="EXIT"/>
+                <Forward name="success" path="400"/>
             </SoapWrapperPipe>
         </Pipeline>
     </Adapter>

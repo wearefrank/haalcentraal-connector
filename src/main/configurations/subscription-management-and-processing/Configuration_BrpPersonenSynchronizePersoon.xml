@@ -64,11 +64,10 @@
             storeResultInSessionKey="Error"
             >
             <Param name="cause" sessionKey="Error" type="DOMDOC" />
-            <Param name="code" value="TechnicalError" />
             <Param name="reason" pattern="No Persoon with the burgerservicenummer:{originalMessage} is found." ignoreUnresolvablePatternElements="true"/>
             <Param name="detailsXml" type="DOMDOC" />
-            <Forward name="success" path="BadRequest" />
-            <Forward name="exception" path="BadRequest" />
+            <Forward name="success" path="NotFound" />
+            <Forward name="exception" path="NotFound" />
         </XsltPipe>
 
         <!-- Compare stored and retrieved person data -->
