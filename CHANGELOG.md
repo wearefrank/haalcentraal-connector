@@ -1,5 +1,85 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.11.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.5...v1.11.6) (2024-12-31)
+
+### 🐛 Bug Fixes
+
+* modify column Bsn ([77a222c](https://github.com/wearefrank/haalcentraal-connector/commit/77a222cbec6fd3bef09e4c08ea3911c3b610f399))
+
+## [1.11.5](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.4...v1.11.5) (2024-12-31)
+
+### 🐛 Bug Fixes
+
+* npsLk01 mapping ([d84157e](https://github.com/wearefrank/haalcentraal-connector/commit/d84157e27d3eff27e68f9b4ea3e84405194d88ab))
+
+## [1.11.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.3...v1.11.4) (2024-12-20)
+
+### 🐛 Bug Fixes
+
+* remove the line ([7fc3c6e](https://github.com/wearefrank/haalcentraal-connector/commit/7fc3c6e93a21f753f09bddab1bb8e4a4bb11804e))
+
+## [1.11.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.2...v1.11.3) (2024-12-20)
+
+### 🐛 Bug Fixes
+
+* add changeSet ([c574e5d](https://github.com/wearefrank/haalcentraal-connector/commit/c574e5dd65e72abb6111ef47583edc70ca66a792))
+* ladybug BSN column ([cf288d6](https://github.com/wearefrank/haalcentraal-connector/commit/cf288d63fdb7bea56581eec3f9384a1937d37a42))
+
+## [1.11.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.1...v1.11.2) (2024-12-20)
+
+### ⏩ Reverts
+
+* Revert "feat: add ladybug column BSN" ([2650656](https://github.com/wearefrank/haalcentraal-connector/commit/26506563f77b6f00c381353b6bed9dd9280c14a0))
+
+## [1.11.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.0...v1.11.1) (2024-12-20)
+
+### 🐛 Bug Fixes
+
+* handle person not found ([a00d715](https://github.com/wearefrank/haalcentraal-connector/commit/a00d7154b2cd4cb2b02004a8285797424ce163ee))
+
+### ⏩ Reverts
+
+* Revert "feat: add ladybug column to database" ([501dd0f](https://github.com/wearefrank/haalcentraal-connector/commit/501dd0fe2fbcee91714dbdbbe268357727739f35))
+
+## [1.11.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.16...v1.11.0) (2024-12-20)
+
+### 🍕 Features
+
+* add ladybug column BSN ([030fbcf](https://github.com/wearefrank/haalcentraal-connector/commit/030fbcfa0329dc8d4d46801009b20e15114803c0))
+* add ladybug column to database ([88927b0](https://github.com/wearefrank/haalcentraal-connector/commit/88927b068bc50e3eb92fa028127cc5e11f179ec6))
+
+### 🐛 Bug Fixes
+
+* comment gemeenteVanInschrijving ([4270482](https://github.com/wearefrank/haalcentraal-connector/commit/4270482211d13f193fbb36488e13213164706c0f))
+
+## [1.10.16](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.15...v1.10.16) (2024-12-19)
+
+### 🐛 Bug Fixes
+
+* prevent subscriptions to non-existant appids ([287c9b4](https://github.com/wearefrank/haalcentraal-connector/commit/287c9b44a128586ff73ace6dd4239a3c95c8676b))
+
+### 🧑‍💻 Code Refactoring
+
+* Merge pull request [#78](https://github.com/wearefrank/haalcentraal-connector/issues/78) from wearefrank/refactor-app-id ([1d9ce00](https://github.com/wearefrank/haalcentraal-connector/commit/1d9ce000ed7e9ca4e1fc8e34716f142c0b2f20a1))
+
+## [1.10.15](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.14...v1.10.15) (2024-12-18)
+
+### 🐛 Bug Fixes
+
+* swap content of jsonnet files ([2d4dc5e](https://github.com/wearefrank/haalcentraal-connector/commit/2d4dc5efbd18317087bd591c197dd991dcd2ce52))
+
+## [1.10.14](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.13...v1.10.14) (2024-12-18)
+
+### 🐛 Bug Fixes
+
+* check type before parsing ([8d4fbb6](https://github.com/wearefrank/haalcentraal-connector/commit/8d4fbb6d63027a84b420bbf9683b910e41a11ec8))
+
+## [1.10.13](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.12...v1.10.13) (2024-12-18)
+
+### 🐛 Bug Fixes
+
+* parse json before extracting ([023c090](https://github.com/wearefrank/haalcentraal-connector/commit/023c090be282eb90628f29babb1a5d5bf6ee518f))
+
 ## [1.10.12](https://github.com/wearefrank/haalcentraal-connector/compare/v1.10.11...v1.10.12) (2024-12-17)
 
 ### 🐛 Bug Fixes

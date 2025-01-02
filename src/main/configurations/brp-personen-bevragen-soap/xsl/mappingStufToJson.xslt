@@ -50,7 +50,7 @@
                             </xsl:for-each>
                         </xsl:when>
                     </xsl:choose>
-                    <xsl:choose>
+                    <!-- <xsl:choose>
                         <xsl:when test="$gemeenteVanInschrijving !=''">
                             <gemeenteVanInschrijving>
                                 <xsl:value-of
@@ -58,7 +58,7 @@
                             </gemeenteVanInschrijving>
                         </xsl:when>
                         <xsl:otherwise></xsl:otherwise>
-                    </xsl:choose>
+                    </xsl:choose> -->
                     <xsl:choose>
                         <xsl:when test="count(//*[contains(name(),'bsn')]/text()) > 1">
                             <xsl:call-template
@@ -85,7 +85,7 @@
                             <xsl:value-of select="." />
                         </fields>
                     </xsl:for-each>
-            <xsl:choose>
+            <!-- <xsl:choose>
                         <xsl:when test="$gemeenteVanInschrijving !=''">
                             <gemeenteVanInschrijving>
                                 <xsl:value-of
@@ -93,7 +93,7 @@
                             </gemeenteVanInschrijving>
                         </xsl:when>
                         <xsl:otherwise></xsl:otherwise>
-                    </xsl:choose>
+                    </xsl:choose> -->
             <inclusiefOverledenPersonen>
                         <xsl:value-of select="$inclusiefOverledenPersonen" />
                     </inclusiefOverledenPersonen>
@@ -200,7 +200,7 @@
                             <xsl:value-of select="." />
                         </fields>
                     </xsl:for-each>
-                    <xsl:choose>
+                    <!-- <xsl:choose>
                         <xsl:when test="$gemeenteVanInschrijving !=''">
                             <gemeenteVanInschrijving>
                                 <xsl:value-of
@@ -208,7 +208,7 @@
                             </gemeenteVanInschrijving>
                         </xsl:when>
                         <xsl:otherwise></xsl:otherwise>
-                    </xsl:choose>
+                    </xsl:choose> -->
                     <inclusiefOverledenPersonen>
                         <xsl:value-of select="$inclusiefOverledenPersonen" />
                     </inclusiefOverledenPersonen>

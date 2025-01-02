@@ -1,24 +1,12 @@
 {
 	"Applications": [
 		{
-			"appId": "1",
-			"identifier": "1883",
 			"url": "https://httpbin.org/anything",
-			"organisatie": 1883,
-			"applicatie": "DEC_ZKN",
-			"gebruiker": "SH2102",
-			"referentienummer": "e6efdf22-891e-48fa-8d21-9f4a47ac0184",
-			"sleutelVerzendend": "LBA.00000142157"
+			"applicatie": "DEC_ZKN"
 		},
 		{
-			"appId": "2",
-			"identifier": "1883",
 			"url": "https://wearefrank.nl/",
-			"organisatie": 1883,
-			"applicatie": "LBA",
-			"gebruiker": "SH2102",
-			"referentienummer": "e6efdf22-891e-48fa-8d21-9f4a47ac0184",
-			"sleutelVerzendend": "LBA.00000142157" 
+			"applicatie": "LBA"
 		}
 	]
 }
