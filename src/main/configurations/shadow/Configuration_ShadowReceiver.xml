@@ -8,7 +8,7 @@
 
         <PutInSessionPipe name="ExtractIncomingNotificationData" preserveInput="true">
             <Param name="appId" xpathExpression="npsLk01/stuurgegevens/ontvanger/applicatie" />
-            <Param name="bsn" xpathExpression="npsLk01/antwoord/object/inp.bsn" />
+            <Param name="bsn" xpathExpression="(//*[local-name()='inp.bsn'])[1]/text()" />
         </PutInSessionPipe>
 
         <SenderPipe name="storeMessage">
