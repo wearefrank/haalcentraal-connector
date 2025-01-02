@@ -53,9 +53,22 @@
 		<!-- Check if person was found -->
         <IfPipe defaultMediaType="JSON" name="CheckResult" jsonPathExpression="$.personen[0].burgerservicenummer" expressionValue="${bsn}">
             <Forward name="then" path="JsonComparator" />
-            <Forward name="else" path="NotFound" />
+            <Forward name="else" path="PersoonNotFound_Exception" />
             <Param name="bsn" sessionKey="originalMessage" />
         </IfPipe>
+
+        <XsltPipe
+            name="PersoonNotFound_Exception"
+            getInputFromFixedValue="&lt;dummy/&gt;"
+            styleSheetName="xsl/BuildError.xsl"
+            storeResultInSessionKey="Error"
+            >
+            <Param name="cause" sessionKey="Error" type="DOMDOC" />
+            <Param name="reason" pattern="No Persoon with the burgerservicenummer:{originalMessage} is found." ignoreUnresolvablePatternElements="true"/>
+            <Param name="detailsXml" type="DOMDOC" />
+            <Forward name="success" path="NotFound" />
+            <Forward name="exception" path="NotFound" />
+        </XsltPipe>
 
         <!-- Compare stored and retrieved person data -->
         <SenderPipe name="JsonComparator">
@@ -73,6 +86,7 @@
             <Forward name="then" path="InsertPersoon" />
             <Forward name="else" path="NotUpdatedExit" />
         </IfPipe>
+
 
         <!-- Insert the new data into the database -->
         <SenderPipe name="InsertPersoon" preserveInput="true">

@@ -13,10 +13,9 @@
 				<Exit name="EXIT" state="SUCCESS" />
 				<Exit name="BadRequest" state="ERROR" code="400" empty="false" />
 				<Exit name="AlreadySubscribed" state="SUCCESS" code="409" empty="false" />
-				<Exit name="NoSubscriptionFound" state="ERROR" code="404" empty="false" />
-				<Exit name="NotFound" state="ERROR" code="404" />
-				<Exit name="CouldNotSubscribe" state="ERROR" empty="true" />
+				<Exit name="NotFound" state="ERROR" code="404" empty="false" />
 				<Exit name="CouldNotSynchronize" state="ERROR" code="500" empty="false" />
+				<Exit name="CouldNotSubscribe" state="ERROR" empty="true" />
 				<Exit name="Exception" state="ERROR" empty="true" />
 			</Exits>
 
@@ -81,6 +80,7 @@
 			<!-- Add persoonsgegevens to db if none are found -->
 			<SenderPipe name="SynchronizePersoon" getInputFromSessionKey="bsn">
 				<FrankSender name="SynchronizePersoonSender" target="BrpPersonenSynchronizePersoon" />
+				<Forward name="400" path="BadRequest" />
 				<Forward name="exception" path="CouldNotSynchronize" />
 				<Forward name="404" path="NotFound" />
 			</SenderPipe>
@@ -142,7 +142,7 @@
 			</SenderPipe>
 
 			<IfPipe name="CheckNoSubscriptionEnded" xpathExpression="/result/rowsupdated = 0" expressionValue="true">
-				<Forward name="then" path="NoSubscriptionFound" />
+				<Forward name="then" path="NotFound" />
 				<Forward name="else" path="WrapBv03Response" />
 			</IfPipe>
 
