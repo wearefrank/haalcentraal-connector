@@ -148,7 +148,7 @@
                                             </aoa.woonplaatsWaarinGelegen>
                                             <gor.identificatie authorizedApplications="GWS,PGAx-SG-ZVH"></gor.identificatie>
                                             <opr.identificatie authorizedApplications="GWS,PGAx-SG-ZVH"></opr.identificatie>
-                                            <gor.openbareRuimteNaam><xsl:copy-of select="verblijfplaats/naamOpenbareRuimte"/></gor.openbareRuimteNaam>
+                                            <gor.openbareRuimteNaam><xsl:copy-of select="verblijfplaats/verblijfadres/officieleStraatnaam"/></gor.openbareRuimteNaam>
                                             <gor.straatnaam><xsl:copy-of select="verblijfplaats/verblijfadres/korteStraatnaam"/></gor.straatnaam>
                                             <aoa.postcode><xsl:copy-of select="verblijfplaats/verblijfadres/postcode"/></aoa.postcode>
                                             <aoa.huisnummer><xsl:copy-of select="verblijfplaats/verblijfadres/huisnummer"/></aoa.huisnummer>
@@ -291,6 +291,7 @@
                                     </xsl:choose>
                                 </inp.redenOpschortingBijhouding>
                                 <inp.indicatieGeheim authorizedApplications="LBA,GWS,TOP,PGAx-SG-ZVH"><xsl:copy-of select="geheimhoudingPersoonsgegevens"/></inp.indicatieGeheim>
+                                <xsl:for-each select="nationaliteiten">
                                 <inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT" StUF:verwerkingssoort="T">
                                     <gerelateerde StUF:entiteittype="NAT" StUF:verwerkingssoort="T">
                                         <code authorizedApplications="LBA,GWS,TOP"><xsl:copy-of select="nationaliteiten/nationaliteit/code"/></code>
@@ -304,6 +305,7 @@
                                         </test>
                                     </inp.datumVerkrijging>
                                 </inp.heeftAlsNationaliteit>
+                                </xsl:for-each>
                             </object>
                         </xsl:variable>
                         <xsl:apply-templates select="$inputnpsLk01//BG:object">
@@ -321,7 +323,7 @@
             <StUF:berichtcode>Lk01</StUF:berichtcode>
             <StUF:zender>                
                 <StUF:organisatie>NEDGR</StUF:organisatie>
-                <StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
+                <StUF:applicatie>HCC_NOT</StUF:applicatie>
             </StUF:zender>
             
             <StUF:ontvanger>
@@ -331,10 +333,10 @@
                 <StUF:applicatie>
                     <xsl:value-of select="$varZenderApplicatie" />
                 </StUF:applicatie>
-            </StUF:ontvanger> 
-            <StUF:gebruiker>
+                <StUF:gebruiker>
                     <xsl:value-of select="$varZenderGebruiker" />
-            </StUF:gebruiker>   
+                </StUF:gebruiker> 
+            </StUF:ontvanger> 
             <StUF:referentienummer>
                 <xsl:value-of select="$varReferentienummer" />
             </StUF:referentienummer> 

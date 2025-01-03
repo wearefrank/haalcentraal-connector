@@ -151,7 +151,7 @@
                                                 </aoa.woonplaatsWaarinGelegen>
                                                 <gor.identificatie authorizedApplications="GWS,PGAx-SG-ZVH"></gor.identificatie>
                                                 <opr.identificatie authorizedApplications="GWS,PGAx-SG-ZVH"></opr.identificatie>
-                                                <gor.openbareRuimteNaam><xsl:copy-of select="verblijfplaats/naamOpenbareRuimte"/></gor.openbareRuimteNaam>
+                                                <gor.openbareRuimteNaam><xsl:copy-of select="verblijfplaats/verblijfadres/officieleStraatnaam"/></gor.openbareRuimteNaam>
                                                 <gor.straatnaam><xsl:copy-of select="verblijfplaats/verblijfadres/korteStraatnaam"/></gor.straatnaam>
                                                 <aoa.postcode><xsl:copy-of select="verblijfplaats/verblijfadres/postcode"/></aoa.postcode>
                                                 <aoa.huisnummer><xsl:copy-of select="verblijfplaats/verblijfadres/huisnummer"/></aoa.huisnummer>
