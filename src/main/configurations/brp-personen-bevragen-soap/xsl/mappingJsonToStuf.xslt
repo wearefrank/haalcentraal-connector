@@ -294,19 +294,6 @@
                                         </xsl:choose>
                                     </inp.redenOpschortingBijhouding>
                                     <inp.indicatieGeheim authorizedApplications="LBA,GWS,TOP,PGAx-SG-ZVH"><xsl:copy-of select="geheimhoudingPersoonsgegevens"/></inp.indicatieGeheim>
-                                    <inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT">
-                                        <gerelateerde StUF:entiteittype="NAT">
-                                            <code authorizedApplications="LBA,GWS,TOP"><xsl:copy-of select="nationaliteiten/nationaliteit/code"/></code>
-                                            <omschrijving authorizedApplications="LBA,TOP"><xsl:copy-of select="nationaliteiten/nationaliteit/omschrijving"/></omschrijving>
-                                        </gerelateerde>
-                                        <inp.redenVerkrijging><xsl:copy-of select="nationaliteiten/redenOpname/code"/></inp.redenVerkrijging>
-                                        <inp.datumVerkrijging>
-                                            <test>
-                                                <xsl:variable name="date" select="nationaliteiten/datumIngangGeldigheid/datum"/>
-                                                <xsl:value-of select="translate($date, '-', '')" />
-                                            </test>
-                                        </inp.datumVerkrijging>
-                                    </inp.heeftAlsNationaliteit>
                                 </object>
                             </xsl:variable>
                             <xsl:apply-templates select="$originalMessage//BG:object">
@@ -360,12 +347,13 @@
         <xsl:param name="mapping"/>
         <xsl:param name="persoon" tunnel="yes"/>
         <BG:object StUF:entiteittype="NPS">
-            <xsl:apply-templates select="*[not(local-name() = ('inp.heeftAlsOuders', 'inp.heeftAlsKinderen', 'inp.heeftAlsEchtgenootPartner'))]">
+            <xsl:apply-templates select="*[not(local-name() = ('inp.heeftAlsOuders', 'inp.heeftAlsKinderen', 'inp.heeftAlsEchtgenootPartner', 'inp.heeftAlsNationaliteit'))]">
                 <xsl:with-param name="mapping" select="$mapping/object"/>
             </xsl:apply-templates>
             <xsl:apply-templates select="$persoon/partners"/>
             <xsl:apply-templates select="$persoon/kinderen"/>
-            <xsl:apply-templates select="$persoon/ouders"/>            
+            <xsl:apply-templates select="$persoon/ouders"/>     
+            <xsl:apply-templates select="$persoon/nationaliteiten"/>        
         </BG:object>
     </xsl:template>
     
@@ -735,4 +723,33 @@
         </BG:inp.heeftAlsOuders>
     </xsl:template>
     
+<xsl:template match="nationaliteiten">
+        <xsl:variable name="mapping">
+                                <inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT" StUF:verwerkingssoort="T">
+                                    <gerelateerde StUF:entiteittype="NAT" StUF:verwerkingssoort="T">
+                                        <code authorizedApplications="LBA,GWS,TOP"><xsl:copy-of select="nationaliteit/code"/></code>
+                                        <omschrijving authorizedApplications="LBA,TOP"><xsl:copy-of select="nationaliteit/omschrijving"/></omschrijving>
+                                    </gerelateerde>
+                                    <inp.redenVerkrijging><xsl:copy-of select="redenOpname/code"/></inp.redenVerkrijging>
+                                    <inp.datumVerkrijging>
+                                        <test>
+                                            <xsl:variable name="date" select="datumIngangGeldigheid/datum"/>
+                                            <xsl:value-of select="translate($date, '-', '')" />
+                                        </test>
+                                    </inp.datumVerkrijging>
+                                </inp.heeftAlsNationaliteit>
+        </xsl:variable>
+        <xsl:apply-templates select="$originalMessage//BG:inp.heeftAlsNationaliteit">
+            <xsl:with-param name="mapping" select="$mapping"/>
+        </xsl:apply-templates>
+    </xsl:template>
+
+    <xsl:template match="BG:inp.heeftAlsNationaliteit">
+        <xsl:param name="mapping"/>
+        <BG:inp.heeftAlsNationaliteit>
+            <xsl:apply-templates select="*">
+                <xsl:with-param name="mapping" select="$mapping"/>
+            </xsl:apply-templates>
+        </BG:inp.heeftAlsNationaliteit>
+    </xsl:template>
 </xsl:stylesheet>
