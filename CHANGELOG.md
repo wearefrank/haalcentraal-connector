@@ -1,5 +1,12 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.11.9](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.8...v1.11.9) (2025-01-03)
+
+### 🐛 Bug Fixes
+
+* look for inp.bsn tag in incoming message to fix missing bsn ([3f5210f](https://github.com/wearefrank/haalcentraal-connector/commit/3f5210f53853a3a740a9ae92c5bfdc7e600ec4c3))
+* multiple nationaliteiten ([7073ed9](https://github.com/wearefrank/haalcentraal-connector/commit/7073ed924509c8d260cb4a8c5d169a2028fe9b9f))
+
 ## [1.11.8](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.7...v1.11.8) (2025-01-03)
 
 ### 🐛 Bug Fixes
