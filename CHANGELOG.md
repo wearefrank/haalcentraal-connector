@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.11.10](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.9...v1.11.10) (2025-01-06)
+
+### 🐛 Bug Fixes
+
+* remove 'alreadyExists' section from computeSubscriptionStates.xsl to improve performance ([087463c](https://github.com/wearefrank/haalcentraal-connector/commit/087463c03f1f9b055b879bb4375329005af07f8c))
+
 ## [1.11.9](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.8...v1.11.9) (2025-01-03)
 
 ### 🐛 Bug Fixes
