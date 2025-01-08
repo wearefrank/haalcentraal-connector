@@ -111,4 +111,13 @@
 			<column name="applicatie" type="varchar(255)" />
 		</createTable>
 	</changeSet>
+
+	<changeSet id="HCC-8" author="Mike Erkemeij">
+		<comment>Add hash column to store SHA256 hashes</comment>
+		<addColumn tableName="persoonsgegevens">
+			<column name="hash" type="TEXT">
+				<constraints nullable="true" />
+			</column>
+		</addColumn>
+	</changeSet>
 </databaseChangeLog>

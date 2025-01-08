@@ -24,7 +24,6 @@
                 <Param name="bsn"/>
             </FixedQuerySender>
         </SenderPipe>
-
         <!-- Create request for BRP system using XSLT -->
         <XsltPipe name="CreateRequest" styleSheetName="xsl/personenRequest.xslt" skipEmptyTags="true">
             <Param name="burgerservicenummer" sessionKey="originalMessage" />
@@ -51,8 +50,8 @@
         </SenderPipe>
 
 		<!-- Check if person was found -->
-        <IfPipe defaultMediaType="JSON" name="CheckResult" jsonPathExpression="$.personen[0].burgerservicenummer" expressionValue="${bsn}">
-            <Forward name="then" path="JsonComparator" />
+        <IfPipe defaultMediaType="JSON" name="CheckResult" jsonPathExpression="$.personen[0].burgerservicenummer" expressionValue="${bsn}">            
+            <Forward name="then" path="hashPersoon" />
             <Forward name="else" path="PersoonNotFound_Exception" />
             <Param name="bsn" sessionKey="originalMessage" />
         </IfPipe>
@@ -69,6 +68,18 @@
             <Forward name="success" path="NotFound" />
             <Forward name="exception" path="NotFound" />
         </XsltPipe>
+
+        <HashPipe name="hashPersoon" algorithm="SHA256" storeResultInSessionKey="currentHashData" >
+        
+        </HashPipe>
+
+        <IfPipe name="checkHash" xpathExpression="$storedHash = $currentHashData" getInputFromFixedValue="&lt;dummy/&gt;">
+            <Param name="currentHashData" sessionKey="currentHashData" type="STRING"/>
+                <Param name="storedHash" sessionKey="storedPersonRecord"
+                    xpathExpression="result/rowset/row/field[@name='HASH']" />
+            <Forward name="then" path="NotUpdatedExit" />
+            <Forward name="else" path="InsertPersoon" />
+        </IfPipe>
 
         <!-- Compare stored and retrieved person data -->
         <SenderPipe name="JsonComparator">
@@ -92,9 +103,10 @@
         <SenderPipe name="InsertPersoon" preserveInput="true">
             <FixedQuerySender
                 name="insertPersonenSender"
-                query="INSERT INTO persoonsgegevens(bsn, data, registratie_datum) VALUES(?,?,CURRENT_TIMESTAMP)">
+                query="INSERT INTO persoonsgegevens(bsn, data, registratie_datum,hash) VALUES(?,?,CURRENT_TIMESTAMP, ?)">
                 <Param name="bsn" sessionKey="originalMessage" />
                 <Param name="data" sessionKey="currentPersonData" />
+                <Param name="hash" sessionKey="currentHashData"/>
             </FixedQuerySender>
         </SenderPipe>
 
