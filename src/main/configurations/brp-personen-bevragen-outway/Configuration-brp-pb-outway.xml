@@ -89,6 +89,7 @@
 			</SenderPipe>
 
 			<DataSonnetPipe name="ExtractPersonenBody" styleSheetName="jsonnet/ExtractBody.jsonnet" />
+			<DataSonnetPipe name="ExtractPersonenBody2" styleSheetName="jsonnet/sort.jsonnet" />
 		</Pipeline>
 	</Adapter>
 </Module>
