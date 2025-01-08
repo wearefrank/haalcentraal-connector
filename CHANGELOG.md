@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.11.11](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.10...v1.11.11) (2025-01-08)
+
+### 🐛 Bug Fixes
+
+* mapping update ([c100f1a](https://github.com/wearefrank/haalcentraal-connector/commit/c100f1a9e283386e8af463a507619335ac5bb67d))
+
 ## [1.11.10](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.9...v1.11.10) (2025-01-06)
 
 ### 🐛 Bug Fixes
