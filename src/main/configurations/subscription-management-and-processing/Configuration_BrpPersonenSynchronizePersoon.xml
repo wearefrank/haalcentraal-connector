@@ -69,9 +69,7 @@
             <Forward name="exception" path="NotFound" />
         </XsltPipe>
 
-        <HashPipe name="hashPersoon" algorithm="SHA256" storeResultInSessionKey="currentHashData" >
-        
-        </HashPipe>
+        <HashPipe name="hashPersoon" algorithm="SHA256" storeResultInSessionKey="currentHashData" />
 
         <IfPipe name="checkHash" xpathExpression="$storedHash = $currentHashData" getInputFromFixedValue="&lt;dummy/&gt;">
             <Param name="currentHashData" sessionKey="currentHashData" type="STRING"/>
