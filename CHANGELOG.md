@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.11.12](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.11...v1.11.12) (2025-01-08)
+
+### 🐛 Bug Fixes
+
+* remove soapBody ([69159de](https://github.com/wearefrank/haalcentraal-connector/commit/69159de65d3fd928f1ab8a90bb5afcf0bbfc0b77))
+
 ## [1.11.11](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.10...v1.11.11) (2025-01-08)
 
 ### 🐛 Bug Fixes
