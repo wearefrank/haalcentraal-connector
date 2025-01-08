@@ -118,9 +118,9 @@
                                                         <oao.identificatie><xsl:copy-of select="verblijfplaats/adresseerbaarObjectIdentificatie"/></oao.identificatie>
                                                     </xsl:otherwise>
                                                 </xsl:choose>
-                                                <wpl.identificatie authorizedApplications="DEC_ZKN">
+                                                <!-- <wpl.identificatie authorizedApplications="DEC_ZKN">
                                                     <xsl:copy-of select="$external-data/woonplaatsen/woonplaats[name = $woonplaats]/code" />
-                                                </wpl.identificatie>
+                                                </wpl.identificatie> -->
                                                 <wpl.woonplaatsNaam><xsl:copy-of select="verblijfplaats/verblijfadres/woonplaats"/></wpl.woonplaatsNaam>
                                                 <aoa.woonplaatsWaarinGelegen>
                                                     <wpl.woonplaatsNaam><xsl:copy-of select="verblijfplaats/verblijfadres/woonplaats"/></wpl.woonplaatsNaam>
@@ -201,7 +201,7 @@
                                     <sub.emailadres authorizedApplications="TOP"></sub.emailadres>
                                     <sub.url authorizedApplications=""></sub.url>
                                     <sub.rekeningnummerBankGiro authorizedApplications=""></sub.rekeningnummerBankGiro>
-                                    <inp.burgerlijkeStaat authorizedApplications="TOP,GWS">
+                                    <inp.burgerlijkeStaat authorizedApplications="DEC_ZKN,TOP,GWS">
                                         <number>
                                             <xsl:choose>
                                                 <xsl:when test="./partners !=''">
@@ -237,7 +237,7 @@
                                     <inp.gemeenteVanInschrijving><xsl:copy-of select="gemeenteVanInschrijving/code"/></inp.gemeenteVanInschrijving>
                                     <inp.datumInschrijving>
                                         <test>
-                                            <xsl:variable name="date" select="datumEersteInschrijvingGBA/datum"/>
+                                            <xsl:variable name="date" select="datumInschrijvingInGemeente/datum"/>
                                             <xsl:value-of select="translate($date, '-', '')" />
                                         </test>
                                     </inp.datumInschrijving>

@@ -115,9 +115,9 @@
                                                     <oao.identificatie><xsl:copy-of select="verblijfplaats/adresseerbaarObjectIdentificatie"/></oao.identificatie>
                                                 </xsl:otherwise>
                                             </xsl:choose>
-                                            <wpl.identificatie authorizedApplications="DEC_ZKN">
+                                            <!-- <wpl.identificatie authorizedApplications="DEC_ZKN">
                                                 <xsl:copy-of select="$external-data/woonplaatsen/woonplaats[name = $woonplaats]/code" />
-                                            </wpl.identificatie>
+                                            </wpl.identificatie> -->
                                             <wpl.woonplaatsNaam><xsl:copy-of select="verblijfplaats/verblijfadres/woonplaats"/></wpl.woonplaatsNaam>
                                             <aoa.woonplaatsWaarinGelegen>
                                                 <wpl.woonplaatsNaam><xsl:copy-of select="verblijfplaats/verblijfadres/woonplaats"/></wpl.woonplaatsNaam>
@@ -234,7 +234,7 @@
                                 <inp.gemeenteVanInschrijving><xsl:copy-of select="gemeenteVanInschrijving/code"/></inp.gemeenteVanInschrijving>
                                 <inp.datumInschrijving>
                                     <test>
-                                        <xsl:variable name="date" select="datumEersteInschrijvingGBA/datum"/>
+                                        <xsl:variable name="date" select="datumInschrijvingGemeente/datum"/>
                                         <xsl:value-of select="translate($date, '-', '')" />
                                     </test>
                                 </inp.datumInschrijving>
@@ -308,7 +308,7 @@
             <StUF:berichtcode>Lk01</StUF:berichtcode>
             <StUF:zender>                
                 <StUF:organisatie>NEDGR</StUF:organisatie>
-                <StUF:applicatie>HCC_NOT</StUF:applicatie>
+                <StUF:applicatie>NEDMAG_OPT</StUF:applicatie>
             </StUF:zender>
             
             <StUF:ontvanger>
@@ -495,7 +495,7 @@
                             </sub.correspondentieAdres>
                         </xsl:otherwise>                        
                     </xsl:choose>
-                    <inp.burgerlijkeStaat authorizedApplications="TOP,GWS">
+                    <inp.burgerlijkeStaat authorizedApplications="DEC_ZKN,TOP,GWS">
                         <xsl:choose>
                             <xsl:when
                                 test=". !=''">

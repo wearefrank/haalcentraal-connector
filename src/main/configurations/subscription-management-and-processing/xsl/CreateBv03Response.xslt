@@ -7,17 +7,17 @@
             <StUF:stuurgegevens>
                 <StUF:berichtcode>Bv03</StUF:berichtcode>
                 <StUF:zender>
-                    <StUF:organisatie><xsl:value-of select="$Stuurgegevens/stuurgegevens/ontvanger/organisatie"/></StUF:organisatie>
-                    <StUF:applicatie><xsl:value-of select="$Stuurgegevens/stuurgegevens/ontvanger/applicatie"/></StUF:applicatie>
+                    <StUF:organisatie><xsl:value-of select="$Stuurgegevens//stuurgegevens/ontvanger/organisatie"/></StUF:organisatie>
+                    <StUF:applicatie><xsl:value-of select="$Stuurgegevens//stuurgegevens/ontvanger/applicatie"/></StUF:applicatie>
                 </StUF:zender>
                 <StUF:ontvanger>
-                    <StUF:organisatie><xsl:value-of select="$Stuurgegevens/stuurgegevens/zender/organisatie"/></StUF:organisatie>
-                    <StUF:applicatie><xsl:value-of select="$Stuurgegevens/stuurgegevens/zender/applicatie"/></StUF:applicatie>
-                    <StUF:gebruiker><xsl:value-of select="$Stuurgegevens/stuurgegevens/zender/gebruiker"/></StUF:gebruiker>
+                    <StUF:organisatie><xsl:value-of select="$Stuurgegevens//stuurgegevens/zender/organisatie"/></StUF:organisatie>
+                    <StUF:applicatie><xsl:value-of select="$Stuurgegevens//stuurgegevens/zender/applicatie"/></StUF:applicatie>
+                    <StUF:gebruiker><xsl:value-of select="$Stuurgegevens//stuurgegevens/zender/gebruiker"/></StUF:gebruiker>
                 </StUF:ontvanger>
-                <StUF:referentienummer><xsl:value-of select="$Stuurgegevens/stuurgegevens/referentienummer"/></StUF:referentienummer>
-                <StUF:tijdstipBericht><xsl:value-of select="$Stuurgegevens/stuurgegevens/tijdstipBericht"/></StUF:tijdstipBericht>
-                <StUF:crossRefnummer><xsl:value-of select="$Stuurgegevens/stuurgegevens/referentienummer"/></StUF:crossRefnummer>
+                <StUF:referentienummer><xsl:value-of select="$Stuurgegevens//stuurgegevens/referentienummer"/></StUF:referentienummer>
+                <StUF:tijdstipBericht><xsl:value-of select="$Stuurgegevens//stuurgegevens/tijdstipBericht"/></StUF:tijdstipBericht>
+                <StUF:crossRefnummer><xsl:value-of select="$Stuurgegevens//stuurgegevens/referentienummer"/></StUF:crossRefnummer>
             </StUF:stuurgegevens>
         </StUF:Bv03Bericht>
 	</xsl:template>
