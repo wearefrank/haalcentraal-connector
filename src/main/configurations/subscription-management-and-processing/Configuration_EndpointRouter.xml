@@ -23,7 +23,6 @@
                 name="ValidateInput"
                 getInputFromSessionKey="originalMessage"
                 ignoreUnknownNamespaces="true"
-                soapBody="npsLk01"
                 wsdl="xsd/Bg0310_20211208_patch32/WSC_HLN_BG310_Volgindicatie_172030028052150900416737000015.wsdl"
                 >
                 <Forward name="success" path="LegalizeSoapActionForPipeName"/>
