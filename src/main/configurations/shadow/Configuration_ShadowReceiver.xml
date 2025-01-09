@@ -11,12 +11,16 @@
             <Param name="bsn" xpathExpression="(//*[local-name()='inp.bsn'])[1]/text()" />
         </PutInSessionPipe>
 
-        <SenderPipe name="storeMessage">
+        <SenderPipe name="StoreMessage">
             <FixedQuerySender name="storeMessage" query="INSERT INTO shadowmessages (message, app_id, bsn, is_frank, timestamp) VALUES (?, ?, ?, false, CURRENT_TIMESTAMP)">
                 <Param name="message"  type="BINARY" />
                 <Param name="appId" sessionKey="appId" />
                 <Param name="bsn" sessionKey="bsn" />
             </FixedQuerySender>
+        </SenderPipe>
+
+        <SenderPipe name="SubscriptionActions">
+            <IbisLocalSender name="SubscriptionActionsSender" javaListener="SubscriptionActionsListener"/>
         </SenderPipe>
     </Pipeline>
 </Adapter>
