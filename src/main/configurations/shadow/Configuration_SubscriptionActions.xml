@@ -9,28 +9,34 @@
             <Exit name="Exit" state="SUCCESS"/>
         </Exits>
 
-        <XmlSwitchPipe name="ActionSwitch"
-                   xpathExpression="*[local-name() = 'npsLk01']/*[local-name() = 'object']/@*[local-name() = 'verwerkingssoort']"
-                   notFoundForwardName="Exit">
-            <Forward name="T" path="AddSubscriptionTask"/>
-            <Forward name="V" path="EndSubscription"/>
-        </XmlSwitchPipe>
+        <IfPipe name="ActionSwitch"
+           xpathExpression="*[local-name() = 'npsLk01']/*[local-name() = 'object']/@*[local-name() = 'verwerkingssoort'] = ('T', 'V') and
+                            *[local-name() = 'npsLk01']/*[local-name() = 'stuurgegevens']/*[local-name() = 'ontvanger']/*[local-name() = 'organisatie'] = 'NEDGR'"
+           expressionValue="true"
+        >
+            <Forward name="then" path="SendToSubscriptionManagement"/>
+            <Forward name="else" path="Exit"/>
+        </IfPipe>
 
-        <SenderPipe name="AddSubscriptionTask">
-            <FixedQuerySender
-                    name="CreateNewTask"
-                    query="INSERT INTO bulkimporttasks (bsn, applicatie) VALUES (?, ?)">
-                <Param name="bsn" xpathExpression="*[local-name() = 'npsLk01']/*[local-name() = 'object']/*[local-name() = 'inp.bsn']" />
-                <Param name="app_id" xpathExpression="*[local-name() = 'npsLk01']/*[local-name() = 'stuurgegevens']/*[local-name() = 'zender']" />
-            </FixedQuerySender>
+        <SenderPipe name="SendToSubscriptionManagement">
+            <IbisLocalSender javaListener="BrpPersonenAfnemersIndicatieReceiver"/>
         </SenderPipe>
 
-        <SenderPipe name="EndSubscription">
-            <FixedQuerySender name="EndSubscription"
-                              query="UPDATE subscripties SET eind_datum = CURRENT_TIMESTAMP WHERE bsn=? AND app_id=? AND eind_datum IS NULL">
-                <Param name="bsn" xpathExpression="*[local-name() = 'npsLk01']/*[local-name() = 'object']/*[local-name() = 'inp.bsn']" />
-                <Param name="app_id" xpathExpression="*[local-name() = 'npsLk01']/*[local-name() = 'stuurgegevens']/*[local-name() = 'zender']" />
-            </FixedQuerySender>
-        </SenderPipe>
+<!--        <SenderPipe name="AddSubscriptionTask">-->
+<!--            <FixedQuerySender-->
+<!--                    name="CreateNewTask"-->
+<!--                    query="INSERT INTO bulkimporttasks (bsn, applicatie) VALUES (?, ?)">-->
+<!--                <Param name="bsn" xpathExpression="*[local-name() = 'npsLk01']/*[local-name() = 'object']/*[local-name() = 'inp.bsn']" />-->
+<!--                <Param name="app_id" xpathExpression="*[local-name() = 'npsLk01']/*[local-name() = 'stuurgegevens']/*[local-name() = 'zender']" />-->
+<!--            </FixedQuerySender>-->
+<!--        </SenderPipe>-->
+
+<!--        <SenderPipe name="EndSubscription">-->
+<!--            <FixedQuerySender name="EndSubscription"-->
+<!--                              query="UPDATE subscripties SET eind_datum = CURRENT_TIMESTAMP WHERE bsn=? AND app_id=? AND eind_datum IS NULL">-->
+<!--                <Param name="bsn" xpathExpression="*[local-name() = 'npsLk01']/*[local-name() = 'object']/*[local-name() = 'inp.bsn']" />-->
+<!--                <Param name="app_id" xpathExpression="*[local-name() = 'npsLk01']/*[local-name() = 'stuurgegevens']/*[local-name() = 'zender']" />-->
+<!--            </FixedQuerySender>-->
+<!--        </SenderPipe>-->
     </Pipeline>
 </Adapter>
