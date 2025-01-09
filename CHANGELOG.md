@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.12.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.12.0...v1.12.1) (2025-01-09)
+
+### 🐛 Bug Fixes
+
+* ladybug report delete query ([b4a51b8](https://github.com/wearefrank/haalcentraal-connector/commit/b4a51b8b580a6a414ce550e9bf7c31027c3edef7))
+
 ## [1.12.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.12...v1.12.0) (2025-01-09)
 
 ### 🍕 Features
