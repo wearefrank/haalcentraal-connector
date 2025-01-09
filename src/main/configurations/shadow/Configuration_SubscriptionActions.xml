@@ -6,15 +6,15 @@
     <Pipeline>
 
         <Exits>
-            <Exit name="Exit" state="success"/>
+            <Exit name="Exit" state="SUCCESS"/>
         </Exits>
 
-        <XmlIfPipe name="ActionSwitch"
+        <XmlSwitchPipe name="ActionSwitch"
                    xpathExpression="*[local-name() = 'npsLk01']/*[local-name() = 'object']/@*[local-name() = 'verwerkingssoort']"
                    notFoundForwardName="Exit">
             <Forward name="T" path="AddSubscriptionTask"/>
             <Forward name="V" path="EndSubscription"/>
-        </XmlIfPipe>
+        </XmlSwitchPipe>
 
         <SenderPipe name="AddSubscriptionTask">
             <FixedQuerySender
