@@ -154,7 +154,6 @@
 								or @className='org.frankframework.senders.CommandSender'
 								or @className='org.frankframework.senders.FixedResultSender'
 								or @className='org.frankframework.senders.JavascriptSender'
-								or @className='org.frankframework.jdbc.MessageStoreSender'
 								or @className='org.frankframework.senders.ReloadSender'
 								or @className='org.frankframework.compression.ZipWriterSender'
 								or @className='org.frankframework.senders.LocalFileSystemSender']">
