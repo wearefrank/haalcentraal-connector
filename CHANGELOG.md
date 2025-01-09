@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.12.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.12...v1.12.0) (2025-01-09)
+
+### 🍕 Features
+
+* Merge custom max retention period for ladybug reports and pattern matching fix ([6037c08](https://github.com/wearefrank/haalcentraal-connector/commit/6037c083a5cd2c8cfd0205d3441d51724a74a6a3))
+
 ## [1.11.12](https://github.com/wearefrank/haalcentraal-connector/compare/v1.11.11...v1.11.12) (2025-01-08)
 
 ### 🐛 Bug Fixes
