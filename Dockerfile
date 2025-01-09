@@ -1,22 +1,41 @@
 ARG FF_VERSION=latest
 
-FROM frankframework/frankframework:${FF_VERSION}
+FROM frankframework/frankframework:${FF_VERSION} AS ff-base
 
-### Uncommend this section if the Frank! contains custom classes.
-## Copy dependencies
-#COPY --chown=tomcat lib/server/ /usr/local/tomcat/lib/
-## COPY --chown=tomcat lib/webapp/ /usr/local/tomcat/webapps/ROOT/WEB-INF/lib/
-#
-## Compile custom class, this should be changed to a buildstep in the future (lombok.jar added to lib/server for now to be able to compile custom code with Lombo annotations)
-#COPY --chown=tomcat java /tmp/java
-#RUN javac \
-#      /tmp/java/nl/nn/adapterframework/http/HttpSenderBase.java \
-#      -classpath "/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/*:/usr/local/tomcat/lib/*" \
-#      -verbose -d /usr/local/tomcat/webapps/ROOT/WEB-INF/classes
-#RUN rm -rf /tmp/java
+# Copy dependencies
+COPY --chown=tomcat lib/server/ /usr/local/tomcat/lib/
+COPY --chown=tomcat lib/webapp/ /usr/local/tomcat/webapps/ROOT/WEB-INF/lib/
+
+### Uncomment this section if the Frank! contains custom classes.
+## section: custom-code(start)
+
+# Compile custom class
+FROM eclipse-temurin:17-jdk-jammy AS custom-code-builder
+
+# Copy dependencies
+COPY --from=ff-base /usr/local/tomcat/lib/ /usr/local/tomcat/lib/
+COPY --from=ff-base /usr/local/tomcat/webapps/ROOT /usr/local/tomcat/webapps/ROOT
+
+# Copy custom class
+COPY src/main/java /tmp/java
+RUN mkdir /tmp/classes && \
+    javac \
+    /tmp/java/nl/nn/testtool/storage/database/DatabaseStorage.java \
+    /tmp/java/nl/nn/testtool/metadata/SessionKeyMetadataFieldExtractor.java \
+    /tmp/java/nl/nn/adapterframework/DeploymentSpecificsBeanPostProcessor.java \
+    -classpath "/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/*:/usr/local/tomcat/lib/*" \
+    -verbose -d /tmp/classes
+
+FROM ff-base
+
+## section: custom-code(end)
+
 
 # Copy database connection settings
 COPY --chown=tomcat src/main/webapp/META-INF/context.xml /usr/local/tomcat/conf/Catalina/localhost/ROOT.xml
+
+# Try to make custom classes work
+# COPY --chown=tomcat src/main/webapp/WEB-INF/classes /usr/local/tomcat/webapps/ROOT/WEB-INF/classes
 
 # Copy Frank!
 COPY --chown=tomcat src/main/configurations/ /opt/frank/configurations/
@@ -36,6 +55,14 @@ RUN update-ca-certificates
 RUN keytool -import -noprompt -trustcacerts -alias privateRoot -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -file /usr/local/share/ca-certificates/Staat-der-Nederlanden-Private-Root-CA-G1.crt
 RUN keytool -import -noprompt -trustcacerts -alias privateServices -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -file /usr/local/share/ca-certificates/DomPrivateServicesCA-G1.crt
 RUN keytool -import -noprompt -trustcacerts -alias privateServicesQuoVadis -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -file /usr/local/share/ca-certificates/QuoVadis-PKIoverheid-Private-Services-CA-G1-PEM.crt
+
+### Uncomment this section if the Frank! contains custom classes.
+## section: custom-code(start)
+
+# Copy compiled custom classes
+COPY --from=custom-code-builder --chown=tomcat /tmp/classes/ /usr/local/tomcat/webapps/ROOT/WEB-INF/classes
+
+## section: custom-code(end)
 
 ENV credentialFactory.class=nl.nn.credentialprovider.PropertyFileCredentialFactory
 ENV credentialFactory.map.properties=/opt/frank/secrets/credentials.properties
