@@ -19,7 +19,7 @@
             </FixedQuerySender>
         </SenderPipe>
 
-        <SenderPipe name="SubscriptionActions">
+        <SenderPipe name="SubscriptionActions" getInputFromSessionKey="originalMessage">
             <IbisLocalSender name="SubscriptionActionsSender" javaListener="SubscriptionActionsListener"/>
         </SenderPipe>
     </Pipeline>

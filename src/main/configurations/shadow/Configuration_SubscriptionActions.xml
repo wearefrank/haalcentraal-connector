@@ -1,4 +1,4 @@
-<Adapter>
+<Adapter name="SubscriptionActions">
     <Receiver>
         <JavaListener name="SubscriptionActionsListener"/>
     </Receiver>
