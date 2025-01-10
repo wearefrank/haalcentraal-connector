@@ -14,10 +14,10 @@
       <entiteittype xmlns="http://www.egem.nl/StUF/StUF0301">NPS</entiteittype>
    </stuurgegevens>
    <parameters>
-      <mutatiesoort xmlns="http://www.egem.nl/StUF/StUF0301">T</mutatiesoort>
+      <mutatiesoort xmlns="http://www.egem.nl/StUF/StUF0301">V</mutatiesoort>
       <indicatorOvername xmlns="http://www.egem.nl/StUF/StUF0301">V</indicatorOvername>
    </parameters>
-   <object xmlns:stuf="http://www.egem.nl/StUF/StUF0301" stuf:entiteittype="NPS" stuf:sleutelVerzendend="LBA.00000142157" stuf:verwerkingssoort="T">
+   <object xmlns:stuf="http://www.egem.nl/StUF/StUF0301" stuf:entiteittype="NPS" stuf:sleutelVerzendend="LBA.00000142157" stuf:verwerkingssoort="V">
       <inp.bsn>555555021</inp.bsn>
    </object>
 </npsLk01>
