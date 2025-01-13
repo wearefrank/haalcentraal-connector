@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.13.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.13.3...v1.13.4) (2025-01-13)
+
+### 🐛 Bug Fixes
+
+* return 400 when afnemers indicatie has no bsn ([0aad08d](https://github.com/wearefrank/haalcentraal-connector/commit/0aad08df3653393341f4fa0a5b97f2f72d55c07a))
+
 ## [1.13.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.13.2...v1.13.3) (2025-01-13)
 
 ### 🐛 Bug Fixes
