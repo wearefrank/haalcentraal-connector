@@ -4,7 +4,8 @@
     </Receiver>
 
     <Pipeline>
-        <Exit name="READY" state="SUCCESS" code="200"/>
+        <Exit name="Exit" state="SUCCESS" code="200"/>
+        <Exit name="Error" state="ERROR" code="500"/>
 
         <PutInSessionPipe name="ExtractIncomingNotificationData" preserveInput="true">
             <Param name="appId" xpathExpression="npsLk01/stuurgegevens/ontvanger/applicatie" />
@@ -21,6 +22,8 @@
 
         <SenderPipe name="SubscriptionActions" getInputFromSessionKey="originalMessage">
             <IbisLocalSender name="SubscriptionActionsSender" javaListener="SubscriptionActionsListener"/>
+            <Forward name="success" path="Exit"/>
+            <Forward name="exception" path="Error"/>
         </SenderPipe>
     </Pipeline>
 </Adapter>
