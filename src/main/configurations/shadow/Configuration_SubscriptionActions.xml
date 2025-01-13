@@ -11,8 +11,8 @@
         </Exits>
 
         <IfPipe name="ActionSwitch"
-           xpathExpression="npsLk01/object/verwerkingssoort = ('T', 'V') and
-                            npsLk01/stuurgegevens/ontvanger/organisatie = 'NEDGR'"
+           xpathExpression="*[local-name() = 'npsLk01']/*[local-name() = 'object']/@*[local-name() = 'verwerkingssoort'] = ('T', 'V') and
+                            *[local-name() = 'npsLk01']/*[local-name() = 'stuurgegevens']/*[local-name() = 'ontvanger']/*[local-name() = 'organisatie'] = 'NEDGR'"
            expressionValue="true"
         >
             <Forward name="then" path="SendToSubscriptionManagement"/>
