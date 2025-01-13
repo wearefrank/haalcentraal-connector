@@ -24,6 +24,11 @@
 				<Param name="applicationId" sessionKey="originalMessage" xpathExpression="npsLk01/stuurgegevens/zender/applicatie" />
 			</PutInSessionPipe>
 
+			<IfPipe name="IfBsnPresent" getInputFromSessionKey="bsn" preserveInput="true">
+				<Forward name="then" path="GetApplicationConfig"/>
+				<Forward name="else" path="BadRequest"/>
+			</IfPipe>
+
 			<!-- Read application config file -->
 			<LocalFileSystemPipe name="GetApplicationConfig" action="read"
 				storeResultInSessionKey="applicationConfig">
