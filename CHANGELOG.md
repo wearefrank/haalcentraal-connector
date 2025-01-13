@@ -1,5 +1,17 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.13.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.12.1...v1.13.0) (2025-01-13)
+
+### 🍕 Features
+
+* add processing of subscription action shadow messages ([47ec119](https://github.com/wearefrank/haalcentraal-connector/commit/47ec1196a459e16ad452906c5fa147b67bc14c5f))
+
+### 🐛 Bug Fixes
+
+* shadow message actions ([82a5be1](https://github.com/wearefrank/haalcentraal-connector/commit/82a5be1595c4bac1c5f3f74094f4bb4e1f49e055))
+* simplify subscription actions stuff ([9b5e953](https://github.com/wearefrank/haalcentraal-connector/commit/9b5e953d61174b70c87b563c524a32be308fdce4))
+* xmlIfPipe > XmlSwitchPipe ([05017b3](https://github.com/wearefrank/haalcentraal-connector/commit/05017b3b36789edab010490cacbe55b2c7efaa00))
+
 ## [1.12.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.12.0...v1.12.1) (2025-01-09)
 
 ### 🐛 Bug Fixes
