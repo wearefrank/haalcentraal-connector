@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.13.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.13.1...v1.13.2) (2025-01-13)
+
+### 🐛 Bug Fixes
+
+* revert xpath changes ([00b355f](https://github.com/wearefrank/haalcentraal-connector/commit/00b355fac903e6eb665615b874b35aa2998f2dff))
+
 ## [1.13.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.13.0...v1.13.1) (2025-01-13)
 
 ### 🐛 Bug Fixes
