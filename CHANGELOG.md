@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.13.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.13.2...v1.13.3) (2025-01-13)
+
+### 🐛 Bug Fixes
+
+* make sure errors don't show as success in ladybug ([636d5f6](https://github.com/wearefrank/haalcentraal-connector/commit/636d5f6ea78522e72b83f02c2570ab576d300d38))
+
 ## [1.13.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.13.1...v1.13.2) (2025-01-13)
 
 ### 🐛 Bug Fixes
