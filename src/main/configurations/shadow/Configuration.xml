@@ -2,10 +2,12 @@
     <!ENTITY ShadowReceiver SYSTEM "Configuration_ShadowReceiver.xml">
     <!ENTITY ShadowAnalitics SYSTEM "Configuration_ShadowAnalitics.xml">
     <!ENTITY CompareShadowMessage SYSTEM "Configuration_CompareShadowMessage.xml">
+    <!ENTITY SubscriptionActions SYSTEM "Configuration_SubscriptionActions.xml">
 ]>
 
 <Configuration name="shadow">
     &ShadowReceiver;
     &ShadowAnalitics;
     &CompareShadowMessage;
+    &SubscriptionActions;
 </Configuration>

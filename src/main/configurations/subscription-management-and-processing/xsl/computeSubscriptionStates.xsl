@@ -31,9 +31,9 @@
             <toBeEnded>
                 <xsl:copy-of select="$currentSubscriptionPairs/pair[not(key/text() = $incomingSubscriptionPairs/pair/key/text())]/record"/>
             </toBeEnded>
-            <alreadyExists>
-                <xsl:copy-of select="$currentSubscriptionPairs/pair[key/text() = $incomingSubscriptionPairs/pair/key/text()]/record"/>
-            </alreadyExists>
+<!--            <alreadyExists>-->
+<!--                <xsl:copy-of select="$currentSubscriptionPairs/pair[key/text() = $incomingSubscriptionPairs/pair/key/text()]/record"/>-->
+<!--            </alreadyExists>-->
             <toBeAdded>
                 <xsl:copy-of select="$incomingSubscriptionPairs/pair[not(
                     key/text() = $currentSubscriptionPairs/pair/key/text()

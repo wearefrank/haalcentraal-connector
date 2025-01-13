@@ -41,12 +41,18 @@
 
 			<!-- Get application information from config -->
 			<DataSonnetPipe name="TransformApplicationData"
+				storeResultInSessionKey="applicationData"
 				styleSheetName="jsonnet/FilterApplicationsById.jsonnet">
 				<Param name="applicationConfig" sessionKey="applicationConfig" />
 				<Param name="applicationId" xpathExpression="root/applicationId" sessionKey="inputXml"  />
 			</DataSonnetPipe>
 
-			<JsonPipe name="ConvertFilteredApplicationsToXml" storeResultInSessionKey="FilteredApplication" />
+			<IfPipe name="CheckApplicationExists" defaultMediaType="JSON" jsonPathExpression="$.app[0].applicatie">
+				<Forward name="then" path="ConvertFilteredApplicationsToXml" />
+				<Forward name="else" path="NotFound" />
+			</IfPipe>
+
+			<JsonPipe name="ConvertFilteredApplicationsToXml" storeResultInSessionKey="FilteredApplication" onlyIfSessionKey="applicationData" />
 
 			<XsltPipe
 				name="mappingJsonToStuf"
@@ -59,15 +65,8 @@
 					xpathExpression="root/app/organisatie"/>
 				<Param name="varZenderGebruiker" sessionKey="FilteredApplication"
 					xpathExpression="root/app/gebruiker" />
-				<Param name="varReferentienummer" sessionKey="FilteredApplication"
-					xpathExpression="root/app/referentienummer" />
-				<Param name="varOntvangerApplicatie" value="NEDMAG_VnA" />
-				<Param name="varOntvangerOrganisatie" value="NEDGR" />
+				<Param name="varReferentienummer" pattern="{uuid}" />
 				<!-- <Forward name="success" path="callback" /> -->
-				<Forward name="exception" path="EXCEPTION" />
-			</XsltPipe>
-
-			<XsltPipe name="La01ToLk01" styleSheetName="xsl/La01ToLk01.xsl" storeResultInSessionKey="soapMessage">
 				<Forward name="exception" path="EXCEPTION" />
 			</XsltPipe>
 
