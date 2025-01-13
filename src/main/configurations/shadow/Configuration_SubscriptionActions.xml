@@ -7,11 +7,12 @@
 
         <Exits>
             <Exit name="Exit" state="SUCCESS"/>
+            <Exit name="Error" state="ERROR"/>
         </Exits>
 
         <IfPipe name="ActionSwitch"
-           xpathExpression="*[local-name() = 'npsLk01']/*[local-name() = 'object']/@*[local-name() = 'verwerkingssoort'] = ('T', 'V') and
-                            *[local-name() = 'npsLk01']/*[local-name() = 'stuurgegevens']/*[local-name() = 'ontvanger']/*[local-name() = 'organisatie'] = 'NEDGR'"
+           xpathExpression="npsLk01/object/verwerkingssoort = ('T', 'V') and
+                            npsLk01/stuurgegevens/ontvanger/organisatie = 'NEDGR'"
            expressionValue="true"
         >
             <Forward name="then" path="SendToSubscriptionManagement"/>
@@ -20,23 +21,8 @@
 
         <SenderPipe name="SendToSubscriptionManagement">
             <IbisLocalSender javaListener="BrpPersonenAfnemersIndicatieReceiver"/>
+            <Forward name="success" path="Exit"/>
+            <Forward name="exception" path="Error"/>
         </SenderPipe>
-
-<!--        <SenderPipe name="AddSubscriptionTask">-->
-<!--            <FixedQuerySender-->
-<!--                    name="CreateNewTask"-->
-<!--                    query="INSERT INTO bulkimporttasks (bsn, applicatie) VALUES (?, ?)">-->
-<!--                <Param name="bsn" xpathExpression="*[local-name() = 'npsLk01']/*[local-name() = 'object']/*[local-name() = 'inp.bsn']" />-->
-<!--                <Param name="app_id" xpathExpression="*[local-name() = 'npsLk01']/*[local-name() = 'stuurgegevens']/*[local-name() = 'zender']" />-->
-<!--            </FixedQuerySender>-->
-<!--        </SenderPipe>-->
-
-<!--        <SenderPipe name="EndSubscription">-->
-<!--            <FixedQuerySender name="EndSubscription"-->
-<!--                              query="UPDATE subscripties SET eind_datum = CURRENT_TIMESTAMP WHERE bsn=? AND app_id=? AND eind_datum IS NULL">-->
-<!--                <Param name="bsn" xpathExpression="*[local-name() = 'npsLk01']/*[local-name() = 'object']/*[local-name() = 'inp.bsn']" />-->
-<!--                <Param name="app_id" xpathExpression="*[local-name() = 'npsLk01']/*[local-name() = 'stuurgegevens']/*[local-name() = 'zender']" />-->
-<!--            </FixedQuerySender>-->
-<!--        </SenderPipe>-->
     </Pipeline>
 </Adapter>
