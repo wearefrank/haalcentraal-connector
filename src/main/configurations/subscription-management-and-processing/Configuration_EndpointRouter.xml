@@ -22,6 +22,7 @@
             <WsdlXmlValidatorPipe 
                 name="ValidateInput"
                 getInputFromSessionKey="originalMessage"
+                soapBody="npsLk01"
                 ignoreUnknownNamespaces="true"
                 wsdl="xsd/Bg0310_20211208_patch32/WSC_HLN_BG310_Volgindicatie_172030028052150900416737000015.wsdl"
                 >
