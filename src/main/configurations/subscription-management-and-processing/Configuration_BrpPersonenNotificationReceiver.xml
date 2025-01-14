@@ -53,6 +53,7 @@
 					query="INSERT INTO tasks (bsn, scheduled_start, correlation_id) VALUES (?, NOW() + INTERVAL '1 hour', gen_random_uuid()) RETURNING task_id">
 					<Param name="bsn" sessionKey="bsn" />
             	</FixedQuerySender> 
+				<!-- TODO: Form return value -->
                 <Forward name="success" path="ExitPipe" />
             </SenderPipe>
 

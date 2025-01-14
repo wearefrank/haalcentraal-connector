@@ -1,0 +1,22 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Body>
+      <StUF:Bv03Bericht xmlns:StUF="http://www.egem.nl/StUF/StUF0301"
+         xmlns:ZKN="http://www.egem.nl/StUF/sector/zkn/0310">
+         <StUF:stuurgegevens>
+            <StUF:berichtcode>Bv03</StUF:berichtcode>
+            <StUF:zender>
+               <StUF:organisatie>NEDGR</StUF:organisatie>
+               <StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
+            </StUF:zender>
+            <StUF:ontvanger>
+               <StUF:organisatie>1883</StUF:organisatie>
+               <StUF:applicatie>LBA</StUF:applicatie>
+               <StUF:gebruiker/>
+            </StUF:ontvanger>
+            <StUF:referentienummer>66960c945cc6</StUF:referentienummer>
+            <StUF:tijdstipBericht>2024071608005200</StUF:tijdstipBericht>
+            <StUF:crossRefnummer>66960c945cc6</StUF:crossRefnummer>
+         </StUF:stuurgegevens>
+      </StUF:Bv03Bericht>
+   </soapenv:Body>
+</soapenv:Envelope>
