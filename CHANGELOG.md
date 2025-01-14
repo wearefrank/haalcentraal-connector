@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.14.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.13.6...v1.14.0) (2025-01-14)
+
+### 🍕 Features
+
+* configurabel settings for autorized apps per field ([9814de5](https://github.com/wearefrank/haalcentraal-connector/commit/9814de55b1e4b0eabcd2e781ee81b3592f206c87))
+
 ## [1.13.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.13.5...v1.13.6) (2025-01-14)
 
 ### 🐛 Bug Fixes
