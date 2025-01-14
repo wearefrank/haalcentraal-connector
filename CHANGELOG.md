@@ -1,5 +1,17 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.13.5](https://github.com/wearefrank/haalcentraal-connector/compare/v1.13.4...v1.13.5) (2025-01-14)
+
+### 🐛 Bug Fixes
+
+* adapter fixed when input json is passed as string ([c91000c](https://github.com/wearefrank/haalcentraal-connector/commit/c91000c5575eb7e61b708b0fe7f0873d81b46a63))
+* larva scenario output ([77f93ab](https://github.com/wearefrank/haalcentraal-connector/commit/77f93abe725643df502190d58ddf6263e38637cb))
+* Merge pull request [#87](https://github.com/wearefrank/haalcentraal-connector/issues/87) from wearefrank/subscription-larva-tests ([986e1f4](https://github.com/wearefrank/haalcentraal-connector/commit/986e1f406d986fba79185bf5addc7a665be88903))
+
+### ✅ Tests
+
+* sync adapter ([991e46a](https://github.com/wearefrank/haalcentraal-connector/commit/991e46a57b0e78103a4ae00c449d9152c5b0f4a8))
+
 ## [1.13.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.13.3...v1.13.4) (2025-01-13)
 
 ### 🐛 Bug Fixes
