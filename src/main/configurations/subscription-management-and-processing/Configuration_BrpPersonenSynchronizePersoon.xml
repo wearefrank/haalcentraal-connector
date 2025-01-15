@@ -71,7 +71,7 @@
         </XsltPipe>
 
         <!-- Compare stored and retrieved person data -->
-        <SenderPipe name="JsonComparator">
+        <SenderPipe name="JsonComparator" storeResultInSessionKey="JsonComparatorResult">
             <JavascriptSender
                 jsFileName="JSONcompare.js"
                 jsFunctionName="compareJsonObjects">
@@ -80,13 +80,34 @@
                    xpathExpression="result/rowset/row/field[@name='DATA']" />
             <Param name="currentPersonData" sessionKey="currentPersonData" />
         </SenderPipe>
+        
+        <SenderPipe name="JsonHashHasDifference" preserveInput="true" storeResultInSessionKey="JsonHasHasDifferenceResult">
+            <IbisLocalSender javaListener="JsonHashHasDifferenceReceiver">
+                <Param name="storedPersonRecord" sessionKey="storedPersonRecord"
+                    xpathExpression="result/rowset/row/field[@name='DATA']" />
+                <Param name="currentPersonData" sessionKey="currentPersonData" />
+            </IbisLocalSender>
+            <Forward name="success" path="checkComparatorResults"/>
+        </SenderPipe>
+
+        <IfPipe name="checkComparatorResults" xpathExpression="$JsonHasHasDifferenceResult = $JsonComparatorResult" getInputFromFixedValue="&lt;dummy/&gt;">
+            <Param name="JsonHasHasDifferenceResult" sessionKey="JsonHasHasDifferenceResult" type="STRING"/>
+            <Param name="JsonComparatorResult" sessionKey="JsonComparatorResult" type="STRING"/>
+            <Forward name="then" path="ShouldInsert" />
+            <Forward name="else" path="PutInMessageStore" />
+        </IfPipe>
+
+        <SenderPipe name="PutInMessageStore" getInputFromSessionKey="cid">
+            <MessageStoreSender slotId="${instance.name}/comparatorStore" />
+            <Forward name="success" path="ShouldInsert" />
+            <Forward name="exception" path="ShouldInsert" />
+        </SenderPipe>
 
         <!-- Conditional check to insert new data if changes are detected -->
-        <IfPipe name="ShouldInsert" expressionValue="true">
+        <IfPipe name="ShouldInsert" expressionValue="true" getInputFromSessionKey="JsonComparatorResult"> 
             <Forward name="then" path="InsertPersoon" />
             <Forward name="else" path="NotUpdatedExit" />
         </IfPipe>
-
 
         <!-- Insert the new data into the database -->
         <SenderPipe name="InsertPersoon" preserveInput="true">
