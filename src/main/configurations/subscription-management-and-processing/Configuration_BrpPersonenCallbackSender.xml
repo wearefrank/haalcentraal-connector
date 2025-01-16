@@ -65,7 +65,7 @@
 					xpathExpression="root/app/organisatie"/>
 				<Param name="varZenderGebruiker" sessionKey="FilteredApplication"
 					xpathExpression="root/app/gebruiker" />
-				<Param name="originalMessage" sessionKey="originalMessage" type="DOMDOC" />
+				<Param name="varReferentienummer" pattern="{uuid}" />
 				<!-- <Forward name="success" path="callback" /> -->
 				<Forward name="exception" path="EXCEPTION" />
 			</XsltPipe>
