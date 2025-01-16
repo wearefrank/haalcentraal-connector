@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.14.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.14.2...v1.14.3) (2025-01-16)
+
+### 🐛 Bug Fixes
+
+* remove personen insert ([86279e4](https://github.com/wearefrank/haalcentraal-connector/commit/86279e4a974642b57467c1f04951f823ba1acd5f))
+
 ## [1.14.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.14.1...v1.14.2) (2025-01-15)
 
 ### 🐛 Bug Fixes
