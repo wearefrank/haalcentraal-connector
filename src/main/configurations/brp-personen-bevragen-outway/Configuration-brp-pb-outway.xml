@@ -45,7 +45,7 @@
 			<PutInSessionPipe name="PutLoopPreventionFalseInSession" sessionKey="loopPrevention" value="false" active="${isDiginetwerk}"/>
 
 			<!-- Call diginetwerk sender with retry mechanism -->
-			<SenderPipe name="PostBRPPersonenBevragenDiginetwerk" storeResultInSessionKey="diginetwerkResult" active="${isDiginetwerk}">
+			<SenderPipe name="PostBRPPersonenBevragenDiginetwerk" getInputFromSessionKey="originalMessage" storeResultInSessionKey="diginetwerkResult" active="${isDiginetwerk}">
 				<IbisLocalSender name="RequestFromDiginetwerkSender" javaListener="BrpCallDiginetwerk">
 					<Param name="token" sessionKey="token" />
 				</IbisLocalSender>

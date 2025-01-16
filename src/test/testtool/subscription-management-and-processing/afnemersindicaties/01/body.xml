@@ -1,0 +1,10 @@
+<result>
+    <rowset>
+        <row number="0">
+            <field name="ID">1</field>
+            <field name="BSN">555555021</field>
+            <field name="DATA">{"personen":[{"aNummer":"3959725474","burgerservicenummer":"555555021","geslacht":{"code":"M","omschrijving":"man"},"leeftijd":22,"naam":{"aanduidingNaamgebruik":{"code":"E","omschrijving":"eigen geslachtsnaam"},"voornamen":"Kees","voorvoegsel":"van den","geslachtsnaam":"Verhuistest","voorletters":"K.","volledigeNaam":"Kees van den Verhuistest"},"nationaliteiten":[{"type":"Nationaliteit","datumIngangGeldigheid":{"type":"Datum","datum":"2002-07-01","langFormaat":"1 juli 2002"},"nationaliteit":{"code":"0001","omschrijving":"Nederlandse"},"redenOpname":{"code":"017","omschrijving":"Rijkswet op het Nederlanderschap 1984, art. 3, lid 1"}}],"geboorte":{"land":{"code":"6030","omschrijving":"Nederland"},"plaats":{"code":"0530","omschrijving":"Hellevoetsluis"},"datum":{"type":"Datum","datum":"2002-07-01","langFormaat":"1 juli 2002"}},"verblijfplaats":{"type":"Adres","verblijfadres":{"officieleStraatnaam":"Laan van Nieuw-Oost-Indië","korteStraatnaam":"Laan van Nieuw-O-Indië","huisnummer":101,"huisletter":"A","postcode":"2593BL","woonplaats":"'s-Gravenhage"},"functieAdres":{"code":"W","omschrijving":"woonadres"},"adresseerbaarObjectIdentificatie":"0518010000466195","nummeraanduidingIdentificatie":"0518200000466194","datumVan":{"type":"Datum","datum":"2025-01-08","langFormaat":"8 januari 2025"},"datumIngangGeldigheid":{"type":"Datum","datum":"2025-01-08","langFormaat":"8 januari 2025"}},"gemeenteVanInschrijving":{"code":"0518","omschrijving":"'s-Gravenhage"},"datumInschrijvingInGemeente":{"type":"Datum","datum":"2006-03-18","langFormaat":"18 maart 2006"},"adressering":{"aanhef":"Geachte heer Van den Verhuistest","aanschrijfwijze":{"naam":"K. van den Verhuistest"},"gebruikInLopendeTekst":"de heer Van den Verhuistest","adresregel1":"Laan van Nieuw-O-Indië 101 A","adresregel2":"2593 BL  'S-GRAVENHAGE"}}]}</field>
+            <field name="REGISTRATIE_DATUM">2025-01-08 16:22:03</field>
+        </row>
+    </rowset>
+</result>

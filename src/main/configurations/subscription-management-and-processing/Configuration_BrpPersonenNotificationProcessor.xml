@@ -52,10 +52,7 @@
             </SenderPipe>
 
             <!-- Check if subscriptions are found -->
-            <IfPipe
-                name="CheckSubscriptionCount"
-                xpathExpression="count(result/rowset/row) > 0"
-            >
+            <IfPipe name="CheckSubscriptionCount" xpathExpression="count(result/rowset/row) > 0">
 				<!-- Process the task if subscribers are found, else exit -->
                 <Forward name="then" path="processNotifications"/>
                 <Forward name="else" path="NoSubscribersToPerson"/>

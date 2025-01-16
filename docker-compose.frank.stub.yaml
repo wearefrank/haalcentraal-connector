@@ -1,0 +1,44 @@
+services:
+  frank:
+    extends:
+      file: docker-compose.yaml
+      service: frank
+    build:
+      context: .
+      pull: true
+      args:
+        FF_VERSION: ${FF_VERSION:-latest}
+    image: wearefrank/haalcentraal-connector:${VERSION:-latest}
+    environment:
+      # Stage configuration
+      dtap.stage: STUB
+
+      # Console Authentication
+      application.security.console.authentication.type: IN_MEMORY
+      application.security.console.authentication.username: ADMIN
+      application.security.console.authentication.password: PASSWORD1234
+
+      # HTTP Authentication config
+      application.security.http.authenticators: inMem
+      application.security.http.authenticators.inMem.type: IN_MEMORY
+      application.security.http.authenticators.inMem.username: ADMIN
+      application.security.http.authenticators.inMem.password: PASSWORD1234
+
+      # Assign authenticator to LarvaServlet
+      servlet.LarvaServlet.authenticator: inMem
+      servlet.LarvaServlet.securityRoles: IbisAdmin
+
+      # Assign authenticator to WebContentServlet
+      servlet.WebContentServlet.authenticator: inMem
+      servlet.WebContentServlet.securityRoles: IbisAdmin
+
+      # ClassLoader Configurations
+      configurations.brp-personen-bevragen-client.classLoaderType: ScanningDirectoryClassLoader
+      configurations.brp-personen-bevragen-server.classLoaderType: ScanningDirectoryClassLoader
+      configurations.subscription-management-and-processing.classLoaderType: ScanningDirectoryClassLoader
+      configurations.shadow.classLoaderType: ScanningDirectoryClassLoader
+      configurations.oauth.classLoaderType: ScanningDirectoryClassLoader
+
+volumes:
+  frank-logs:
+  frank-h2db-data:

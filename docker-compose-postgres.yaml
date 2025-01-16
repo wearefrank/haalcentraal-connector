@@ -40,6 +40,10 @@ services:
       jdbc.port: 5432
       jdbc.tcpKeepAlive: true
       jdbc.database: frank
+
+      jdbc.migrator.active: true
+      ladybug.jdbc.migrator.active: true
+      ladybug.jdbc.datasource: jdbc/ladybug
     depends_on:
       - frank-postgres
 

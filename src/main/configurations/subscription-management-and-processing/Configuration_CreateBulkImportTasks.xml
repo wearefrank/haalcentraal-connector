@@ -18,7 +18,7 @@
                     name="CreateNewTask"
                     query="INSERT INTO bulkimporttasks (bsn, applicatie) VALUES (?, ?)">
                 <Param name="bsn" xpathExpression="record/bsn" />
-                <Param name="applicatie" xpathExpression="record/app_id" />
+                <Param name="app_id" xpathExpression="record/app_id" />
             </FixedQuerySender>
         </ForEachChildElementPipe>
 

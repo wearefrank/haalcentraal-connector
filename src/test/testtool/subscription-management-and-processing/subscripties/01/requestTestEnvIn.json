@@ -1,0 +1,22 @@
+{
+    "type": "RaadpleegMetBurgerservicenummer",
+    "fields": [
+        "burgerservicenummer",
+        "aNummer",
+        "adressering",
+        "datumInschrijvingInGemeente",
+        "geboorte",
+        "gemeenteVanInschrijving",
+        "geslacht",
+        "leeftijd",
+        "naam",
+        "nationaliteiten",
+        "overlijden",
+        "verblijfplaats",
+        "verblijfplaatsBinnenland",
+        "adresseringBinnenland"
+    ],
+    "burgerservicenummer": [
+        "555555021"
+    ]
+}

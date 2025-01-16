@@ -4,19 +4,26 @@
     </Receiver>
 
     <Pipeline>
-        <Exit name="READY" state="SUCCESS" code="200"/>
+        <Exit name="Exit" state="SUCCESS" code="200"/>
+        <Exit name="Error" state="ERROR" code="500"/>
 
         <PutInSessionPipe name="ExtractIncomingNotificationData" preserveInput="true">
             <Param name="appId" xpathExpression="npsLk01/stuurgegevens/ontvanger/applicatie" />
-            <Param name="bsn" xpathExpression="npsLk01/antwoord/object/inp.bsn" />
+            <Param name="bsn" xpathExpression="(//*[local-name()='inp.bsn'])[1]/text()" />
         </PutInSessionPipe>
 
-        <SenderPipe name="storeMessage">
+        <SenderPipe name="StoreMessage">
             <FixedQuerySender name="storeMessage" query="INSERT INTO shadowmessages (message, app_id, bsn, is_frank, timestamp) VALUES (?, ?, ?, false, CURRENT_TIMESTAMP)">
                 <Param name="message"  type="BINARY" />
                 <Param name="appId" sessionKey="appId" />
                 <Param name="bsn" sessionKey="bsn" />
             </FixedQuerySender>
+        </SenderPipe>
+
+        <SenderPipe name="SubscriptionActions" getInputFromSessionKey="originalMessage">
+            <IbisLocalSender name="SubscriptionActionsSender" javaListener="SubscriptionActionsListener"/>
+            <Forward name="success" path="Exit"/>
+            <Forward name="exception" path="Error"/>
         </SenderPipe>
     </Pipeline>
 </Adapter>
