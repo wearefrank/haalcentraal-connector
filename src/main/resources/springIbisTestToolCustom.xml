@@ -16,6 +16,16 @@
                     <property name="label" value="SOAPAction"/>
                     <property name="sessionKey" value="SOAPAction" />
                 </bean>
+                <bean class="nl.nn.testtool.metadata.XpathMetadataFieldExtractor">
+                    <property name="name" value="Zender"/>
+                    <property name="label" value="Zender"/>
+                    <property name="xpath" value="//*[local-name()='zender']/*[local-name()='applicatie']/text()" />
+                </bean>
+                <bean class="nl.nn.testtool.metadata.XpathMetadataFieldExtractor">
+                    <property name="name" value="Ontvanger"/>
+                    <property name="label" value="Ontvanger"/>
+                    <property name="xpath" value="//*[local-name()='ontvanger']/*[local-name()='applicatie']/text()" />
+                </bean>
                 <bean class="nl.nn.testtool.metadata.SessionKeyMetadataFieldExtractor">
                     <property name="name" value="BSN"/>
                     <property name="label" value="BSN"/>
@@ -34,6 +44,8 @@
                 <value>duration</value>
                 <value>name</value>
                 <value>soapAction</value>
+                <value>Zender</value>
+                <value>Ontvanger</value>
                 <value>BSN</value>
                 <value>correlationId</value>
                 <value>status</value>
