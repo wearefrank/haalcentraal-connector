@@ -1,5 +1,15 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.15.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.14.3...v1.15.0) (2025-01-16)
+
+### 🍕 Features
+
+* new columns ([c05f473](https://github.com/wearefrank/haalcentraal-connector/commit/c05f473fa684d7893f3e4315414ed8bc50435ac3))
+
+### 🐛 Bug Fixes
+
+* tests for subscription management ([7d961b0](https://github.com/wearefrank/haalcentraal-connector/commit/7d961b0f47c41b207f50a06362d9868043939c47))
+
 ## [1.14.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.14.2...v1.14.3) (2025-01-16)
 
 ### 🐛 Bug Fixes
