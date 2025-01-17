@@ -45,6 +45,8 @@ jobs:
               echo "Application did not become healthy within $timeout seconds. Failing the job."
               exit 1
             fi
+            
+            echo "Waiting for application to be healthy..."
             sleep 5
           done
 
