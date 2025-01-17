@@ -1,5 +1,12 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.15.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.1...v1.15.2) (2025-01-17)
+
+### 🐛 Bug Fixes
+
+* missing part added ([de7d0f0](https://github.com/wearefrank/haalcentraal-connector/commit/de7d0f0c667232f919295e8d97d97934fb450a9c))
+* xsl bug ([bda2018](https://github.com/wearefrank/haalcentraal-connector/commit/bda2018518733f401522d84a85f4bebff492658b))
+
 ## [1.15.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.0...v1.15.1) (2025-01-17)
 
 ### 🐛 Bug Fixes
