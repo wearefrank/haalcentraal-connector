@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.15.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.0...v1.15.1) (2025-01-17)
+
+### 🐛 Bug Fixes
+
+* log deletion of expired records to info ([9d92152](https://github.com/wearefrank/haalcentraal-connector/commit/9d92152f9046e525965518dd6e328f86297729c8))
+
 ## [1.15.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.14.3...v1.15.0) (2025-01-16)
 
 ### 🍕 Features
