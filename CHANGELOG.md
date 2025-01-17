@@ -1,5 +1,12 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.15.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.5...v1.15.6) (2025-01-17)
+
+### 🐛 Bug Fixes
+
+* add delay back to loop ([483640f](https://github.com/wearefrank/haalcentraal-connector/commit/483640f30d363ad8b6cd8dbbf832d2c981cfc68a))
+* check if adapters are running before starting larva scenario's ([35cf2b2](https://github.com/wearefrank/haalcentraal-connector/commit/35cf2b21f2c904d41fe69f2ae45f4d4fd11ee187))
+
 ## [1.15.5](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.4...v1.15.5) (2025-01-17)
 
 ### 🐛 Bug Fixes
