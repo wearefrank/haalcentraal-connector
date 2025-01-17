@@ -37,7 +37,6 @@ jobs:
           while true; do
             if [ "$(curl -s -o /dev/null -w ''%{http_code}'' http://localhost:8080/iaf/api/server/health)" == "200" ]; then
               echo "Application is healthy."
-              sleep 10
               break
             fi
             current_time=$(date +%s)
@@ -46,8 +45,34 @@ jobs:
               echo "Application did not become healthy within $timeout seconds. Failing the job."
               exit 1
             fi
+            
             echo "Waiting for application to be healthy..."
             sleep 5
+          done
+
+          url="http://localhost:8080/iaf/api/adapters?expanded=all"
+
+          while true; do
+            # Fetch the response using curl
+            response=$(curl -s $url || echo "unreachable")
+            
+            # Check if the response contains 'stopped' or 'starting'
+            if echo "$response" | grep -qE "stopped|starting"; then
+              echo "Match found ('stopped' or 'starting' detected). Retrying in 2 seconds..."
+            elif [ "$response" = "unreachable" ]; then
+              echo "Host unreachable. Retrying in 2 seconds..."
+            else
+              echo "No matches found. Everything is running!"
+              break
+            fi
+
+            if [ $elapsed_time -ge $timeout ]; then
+              echo "Some adapters were not running after $timeout seconds. Failing the job."
+              exit 1
+            fi
+
+            # Wait for 2 seconds before retrying
+            sleep 2
           done
         timeout-minutes: 2
 
