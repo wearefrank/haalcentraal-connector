@@ -1,5 +1,24 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.15.5](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.4...v1.15.5) (2025-01-17)
+
+### 🐛 Bug Fixes
+
+* disable console auth for CI testing ([f1ece3b](https://github.com/wearefrank/haalcentraal-connector/commit/f1ece3bd018d9c0aa4891f93113a7a20bf55c500))
+* remove stagespecifics_CI ([3f406df](https://github.com/wearefrank/haalcentraal-connector/commit/3f406dfddd07848350cb475e57fe8e42adf0ecad))
+* run with isDiginetwerk=false ([f45fbfb](https://github.com/wearefrank/haalcentraal-connector/commit/f45fbfb80d018d83ac3bee08a7087c46619844f7))
+* test running in CI with custom DTAP stage ([190ba34](https://github.com/wearefrank/haalcentraal-connector/commit/190ba34560c7d50b97d6fa75b58691bb2b7a6691))
+* try specifying all env vars in startup command ([1ab7670](https://github.com/wearefrank/haalcentraal-connector/commit/1ab7670f51f93176cf6b54cb06e39bd1fa93f54f))
+
+### 🧑‍💻 Code Refactoring
+
+* adjust image name ([c1735d6](https://github.com/wearefrank/haalcentraal-connector/commit/c1735d679d4259e3cb32f9e40d01c4a895b3b65f))
+* set stubbing property ([b9e5edb](https://github.com/wearefrank/haalcentraal-connector/commit/b9e5edbbd9889e71627cc73386f9e83c6dd1dfc0))
+
+### 🔁 Continuous Integration
+
+* add automated Larva tests ([4ff7dda](https://github.com/wearefrank/haalcentraal-connector/commit/4ff7dda6503c10c76b4c91fba12e4026c5705cb5))
+
 ## [1.15.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.3...v1.15.4) (2025-01-17)
 
 ### 🐛 Bug Fixes
