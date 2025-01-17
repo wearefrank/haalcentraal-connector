@@ -27,7 +27,7 @@ jobs:
 
       - name: Start Application
         run: |
-          docker run -d --name haalcentraal-connector -p 8080:8080 -e dtap.stage=CI -e stub4testtool.configuration=true wearefrank/haalcentraal-connector:${{ inputs.APP_VERSION }}
+          docker run -d --name haalcentraal-connector -p 8080:8080 -e dtap.stage=LOC -e stub4testtool.configuration=true -e stub4testtool.xsl=custom4testtool.xsl -e isDiginetwerk=true -e enableCallback=false -e application.security.console.authentication.type=NONE -e application.security.testtool.authentication.type=NONE wearefrank/haalcentraal-connector:${{ inputs.APP_VERSION }}
         timeout-minutes: 2
 
       - name: Wait for Application to be Healthy
