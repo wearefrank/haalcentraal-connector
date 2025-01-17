@@ -431,7 +431,6 @@
                 </xsl:choose>
             </xsl:copy>
         </xsl:if>
-        
     </xsl:template>
     
     <xsl:template match="partners">
@@ -549,15 +548,7 @@
             <xsl:with-param name="authorizedApplicationsMap" select="$authorizedApplicationsMap/root"/>
         </xsl:apply-templates>
     </xsl:template>
-    
-    <xsl:template match="BG:inp.heeftAlsEchtgenootPartner">
-        <xsl:param name="mapping"/>
-        <BG:inp.heeftAlsEchtgenootPartner>
-            <xsl:apply-templates select="*">
-                <xsl:with-param name="mapping" select="$mapping"/>
-            </xsl:apply-templates>
-        </BG:inp.heeftAlsEchtgenootPartner>
-    </xsl:template>
+
     <xsl:template match="kinderen">
         <xsl:variable name="mapping">
             <inp.heeftAlsKinderen StUF:entiteittype="NPSNPSKND" StUF:verwerkingssoort="T">
@@ -636,15 +627,7 @@
             <xsl:with-param name="authorizedApplicationsMap" select="$authorizedApplicationsMap/root"/>
         </xsl:apply-templates>
     </xsl:template>
-    
-    <xsl:template match="BG:inp.heeftAlsKinderen">
-        <xsl:param name="mapping"/>
-        <BG:inp.heeftAlsKinderen>
-            <xsl:apply-templates select="*">
-                <xsl:with-param name="mapping" select="$mapping"/>
-            </xsl:apply-templates>
-        </BG:inp.heeftAlsKinderen>
-    </xsl:template>
+
     <xsl:template match="ouders">
         <xsl:variable name="mapping">
             <inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD" StUF:verwerkingssoort="T">
@@ -730,17 +713,8 @@
         </xsl:variable>
         <xsl:apply-templates select="$inputnpsLk01//BG:inp.heeftAlsOuders">
             <xsl:with-param name="mapping" select="$mapping"/>
+            <xsl:with-param name="authorizedApplicationsMap" select="$authorizedApplicationsMap/root"/>
         </xsl:apply-templates>
-    </xsl:template>
-    
-    <xsl:template match="BG:inp.heeftAlsOuders">
-        <xsl:param name="mapping"/>
-        <BG:inp.heeftAlsOuders>
-            <xsl:apply-templates select="*">
-                <xsl:with-param name="mapping" select="$mapping"/>
-                <xsl:with-param name="authorizedApplicationsMap" select="$authorizedApplicationsMap/root"/>
-            </xsl:apply-templates>
-        </BG:inp.heeftAlsOuders>
     </xsl:template>
     
     <xsl:template match="nationaliteiten">
@@ -763,14 +737,5 @@
             <xsl:with-param name="mapping" select="$mapping"/>
             <xsl:with-param name="authorizedApplicationsMap" select="$authorizedApplicationsMap/root"/>
         </xsl:apply-templates>
-    </xsl:template>
-    
-    <xsl:template match="BG:inp.heeftAlsNationaliteit">
-        <xsl:param name="mapping"/>
-        <BG:inp.heeftAlsNationaliteit>
-            <xsl:apply-templates select="*">
-                <xsl:with-param name="mapping" select="$mapping"/>
-            </xsl:apply-templates>
-        </BG:inp.heeftAlsNationaliteit>
     </xsl:template>
 </xsl:stylesheet>
