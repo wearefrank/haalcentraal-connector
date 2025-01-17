@@ -38,7 +38,11 @@
         <xsl:param name="personen"/>
         <xsl:choose>
             <xsl:when test="$aantalVoorkomens = 0">
-                <BG:melding>Er zijn geen zoekresultaten gevonden</BG:melding>
+                <BG:npsLa01 xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310">
+                    <xsl:apply-templates select="BG:stuurgegevens"/>
+                    <xsl:apply-templates select="BG:parameters"/>
+                    <BG:melding>Er zijn geen zoekresultaten gevonden</BG:melding>
+                </BG:npsLa01>
             </xsl:when>
             <xsl:otherwise>
                 <BG:npsLa01 xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310">
@@ -120,8 +124,8 @@
                                                     </xsl:otherwise>
                                                 </xsl:choose>
                                                 <!-- <wpl.identificatie>
-                                                    <xsl:copy-of select="$external-data/woonplaatsen/woonplaats[name = $woonplaats]/code" />
-                                                </wpl.identificatie> -->
+                                                     <xsl:copy-of select="$external-data/woonplaatsen/woonplaats[name = $woonplaats]/code" />
+                                                     </wpl.identificatie> -->
                                                 <wpl.woonplaatsNaam><xsl:copy-of select="verblijfplaats/verblijfadres/woonplaats"/></wpl.woonplaatsNaam>
                                                 <aoa.woonplaatsWaarinGelegen>
                                                     <wpl.woonplaatsNaam><xsl:copy-of select="verblijfplaats/verblijfadres/woonplaats"/></wpl.woonplaatsNaam>
@@ -539,7 +543,7 @@
             <xsl:with-param name="authorizedApplicationsMap" select="$authorizedApplicationsMap/root"/>
         </xsl:apply-templates>
     </xsl:template>
-
+    
     <xsl:template match="kinderen">
         <xsl:variable name="mapping">
             <inp.heeftAlsKinderen StUF:entiteittype="NPSNPSKND">
@@ -618,7 +622,7 @@
             <xsl:with-param name="authorizedApplicationsMap" select="$authorizedApplicationsMap/root"/>
         </xsl:apply-templates>
     </xsl:template>
-
+    
     <xsl:template match="ouders">
         <xsl:variable name="mapping">
             <inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
