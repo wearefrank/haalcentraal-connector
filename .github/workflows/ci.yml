@@ -38,4 +38,10 @@ jobs:
     with:
       version: ${{ needs.version-next.outputs.version-next }}
 
-  
+  run-larva-scenarios:
+    uses: ./.github/workflows/run-larva-scenarios.yml
+    needs:
+      - version-next
+      - ci
+    with:
+      APP_VERSION: ${{ needs.version-next.outputs.version-next }}
