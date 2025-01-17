@@ -37,7 +37,6 @@ jobs:
           while true; do
             if [ "$(curl -s -o /dev/null -w ''%{http_code}'' http://localhost:8080/iaf/api/server/health)" == "200" ]; then
               echo "Application is healthy."
-              sleep 10
               break
             fi
             current_time=$(date +%s)
@@ -46,6 +45,7 @@ jobs:
               echo "Application did not become healthy within $timeout seconds. Failing the job."
               exit 1
             fi
+            sleep 5
           done
 
           url="http://localhost:8080/iaf/api/adapters?expanded=all"
