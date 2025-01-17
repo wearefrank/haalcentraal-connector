@@ -1,5 +1,40 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.15.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.2...v1.15.3) (2025-01-17)
+
+### 🐛 Bug Fixes
+
+* small things ([95be498](https://github.com/wearefrank/haalcentraal-connector/commit/95be498e79089b19f8b48285d74515fedcbf747c))
+
+## [1.15.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.1...v1.15.2) (2025-01-17)
+
+### 🐛 Bug Fixes
+
+* missing part added ([de7d0f0](https://github.com/wearefrank/haalcentraal-connector/commit/de7d0f0c667232f919295e8d97d97934fb450a9c))
+* xsl bug ([bda2018](https://github.com/wearefrank/haalcentraal-connector/commit/bda2018518733f401522d84a85f4bebff492658b))
+
+## [1.15.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.0...v1.15.1) (2025-01-17)
+
+### 🐛 Bug Fixes
+
+* log deletion of expired records to info ([9d92152](https://github.com/wearefrank/haalcentraal-connector/commit/9d92152f9046e525965518dd6e328f86297729c8))
+
+## [1.15.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.14.3...v1.15.0) (2025-01-16)
+
+### 🍕 Features
+
+* new columns ([c05f473](https://github.com/wearefrank/haalcentraal-connector/commit/c05f473fa684d7893f3e4315414ed8bc50435ac3))
+
+### 🐛 Bug Fixes
+
+* tests for subscription management ([7d961b0](https://github.com/wearefrank/haalcentraal-connector/commit/7d961b0f47c41b207f50a06362d9868043939c47))
+
+## [1.14.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.14.2...v1.14.3) (2025-01-16)
+
+### 🐛 Bug Fixes
+
+* remove personen insert ([86279e4](https://github.com/wearefrank/haalcentraal-connector/commit/86279e4a974642b57467c1f04951f823ba1acd5f))
+
 ## [1.14.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.14.1...v1.14.2) (2025-01-15)
 
 ### 🐛 Bug Fixes

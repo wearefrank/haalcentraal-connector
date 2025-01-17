@@ -38,7 +38,11 @@
         <xsl:param name="personen"/>
         <xsl:choose>
             <xsl:when test="$aantalVoorkomens = 0">
-                <BG:melding>Er zijn geen zoekresultaten gevonden</BG:melding>
+                <BG:npsLa01 xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310">
+                    <xsl:apply-templates select="BG:stuurgegevens"/>
+                    <xsl:apply-templates select="BG:parameters"/>
+                    <BG:melding>Er zijn geen zoekresultaten gevonden</BG:melding>
+                </BG:npsLa01>
             </xsl:when>
             <xsl:otherwise>
                 <BG:npsLa01 xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310">
@@ -120,8 +124,8 @@
                                                     </xsl:otherwise>
                                                 </xsl:choose>
                                                 <!-- <wpl.identificatie>
-                                                    <xsl:copy-of select="$external-data/woonplaatsen/woonplaats[name = $woonplaats]/code" />
-                                                </wpl.identificatie> -->
+                                                     <xsl:copy-of select="$external-data/woonplaatsen/woonplaats[name = $woonplaats]/code" />
+                                                     </wpl.identificatie> -->
                                                 <wpl.woonplaatsNaam><xsl:copy-of select="verblijfplaats/verblijfadres/woonplaats"/></wpl.woonplaatsNaam>
                                                 <aoa.woonplaatsWaarinGelegen>
                                                     <wpl.woonplaatsNaam><xsl:copy-of select="verblijfplaats/verblijfadres/woonplaats"/></wpl.woonplaatsNaam>
@@ -370,8 +374,8 @@
     
     <!--This template applies to elements inside object that have child elements. Their attributes should be copied-->
     <xsl:template match="BG:object//*[*]">
-        <xsl:param name="authorizedApplicationsMap" />
         <xsl:param name="mapping" />
+        <xsl:param name="authorizedApplicationsMap" as="node()?"/>
         <xsl:variable name="mappedElement" select="$mapping/*[name()=current()/local-name()]"/>
         <xsl:variable name="newAuthorizedApplicationsMap" select="$authorizedApplicationsMap/*[name()=current()/local-name()]"/>
         <xsl:if test="$mappedElement[not(@doNotCreate='true')]">
@@ -387,9 +391,9 @@
     
     <xsl:template match="BG:object//*[not(*)]">
         <xsl:param name="mapping" />
-        <xsl:param name="authorizedApplicationsMap" />
-        <xsl:variable name="authorizedApplications" select="$authorizedApplicationsMap/*[name()=current()/local-name()]"/>
+        <xsl:param name="authorizedApplicationsMap" as="node()?"/>
         <xsl:variable name="mappedElement" select="$mapping/*[name()=current()/local-name()]"/>
+        <xsl:variable name="authorizedApplications" select="$authorizedApplicationsMap/*[name()=current()/local-name()]"/>
         <xsl:if test="$mappedElement[not(@doNotCreate='true')]">
             <xsl:copy>
                 <xsl:choose>
@@ -417,7 +421,7 @@
                         <xsl:attribute
                             name="StUF:noValue"><xsl:value-of
                                 select="$nietGeautoriseerd" /></xsl:attribute>
-                    </xsl:otherwise> 
+                    </xsl:otherwise>
                 </xsl:choose>
             </xsl:copy>
         </xsl:if>
@@ -536,17 +540,10 @@
         </xsl:variable>
         <xsl:apply-templates select="$originalMessage//BG:inp.heeftAlsEchtgenootPartner">
             <xsl:with-param name="mapping" select="$mapping"/>
+            <xsl:with-param name="authorizedApplicationsMap" select="$authorizedApplicationsMap/root"/>
         </xsl:apply-templates>
     </xsl:template>
     
-    <xsl:template match="BG:inp.heeftAlsEchtgenootPartner">
-        <xsl:param name="mapping"/>
-        <BG:inp.heeftAlsEchtgenootPartner>
-            <xsl:apply-templates select="*">
-                <xsl:with-param name="mapping" select="$mapping"/>
-            </xsl:apply-templates>
-        </BG:inp.heeftAlsEchtgenootPartner>
-    </xsl:template>
     <xsl:template match="kinderen">
         <xsl:variable name="mapping">
             <inp.heeftAlsKinderen StUF:entiteittype="NPSNPSKND">
@@ -622,17 +619,10 @@
         </xsl:variable>
         <xsl:apply-templates select="$originalMessage//BG:inp.heeftAlsKinderen">
             <xsl:with-param name="mapping" select="$mapping"/>
+            <xsl:with-param name="authorizedApplicationsMap" select="$authorizedApplicationsMap/root"/>
         </xsl:apply-templates>
     </xsl:template>
     
-    <xsl:template match="BG:inp.heeftAlsKinderen">
-        <xsl:param name="mapping"/>
-        <BG:inp.heeftAlsKinderen>
-            <xsl:apply-templates select="*">
-                <xsl:with-param name="mapping" select="$mapping"/>
-            </xsl:apply-templates>
-        </BG:inp.heeftAlsKinderen>
-    </xsl:template>
     <xsl:template match="ouders">
         <xsl:variable name="mapping">
             <inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
@@ -718,45 +708,29 @@
         </xsl:variable>
         <xsl:apply-templates select="$originalMessage//BG:inp.heeftAlsOuders">
             <xsl:with-param name="mapping" select="$mapping"/>
+            <xsl:with-param name="authorizedApplicationsMap" select="$authorizedApplicationsMap/root"/>
         </xsl:apply-templates>
     </xsl:template>
     
-    <xsl:template match="BG:inp.heeftAlsOuders">
-        <xsl:param name="mapping"/>
-        <BG:inp.heeftAlsOuders>
-            <xsl:apply-templates select="*">
-                <xsl:with-param name="mapping" select="$mapping"/>
-            </xsl:apply-templates>
-        </BG:inp.heeftAlsOuders>
-    </xsl:template>
-    
-<xsl:template match="nationaliteiten">
+    <xsl:template match="nationaliteiten">
         <xsl:variable name="mapping">
-                                <inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT" StUF:verwerkingssoort="T">
-                                    <gerelateerde StUF:entiteittype="NAT" StUF:verwerkingssoort="T">
-                                        <code><xsl:copy-of select="nationaliteit/code"/></code>
-                                        <omschrijving><xsl:copy-of select="nationaliteit/omschrijving"/></omschrijving>
-                                    </gerelateerde>
-                                    <inp.redenVerkrijging><xsl:copy-of select="redenOpname/code"/></inp.redenVerkrijging>
-                                    <inp.datumVerkrijging>
-                                        <test>
-                                            <xsl:variable name="date" select="datumIngangGeldigheid/datum"/>
-                                            <xsl:value-of select="translate($date, '-', '')" />
-                                        </test>
-                                    </inp.datumVerkrijging>
-                                </inp.heeftAlsNationaliteit>
+            <inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT" StUF:verwerkingssoort="T">
+                <gerelateerde StUF:entiteittype="NAT" StUF:verwerkingssoort="T">
+                    <code><xsl:copy-of select="nationaliteit/code"/></code>
+                    <omschrijving><xsl:copy-of select="nationaliteit/omschrijving"/></omschrijving>
+                </gerelateerde>
+                <inp.redenVerkrijging><xsl:copy-of select="redenOpname/code"/></inp.redenVerkrijging>
+                <inp.datumVerkrijging>
+                    <test>
+                        <xsl:variable name="date" select="datumIngangGeldigheid/datum"/>
+                        <xsl:value-of select="translate($date, '-', '')" />
+                    </test>
+                </inp.datumVerkrijging>
+            </inp.heeftAlsNationaliteit>
         </xsl:variable>
         <xsl:apply-templates select="$originalMessage//BG:inp.heeftAlsNationaliteit">
             <xsl:with-param name="mapping" select="$mapping"/>
+            <xsl:with-param name="authorizedApplicationsMap" select="$authorizedApplicationsMap/root"/>
         </xsl:apply-templates>
-    </xsl:template>
-
-    <xsl:template match="BG:inp.heeftAlsNationaliteit">
-        <xsl:param name="mapping"/>
-        <BG:inp.heeftAlsNationaliteit>
-            <xsl:apply-templates select="*">
-                <xsl:with-param name="mapping" select="$mapping"/>
-            </xsl:apply-templates>
-        </BG:inp.heeftAlsNationaliteit>
     </xsl:template>
 </xsl:stylesheet>

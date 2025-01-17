@@ -28,25 +28,9 @@
 				returnedSessionKeys="Error,body,xmlbody,MapResponse" />
 				<Param name="gemeenteVanInschrijving" sessionKey="gemeenteVanInschrijving" defaultValue="${gemeenteVanInschrijving}" />
 				<Param name="SOAPAction" sessionKey="SOAPAction" />
-				<Forward name="success" path="ExtractPersonenBody" />
+				<Forward name="success" path="WrapResponse" />
 				<Forward name="exception" path="ErrorJsonToXml" />
 			</SenderPipe>
-
-			<DataSonnetPipe name="ExtractPersonenBody" getInputFromSessionKey="body" preserveInput="true" storeResultInSessionKey="updatedJson" styleSheetName="jsonnet/ExtractBody.jsonnet" />
-
-			<!-- Add persoonsgegevens entry for each person retrieved from the BRP -->
-			<ForEachChildElementPipe name="BRP Personen query"
-				elementXPathExpression="root/personen"
-				getInputFromSessionKey="xmlbody">
-                <FixedQuerySender
-					name="insertPersonenSender"
-					query="INSERT INTO persoonsgegevens(bsn, data, registratie_datum) VALUES(?,?,CURRENT_TIMESTAMP)">
-					<Param name="burgerservicenummer" xpathExpression="personen/burgerservicenummer" type="STRING"/>
-					<Param name="data" sessionKey="updatedJson" type="STRING"/>
-            	</FixedQuerySender>
-				<Forward name="success" path="WrapResponse"/>
-				<Forward name="exception" path="ErrorJsonToXml" />
-			</ForEachChildElementPipe>  
 
 			<JsonPipe name="ErrorJsonToXml">
                 <Forward name="success" path="buildErrorMsg" />

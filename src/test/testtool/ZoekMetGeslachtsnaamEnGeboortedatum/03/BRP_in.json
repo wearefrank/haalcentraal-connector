@@ -1,5 +1,5 @@
 {
-    "type": "ZoekMetPostcodeEnHuisnummer",
+    "type": "ZoekMetGeslachtsnaamEnGeboortedatum",
     "fields": [
         "adressering",
         "burgerservicenummer",
@@ -10,6 +10,6 @@
         "adresseringBinnenland"
     ],
     "inclusiefOverledenPersonen": false,
-    "huisnummer": 88,
-    "postcode": "2497BV"
+    "geboortedatum": "1945-03-12",
+    "geslachtsnaam": "Deutekom"
 }
