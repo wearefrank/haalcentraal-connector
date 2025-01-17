@@ -1,5 +1,12 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.15.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.3...v1.15.4) (2025-01-17)
+
+### 🐛 Bug Fixes
+
+* bsn update ([f623c3f](https://github.com/wearefrank/haalcentraal-connector/commit/f623c3fb49101286c6be1b3893ecf168ab7aebbc))
+* update the larva scenarios ([8031217](https://github.com/wearefrank/haalcentraal-connector/commit/803121792dbc59173f145a7ed4a6edca996f7679))
+
 ## [1.15.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.2...v1.15.3) (2025-01-17)
 
 ### 🐛 Bug Fixes
