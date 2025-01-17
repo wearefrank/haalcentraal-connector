@@ -30,10 +30,8 @@
                 <StUF:indicatorAantal>true</StUF:indicatorAantal>
             </BG:parameters>
             <BG:gelijk StUF:entiteittype="NPS">
-                <BG:verblijfsadres>
-                    <BG:aoa.postcode>2497BV</BG:aoa.postcode>
-                    <BG:aoa.huisnummer>88</BG:aoa.huisnummer>
-                </BG:verblijfsadres>
+                <BG:geslachtsnaam StUF:exact="false">Deutekom</BG:geslachtsnaam>
+                <BG:geboortedatum>19450312</BG:geboortedatum>
             </BG:gelijk>
             <BG:scope>
                 <BG:object StUF:entiteittype="NPS" StUF:sleutelGegevensbeheer=""
