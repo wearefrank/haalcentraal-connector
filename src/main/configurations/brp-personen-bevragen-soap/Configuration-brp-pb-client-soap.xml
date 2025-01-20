@@ -30,7 +30,7 @@
 				<Forward name="success" path="storeValues" />
 			</XsltPipe>
 
-			<PutInSessionPipe name="storeValues">			
+			<PutInSessionPipe name="storeValues">
 				<Param name="varZenderApplicatie" xpathExpression="Root/Record/varZenderApplicatie" />
 				<Param name="varReferentienummer"
 					xpathExpression="Root/Record/varReferentienummer" />
@@ -54,12 +54,18 @@
 			<XsltPipe name="mappingStufToJson" getInputFromSessionKey="originalMessage"
 				styleSheetName="xsl/mappingStufToJson.xslt">
 				<Param name="varZenderOrganisatie" sessionKey="varZenderOrganisatie" />
+				<Param name="apps_requestwithAdres" pattern="${apps_requestwithAdres}" />
 				<Param name="gemeenteVanInschrijving" sessionKey="gemeenteVanInschrijving" />
 				<Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
 				<Param name="inclusiefOverledenPersonen" value="${inclusiefOverledenPersonen}" />
 				<Param name="fields" sessionKey="fields" type="DOMDOC" />
-				<Forward name="success" path="CheckHCInput" />
+				<Forward name="success" path="checkIfAppAllowedForRequest" />
 			</XsltPipe>
+
+			<IfPipe name="checkIfAppAllowedForRequest" xpathExpression="exists(root/text)">
+				<Forward name="then" path="Exception" />
+				<Forward name="else" path="CheckHCInput" />
+			</IfPipe>
 
 			<Json2XmlValidatorPipe
 				name="CheckHCInput"
@@ -73,8 +79,9 @@
 				<IbisLocalSender name="BPRPersonenBevragen"
 					javaListener="BrpPbOutwayListener"
 					returnedSessionKeys="Error" />
-					<Param name="gemeenteVanInschrijving" sessionKey="gemeenteVanInschrijving" defaultValue="${gemeenteVanInschrijving}" />
-                    <Param name="SOAPAction" sessionKey="SOAPAction" />
+				<Param name="gemeenteVanInschrijving" sessionKey="gemeenteVanInschrijving"
+					defaultValue="${gemeenteVanInschrijving}" />
+				<Param name="SOAPAction" sessionKey="SOAPAction" />
 				<Forward name="success" path="JsonToXml" />
 				<Forward name="exception" path="Exception" />
 			</SenderPipe>

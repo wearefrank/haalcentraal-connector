@@ -12,7 +12,7 @@
                 <StUF:berichtcode>Lv01</StUF:berichtcode>
                 <StUF:zender>
                     <StUF:organisatie />
-                    <StUF:applicatie>TOP</StUF:applicatie>
+                    <StUF:applicatie>GWS</StUF:applicatie>
                     <StUF:gebruiker>TEST</StUF:gebruiker>
                 </StUF:zender>
                 <StUF:ontvanger>
