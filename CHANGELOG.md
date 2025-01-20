@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.15.7](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.6...v1.15.7) (2025-01-20)
+
+### 🐛 Bug Fixes
+
+* request types for apps ([de3f70e](https://github.com/wearefrank/haalcentraal-connector/commit/de3f70e904ea195f8509a151d390cbd53ae5c3a0))
+
 ## [1.15.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.5...v1.15.6) (2025-01-17)
 
 ### 🐛 Bug Fixes
