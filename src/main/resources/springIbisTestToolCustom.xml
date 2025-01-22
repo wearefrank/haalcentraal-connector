@@ -26,11 +26,11 @@
                     <property name="label" value="Ontvanger"/>
                     <property name="xpath" value="//*[local-name()='ontvanger']/*[local-name()='applicatie']/text()" />
                 </bean>
-                <bean class="nl.nn.testtool.metadata.SessionKeyMetadataFieldExtractor">
+                <bean class="nl.nn.testtool.metadata.RegexMetadataFieldExtractor">
                     <property name="name" value="BSN"/>
                     <property name="label" value="BSN"/>
                     <property name="regex" value="\b(\d{9})\b"/>
-                    <property name="sessionKey" value="originalMessage" />
+                    <property name="checkpointName" value="SessionKey originalMessage" />
                 </bean>
             </list>
         </property>
