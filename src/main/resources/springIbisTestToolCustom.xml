@@ -19,11 +19,13 @@
                 <bean class="nl.nn.testtool.metadata.XpathMetadataFieldExtractor">
                     <property name="name" value="Zender"/>
                     <property name="label" value="Zender"/>
+                    <property name="extractFrom" value="all"/>
                     <property name="xpath" value="//*[local-name()='zender']/*[local-name()='applicatie']/text()" />
                 </bean>
                 <bean class="nl.nn.testtool.metadata.XpathMetadataFieldExtractor">
                     <property name="name" value="Ontvanger"/>
                     <property name="label" value="Ontvanger"/>
+                    <property name="extractFrom" value="all"/>
                     <property name="xpath" value="//*[local-name()='ontvanger']/*[local-name()='applicatie']/text()" />
                 </bean>
                 <bean class="nl.nn.testtool.metadata.RegexMetadataFieldExtractor">
