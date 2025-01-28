@@ -1,5 +1,22 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.16.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.7...v1.16.0) (2025-01-28)
+
+### 🍕 Features
+
+* endpoint switch ([2cf9154](https://github.com/wearefrank/haalcentraal-connector/commit/2cf9154ef54f9e06c9b6db40d02da6b039652ac6))
+* use both input and output ([630b9ce](https://github.com/wearefrank/haalcentraal-connector/commit/630b9ce1412654cc8ad8b778c7d40be848c2ce65))
+
+### 🐛 Bug Fixes
+
+* remove deleted code path from custom code compiler ([812f5de](https://github.com/wearefrank/haalcentraal-connector/commit/812f5de7da4db43923a9b23a58ba6d946d309cf9))
+* remove the namespaces ([8e31896](https://github.com/wearefrank/haalcentraal-connector/commit/8e31896a9309635a9e841e386e4c46023563ff9e))
+* update larva scenarios ([efc37a3](https://github.com/wearefrank/haalcentraal-connector/commit/efc37a3cbaa206ff061758c7699cc8e42b7e31fd))
+
+### 🧑‍💻 Code Refactoring
+
+* use different MetadataFieldExtractor ([3346e08](https://github.com/wearefrank/haalcentraal-connector/commit/3346e0835578795f411633b23e9ffa7182674e86))
+
 ## [1.15.7](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.6...v1.15.7) (2025-01-20)
 
 ### 🐛 Bug Fixes
