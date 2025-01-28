@@ -1,87 +1,77 @@
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
-	xmlns:StUF="http://www.egem.nl/StUF/StUF0301">
-	<soapenv:Body>
-		<BG:npsLa01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310"
-			xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310"
-			xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
-			xmlns:xlink="http://www.w3.org/1999/xlink"
-			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-			<BG:stuurgegevens>
-				<StUF:berichtcode>La01</StUF:berichtcode>
-				<StUF:zender>
-					<StUF:organisatie>NEDGR</StUF:organisatie>
-					<StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
-				</StUF:zender>
-				<StUF:ontvanger>
-					<StUF:applicatie>GWS</StUF:applicatie>
-					<StUF:gebruiker>PROD</StUF:gebruiker>
-				</StUF:ontvanger>
-				<StUF:tijdstipBericht>20241015055521156</StUF:tijdstipBericht>
-				<StUF:crossRefnummer>1f5dcba5-80e4-4ab5-9dd6-a03db10699b1</StUF:crossRefnummer>
-				<StUF:entiteittype>NPS</StUF:entiteittype>
-			</BG:stuurgegevens>
-			<BG:parameters>
-				<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
-				<StUF:indicatorAfnemerIndicatie>false</StUF:indicatorAfnemerIndicatie>
-				<StUF:aantalVoorkomens>1</StUF:aantalVoorkomens>
-			</BG:parameters>
-			<BG:antwoord>
-				<BG:object StUF:entiteittype="NPS">
-					<BG:inp.bsn>555555021</BG:inp.bsn>
-					<BG:geslachtsnaam>Verhuistest</BG:geslachtsnaam>
-					<BG:voorvoegselGeslachtsnaam>van den</BG:voorvoegselGeslachtsnaam>
-					<BG:voornamen>Kees</BG:voornamen>
-					<BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
-					<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
-					<BG:geboortedatum>20020701</BG:geboortedatum>
-					<BG:inp.geboorteplaats>Hellevoetsluis</BG:inp.geboorteplaats>
-					<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
-					<BG:overlijdensdatum xsi:nil="true" StUF:noValue="waardeOnbekend" />
-					<BG:inp.verblijftIn StUF:entiteittype="NPSTGO">
-						<BG:gerelateerde StUF:entiteittype="TGO">
-							<BG:adresAanduidingGrp>
-								<BG:wpl.woonplaatsNaam>'s-Gravenhage</BG:wpl.woonplaatsNaam>
-								<BG:gor.straatnaam>Burg Waldeckstraat</BG:gor.straatnaam>
-								<BG:aoa.postcode>2552TS</BG:aoa.postcode>
-								<BG:aoa.huisnummer>1</BG:aoa.huisnummer>
-								<BG:aoa.huisletter xsi:nil="true" StUF:noValue="waardeOnbekend" />
-								<BG:aoa.huisnummertoevoeging>BIS</BG:aoa.huisnummertoevoeging>
-							</BG:adresAanduidingGrp>
-						</BG:gerelateerde>
-					</BG:inp.verblijftIn>
-					<BG:verblijfsadres>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><BG:npsLa01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:a="http://www.egem.nl/StUF/StUF0301" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<BG:stuurgegevens>
+		<StUF:berichtcode>La01</StUF:berichtcode>
+		<StUF:zender>
+			<BG:organisatie>NEDGR</BG:organisatie>
+			<BG:applicatie>NEDMAG_VnA</BG:applicatie>
+		</StUF:zender>
+		<StUF:ontvanger>
+			<BG:applicatie>GWS</BG:applicatie>
+			<BG:gebruiker>PROD</BG:gebruiker>
+		</StUF:ontvanger>
+		<StUF:tijdstipBericht>20241015055521156</StUF:tijdstipBericht>
+		<StUF:crossRefnummer>1f5dcba5-80e4-4ab5-9dd6-a03db10699b1</StUF:crossRefnummer>
+		<StUF:entiteittype>NPS</StUF:entiteittype>
+	</BG:stuurgegevens>
+	<BG:parameters>
+		<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+		<StUF:indicatorAfnemerIndicatie>false</StUF:indicatorAfnemerIndicatie>
+		<StUF:aantalVoorkomens>1</StUF:aantalVoorkomens>
+	</BG:parameters>
+	<BG:antwoord>
+		<BG:object StUF:entiteittype="NPS">
+			<BG:inp.bsn>555555021</BG:inp.bsn>
+			<BG:geslachtsnaam>Verhuistest</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam>van den</BG:voorvoegselGeslachtsnaam>
+			<BG:voornamen>Kees</BG:voornamen>
+			<BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>20020701</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Hellevoetsluis</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.verblijftIn StUF:entiteittype="NPSTGO">
+				<BG:gerelateerde StUF:entiteittype="TGO">
+					<BG:adresAanduidingGrp>
 						<BG:wpl.woonplaatsNaam>'s-Gravenhage</BG:wpl.woonplaatsNaam>
 						<BG:gor.straatnaam>Burg Waldeckstraat</BG:gor.straatnaam>
 						<BG:aoa.postcode>2552TS</BG:aoa.postcode>
 						<BG:aoa.huisnummer>1</BG:aoa.huisnummer>
-						<BG:aoa.huisletter xsi:nil="true" StUF:noValue="waardeOnbekend" />
+						<BG:aoa.huisletter xsi:nil="true" StUF:noValue="waardeOnbekend"/>
 						<BG:aoa.huisnummertoevoeging>BIS</BG:aoa.huisnummertoevoeging>
-						<BG:begindatumVerblijf>20150808</BG:begindatumVerblijf>
-					</BG:verblijfsadres>
-					<BG:inp.adresHerkomst>W</BG:inp.adresHerkomst>
-					<BG:sub.correspondentieAdres />
-					<BG:inp.burgerlijkeStaat>1</BG:inp.burgerlijkeStaat>
-					<BG:inp.gemeenteVanInschrijving>0518</BG:inp.gemeenteVanInschrijving>
-					<BG:inp.datumInschrijving>20060318</BG:inp.datumInschrijving>
-					<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="waardeOnbekend" />
-					<BG:ing.datumVerkrijgingVerblijfstitel xsi:nil="true"
-						StUF:noValue="waardeOnbekend" />
-					<BG:ing.datumVerliesVerblijfstitel xsi:nil="true" StUF:noValue="waardeOnbekend" />
-					<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
-					<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="waardeOnbekend" />
-					<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="waardeOnbekend" />
-					<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend" />
-					<BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
-						<BG:gerelateerde StUF:entiteittype="NPS" />
-						<BG:ouderAanduiding>Ouder1</BG:ouderAanduiding>
-					</BG:inp.heeftAlsOuders>
-					<BG:inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT">
-						<BG:gerelateerde StUF:entiteittype="NAT">
-							<BG:code>0001</BG:code>
-						</BG:gerelateerde>
-					</BG:inp.heeftAlsNationaliteit>
-				</BG:object>
-			</BG:antwoord>
-		</BG:npsLa01>
-	</soapenv:Body>
-</soapenv:Envelope>
+					</BG:adresAanduidingGrp>
+				</BG:gerelateerde>
+			</BG:inp.verblijftIn>
+			<BG:verblijfsadres>
+				<BG:wpl.woonplaatsNaam>'s-Gravenhage</BG:wpl.woonplaatsNaam>
+				<BG:gor.straatnaam>Burg Waldeckstraat</BG:gor.straatnaam>
+				<BG:aoa.postcode>2552TS</BG:aoa.postcode>
+				<BG:aoa.huisnummer>1</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:aoa.huisnummertoevoeging>BIS</BG:aoa.huisnummertoevoeging>
+				<BG:begindatumVerblijf>20150808</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:inp.adresHerkomst>W</BG:inp.adresHerkomst>
+			<BG:sub.correspondentieAdres/>
+			<BG:inp.burgerlijkeStaat>1</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>0518</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20060318</BG:inp.datumInschrijving>
+			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:ing.datumVerkrijgingVerblijfstitel xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:ing.datumVerliesVerblijfstitel xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
+				<BG:gerelateerde StUF:entiteittype="NPS"/>
+				<BG:ouderAanduiding>Ouder1</BG:ouderAanduiding>
+			</BG:inp.heeftAlsOuders>
+			<BG:inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT">
+				<BG:gerelateerde StUF:entiteittype="NAT">
+					<BG:code>0001</BG:code>
+				</BG:gerelateerde>
+			</BG:inp.heeftAlsNationaliteit>
+		</BG:object>
+	</BG:antwoord>
+</BG:npsLa01></soapenv:Body></soapenv:Envelope>
