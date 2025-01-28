@@ -1,33 +1,40 @@
-<Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../FrankConfig.xsd">
+<Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../FrankConfig.xsd">
     <Adapter name="BrpCallDiginetwerk">
         <Receiver name="BrpCallDiginetwerk">
             <JavaListener name="BrpCallDiginetwerk" />
         </Receiver>
         <Pipeline>
             <Exits>
-				<Exit name="Exit" state="SUCCESS" />
-				<Exit name="Exception" state="ERROR" />
-				<Exit name="BadRequest" state="ERROR" code="400" />
-				<Exit name="NotAuthorized" state="ERROR" code="401" />
-				<Exit name="Forbidden" state="ERROR" code="403" />
-				<Exit name="NotFound" state="ERROR" code="404" />
-				<Exit name="NotAcceptable" state="ERROR" code="406" />
-				<Exit name="UnsupportedMediaType" state="ERROR" code="415" />
-				<Exit name="TooManyRequest" state="ERROR" code="429" />
-				<Exit name="ServerError" state="ERROR" code="500" />
-				<Exit name="ServiceUnavailable" state="ERROR" code="503" />
-			</Exits>
+                <Exit name="Exit" state="SUCCESS" />
+                <Exit name="Exception" state="ERROR" />
+                <Exit name="BadRequest" state="ERROR" code="400" />
+                <Exit name="NotAuthorized" state="ERROR" code="401" />
+                <Exit name="Forbidden" state="ERROR" code="403" />
+                <Exit name="NotFound" state="ERROR" code="404" />
+                <Exit name="NotAcceptable" state="ERROR" code="406" />
+                <Exit name="UnsupportedMediaType" state="ERROR" code="415" />
+                <Exit name="TooManyRequest" state="ERROR" code="429" />
+                <Exit name="ServerError" state="ERROR" code="500" />
+                <Exit name="ServiceUnavailable" state="ERROR" code="503" />
+            </Exits>
 
             <!-- required sessionKey: token -->
             <EchoPipe name="PreventEmpty" />
 
-            <SenderPipe name="PostBRPPersonenBevragenDiginetwerkSender" getInputFromSessionKey="originalMessage" active="${isDiginetwerk}">
-                <HttpSender url="${haalcentraal.BRP.personen.bevragen.endpoint}/personen" methodType="POST" headersParams="Authorization,Accept,Content-Type" parametersToSkipWhenEmpty="Accept,Content-Type" contentType="application/json" keystore="${haalcentraal_cert_path}" keystorePassword="${haalcentraal_cert_pass}" keystoreAlias="haalcentraal" keystoreType="PKCS12">
+            <SenderPipe name="PostBRPPersonenBevragenDiginetwerkSender"
+                getInputFromSessionKey="originalMessage" active="${isDiginetwerk}">
+                <HttpSender methodType="POST" headersParams="Authorization,Accept,Content-Type"
+                    parametersToSkipWhenEmpty="Accept,Content-Type" contentType="application/json"
+                    keystore="${haalcentraal_cert_path}"
+                    keystorePassword="${haalcentraal_cert_pass}" keystoreAlias="haalcentraal"
+                    keystoreType="PKCS12">
+                    <Param name="url" value="${endpointType}" />
                     <Param name="Authorization" pattern="Bearer {token}">
-                        <Param name="token" sessionKey="token"/>
+                        <Param name="token" sessionKey="token" />
                     </Param>
-                    <Param name="Accept" sessionKey="headerAccept"/>
-                    <Param name="Content-Type" sessionKey="headerContent-Type"/>
+                    <Param name="Accept" sessionKey="headerAccept" />
+                    <Param name="Content-Type" sessionKey="headerContent-Type" />
                 </HttpSender>
 
                 <Forward name="success" path="Exit" />
