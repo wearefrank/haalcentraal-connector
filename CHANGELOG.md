@@ -1,5 +1,12 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.16.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.16.0...v1.16.1) (2025-01-29)
+
+### 🐛 Bug Fixes
+
+* check the response if the title is exists ([0f03d32](https://github.com/wearefrank/haalcentraal-connector/commit/0f03d32bd932e5760255631914209c0df0b778ff))
+* error handling ([68b1011](https://github.com/wearefrank/haalcentraal-connector/commit/68b101186be43f055ca33d4ccc161406dffc32b3))
+
 ## [1.16.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.7...v1.16.0) (2025-01-28)
 
 ### 🍕 Features
