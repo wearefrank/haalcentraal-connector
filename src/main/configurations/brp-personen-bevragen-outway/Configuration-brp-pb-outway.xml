@@ -101,9 +101,9 @@
 				<Forward name="exception" path="BadRequest" />
 			</SenderPipe>
 
-			<IfPipe name="checkTheResponse" defaultMediaType="JSON" jsonPathExpression="$.personen">
-				<Forward name="then" path="ExtractPersonenBody" />
-				<Forward name="else" path="Exception" />
+			<IfPipe name="checkTheResponse" defaultMediaType="JSON" jsonPathExpression="$.title">
+				<Forward name="then" path="Exception" />
+				<Forward name="else" path="ExtractPersonenBody" />
 			</IfPipe>
 
 			<DataSonnetPipe name="ExtractPersonenBody" styleSheetName="jsonnet/ExtractBody.jsonnet" />
