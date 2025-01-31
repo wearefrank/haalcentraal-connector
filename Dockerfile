@@ -21,6 +21,7 @@ COPY src/main/java /tmp/java
 RUN mkdir /tmp/classes && \
     javac \
     /tmp/java/nl/nn/testtool/storage/database/DatabaseStorage.java \
+    /tmp/java/nl/nn/testtool/metadata/RegexMetadataFieldExtractor.java \
     /tmp/java/nl/nn/adapterframework/DeploymentSpecificsBeanPostProcessor.java \
     -classpath "/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/*:/usr/local/tomcat/lib/*" \
     -verbose -d /tmp/classes
