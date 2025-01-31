@@ -1,5 +1,15 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.17.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.16.1...v1.17.0) (2025-01-31)
+
+### 🍕 Features
+
+* add custom code ladybug bugfix ([18762a1](https://github.com/wearefrank/haalcentraal-connector/commit/18762a1304619b43381916ba63d06f21a4371526))
+
+### 🐛 Bug Fixes
+
+* prevent null string from passing to matcher ([e31324b](https://github.com/wearefrank/haalcentraal-connector/commit/e31324b1d024b1a5f0f78e7fff2411c282a70a1d))
+
 ## [1.16.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.16.0...v1.16.1) (2025-01-29)
 
 ### 🐛 Bug Fixes
