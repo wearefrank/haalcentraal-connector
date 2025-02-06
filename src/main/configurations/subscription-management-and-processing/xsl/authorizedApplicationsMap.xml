@@ -21,8 +21,8 @@
         <aoa.identificatie authorizedApplications="DEC_ZKN,GWS,TOP,PGAx-SG-ZVH" />
         <wpl.identificatie authorizedApplications="DEC_ZKN" />
         <aoa.woonplaatsWaarinGelegen>
-            <wpl.identificatie authorizedApplications="GWS,PGAx-SG-ZVH"/>
-            <wpl.woonplaatsNaam authorizedApplications="GWS,PGAx-SG-ZVH"/>
+            <wpl.identificatie authorizedApplications="GWS,PGAx-SG-ZVH" />
+            <wpl.woonplaatsNaam authorizedApplications="GWS,PGAx-SG-ZVH" />
         </aoa.woonplaatsWaarinGelegen>
         <gor.identificatie authorizedApplications="GWS,PGAx-SG-ZVH" />
         <opr.identificatie authorizedApplications="GWS,PGAx-SG-ZVH" />
@@ -32,7 +32,7 @@
         <lnd.landcode authorizedApplications="DEC_ZKN,GWS,TOP,LBA" />
     </sub.verblijfBuitenland>
     <sub.correspondentieAdres authorizedApplications="GWS" />
-    <sub.telefoonnummer authorizedApplications="TOP"/>
+    <sub.telefoonnummer authorizedApplications="TOP" />
     <sub.faxnummer authorizedApplications="" />
     <sub.emailadres authorizedApplications="TOP" />
     <sub.url authorizedApplications="" />
@@ -50,38 +50,44 @@
     <ing.indicatieGezagMinderjarige authorizedApplications="LBA,GWS,TOP" />
     <inp.indicatieGeheim authorizedApplications="LBA,GWS,TOP,PGAx-SG-ZVH" />
     <inp.heeftAlsEchtgenootPartner>
-        <inp.bsn authorizedApplications="TOP,GWS" />
-        <geslachtsnaamPartner authorizedApplications="DEC_ZKN,GWS" />
-        <adellijkeTitelPredikaat authorizedApplications="" />
-        <geslachtsaanduiding authorizedApplications="TOP" />
-        <verblijfsadres>
-            <aoa.identificatie authorizedApplications="DEC_ZKN,GWS,TOP,PGAx-SG-ZVH" />
-        </verblijfsadres>
-        <sub.correspondentieAdres authorizedApplications="GWS" />
-        <inp.burgerlijkeStaat authorizedApplications="TOP,GWS" />
+        <gerelateerde>
+            <inp.bsn authorizedApplications="TOP,GWS" />
+            <geslachtsnaamPartner authorizedApplications="DEC_ZKN,GWS" />
+            <adellijkeTitelPredikaat authorizedApplications="" />
+            <geslachtsaanduiding authorizedApplications="TOP" />
+            <verblijfsadres>
+                <aoa.identificatie authorizedApplications="DEC_ZKN,GWS,TOP,PGAx-SG-ZVH" />
+            </verblijfsadres>
+            <sub.correspondentieAdres authorizedApplications="GWS" />
+            <inp.burgerlijkeStaat authorizedApplications="TOP,GWS" />
+        </gerelateerde>
         <soortVerbintenis authorizedApplications="GWS,TOP" />
     </inp.heeftAlsEchtgenootPartner>
     <inp.heeftAlsKinderen>
-        <inp.bsn authorizedApplications="GWS,TOP" />
-        <geslachtsnaam authorizedApplications="GWS,TOP"/>
-        <voorvoegselGeslachtsnaam authorizedApplications="GWS,TOP" />
-        <voorletters authorizedApplications="GWS,TOP" />
-        <voornamen authorizedApplications="GWS,TOP" />
-        <aanduidingNaamgebruik authorizedApplications="TOP" />
-        <aanhefAanschrijving authorizedApplications="TOP" />
-        <adellijkeTitelPredikaat authorizedApplications="" />
-        <geboortedatum authorizedApplications="GWS,TOP" />
-        <inp.geboorteplaats authorizedApplications="TOP" />
-        <inp.geboorteLand authorizedApplications="TOP" />
-        <sub.correspondentieAdres authorizedApplications="GWS" />
-        <inp.indicatieGeheim authorizedApplications="TOP" />
+        <gerelateerde>
+            <inp.bsn authorizedApplications="GWS,TOP" />
+            <geslachtsnaam authorizedApplications="GWS,TOP" />
+            <voorvoegselGeslachtsnaam authorizedApplications="GWS,TOP" />
+            <voorletters authorizedApplications="GWS,TOP" />
+            <voornamen authorizedApplications="GWS,TOP" />
+            <aanduidingNaamgebruik authorizedApplications="TOP" />
+            <aanhefAanschrijving authorizedApplications="TOP" />
+            <adellijkeTitelPredikaat authorizedApplications="" />
+            <geboortedatum authorizedApplications="GWS,TOP" />
+            <inp.geboorteplaats authorizedApplications="TOP" />
+            <inp.geboorteLand authorizedApplications="TOP" />
+            <sub.correspondentieAdres authorizedApplications="GWS" />
+            <inp.indicatieGeheim authorizedApplications="TOP" />
+        </gerelateerde>
     </inp.heeftAlsKinderen>
     <inp.heeftAlsOuders authorizedApplications="LBA,TOP,GWS">
-        <adellijkeTitelPredikaat authorizedApplications="" />
-        <inp.geboorteplaats authorizedApplications="GWS" />
-        <inp.geboorteLand authorizedApplications="GWS" />
-        <sub.correspondentieAdres authorizedApplications="GWS" />
-        <inp.indicatieGeheim authorizedApplications="TOP" />
+        <gerelateerde>
+            <adellijkeTitelPredikaat authorizedApplications="" />
+            <inp.geboorteplaats authorizedApplications="GWS" />
+            <inp.geboorteLand authorizedApplications="GWS" />
+            <sub.correspondentieAdres authorizedApplications="GWS" />
+            <inp.indicatieGeheim authorizedApplications="TOP" />
+        </gerelateerde>
         <datumIngangFamilierechtelijkeBetrekking authorizedApplications="GWS" />
     </inp.heeftAlsOuders>
     <inp.heeftAlsNationaliteit>
