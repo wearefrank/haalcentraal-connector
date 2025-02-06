@@ -13,11 +13,9 @@
     >
     
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
-    <xsl:param name="varZenderApplicatie" />
-    <xsl:param name="varZenderOrganisatie" />
-    <xsl:param name="varZenderGebruiker" />
-    <xsl:param name="varReferentienummer"/>
+    <xsl:param name="varZenderApplicatie"><xsl:value-of select="$afnemersindicatieInput//*[local-name()='zender']/*[local-name()='applicatie']/text()" /></xsl:param>
     <xsl:param name="aantalVoorkomens"><xsl:value-of select="count(/root/personen)"/></xsl:param>
+    <xsl:param name="afnemersindicatieInput" select="document('afnemersindicatieInput.xml')" as="node()?" />
     <xsl:param name="inputnpsLk01" select="document('npsLk01.xml')" as="node()?" />
     <xsl:variable name="geenWaarde">geenWaarde</xsl:variable>
     <xsl:variable name="waardeOnbekend">waardeOnbekend</xsl:variable>
@@ -146,9 +144,9 @@
                                     <xsl:when test="./verblijfplaats/type/text() = &apos;Adres&apos;">
                                         <verblijfsadres>
                                             <aoa.identificatie><xsl:copy-of select="verblijfplaats/adresseerbaarObjectIdentificatie"/></aoa.identificatie>
-                                            <wpl.identificatie>
-                                                <xsl:copy-of select="$external-data/woonplaatsen/woonplaats[name = $woonplaats]/code"/>
-                                            </wpl.identificatie>
+                                            <!-- <wpl.identificatie>
+                                                 <xsl:copy-of select="$external-data/woonplaatsen/woonplaats[name = $woonplaats]/code"/>
+                                                 </wpl.identificatie> -->
                                             <wpl.woonplaatsNaam><xsl:copy-of select="verblijfplaats/verblijfadres/woonplaats"/></wpl.woonplaatsNaam>
                                             <aoa.woonplaatsWaarinGelegen>
                                                 <wpl.identificatie></wpl.identificatie>
@@ -212,7 +210,7 @@
                                                         </test>
                                                     </aoa.postcode>
                                                     <aoa.huisnummer><test><xsl:value-of select="replace(adressering/adresregel1, '\D', '')"/></test></aoa.huisnummer>
-                                                    <aoa.huisletter><test><xsl:value-of select="replace(adressering/adresregel1, '.*\d+\s*([A-Z]).*', '$1')"/></test></aoa.huisletter>
+                                                    <aoa.huisletter><test><xsl:value-of select="substring-after(normalize-space(substring-after(adressering/adresregel1, ' ')), ' ')"/></test></aoa.huisletter>
                                                     <aoa.huisnummertoevoeging/>
                                                     <inp.locatiebeschrijving/>
                                                     <begindatumVerblijf/>
@@ -248,11 +246,13 @@
                                 <inp.burgerlijkeStaat>
                                     <number>
                                         <xsl:choose>
-                                            <xsl:when test="./partners !=''">
+                                            <xsl:when
+                                                test=". !=''">
                                                 <xsl:choose>
-                                                    <xsl:when test="./partners/soortVerbintenis/code/text() ='H'">
+                                                    <xsl:when
+                                                        test="./soortVerbintenis/code/text() ='H'">
                                                         <xsl:choose>
-                                                            <xsl:when test="./partners/ontbindingHuwelijkPartnerschap/text() !=''">
+                                                            <xsl:when test="./ontbindingHuwelijkPartnerschap/text() =''">
                                                                 <xsl:value-of select="2" />
                                                             </xsl:when>
                                                             <xsl:otherwise>
@@ -260,9 +260,10 @@
                                                             </xsl:otherwise>
                                                         </xsl:choose>
                                                     </xsl:when>
-                                                    <xsl:when test="./partners/soortVerbintenis/code/text() ='P'">
+                                                    <xsl:when
+                                                        test="./soortVerbintenis/code/text() ='P'">
                                                         <xsl:choose>
-                                                            <xsl:when test="./partners/ontbindingHuwelijkPartnerschap/text() !=''">
+                                                            <xsl:when test="./ontbindingHuwelijkPartnerschap/text() !=''">
                                                                 <xsl:value-of select="6" />
                                                             </xsl:when>
                                                             <xsl:otherwise>
@@ -275,13 +276,13 @@
                                             <xsl:otherwise>
                                                 <xsl:value-of select="1" />
                                             </xsl:otherwise>
-                                        </xsl:choose>
-                                    </number>
+                                        </xsl:choose> 
+                                    </number>                             
                                 </inp.burgerlijkeStaat>
                                 <inp.gemeenteVanInschrijving><xsl:copy-of select="gemeenteVanInschrijving/code"/></inp.gemeenteVanInschrijving>
                                 <inp.datumInschrijving>
                                     <test>
-                                        <xsl:variable name="date" select="datumInschrijvingGemeente/datum"/>
+                                        <xsl:variable name="date" select="datumInschrijvingInGemeente/datum"/>
                                         <xsl:value-of select="translate($date, '-', '')" />
                                     </test>
                                 </inp.datumInschrijving>
@@ -307,15 +308,17 @@
                                     </test>
                                 </inp.datumVertrekUitNederland>
                                 <inp.emigratieLand>
-                                    <xsl:if
-                                        test="./opschortingBijhouding/reden/code/text()='E'">
-                                        
+                                    <test>
                                         <xsl:if
-                                            test="./verblijfplaats/type/text()='VerblijfplaatsBuitenland'">
-                                            <xsl:value-of
-                                                select="./verblijfplaats/verblijfadres/land/code" />
+                                            test="./opschortingBijhouding/reden/code/text()='E'">
+                                            
+                                            <xsl:if
+                                                test="./verblijfplaats/type/text()='VerblijfplaatsBuitenland'">
+                                                <xsl:value-of
+                                                    select="./verblijfplaats/verblijfadres/land/code" />
+                                            </xsl:if>
                                         </xsl:if>
-                                    </xsl:if>
+                                    </test>
                                 </inp.emigratieLand>
                                 <aanduidingBijzonderNederlanderschap><xsl:copy-of select="nationaliteit/aanduidingBijzonderNederlanderschap"/></aanduidingBijzonderNederlanderschap>
                                 <ing.aanduidingEuropeesKiesrecht><xsl:copy-of select="europeesKiesrecht/aanduiding/code"/></ing.aanduidingEuropeesKiesrecht>
@@ -328,24 +331,28 @@
                                     </test>
                                 </inp.datumOpschortingBijhouding>
                                 <inp.redenOpschortingBijhouding>
-                                    <xsl:choose>
-                                        <xsl:when test="opschortingBijhouding/reden/text() != ''">
-                                            <xsl:value-of select="./opschortingBijhouding/reden" />
-                                        </xsl:when>
-                                        <xsl:otherwise>
-                                            <xsl:value-of select="./overlijden/indicatieOverleden" />
-                                        </xsl:otherwise>
-                                    </xsl:choose>
+                                    <test>
+                                        <xsl:choose>
+                                            <xsl:when test="opschortingBijhouding/reden/text() != ''">
+                                                <xsl:value-of select="./opschortingBijhouding/reden/code" />
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:value-of select="./overlijden/indicatieOverleden" />
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </test>
                                 </inp.redenOpschortingBijhouding>
                                 <inp.indicatieGeheim>
-                                    <xsl:choose>
-                                        <xsl:when test="geheimhoudingPersoonsgegevens/text()!='true'">
-                                            <xsl:value-of select="7" />
-                                        </xsl:when>
-                                        <xsl:otherwise>
-                                            <xsl:value-of select="0" />
-                                        </xsl:otherwise>
-                                    </xsl:choose>                   
+                                    <test>
+                                        <xsl:choose>
+                                            <xsl:when test="geheimhoudingPersoonsgegevens/text() ='true'">
+                                                <xsl:value-of select="7" />
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:value-of select="0" />
+                                            </xsl:otherwise>
+                                        </xsl:choose>       
+                                    </test>                             
                                 </inp.indicatieGeheim>
                             </object>
                         </xsl:variable>
@@ -369,17 +376,18 @@
             
             <StUF:ontvanger>
                 <StUF:organisatie>
-                    <xsl:value-of select="$varZenderOrganisatie" />
+                    <xsl:value-of select="$afnemersindicatieInput//*[local-name()='zender']/*[local-name()='organisatie']/text()" />
                 </StUF:organisatie>
                 <StUF:applicatie>
                     <xsl:value-of select="$varZenderApplicatie" />
                 </StUF:applicatie>
+                <StUF:administratie><xsl:value-of select="$afnemersindicatieInput//*[local-name()='zender']/*[local-name()='administratie']/text()" /></StUF:administratie>
                 <StUF:gebruiker>
-                    <xsl:value-of select="$varZenderGebruiker" />
+                    <xsl:value-of select="$afnemersindicatieInput//*[local-name()='zender']/*[local-name()='gebruiker']/text()" />
                 </StUF:gebruiker> 
             </StUF:ontvanger> 
             <StUF:referentienummer>
-                <xsl:value-of select="$varReferentienummer" />
+                <xsl:value-of select="$afnemersindicatieInput//*[local-name()='referentienummer']/text()" />
             </StUF:referentienummer> 
             <StUF:tijdstipBericht>
                 <xsl:value-of
@@ -391,15 +399,18 @@
     
     <xsl:template match="BG:parameters">
         <BG:parameters>
-            <StUF:mutatiesoort>T</StUF:mutatiesoort>
-            <StUF:indicatorOvername>V</StUF:indicatorOvername>
+            <StUF:mutatiesoort><xsl:value-of select="$afnemersindicatieInput//*[local-name()='parameters']/*[local-name()='mutatiesoort']/text()"/></StUF:mutatiesoort>
+            <StUF:indicatorOvername><xsl:value-of select="$afnemersindicatieInput//*[local-name()='parameters']/*[local-name()='indicatorOvername']/text()"/></StUF:indicatorOvername>
         </BG:parameters>     
     </xsl:template>
     
     <xsl:template match="BG:object">
         <xsl:param name="mapping"/>
         <xsl:param name="persoon" tunnel="yes"/>
-        <BG:object StUF:entiteittype="NPS" StUF:verwerkingssoort="T">
+        <BG:object>
+            <xsl:attribute name="StUF:entiteittype" select="$afnemersindicatieInput//*[local-name()='object']//@*[local-name() = 'entiteittype']"/>
+            <xsl:attribute name="StUF:verwerkingssoort" select="$afnemersindicatieInput//*[local-name()='object']//@*[local-name() = 'verwerkingssoort']"/>
+            <xsl:attribute name="StUF:sleutelVerzendend" select="$afnemersindicatieInput//*[local-name()='object']//@*[local-name() = 'sleutelVerzendend']"/>
             <xsl:apply-templates select="*[not(local-name() = ('inp.heeftAlsOuders', 'inp.heeftAlsKinderen', 'inp.heeftAlsEchtgenootPartner', 'inp.heeftAlsNationaliteit'))]">
                 <xsl:with-param name="mapping" select="$mapping/object"/>
                 <xsl:with-param name="authorizedApplicationsMap" select="$authorizedApplicationsMap/root"/>
@@ -500,8 +511,8 @@
                     <voorvoegselGeslachtsnaam><xsl:copy-of select="naam/voorvoegsel"/></voorvoegselGeslachtsnaam>
                     <voorletters><xsl:copy-of select="naam/voorletters"/></voorletters>
                     <voornamen><xsl:copy-of select="naam/voornamen"/></voornamen>
-                    <geslachtsnaamPartner><xsl:value-of select="$geslachtsnaam"/></geslachtsnaamPartner>
-                    <voorvoegselGeslachtsnaamPartner><xsl:value-of select="$voorvoegsel"/></voorvoegselGeslachtsnaamPartner>
+                    <geslachtsnaamPartner><test><xsl:value-of select="$geslachtsnaam"/></test></geslachtsnaamPartner>
+                    <voorvoegselGeslachtsnaamPartner><test><xsl:value-of select="$voorvoegsel"/></test></voorvoegselGeslachtsnaamPartner>
                     <adellijkeTitelPredikaat><xsl:copy-of select="naam/adellijkeTitelPredicaat/code"/></adellijkeTitelPredikaat>
                     <geslachtsaanduiding><xsl:copy-of select="geslacht/code"/></geslachtsaanduiding>
                     <geboortedatum>
@@ -555,49 +566,53 @@
                         </xsl:otherwise>                        
                     </xsl:choose>
                     <inp.burgerlijkeStaat>
-                        <xsl:choose>
-                            <xsl:when
-                                test=". !=''">
-                                <xsl:choose>
-                                    <xsl:when
-                                        test="./soortVerbintenis/code/text() ='H'">
-                                        <xsl:choose>
-                                            <xsl:when test="./ontbindingHuwelijkPartnerschap/text() !=''">
-                                                <xsl:value-of select="2" />
-                                            </xsl:when>
-                                            <xsl:otherwise>
-                                                <xsl:value-of select="3" />
-                                            </xsl:otherwise>
-                                        </xsl:choose>
-                                    </xsl:when>
-                                    <xsl:when
-                                        test="./soortVerbintenis/code/text() ='P'">
-                                        <xsl:choose>
-                                            <xsl:when test="./ontbindingHuwelijkPartnerschap/text() !=''">
-                                                <xsl:value-of select="6" />
-                                            </xsl:when>
-                                            <xsl:otherwise>
-                                                <xsl:value-of select="5" />
-                                            </xsl:otherwise>
-                                        </xsl:choose>
-                                    </xsl:when>
-                                </xsl:choose>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="1" />
-                            </xsl:otherwise>
-                        </xsl:choose>                                                                                    
+                        <number>
+                            <xsl:choose>
+                                <xsl:when
+                                    test=". !=''">
+                                    <xsl:choose>
+                                        <xsl:when
+                                            test="./soortVerbintenis/code/text() ='H'">
+                                            <xsl:choose>
+                                                <xsl:when test="./ontbindingHuwelijkPartnerschap/text() =''">
+                                                    <xsl:value-of select="2" />
+                                                </xsl:when>
+                                                <xsl:otherwise>
+                                                    <xsl:value-of select="3" />
+                                                </xsl:otherwise>
+                                            </xsl:choose>
+                                        </xsl:when>
+                                        <xsl:when
+                                            test="./soortVerbintenis/code/text() ='P'">
+                                            <xsl:choose>
+                                                <xsl:when test="./ontbindingHuwelijkPartnerschap/text() !=''">
+                                                    <xsl:value-of select="6" />
+                                                </xsl:when>
+                                                <xsl:otherwise>
+                                                    <xsl:value-of select="5" />
+                                                </xsl:otherwise>
+                                            </xsl:choose>
+                                        </xsl:when>
+                                    </xsl:choose>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="1" />
+                                </xsl:otherwise>
+                            </xsl:choose> 
+                        </number>                                                                  
                     </inp.burgerlijkeStaat>
                 </gerelateerde>
                 <inp.indicatieGeheim>
-                    <xsl:choose>
-                        <xsl:when test="geheimhoudingPersoonsgegevens/text()!='true'">
-                            <xsl:value-of select="7" />
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:value-of select="0" />
-                        </xsl:otherwise>
-                    </xsl:choose>                   
+                    <test>
+                        <xsl:choose>
+                            <xsl:when test="geheimhoudingPersoonsgegevens/text() ='true'">
+                                <xsl:value-of select="7" />
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="0" />
+                            </xsl:otherwise>
+                        </xsl:choose>       
+                    </test>              
                 </inp.indicatieGeheim>
                 <soortVerbintenis><xsl:copy-of select="soortVerbintenis/code"/></soortVerbintenis>
             </inp.heeftAlsEchtgenootPartner>
@@ -678,14 +693,16 @@
                         </xsl:otherwise>                        
                     </xsl:choose>
                     <inp.indicatieGeheim>
-                        <xsl:choose>
-                            <xsl:when test="geheimhoudingPersoonsgegevens/text()!='true'">
-                                <xsl:value-of select="7" />
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="0" />
-                            </xsl:otherwise>
-                        </xsl:choose>                   
+                        <test>
+                            <xsl:choose>
+                                <xsl:when test="geheimhoudingPersoonsgegevens/text() ='true'">
+                                    <xsl:value-of select="7" />
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="0" />
+                                </xsl:otherwise>
+                            </xsl:choose>       
+                        </test>             
                     </inp.indicatieGeheim>
                 </gerelateerde>
             </inp.heeftAlsKinderen>
@@ -765,14 +782,16 @@
                         </xsl:otherwise>                        
                     </xsl:choose>
                     <inp.indicatieGeheim>
-                        <xsl:choose>
-                            <xsl:when test="geheimhoudingPersoonsgegevens/text()!='true'">
-                                <xsl:value-of select="7" />
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="0" />
-                            </xsl:otherwise>
-                        </xsl:choose>                   
+                        <test>
+                            <xsl:choose>
+                                <xsl:when test="geheimhoudingPersoonsgegevens/text() ='true'">
+                                    <xsl:value-of select="7" />
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="0" />
+                                </xsl:otherwise>
+                            </xsl:choose>       
+                        </test>       
                     </inp.indicatieGeheim>
                 </gerelateerde>
                 <ouderAanduiding>

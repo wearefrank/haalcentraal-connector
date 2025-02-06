@@ -18,6 +18,9 @@
 				<Exit name="CouldNotSubscribe" state="ERROR" empty="true" />
 				<Exit name="Exception" state="ERROR" empty="true" />
 			</Exits>
+			<LocalFileSystemPipe name="storeOriginalMessage" action="write" overwrite="true" preserveInput="true">
+				<Param name="filename" value="${afnemersindicatieInputPath}"/>
+			</LocalFileSystemPipe>
 
 			<PutInSessionPipe name="ExtractDataFromInput">
 				<Param name="bsn" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn" />
