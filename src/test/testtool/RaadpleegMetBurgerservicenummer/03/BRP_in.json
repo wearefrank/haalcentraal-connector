@@ -21,7 +21,9 @@
         "verblijfstitel",
         "europeesKiesrecht",
         "partners.naam.geslachtsnaam",
-        "partners.naam.voorvoegsel"
+        "partners.naam.voorvoegsel",
+        "partners.ontbindingHuwelijkPartnerschap\"",
+        "partners.soortVerbintenis"
     ],
     "burgerservicenummer": [
         "999991243"

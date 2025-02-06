@@ -81,11 +81,11 @@
 					<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
 					<BG:voorletters>C.E.C.</BG:voorletters>
 					<BG:voornamen>Carolus Engelbertus Christianus</BG:voornamen>
-					<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-					<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:geslachtsnaamPartner>Huijgen</BG:geslachtsnaamPartner>
+					<BG:voorvoegselGeslachtsnaamPartner>0</BG:voorvoegselGeslachtsnaamPartner>
 					<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
 					<BG:geboortedatum>19000630</BG:geboortedatum>
-					<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:inp.burgerlijkeStaat>3</BG:inp.burgerlijkeStaat>
 				</BG:gerelateerde>
 				<BG:soortVerbintenis xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
 			</BG:inp.heeftAlsEchtgenootPartner>
@@ -97,7 +97,7 @@
 					<BG:voornamen>Gertruda</BG:voornamen>
 					<BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
 					<BG:geboortedatum>18780221</BG:geboortedatum>
-					<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
 				</BG:gerelateerde>
 			</BG:inp.heeftAlsOuders>
 			<BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
@@ -108,7 +108,7 @@
 					<BG:voornamen>Jaap Jan</BG:voornamen>
 					<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
 					<BG:geboortedatum>18740824</BG:geboortedatum>
-					<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
 				</BG:gerelateerde>
 			</BG:inp.heeftAlsOuders>
 		</BG:object>

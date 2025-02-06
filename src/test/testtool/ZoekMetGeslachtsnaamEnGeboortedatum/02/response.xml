@@ -1,78 +1,82 @@
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><BG:npsLa01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:a="http://www.egem.nl/StUF/StUF0301" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<BG:stuurgegevens>
-		<StUF:berichtcode>La01</StUF:berichtcode>
-		<StUF:zender>
-			<BG:organisatie>NEDGR</BG:organisatie>
-			<BG:applicatie>NEDMAG_VnA</BG:applicatie>
-		</StUF:zender>
-		<StUF:ontvanger>
-			<BG:organisatie/>
-			<BG:applicatie>LBA</BG:applicatie>
-			<BG:gebruiker>SH2102</BG:gebruiker>
-		</StUF:ontvanger>
-		<StUF:tijdstipBericht>2024010814194200</StUF:tijdstipBericht>
-		<StUF:crossRefnummer>659bf66e3ee6</StUF:crossRefnummer>
-		<StUF:entiteittype>NPS</StUF:entiteittype>
-	</BG:stuurgegevens>
-	<BG:parameters>
-		<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
-		<StUF:indicatorAfnemerIndicatie>false</StUF:indicatorAfnemerIndicatie>
-		<StUF:aantalVoorkomens>1</StUF:aantalVoorkomens>
-	</BG:parameters>
-	<BG:antwoord>
-		<BG:object StUF:entiteittype="NPS">
-			<BG:inp.bsn>999993215</BG:inp.bsn>
-			<BG:inp.a-nummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-			<BG:geslachtsnaam>Schoon</BG:geslachtsnaam>
-			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-			<BG:voorletters>B.</BG:voorletters>
-			<BG:voornamen>Bernard</BG:voornamen>
-			<BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-			<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
-			<BG:geboortedatum>19710728</BG:geboortedatum>
-			<BG:inp.geboorteplaats xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-			<BG:inp.geboorteLand xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-			<BG:verblijfsadres>
-				<BG:aoa.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-				<BG:wpl.woonplaatsNaam> AMSTERDAM</BG:wpl.woonplaatsNaam>
-				<BG:aoa.woonplaatsWaarinGelegen>
-					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-				</BG:aoa.woonplaatsWaarinGelegen>
-				<BG:gor.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-				<BG:opr.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-				<BG:gor.openbareRuimteNaam>Polderweg</BG:gor.openbareRuimteNaam>
-				<BG:gor.straatnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-				<BG:aoa.postcode>1093 KP</BG:aoa.postcode>
-				<BG:aoa.huisnummer>92</BG:aoa.huisnummer>
-				<BG:aoa.huisletter>Polderweg 92</BG:aoa.huisletter>
-				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-				<BG:begindatumVerblijf xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-			</BG:verblijfsadres>
-			<BG:sub.correspondentieAdres/>
-			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-			<BG:sub.emailadres xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-			<BG:sub.url xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-			<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-			<BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-			<BG:inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-			<BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-			<BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-			<BG:inp.emigratieLand xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-			<BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-			<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-		</BG:object>
-	</BG:antwoord>
-</BG:npsLa01></soapenv:Body></soapenv:Envelope>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <BG:npsLa01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:a="http://www.egem.nl/StUF/StUF0301" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <BG:stuurgegevens>
+        <StUF:berichtcode>La01</StUF:berichtcode>
+        <StUF:zender>
+          <BG:organisatie>NEDGR</BG:organisatie>
+          <BG:applicatie>NEDMAG_VnA</BG:applicatie>
+        </StUF:zender>
+        <StUF:ontvanger>
+          <BG:organisatie/>
+          <BG:applicatie>LBA</BG:applicatie>
+          <BG:gebruiker>SH2102</BG:gebruiker>
+        </StUF:ontvanger>
+        <StUF:tijdstipBericht>2024010814194200</StUF:tijdstipBericht>
+        <StUF:crossRefnummer>659bf66e3ee6</StUF:crossRefnummer>
+        <StUF:entiteittype>NPS</StUF:entiteittype>
+      </BG:stuurgegevens>
+      <BG:parameters>
+        <StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+        <StUF:indicatorAfnemerIndicatie>false</StUF:indicatorAfnemerIndicatie>
+        <StUF:aantalVoorkomens>1</StUF:aantalVoorkomens>
+      </BG:parameters>
+      <BG:antwoord>
+        <BG:object StUF:entiteittype="NPS">
+          <BG:inp.bsn>999993215</BG:inp.bsn>
+          <BG:inp.a-nummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+          <BG:geslachtsnaam>Schoon</BG:geslachtsnaam>
+          <BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+          <BG:voorletters>B.</BG:voorletters>
+          <BG:voornamen>Bernard</BG:voornamen>
+          <BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+          <BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+          <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+          <BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+          <BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+          <BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+          <BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+          <BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+          <BG:geboortedatum>19710728</BG:geboortedatum>
+          <BG:inp.geboorteplaats xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+          <BG:inp.geboorteLand xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+          <BG:overlijdensdatum xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+          <BG:verblijfsadres>
+            <BG:aoa.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+            <BG:wpl.woonplaatsNaam>AMSTERDAM</BG:wpl.woonplaatsNaam>
+            <BG:aoa.woonplaatsWaarinGelegen>
+              <BG:wpl.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+              <BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+            </BG:aoa.woonplaatsWaarinGelegen>
+            <BG:gor.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+            <BG:opr.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+            <BG:gor.openbareRuimteNaam>Polderweg</BG:gor.openbareRuimteNaam>
+            <BG:gor.straatnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+            <BG:aoa.postcode>1093 KP</BG:aoa.postcode>
+            <BG:aoa.huisnummer>92</BG:aoa.huisnummer>
+            <BG:aoa.huisletter xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+            <BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+            <BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+            <BG:begindatumVerblijf xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+          </BG:verblijfsadres>
+          <BG:sub.correspondentieAdres/>
+          <BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+          <BG:sub.faxnummer xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+          <BG:sub.emailadres xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+          <BG:sub.url xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+          <BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+          <BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+          <BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+          <BG:inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+          <BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+          <BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+          <BG:inp.immigratieLand xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+          <BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+          <BG:inp.emigratieLand xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+          <BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+          <BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+        </BG:object>
+      </BG:antwoord>
+    </BG:npsLa01>
+  </soapenv:Body>
+</soapenv:Envelope>

@@ -1,109 +1,113 @@
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><BG:npsLa01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:a="http://www.egem.nl/StUF/StUF0301" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<BG:stuurgegevens>
-		<StUF:berichtcode>La01</StUF:berichtcode>
-		<StUF:zender>
-			<BG:organisatie>test1</BG:organisatie>
-			<BG:applicatie>test</BG:applicatie>
-		</StUF:zender>
-		<StUF:ontvanger>
-			<BG:organisatie>0518</BG:organisatie>
-			<BG:applicatie>LBA</BG:applicatie>
-		</StUF:ontvanger>
-		<StUF:tijdstipBericht>20241014193057291</StUF:tijdstipBericht>
-		<StUF:crossRefnummer>3f8aed9f-307d-4bca-8081-aaabaa9202df</StUF:crossRefnummer>
-		<StUF:entiteittype>NPS</StUF:entiteittype>
-	</BG:stuurgegevens>
-	<BG:parameters>
-		<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
-		<StUF:indicatorAfnemerIndicatie>false</StUF:indicatorAfnemerIndicatie>
-		<StUF:aantalVoorkomens>1</StUF:aantalVoorkomens>
-	</BG:parameters>
-	<BG:antwoord>
-		<BG:object StUF:entiteittype="NPS">
-			<BG:inp.bsn>999993628</BG:inp.bsn>
-			<BG:inp.a-nummer>3461805105</BG:inp.a-nummer>
-			<BG:geslachtsnaam>Huijgen</BG:geslachtsnaam>
-			<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-			<BG:voorletters>G.</BG:voorletters>
-			<BG:voornamen>Geertje</BG:voornamen>
-			<BG:aanduidingNaamgebruik>V</BG:aanduidingNaamgebruik>
-			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-			<BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
-			<BG:geboortedatum>19010613</BG:geboortedatum>
-			<BG:inp.geboorteplaats>Huisseling en Neerloon</BG:inp.geboorteplaats>
-			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
-			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-			<BG:inp.overlijdenplaats xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-			<BG:inp.overlijdenLand xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-			<BG:verblijfsadres>
-				<BG:aoa.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-				<BG:wpl.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-				<BG:wpl.woonplaatsNaam>'s-Gravenhage</BG:wpl.woonplaatsNaam>
-				<BG:aoa.woonplaatsWaarinGelegen>
-					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-				</BG:aoa.woonplaatsWaarinGelegen>
-				<BG:gor.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-				<BG:opr.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-				<BG:gor.openbareRuimteNaam>Nieuwe Parklaan</BG:gor.openbareRuimteNaam>
-				<BG:gor.straatnaam>Nieuwe Parklaan</BG:gor.straatnaam>
-				<BG:aoa.postcode>2597LD</BG:aoa.postcode>
-				<BG:aoa.huisnummer>58</BG:aoa.huisnummer>
-				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-				<BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-				<BG:begindatumVerblijf>20040404</BG:begindatumVerblijf>
-			</BG:verblijfsadres>
-			<BG:inp.adresHerkomst>W</BG:inp.adresHerkomst>
-			<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-			<BG:inp.gemeenteVanInschrijving>0518</BG:inp.gemeenteVanInschrijving>
-			<BG:inp.datumInschrijving>20040404</BG:inp.datumInschrijving>
-			<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-			<BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
-				<BG:gerelateerde StUF:entiteittype="NPS">
-					<BG:inp.bsn>999993859</BG:inp.bsn>
-					<BG:geslachtsnaam>Kierkegaard</BG:geslachtsnaam>
-					<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-					<BG:voorletters>C.E.C.</BG:voorletters>
-					<BG:voornamen>Carolus Engelbertus Christianus</BG:voornamen>
-					<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-					<BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-					<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
-					<BG:geboortedatum>19000630</BG:geboortedatum>
-					<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-				</BG:gerelateerde>
-				<BG:soortVerbintenis xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-			</BG:inp.heeftAlsEchtgenootPartner>
-			<BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
-				<BG:gerelateerde StUF:entiteittype="NPS">
-					<BG:geslachtsnaam>Jansen</BG:geslachtsnaam>
-					<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-					<BG:voorletters>G.</BG:voorletters>
-					<BG:voornamen>Gertruda</BG:voornamen>
-					<BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
-					<BG:geboortedatum>18780221</BG:geboortedatum>
-					<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-				</BG:gerelateerde>
-			</BG:inp.heeftAlsOuders>
-			<BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
-				<BG:gerelateerde StUF:entiteittype="NPS">
-					<BG:geslachtsnaam>Huijgen</BG:geslachtsnaam>
-					<BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-					<BG:voorletters>J.J.</BG:voorletters>
-					<BG:voornamen>Jaap Jan</BG:voornamen>
-					<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
-					<BG:geboortedatum>18740824</BG:geboortedatum>
-					<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-				</BG:gerelateerde>
-			</BG:inp.heeftAlsOuders>
-			<BG:inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT">
-				<BG:gerelateerde StUF:entiteittype="NAT">
-					<BG:code>0001</BG:code>
-					<BG:omschrijving>Nederlandse</BG:omschrijving>
-				</BG:gerelateerde>
-				<BG:inp.redenVerkrijging>001</BG:inp.redenVerkrijging>
-				<BG:inp.datumVerkrijging>19010613</BG:inp.datumVerkrijging>
-			</BG:inp.heeftAlsNationaliteit>
-		</BG:object>
-	</BG:antwoord>
-</BG:npsLa01></soapenv:Body></soapenv:Envelope>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <BG:npsLa01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:a="http://www.egem.nl/StUF/StUF0301" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <BG:stuurgegevens>
+        <StUF:berichtcode>La01</StUF:berichtcode>
+        <StUF:zender>
+          <BG:organisatie>test1</BG:organisatie>
+          <BG:applicatie>test</BG:applicatie>
+        </StUF:zender>
+        <StUF:ontvanger>
+          <BG:organisatie>0518</BG:organisatie>
+          <BG:applicatie>LBA</BG:applicatie>
+        </StUF:ontvanger>
+        <StUF:tijdstipBericht>20241014193057291</StUF:tijdstipBericht>
+        <StUF:crossRefnummer>3f8aed9f-307d-4bca-8081-aaabaa9202df</StUF:crossRefnummer>
+        <StUF:entiteittype>NPS</StUF:entiteittype>
+      </BG:stuurgegevens>
+      <BG:parameters>
+        <StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+        <StUF:indicatorAfnemerIndicatie>false</StUF:indicatorAfnemerIndicatie>
+        <StUF:aantalVoorkomens>1</StUF:aantalVoorkomens>
+      </BG:parameters>
+      <BG:antwoord>
+        <BG:object StUF:entiteittype="NPS">
+          <BG:inp.bsn>999993628</BG:inp.bsn>
+          <BG:inp.a-nummer>3461805105</BG:inp.a-nummer>
+          <BG:geslachtsnaam>Huijgen</BG:geslachtsnaam>
+          <BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+          <BG:voorletters>G.</BG:voorletters>
+          <BG:voornamen>Geertje</BG:voornamen>
+          <BG:aanduidingNaamgebruik>V</BG:aanduidingNaamgebruik>
+          <BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+          <BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
+          <BG:geboortedatum>19010613</BG:geboortedatum>
+          <BG:inp.geboorteplaats>Huisseling en Neerloon</BG:inp.geboorteplaats>
+          <BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+          <BG:overlijdensdatum xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+          <BG:inp.overlijdenplaats xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+          <BG:inp.overlijdenLand xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+          <BG:verblijfsadres>
+            <BG:aoa.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+            <BG:wpl.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+            <BG:wpl.woonplaatsNaam>'s-Gravenhage</BG:wpl.woonplaatsNaam>
+            <BG:aoa.woonplaatsWaarinGelegen>
+              <BG:wpl.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+              <BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+            </BG:aoa.woonplaatsWaarinGelegen>
+            <BG:gor.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+            <BG:opr.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+            <BG:gor.openbareRuimteNaam>Nieuwe Parklaan</BG:gor.openbareRuimteNaam>
+            <BG:gor.straatnaam>Nieuwe Parklaan</BG:gor.straatnaam>
+            <BG:aoa.postcode>2597LD</BG:aoa.postcode>
+            <BG:aoa.huisnummer>58</BG:aoa.huisnummer>
+            <BG:aoa.huisletter xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+            <BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+            <BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+            <BG:begindatumVerblijf>20040404</BG:begindatumVerblijf>
+          </BG:verblijfsadres>
+          <BG:inp.adresHerkomst>W</BG:inp.adresHerkomst>
+          <BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+          <BG:inp.gemeenteVanInschrijving>0518</BG:inp.gemeenteVanInschrijving>
+          <BG:inp.datumInschrijving>20040404</BG:inp.datumInschrijving>
+          <BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+          <BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
+            <BG:gerelateerde StUF:entiteittype="NPS">
+              <BG:inp.bsn>999993859</BG:inp.bsn>
+              <BG:geslachtsnaam>Kierkegaard</BG:geslachtsnaam>
+              <BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+              <BG:voorletters>C.E.C.</BG:voorletters>
+              <BG:voornamen>Carolus Engelbertus Christianus</BG:voornamen>
+              <BG:geslachtsnaamPartner>Huijgen</BG:geslachtsnaamPartner>
+              <BG:voorvoegselGeslachtsnaamPartner>0</BG:voorvoegselGeslachtsnaamPartner>
+              <BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+              <BG:geboortedatum>19000630</BG:geboortedatum>
+              <BG:inp.burgerlijkeStaat>3</BG:inp.burgerlijkeStaat>
+            </BG:gerelateerde>
+            <BG:soortVerbintenis xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+          </BG:inp.heeftAlsEchtgenootPartner>
+          <BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
+            <BG:gerelateerde StUF:entiteittype="NPS">
+              <BG:geslachtsnaam>Jansen</BG:geslachtsnaam>
+              <BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+              <BG:voorletters>G.</BG:voorletters>
+              <BG:voornamen>Gertruda</BG:voornamen>
+              <BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
+              <BG:geboortedatum>18780221</BG:geboortedatum>
+              <BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+            </BG:gerelateerde>
+          </BG:inp.heeftAlsOuders>
+          <BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
+            <BG:gerelateerde StUF:entiteittype="NPS">
+              <BG:geslachtsnaam>Huijgen</BG:geslachtsnaam>
+              <BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+              <BG:voorletters>J.J.</BG:voorletters>
+              <BG:voornamen>Jaap Jan</BG:voornamen>
+              <BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+              <BG:geboortedatum>18740824</BG:geboortedatum>
+              <BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+            </BG:gerelateerde>
+          </BG:inp.heeftAlsOuders>
+          <BG:inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT">
+            <BG:gerelateerde StUF:entiteittype="NAT">
+              <BG:code>0001</BG:code>
+              <BG:omschrijving>Nederlandse</BG:omschrijving>
+            </BG:gerelateerde>
+            <BG:inp.redenVerkrijging>001</BG:inp.redenVerkrijging>
+            <BG:inp.datumVerkrijging>19010613</BG:inp.datumVerkrijging>
+          </BG:inp.heeftAlsNationaliteit>
+        </BG:object>
+      </BG:antwoord>
+    </BG:npsLa01>
+  </soapenv:Body>
+</soapenv:Envelope>
