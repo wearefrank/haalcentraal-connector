@@ -1,5 +1,14 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.17.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.17.0...v1.17.1) (2025-02-06)
+
+### 🐛 Bug Fixes
+
+* kennisgevingen ([66a18b7](https://github.com/wearefrank/haalcentraal-connector/commit/66a18b78d0671c0ab12d678ec124abe76fc9f782))
+* larva test update ([5afa44c](https://github.com/wearefrank/haalcentraal-connector/commit/5afa44c734f4fb8b94c5b02de84c84a71736b856))
+* missing value ([0cfb9b4](https://github.com/wearefrank/haalcentraal-connector/commit/0cfb9b4f6c9192888d55dcefabf890ca6614fbf8))
+* remove unused the property ([084c0d3](https://github.com/wearefrank/haalcentraal-connector/commit/084c0d365de1b522eeef1acdba51318fac18b95e))
+
 ## [1.17.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.16.1...v1.17.0) (2025-01-31)
 
 ### 🍕 Features
