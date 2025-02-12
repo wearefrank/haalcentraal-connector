@@ -110,7 +110,7 @@
         </ReplacerPipe>
 
         <SenderPipe name="DifferentComparisonResultError">
-            <FixedResultSender returnString="good"/>
+            <FixedResultSender returnString="bad"/>
 			<JdbcMessageLog slotId="${instance.name}/comparatorStore" type="M"/>
             <Forward name="success" path="ShouldInsert" />
             <Forward name="exception" path="ShouldInsert" />
