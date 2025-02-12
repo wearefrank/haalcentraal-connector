@@ -1,30 +1,28 @@
 {
     "type": "RaadpleegMetBurgerservicenummer",
     "fields": [
-    "burgerservicenummer",
-    "adressering",
-    "datumInschrijvingInGemeente",
-    "geboorte",
-    "gemeenteVanInschrijving",
-    "geslacht",
-    "leeftijd",
-    "naam",
-    "nationaliteiten",
-    "overlijden",
-    "verblijfplaats",
-    "verblijfplaatsBinnenland",
-    "adresseringBinnenland",
-    "datumEersteInschrijvingGBA",
-    "immigratie",
-    "indicatieGezagMinderjarige",
-    "kinderen",
-    "ouders",
-    "partners",
-    "verblijfstitel"
+        "burgerservicenummer",
+        "adressering",
+        "datumInschrijvingInGemeente",
+        "geboorte",
+        "gemeenteVanInschrijving",
+        "geslacht",
+        "leeftijd",
+        "naam",
+        "nationaliteiten",
+        "overlijden",
+        "verblijfplaats",
+        "verblijfplaatsBinnenland",
+        "adresseringBinnenland",
+        "datumEersteInschrijvingGBA",
+        "immigratie",
+        "indicatieGezagMinderjarige",
+        "kinderen",
+        "ouders",
+        "partners",
+        "verblijfstitel"
     ],
-    "gemeenteVanInschrijving": "0518",
     "burgerservicenummer": [
-    "555555021"
+        "555555021"
     ]
-    }
-    
+}

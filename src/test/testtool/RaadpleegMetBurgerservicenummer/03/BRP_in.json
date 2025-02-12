@@ -21,9 +21,10 @@
         "verblijfstitel",
         "europeesKiesrecht",
         "partners.naam.geslachtsnaam",
-        "partners.naam.voorvoegsel"
+        "partners.naam.voorvoegsel",
+        "partners.ontbindingHuwelijkPartnerschap\"",
+        "partners.soortVerbintenis"
     ],
-    "gemeenteVanInschrijving": "0518",
     "burgerservicenummer": [
         "999991243"
     ]

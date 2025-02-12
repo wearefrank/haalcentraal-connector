@@ -280,15 +280,10 @@ public class DatabaseStorage implements Storage {
 			delete(deleteQuery, maxNrOfReports);
 		}
 		if (getMaxReportRetentionDays() > -1) {
-			String expiredReportsQuery = "select count(*) from " + getTable() + " where " + getDateColumn()
-					+ " < now() - interval '" + getMaxReportRetentionDays() + " days'";
-			int numberOfExpiredReports = ladybugJdbcTemplate.queryForObject(expiredReportsQuery, Integer.class);
-			log.debug("Checked for reports older than " + getMaxReportRetentionDays() + " days: "
-					+ numberOfExpiredReports + " reports found for deletion.");
 			String deleteQuery = "delete from " + getTable() + " where " + getDateColumn()
 					+ " < now() - interval '" + getMaxReportRetentionDays() + " days'";
-			
-			ladybugJdbcTemplate.update(deleteQuery);
+			int deletedReports = ladybugJdbcTemplate.update(deleteQuery);
+			log.info(deletedReports + " reports deleted older than " + getMaxReportRetentionDays() + " days");
 		}
 	}
 

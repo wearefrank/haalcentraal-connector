@@ -20,4 +20,16 @@
         <comment>Modify column BSN</comment>
         <modifyDataType tableName="LADYBUG" columnName="BSN" newDataType="java.sql.Types.VARCHAR(9)"/>
     </changeSet>
+    <changeSet id="addColumnZender" author="Rayet Sena Akcan">
+        <comment>Add column Zender</comment>
+        <addColumn tableName="LADYBUG">
+            <column name="ZENDER" type="java.sql.Types.VARCHAR(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="addColumnOntvanger" author="Rayet Sena Akcan">
+        <comment>Add column Ontvanger</comment>
+        <addColumn tableName="LADYBUG">
+            <column name="ONTVANGER" type="java.sql.Types.VARCHAR(255)"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

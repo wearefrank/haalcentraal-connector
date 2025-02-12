@@ -16,11 +16,23 @@
                     <property name="label" value="SOAPAction"/>
                     <property name="sessionKey" value="SOAPAction" />
                 </bean>
-                <bean class="nl.nn.testtool.metadata.SessionKeyMetadataFieldExtractor">
+                <bean class="nl.nn.testtool.metadata.XpathMetadataFieldExtractor">
+                    <property name="name" value="Zender"/>
+                    <property name="label" value="Zender"/>
+                    <property name="extractFrom" value="all"/>
+                    <property name="xpath" value="//*[local-name()='zender']/*[local-name()='applicatie']/text()" />
+                </bean>
+                <bean class="nl.nn.testtool.metadata.XpathMetadataFieldExtractor">
+                    <property name="name" value="Ontvanger"/>
+                    <property name="label" value="Ontvanger"/>
+                    <property name="extractFrom" value="all"/>
+                    <property name="xpath" value="//*[local-name()='ontvanger']/*[local-name()='applicatie']/text()" />
+                </bean>
+                <bean class="nl.nn.testtool.metadata.RegexMetadataFieldExtractor">
                     <property name="name" value="BSN"/>
                     <property name="label" value="BSN"/>
                     <property name="regex" value="\b(\d{9})\b"/>
-                    <property name="sessionKey" value="originalMessage" />
+                    <property name="checkpointName" value="SessionKey originalMessage" />
                 </bean>
             </list>
         </property>
@@ -34,6 +46,8 @@
                 <value>duration</value>
                 <value>name</value>
                 <value>soapAction</value>
+                <value>Zender</value>
+                <value>Ontvanger</value>
                 <value>BSN</value>
                 <value>correlationId</value>
                 <value>status</value>

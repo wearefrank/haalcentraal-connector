@@ -1,6 +1,6 @@
 <soapenv:Envelope xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310"
     xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
-    xmlns:stuf="http://www.egem.nl/StUF/StUF0301">
+    xmlns:StUF="http://www.egem.nl/StUF/StUF0301">
     <soapenv:Header />
     <soapenv:Body>
         <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310"

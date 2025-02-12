@@ -1,13 +1,13 @@
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><BG:npsLa01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><BG:npsLa01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:a="http://www.egem.nl/StUF/StUF0301" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<BG:stuurgegevens>
 		<StUF:berichtcode>La01</StUF:berichtcode>
 		<StUF:zender>
-			<organisatie xmlns="http://www.egem.nl/StUF/StUF0301">NEDGR</organisatie>
-			<applicatie xmlns="http://www.egem.nl/StUF/StUF0301">NEDMAG_VnA</applicatie>
+			<BG:organisatie>NEDGR</BG:organisatie>
+			<BG:applicatie>NEDMAG_VnA</BG:applicatie>
 		</StUF:zender>
 		<StUF:ontvanger>
-			<organisatie xmlns="http://www.egem.nl/StUF/StUF0301">0518</organisatie>
-			<applicatie xmlns="http://www.egem.nl/StUF/StUF0301">PGAx-SG-ZVH</applicatie>
+			<BG:organisatie>0518</BG:organisatie>
+			<BG:applicatie>PGAx-SG-ZVH</BG:applicatie>
 		</StUF:ontvanger>
 		<StUF:tijdstipBericht>20241015055522843</StUF:tijdstipBericht>
 		<StUF:crossRefnummer>d5b9cd54-30cb-47c9-97f9-8f41b1314272</StUF:crossRefnummer>
@@ -20,53 +20,53 @@
 	</BG:parameters>
 	<BG:antwoord>
 		<BG:object StUF:entiteittype="NPS">
-			<inp.bsn xmlns="http://www.egem.nl/StUF/sector/bg/0310">555555021</inp.bsn>
-			<inp.a-nummer xsi:nil="true" StUF:noValue="nietGeautoriseerd" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<geslachtsnaam xmlns="http://www.egem.nl/StUF/sector/bg/0310">Verhuistest</geslachtsnaam>
-			<voorvoegselGeslachtsnaam xmlns="http://www.egem.nl/StUF/sector/bg/0310">van den</voorvoegselGeslachtsnaam>
-			<voorletters xmlns="http://www.egem.nl/StUF/sector/bg/0310">K.</voorletters>
-			<voornamen xmlns="http://www.egem.nl/StUF/sector/bg/0310">Kees</voornamen>
-			<aanduidingNaamgebruik xmlns="http://www.egem.nl/StUF/sector/bg/0310">E</aanduidingNaamgebruik>
-			<geslachtsnaamPartner xsi:nil="true" StUF:noValue="nietGeautoriseerd" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<geslachtsaanduiding xmlns="http://www.egem.nl/StUF/sector/bg/0310">M</geslachtsaanduiding>
-			<geboortedatum xmlns="http://www.egem.nl/StUF/sector/bg/0310">20020701</geboortedatum>
-			<inp.geboorteplaats xmlns="http://www.egem.nl/StUF/sector/bg/0310">Hellevoetsluis</inp.geboorteplaats>
-			<inp.geboorteLand xmlns="http://www.egem.nl/StUF/sector/bg/0310">6030</inp.geboorteLand>
-			<overlijdensdatum xsi:nil="true" StUF:noValue="waardeOnbekend" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<inp.overlijdenplaats xsi:nil="true" StUF:noValue="nietGeautoriseerd" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<inp.overlijdenLand xsi:nil="true" StUF:noValue="nietGeautoriseerd" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<verblijfsadres xmlns="http://www.egem.nl/StUF/sector/bg/0310">
-				<aoa.identificatie>0518010001756246</aoa.identificatie>
-				<wpl.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-				<wpl.woonplaatsNaam>'s-Gravenhage</wpl.woonplaatsNaam>
-				<aoa.woonplaatsWaarinGelegen>
-					<wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-					<wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-				</aoa.woonplaatsWaarinGelegen>
-				<gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-				<opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-				<gor.openbareRuimteNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-				<gor.straatnaam>Burg Waldeckstraat</gor.straatnaam>
-				<aoa.postcode>2552TS</aoa.postcode>
-				<aoa.huisnummer>1</aoa.huisnummer>
-				<aoa.huisletter xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-				<aoa.huisnummertoevoeging>BIS</aoa.huisnummertoevoeging>
-				<inp.locatiebeschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-				<begindatumVerblijf>20150808</begindatumVerblijf>
-			</verblijfsadres>
-			<inp.adresHerkomst xmlns="http://www.egem.nl/StUF/sector/bg/0310">W</inp.adresHerkomst>
-			<inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="nietGeautoriseerd" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<inp.gemeenteVanInschrijving xmlns="http://www.egem.nl/StUF/sector/bg/0310">0518</inp.gemeenteVanInschrijving>
-			<inp.datumInschrijving xmlns="http://www.egem.nl/StUF/sector/bg/0310">20020702</inp.datumInschrijving>
-			<inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT" xmlns="http://www.egem.nl/StUF/sector/bg/0310">
-				<gerelateerde StUF:entiteittype="NAT">
-					<code xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-					<omschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-				</gerelateerde>
-				<inp.redenVerkrijging>017</inp.redenVerkrijging>
-				<inp.datumVerkrijging>20020701</inp.datumVerkrijging>
-			</inp.heeftAlsNationaliteit>
+			<BG:inp.bsn>555555021</BG:inp.bsn>
+			<BG:inp.a-nummer xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:geslachtsnaam>Verhuistest</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam>van den</BG:voorvoegselGeslachtsnaam>
+			<BG:voorletters>K.</BG:voorletters>
+			<BG:voornamen>Kees</BG:voornamen>
+			<BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>20020701</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Hellevoetsluis</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+			<BG:inp.overlijdenplaats xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.overlijdenLand xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie>0518010001756246</BG:aoa.identificatie>
+				<BG:wpl.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+				<BG:wpl.woonplaatsNaam>'s-Gravenhage</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:gor.openbareRuimteNaam>Burgemeester Waldeckstraat</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam>Burg Waldeckstraat</BG:gor.straatnaam>
+				<BG:aoa.postcode>2552TS</BG:aoa.postcode>
+				<BG:aoa.huisnummer>1</BG:aoa.huisnummer>
+				<BG:aoa.huisletter xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:aoa.huisnummertoevoeging>BIS</BG:aoa.huisnummertoevoeging>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
+				<BG:begindatumVerblijf>20150808</BG:begindatumVerblijf>
+			</BG:verblijfsadres>
+			<BG:inp.adresHerkomst>W</BG:inp.adresHerkomst>
+			<BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.gemeenteVanInschrijving>0518</BG:inp.gemeenteVanInschrijving>
+			<BG:inp.datumInschrijving>20060318</BG:inp.datumInschrijving>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT">
+				<BG:gerelateerde StUF:entiteittype="NAT">
+					<BG:code xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+					<BG:omschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+				</BG:gerelateerde>
+				<BG:inp.redenVerkrijging>017</BG:inp.redenVerkrijging>
+				<BG:inp.datumVerkrijging>20020701</BG:inp.datumVerkrijging>
+			</BG:inp.heeftAlsNationaliteit>
 		</BG:object>
 	</BG:antwoord>
 </BG:npsLa01></soapenv:Body></soapenv:Envelope>

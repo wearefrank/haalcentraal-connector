@@ -1,5 +1,134 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.17.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.17.0...v1.17.1) (2025-02-06)
+
+### 🐛 Bug Fixes
+
+* kennisgevingen ([66a18b7](https://github.com/wearefrank/haalcentraal-connector/commit/66a18b78d0671c0ab12d678ec124abe76fc9f782))
+* larva test update ([5afa44c](https://github.com/wearefrank/haalcentraal-connector/commit/5afa44c734f4fb8b94c5b02de84c84a71736b856))
+* missing value ([0cfb9b4](https://github.com/wearefrank/haalcentraal-connector/commit/0cfb9b4f6c9192888d55dcefabf890ca6614fbf8))
+* remove unused the property ([084c0d3](https://github.com/wearefrank/haalcentraal-connector/commit/084c0d365de1b522eeef1acdba51318fac18b95e))
+
+## [1.17.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.16.1...v1.17.0) (2025-01-31)
+
+### 🍕 Features
+
+* add custom code ladybug bugfix ([18762a1](https://github.com/wearefrank/haalcentraal-connector/commit/18762a1304619b43381916ba63d06f21a4371526))
+
+### 🐛 Bug Fixes
+
+* prevent null string from passing to matcher ([e31324b](https://github.com/wearefrank/haalcentraal-connector/commit/e31324b1d024b1a5f0f78e7fff2411c282a70a1d))
+
+## [1.16.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.16.0...v1.16.1) (2025-01-29)
+
+### 🐛 Bug Fixes
+
+* check the response if the title is exists ([0f03d32](https://github.com/wearefrank/haalcentraal-connector/commit/0f03d32bd932e5760255631914209c0df0b778ff))
+* error handling ([68b1011](https://github.com/wearefrank/haalcentraal-connector/commit/68b101186be43f055ca33d4ccc161406dffc32b3))
+
+## [1.16.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.7...v1.16.0) (2025-01-28)
+
+### 🍕 Features
+
+* endpoint switch ([2cf9154](https://github.com/wearefrank/haalcentraal-connector/commit/2cf9154ef54f9e06c9b6db40d02da6b039652ac6))
+* use both input and output ([630b9ce](https://github.com/wearefrank/haalcentraal-connector/commit/630b9ce1412654cc8ad8b778c7d40be848c2ce65))
+
+### 🐛 Bug Fixes
+
+* remove deleted code path from custom code compiler ([812f5de](https://github.com/wearefrank/haalcentraal-connector/commit/812f5de7da4db43923a9b23a58ba6d946d309cf9))
+* remove the namespaces ([8e31896](https://github.com/wearefrank/haalcentraal-connector/commit/8e31896a9309635a9e841e386e4c46023563ff9e))
+* update larva scenarios ([efc37a3](https://github.com/wearefrank/haalcentraal-connector/commit/efc37a3cbaa206ff061758c7699cc8e42b7e31fd))
+
+### 🧑‍💻 Code Refactoring
+
+* use different MetadataFieldExtractor ([3346e08](https://github.com/wearefrank/haalcentraal-connector/commit/3346e0835578795f411633b23e9ffa7182674e86))
+
+## [1.15.7](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.6...v1.15.7) (2025-01-20)
+
+### 🐛 Bug Fixes
+
+* request types for apps ([de3f70e](https://github.com/wearefrank/haalcentraal-connector/commit/de3f70e904ea195f8509a151d390cbd53ae5c3a0))
+
+## [1.15.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.5...v1.15.6) (2025-01-17)
+
+### 🐛 Bug Fixes
+
+* add delay back to loop ([483640f](https://github.com/wearefrank/haalcentraal-connector/commit/483640f30d363ad8b6cd8dbbf832d2c981cfc68a))
+* check if adapters are running before starting larva scenario's ([35cf2b2](https://github.com/wearefrank/haalcentraal-connector/commit/35cf2b21f2c904d41fe69f2ae45f4d4fd11ee187))
+
+## [1.15.5](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.4...v1.15.5) (2025-01-17)
+
+### 🐛 Bug Fixes
+
+* disable console auth for CI testing ([f1ece3b](https://github.com/wearefrank/haalcentraal-connector/commit/f1ece3bd018d9c0aa4891f93113a7a20bf55c500))
+* remove stagespecifics_CI ([3f406df](https://github.com/wearefrank/haalcentraal-connector/commit/3f406dfddd07848350cb475e57fe8e42adf0ecad))
+* run with isDiginetwerk=false ([f45fbfb](https://github.com/wearefrank/haalcentraal-connector/commit/f45fbfb80d018d83ac3bee08a7087c46619844f7))
+* test running in CI with custom DTAP stage ([190ba34](https://github.com/wearefrank/haalcentraal-connector/commit/190ba34560c7d50b97d6fa75b58691bb2b7a6691))
+* try specifying all env vars in startup command ([1ab7670](https://github.com/wearefrank/haalcentraal-connector/commit/1ab7670f51f93176cf6b54cb06e39bd1fa93f54f))
+
+### 🧑‍💻 Code Refactoring
+
+* adjust image name ([c1735d6](https://github.com/wearefrank/haalcentraal-connector/commit/c1735d679d4259e3cb32f9e40d01c4a895b3b65f))
+* set stubbing property ([b9e5edb](https://github.com/wearefrank/haalcentraal-connector/commit/b9e5edbbd9889e71627cc73386f9e83c6dd1dfc0))
+
+### 🔁 Continuous Integration
+
+* add automated Larva tests ([4ff7dda](https://github.com/wearefrank/haalcentraal-connector/commit/4ff7dda6503c10c76b4c91fba12e4026c5705cb5))
+
+## [1.15.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.3...v1.15.4) (2025-01-17)
+
+### 🐛 Bug Fixes
+
+* bsn update ([f623c3f](https://github.com/wearefrank/haalcentraal-connector/commit/f623c3fb49101286c6be1b3893ecf168ab7aebbc))
+* update the larva scenarios ([8031217](https://github.com/wearefrank/haalcentraal-connector/commit/803121792dbc59173f145a7ed4a6edca996f7679))
+
+## [1.15.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.2...v1.15.3) (2025-01-17)
+
+### 🐛 Bug Fixes
+
+* small things ([95be498](https://github.com/wearefrank/haalcentraal-connector/commit/95be498e79089b19f8b48285d74515fedcbf747c))
+
+## [1.15.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.1...v1.15.2) (2025-01-17)
+
+### 🐛 Bug Fixes
+
+* missing part added ([de7d0f0](https://github.com/wearefrank/haalcentraal-connector/commit/de7d0f0c667232f919295e8d97d97934fb450a9c))
+* xsl bug ([bda2018](https://github.com/wearefrank/haalcentraal-connector/commit/bda2018518733f401522d84a85f4bebff492658b))
+
+## [1.15.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.15.0...v1.15.1) (2025-01-17)
+
+### 🐛 Bug Fixes
+
+* log deletion of expired records to info ([9d92152](https://github.com/wearefrank/haalcentraal-connector/commit/9d92152f9046e525965518dd6e328f86297729c8))
+
+## [1.15.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.14.3...v1.15.0) (2025-01-16)
+
+### 🍕 Features
+
+* new columns ([c05f473](https://github.com/wearefrank/haalcentraal-connector/commit/c05f473fa684d7893f3e4315414ed8bc50435ac3))
+
+### 🐛 Bug Fixes
+
+* tests for subscription management ([7d961b0](https://github.com/wearefrank/haalcentraal-connector/commit/7d961b0f47c41b207f50a06362d9868043939c47))
+
+## [1.14.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.14.2...v1.14.3) (2025-01-16)
+
+### 🐛 Bug Fixes
+
+* remove personen insert ([86279e4](https://github.com/wearefrank/haalcentraal-connector/commit/86279e4a974642b57467c1f04951f823ba1acd5f))
+
+## [1.14.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.14.1...v1.14.2) (2025-01-15)
+
+### 🐛 Bug Fixes
+
+* pull latest version for local development ([cd0ee91](https://github.com/wearefrank/haalcentraal-connector/commit/cd0ee91bf3b7a6f6f3b67492cb39d87ed1351368))
+
+## [1.14.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.14.0...v1.14.1) (2025-01-15)
+
+### 🐛 Bug Fixes
+
+* return defaultValue when no match is found in ladybug ([443dc4b](https://github.com/wearefrank/haalcentraal-connector/commit/443dc4b769cfe6fee326b680b66b1effaa80b29a))
+
 ## [1.14.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.13.6...v1.14.0) (2025-01-14)
 
 ### 🍕 Features

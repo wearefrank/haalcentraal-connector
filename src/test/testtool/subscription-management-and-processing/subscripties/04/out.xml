@@ -1,0 +1,9 @@
+<error xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<cause/>
+	<code>TechnicalError</code>
+	<reason>No Persoon with the burgerservicenummer:999999999 is found.</reason>
+	<details/>
+	<detailsXml>
+		<dummy/>
+	</detailsXml>
+</error>

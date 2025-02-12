@@ -14,12 +14,13 @@
         "verblijfplaats",
         "verblijfplaatsBinnenland",
         "adresseringBinnenland",
+        "partners.ontbindingHuwelijkPartnerschap\"",
+        "partners.soortVerbintenis",
         "datumEersteInschrijvingGBA",
         "immigratie",
         "indicatieGezagMinderjarige",
         "verblijfstitel"
     ],
-    "gemeenteVanInschrijving": "0518",
     "burgerservicenummer": [
         "555555021"
     ]

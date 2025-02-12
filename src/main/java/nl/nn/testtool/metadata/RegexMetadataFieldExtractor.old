@@ -1,5 +1,5 @@
 /*
-   Copyright 2020, 2022-2024 WeAreFrank!, 2018 Nationale-Nederlanden
+   Copyright 2020, 2023 WeAreFrank!, 2018 Nationale-Nederlanden
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 package nl.nn.testtool.metadata;
 
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,17 +24,13 @@ import nl.nn.testtool.Checkpoint;
 import nl.nn.testtool.Report;
 
 /**
- * @author Peter Leeuwenburgh
+ * @author Jaco de Groot
  */
-public class SessionKeyMetadataFieldExtractor extends
-		DefaultValueMetadataFieldExtractor {
-	protected String sessionKey;
+public class RegexMetadataFieldExtractor extends DefaultValueMetadataFieldExtractor {
 	protected String regex;
+	protected String checkpointName;
 	protected Pattern pattern;
-
-	public void setSessionKey(String sessionKey) {
-		this.sessionKey = sessionKey;
-	}
+	protected boolean extractFromFirstCheckpointOnly = true;
 
 	public void setRegex(String regex) {
 		this.regex = regex;
@@ -44,23 +41,26 @@ public class SessionKeyMetadataFieldExtractor extends
 		}
 	}
 
+	public void setCheckpointName(String checkpointName) {
+		this.checkpointName = checkpointName;
+	}
+
+	public void setExtractFromFirstCheckpointOnly(boolean extractFromFirstCheckpointOnly) {
+		this.extractFromFirstCheckpointOnly = extractFromFirstCheckpointOnly;
+	}
+
 	public Object extractMetadata(Report report) {
 		String value = null;
 		Iterator iterator = report.getCheckpoints().iterator();
 		while (value == null && iterator.hasNext()) {
 			Checkpoint checkpoint = (Checkpoint) iterator.next();
-			String checkpointName = checkpoint.getName();
-			if (checkpointName.startsWith("SessionKey ")) {
-				String sessionKeyName = checkpointName.substring("SessionKey "
-						.length());
-				if (sessionKeyName.equals(sessionKey)) {
-					value = checkpoint.getMessage();
-					if((value != null) && (pattern != null)) {
-						Matcher matcher = pattern.matcher(value);
-						if (matcher.find()) {
-							value = matcher.group(matcher.groupCount());
-						}
-					}
+			if(checkpointName == null || checkpointName.equals(checkpoint.getName())) {
+				Matcher matcher = pattern.matcher(checkpoint.getMessage());
+				if (matcher.find()) {
+					value = matcher.group(matcher.groupCount());
+				}
+				if (extractFromFirstCheckpointOnly) {
+					break;
 				}
 			}
 		}

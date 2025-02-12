@@ -1,67 +1,43 @@
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><BG:npsLa01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<BG:stuurgegevens>
-		<StUF:berichtcode>La01</StUF:berichtcode>
-		<StUF:zender>
-			<organisatie xmlns="http://www.egem.nl/StUF/StUF0301">NEDGR</organisatie>
-			<applicatie xmlns="http://www.egem.nl/StUF/StUF0301">NEDMAG_VnA</applicatie>
-		</StUF:zender>
-		<StUF:ontvanger>
-			<organisatie xmlns="http://www.egem.nl/StUF/StUF0301"/>
-			<applicatie xmlns="http://www.egem.nl/StUF/StUF0301">LBA</applicatie>
-			<gebruiker xmlns="http://www.egem.nl/StUF/StUF0301">SH2102</gebruiker>
-		</StUF:ontvanger>
-		<StUF:tijdstipBericht>2024010814194200</StUF:tijdstipBericht>
-		<StUF:crossRefnummer>659bf66e3ee6</StUF:crossRefnummer>
-		<StUF:entiteittype>NPS</StUF:entiteittype>
-	</BG:stuurgegevens>
-	<BG:parameters>
-		<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
-		<StUF:indicatorAfnemerIndicatie>false</StUF:indicatorAfnemerIndicatie>
-		<StUF:aantalVoorkomens>1</StUF:aantalVoorkomens>
-	</BG:parameters>
-	<BG:antwoord>
-		<BG:object StUF:entiteittype="NPS">
-			<inp.bsn xmlns="http://www.egem.nl/StUF/sector/bg/0310">999993215</inp.bsn>
-			<inp.a-nummer xsi:nil="true" StUF:noValue="waardeOnbekend" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<geslachtsnaam xmlns="http://www.egem.nl/StUF/sector/bg/0310">Schoon</geslachtsnaam>
-			<voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="waardeOnbekend" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<voorletters xmlns="http://www.egem.nl/StUF/sector/bg/0310">B.</voorletters>
-			<voornamen xmlns="http://www.egem.nl/StUF/sector/bg/0310">Bernard</voornamen>
-			<aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<geslachtsnaamPartner xsi:nil="true" StUF:noValue="nietGeautoriseerd" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="nietGeautoriseerd" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<aanhefAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<voornamenAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="nietGeautoriseerd" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<geslachtsaanduiding xmlns="http://www.egem.nl/StUF/sector/bg/0310">M</geslachtsaanduiding>
-			<geboortedatum xmlns="http://www.egem.nl/StUF/sector/bg/0310">19710728</geboortedatum>
-			<inp.geboorteplaats xsi:nil="true" StUF:noValue="waardeOnbekend" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<inp.geboorteLand xsi:nil="true" StUF:noValue="waardeOnbekend" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<overlijdensdatum xsi:nil="true" StUF:noValue="waardeOnbekend" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<sub.verblijfBuitenland xmlns="http://www.egem.nl/StUF/sector/bg/0310">
-				<lnd.landcode xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-				<lnd.landnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-				<sub.adresBuitenland1 xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-				<sub.adresBuitenland2 xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-				<sub.adresBuitenland3 xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-			</sub.verblijfBuitenland>
-			<sub.correspondentieAdres xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<sub.telefoonnummer xsi:nil="true" StUF:noValue="nietGeautoriseerd" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<sub.faxnummer xsi:nil="true" StUF:noValue="nietGeautoriseerd" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<sub.emailadres xsi:nil="true" StUF:noValue="nietGeautoriseerd" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<sub.url xsi:nil="true" StUF:noValue="nietGeautoriseerd" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="nietGeautoriseerd" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="nietGeautoriseerd" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="waardeOnbekend" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<inp.immigratieLand xsi:nil="true" StUF:noValue="nietGeautoriseerd" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="waardeOnbekend" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<inp.emigratieLand xsi:nil="true" StUF:noValue="waardeOnbekend" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="waardeOnbekend" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-			<inp.indicatieGeheim xsi:nil="true" StUF:noValue="waardeOnbekend" xmlns="http://www.egem.nl/StUF/sector/bg/0310"/>
-		</BG:object>
-	</BG:antwoord>
-</BG:npsLa01></soapenv:Body></soapenv:Envelope>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><SOAP-ENV:Fault xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310"
+                xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+                xmlns:StUF="http://www.egem.nl/StUF/StUF0301"
+                xmlns:ZKN="http://www.egem.nl/StUF/sector/zkn/0310"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <faultcode>SOAP-ENV:Server</faultcode>
+   <faultstring>some negative response from BRP API Personen received by PostBRPPersonenBevragenTestEnv</faultstring>
+   <detail>
+      <StUF:Fo03Bericht>
+         <StUF:stuurgegevens>
+            <StUF:berichtcode>Fo03</StUF:berichtcode>
+            <StUF:zender>
+               <StUF:organisatie>NEDGR</StUF:organisatie>
+               <StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
+            </StUF:zender>
+            <StUF:ontvanger>
+               <StUF:organisatie/>
+               <StUF:applicatie>LBA</StUF:applicatie>
+               <StUF:gebruiker>SH2102</StUF:gebruiker>
+            </StUF:ontvanger>
+            <StUF:referentienummer>659bf66e3ee6</StUF:referentienummer>
+            <StUF:tijdstipBericht>2024010814194200</StUF:tijdstipBericht>
+            <StUF:crossRefnummer>659bf66e3ee6</StUF:crossRefnummer>
+         </StUF:stuurgegevens>
+         <StUF:body>
+            <StUF:code>500</StUF:code>
+            <StUF:plek>server</StUF:plek>
+            <StUF:omschrijving>some negative response from BRP API Personen received by PostBRPPersonenBevragenTestEnv</StUF:omschrijving>
+            <StUF:details>TechnicalError some negative response from BRP API Personen received by PostBRPPersonenBevragenTestEnv </StUF:details>
+            <StUF:detailsXML>
+               <detailsXml>
+                  <root>
+                     <root>
+                        <text>The app LBA is not allowed for this request</text>
+                     </root>
+                  </root>
+               </detailsXml>
+            </StUF:detailsXML>
+         </StUF:body>
+      </StUF:Fo03Bericht>
+   </detail>
+</SOAP-ENV:Fault>
+</soapenv:Body></soapenv:Envelope>
