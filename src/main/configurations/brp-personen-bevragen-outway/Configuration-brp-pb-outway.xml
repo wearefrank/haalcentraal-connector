@@ -94,7 +94,7 @@
 			</EchoPipe>
 
 			<!-- Call proefomgeving sender -->
-			<SenderPipe name="BrpCallProefomgevingSender">
+			<SenderPipe name="BrpCallProefomgevingSender" storeResultInSessionKey="proefomgevingResult">
 				<IbisLocalSender name="RequestFromProefomgevingSender"
 					javaListener="BrpCallProefomgeving">					
 				</IbisLocalSender>
