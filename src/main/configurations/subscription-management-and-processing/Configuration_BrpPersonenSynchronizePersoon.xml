@@ -81,30 +81,52 @@
             <Param name="currentPersonData" sessionKey="currentPersonData" />
         </SenderPipe>
         
-        <SenderPipe name="JsonHashHasDifference" preserveInput="true" storeResultInSessionKey="JsonHasHasDifferenceResult">
+        <SenderPipe name="JsonHashHasDifference" preserveInput="true" storeResultInSessionKey="JsonHashHasDifferenceResult">
             <IbisLocalSender javaListener="JsonHashHasDifferenceReceiver">
                 <Param name="storedPersonRecord" sessionKey="storedPersonRecord"
                     xpathExpression="result/rowset/row/field[@name='DATA']" />
                 <Param name="currentPersonData" sessionKey="currentPersonData" />
             </IbisLocalSender>
-            <Forward name="success" path="checkComparatorResults"/>
+            <Forward name="success" path="checkIfSame"/>
         </SenderPipe>
 
-        <IfPipe name="checkComparatorResults" xpathExpression="$JsonHasHasDifferenceResult = $JsonComparatorResult" getInputFromFixedValue="&lt;dummy/&gt;">
-            <Param name="JsonHasHasDifferenceResult" sessionKey="JsonHasHasDifferenceResult" type="STRING"/>
+        <XsltPipe name="checkIfSame" xpathExpression="$JsonHashHasDifferenceResult = $JsonComparatorResult" storeResultInSessionKey="check" getInputFromFixedValue="&lt;dummy/&gt;">
+            <Param name="JsonHashHasDifferenceResult" sessionKey="JsonHashHasDifferenceResult" type="STRING"/>
             <Param name="JsonComparatorResult" sessionKey="JsonComparatorResult" type="STRING"/>
-            <Forward name="then" path="ShouldInsert" />
-            <Forward name="else" path="PutInMessageStore" />
+        </XsltPipe>
+
+        <IfPipe name="checkComparatorResults" xpathExpression="$check" getInputFromFixedValue="&lt;dummy/&gt;">
+            <Param name="check" sessionKey="check"/>
+            <Forward name="then" path="SameComparisonResultLog" />
+            <Forward name="else" path="ConcatSessionKeys" />
         </IfPipe>
 
-        <SenderPipe name="PutInMessageStore" getInputFromSessionKey="cid">
-            <MessageStoreSender slotId="${instance.name}/comparatorStore" />
+        <ReplacerPipe name="ConcatSessionKeys" getInputFromFixedValue="?{JsonHashHasDifferenceResult}\0?{JsonComparatorResult}\0?{storedPersonRecord}\0?{currentPersonData}">
+            <Param name="JsonHashHasDifferenceResult" sessionKey="JsonHashHasDifferenceResult" />
+            <Param name="JsonComparatorResult" sessionKey="JsonComparatorResult" />
+            <Param name="storedPersonRecord" sessionKey="storedPersonRecord"
+                   xpathExpression="result/rowset/row/field[@name='DATA']" />
+            <Param name="currentPersonData" sessionKey="currentPersonData" />
+        </ReplacerPipe>
+
+        <SenderPipe name="DifferentComparisonResultError">
+            <FixedResultSender returnString="good"/>
+			<JdbcMessageLog slotId="${instance.name}/comparatorStore" type="M"/>
             <Forward name="success" path="ShouldInsert" />
             <Forward name="exception" path="ShouldInsert" />
         </SenderPipe>
 
+        <SenderPipe name="SameComparisonResultLog">
+            <FixedResultSender returnString="good"/>
+			<JdbcMessageLog slotId="${instance.name}/comparatorStore" storeFullMessage="false"/>
+            <Forward name="success" path="ShouldInsert" />
+            <Forward name="exception" path="ShouldInsert" />
+        </SenderPipe>
+
+        <!-- <EchoPipe name="SameComparisonResultCounter"></EchoPipe> -->
+
         <!-- Conditional check to insert new data if changes are detected -->
-        <IfPipe name="ShouldInsert" expressionValue="true" getInputFromSessionKey="JsonComparatorResult"> 
+        <IfPipe name="ShouldInsert" expressionValue="true" getInputFromSessionKey="JsonComparatorResult">
             <Forward name="then" path="InsertPersoon" />
             <Forward name="else" path="NotUpdatedExit" />
         </IfPipe>
