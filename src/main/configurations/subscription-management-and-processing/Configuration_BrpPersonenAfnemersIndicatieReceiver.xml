@@ -134,6 +134,7 @@
 					javaListener="QueueNotificationTask">
 					<Param name="PersonenDatabaseResult" sessionKey="PersonenDatabaseResult" />
 					<Param name="ApplicationId" sessionKey="applicationId" />
+					<Param name="mutatiesoort" value="T" />
 				</IbisLocalSender>
 				<Forward name="success" path="WrapBv03Response" />
 			</SenderPipe>

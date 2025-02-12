@@ -26,6 +26,7 @@
     <xsl:variable name="external-data" select="document('woonplaatsen.xml')" as="node()?" />
     <xsl:param name="geslachtsnaam"><xsl:value-of select="/root/personen/naam/geslachtsnaam"/></xsl:param>
     <xsl:param name="voorvoegsel"><xsl:value-of select="count(/root/personen/naam/voorvoegsel)"/></xsl:param>
+    <xsl:param name="mutatiesoort"><xsl:value-of select="/root/mutatiesoort/text()"/></xsl:param>
     
     <xsl:template match="/">
         <xsl:apply-templates select="$inputnpsLk01//BG:npsLk01">
@@ -399,7 +400,7 @@
     
     <xsl:template match="BG:parameters">
         <BG:parameters>
-            <StUF:mutatiesoort><xsl:value-of select="$afnemersindicatieInput//*[local-name()='parameters']/*[local-name()='mutatiesoort']/text()"/></StUF:mutatiesoort>
+            <StUF:mutatiesoort><xsl:value-of select="$mutatiesoort"/></StUF:mutatiesoort>
             <StUF:indicatorOvername><xsl:value-of select="$afnemersindicatieInput//*[local-name()='parameters']/*[local-name()='indicatorOvername']/text()"/></StUF:indicatorOvername>
         </BG:parameters>     
     </xsl:template>

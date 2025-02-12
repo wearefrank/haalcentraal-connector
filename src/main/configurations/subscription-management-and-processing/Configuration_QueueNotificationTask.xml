@@ -17,9 +17,10 @@
 				<Param name="body" sessionKey="PersonenDatabaseResult" xpathExpression="substring(//field[@name='DATA'], 2)" />
 			</PutInSessionPipe>
 
-			<ReplacerPipe name="ConcatinateAppidToPersonenData" getInputFromFixedValue="{&quot;applicationId&quot;: &quot;?{appId}&quot;, ?{body}" storeResultInSessionKey="taskBody" >
+			<ReplacerPipe name="ConcatinateAppidToPersonenData" getInputFromFixedValue="{&quot;applicationId&quot;: &quot;?{appId}&quot;,&quot;mutatiesoort&quot;: &quot;?{mutatiesoort}&quot;, ?{body}" storeResultInSessionKey="taskBody" >
 				<Param name="appId" sessionKey="ApplicationId"/>
 				<Param name="body" sessionKey="body" />
+                <Param name="mutatiesoort" sessionKey="mutatiesoort" />
 			</ReplacerPipe>
 
 			<SenderPipe name="PutTaskInTaskstore" getInputFromSessionKey="taskBody">
