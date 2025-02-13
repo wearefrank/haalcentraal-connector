@@ -1,6 +1,8 @@
 {
     "applicationId": "LBA",
     "mutatiesoort": "T",
+    "gebruiker": "",
+    "administratie": "",
     "personen": [
         {
             "aNummer": "3959725474",
