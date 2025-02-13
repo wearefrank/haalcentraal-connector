@@ -1,6 +1,6 @@
 <Adapter name="ShadowReceiver" description="">
     <Receiver name="ShadowReceiver">
-        <ApiListener name="ShadowListener" uriPattern="${haalcentraal_connector.shadow.endpoint}" method="POST"/>
+        <ApiListener name="ShadowListener" uriPattern="${haalcentraal_connector.shadow.endpoint}" method="POST"  allowAllParams="false"/>
     </Receiver>
 
     <Pipeline>

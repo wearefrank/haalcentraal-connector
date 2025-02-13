@@ -2,7 +2,7 @@
     <Adapter name="EndpointRouter"
         description="">
         <Receiver name="SoapEndpointRouter">
-            <ApiListener name="SoapEndpointRouter" uriPattern="${haalcentraal_connector.soap.endpoint}" method="POST" headerParams="gemeenteVanInschrijving,SOAPAction"/>
+            <ApiListener name="SoapEndpointRouter" uriPattern="${haalcentraal_connector.soap.endpoint}" method="POST" allowAllParams="false" headerParams="gemeenteVanInschrijving,SOAPAction"/>
         </Receiver>
 
         <Pipeline>

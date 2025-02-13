@@ -9,7 +9,7 @@
 		</Receiver>
 
 		<Receiver name="NotificationProcessorApi" active="${NotificationProcessorApi.active}">
-			<ApiListener name="NotificationProcessorApiListener" uriPattern="notification" method="POST"  />
+			<ApiListener name="NotificationProcessorApiListener" uriPattern="notification" method="POST" allowAllParams="false" />
 		</Receiver>
 
 		<Pipeline>

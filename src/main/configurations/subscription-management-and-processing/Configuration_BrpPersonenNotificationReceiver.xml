@@ -9,7 +9,7 @@
 		</Receiver>
         
         <Receiver name="RestEndpointRouter">
-			<ApiListener name="RestEndpointRouter" uriPattern="${haalcentraal_connector.notification.rest.endpoint}" method="POST"/>
+			<ApiListener name="RestEndpointRouter" uriPattern="${haalcentraal_connector.notification.rest.endpoint}" method="POST"  allowAllParams="false"/>
 		</Receiver>
 
 		<Pipeline>
