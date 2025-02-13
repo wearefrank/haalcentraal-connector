@@ -62,7 +62,7 @@
 				<Param name="organisatie" sessionKey="FilteredApplication" xpathExpression="/root/app/organisatie"/>
 				<Param name="gebruiker" xpathExpression="/root/gebruiker"/>
 				<Param name="administratie" xpathExpression="/root/administratie"/>
-				<Param name="referentienummer" pattern="uuid"/>
+				<Param name="referentienummer" pattern="{uuid}"/>
 				<Param name="mutatiesoort" xpathExpression="/root/mutatiesoort"/>
 				<Param name="varZenderApplicatie" xpathExpression="/root/applicationId"/>
 				<!-- <Forward name="success" path="callback" /> -->
