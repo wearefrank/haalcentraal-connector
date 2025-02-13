@@ -14,15 +14,11 @@ services:
       dtap.stage: STUB
 
       # Console Authentication
-      application.security.console.authentication.type: IN_MEMORY
-      application.security.console.authentication.username: ADMIN
-      application.security.console.authentication.password: PASSWORD1234
+      application.security.console.authentication.type: NONE
 
       # HTTP Authentication config
       application.security.http.authenticators: inMem
-      application.security.http.authenticators.inMem.type: IN_MEMORY
-      application.security.http.authenticators.inMem.username: ADMIN
-      application.security.http.authenticators.inMem.password: PASSWORD1234
+      application.security.http.authenticators.inMem.type: NONE
 
       # Assign authenticator to LarvaServlet
       servlet.LarvaServlet.authenticator: inMem

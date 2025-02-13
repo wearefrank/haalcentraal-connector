@@ -26,7 +26,7 @@
                 ignoreUnknownNamespaces="true"
                 wsdl="xsd/Bg0310_20211208_patch32/WSC_HLN_BG310_Volgindicatie_172030028052150900416737000015.wsdl"
                 >
-                <Forward name="success" path="LegalizeSoapActionForPipeName"/>
+                <Forward name="success" path="UnwrapSoapMessage"/>
                 <Forward name="failure" path="ValidateInput2"/>
             </WsdlXmlValidatorPipe>
 
@@ -48,6 +48,15 @@
                 <Forward name="true" path="LegalizeSoapActionForPipeName" />
                 <Forward name="false" path="InvalidXml" />
             </XmlSwitchPipe>
+
+            <SoapWrapperPipe 
+                name="UnwrapSoapMessage"
+                direction="UNWRAP"
+                storeResultInSessionKey="Stuurgegevens"
+                >
+                <Forward name="success" path="LegalizeSoapActionForPipeName"/>
+                <Forward name="exception" path="BackEndError"/>
+            </SoapWrapperPipe>
 
             <XsltPipe
                 name="LegalizeSoapActionForPipeName"
