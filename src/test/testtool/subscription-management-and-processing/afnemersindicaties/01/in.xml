@@ -4,6 +4,8 @@
       <zender xmlns="http://www.egem.nl/StUF/StUF0301">
          <organisatie>1883</organisatie>
          <applicatie>LBA</applicatie>
+         <gebruiker>SH9999</gebruiker>
+         <administratie>B.1234</administratie>
       </zender>
       <ontvanger xmlns="http://www.egem.nl/StUF/StUF0301">
          <organisatie>NEDGR</organisatie>
