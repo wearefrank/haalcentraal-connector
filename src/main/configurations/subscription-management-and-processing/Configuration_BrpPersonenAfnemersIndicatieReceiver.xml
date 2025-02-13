@@ -23,8 +23,10 @@
 			</LocalFileSystemPipe>
 
 			<PutInSessionPipe name="ExtractDataFromInput">
-				<Param name="bsn" sessionKey="originalMessage" xpathExpression="npsLk01/object/inp.bsn" />
-				<Param name="applicationId" sessionKey="originalMessage" xpathExpression="npsLk01/stuurgegevens/zender/applicatie" />
+				<Param name="bsn" sessionKey="originalMessage" xpathExpression="/npsLk01/object/inp.bsn" />
+				<Param name="gebruiker" sessionKey="originalMessage" xpathExpression="/npsLk01/stuurgegevens/zender/gebruiker" />
+				<Param name="administratie" sessionKey="originalMessage" xpathExpression="/npsLk01/stuurgegevens/zender/administratie" />
+				<Param name="applicationId" sessionKey="originalMessage" xpathExpression="/npsLk01/stuurgegevens/zender/applicatie" />
 			</PutInSessionPipe>
 
 			<IfPipe name="IfBsnPresent" getInputFromSessionKey="bsn" preserveInput="true">
@@ -135,6 +137,8 @@
 					<Param name="PersonenDatabaseResult" sessionKey="PersonenDatabaseResult" />
 					<Param name="ApplicationId" sessionKey="applicationId" />
 					<Param name="mutatiesoort" value="T" />
+					<Param name="gebruiker" sessionKey="gebruiker" />
+					<Param name="administratie" sessionKey="administratie" />
 				</IbisLocalSender>
 				<Forward name="success" path="WrapBv03Response" />
 			</SenderPipe>
