@@ -54,7 +54,7 @@
 				active="${isDiginetwerk}">
 				<IbisLocalSender name="RequestFromDiginetwerkSender"
 					javaListener="BrpCallDiginetwerk">
-					<Param name="token" sessionKey="token" />					
+					<Param name="token" sessionKey="token" />
 				</IbisLocalSender>
 				<Forward name="success" path="checkTheResponse" />
 				<Forward name="exception" path="Exception" />
@@ -88,15 +88,16 @@
 				<Forward name="else" path="ReturnDiginetwerkResult" />
 			</IfPipe>
 
-			<EchoPipe name="ReturnDiginetwerkResult" getInputFromFixedValue="diginetwerkResult"
+			<EchoPipe name="ReturnDiginetwerkResult" getInputFromSessionKey="diginetwerkResult"
 				active="${isDiginetwerk}">
 				<Forward name="success" path="Exception" />
 			</EchoPipe>
 
 			<!-- Call proefomgeving sender -->
-			<SenderPipe name="BrpCallProefomgevingSender" storeResultInSessionKey="proefomgevingResult">
+			<SenderPipe name="BrpCallProefomgevingSender"
+				storeResultInSessionKey="proefomgevingResult">
 				<IbisLocalSender name="RequestFromProefomgevingSender"
-					javaListener="BrpCallProefomgeving">					
+					javaListener="BrpCallProefomgeving">
 				</IbisLocalSender>
 				<Forward name="exception" path="BadRequest" />
 			</SenderPipe>
