@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.17.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.17.2...v1.17.3) (2025-02-13)
+
+### 🐛 Bug Fixes
+
+* missing person information ([6bdfd04](https://github.com/wearefrank/haalcentraal-connector/commit/6bdfd04eced9f643fe04103bd24104e2a45562ad))
+
 ## [1.17.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.17.1...v1.17.2) (2025-02-13)
 
 ### 🐛 Bug Fixes
