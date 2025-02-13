@@ -13,20 +13,23 @@
     >
     
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
-    <xsl:param name="varZenderApplicatie"><xsl:value-of select="$afnemersindicatieInput//*[local-name()='zender']/*[local-name()='applicatie']/text()" /></xsl:param>
     <xsl:param name="aantalVoorkomens"><xsl:value-of select="count(/root/personen)"/></xsl:param>
-    <xsl:param name="afnemersindicatieInput" select="document('afnemersindicatieInput.xml')" as="node()?" />
+    <xsl:param name="gebruiker" />
+    <xsl:param name="administratie" />
+    <xsl:param name="varZenderApplicatie" />
+    <xsl:param name="referentienummer" />
+    <xsl:param name="organisatie"/>
+    <xsl:param name="mutatiesoort"/>
     <xsl:param name="inputnpsLk01" select="document('npsLk01.xml')" as="node()?" />
     <xsl:variable name="geenWaarde">geenWaarde</xsl:variable>
     <xsl:variable name="waardeOnbekend">waardeOnbekend</xsl:variable>
     <xsl:variable name="nietGeautoriseerd">nietGeautoriseerd</xsl:variable>
     <xsl:variable name="authorizedApplicationsMap" select="document('authorizedApplicationsMap.xml')" as="node()?" />
-    <xsl:variable name="woonplaats"><xsl:value-of
+    <!-- <xsl:variable name="woonplaats"><xsl:value-of
             select="root/personen/verblijfplaats/verblijfadres/woonplaats" /></xsl:variable>
-    <xsl:variable name="external-data" select="document('woonplaatsen.xml')" as="node()?" />
+    <xsl:variable name="external-data" select="document('woonplaatsen.xml')" as="node()?" /> -->
     <xsl:param name="geslachtsnaam"><xsl:value-of select="/root/personen/naam/geslachtsnaam"/></xsl:param>
-    <xsl:param name="voorvoegsel"><xsl:value-of select="count(/root/personen/naam/voorvoegsel)"/></xsl:param>
-    <xsl:param name="mutatiesoort"><xsl:value-of select="/root/mutatiesoort/text()"/></xsl:param>
+    <xsl:param name="voorvoegsel"><xsl:value-of select="count(/root/personen/naam/voorvoegsel)"/></xsl:param>    
     
     <xsl:template match="/">
         <xsl:apply-templates select="$inputnpsLk01//BG:npsLk01">
@@ -377,18 +380,18 @@
             
             <StUF:ontvanger>
                 <StUF:organisatie>
-                    <xsl:value-of select="$afnemersindicatieInput//*[local-name()='zender']/*[local-name()='organisatie']/text()" />
+                    <xsl:value-of select="$organisatie" />
                 </StUF:organisatie>
                 <StUF:applicatie>
                     <xsl:value-of select="$varZenderApplicatie" />
                 </StUF:applicatie>
-                <StUF:administratie><xsl:value-of select="$afnemersindicatieInput//*[local-name()='zender']/*[local-name()='administratie']/text()" /></StUF:administratie>
+                <StUF:administratie><xsl:value-of select="$administratie" /></StUF:administratie>
                 <StUF:gebruiker>
-                    <xsl:value-of select="$afnemersindicatieInput//*[local-name()='zender']/*[local-name()='gebruiker']/text()" />
+                    <xsl:value-of select="$gebruiker" />
                 </StUF:gebruiker> 
             </StUF:ontvanger> 
             <StUF:referentienummer>
-                <xsl:value-of select="$afnemersindicatieInput//*[local-name()='referentienummer']/text()" />
+                <xsl:value-of select="$referentienummer" />
             </StUF:referentienummer> 
             <StUF:tijdstipBericht>
                 <xsl:value-of
@@ -401,17 +404,16 @@
     <xsl:template match="BG:parameters">
         <BG:parameters>
             <StUF:mutatiesoort><xsl:value-of select="$mutatiesoort"/></StUF:mutatiesoort>
-            <StUF:indicatorOvername><xsl:value-of select="$afnemersindicatieInput//*[local-name()='parameters']/*[local-name()='indicatorOvername']/text()"/></StUF:indicatorOvername>
+            <StUF:indicatorOvername>V</StUF:indicatorOvername>
         </BG:parameters>     
     </xsl:template>
     
     <xsl:template match="BG:object">
         <xsl:param name="mapping"/>
         <xsl:param name="persoon" tunnel="yes"/>
-        <BG:object>
-            <xsl:attribute name="StUF:entiteittype" select="$afnemersindicatieInput//*[local-name()='object']//@*[local-name() = 'entiteittype']"/>
-            <xsl:attribute name="StUF:verwerkingssoort" select="$afnemersindicatieInput//*[local-name()='object']//@*[local-name() = 'verwerkingssoort']"/>
-            <xsl:attribute name="StUF:sleutelVerzendend" select="$afnemersindicatieInput//*[local-name()='object']//@*[local-name() = 'sleutelVerzendend']"/>
+        <BG:object  StUF:entiteittype="NPS">
+            <xsl:attribute name="StUF:verwerkingssoort" select="$mutatiesoort"/>
+            <!-- <xsl:attribute name="StUF:sleutelVerzendend" select=""/> -->
             <xsl:apply-templates select="*[not(local-name() = ('inp.heeftAlsOuders', 'inp.heeftAlsKinderen', 'inp.heeftAlsEchtgenootPartner', 'inp.heeftAlsNationaliteit'))]">
                 <xsl:with-param name="mapping" select="$mapping/object"/>
                 <xsl:with-param name="authorizedApplicationsMap" select="$authorizedApplicationsMap/root"/>
