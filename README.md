@@ -108,3 +108,66 @@ Database structure for tasks:
 
 - **xsl/**  
   This directory contains XSL files for XML transformations.
+  ## Directory Structure
+    
+    ```plaintext
+    brp-personen-bevragen-soap/xsl/
+    ├── mappingStufToJson.xslt
+    ├── mappingJsonToStuf.xslt
+    ├── GetInputValues.xslt
+    └── fields.xml
+    ```
+    `mappingStufToJson.xslt`
+    This XSLT file converts **Stuf (npsLv01) messages** into JSON format for calling the **BRP API Personen**. The transformation determines the type of search based on the message content. There are five basic search types:
+    
+    1. **Raadpleeg met burgerservicenummer** (Query by citizen service number)
+    2. **Zoek met geslachtsnaam en geboortedatum** (Search by surname and date of birth)
+    3. **Zoek met geslachtsnaam, voornamen en gemeente van inschrijving** (Search by surname, first names, and registered municipality)
+    4. **Zoek met postcode en huisnummer** (Search by postal code and house number)
+    5. **Zoek met straat, huisnummer en gemeente van inschrijving** (Search by street, house number, and registered municipality)
+    
+    #### Additional Notes:
+    - For **search options i, ii, and iv**, sending only the **Stuf (npsLv01) message** is sufficient.
+    - For **search options iii and v**, the value of `gemeenteVanInschrijving` must be added to the headers. By default, this value is set to `0518` for testing purposes. If provided in the headers, the default value is overridden.
+    - The required fields for each application are determined using the `fields.xml` file.
+    - Based on the type of search, the necessary fields are extracted from the **Stuf (npsLv01) message**.
+    
+    `mappingJsonToStuf.xslt`
+    This XSLT file converts the **JSON response** received from the **BRP API Personen** back into the **Stuf (npsLa01) message format**. 
+    
+    #### Transformation Steps:
+    1. **Identify Necessary Values**: 
+       - Extract input values using `GetInputValues.xslt`.
+       - These values are used in the **stuurgegevens** (header data) and to determine the sending application.
+    2. **Verify Required Fields**:
+       - Check which fields from **Stuf (npsLa01)** are present in the input message.
+       - Populate the response message using the corresponding fields from the **BRP API Personen**.
+    3. **Handling Empty Fields**:
+       - If a field exists but has no value or the field is not present in the response message, the attribute `xsi:nil="true"` is set.
+       - The attribute `StUF:noValue` is assigned the value `geenWaarde` (no value).
+       - If the field is not present in the response message, the attribute StUF:noValue is added, taking the value waardeOnbekend (unknown value).
+    
+    
+    ## Directory Structure
+    
+    ```plaintext
+    subscription-management-and-processing/xsl/
+    ├── mappingJsonToStuf.xslt
+    ├── npsLk01.xml
+    ├── ControlDataToContext.xslt
+    ├── BuildError.xsl
+    ├── BackEndError.xsl
+    ├── ParseNegativeHttpResult.xsl    
+    ```
+     `mappingStufToJson.xslt`
+    This XSLT file is used to create a Stuf (npsLk01) message by placing person information into the appropriate fields based on the message format in npsLk01.xml.
+    - If a field exists but has no value or is not present in the response message, the attribute xsi:nil="true" is set.
+    - The attribute StUF:noValue is assigned the value geenWaarde (no value).
+    - If the field is not present in the response message, the attribute StUF:noValue is added with the value waardeOnbekend (unknown value).
+  
+    **Error Handling**
+  
+  The following XSL files are used to generate error messages in case of errors:
+- BuildError.xsl
+- BackEndError.xsl
+- ParseNegativeHttpResult.xsl
