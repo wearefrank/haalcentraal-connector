@@ -89,6 +89,7 @@
                     javaListener="QueueNotificationTask">
                     <Param name="PersonenDatabaseResult" sessionKey="PersonenDatabaseResult" />
                     <Param name="ApplicationId" xpathExpression="appIds/text()" />
+                    <Param name="mutatiesoort" value="W" />
                 </IbisLocalSender>
                 <Forward name="success" path="EchoSuccess" />
                 <Forward name="exception" path="EXCEPTION" />

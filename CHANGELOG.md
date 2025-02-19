@@ -1,5 +1,20 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.17.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.17.2...v1.17.3) (2025-02-13)
+
+### 🐛 Bug Fixes
+
+* missing person information ([6bdfd04](https://github.com/wearefrank/haalcentraal-connector/commit/6bdfd04eced9f643fe04103bd24104e2a45562ad))
+
+## [1.17.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.17.1...v1.17.2) (2025-02-13)
+
+### 🐛 Bug Fixes
+
+* add mutatiesoort to callback task and callback message ([05bf3ca](https://github.com/wearefrank/haalcentraal-connector/commit/05bf3ca3468b6011d9b9046b1a954483f88bba14))
+* mapping ([a582796](https://github.com/wearefrank/haalcentraal-connector/commit/a582796b5ec5a77315a3bce92fc036167e5ff2e0))
+* unwrap soap message ([52253c5](https://github.com/wearefrank/haalcentraal-connector/commit/52253c50b7026140c01c046dca74bd4fd4c6b850))
+* uuid variable ([417ed4c](https://github.com/wearefrank/haalcentraal-connector/commit/417ed4c9ca156c2783e14b8198e9c586c215f776))
+
 ## [1.17.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.17.0...v1.17.1) (2025-02-06)
 
 ### 🐛 Bug Fixes
