@@ -1,0 +1,43 @@
+<Adapter name="JsonHashHasDifference">
+    <Receiver name="JsonHashHasDifferenceReceiver">
+        <JavaListener name="JsonHashHasDifferenceReceiver" />
+    </Receiver>
+
+    <Pipeline>
+        <Exits>
+            <Exit name="EXIT" state="SUCCESS"/>
+        </Exits>
+
+        <DataSonnetPipe name="sortJsonKeys1" getInputFromSessionKey="storedPersonRecord" styleSheetName="jsonnet/sortKeys.jsonnet" onlyIfSessionKey="storedPersonRecord" />
+        
+        <HashPipe name="hashJson1" algorithm="SHA256" storeResultInSessionKey="storedPersonRecordHash" onlyIfSessionKey="storedPersonRecord" />
+        
+        <PutInSessionPipe name="Json1Null" unlessSessionKey="storedPersonRecord">
+            <Param name="storedPersonRecordHash" value="" />
+        </PutInSessionPipe>
+
+
+        <DataSonnetPipe name="sortJsonKeys2" getInputFromSessionKey="currentPersonData" styleSheetName="jsonnet/sortKeys.jsonnet" onlyIfSessionKey="currentPersonData" />
+        
+        <HashPipe name="hashJson2" algorithm="SHA256" storeResultInSessionKey="currentPersonDataHash" onlyIfSessionKey="currentPersonData"/>
+
+        <PutInSessionPipe name="Json2Null" unlessSessionKey="currentPersonData">
+            <Param name="currentPersonDataHash" value="" />
+        </PutInSessionPipe>
+
+        <IfPipe name="checkHash" xpathExpression="$storedPersonRecordHash = $currentPersonDataHash" getInputFromFixedValue="&lt;dummy/&gt;">
+            <Param name="storedPersonRecordHash" sessionKey="storedPersonRecordHash" type="STRING"/>
+            <Param name="currentPersonDataHash" sessionKey="currentPersonDataHash" type="STRING"/>
+            <Forward name="then" path="HasDifferenceFalse" />
+            <Forward name="else" path="HasDifferenceTrue" />
+        </IfPipe>
+
+        <EchoPipe name="HasDifferenceTrue" getInputFromFixedValue="true">
+            <Forward name="success" path="EXIT"/>
+        </EchoPipe>
+        
+        <EchoPipe name="HasDifferenceFalse" getInputFromFixedValue="false">
+            <Forward name="success" path="EXIT"/>
+        </EchoPipe>
+    </Pipeline>
+</Adapter>
