@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.17.5](https://github.com/wearefrank/haalcentraal-connector/compare/v1.17.4...v1.17.5) (2025-02-19)
+
+### 🧑‍💻 Code Refactoring
+
+* good to bad ([9e4d775](https://github.com/wearefrank/haalcentraal-connector/commit/9e4d77555cc585edf51596372fddc6a7a646f22f))
+
 ## [1.17.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.17.3...v1.17.4) (2025-02-19)
 
 ### 🐛 Bug Fixes
