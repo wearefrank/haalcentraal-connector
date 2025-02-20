@@ -13,7 +13,7 @@ services:
       credentialFactory.map.properties: /opt/frank/secrets/credentials.properties
       TZ: ${TIME_ZONE:-Europe/Amsterdam}
       ibistesttool.maxStorageSize: -1
-      ibistesttool.maxReportRetentionDays: 30
+      ibistesttool.maxStorageDays: 30
     env_file:
       - .env
     volumes:
