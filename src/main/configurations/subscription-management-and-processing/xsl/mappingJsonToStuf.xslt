@@ -443,12 +443,12 @@
         <xsl:variable name="mappedElement" select="$mapping/*[name()=current()/local-name()]" />
         <xsl:variable name="newAuthorizedApplicationsMap" select="$authorizedApplicationsMap/*[name()=current()/local-name()]" />
         <xsl:if test="$mappedElement[not(@doNotCreate='true')]">
-            <xsl:element name="{$prefix}:{local-name()}" exclude-result-prefixes=""> <!-- Prefix ekleniyor -->
+            <xsl:element name="{$prefix}:{local-name()}" exclude-result-prefixes=""> <!-- Adding prefix -->
                 <xsl:copy-of select="@*" />
                 <xsl:apply-templates select="*">
                     <xsl:with-param name="mapping" select="$mappedElement" />
                     <xsl:with-param name="authorizedApplicationsMap" select="$newAuthorizedApplicationsMap" />
-                    <xsl:with-param name="prefix" select="$prefix" /> <!-- Alt elemanlara prefix geçiriliyor -->
+                    <xsl:with-param name="prefix" select="$prefix" /> <!-- Passing prefix to child elements -->
                 </xsl:apply-templates>
             </xsl:element>
         </xsl:if>
