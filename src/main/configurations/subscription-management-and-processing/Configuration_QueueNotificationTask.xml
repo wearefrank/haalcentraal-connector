@@ -14,15 +14,18 @@
             <!-- ApplicationId, the id of the subscriber -->
 
             <PutInSessionPipe name="getPersonen" getInputFromSessionKey="PersonenDatabaseResult">
-                <Param name="personen" xpathExpression="result/rowset/row/field[@name='DATA']" />
+                <Param name="personen" xpathExpression="result/rowset/row/field[@name='DATA']" type="STRING" />
             </PutInSessionPipe>
 
-            <DataSonnetPipe name="ExtractPersonenBody" storeResultInSessionKey="personen" getInputFromSessionKey="personen"
-                styleSheetName="jsonnet/ExtractBody.jsonnet" />
+            <ReplacerPipe name="ConvertToString" getInputFromFixedValue="?{personen}" storeResultInSessionKey="stringResult">
+                <Param name="personen" sessionKey="personen" />
+            </ReplacerPipe>
+
+            <DataSonnetPipe name="ExtractPersonenBody" storeResultInSessionKey="personenBody" styleSheetName="jsonnet/ExtractBody.jsonnet" />
 
             <DataSonnetPipe name="CreateTaskBody" storeResultInSessionKey="taskBody" styleSheetName="jsonnet/CreateTask.jsonnet">
                 <Param name="appId" sessionKey="ApplicationId"/>
-                <Param name="personen" sessionKey="personen" />
+                <Param name="personen" sessionKey="personenBody" />
                 <Param name="mutatiesoort" sessionKey="mutatiesoort" />
                 <Param name="gebruiker" sessionKey="gebruiker" />
                 <Param name="administratie" sessionKey="administratie" />

@@ -5,5 +5,5 @@
     "administratie": administratie,
     "afnemersSleutel": afnemersSleutel,
     "persoonsSleutel": persoonsSleutel,
-    "personen": personen
+    "personen": personen.personen
 }
