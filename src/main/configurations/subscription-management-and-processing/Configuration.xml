@@ -7,6 +7,7 @@
     <!ENTITY BrpPersonenNotificationReceiver SYSTEM "Configuration_BrpPersonenNotificationReceiver.xml">
     <!ENTITY BrpPersonenCallbackSender SYSTEM "Configuration_BrpPersonenCallbackSender.xml">
     <!ENTITY EndpointRouter SYSTEM "Configuration_EndpointRouter.xml">
+    <!ENTITY JsonHashHasDifference SYSTEM "Configuration_JsonHashHasDifference.xml">
     <!ENTITY BrpPersonenAfnemersIndicatieReceiver SYSTEM "Configuration_BrpPersonenAfnemersIndicatieReceiver.xml">
     <!ENTITY QueueNotificationTask SYSTEM "Configuration_QueueNotificationTask.xml">
     <!ENTITY CreateBulkImportTasks SYSTEM "Configuration_CreateBulkImportTasks.xml">
@@ -22,6 +23,7 @@
 	&BrpPersonenNotificationReceiver;
 	&BrpPersonenCallbackSender;
 	&EndpointRouter;
+    &JsonHashHasDifference;
 	&BrpPersonenAfnemersIndicatieReceiver;
     &QueueNotificationTask;
 	&CreateBulkImportTasks;
