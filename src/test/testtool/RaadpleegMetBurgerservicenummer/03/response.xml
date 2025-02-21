@@ -10,7 +10,7 @@
 			<BG:applicatie>DEC_ZKN</BG:applicatie>
 			<BG:gebruiker>Test1</BG:gebruiker>
 		</StUF:ontvanger>
-		<StUF:tijdstipBericht>20241014152137643</StUF:tijdstipBericht>
+		<StUF:tijdstipBericht>20250221021412</StUF:tijdstipBericht>
 		<StUF:crossRefnummer>2d8e1294-7238-428f-ae2b-69ed723aa64f</StUF:crossRefnummer>
 		<StUF:entiteittype>NPS</StUF:entiteittype>
 	</BG:stuurgegevens>
@@ -41,7 +41,6 @@
 			<BG:overlijdensdatum xsi:nil="true" StUF:noValue="waardeOnbekend"/>
 			<BG:verblijfsadres>
 				<BG:aoa.identificatie>0518013530058001</BG:aoa.identificatie>
-				<BG:wpl.identificatie>1245</BG:wpl.identificatie>
 				<BG:wpl.woonplaatsNaam>'s-Gravenhage</BG:wpl.woonplaatsNaam>
 				<BG:aoa.woonplaatsWaarinGelegen>
 					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>

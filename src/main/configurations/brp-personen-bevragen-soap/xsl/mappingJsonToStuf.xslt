@@ -148,9 +148,9 @@
                                         <xsl:when test="./verblijfplaats/type/text() = &apos;Adres&apos;">
                                             <verblijfsadres>
                                                 <aoa.identificatie><xsl:copy-of select="verblijfplaats/adresseerbaarObjectIdentificatie"/></aoa.identificatie>
-                                                <wpl.identificatie>
+                                                <!-- <wpl.identificatie>
                                                     <xsl:copy-of select="$external-data/woonplaatsen/woonplaats[name = $woonplaats]/code"/>
-                                                </wpl.identificatie>
+                                                </wpl.identificatie> -->
                                                 <wpl.woonplaatsNaam><xsl:copy-of select="verblijfplaats/verblijfadres/woonplaats"/></wpl.woonplaatsNaam>
                                                 <aoa.woonplaatsWaarinGelegen>
                                                     <wpl.identificatie></wpl.identificatie>

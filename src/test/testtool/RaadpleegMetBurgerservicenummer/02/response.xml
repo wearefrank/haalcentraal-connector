@@ -11,7 +11,7 @@
           <BG:organisatie>0518</BG:organisatie>
           <BG:applicatie>LBA</BG:applicatie>
         </StUF:ontvanger>
-        <StUF:tijdstipBericht>20241014193050762</StUF:tijdstipBericht>
+        <StUF:tijdstipBericht>20250221021411</StUF:tijdstipBericht>
         <StUF:crossRefnummer>af20ca23-3955-4406-89d2-3048f0017564</StUF:crossRefnummer>
         <StUF:entiteittype>NPS</StUF:entiteittype>
       </BG:stuurgegevens>
@@ -39,7 +39,6 @@
           <BG:inp.overlijdenLand xsi:nil="true" StUF:noValue="waardeOnbekend"/>
           <BG:verblijfsadres>
             <BG:aoa.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-            <BG:wpl.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
             <BG:wpl.woonplaatsNaam>'s-Gravenhage</BG:wpl.woonplaatsNaam>
             <BG:aoa.woonplaatsWaarinGelegen>
               <BG:wpl.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
