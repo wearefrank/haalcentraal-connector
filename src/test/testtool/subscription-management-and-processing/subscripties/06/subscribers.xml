@@ -15,8 +15,8 @@
             <field name="APP_ID">LBA</field>
             <field name="BEGIN_DATUM">2025-02-21 16:05:05</field>
             <field name="EIND_DATUM" null="true"/>
-            <field name="PERSOONS_SLEUTEL">142157</field>
-            <field name="AFNEMERS_SLEUTEL">1234</field>
+            <field name="PERSOONS_SLEUTEL">HCC-key-555555021</field>
+            <field name="AFNEMERS_SLEUTEL">LBA-001</field>
         </row>
         <row number="1">
             <field name="ID">2</field>
@@ -24,8 +24,8 @@
             <field name="APP_ID">DEC_ZKN</field>
             <field name="BEGIN_DATUM">2025-02-21 16:05:05</field>
             <field name="EIND_DATUM" null="true"/>
-            <field name="PERSOONS_SLEUTEL">142157</field>
-            <field name="AFNEMERS_SLEUTEL">4321</field>
+            <field name="PERSOONS_SLEUTEL">OLD-KEY-SYSTEM-555555021</field>
+            <field name="AFNEMERS_SLEUTEL">DEC-KEY-002</field>
         </row>
     </rowset>
 </result>
