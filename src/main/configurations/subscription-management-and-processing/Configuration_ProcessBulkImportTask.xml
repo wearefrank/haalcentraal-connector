@@ -15,7 +15,7 @@
         </Exits>
 
         <SenderPipe name="GetFullRecord">
-            <FixedQuerySender name="GetFullRecordSender" queryType="SELECT" query="SELECT bsn,applicatie FROM bulkimporttasks where task_id = ?">
+            <FixedQuerySender name="GetFullRecordSender" queryType="SELECT" query="SELECT * FROM bulkimporttasks where task_id = ?">
                 <param name="task_id"/>
             </FixedQuerySender>
         </SenderPipe>
@@ -23,6 +23,8 @@
         <PutInSessionPipe name="PutRecordInSession">
             <Param name="bsn" xpathExpression="result/rowset/row/field[@name = 'BSN']"/>
             <Param name="applicatie" xpathExpression="result/rowset/row/field[@name = 'APPLICATIE']"/>
+            <Param name="persoons_sleutel" xpathExpression="result/rowset/row/field[@name = 'PERSOONS_SLEUTEL']"/>
+            <Param name="afnemers_sleutel" xpathExpression="result/rowset/row/field[@name = 'AFNEMERS_SLEUTEL']"/>
         </PutInSessionPipe>
 
         <SenderPipe name="GetOldSubscription">
@@ -45,9 +47,11 @@
 
         <!--This will insert the subscriptions that don't yet exist-->
         <SenderPipe name="InsertNewSubscription">
-            <FixedQuerySender name="InsertNewSubscriptionSender" query="INSERT INTO subscripties (bsn, app_id) VALUES (?, ?)">
+            <FixedQuerySender name="InsertNewSubscriptionSender" query="INSERT INTO subscripties (bsn, app_id, persoons_sleutel, afnemers_sleutel) VALUES (?, ?, ?, ?)">
                 <Param name="bsn" sessionKey="bsn"/>
                 <Param name="app_id" sessionKey="applicatie"/>
+                <Param name="persoons_sleutel" sessionKey="persoons_sleutel"/>
+                <Param name="afnemers_sleutel" sessionKey="afnemers_sleutel"/>
             </FixedQuerySender>
         </SenderPipe>
     </Pipeline>
