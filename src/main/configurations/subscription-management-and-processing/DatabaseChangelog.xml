@@ -112,7 +112,7 @@
 		</createTable>
 	</changeSet>
 
-	<changeSet id="HCC-8 " author="Vincent de Gans">
+	<changeSet id="HCC-8" author="Vincent de Gans">
 		<comment>Add columns to subscripties</comment>
 		<addColumn tableName="subscripties">
 			<column name="persoons_sleutel" type="varchar(255)" />
