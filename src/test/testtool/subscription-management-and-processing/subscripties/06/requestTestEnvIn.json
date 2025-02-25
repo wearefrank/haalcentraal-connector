@@ -1,0 +1,32 @@
+{
+    "type": "RaadpleegMetBurgerservicenummer",
+    "fields": [
+        "aNummer",
+        "adressering",
+        "burgerservicenummer",
+        "datumEersteInschrijvingGBA",
+        "datumInschrijvingInGemeente",
+        "europeesKiesrecht",
+        "geboorte",
+        "gemeenteVanInschrijving",
+        "geslacht",
+        "gezag",
+        "immigratie",
+        "indicatieCurateleRegister",
+        "kinderen",
+        "leeftijd",
+        "naam",
+        "nationaliteiten",
+        "ouders",
+        "overlijden",
+        "partners",
+        "uitsluitingKiesrecht",
+        "verblijfplaats",
+        "verblijfstitel",
+        "verblijfplaatsBinnenland",
+        "adresseringBinnenland"
+    ],
+    "burgerservicenummer": [
+        "555555021"
+    ]
+}
