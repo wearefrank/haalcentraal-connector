@@ -9,7 +9,7 @@
                 method="POST"
                 headerParams="Accept,Content-Type"
                 produces="JSON"
-                allowAllParams="false"
+                allowAllParams="true"
                 />
         </Receiver>
         <Pipeline>
