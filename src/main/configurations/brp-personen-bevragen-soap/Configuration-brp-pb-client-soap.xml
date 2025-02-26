@@ -94,7 +94,6 @@
 				<Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
 				<Param name="varReferentienummer" sessionKey="varReferentienummer" />
 				<Param name="varEntiteittype" sessionKey="varEntiteittype" />
-				<Param name="tijdstipBericht" sessionKey="tijdstipBericht" />
 				<Param name="indicatorVervolgvraag" sessionKey="indicatorVervolgvraag" />
 				<Param name="originalMessage" sessionKey="originalMessage" type="DOMDOC" />
 				<Forward name="success" path="Exit" />

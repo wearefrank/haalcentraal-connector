@@ -9,7 +9,7 @@
 			<BG:organisatie>0518</BG:organisatie>
 			<BG:applicatie>PGAx-SG-ZVH</BG:applicatie>
 		</StUF:ontvanger>
-		<StUF:tijdstipBericht>20241015055522843</StUF:tijdstipBericht>
+		<StUF:tijdstipBericht>20250221021413</StUF:tijdstipBericht>
 		<StUF:crossRefnummer>d5b9cd54-30cb-47c9-97f9-8f41b1314272</StUF:crossRefnummer>
 		<StUF:entiteittype>NPS</StUF:entiteittype>
 	</BG:stuurgegevens>
@@ -37,7 +37,6 @@
 			<BG:inp.overlijdenLand xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
 			<BG:verblijfsadres>
 				<BG:aoa.identificatie>0518010001756246</BG:aoa.identificatie>
-				<BG:wpl.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
 				<BG:wpl.woonplaatsNaam>'s-Gravenhage</BG:wpl.woonplaatsNaam>
 				<BG:aoa.woonplaatsWaarinGelegen>
 					<BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>

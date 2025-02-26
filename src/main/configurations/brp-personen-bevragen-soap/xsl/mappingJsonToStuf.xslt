@@ -17,7 +17,6 @@
     <xsl:param name="varZenderApplicatie" />
     <xsl:param name="varReferentienummer" />
     <xsl:param name="varEntiteittype" />
-    <xsl:param name="tijdstipBericht" />
     <xsl:param name="indicatorVervolgvraag" />
     <xsl:param name="aantalVoorkomens"><xsl:value-of select="count(/root/personen)"/></xsl:param>
     <xsl:param name="originalMessage" as='node()?'/>
@@ -149,9 +148,9 @@
                                         <xsl:when test="./verblijfplaats/type/text() = &apos;Adres&apos;">
                                             <verblijfsadres>
                                                 <aoa.identificatie><xsl:copy-of select="verblijfplaats/adresseerbaarObjectIdentificatie"/></aoa.identificatie>
-                                                <wpl.identificatie>
+                                                <!-- <wpl.identificatie>
                                                     <xsl:copy-of select="$external-data/woonplaatsen/woonplaats[name = $woonplaats]/code"/>
-                                                </wpl.identificatie>
+                                                </wpl.identificatie> -->
                                                 <wpl.woonplaatsNaam><xsl:copy-of select="verblijfplaats/verblijfadres/woonplaats"/></wpl.woonplaatsNaam>
                                                 <aoa.woonplaatsWaarinGelegen>
                                                     <wpl.identificatie></wpl.identificatie>
@@ -378,14 +377,14 @@
                 <!-- Copy all elements inside ontvanger -->
                 <xsl:for-each select="//StUF:ontvanger/*">
                     <xsl:choose>
-                        <!-- Eğer elemanın prefixi yoksa veya prefixi BG değilse -->
+                        <!-- If the element has no prefix or its prefix is not BG -->
                         <xsl:when test="not(namespace-uri()) or not(starts-with(name(), 'BG:'))">
                             <xsl:element name="BG:{local-name()}">
                                 <xsl:copy-of select="node() | @*" />
                             </xsl:element>
                         </xsl:when>
                         <xsl:otherwise>
-                            <!-- Eğer prefix zaten doğruysa element olduğu gibi kopyalanır -->
+                            <!-- If the prefix is already BG, the element is copied as is -->
                             <xsl:copy-of select="." />
                         </xsl:otherwise>
                     </xsl:choose>
@@ -396,21 +395,22 @@
                 <!-- Copy all elements inside zender -->
                 <xsl:for-each select="//StUF:zender/*">
                     <xsl:choose>
-                        <!-- Eğer elemanın prefixi yoksa veya prefixi BG değilse -->
+                        <!-- If the element has no prefix or its prefix is not BG -->
                         <xsl:when test="not(namespace-uri()) or not(starts-with(name(), 'BG:'))">
                             <xsl:element name="BG:{local-name()}">
                                 <xsl:copy-of select="node() | @*" />
                             </xsl:element>
                         </xsl:when>
                         <xsl:otherwise>
-                            <!-- Eğer prefix zaten doğruysa element olduğu gibi kopyalanır -->
+                            <!-- If the prefix is already BG, the element is copied as is -->
                             <xsl:copy-of select="." />
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:for-each>
             </StUF:ontvanger>       
             <StUF:tijdstipBericht>
-                <xsl:value-of select="$tijdstipBericht" />
+                <xsl:value-of
+                    select="format-dateTime(current-dateTime(), '[Y0001][M01][D01][h01][m01][s01]')" />
             </StUF:tijdstipBericht>
             <StUF:crossRefnummer>
                 <xsl:value-of select="$varReferentienummer" />
@@ -467,12 +467,12 @@
         <xsl:variable name="newAuthorizedApplicationsMap" select="$authorizedApplicationsMap/*[name()=current()/local-name()]" />
         
         <xsl:if test="$mappedElement[not(@doNotCreate='true')]">
-            <xsl:element name="{$prefix}:{local-name()}" exclude-result-prefixes=""> <!-- Prefix ekleniyor -->
+            <xsl:element name="{$prefix}:{local-name()}" exclude-result-prefixes=""> <!-- Adding prefix -->
                 <xsl:copy-of select="@*" />
                 <xsl:apply-templates select="*">
                     <xsl:with-param name="mapping" select="$mappedElement" />
                     <xsl:with-param name="authorizedApplicationsMap" select="$newAuthorizedApplicationsMap" />
-                    <xsl:with-param name="prefix" select="$prefix" /> <!-- Alt elemanlara prefix geçiriliyor -->
+                    <xsl:with-param name="prefix" select="$prefix" /> <!-- Passing prefix to child elements -->
                 </xsl:apply-templates>
             </xsl:element>
         </xsl:if>
