@@ -111,4 +111,20 @@
 			<column name="applicatie" type="varchar(255)" />
 		</createTable>
 	</changeSet>
+
+	<changeSet id="HCC-8" author="Vincent de Gans">
+		<comment>Add columns to subscripties</comment>
+		<addColumn tableName="subscripties">
+			<column name="persoons_sleutel" type="varchar(255)" />
+			<column name="afnemers_sleutel" type="varchar(255)" />
+		</addColumn>
+	</changeSet>
+
+	<changeSet id="HCC-9" author="Vincent de Gans">
+		<comment>Add columns to BulkImportTasks</comment>
+		<addColumn tableName="bulkimporttasks">
+			<column name="persoons_sleutel" type="varchar(255)" />
+			<column name="afnemers_sleutel" type="varchar(255)" />
+		</addColumn>
+	</changeSet>
 </databaseChangeLog>

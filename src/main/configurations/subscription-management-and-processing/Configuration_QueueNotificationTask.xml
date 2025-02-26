@@ -13,23 +13,30 @@
             <!-- PersonenDatabaseResult, the json record of the subscribed person -->
             <!-- ApplicationId, the id of the subscriber -->
 
-            <PutInSessionPipe name="StoreBody">
-				<Param name="body" sessionKey="PersonenDatabaseResult" xpathExpression="substring(//field[@name='DATA'], 2)" />
-			</PutInSessionPipe>
+            <PutInSessionPipe name="getPersonen" getInputFromSessionKey="PersonenDatabaseResult">
+                <Param name="personen" xpathExpression="result/rowset/row/field[@name='DATA']" type="STRING" />
+            </PutInSessionPipe>
 
-			<ReplacerPipe name="ConcatinateAppidToPersonenData" getInputFromFixedValue="{&quot;applicationId&quot;: &quot;?{appId}&quot;,&quot;mutatiesoort&quot;: &quot;?{mutatiesoort}&quot;,&quot;gebruiker&quot;: &quot;?{gebruiker}&quot;,&quot;administratie&quot;: &quot;?{administratie}&quot;, ?{body}" storeResultInSessionKey="taskBody" >
-				<Param name="appId" sessionKey="ApplicationId"/>
-				<Param name="body" sessionKey="body" />
+            <ReplacerPipe name="ConvertToString" getInputFromFixedValue="?{personen}" storeResultInSessionKey="stringResult">
+                <Param name="personen" sessionKey="personen" />
+            </ReplacerPipe>
+
+            <DataSonnetPipe name="ExtractPersonenBody" storeResultInSessionKey="personenBody" styleSheetName="jsonnet/ExtractBody.jsonnet" />
+
+            <DataSonnetPipe name="CreateTaskBody" storeResultInSessionKey="taskBody" styleSheetName="jsonnet/CreateTask.jsonnet">
+                <Param name="appId" sessionKey="ApplicationId"/>
+                <Param name="personen" sessionKey="personenBody" />
                 <Param name="mutatiesoort" sessionKey="mutatiesoort" />
                 <Param name="gebruiker" sessionKey="gebruiker" />
                 <Param name="administratie" sessionKey="administratie" />
-			</ReplacerPipe>
+                <Param name="afnemersSleutel" sessionKey="afnemersSleutel" />
+                <Param name="persoonsSleutel" sessionKey="persoonsSleutel" />
+            </DataSonnetPipe>
 
 			<SenderPipe name="PutTaskInTaskstore" getInputFromSessionKey="taskBody">
 				<MessageStoreSender slotId="${instance.name}/taskStore" />
                 <Forward name="Success" path="Exit" />
-			</SenderPipe>
-
+            </SenderPipe>
         </Pipeline>
     </Adapter>
 </Module>

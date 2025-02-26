@@ -20,6 +20,8 @@
     <xsl:param name="referentienummer" />
     <xsl:param name="organisatie"/>
     <xsl:param name="mutatiesoort"/>
+    <xsl:param name="sleutelVerzendend"/>
+    <xsl:param name="sleutelOntvangend"/>
     <xsl:param name="inputnpsLk01" select="document('npsLk01.xml')" as="node()?" />
     <xsl:variable name="geenWaarde">geenWaarde</xsl:variable>
     <xsl:variable name="waardeOnbekend">waardeOnbekend</xsl:variable>
@@ -413,7 +415,8 @@
         <xsl:param name="persoon" tunnel="yes"/>
         <BG:object  StUF:entiteittype="NPS">
             <xsl:attribute name="StUF:verwerkingssoort" select="$mutatiesoort"/>
-            <!-- <xsl:attribute name="StUF:sleutelVerzendend" select=""/> -->
+            <xsl:attribute name="StUF:sleutelVerzendend" select="$sleutelVerzendend"/>
+            <xsl:attribute name="StUF:sleutelOntvangend" select="$sleutelOntvangend"/>
             <xsl:apply-templates select="*[not(local-name() = ('inp.heeftAlsOuders', 'inp.heeftAlsKinderen', 'inp.heeftAlsEchtgenootPartner', 'inp.heeftAlsNationaliteit'))]">
                 <xsl:with-param name="mapping" select="$mapping/object"/>
                 <xsl:with-param name="authorizedApplicationsMap" select="$authorizedApplicationsMap/root"/>

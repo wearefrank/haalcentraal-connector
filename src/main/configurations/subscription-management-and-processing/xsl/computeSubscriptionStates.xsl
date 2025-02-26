@@ -18,10 +18,12 @@
         <xsl:variable name="incomingSubscriptionPairs">
             <xsl:for-each select="$incomingSubscriptions/csv/record">
                 <pair>
-                    <key><xsl:value-of select="concat(APPLICATIE,INP_BSN)"/></key>
+                    <key><xsl:value-of select="concat(APPLICATIE,INP_BSN,SLEUTEL,SLEUTELZENDER)"/></key>
                     <record>
                         <app_id><xsl:value-of select="APPLICATIE"/></app_id>
                         <bsn><xsl:value-of select="INP_BSN"/></bsn>
+                        <sleutel><xsl:value-of select="SLEUTEL"/></sleutel>
+                        <sleutel_zender><xsl:value-of select="SLEUTELZENDER"/></sleutel_zender>
                     </record>
                 </pair>
             </xsl:for-each>

@@ -13,12 +13,16 @@
             <Param name="incomingSubscriptions" sessionKey="incomingSubscriptions" type="DOMDOC"/>
         </XsltPipe>
 
+        <!-- TODO: Check how to handle duplicate subscriptions: override keys, end old, or both active -->
+
         <ForEachChildElementPipe name="ForEachNewSubscription" elementXPathExpression="root/toBeAdded/record" ignoreExceptions="true" preserveInput="true">
             <FixedQuerySender
                     name="CreateNewTask"
-                    query="INSERT INTO bulkimporttasks (bsn, applicatie) VALUES (?, ?)">
+                    query="INSERT INTO bulkimporttasks (bsn, applicatie, persoons_sleutel, afnemers_sleutel) VALUES (?, ?, ?, ?)">
                 <Param name="bsn" xpathExpression="record/bsn" />
                 <Param name="app_id" xpathExpression="record/app_id" />
+                <Param name="persoons_sleutel" xpathExpression="record/sleutel" />
+                <Param name="afnemers_sleutel" xpathExpression="record/sleutel_zender" />
             </FixedQuerySender>
         </ForEachChildElementPipe>
 

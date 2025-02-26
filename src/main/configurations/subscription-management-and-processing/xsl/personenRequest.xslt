@@ -10,6 +10,7 @@
     <xsl:template match="/">
         <root>
             <type>RaadpleegMetBurgerservicenummer</type>
+
             <fields>aNummer</fields>
             <fields>adressering</fields>
             <fields>burgerservicenummer</fields>
@@ -34,6 +35,7 @@
             <fields>verblijfstitel</fields>
             <fields>verblijfplaatsBinnenland</fields>
             <fields>adresseringBinnenland</fields>
+
             <burgerservicenummer><xsl:value-of select="$burgerservicenummer"/></burgerservicenummer>
         </root>
     </xsl:template>    
