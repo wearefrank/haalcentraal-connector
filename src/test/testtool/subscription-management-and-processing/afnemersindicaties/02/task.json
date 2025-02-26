@@ -1,8 +1,10 @@
 {
     "applicationId": "LBA",
     "mutatiesoort": "T",
-    "gebruiker": "",
-    "administratie": "",
+    "gebruiker": null,
+    "administratie": null,
+    "afnemersSleutel": "LBA.00000142157",
+    "persoonsSleutel": null,
     "personen": [
         {
             "aNummer": "3959725474",
