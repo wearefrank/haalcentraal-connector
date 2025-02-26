@@ -36,25 +36,15 @@
             </LocalFileSystemPipe>
 
             <!-- Retrieve all subscribers to the given bsn -->
-            <SenderPipe name="GetSubscribersForUpdatedPerson">
+            <SenderPipe name="GetSubscribersForUpdatedPerson" storeResultInSessionKey="subscribersResult">
                 <FixedQuerySender
                     name="GetSubscribersByBsnQuery"
                     queryType="SELECT"
-                    query="SELECT app_id FROM subscripties WHERE bsn=? AND eind_datum IS NULL"
-                    outputFormat="JSON">
+                    query="SELECT * FROM subscripties WHERE bsn=? AND eind_datum IS NULL">
                     <Param name="burgerservicenummer" sessionKey="originalMessage" />
                 </FixedQuerySender>
-                <Forward name="success" path="TransformApplicationData" />
+                <Forward name="success" path="RetrieveLatestData" />
             </SenderPipe>
-
-            <!-- Map application_id to callback uri's -->
-            <DataSonnetPipe name="TransformApplicationData"
-                styleSheetName="jsonnet/ApplicationsFilter.jsonnet">
-                <Param name="applicationConfig" sessionKey="applicationConfig" />
-                <!-- <Forward name="success" path="EXIT" /> -->
-            </DataSonnetPipe>
-
-            <JsonPipe name="CallbackUrlToXml" storeResultInSessionKey="callbackUrls" />
 
             <!-- retrieve latest persoonsgegevens record -->
             <SenderPipe name="RetrieveLatestData">
@@ -82,13 +72,15 @@
 				</FixedQuerySender>
 			</SenderPipe>
 
-            <ForEachChildElementPipe name="ForEachId" elementXPathExpression="root/appIds" getInputFromSessionKey="callbackUrls">
+            <ForEachChildElementPipe name="ForEachSubscriber" elementXPathExpression="/result/rowset/row" getInputFromSessionKey="subscribersResult">
                 <!-- Add a task in the messagestore to notify subscribers  -->
                 <IbisLocalSender 
                     name="CallQueueNotificationsListener"
                     javaListener="QueueNotificationTask">
                     <Param name="PersonenDatabaseResult" sessionKey="PersonenDatabaseResult" />
-                    <Param name="ApplicationId" xpathExpression="appIds/text()" />
+                    <Param name="ApplicationId" xpathExpression="//field[@name='APP_ID']/text()" />
+                    <Param name="afnemersSleutel" xpathExpression="//field[@name='AFNEMERS_SLEUTEL']/text()" />
+                    <Param name="persoonsSleutel" xpathExpression="//field[@name='PERSOONS_SLEUTEL']/text()" />
                     <Param name="mutatiesoort" value="W" />
                 </IbisLocalSender>
                 <Forward name="success" path="EchoSuccess" />

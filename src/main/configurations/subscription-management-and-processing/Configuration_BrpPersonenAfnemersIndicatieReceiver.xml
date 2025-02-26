@@ -24,6 +24,8 @@
 				<Param name="gebruiker" sessionKey="originalMessage" xpathExpression="/npsLk01/stuurgegevens/zender/gebruiker" />
 				<Param name="administratie" sessionKey="originalMessage" xpathExpression="/npsLk01/stuurgegevens/zender/administratie" />
 				<Param name="applicationId" sessionKey="originalMessage" xpathExpression="/npsLk01/stuurgegevens/zender/applicatie" />
+				<Param name="persoonsSleutel" sessionKey="originalMessage" xpathExpression="/npsLk01/object/@*[local-name()='sleutelOntvangend']" />
+				<Param name="afnemersSleutel" sessionKey="originalMessage" xpathExpression="/npsLk01/object/@*[local-name()='sleutelVerzendend']" />
 			</PutInSessionPipe>
 
 			<IfPipe name="IfBsnPresent" getInputFromSessionKey="bsn" preserveInput="true">
@@ -98,8 +100,8 @@
 				<FixedQuerySender
 					name="InsertSubscriptionSender"
 					query="
-						INSERT INTO subscripties (bsn, app_id, begin_datum)
-						SELECT ?{burgerservicenummer}, ?{appId}, CURRENT_TIMESTAMP
+						INSERT INTO subscripties (bsn, app_id, begin_datum, persoons_sleutel, afnemers_sleutel)
+						SELECT ?{burgerservicenummer}, ?{appId}, CURRENT_TIMESTAMP, ?{persoonsSleutel}, ?{afnemersSleutel}
 						WHERE NOT EXISTS (
 							SELECT 1
 							FROM subscripties
@@ -107,9 +109,10 @@
 							AND app_id = ?{appId}
 							AND eind_datum IS NULL
 						);">
-					<Param name="burgerservicenummer" sessionKey="originalMessage"
-						xpathExpression="npsLk01/object/inp.bsn" />
+					<Param name="burgerservicenummer" sessionKey="bsn" />
 					<Param name="appId" sessionKey="applicationId" />
+					<Param name="persoonsSleutel" sessionKey="persoonsSleutel" />
+					<Param name="afnemersSleutel" sessionKey="afnemersSleutel" />
 				</FixedQuerySender>
 				<Forward name="exception" path="Exception" />
 			</SenderPipe>
@@ -136,6 +139,8 @@
 					<Param name="mutatiesoort" value="T" />
 					<Param name="gebruiker" sessionKey="gebruiker" />
 					<Param name="administratie" sessionKey="administratie" />
+					<Param name="persoonsSleutel" sessionKey="persoonsSleutel" />
+					<Param name="afnemersSleutel" sessionKey="afnemersSleutel" />
 				</IbisLocalSender>
 				<Forward name="success" path="WrapBv03Response" />
 			</SenderPipe>

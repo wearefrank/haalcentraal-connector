@@ -1,14 +1,19 @@
 {
     "applicationId": "LBA",
-    "mutatiesoort": "T",
-    "gebruiker": "SH9999",
-    "administratie": "B.1234",
-    "afnemersSleutel": "LBA.00000142157",
-    "persoonsSleutel": null,
+    "mutatiesoort": "W",
+    "gebruiker": null,
+    "administratie": null,
+    "afnemersSleutel": "LBA-001",
+    "persoonsSleutel": "HCC-key-555555021",
     "personen": [
         {
             "aNummer": "3959725474",
             "burgerservicenummer": "555555021",
+            "datumEersteInschrijvingGBA": {
+                "type": "Datum",
+                "datum": "2002-07-02",
+                "langFormaat": "2 juli 2002"
+            },
             "geslacht": {
                 "code": "M",
                 "omschrijving": "man"
@@ -76,14 +81,16 @@
                 "nummeraanduidingIdentificatie": "0518200000466194",
                 "datumVan": {
                     "type": "Datum",
-                    "datum": "2025-01-08",
-                    "langFormaat": "8 januari 2025"
+                    "datum": "2025-02-21",
+                    "langFormaat": "21 februari 2025"
                 },
                 "datumIngangGeldigheid": {
                     "type": "Datum",
-                    "datum": "2025-01-08",
-                    "langFormaat": "8 januari 2025"
+                    "datum": "2025-02-21",
+                    "langFormaat": "21 februari 2025"
                 }
+            },
+            "immigratie": {
             },
             "gemeenteVanInschrijving": {
                 "code": "0518",
@@ -102,7 +109,48 @@
                 "gebruikInLopendeTekst": "de heer Van den Verhuistest",
                 "adresregel1": "Laan van Nieuw-O-Indië 101 A",
                 "adresregel2": "2593 BL  'S-GRAVENHAGE"
-            }
+            },
+            "gezag": [
+            ],
+            "kinderen": [
+            ],
+            "ouders": [
+                {
+                    "geslacht": {
+                        "code": "V",
+                        "omschrijving": "vrouw"
+                    },
+                    "ouderAanduiding": "1",
+                    "datumIngangFamilierechtelijkeBetrekking": {
+                        "type": "Datum",
+                        "datum": "2002-07-01",
+                        "langFormaat": "1 juli 2002"
+                    },
+                    "naam": {
+                        "voornamen": "Carolina",
+                        "voorvoegsel": "van den",
+                        "geslachtsnaam": "Verhuistest",
+                        "voorletters": "C."
+                    },
+                    "geboorte": {
+                        "land": {
+                            "code": "6030",
+                            "omschrijving": "Nederland"
+                        },
+                        "plaats": {
+                            "code": "0599",
+                            "omschrijving": "Rotterdam"
+                        },
+                        "datum": {
+                            "type": "Datum",
+                            "datum": "1971-08-23",
+                            "langFormaat": "23 augustus 1971"
+                        }
+                    }
+                }
+            ],
+            "partners": [
+            ]
         }
     ]
 }

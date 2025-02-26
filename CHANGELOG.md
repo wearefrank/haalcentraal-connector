@@ -1,5 +1,18 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.17.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.17.5...v1.17.6) (2025-02-20)
+
+### 🐛 Bug Fixes
+
+* regex npe custom code update ([7469d68](https://github.com/wearefrank/haalcentraal-connector/commit/7469d68b146222ccbe5bcce79640dfc78dad3490))
+* set ff back to latest ([6d155e6](https://github.com/wearefrank/haalcentraal-connector/commit/6d155e631bde731e249985fa93981dd71f190f40))
+* use ladybug retention period name ([b2f2f19](https://github.com/wearefrank/haalcentraal-connector/commit/b2f2f19aaefcc125f0e6e6a207c337d3227b68c2))
+
+### 🧑‍💻 Code Refactoring
+
+* remove custom DatabaseStorage class ([2a66966](https://github.com/wearefrank/haalcentraal-connector/commit/2a66966c1e26e279a33387b84f225405011e1cf2))
+* remove custom regexmetadatafieldextractor class and move to fixed SessionKeyMetadataFieldExtractor ([d1897dc](https://github.com/wearefrank/haalcentraal-connector/commit/d1897dc3a1edf770c3b6440db514d5df192f0f75))
+
 ## [1.17.5](https://github.com/wearefrank/haalcentraal-connector/compare/v1.17.4...v1.17.5) (2025-02-19)
 
 ### 🧑‍💻 Code Refactoring

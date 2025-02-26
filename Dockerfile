@@ -1,4 +1,4 @@
-ARG FF_VERSION=9.1.0-20250212.042323
+ARG FF_VERSION=latest
 
 FROM frankframework/frankframework:${FF_VERSION} AS ff-base
 
@@ -20,8 +20,6 @@ COPY --from=ff-base /usr/local/tomcat/webapps/ROOT /usr/local/tomcat/webapps/ROO
 COPY src/main/java /tmp/java
 RUN mkdir /tmp/classes && \
     javac \
-    /tmp/java/nl/nn/testtool/storage/database/DatabaseStorage.java \
-    /tmp/java/nl/nn/testtool/metadata/RegexMetadataFieldExtractor.java \
     /tmp/java/nl/nn/adapterframework/DeploymentSpecificsBeanPostProcessor.java \
     -classpath "/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/*:/usr/local/tomcat/lib/*" \
     -verbose -d /tmp/classes
