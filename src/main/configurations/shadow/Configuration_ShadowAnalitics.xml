@@ -1,7 +1,7 @@
 <Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
     <Adapter name="ShadowAnalitics" description="">
         <Receiver name="ShadowAnalitics">
-            <ApiListener name="ShadowAnaliticsListener" uriPattern="${haalcentraal_connector.shadow.analitics.endpoint}" method="GET"/>
+            <ApiListener name="ShadowAnaliticsListener" uriPattern="${haalcentraal_connector.shadow.analitics.endpoint}" method="GET" allowAllParams="true"/>
         </Receiver>
 
         <Pipeline>
