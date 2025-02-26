@@ -1,5 +1,22 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.18.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.17.6...v1.18.0) (2025-02-26)
+
+### 🍕 Features
+
+* add keys to subscription storage ([df6030a](https://github.com/wearefrank/haalcentraal-connector/commit/df6030a84c4b5ca299ae968fed66c0a56baebad4))
+
+### 🐛 Bug Fixes
+
+* add keys to subscription data ([41f0958](https://github.com/wearefrank/haalcentraal-connector/commit/41f095823deda64701f6c0917ac5db991c38da30))
+* changeset name trailing space ([79e289b](https://github.com/wearefrank/haalcentraal-connector/commit/79e289b5101c35886d2d17529e4b6bb52540c4a1))
+* looping over subscribers ([73b1cb2](https://github.com/wearefrank/haalcentraal-connector/commit/73b1cb2d2b01e06f17631a4bd6c0864b33d390ec))
+* nested personen object and larva test update ([88adae1](https://github.com/wearefrank/haalcentraal-connector/commit/88adae1ed9f1ae86e0fd478aebee69284bfb230e))
+
+### 🧑‍💻 Code Refactoring
+
+* json string concat to jsonnet ([445722b](https://github.com/wearefrank/haalcentraal-connector/commit/445722bb1cc7b03a8e7307889ebd5c0f8805471a))
+
 ## [1.17.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.17.5...v1.17.6) (2025-02-20)
 
 ### 🐛 Bug Fixes
