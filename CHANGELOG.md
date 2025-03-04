@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.18.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.18.1...v1.18.2) (2025-03-04)
+
+### 🐛 Bug Fixes
+
+* van-tot bsn now works with leading 0 ([289a5a5](https://github.com/wearefrank/haalcentraal-connector/commit/289a5a5391246c8b804db08c02db8a1a2499951c))
+
 ## [1.18.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.18.0...v1.18.1) (2025-02-26)
 
 ### 🐛 Bug Fixes
