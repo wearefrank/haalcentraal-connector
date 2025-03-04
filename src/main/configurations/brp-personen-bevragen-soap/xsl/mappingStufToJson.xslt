@@ -318,11 +318,10 @@
     <xsl:template name="generateRangeForBSN">
         <xsl:param name="vanafBSN" />
         <xsl:param name="totEnMetBSN" />
-        
         <!-- Output the current number -->
         <burgerservicenummer>
-            <xsl:value-of
-                select="format-number($vanafBSN, '0')" />
+            <xsl:variable name="unpaddedBSN" select="format-number($vanafBSN, '0')" />
+            <xsl:value-of select="concat(if (string-length($unpaddedBSN) = 8) then '0' else '', $unpaddedBSN)"/>
         </burgerservicenummer>
         <xsl:if
             test="$vanafBSN != $totEnMetBSN">
