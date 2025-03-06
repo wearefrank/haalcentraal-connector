@@ -1,96 +1,91 @@
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-  <soapenv:Body>
-    <BG:npsLa01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:a="http://www.egem.nl/StUF/StUF0301" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-      <BG:stuurgegevens>
-        <StUF:berichtcode>La01</StUF:berichtcode>
-        <StUF:zender>
-          <BG:organisatie>NEDGR</BG:organisatie>
-          <BG:applicatie>NEDMAG_VnA</BG:applicatie>
-        </StUF:zender>
-        <StUF:ontvanger>
-          <BG:organisatie>0518</BG:organisatie>
-          <BG:applicatie>TOP</BG:applicatie>
-        </StUF:ontvanger>
-        <StUF:tijdstipBericht>20241014193101434</StUF:tijdstipBericht>
-        <StUF:crossRefnummer>8f8d0ebf-c1bd-45c3-9443-69a14df44782</StUF:crossRefnummer>
-        <StUF:entiteittype>NPS</StUF:entiteittype>
-      </BG:stuurgegevens>
-      <BG:parameters>
-        <StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
-        <StUF:indicatorAfnemerIndicatie>false</StUF:indicatorAfnemerIndicatie>
-        <StUF:aantalVoorkomens>1</StUF:aantalVoorkomens>
-      </BG:parameters>
-      <BG:antwoord>
-        <BG:object StUF:entiteittype="NPS">
-          <BG:inp.bsn>555555021</BG:inp.bsn>
-          <BG:geslachtsnaam>Verhuistest</BG:geslachtsnaam>
-          <BG:voorvoegselGeslachtsnaam>van den</BG:voorvoegselGeslachtsnaam>
-          <BG:voorletters>K.</BG:voorletters>
-          <BG:voornamen>Kees</BG:voornamen>
-          <BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
-          <BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
-          <BG:geboortedatum>20020701</BG:geboortedatum>
-          <BG:inp.geboorteplaats>Hellevoetsluis</BG:inp.geboorteplaats>
-          <BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
-          <BG:overlijdensdatum xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:inp.verblijftIn StUF:entiteittype="NPSTGO">
-            <BG:gerelateerde StUF:entiteittype="TGO">
-              <BG:adresAanduidingGrp>
-                <BG:wpl.woonplaatsNaam>'s-Gravenhage</BG:wpl.woonplaatsNaam>
-                <BG:aoa.woonplaatsWaarinGelegen>
-                  <BG:wpl.woonplaatsNaam>'s-Gravenhage</BG:wpl.woonplaatsNaam>
-                </BG:aoa.woonplaatsWaarinGelegen>
-                <BG:gor.openbareRuimteNaam>Laan van Nieuw-Oost-Indië</BG:gor.openbareRuimteNaam>
-                <BG:aoa.postcode>2593BL</BG:aoa.postcode>
-                <BG:aoa.huisnummer>101</BG:aoa.huisnummer>
-                <BG:aoa.huisletter>A</BG:aoa.huisletter>
-                <BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-              </BG:adresAanduidingGrp>
-            </BG:gerelateerde>
-          </BG:inp.verblijftIn>
-          <BG:verblijfsadres>
-            <BG:wpl.woonplaatsNaam>'s-Gravenhage</BG:wpl.woonplaatsNaam>
-            <BG:aoa.woonplaatsWaarinGelegen>
-              <BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-            </BG:aoa.woonplaatsWaarinGelegen>
-            <BG:gor.openbareRuimteNaam>Laan van Nieuw-Oost-Indië</BG:gor.openbareRuimteNaam>
-            <BG:aoa.postcode>2593BL</BG:aoa.postcode>
-            <BG:aoa.huisnummer>101</BG:aoa.huisnummer>
-            <BG:aoa.huisletter>A</BG:aoa.huisletter>
-            <BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-            <BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          </BG:verblijfsadres>
-          <BG:sub.correspondentieAdres/>
-          <BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:sub.emailadres xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:inp.burgerlijkeStaat>1</BG:inp.burgerlijkeStaat>
-          <BG:inp.gemeenteVanInschrijving>0518</BG:inp.gemeenteVanInschrijving>
-          <BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
-          <BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
-            <BG:gerelateerde StUF:entiteittype="NPS">
-              <BG:geslachtsnaam>Verhuistest</BG:geslachtsnaam>
-              <BG:voorvoegselGeslachtsnaam>van den</BG:voorvoegselGeslachtsnaam>
-              <BG:voorletters>C.</BG:voorletters>
-              <BG:voornamen>Carolina</BG:voornamen>
-              <BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
-              <BG:geboortedatum>19710823</BG:geboortedatum>
-              <BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
-            </BG:gerelateerde>
-          </BG:inp.heeftAlsOuders>
-          <BG:inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT">
-            <BG:gerelateerde StUF:entiteittype="NAT">
-              <BG:code>0001</BG:code>
-            </BG:gerelateerde>
-            <BG:inp.datumVerkrijging>20020701</BG:inp.datumVerkrijging>
-          </BG:inp.heeftAlsNationaliteit>
-        </BG:object>
-      </BG:antwoord>
-    </BG:npsLa01>
-  </soapenv:Body>
-</soapenv:Envelope>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><BG:npsLa01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:a="http://www.egem.nl/StUF/StUF0301" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<BG:stuurgegevens>
+		<StUF:berichtcode>La01</StUF:berichtcode>
+		<StUF:zender>
+			<StUF:organisatie>NEDGR</StUF:organisatie>
+			<StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
+		</StUF:zender>
+		<StUF:ontvanger>
+			<StUF:organisatie>0518</StUF:organisatie>
+			<StUF:applicatie>TOP</StUF:applicatie>
+		</StUF:ontvanger>
+		<StUF:crossRefnummer>8f8d0ebf-c1bd-45c3-9443-69a14df44782</StUF:crossRefnummer>
+		<StUF:entiteittype>NPS</StUF:entiteittype>
+	</BG:stuurgegevens>
+	<BG:parameters>
+		<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+		<StUF:aantalVoorkomens>1</StUF:aantalVoorkomens>
+	</BG:parameters>
+	<BG:antwoord>
+		<BG:object StUF:entiteittype="NPS">
+			<BG:inp.bsn>555555021</BG:inp.bsn>
+			<BG:geslachtsnaam>Verhuistest</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam>van den</BG:voorvoegselGeslachtsnaam>
+			<BG:voorletters>K.</BG:voorletters>
+			<BG:voornamen>Kees</BG:voornamen>
+			<BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:voorvoegselGeslachtsnaamPartner StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>20020701</BG:geboortedatum>
+			<BG:inp.geboorteplaats>Hellevoetsluis</BG:inp.geboorteplaats>
+			<BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
+			<BG:overlijdensdatum StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.verblijftIn StUF:entiteittype="NPSTGO">
+				<BG:gerelateerde StUF:entiteittype="TGO">
+					<BG:adresAanduidingGrp>
+						<BG:wpl.woonplaatsNaam>'s-Gravenhage</BG:wpl.woonplaatsNaam>
+						<BG:aoa.woonplaatsWaarinGelegen>
+							<BG:wpl.woonplaatsNaam>'s-Gravenhage</BG:wpl.woonplaatsNaam>
+						</BG:aoa.woonplaatsWaarinGelegen>
+						<BG:gor.openbareRuimteNaam>Laan van Nieuw-Oost-Indië</BG:gor.openbareRuimteNaam>
+						<BG:aoa.postcode>2593BL</BG:aoa.postcode>
+						<BG:aoa.huisnummer>101</BG:aoa.huisnummer>
+						<BG:aoa.huisletter>A</BG:aoa.huisletter>
+						<BG:aoa.huisnummertoevoeging StUF:noValue="geenWaarde" xsi:nil="true"/>
+					</BG:adresAanduidingGrp>
+				</BG:gerelateerde>
+			</BG:inp.verblijftIn>
+			<BG:verblijfsadres>
+				<BG:wpl.woonplaatsNaam>'s-Gravenhage</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.openbareRuimteNaam>Laan van Nieuw-Oost-Indië</BG:gor.openbareRuimteNaam>
+				<BG:aoa.postcode>2593BL</BG:aoa.postcode>
+				<BG:aoa.huisnummer>101</BG:aoa.huisnummer>
+				<BG:aoa.huisletter>A</BG:aoa.huisletter>
+				<BG:aoa.huisnummertoevoeging StUF:noValue="geenWaarde" xsi:nil="true"/>
+				<BG:inp.locatiebeschrijving StUF:noValue="geenWaarde" xsi:nil="true"/>
+			</BG:verblijfsadres>
+			<BG:sub.correspondentieAdres/>
+			<BG:sub.telefoonnummer StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:sub.emailadres StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.burgerlijkeStaat>1</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving>0518</BG:inp.gemeenteVanInschrijving>
+			<BG:ing.indicatieGezagMinderjarige StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+			<BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
+				<BG:gerelateerde StUF:entiteittype="NPS">
+					<BG:inp.bsn StUF:noValue="geenWaarde" xsi:nil="true"/>
+					<BG:geslachtsnaam>Verhuistest</BG:geslachtsnaam>
+					<BG:voorvoegselGeslachtsnaam>van den</BG:voorvoegselGeslachtsnaam>
+					<BG:voorletters>C.</BG:voorletters>
+					<BG:voornamen>Carolina</BG:voornamen>
+					<BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
+					<BG:geboortedatum>19710823</BG:geboortedatum>
+					<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+				</BG:gerelateerde>
+			</BG:inp.heeftAlsOuders>
+			<BG:inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT">
+				<BG:gerelateerde StUF:entiteittype="NAT">
+					<BG:code>1</BG:code>
+				</BG:gerelateerde>
+				<BG:inp.datumVerkrijging>20020701</BG:inp.datumVerkrijging>
+			</BG:inp.heeftAlsNationaliteit>
+		</BG:object>
+	</BG:antwoord>
+</BG:npsLa01></soapenv:Body></soapenv:Envelope>
