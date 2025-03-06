@@ -43,7 +43,7 @@
     <ing.datumVerliesVerblijfstitel authorizedApplications="GWS" />
     <inp.datumVestigingInNederland authorizedApplications="LBA,DEC_ZKN" />
     <inp.immigratieLand authorizedApplications="DEC_ZKN" />
-    <inp.datumVertrekUitNederland authorizedApplications="LBA" />
+    <inp.datumVertrekUitNederland authorizedApplications="LBA,GWS" />
     <inp.emigratieLand authorizedApplications="LBA,GWS" />
     <aanduidingBijzonderNederlanderschap authorizedApplications="GWS" />
     <ing.aanduidingEuropeesKiesrecht authorizedApplications="DEC_ZKN" />
@@ -76,10 +76,18 @@
         <sub.correspondentieAdres authorizedApplications="GWS" />
         <inp.indicatieGeheim authorizedApplications="TOP" />
     </inp.heeftAlsKinderen>
-    <inp.heeftAlsOuders authorizedApplications="LBA,TOP,GWS">
+    <inp.heeftAlsOuders>
+        <inp.bsn authorizedApplications="LBA,TOP,GWS" />
+        <geslachtsnaam authorizedApplications="GWS,TOP"/>
+        <voorvoegselGeslachtsnaam authorizedApplications="GWS,TOP" />
+        <voorletters authorizedApplications="GWS,TOP" />
+        <voornamen authorizedApplications="GWS,TOP" />
         <adellijkeTitelPredikaat authorizedApplications="" />
+        <geslachtsaanduiding authorizedApplications="GWS,TOP" />
+        <geboortedatum authorizedApplications="GWS,TOP" />
         <inp.geboorteplaats authorizedApplications="GWS" />
         <inp.geboorteLand authorizedApplications="GWS" />
+        <inp.verblijftIn authorizedApplications="GWS" />
         <sub.correspondentieAdres authorizedApplications="GWS" />
         <inp.indicatieGeheim authorizedApplications="TOP" />
         <datumIngangFamilierechtelijkeBetrekking authorizedApplications="GWS" />

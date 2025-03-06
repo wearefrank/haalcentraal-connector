@@ -1,190 +1,184 @@
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-  <soapenv:Body>
-    <BG:npsLa01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:a="http://www.egem.nl/StUF/StUF0301" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-      <BG:stuurgegevens>
-        <StUF:berichtcode>La01</StUF:berichtcode>
-        <StUF:zender>
-          <BG:organisatie>test</BG:organisatie>
-          <BG:applicatie>test123</BG:applicatie>
-        </StUF:zender>
-        <StUF:ontvanger>
-          <BG:organisatie/>
-          <BG:applicatie>GWS</BG:applicatie>
-          <BG:gebruiker>TEST</BG:gebruiker>
-        </StUF:ontvanger>
-        <StUF:tijdstipBericht>20241015062939134</StUF:tijdstipBericht>
-        <StUF:crossRefnummer>6bdd32e3-91bb-44ac-befb-cccc3ec661fe</StUF:crossRefnummer>
-        <StUF:entiteittype>NPS</StUF:entiteittype>
-      </BG:stuurgegevens>
-      <BG:parameters>
-        <StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
-        <StUF:indicatorAfnemerIndicatie>false</StUF:indicatorAfnemerIndicatie>
-        <StUF:aantalVoorkomens>3</StUF:aantalVoorkomens>
-      </BG:parameters>
-      <BG:antwoord>
-        <BG:object StUF:entiteittype="NPS">
-          <BG:inp.bsn>999994335</BG:inp.bsn>
-          <BG:inp.a-nummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:geslachtsnaam>Holthuizen</BG:geslachtsnaam>
-          <BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:voorletters>P.F.</BG:voorletters>
-          <BG:voornamen>Pepijn Floris</BG:voornamen>
-          <BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
-          <BG:geboortedatum>19800526</BG:geboortedatum>
-          <BG:inp.geboorteplaats xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:inp.geboorteLand xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:overlijdensdatum xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:verblijfsadres>
-            <BG:aoa.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-            <BG:wpl.woonplaatsNaam>'S-GRAVENHAGE</BG:wpl.woonplaatsNaam>
-            <BG:aoa.woonplaatsWaarinGelegen>
-              <BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-              <BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-            </BG:aoa.woonplaatsWaarinGelegen>
-            <BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-            <BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-            <BG:gor.openbareRuimteNaam>Jonkheer van Riemsdijkln</BG:gor.openbareRuimteNaam>
-            <BG:gor.straatnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-            <BG:aoa.postcode>2497 BV</BG:aoa.postcode>
-            <BG:aoa.huisnummer>88</BG:aoa.huisnummer>
-            <BG:aoa.huisletter>Riemsdijkln 88</BG:aoa.huisletter>
-            <BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-            <BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-            <BG:begindatumVerblijf xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          </BG:verblijfsadres>
-          <BG:sub.correspondentieAdres/>
-          <BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:sub.faxnummer xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:sub.emailadres xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:sub.url xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:inp.immigratieLand xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:inp.emigratieLand xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
-        </BG:object>
-        <BG:object StUF:entiteittype="NPS">
-          <BG:inp.bsn>999994736</BG:inp.bsn>
-          <BG:inp.a-nummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:geslachtsnaam>Burck</BG:geslachtsnaam>
-          <BG:voorvoegselGeslachtsnaam>du</BG:voorvoegselGeslachtsnaam>
-          <BG:voorletters>K.M.</BG:voorletters>
-          <BG:voornamen>Karin Monique</BG:voornamen>
-          <BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
-          <BG:geboortedatum>19511223</BG:geboortedatum>
-          <BG:inp.geboorteplaats xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:inp.geboorteLand xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:overlijdensdatum xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:verblijfsadres>
-            <BG:aoa.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-            <BG:wpl.woonplaatsNaam>'S-GRAVENHAGE</BG:wpl.woonplaatsNaam>
-            <BG:aoa.woonplaatsWaarinGelegen>
-              <BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-              <BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-            </BG:aoa.woonplaatsWaarinGelegen>
-            <BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-            <BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-            <BG:gor.openbareRuimteNaam>Jonkheer van Riemsdijkln</BG:gor.openbareRuimteNaam>
-            <BG:gor.straatnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-            <BG:aoa.postcode>2497 BV</BG:aoa.postcode>
-            <BG:aoa.huisnummer>88</BG:aoa.huisnummer>
-            <BG:aoa.huisletter>Riemsdijkln 88</BG:aoa.huisletter>
-            <BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-            <BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-            <BG:begindatumVerblijf xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          </BG:verblijfsadres>
-          <BG:sub.correspondentieAdres/>
-          <BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:sub.faxnummer xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:sub.emailadres xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:sub.url xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:inp.immigratieLand xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:inp.emigratieLand xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
-        </BG:object>
-        <BG:object StUF:entiteittype="NPS">
-          <BG:inp.bsn>999994293</BG:inp.bsn>
-          <BG:inp.a-nummer xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:geslachtsnaam>Holthuizen</BG:geslachtsnaam>
-          <BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:voorletters>D.</BG:voorletters>
-          <BG:voornamen>Dirk</BG:voornamen>
-          <BG:aanduidingNaamgebruik xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
-          <BG:geboortedatum>19460121</BG:geboortedatum>
-          <BG:inp.geboorteplaats xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:inp.geboorteLand xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:overlijdensdatum xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:verblijfsadres>
-            <BG:aoa.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-            <BG:wpl.woonplaatsNaam>'S-GRAVENHAGE</BG:wpl.woonplaatsNaam>
-            <BG:aoa.woonplaatsWaarinGelegen>
-              <BG:wpl.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-              <BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-            </BG:aoa.woonplaatsWaarinGelegen>
-            <BG:gor.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-            <BG:opr.identificatie xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-            <BG:gor.openbareRuimteNaam>Jonkheer van Riemsdijkln</BG:gor.openbareRuimteNaam>
-            <BG:gor.straatnaam xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-            <BG:aoa.postcode>2497 BV</BG:aoa.postcode>
-            <BG:aoa.huisnummer>88</BG:aoa.huisnummer>
-            <BG:aoa.huisletter>Riemsdijkln 88</BG:aoa.huisletter>
-            <BG:aoa.huisnummertoevoeging xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-            <BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-            <BG:begindatumVerblijf xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          </BG:verblijfsadres>
-          <BG:sub.correspondentieAdres/>
-          <BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:sub.faxnummer xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:sub.emailadres xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:sub.url xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:inp.burgerlijkeStaat xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:inp.gemeenteVanInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:inp.datumInschrijving xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:vbt.aanduidingVerblijfstitel xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:inp.immigratieLand xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:inp.datumVertrekUitNederland xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-          <BG:inp.emigratieLand xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:ing.indicatieGezagMinderjarige xsi:nil="true" StUF:noValue="waardeOnbekend"/>
-          <BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
-        </BG:object>
-      </BG:antwoord>
-    </BG:npsLa01>
-  </soapenv:Body>
-</soapenv:Envelope>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><BG:npsLa01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:a="http://www.egem.nl/StUF/StUF0301" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<BG:stuurgegevens>
+		<StUF:berichtcode>La01</StUF:berichtcode>
+		<StUF:zender>
+			<StUF:organisatie xmlns:stuf="http://www.egem.nl/StUF/StUF0301" xmlns:xsd="http://www.w3.org/2001/XMLSchema">test</StUF:organisatie>
+			<StUF:applicatie xmlns:stuf="http://www.egem.nl/StUF/StUF0301" xmlns:xsd="http://www.w3.org/2001/XMLSchema">test123</StUF:applicatie>
+		</StUF:zender>
+		<StUF:ontvanger>
+			<StUF:organisatie xmlns:stuf="http://www.egem.nl/StUF/StUF0301" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+			<StUF:applicatie xmlns:stuf="http://www.egem.nl/StUF/StUF0301" xmlns:xsd="http://www.w3.org/2001/XMLSchema">GWS</StUF:applicatie>
+			<StUF:gebruiker xmlns:stuf="http://www.egem.nl/StUF/StUF0301" xmlns:xsd="http://www.w3.org/2001/XMLSchema">TEST</StUF:gebruiker>
+		</StUF:ontvanger>
+		<StUF:crossRefnummer>6bdd32e3-91bb-44ac-befb-cccc3ec661fe</StUF:crossRefnummer>
+		<StUF:entiteittype>NPS</StUF:entiteittype>
+	</BG:stuurgegevens>
+	<BG:parameters>
+		<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+		<StUF:aantalVoorkomens>3</StUF:aantalVoorkomens>
+	</BG:parameters>
+	<BG:antwoord>
+		<BG:object StUF:entiteittype="NPS">
+			<BG:inp.bsn>999994335</BG:inp.bsn>
+			<BG:inp.a-nummer StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:geslachtsnaam>Holthuizen</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:voorletters>P.F.</BG:voorletters>
+			<BG:voornamen>Pepijn Floris</BG:voornamen>
+			<BG:aanduidingNaamgebruik StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:geslachtsnaamPartner StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:voorvoegselGeslachtsnaamPartner StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19800526</BG:geboortedatum>
+			<BG:inp.geboorteplaats StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.geboorteLand StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:overlijdensdatum StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie StUF:noValue="geenWaarde" xsi:nil="true"/>
+				<BG:wpl.woonplaatsNaam>'S-GRAVENHAGE</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie StUF:noValue="geenWaarde" xsi:nil="true"/>
+					<BG:wpl.woonplaatsNaam StUF:noValue="geenWaarde" xsi:nil="true"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie StUF:noValue="geenWaarde" xsi:nil="true"/>
+				<BG:opr.identificatie StUF:noValue="geenWaarde" xsi:nil="true"/>
+				<BG:gor.openbareRuimteNaam>Jonkheer van Riemsdijkln</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam StUF:noValue="geenWaarde" xsi:nil="true"/>
+				<BG:aoa.postcode>2497 BV</BG:aoa.postcode>
+				<BG:aoa.huisnummer>88</BG:aoa.huisnummer>
+				<BG:aoa.huisletter>Riemsdijkln 88</BG:aoa.huisletter>
+				<BG:aoa.huisnummertoevoeging StUF:noValue="geenWaarde" xsi:nil="true"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+				<BG:begindatumVerblijf StUF:noValue="geenWaarde" xsi:nil="true"/>
+			</BG:verblijfsadres>
+			<BG:sub.correspondentieAdres/>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.gemeenteVanInschrijving StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.datumInschrijving StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:vbt.aanduidingVerblijfstitel StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.datumVertrekUitNederland StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.emigratieLand StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:ing.indicatieGezagMinderjarige StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS">
+			<BG:inp.bsn>999994736</BG:inp.bsn>
+			<BG:inp.a-nummer StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:geslachtsnaam>Burck</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam>du</BG:voorvoegselGeslachtsnaam>
+			<BG:voorletters>K.M.</BG:voorletters>
+			<BG:voornamen>Karin Monique</BG:voornamen>
+			<BG:aanduidingNaamgebruik StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:geslachtsnaamPartner StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:voorvoegselGeslachtsnaamPartner StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19511223</BG:geboortedatum>
+			<BG:inp.geboorteplaats StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.geboorteLand StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:overlijdensdatum StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie StUF:noValue="geenWaarde" xsi:nil="true"/>
+				<BG:wpl.woonplaatsNaam>'S-GRAVENHAGE</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie StUF:noValue="geenWaarde" xsi:nil="true"/>
+					<BG:wpl.woonplaatsNaam StUF:noValue="geenWaarde" xsi:nil="true"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie StUF:noValue="geenWaarde" xsi:nil="true"/>
+				<BG:opr.identificatie StUF:noValue="geenWaarde" xsi:nil="true"/>
+				<BG:gor.openbareRuimteNaam>Jonkheer van Riemsdijkln</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam StUF:noValue="geenWaarde" xsi:nil="true"/>
+				<BG:aoa.postcode>2497 BV</BG:aoa.postcode>
+				<BG:aoa.huisnummer>88</BG:aoa.huisnummer>
+				<BG:aoa.huisletter>Riemsdijkln 88</BG:aoa.huisletter>
+				<BG:aoa.huisnummertoevoeging StUF:noValue="geenWaarde" xsi:nil="true"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+				<BG:begindatumVerblijf StUF:noValue="geenWaarde" xsi:nil="true"/>
+			</BG:verblijfsadres>
+			<BG:sub.correspondentieAdres/>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.gemeenteVanInschrijving StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.datumInschrijving StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:vbt.aanduidingVerblijfstitel StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.datumVertrekUitNederland StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.emigratieLand StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:ing.indicatieGezagMinderjarige StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+		</BG:object>
+		<BG:object StUF:entiteittype="NPS">
+			<BG:inp.bsn>999994293</BG:inp.bsn>
+			<BG:inp.a-nummer StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:geslachtsnaam>Holthuizen</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:voorletters>D.</BG:voorletters>
+			<BG:voornamen>Dirk</BG:voornamen>
+			<BG:aanduidingNaamgebruik StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:geslachtsnaamPartner StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:voorvoegselGeslachtsnaamPartner StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19460121</BG:geboortedatum>
+			<BG:inp.geboorteplaats StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.geboorteLand StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:overlijdensdatum StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:verblijfsadres>
+				<BG:aoa.identificatie StUF:noValue="geenWaarde" xsi:nil="true"/>
+				<BG:wpl.woonplaatsNaam>'S-GRAVENHAGE</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.identificatie StUF:noValue="geenWaarde" xsi:nil="true"/>
+					<BG:wpl.woonplaatsNaam StUF:noValue="geenWaarde" xsi:nil="true"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.identificatie StUF:noValue="geenWaarde" xsi:nil="true"/>
+				<BG:opr.identificatie StUF:noValue="geenWaarde" xsi:nil="true"/>
+				<BG:gor.openbareRuimteNaam>Jonkheer van Riemsdijkln</BG:gor.openbareRuimteNaam>
+				<BG:gor.straatnaam StUF:noValue="geenWaarde" xsi:nil="true"/>
+				<BG:aoa.postcode>2497 BV</BG:aoa.postcode>
+				<BG:aoa.huisnummer>88</BG:aoa.huisnummer>
+				<BG:aoa.huisletter>Riemsdijkln 88</BG:aoa.huisletter>
+				<BG:aoa.huisnummertoevoeging StUF:noValue="geenWaarde" xsi:nil="true"/>
+				<BG:inp.locatiebeschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+				<BG:begindatumVerblijf StUF:noValue="geenWaarde" xsi:nil="true"/>
+			</BG:verblijfsadres>
+			<BG:sub.correspondentieAdres/>
+			<BG:sub.telefoonnummer xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:sub.faxnummer xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:sub.emailadres xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:sub.url xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:sub.rekeningnummerBankGiro xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.burgerlijkeStaat StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.gemeenteVanInschrijving StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.datumInschrijving StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:vbt.aanduidingVerblijfstitel StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.datumVestigingInNederland xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.immigratieLand xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:inp.datumVertrekUitNederland StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.emigratieLand StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:ing.indicatieGezagMinderjarige StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+		</BG:object>
+	</BG:antwoord>
+</BG:npsLa01></soapenv:Body></soapenv:Envelope>

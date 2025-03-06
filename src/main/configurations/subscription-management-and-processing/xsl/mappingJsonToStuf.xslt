@@ -28,8 +28,8 @@
     <xsl:variable name="nietGeautoriseerd">nietGeautoriseerd</xsl:variable>
     <xsl:variable name="authorizedApplicationsMap" select="document('authorizedApplicationsMap.xml')" as="node()?" />
     <!-- <xsl:variable name="woonplaats"><xsl:value-of
-            select="root/personen/verblijfplaats/verblijfadres/woonplaats" /></xsl:variable>
-    <xsl:variable name="external-data" select="document('woonplaatsen.xml')" as="node()?" /> -->
+         select="root/personen/verblijfplaats/verblijfadres/woonplaats" /></xsl:variable>
+         <xsl:variable name="external-data" select="document('woonplaatsen.xml')" as="node()?" /> -->
     <xsl:param name="geslachtsnaam"><xsl:value-of select="/root/personen/naam/geslachtsnaam"/></xsl:param>
     <xsl:param name="voorvoegsel"><xsl:value-of select="count(/root/personen/naam/voorvoegsel)"/></xsl:param>    
     
@@ -62,8 +62,8 @@
                                         <authentiek doNotCreate="true"/>
                                     </xsl:when>
                                     <xsl:otherwise>
-                                        <inp.bsn doNotCreate="true"/>
-                                        <authentiek StUF:metagegeven="true"/>
+                                        <inp.bsn />
+                                        <authentiek doNotCreate="true"/>
                                     </xsl:otherwise>
                                 </xsl:choose>
                                 <inp.a-nummer><xsl:copy-of select="aNummer" /></inp.a-nummer>
@@ -258,7 +258,7 @@
                                                     <xsl:when
                                                         test="./soortVerbintenis/code/text() ='H'">
                                                         <xsl:choose>
-                                                            <xsl:when test="./ontbindingHuwelijkPartnerschap/text() =''">
+                                                            <xsl:when test="not(exists(./ontbindingHuwelijkPartnerschap/text()))">
                                                                 <xsl:value-of select="2" />
                                                             </xsl:when>
                                                             <xsl:otherwise>
@@ -269,11 +269,11 @@
                                                     <xsl:when
                                                         test="./soortVerbintenis/code/text() ='P'">
                                                         <xsl:choose>
-                                                            <xsl:when test="./ontbindingHuwelijkPartnerschap/text() !=''">
-                                                                <xsl:value-of select="6" />
+                                                            <xsl:when test="not(exists(./ontbindingHuwelijkPartnerschap/text()))">
+                                                                <xsl:value-of select="5" />
                                                             </xsl:when>
                                                             <xsl:otherwise>
-                                                                <xsl:value-of select="5" />
+                                                                <xsl:value-of select="6" />
                                                             </xsl:otherwise>
                                                         </xsl:choose>
                                                     </xsl:when>
@@ -476,13 +476,13 @@
                                 <xsl:attribute name="xsi:nil">true</xsl:attribute>
                                 <xsl:attribute
                                     name="StUF:noValue"><xsl:value-of
-                                        select="$geenWaarde" /></xsl:attribute>                           
+                                        select="$waardeOnbekend" /></xsl:attribute>                           
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:attribute name="xsi:nil">true</xsl:attribute>
                                 <xsl:attribute
                                     name="StUF:noValue"><xsl:value-of
-                                        select="$waardeOnbekend" /></xsl:attribute>                            
+                                        select="$geenWaarde" /></xsl:attribute>                            
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:element>
@@ -509,8 +509,8 @@
                             <authentiek doNotCreate="true"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <inp.bsn doNotCreate="true"/>
-                            <authentiek StUF:metagegeven="true"/>
+                            <inp.bsn />
+                            <authentiek doNotCreate="true"/>
                         </xsl:otherwise>
                     </xsl:choose>
                     <geslachtsnaam><xsl:copy-of select="naam/geslachtsnaam"/></geslachtsnaam>  
@@ -580,7 +580,7 @@
                                         <xsl:when
                                             test="./soortVerbintenis/code/text() ='H'">
                                             <xsl:choose>
-                                                <xsl:when test="./ontbindingHuwelijkPartnerschap/text() =''">
+                                                <xsl:when test="not(exists(./ontbindingHuwelijkPartnerschap/text()))">
                                                     <xsl:value-of select="2" />
                                                 </xsl:when>
                                                 <xsl:otherwise>
@@ -591,11 +591,11 @@
                                         <xsl:when
                                             test="./soortVerbintenis/code/text() ='P'">
                                             <xsl:choose>
-                                                <xsl:when test="./ontbindingHuwelijkPartnerschap/text() !=''">
-                                                    <xsl:value-of select="6" />
+                                                <xsl:when test="not(exists(./ontbindingHuwelijkPartnerschap/text()))">
+                                                    <xsl:value-of select="5" />
                                                 </xsl:when>
                                                 <xsl:otherwise>
-                                                    <xsl:value-of select="5" />
+                                                    <xsl:value-of select="6" />
                                                 </xsl:otherwise>
                                             </xsl:choose>
                                         </xsl:when>
@@ -639,8 +639,8 @@
                             <authentiek doNotCreate="true"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <inp.bsn doNotCreate="true"/>
-                            <authentiek StUF:metagegeven="true"/>
+                            <inp.bsn />
+                            <authentiek doNotCreate="true"/>
                         </xsl:otherwise>
                     </xsl:choose>
                     <geslachtsnaam><xsl:copy-of select="naam/geslachtsnaam"/></geslachtsnaam>
@@ -729,8 +729,8 @@
                             <authentiek doNotCreate="true"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <inp.bsn doNotCreate="true"/>
-                            <authentiek StUF:metagegeven="true"/>
+                            <inp.bsn/>
+                            <authentiek doNotCreate="true"/>
                         </xsl:otherwise>
                     </xsl:choose>                    
                     <geslachtsnaam><xsl:copy-of select="naam/geslachtsnaam"/></geslachtsnaam>  
@@ -823,7 +823,7 @@
         <xsl:variable name="mapping">
             <inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT" StUF:verwerkingssoort="T">
                 <gerelateerde StUF:entiteittype="NAT" StUF:verwerkingssoort="T">
-                    <code><xsl:copy-of select="nationaliteit/code"/></code>
+                    <code><number><xsl:value-of select="number(nationaliteit/code)"/></number></code>
                     <omschrijving><xsl:copy-of select="nationaliteit/omschrijving"/></omschrijving>
                 </gerelateerde>
                 <inp.redenVerkrijging><xsl:copy-of select="redenOpname/code"/></inp.redenVerkrijging>

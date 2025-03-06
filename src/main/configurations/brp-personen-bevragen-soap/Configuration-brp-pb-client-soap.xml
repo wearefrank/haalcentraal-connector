@@ -23,7 +23,6 @@
 				<Exit name="ServiceUnavailable" state="ERROR" code="503" />
 			</Exits>
 
-
 			<XsltPipe name="MAP_Stuf301_Stuurgegevens_to_Context"
 				styleSheetName="xsl/GetInputValues.xslt"
 				getInputFromSessionKey="originalMessage">
@@ -34,8 +33,6 @@
 				<Param name="varZenderApplicatie" xpathExpression="Root/Record/varZenderApplicatie" />
 				<Param name="varReferentienummer"
 					xpathExpression="Root/Record/varReferentienummer" />
-				<Param name="varEntiteittype"
-					xpathExpression="Root/Record/varEntiteittype" />
 				<Param name="tijdstipBericht"
 					xpathExpression="Root/Record/tijdstipBericht" />
 				<Param name="indicatorVervolgvraag"
@@ -93,7 +90,6 @@
 				storeResultInSessionKey="MapResponse">
 				<Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
 				<Param name="varReferentienummer" sessionKey="varReferentienummer" />
-				<Param name="varEntiteittype" sessionKey="varEntiteittype" />
 				<Param name="indicatorVervolgvraag" sessionKey="indicatorVervolgvraag" />
 				<Param name="originalMessage" sessionKey="originalMessage" type="DOMDOC" />
 				<Forward name="success" path="Exit" />
