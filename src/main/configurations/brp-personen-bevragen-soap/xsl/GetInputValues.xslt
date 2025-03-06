@@ -10,12 +10,6 @@
                 <varReferentienummer>
                     <xsl:value-of select="//BG:stuurgegevens/StUF:referentienummer" />
                 </varReferentienummer>
-                <tijdstipBericht>
-                    <xsl:value-of select="//BG:stuurgegevens/StUF:tijdstipBericht" />
-                </tijdstipBericht>
-                <varEntiteittype>
-                    <xsl:value-of select="//StUF:entiteittype" />
-                </varEntiteittype>
                 <indicatorVervolgvraag>
                     <xsl:value-of select="//BG:parameters/StUF:indicatorVervolgvraag" />
                 </indicatorVervolgvraag>
