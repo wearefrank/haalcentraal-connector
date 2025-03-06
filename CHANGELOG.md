@@ -1,5 +1,19 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.18.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.18.2...v1.18.3) (2025-03-06)
+
+### 🐛 Bug Fixes
+
+* add larva scenarios run to release workflow ([f9afb3f](https://github.com/wearefrank/haalcentraal-connector/commit/f9afb3f0f7406b8c5be2ad7bfcd14694070c89d4))
+* move ff version back to 03-01 ([e2c7c2e](https://github.com/wearefrank/haalcentraal-connector/commit/e2c7c2e747b0f0683c31766e266a6f0bf36412c9))
+* release.yml remove dependency for run larva job ([8f34fd9](https://github.com/wearefrank/haalcentraal-connector/commit/8f34fd9bcb7f920168f59886a6484222f261a912))
+* remove run til healthy from release workflow ([4408d07](https://github.com/wearefrank/haalcentraal-connector/commit/4408d0781592d73e1d3de61e3244c1c13abe2e41))
+* update according to comparisons GWS Nedmag VS Haalcentraal ([8fbd015](https://github.com/wearefrank/haalcentraal-connector/commit/8fbd015092a40b81d30ed6f2d3c421025ac86ec9))
+
+### 🤖 Build System
+
+* **dependencies:** bump f!f version to 9.1.0-20250305.042327 ([1743472](https://github.com/wearefrank/haalcentraal-connector/commit/17434723113a486c1e6e8b2d0db63a9548bf1df8))
+
 ## [1.18.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.18.1...v1.18.2) (2025-03-04)
 
 ### 🐛 Bug Fixes
