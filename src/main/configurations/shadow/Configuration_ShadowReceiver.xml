@@ -1,4 +1,4 @@
-<Adapter name="ShadowReceiver" description="">
+<Adapter name="ShadowReceiver" active="${ShadowReceiver.active}" description="">
     <Receiver name="ShadowReceiver">
         <ApiListener name="ShadowListener" uriPattern="${haalcentraal_connector.shadow.endpoint}" method="POST" allowAllParams="true" />
     </Receiver>
