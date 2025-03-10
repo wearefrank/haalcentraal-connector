@@ -85,6 +85,21 @@
 
 			<JsonPipe name="JsonToXml" storeResultInSessionKey="xmlbody" />
 
+			<PutInSessionPipe name="StoreBsn" getInputFromSessionKey="xmlbody">
+				<Param name="bsn" xpathExpression="(//burgerservicenummer)[1]/text()" />
+			</PutInSessionPipe>
+
+			<!-- Get the personal key -->
+			<!-- <jdbcSenderPipe name="GetPersonalKey" storeResultInSessionKey="personalKey">
+				<FixedQuerySender
+					name="GetPersonalKey"
+					queryType="SELECT"
+					query="SELECT personal_key FROM applications WHERE app_id=?{varZenderApplicatie}">
+					<Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
+				</FixedQuerySender>
+				<Forward name="success" path="MapResponse" />
+			</jdbcSenderPipe> -->
+
 			<XsltPipe name="MapResponse"
 				styleSheetName="xsl/mappingJsonToStuf.xslt"
 				storeResultInSessionKey="MapResponse">
