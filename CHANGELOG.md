@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.19.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.18.3...v1.19.0) (2025-03-10)
+
+### 🍕 Features
+
+* add active attribute to adapters ([9615cd6](https://github.com/wearefrank/haalcentraal-connector/commit/9615cd6dcfff40dce12ffe013b6a38bc2af567fd))
+
 ## [1.18.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.18.2...v1.18.3) (2025-03-06)
 
 ### 🐛 Bug Fixes
