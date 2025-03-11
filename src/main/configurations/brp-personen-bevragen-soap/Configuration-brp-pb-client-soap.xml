@@ -89,24 +89,50 @@
 				<Param name="bsn" xpathExpression="(//burgerservicenummer)[1]/text()" />
 			</PutInSessionPipe>
 
-			<!-- Get the personal key -->
-			<!-- <jdbcSenderPipe name="GetPersonalKey" storeResultInSessionKey="personalKey">
+			<!-- Check if bsn has a key -->
+			<SenderPipe name="GetPersoonssleutel" storeResultInSessionKey="persoonssleutel">
 				<FixedQuerySender
-					name="GetPersonalKey"
+					name="FetchPersoonssleutel"
 					queryType="SELECT"
-					query="SELECT personal_key FROM applications WHERE app_id=?{varZenderApplicatie}">
-					<Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
+					query="SELECT * FROM persoonssleutels WHERE bsn=?{burgerservicenummer} LIMIT 1"
+					includeFieldDefinition="false">
+					<Param name="burgerservicenummer" sessionKey="bsn" />
 				</FixedQuerySender>
+			</SenderPipe>
+
+			<!-- Check if a result was found -->
+			<IfPipe name="HasKey" xpathExpression="count(result/rowset/row) > 0">
+				<Forward name="then" path="StoreKey" />
+				<Forward name="else" path="CreateKey" />
+			</IfPipe>
+
+			<PutInSessionPipe name="StoreKey">
+				<Param name="persoonssleutel" xpathExpression="//field[@name='SLEUTEL']/text()"/>
 				<Forward name="success" path="MapResponse" />
-			</jdbcSenderPipe> -->
+			</PutInSessionPipe>
+
+			<!-- Create a new key if no key was found -->
+			<HashPipe name="CreateKey" algorithm="SHA256" storeResultInSessionKey="persoonssleutel" />
+
+			<SenderPipe name="StoreKeyInDatabase" storeResultInSessionKey="persoonssleutel">
+				<FixedQuerySender
+					name="CreatePersoonssleutel"
+					query="INSERT INTO persoonssleutels (bsn, sleutel) VALUES (?, ?)"
+					includeFieldDefinition="false">
+					<Param name="burgerservicenummer" sessionKey="bsn" />
+					<Param name="persoonssleutel" sessionKey="persoonssleutel" />
+				</FixedQuerySender>
+			</SenderPipe>
 
 			<XsltPipe name="MapResponse"
 				styleSheetName="xsl/mappingJsonToStuf.xslt"
-				storeResultInSessionKey="MapResponse">
+				storeResultInSessionKey="MapResponse"
+				getInputFromSessionKey="xmlbody">
 				<Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
 				<Param name="varReferentienummer" sessionKey="varReferentienummer" />
 				<Param name="indicatorVervolgvraag" sessionKey="indicatorVervolgvraag" />
 				<Param name="originalMessage" sessionKey="originalMessage" type="DOMDOC" />
+				<Param name="sleutelVerzendend" sessionKey="persoonssleutel" />
 				<Forward name="success" path="Exit" />
 			</XsltPipe>
 
