@@ -19,6 +19,7 @@
     <xsl:param name="indicatorVervolgvraag" />
     <xsl:param name="aantalVoorkomens"><xsl:value-of select="count(/root/personen)"/></xsl:param>
     <xsl:param name="originalMessage" as='node()?'/>
+    <xsl:param name="sleutelVerzendend"/>
     <xsl:variable name="geenWaarde">geenWaarde</xsl:variable>
     <xsl:variable name="waardeOnbekend">waardeOnbekend</xsl:variable>
     <xsl:variable name="nietGeautoriseerd">nietGeautoriseerd</xsl:variable>
@@ -434,6 +435,7 @@
         <xsl:param name="mapping"/>
         <xsl:param name="persoon" tunnel="yes"/>
         <BG:object StUF:entiteittype="NPS">
+            <xsl:attribute name="StUF:sleutelVerzendend" select="$sleutelVerzendend"/>
             <xsl:apply-templates select="*[not(local-name() = ('inp.heeftAlsOuders', 'inp.heeftAlsKinderen', 'inp.heeftAlsEchtgenootPartner', 'inp.heeftAlsNationaliteit'))]">
                 <xsl:with-param name="mapping" select="$mapping/object"/>
                 <xsl:with-param name="authorizedApplicationsMap" select="$authorizedApplicationsMap/root"/>
