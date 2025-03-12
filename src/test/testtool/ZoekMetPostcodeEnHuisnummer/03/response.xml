@@ -18,7 +18,7 @@
 		<StUF:aantalVoorkomens>3</StUF:aantalVoorkomens>
 	</BG:parameters>
 	<BG:antwoord>
-		<BG:object StUF:entiteittype="NPS">
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="ac47aaecf19c4a1c779f4c64c05c84a7c0c17d54">
 			<BG:inp.bsn>999994335</BG:inp.bsn>
 			<BG:inp.a-nummer StUF:noValue="geenWaarde" xsi:nil="true"/>
 			<BG:geslachtsnaam>Holthuizen</BG:geslachtsnaam>
@@ -72,7 +72,7 @@
 			<BG:ing.indicatieGezagMinderjarige StUF:noValue="geenWaarde" xsi:nil="true"/>
 			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
 		</BG:object>
-		<BG:object StUF:entiteittype="NPS">
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="ac47aaecf19c4a1c779f4c64c05c84a7c0c17d54">
 			<BG:inp.bsn>999994736</BG:inp.bsn>
 			<BG:inp.a-nummer StUF:noValue="geenWaarde" xsi:nil="true"/>
 			<BG:geslachtsnaam>Burck</BG:geslachtsnaam>
@@ -126,7 +126,7 @@
 			<BG:ing.indicatieGezagMinderjarige StUF:noValue="geenWaarde" xsi:nil="true"/>
 			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
 		</BG:object>
-		<BG:object StUF:entiteittype="NPS">
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="ac47aaecf19c4a1c779f4c64c05c84a7c0c17d54">
 			<BG:inp.bsn>999994293</BG:inp.bsn>
 			<BG:inp.a-nummer StUF:noValue="geenWaarde" xsi:nil="true"/>
 			<BG:geslachtsnaam>Holthuizen</BG:geslachtsnaam>
