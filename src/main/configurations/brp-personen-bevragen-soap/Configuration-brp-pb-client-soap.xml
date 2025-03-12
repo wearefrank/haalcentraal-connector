@@ -112,7 +112,14 @@
 			</PutInSessionPipe>
 
 			<!-- Create a new key if no key was found -->
-			<HashPipe name="CreateKey" algorithm="SHA256" storeResultInSessionKey="persoonssleutel" />
+			<HashPipe name="CreateKey" algorithm="SHA256" storeResultInSessionKey="persoonssleutel" hashEncoding="Hex" />
+
+			<!-- Get the first 32 characters -->
+			<XsltPipe name="GetFirst32Characters"
+				xpathExpression="substring($sleutel, 1, 32)"
+				getInputFromFixedValue="&lt;root/&gt;">
+				<Param name="sleutel" sessionKey="persoonssleutel" />
+			</XsltPipe>
 
 			<SenderPipe name="StoreKeyInDatabase">
 				<FixedQuerySender
