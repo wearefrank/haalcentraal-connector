@@ -114,7 +114,7 @@
 			<!-- Create a new key if no key was found -->
 			<HashPipe name="CreateKey" algorithm="SHA256" storeResultInSessionKey="persoonssleutel" />
 
-			<SenderPipe name="StoreKeyInDatabase" storeResultInSessionKey="persoonssleutel">
+			<SenderPipe name="StoreKeyInDatabase">
 				<FixedQuerySender
 					name="CreatePersoonssleutel"
 					query="INSERT INTO persoonssleutels (bsn, sleutel) VALUES (?, ?)"
