@@ -16,4 +16,5 @@ jobs:
       dockerhub-username: ${{ secrets.DOCKERHUB_USERNAME }}
       dockerhub-token: ${{ secrets.DOCKERHUB_TOKEN }}
     with:
-      ff-version-tag: ${{ github.event.inputs.ff-version-tag || 'latest' }}
+      ff-version-tag: ${{ github.event.inputs.ff-version-tag || 'latest' }}    # The path of docker-compose file that has the FF version in the project repo.
+      dockercompose-path: ./docker-compose.yaml ./docker-compose.frank.stub.yaml ./docker-compose.frank.dev.yaml
