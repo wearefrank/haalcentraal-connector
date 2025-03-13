@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.19.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.19.0...v1.19.1) (2025-03-13)
+
+### 🐛 Bug Fixes
+
+* change docker compose files ([64f221e](https://github.com/wearefrank/haalcentraal-connector/commit/64f221e15af14f9fab0f32c89616d2edea9d6849))
+
 ## [1.19.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.18.3...v1.19.0) (2025-03-10)
 
 ### 🍕 Features
