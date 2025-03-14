@@ -127,4 +127,14 @@
 			<column name="afnemers_sleutel" type="varchar(255)" />
 		</addColumn>
 	</changeSet>
+
+	<changeSet id="HCC-10" author="Vincent de Gans">
+		<comment>Create persoonssleutels table</comment>
+		<createTable tableName="persoonssleutels">
+			<column name="bsn" type="varchar(9)">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="sleutel" type="varchar(40)" />
+		</createTable>
+	</changeSet>
 </databaseChangeLog>

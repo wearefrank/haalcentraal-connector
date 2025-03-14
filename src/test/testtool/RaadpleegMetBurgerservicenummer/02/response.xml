@@ -1,6 +1,15 @@
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
   <soapenv:Body>
-    <BG:npsLa01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:a="http://www.egem.nl/StUF/StUF0301" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <BG:npsLa01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310"
+      xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+      xmlns:StUF="http://www.egem.nl/StUF/StUF0301"
+      xmlns:a="http://www.egem.nl/StUF/StUF0301"
+      xmlns:gml="http://www.opengis.net/gml"
+      xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310"
+      xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"
+      xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <BG:stuurgegevens>
         <StUF:berichtcode>La01</StUF:berichtcode>
         <StUF:zender>
@@ -19,7 +28,7 @@
         <StUF:aantalVoorkomens>1</StUF:aantalVoorkomens>
       </BG:parameters>
       <BG:antwoord>
-        <BG:object StUF:entiteittype="NPS">
+        <BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="ac47aaecf19c4a1c779f4c64c05c84a7c0c17d54">
           <BG:inp.bsn>999993628</BG:inp.bsn>
           <BG:inp.a-nummer>3461805105</BG:inp.a-nummer>
           <BG:geslachtsnaam>Huijgen</BG:geslachtsnaam>
