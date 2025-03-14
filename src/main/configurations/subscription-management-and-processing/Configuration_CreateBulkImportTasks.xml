@@ -21,8 +21,8 @@
                     query="INSERT INTO bulkimporttasks (bsn, applicatie, persoons_sleutel, afnemers_sleutel) VALUES (?, ?, ?, ?)">
                 <Param name="bsn" xpathExpression="record/bsn" />
                 <Param name="app_id" xpathExpression="record/app_id" />
-                <Param name="persoons_sleutel" xpathExpression="record/sleutel" />
-                <Param name="afnemers_sleutel" xpathExpression="record/sleutel_zender" />
+                <Param name="persoons_sleutel" xpathExpression="record/sleutel_zender" />
+                <Param name="afnemers_sleutel" xpathExpression="record/sleutel" />
             </FixedQuerySender>
         </ForEachChildElementPipe>
 
