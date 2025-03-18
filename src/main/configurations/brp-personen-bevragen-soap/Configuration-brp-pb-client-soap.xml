@@ -85,7 +85,7 @@
 
 			<JsonPipe name="JsonToXml" storeResultInSessionKey="xmlbody" />
 
-			<PutInSessionPipe name="StoreBsn" getInputFromSessionKey="xmlbody">
+			<PutInSessionPipe name="StoreBsn">
 				<Param name="bsn" xpathExpression="(//burgerservicenummer)[1]/text()" />
 			</PutInSessionPipe>
 
