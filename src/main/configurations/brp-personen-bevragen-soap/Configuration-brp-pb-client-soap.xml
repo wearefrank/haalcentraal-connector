@@ -94,7 +94,7 @@
 				<FixedQuerySender
 					name="FetchPersoonssleutel"
 					queryType="SELECT"
-					query="SELECT * FROM persoonssleutels WHERE bsn=?{burgerservicenummer} LIMIT 1"
+					query="SELECT * FROM persoonssleutels WHERE bsn=?{burgerservicenummer}"
 					includeFieldDefinition="false">
 					<Param name="burgerservicenummer" sessionKey="bsn" />
 				</FixedQuerySender>
