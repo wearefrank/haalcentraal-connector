@@ -117,8 +117,7 @@
 			<SenderPipe name="StoreKeyInDatabase">
 				<FixedQuerySender
 					name="CreatePersoonssleutel"
-					query="INSERT INTO persoonssleutels (bsn, sleutel) VALUES (?, ?)"
-					includeFieldDefinition="false">
+					query="INSERT INTO persoonssleutels (bsn, sleutel) VALUES (?, ?)">
 					<Param name="burgerservicenummer" sessionKey="bsn" />
 					<Param name="persoonssleutel" sessionKey="persoonssleutel" />
 				</FixedQuerySender>
