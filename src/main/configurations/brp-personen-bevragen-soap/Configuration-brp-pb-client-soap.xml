@@ -112,7 +112,11 @@
 			</PutInSessionPipe>
 
 			<!-- Create a new key if no key was found -->
-			<HashPipe name="CreateKey" algorithm="SHA" storeResultInSessionKey="persoonssleutel" hashEncoding="Hex" />
+			<HashPipe name="CreateKey" 
+				algorithm="SHA" 
+				storeResultInSessionKey="persoonssleutel" 
+				hashEncoding="Hex" 
+				getInputFromSessionKey="bsn"/>
 
 			<SenderPipe name="StoreKeyInDatabase">
 				<FixedQuerySender
