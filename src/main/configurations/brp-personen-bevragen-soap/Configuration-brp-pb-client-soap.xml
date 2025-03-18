@@ -101,7 +101,7 @@
 			</SenderPipe>
 
 			<!-- Check if a result was found -->
-			<IfPipe name="HasKey" xpathExpression="count(result/rowset/row) > 0">
+			<IfPipe name="HasKey" xpathExpression="count(result/rowset/row) > 0" expressionValue="true">
 				<Forward name="then" path="StoreKey" />
 				<Forward name="else" path="CreateKey" />
 			</IfPipe>
