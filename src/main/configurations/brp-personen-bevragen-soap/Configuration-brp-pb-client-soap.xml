@@ -90,29 +90,25 @@
 			</PutInSessionPipe>
 
 			<!-- Check if bsn has a key -->
+			<!-- TODO: uitzoeken of dit kan met scalar, en hoe -->
 			<SenderPipe name="GetPersoonssleutel" storeResultInSessionKey="persoonssleutel">
 				<FixedQuerySender
 					name="FetchPersoonssleutel"
 					queryType="SELECT"
-					query="SELECT * FROM persoonssleutels WHERE bsn=?{burgerservicenummer}"
-					includeFieldDefinition="false">
+					query="SELECT sleutel FROM persoonssleutels WHERE bsn=?{burgerservicenummer}"
+					scalar="true">
 					<Param name="burgerservicenummer" sessionKey="bsn" />
 				</FixedQuerySender>
 			</SenderPipe>
 
 			<!-- Check if a result was found -->
-			<IfPipe name="HasKey" xpathExpression="count(result/rowset/row) > 0" expressionValue="true">
-				<Forward name="then" path="StoreKey" />
+			<IfPipe name="HasKey" getInputFromSessionKey="persoonssleutel">
+				<Forward name="then" path="MapResponse" />
 				<Forward name="else" path="CreateKey" />
 			</IfPipe>
 
-			<PutInSessionPipe name="StoreKey">
-				<Param name="persoonssleutel" xpathExpression="//field[@name='SLEUTEL']/text()"/>
-				<Forward name="success" path="MapResponse" />
-			</PutInSessionPipe>
-
 			<!-- Create a new key if no key was found -->
-			<HashPipe name="CreateKey" 
+			<HashPipe name="CreateKey"
 				algorithm="SHA" 
 				storeResultInSessionKey="persoonssleutel" 
 				hashEncoding="Hex" 
