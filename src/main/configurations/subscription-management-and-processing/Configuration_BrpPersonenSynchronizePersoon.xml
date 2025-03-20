@@ -28,6 +28,7 @@
         <!-- Retrieve person from Brp -->
         <SenderPipe name="GetPersoon" storeResultInSessionKey="currentPersonData" getInputFromSessionKey="originalMessage">
             <IbisLocalSender javaListener="BrpGetPersoon" />
+            <Forward name="exception" path="Exception" />
             <Forward name="success" path="JsonComparator"/>
         </SenderPipe>
 
