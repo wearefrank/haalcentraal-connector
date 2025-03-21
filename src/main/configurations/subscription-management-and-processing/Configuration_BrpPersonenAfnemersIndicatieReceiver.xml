@@ -117,24 +117,18 @@
 				<Forward name="exception" path="Exception" />
 			</SenderPipe>
 
-			<!-- Prepare the notify the subscriber of the current state of the person -->
-			<!-- Retrieve the person by BSN for the taskstore -->
-			<SenderPipe name="RetrieveBodyToReturn" storeResultInSessionKey="PersonenDatabaseResult">
-				<FixedQuerySender
-					name="FetchPersonSender"
-					queryType="SELECT"
-					query="SELECT * FROM persoonsgegevens WHERE bsn=?{burgerservicenummer} ORDER BY registratie_datum DESC LIMIT 1"
-					includeFieldDefinition="false">
-					<Param name="burgerservicenummer" sessionKey="originalMessage"
-						xpathExpression="npsLk01/object/inp.bsn" type="STRING" />
-				</FixedQuerySender>
+			<!-- Retrieve person from Brp -->
+			<SenderPipe name="GetPersoon" storeResultInSessionKey="currentPersonData" getInputFromSessionKey="bsn">
+				<IbisLocalSender javaListener="BrpGetPersoon" />
+				<Forward name="exception" path="Exception" />
+				<Forward name="success" path="CallQueueNotificationTask"/>
 			</SenderPipe>
 
 			<SenderPipe name="CallQueueNotificationTask">
 				<IbisLocalSender 
 					name="CallQueueNotificationsListener"
 					javaListener="QueueNotificationTask">
-					<Param name="PersonenDatabaseResult" sessionKey="PersonenDatabaseResult" />
+					<Param name="currentPersonData" sessionKey="currentPersonData" />
 					<Param name="ApplicationId" sessionKey="applicationId" />
 					<Param name="mutatiesoort" value="T" />
 					<Param name="gebruiker" sessionKey="gebruiker" />

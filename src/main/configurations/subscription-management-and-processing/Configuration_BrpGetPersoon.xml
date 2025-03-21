@@ -1,0 +1,67 @@
+<Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+    <Adapter name="BrpGetPersoon">
+        <Receiver name="BrpGetPersoon">
+            <JavaListener name="BrpGetPersoon" />
+        </Receiver>
+        <Pipeline>
+            <Exits>
+                <Exit name="Exit" state="SUCCESS" />
+                <Exit name="Exception" state="ERROR" />
+                <Exit name="BadRequest" state="ERROR" code="400" />
+                <Exit name="NotAuthorized" state="ERROR" code="401" />
+                <Exit name="Forbidden" state="ERROR" code="403" />
+                <Exit name="NotFound" state="ERROR" code="404" />
+                <Exit name="NotAcceptable" state="ERROR" code="406" />
+                <Exit name="UnsupportedMediaType" state="ERROR" code="415" />
+                <Exit name="TooManyRequest" state="ERROR" code="429" />
+                <Exit name="ServerError" state="ERROR" code="500" />
+                <Exit name="ServiceUnavailable" state="ERROR" code="503" />
+            </Exits>
+
+            <!-- Create request for BRP system using XSLT -->
+        <XsltPipe name="CreateRequest" styleSheetName="xsl/personenRequest.xslt" skipEmptyTags="true" getInputFromFixedValue="&lt;root/&gt;">
+            <Param name="burgerservicenummer" sessionKey="originalMessage" />
+        </XsltPipe>
+
+        <!-- Validate and transform input data to JSON format -->
+        <Json2XmlValidatorPipe
+            name="XmlToJson"
+            root="root"
+            schema="xsd/checkInput.xsd"
+            outputFormat="JSON"
+            compactJsonArrays="false"
+            storeResultInSessionKey="validatedInput"
+            throwException="true">
+        </Json2XmlValidatorPipe>
+
+        <!-- Retrieve new data from BRP system -->
+        <SenderPipe name="GetPersoon" storeResultInSessionKey="currentPersonData"
+                    maxRetries="3" retryMinInterval="60" retryMaxInterval="240">
+            <IbisLocalSender name="GetPersoonSender" javaListener="BrpPbOutwayListener" />
+            <Forward name="success" path="CheckResult" />
+            <Forward name="exception" path="ServerError" />
+            <Forward name="timeout" path="ServerError" />
+        </SenderPipe>
+
+		<!-- Check if person was found -->
+        <IfPipe defaultMediaType="JSON" name="CheckResult" jsonPathExpression="$.personen[0].burgerservicenummer" expressionValue="${bsn}">
+            <Param name="bsn" sessionKey="originalMessage" />
+            <Forward name="then" path="Exit" />
+            <Forward name="else" path="PersoonNotFound_Exception" />
+        </IfPipe>
+
+        <XsltPipe
+            name="PersoonNotFound_Exception"
+            getInputFromFixedValue="&lt;dummy/&gt;"
+            styleSheetName="xsl/BuildError.xsl"
+            storeResultInSessionKey="Error"
+            >
+            <Param name="cause" sessionKey="Error" type="DOMDOC" />
+            <Param name="reason" pattern="No Persoon with the burgerservicenummer:{originalMessage} is found." ignoreUnresolvablePatternElements="true"/>
+            <Param name="detailsXml" type="DOMDOC" />
+            <Forward name="success" path="NotFound" />
+            <Forward name="exception" path="NotFound" />
+        </XsltPipe>
+        </Pipeline>
+    </Adapter>
+</Configuration>

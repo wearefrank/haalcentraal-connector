@@ -61,28 +61,28 @@
             "verblijfplaats": {
                 "type": "Adres",
                 "verblijfadres": {
-                    "officieleStraatnaam": "Laan van Nieuw-Oost-Indië",
-                    "korteStraatnaam": "Laan van Nieuw-O-Indië",
-                    "huisnummer": 101,
-                    "huisletter": "A",
-                    "postcode": "2593BL",
+                    "officieleStraatnaam": "Burgemeester Waldeckstraat",
+                    "korteStraatnaam": "Burg Waldeckstraat",
+                    "huisnummer": 1,
+                    "huisnummertoevoeging": "BIS",
+                    "postcode": "2552TS",
                     "woonplaats": "'s-Gravenhage"
                 },
                 "functieAdres": {
                     "code": "W",
                     "omschrijving": "woonadres"
                 },
-                "adresseerbaarObjectIdentificatie": "0518010000466195",
-                "nummeraanduidingIdentificatie": "0518200000466194",
+                "adresseerbaarObjectIdentificatie": "0518010001756246",
+                "nummeraanduidingIdentificatie": "0518200001756291",
                 "datumVan": {
                     "type": "Datum",
-                    "datum": "2025-01-08",
-                    "langFormaat": "8 januari 2025"
+                    "datum": "2015-08-08",
+                    "langFormaat": "8 augustus 2015"
                 },
                 "datumIngangGeldigheid": {
                     "type": "Datum",
-                    "datum": "2025-01-08",
-                    "langFormaat": "8 januari 2025"
+                    "datum": "2015-08-08",
+                    "langFormaat": "8 augustus 2015"
                 }
             },
             "gemeenteVanInschrijving": {
@@ -100,8 +100,8 @@
                     "naam": "K. van den Verhuistest"
                 },
                 "gebruikInLopendeTekst": "de heer Van den Verhuistest",
-                "adresregel1": "Laan van Nieuw-O-Indië 101 A",
-                "adresregel2": "2593 BL  'S-GRAVENHAGE"
+                "adresregel1": "Burg Waldeckstraat 1 BIS",
+                "adresregel2": "2552 TS  'S-GRAVENHAGE"
             }
         }
     ]

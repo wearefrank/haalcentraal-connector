@@ -43,41 +43,22 @@
                     query="SELECT * FROM subscripties WHERE bsn=? AND eind_datum IS NULL">
                     <Param name="burgerservicenummer" sessionKey="originalMessage" />
                 </FixedQuerySender>
-                <Forward name="success" path="RetrieveLatestData" />
+                <Forward name="success" path="GetPersoon" />
             </SenderPipe>
 
-            <!-- retrieve latest persoonsgegevens record -->
-            <SenderPipe name="RetrieveLatestData">
-                <FixedQuerySender
-                    name="RetrieveLatestData"
-                    queryType="SELECT"
-                    query="SELECT data FROM persoonsgegevens WHERE bsn=?{burgerservicenummer} ORDER BY registratie_datum DESC LIMIT 1"
-                    outputFormat="JSON">
-                    <Param name="burgerservicenummer" sessionKey="originalMessage" />
-                </FixedQuerySender>
-                <Forward name="success" path="ExtractDataField" />
+            <!-- Retrieve person from Brp -->
+            <SenderPipe name="GetPersoon" storeResultInSessionKey="currentPersonData" getInputFromSessionKey="originalMessage">
+                <IbisLocalSender javaListener="BrpGetPersoon" />
+                <Forward name="exception" path="EXCEPTION" />
+                <Forward name="success" path="ForEachSubscriber"/>
             </SenderPipe>
-
-            <DataSonnetPipe name="ExtractDataField" styleSheetName="jsonnet/ExtractDatabaseRows.jsonnet" storeResultInSessionKey="body" />
-
-            <!-- Logic for getting the data to send to subscribers -->
-            <!-- Retrieve the person by BSN for the taskstore -->
-			<SenderPipe name="RetrieveBodyToReturn" storeResultInSessionKey="PersonenDatabaseResult">
-				<FixedQuerySender
-					name="FetchPersonSender"
-					queryType="SELECT"
-					query="SELECT * FROM persoonsgegevens WHERE bsn=?{burgerservicenummer} ORDER BY registratie_datum DESC LIMIT 1"
-					includeFieldDefinition="false">
-					<Param name="burgerservicenummer" sessionKey="originalMessage" />
-				</FixedQuerySender>
-			</SenderPipe>
 
             <ForEachChildElementPipe name="ForEachSubscriber" elementXPathExpression="/result/rowset/row" getInputFromSessionKey="subscribersResult">
                 <!-- Add a task in the messagestore to notify subscribers  -->
                 <IbisLocalSender 
                     name="CallQueueNotificationsListener"
                     javaListener="QueueNotificationTask">
-                    <Param name="PersonenDatabaseResult" sessionKey="PersonenDatabaseResult" />
+                    <Param name="currentPersonData" sessionKey="currentPersonData" />
                     <Param name="ApplicationId" xpathExpression="//field[@name='APP_ID']/text()" />
                     <Param name="afnemersSleutel" xpathExpression="//field[@name='AFNEMERS_SLEUTEL']/text()" />
                     <Param name="persoonsSleutel" xpathExpression="//field[@name='PERSOONS_SLEUTEL']/text()" />

@@ -12,13 +12,8 @@
             <!-- Required session keys -->
             <!-- PersonenDatabaseResult, the json record of the subscribed person -->
             <!-- ApplicationId, the id of the subscriber -->
-
-            <PutInSessionPipe name="getPersonen" getInputFromSessionKey="PersonenDatabaseResult">
-                <Param name="personen" xpathExpression="result/rowset/row/field[@name='DATA']" type="STRING" />
-            </PutInSessionPipe>
-
-            <ReplacerPipe name="ConvertToString" getInputFromFixedValue="?{personen}" storeResultInSessionKey="stringResult">
-                <Param name="personen" sessionKey="personen" />
+            <ReplacerPipe name="ConvertToString" getInputFromFixedValue="?{currentPersonData}" storeResultInSessionKey="stringResult">
+                <Param name="currentPersonData" sessionKey="currentPersonData" />
             </ReplacerPipe>
 
             <DataSonnetPipe name="ExtractPersonenBody" storeResultInSessionKey="personenBody" styleSheetName="jsonnet/ExtractBody.jsonnet" />
