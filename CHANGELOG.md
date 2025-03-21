@@ -1,5 +1,18 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.20.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.19.1...v1.20.0) (2025-03-21)
+
+### 🍕 Features
+
+* create personal key to return in VA ([6b42ffd](https://github.com/wearefrank/haalcentraal-connector/commit/6b42ffd8ed2d2f9f80e557aa1b1ccc49358d8973))
+
+### 🐛 Bug Fixes
+
+* add input for hash pipe ([dfaaacf](https://github.com/wearefrank/haalcentraal-connector/commit/dfaaacf9b5b3baef87a69f486d0d379d4af6feae))
+* add keys on bulkimport ([7a01418](https://github.com/wearefrank/haalcentraal-connector/commit/7a014189e221e2a3482fce7af48b6a7df485b31c))
+* prevent key overwrite after database insert ([43151fb](https://github.com/wearefrank/haalcentraal-connector/commit/43151fb26405ba2c8cff82491916476b48b6ace7))
+* remove auto increment ([0d8810a](https://github.com/wearefrank/haalcentraal-connector/commit/0d8810a6e23ec17b640b44908722af49dff3cb86))
+
 ## [1.19.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.19.0...v1.19.1) (2025-03-13)
 
 ### 🐛 Bug Fixes
