@@ -46,13 +46,6 @@
                 <Forward name="success" path="ForEachSubscriber" />
             </SenderPipe>
 
-            <!-- Retrieve person from Brp -->
-            <!-- <SenderPipe name="GetPersoon" storeResultInSessionKey="currentPersonData" getInputFromSessionKey="originalMessage">
-                <IbisLocalSender javaListener="BrpGetPersoon" />
-                <Forward name="exception" path="EXCEPTION" />
-                <Forward name="success" path="ForEachSubscriber"/>
-            </SenderPipe> -->
-
             <ForEachChildElementPipe name="ForEachSubscriber" elementXPathExpression="/result/rowset/row" getInputFromSessionKey="subscribersResult">
                 <!-- Add a task in the messagestore to notify subscribers  -->
                 <IbisLocalSender 
