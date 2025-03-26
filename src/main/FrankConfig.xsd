@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Public FrankDoc XSD, should be used within an IDE to validate a configuration. -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="9.1.0-20250322.042332">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="9.1.0-20250326.042330">
   <xs:element name="Configuration">
     <xs:annotation>
       <xs:documentation>Container of Adapters that belong together.
@@ -3195,14 +3195,6 @@
  &lt;b&gt;NB: If this column is not set, the &lt;code&gt;messageId&lt;/code&gt; and &lt;code&gt;correlationId&lt;/code&gt; will be the same!&lt;/b&gt; Default: CORRELATIONID</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="messageFieldType">
-      <xs:annotation>
-        <xs:documentation>Type of the field containing the message data Default: BLOB</xs:documentation>
-      </xs:annotation>
-      <xs:simpleType>
-        <xs:union memberTypes="MessageFieldTypeAttributeValuesType variableRef" />
-      </xs:simpleType>
-    </xs:attribute>
     <xs:attribute name="blobSmartGet" type="frankBoolean">
       <xs:annotation>
         <xs:documentation>Controls automatically whether blobdata is stored compressed and/or serialized in the database. N.B. When set true, then the BLOB will be converted into a string Default: &lt;code&gt;true&lt;/code&gt;</xs:documentation>
@@ -4740,7 +4732,6 @@
     <xs:attribute ref="ignoreUnknownNamespaces" />
     <xs:attributeGroup ref="Json2XmlValidatorDeclaredAttributeGroup" />
     <xs:attribute ref="schemaLocation" />
-    <xs:attribute ref="noNamespaceSchemaLocation" />
     <xs:attribute ref="responseRoot" />
     <xs:attribute ref="fullSchemaChecking" />
     <xs:attribute ref="throwException" />
@@ -4810,7 +4801,6 @@
     <xs:attributeGroup ref="SoapValidatorDeclaredAttributeGroup" />
     <xs:attributeGroup ref="Json2XmlValidatorDeclaredAttributeGroup" />
     <xs:attribute ref="schemaLocation" />
-    <xs:attribute ref="noNamespaceSchemaLocation" />
     <xs:attribute ref="responseRoot" />
     <xs:attribute ref="fullSchemaChecking" />
     <xs:attribute ref="throwException" />
@@ -4966,7 +4956,11 @@
       </xs:annotation>
     </xs:attribute>
     <xs:attribute ref="schemaLocation" />
-    <xs:attribute ref="noNamespaceSchemaLocation" />
+    <xs:attribute name="noNamespaceSchemaLocation" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>A URI reference as a hint as to the location of a schema document with no target namespace.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="root" type="xs:string">
       <xs:annotation>
         <xs:documentation>Name of the root element, or a comma separated list of element names. The validation fails if the root element is not present in the list. N.B. for WSDL generation only the first element is used</xs:documentation>
@@ -20438,11 +20432,6 @@
  The syntax is the same as for schemaLocation attributes in instance documents: e.g, "http://www.example.com file%20name.xsd".&lt;br/&gt;
  The user can specify more than one XML Schema in the list.&lt;br/&gt;
  &lt;b&gt;Note&lt;/b&gt; that spaces are considered separators for this attributed. This means that, for example, spaces in filenames should be escaped to %20.</xs:documentation>
-    </xs:annotation>
-  </xs:attribute>
-  <xs:attribute name="noNamespaceSchemaLocation" type="xs:string">
-    <xs:annotation>
-      <xs:documentation>A URI reference as a hint as to the location of a schema document with no target namespace.</xs:documentation>
     </xs:annotation>
   </xs:attribute>
   <xs:attribute name="responseRoot" type="xs:string">
