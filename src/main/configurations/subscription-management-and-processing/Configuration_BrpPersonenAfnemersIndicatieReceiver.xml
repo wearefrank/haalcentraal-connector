@@ -81,17 +81,27 @@
                 xpathExpression="count(result/rowset/row) > 0"
 				expressionValue="true"
             >
-                <Forward name="then" path="InsertNewSubscription"/>
+                <Forward name="then" path="GetPersoon"/>
                 <Forward name="else" path="SynchronizePersoon"/>
                 <Forward name="exception" path="BadRequest"/>
             </IfPipe>
 
 			<!-- Add persoonsgegevens to db if none are found -->
 			<SenderPipe name="SynchronizePersoon" getInputFromSessionKey="bsn">
-				<FrankSender name="SynchronizePersoonSender" target="BrpPersonenSynchronizePersoon" />
+				<FrankSender name="SynchronizePersoonSender" 
+					target="BrpPersonenSynchronizePersoon" 
+					returnedSessionKeys="currentPersonData"/>
 				<Forward name="400" path="BadRequest" />
 				<Forward name="exception" path="CouldNotSynchronize" />
 				<Forward name="404" path="NotFound" />
+				<Forward name="success" path="InsertNewSubscription" />
+			</SenderPipe>
+
+			<!-- Retrieve person from Brp -->
+			<SenderPipe name="GetPersoon" storeResultInSessionKey="currentPersonData" getInputFromSessionKey="bsn">
+				<IbisLocalSender javaListener="BrpGetPersoon" />
+				<Forward name="exception" path="Exception" />
+				<Forward name="success" path="CallQueueNotificationTask"/>
 			</SenderPipe>
 
 			<!-- Insert the new subscriber into the database -->
@@ -115,13 +125,6 @@
 					<Param name="afnemersSleutel" sessionKey="afnemersSleutel" />
 				</FixedQuerySender>
 				<Forward name="exception" path="Exception" />
-			</SenderPipe>
-
-			<!-- Retrieve person from Brp -->
-			<SenderPipe name="GetPersoon" storeResultInSessionKey="currentPersonData" getInputFromSessionKey="bsn">
-				<IbisLocalSender javaListener="BrpGetPersoon" />
-				<Forward name="exception" path="Exception" />
-				<Forward name="success" path="CallQueueNotificationTask"/>
 			</SenderPipe>
 
 			<SenderPipe name="CallQueueNotificationTask">
