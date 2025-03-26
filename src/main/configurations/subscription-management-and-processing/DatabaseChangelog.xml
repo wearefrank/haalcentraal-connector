@@ -137,4 +137,11 @@
 			<column name="sleutel" type="varchar(40)" />
 		</createTable>
 	</changeSet>
+
+	<changeSet id="HCC-11" author="Mike Erkemeij">
+		<comment>Change data column to char(44) for more efficiency due to base64 encoding</comment>
+		<!-- Update BSN in persoonsgegevens -->
+        <modifyDataType tableName="persoonsgegevens" columnName="data" newDataType="character(44)" />
+	</changeSet>
+
 </databaseChangeLog>
