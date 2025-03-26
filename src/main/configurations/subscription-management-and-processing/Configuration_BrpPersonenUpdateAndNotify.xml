@@ -17,7 +17,7 @@
             </Exits>
 
             <SenderPipe name="BrpPersonenSynchronizePersoon">
-                <FrankSender name="BrpPersonenSynchronizePersoon" target="BrpPersonenSynchronizePersoon" />
+                <FrankSender name="BrpPersonenSynchronizePersoon" target="BrpPersonenSynchronizePersoon" returnedSessionKeys="currentPersonData" />
                 <Forward name="success" path="persoonNew2xml" />
                 <Forward name="exception" path="EXCEPTION" />
             </SenderPipe>
@@ -43,15 +43,15 @@
                     query="SELECT * FROM subscripties WHERE bsn=? AND eind_datum IS NULL">
                     <Param name="burgerservicenummer" sessionKey="originalMessage" />
                 </FixedQuerySender>
-                <Forward name="success" path="GetPersoon" />
+                <Forward name="success" path="ForEachSubscriber" />
             </SenderPipe>
 
             <!-- Retrieve person from Brp -->
-            <SenderPipe name="GetPersoon" storeResultInSessionKey="currentPersonData" getInputFromSessionKey="originalMessage">
+            <!-- <SenderPipe name="GetPersoon" storeResultInSessionKey="currentPersonData" getInputFromSessionKey="originalMessage">
                 <IbisLocalSender javaListener="BrpGetPersoon" />
                 <Forward name="exception" path="EXCEPTION" />
                 <Forward name="success" path="ForEachSubscriber"/>
-            </SenderPipe>
+            </SenderPipe> -->
 
             <ForEachChildElementPipe name="ForEachSubscriber" elementXPathExpression="/result/rowset/row" getInputFromSessionKey="subscribersResult">
                 <!-- Add a task in the messagestore to notify subscribers  -->
