@@ -36,12 +36,12 @@
         
         <HashPipe name="hashJson" algorithm="SHA256" storeResultInSessionKey="currentPersonDataHash"/>
 
-        <IfPipe name="checkHash" xpathExpression="$storedPersonDataHash = $currentPersonDataHash" getInputFromFixedValue="&lt;dummy/&gt;">
+        <IfPipe name="HashesAreEqual" xpathExpression="$storedPersonDataHash = $currentPersonDataHash" getInputFromFixedValue="&lt;dummy/&gt;">
             <Param name="storedPersonDataHash" sessionKey="storedPersonRecord" xpathExpression="result/rowset/row/field[@name='DATA']" type="STRING"/>
             <Param name="currentPersonDataHash" sessionKey="currentPersonDataHash" type="STRING"/>
 
-            <Forward name="then" path="NotUpdatedExit" />
-            <Forward name="else" path="InsertPersoon" />
+            <Forward name="then" path="NotUpdatedExit" /> <!-- Hashes are the same, so no update found -->
+            <Forward name="else" path="InsertPersoon" /> <!-- Hashes are different, so update found -->
         </IfPipe>
 
         <!-- Insert the new data into the database -->
