@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.20.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.20.1...v1.20.2) (2025-03-26)
+
+### 🐛 Bug Fixes
+
+* pipe order ([0b64927](https://github.com/wearefrank/haalcentraal-connector/commit/0b6492738ac31d78f841c5931a5f119a3cc8db9a))
+
 ## [1.20.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.20.0...v1.20.1) (2025-03-26)
 
 ### 🤖 Build System
