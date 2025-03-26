@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.20.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.20.0...v1.20.1) (2025-03-26)
+
+### 🤖 Build System
+
+* **dependencies:** bump f!f version to 9.1.0-20250322.042332 ([0fbc437](https://github.com/wearefrank/haalcentraal-connector/commit/0fbc437ed0b27fffd4fb8b00875e64125bfb2c47))
+
 ## [1.20.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.19.1...v1.20.0) (2025-03-21)
 
 ### 🍕 Features
