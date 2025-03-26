@@ -32,9 +32,9 @@
             <Forward name="success" path="sortJsonKeys2"/>
         </SenderPipe>
 
-        <DataSonnetPipe name="sortJsonKeys2" getInputFromSessionKey="currentPersonData" styleSheetName="jsonnet/sortKeys.jsonnet"/>
+        <DataSonnetPipe name="sortJsonKeys" getInputFromSessionKey="currentPersonData" styleSheetName="jsonnet/sortKeys.jsonnet"/>
         
-        <HashPipe name="hashJson2" algorithm="SHA256" storeResultInSessionKey="currentPersonDataHash"/>
+        <HashPipe name="hashJson" algorithm="SHA256" storeResultInSessionKey="currentPersonDataHash"/>
 
         <IfPipe name="checkHash" xpathExpression="$storedPersonDataHash = $currentPersonDataHash" getInputFromFixedValue="&lt;dummy/&gt;">
             <Param name="storedPersonDataHash" sessionKey="storedPersonRecord" xpathExpression="result/rowset/row/field[@name='DATA']" type="STRING"/>
