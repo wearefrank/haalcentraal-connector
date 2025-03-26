@@ -101,7 +101,7 @@
 			<SenderPipe name="GetPersoon" storeResultInSessionKey="currentPersonData" getInputFromSessionKey="bsn">
 				<IbisLocalSender javaListener="BrpGetPersoon" />
 				<Forward name="exception" path="Exception" />
-				<Forward name="success" path="CallQueueNotificationTask"/>
+				<Forward name="success" path="InsertNewSubscription"/>
 			</SenderPipe>
 
 			<!-- Insert the new subscriber into the database -->
