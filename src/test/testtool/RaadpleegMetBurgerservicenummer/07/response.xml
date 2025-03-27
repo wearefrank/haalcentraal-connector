@@ -17,7 +17,7 @@
 		<StUF:aantalVoorkomens>1</StUF:aantalVoorkomens>
 	</BG:parameters>
 	<BG:antwoord>
-		<BG:object StUF:entiteittype="NPS">
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="existingkey">
 			<BG:inp.bsn>999993628</BG:inp.bsn>
 			<BG:inp.a-nummer>3461805105</BG:inp.a-nummer>
 			<BG:geslachtsnaam>Huijgen</BG:geslachtsnaam>

@@ -25,50 +25,12 @@
             </FixedQuerySender>
         </SenderPipe>
 
-        <!-- Create request for BRP system using XSLT -->
-        <XsltPipe name="CreateRequest" styleSheetName="xsl/personenRequest.xslt" skipEmptyTags="true">
-            <Param name="burgerservicenummer" sessionKey="originalMessage" />
-        </XsltPipe>
-
-        <!-- Validate and transform input data to JSON format -->
-        <Json2XmlValidatorPipe
-            name="XmlToJson"
-            root="root"
-            schema="xsd/checkInput.xsd"
-            outputFormat="JSON"
-            compactJsonArrays="false"
-            storeResultInSessionKey="validatedInput"
-            throwException="true">
-        </Json2XmlValidatorPipe>
-
-        <!-- Retrieve new data from BRP system -->
-        <SenderPipe name="GetPersoon" storeResultInSessionKey="currentPersonData"
-                    maxRetries="3" retryMinInterval="60" retryMaxInterval="240">
-            <IbisLocalSender name="GetPersoonSender" javaListener="BrpPbOutwayListener" />
-            <Forward name="success" path="CheckResult" />
-            <Forward name="exception" path="ServerError" />
-            <Forward name="timeout" path="ServerError" />
+        <!-- Retrieve person from Brp -->
+        <SenderPipe name="GetPersoon" storeResultInSessionKey="currentPersonData" getInputFromSessionKey="originalMessage">
+            <IbisLocalSender javaListener="BrpGetPersoon" />
+            <Forward name="exception" path="Exception" />
+            <Forward name="success" path="JsonComparator"/>
         </SenderPipe>
-
-		<!-- Check if person was found -->
-        <IfPipe defaultMediaType="JSON" name="CheckResult" jsonPathExpression="$.personen[0].burgerservicenummer" expressionValue="${bsn}">
-            <Forward name="then" path="JsonComparator" />
-            <Forward name="else" path="PersoonNotFound_Exception" />
-            <Param name="bsn" sessionKey="originalMessage" />
-        </IfPipe>
-
-        <XsltPipe
-            name="PersoonNotFound_Exception"
-            getInputFromFixedValue="&lt;dummy/&gt;"
-            styleSheetName="xsl/BuildError.xsl"
-            storeResultInSessionKey="Error"
-            >
-            <Param name="cause" sessionKey="Error" type="DOMDOC" />
-            <Param name="reason" pattern="No Persoon with the burgerservicenummer:{originalMessage} is found." ignoreUnresolvablePatternElements="true"/>
-            <Param name="detailsXml" type="DOMDOC" />
-            <Forward name="success" path="NotFound" />
-            <Forward name="exception" path="NotFound" />
-        </XsltPipe>
 
         <!-- Compare stored and retrieved person data -->
         <SenderPipe name="JsonComparator" storeResultInSessionKey="JsonComparatorResult">

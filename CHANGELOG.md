@@ -1,5 +1,63 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.20.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.20.2...v1.20.3) (2025-03-26)
+
+### 🤖 Build System
+
+* **dependencies:** bump f!f version to 9.1.0-20250326.042330 ([30c3650](https://github.com/wearefrank/haalcentraal-connector/commit/30c36502ba353b71066605e9f7fc8217a22c7247))
+* **dependencies:** bump f!f version to 9.1.0-20250326.042330 ([f86ca3f](https://github.com/wearefrank/haalcentraal-connector/commit/f86ca3ff71a6cb59895c43a95565a98338145e55))
+
+## [1.20.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.20.1...v1.20.2) (2025-03-26)
+
+### 🐛 Bug Fixes
+
+* pipe order ([0b64927](https://github.com/wearefrank/haalcentraal-connector/commit/0b6492738ac31d78f841c5931a5f119a3cc8db9a))
+
+## [1.20.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.20.0...v1.20.1) (2025-03-26)
+
+### 🤖 Build System
+
+* **dependencies:** bump f!f version to 9.1.0-20250322.042332 ([0fbc437](https://github.com/wearefrank/haalcentraal-connector/commit/0fbc437ed0b27fffd4fb8b00875e64125bfb2c47))
+
+## [1.20.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.19.1...v1.20.0) (2025-03-21)
+
+### 🍕 Features
+
+* create personal key to return in VA ([6b42ffd](https://github.com/wearefrank/haalcentraal-connector/commit/6b42ffd8ed2d2f9f80e557aa1b1ccc49358d8973))
+
+### 🐛 Bug Fixes
+
+* add input for hash pipe ([dfaaacf](https://github.com/wearefrank/haalcentraal-connector/commit/dfaaacf9b5b3baef87a69f486d0d379d4af6feae))
+* add keys on bulkimport ([7a01418](https://github.com/wearefrank/haalcentraal-connector/commit/7a014189e221e2a3482fce7af48b6a7df485b31c))
+* prevent key overwrite after database insert ([43151fb](https://github.com/wearefrank/haalcentraal-connector/commit/43151fb26405ba2c8cff82491916476b48b6ace7))
+* remove auto increment ([0d8810a](https://github.com/wearefrank/haalcentraal-connector/commit/0d8810a6e23ec17b640b44908722af49dff3cb86))
+
+## [1.19.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.19.0...v1.19.1) (2025-03-13)
+
+### 🐛 Bug Fixes
+
+* change docker compose files ([64f221e](https://github.com/wearefrank/haalcentraal-connector/commit/64f221e15af14f9fab0f32c89616d2edea9d6849))
+
+## [1.19.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.18.3...v1.19.0) (2025-03-10)
+
+### 🍕 Features
+
+* add active attribute to adapters ([9615cd6](https://github.com/wearefrank/haalcentraal-connector/commit/9615cd6dcfff40dce12ffe013b6a38bc2af567fd))
+
+## [1.18.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.18.2...v1.18.3) (2025-03-06)
+
+### 🐛 Bug Fixes
+
+* add larva scenarios run to release workflow ([f9afb3f](https://github.com/wearefrank/haalcentraal-connector/commit/f9afb3f0f7406b8c5be2ad7bfcd14694070c89d4))
+* move ff version back to 03-01 ([e2c7c2e](https://github.com/wearefrank/haalcentraal-connector/commit/e2c7c2e747b0f0683c31766e266a6f0bf36412c9))
+* release.yml remove dependency for run larva job ([8f34fd9](https://github.com/wearefrank/haalcentraal-connector/commit/8f34fd9bcb7f920168f59886a6484222f261a912))
+* remove run til healthy from release workflow ([4408d07](https://github.com/wearefrank/haalcentraal-connector/commit/4408d0781592d73e1d3de61e3244c1c13abe2e41))
+* update according to comparisons GWS Nedmag VS Haalcentraal ([8fbd015](https://github.com/wearefrank/haalcentraal-connector/commit/8fbd015092a40b81d30ed6f2d3c421025ac86ec9))
+
+### 🤖 Build System
+
+* **dependencies:** bump f!f version to 9.1.0-20250305.042327 ([1743472](https://github.com/wearefrank/haalcentraal-connector/commit/17434723113a486c1e6e8b2d0db63a9548bf1df8))
+
 ## [1.18.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.18.1...v1.18.2) (2025-03-04)
 
 ### 🐛 Bug Fixes

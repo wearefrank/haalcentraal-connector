@@ -54,5 +54,13 @@
                 <Param name="afnemers_sleutel" sessionKey="afnemers_sleutel"/>
             </FixedQuerySender>
         </SenderPipe>
+
+        <!-- Add the persoonssleutel record -->
+        <SenderPipe name="InsertPersoonssleutel">
+            <FixedQuerySender name="InsertPersoonssleutel" query="INSERT INTO persoonssleutels (bsn, sleutel) VALUES (?, ?) ON CONFLICT (bsn) DO NOTHING;">
+                <Param name="bsn" sessionKey="bsn"/>
+                <Param name="sleutel" sessionKey="persoons_sleutel"/>
+            </FixedQuerySender>
+        </SenderPipe>
     </Pipeline>
 </Adapter>

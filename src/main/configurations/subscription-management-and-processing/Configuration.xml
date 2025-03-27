@@ -12,6 +12,7 @@
     <!ENTITY QueueNotificationTask SYSTEM "Configuration_QueueNotificationTask.xml">
     <!ENTITY CreateBulkImportTasks SYSTEM "Configuration_CreateBulkImportTasks.xml">
     <!ENTITY ProcessBulkImportTask SYSTEM "Configuration_ProcessBulkImportTask.xml">
+    <!ENTITY GetPersoon SYSTEM "Configuration_BrpGetPersoon.xml">
 ]>
 
 <Configuration name="subscription-management-and-processing">
@@ -28,4 +29,5 @@
     &QueueNotificationTask;
 	&CreateBulkImportTasks;
 	&ProcessBulkImportTask;
+    &GetPersoon;
 </Configuration>
