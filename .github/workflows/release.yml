@@ -54,7 +54,7 @@ jobs:
     needs:
       - ci
     with:
-      APP_VERSION: ${{ needs.version-next.outputs.version-next }}
+      APP_VERSION: ${{ needs.analyze-commits.outputs.version-next }}
 
   release:
     runs-on: ubuntu-latest
