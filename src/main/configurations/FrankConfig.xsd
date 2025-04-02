@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Public FrankDoc XSD, should be used within an IDE to validate a configuration. -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="9.1.0-20250326.042330">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="9.1.0-20250402.232900">
   <xs:element name="Configuration">
     <xs:annotation>
       <xs:documentation>Container of Adapters that belong together.
@@ -1423,7 +1423,72 @@
       </xs:element>
       <xs:element name="EsbJmsListener">
         <xs:annotation>
-          <xs:documentation>ESB (Enterprise Service Bus) extension of JmsListener.</xs:documentation>
+          <xs:documentation>ESB (Enterprise Service Bus) extension of JmsListener.
+
+ A true multi-threaded Listener-class.
+ &lt;br/&gt;
+
+ Since version 4.1, Ibis supports distributed transactions using the XA-protocol. This feature is controlled by the
+ transacted attribute. If this is set to &lt;code&gt;true&lt;/code&gt;, received messages are
+ committed or rolled back, possibly together with other actions, by the receiver or the pipeline.
+ In case of a failure, all actions within the transaction are rolled back.
+ &lt;/p&gt;&lt;p&gt;
+ Setting listener.acknowledgeMode to "auto" means that messages are allways acknowledged (removed from
+ the queue, regardless of what the status of the Adapter is. "client" means that the message will only be removed from the queue
+ when the state of the Adapter equals the success state for committing.
+ The "dups" mode instructs the session to lazily acknowledge the delivery of the messages. This is likely to result in the
+ delivery of duplicate messages if JMS fails. It should be used by consumers who are tolerant in processing duplicate messages.
+ In cases where the client is tolerant of duplicate messages, some enhancement in performance can be achieved using this mode,
+ since a session has lower overhead in trying to prevent duplicate messages.
+ &lt;/p&gt;
+ &lt;p&gt;The setting for listener.acknowledgeMode will only be processed if
+ the setting for listener.transacted.&lt;/p&gt;
+
+ &lt;p&gt;If useReplyTo is set and a replyTo-destination is
+ specified in the message, the JmsListener sends the result of the processing
+ in the pipeline to this destination. Otherwise the result is sent using the (optionally)
+ specified, that in turn sends the message to
+ whatever it is configured to.&lt;/p&gt;
+
+ &lt;p&gt;You can add parameters to the JmsListener, the values will be added as Headers to the JMS response message.&lt;/p&gt;
+
+ &lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
+ jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
+ &lt;/p&gt;
+
+ JMSListener re-implemented as a pushing listener rather than a pulling listener.
+ The JMS messages have to come in from an external source: an MDB or a Spring
+ message container.
+
+ This version of the &lt;code&gt;JmsListener&lt;/code&gt; supports distributed transactions using the XA-protocol.
+ No special action is required to have the listener join the transaction.
+ &lt;/p&gt;&lt;p&gt;
+ Setting listener.acknowledgeMode to "auto" means that messages are allways acknowledged (removed from
+ the queue, regardless of what the status of the Adapter is. "client" means that the message will only be removed from the queue
+ when the state of the Adapter equals the success state.
+ The "dups" mode instructs the session to lazily acknowledge the delivery of the messages. This is likely to result in the
+ delivery of duplicate messages if JMS fails. It should be used by consumers who are tolerant in processing duplicate messages.
+ In cases where the client is tolerant of duplicate messages, some enhancement in performance can be achieved using this mode,
+ since a session has lower overhead in trying to prevent duplicate messages.
+ &lt;/p&gt;
+ &lt;p&gt;The setting for listener.acknowledgeMode will only be processed if
+ the setting for listener.transacted.&lt;/p&gt;
+
+ &lt;p&gt;If useReplyTo is set and a replyTo-destination is
+ specified in the message, the JmsListener sends the result of the processing
+ in the pipeline to this destination. Otherwise the result is sent using the (optionally)
+ specified Sender, that in turn sends the message to
+ whatever it is configured to.&lt;/p&gt;
+
+ &lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
+ jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
+ &lt;/p&gt;
+
+ Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -1496,7 +1561,74 @@
    &lt;li&gt;"FF": Fire &amp; Forget protocol&lt;/li&gt;
    &lt;li&gt;"RR": Request-Reply protocol&lt;/li&gt;
  &lt;/ul&gt;&lt;/td&gt;&lt;td&gt;"FF"&lt;/td&gt;&lt;/tr&gt;
- &lt;/table&gt;&lt;/p&gt;</xs:documentation>
+ &lt;/table&gt;&lt;/p&gt;
+
+ ESB (Enterprise Service Bus) extension of JmsListener.
+
+ A true multi-threaded Listener-class.
+ &lt;br/&gt;
+
+ Since version 4.1, Ibis supports distributed transactions using the XA-protocol. This feature is controlled by the
+ transacted attribute. If this is set to &lt;code&gt;true&lt;/code&gt;, received messages are
+ committed or rolled back, possibly together with other actions, by the receiver or the pipeline.
+ In case of a failure, all actions within the transaction are rolled back.
+ &lt;/p&gt;&lt;p&gt;
+ Setting listener.acknowledgeMode to "auto" means that messages are allways acknowledged (removed from
+ the queue, regardless of what the status of the Adapter is. "client" means that the message will only be removed from the queue
+ when the state of the Adapter equals the success state for committing.
+ The "dups" mode instructs the session to lazily acknowledge the delivery of the messages. This is likely to result in the
+ delivery of duplicate messages if JMS fails. It should be used by consumers who are tolerant in processing duplicate messages.
+ In cases where the client is tolerant of duplicate messages, some enhancement in performance can be achieved using this mode,
+ since a session has lower overhead in trying to prevent duplicate messages.
+ &lt;/p&gt;
+ &lt;p&gt;The setting for listener.acknowledgeMode will only be processed if
+ the setting for listener.transacted.&lt;/p&gt;
+
+ &lt;p&gt;If useReplyTo is set and a replyTo-destination is
+ specified in the message, the JmsListener sends the result of the processing
+ in the pipeline to this destination. Otherwise the result is sent using the (optionally)
+ specified, that in turn sends the message to
+ whatever it is configured to.&lt;/p&gt;
+
+ &lt;p&gt;You can add parameters to the JmsListener, the values will be added as Headers to the JMS response message.&lt;/p&gt;
+
+ &lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
+ jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
+ &lt;/p&gt;
+
+ JMSListener re-implemented as a pushing listener rather than a pulling listener.
+ The JMS messages have to come in from an external source: an MDB or a Spring
+ message container.
+
+ This version of the &lt;code&gt;JmsListener&lt;/code&gt; supports distributed transactions using the XA-protocol.
+ No special action is required to have the listener join the transaction.
+ &lt;/p&gt;&lt;p&gt;
+ Setting listener.acknowledgeMode to "auto" means that messages are allways acknowledged (removed from
+ the queue, regardless of what the status of the Adapter is. "client" means that the message will only be removed from the queue
+ when the state of the Adapter equals the success state.
+ The "dups" mode instructs the session to lazily acknowledge the delivery of the messages. This is likely to result in the
+ delivery of duplicate messages if JMS fails. It should be used by consumers who are tolerant in processing duplicate messages.
+ In cases where the client is tolerant of duplicate messages, some enhancement in performance can be achieved using this mode,
+ since a session has lower overhead in trying to prevent duplicate messages.
+ &lt;/p&gt;
+ &lt;p&gt;The setting for listener.acknowledgeMode will only be processed if
+ the setting for listener.transacted.&lt;/p&gt;
+
+ &lt;p&gt;If useReplyTo is set and a replyTo-destination is
+ specified in the message, the JmsListener sends the result of the processing
+ in the pipeline to this destination. Otherwise the result is sent using the (optionally)
+ specified Sender, that in turn sends the message to
+ whatever it is configured to.&lt;/p&gt;
+
+ &lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
+ jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
+ &lt;/p&gt;
+
+ Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -1588,7 +1720,41 @@
 
  &lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
  jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
- &lt;/p&gt;</xs:documentation>
+ &lt;/p&gt;
+
+ JMSListener re-implemented as a pushing listener rather than a pulling listener.
+ The JMS messages have to come in from an external source: an MDB or a Spring
+ message container.
+
+ This version of the &lt;code&gt;JmsListener&lt;/code&gt; supports distributed transactions using the XA-protocol.
+ No special action is required to have the listener join the transaction.
+ &lt;/p&gt;&lt;p&gt;
+ Setting listener.acknowledgeMode to "auto" means that messages are allways acknowledged (removed from
+ the queue, regardless of what the status of the Adapter is. "client" means that the message will only be removed from the queue
+ when the state of the Adapter equals the success state.
+ The "dups" mode instructs the session to lazily acknowledge the delivery of the messages. This is likely to result in the
+ delivery of duplicate messages if JMS fails. It should be used by consumers who are tolerant in processing duplicate messages.
+ In cases where the client is tolerant of duplicate messages, some enhancement in performance can be achieved using this mode,
+ since a session has lower overhead in trying to prevent duplicate messages.
+ &lt;/p&gt;
+ &lt;p&gt;The setting for listener.acknowledgeMode will only be processed if
+ the setting for listener.transacted.&lt;/p&gt;
+
+ &lt;p&gt;If useReplyTo is set and a replyTo-destination is
+ specified in the message, the JmsListener sends the result of the processing
+ in the pipeline to this destination. Otherwise the result is sent using the (optionally)
+ specified Sender, that in turn sends the message to
+ whatever it is configured to.&lt;/p&gt;
+
+ &lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
+ jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
+ &lt;/p&gt;
+
+ Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -1694,7 +1860,13 @@
  &lt;/p&gt;
  &lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
  &lt;code&gt;jakarta.jms.TextMessage&lt;/code&gt;s &lt;br/&gt;&lt;br/&gt;
- &lt;/p&gt;</xs:documentation>
+ &lt;/p&gt;
+
+ Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -1732,7 +1904,13 @@
 
  &lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
  jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
- &lt;/p&gt;</xs:documentation>
+ &lt;/p&gt;
+
+ Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -1851,6 +2029,72 @@
         </xs:complexType>
       </xs:element>
       <xs:element name="TibcoLogJmsListener">
+        <xs:annotation>
+          <xs:documentation>A true multi-threaded Listener-class.
+ &lt;br/&gt;
+
+ Since version 4.1, Ibis supports distributed transactions using the XA-protocol. This feature is controlled by the
+ transacted attribute. If this is set to &lt;code&gt;true&lt;/code&gt;, received messages are
+ committed or rolled back, possibly together with other actions, by the receiver or the pipeline.
+ In case of a failure, all actions within the transaction are rolled back.
+ &lt;/p&gt;&lt;p&gt;
+ Setting listener.acknowledgeMode to "auto" means that messages are allways acknowledged (removed from
+ the queue, regardless of what the status of the Adapter is. "client" means that the message will only be removed from the queue
+ when the state of the Adapter equals the success state for committing.
+ The "dups" mode instructs the session to lazily acknowledge the delivery of the messages. This is likely to result in the
+ delivery of duplicate messages if JMS fails. It should be used by consumers who are tolerant in processing duplicate messages.
+ In cases where the client is tolerant of duplicate messages, some enhancement in performance can be achieved using this mode,
+ since a session has lower overhead in trying to prevent duplicate messages.
+ &lt;/p&gt;
+ &lt;p&gt;The setting for listener.acknowledgeMode will only be processed if
+ the setting for listener.transacted.&lt;/p&gt;
+
+ &lt;p&gt;If useReplyTo is set and a replyTo-destination is
+ specified in the message, the JmsListener sends the result of the processing
+ in the pipeline to this destination. Otherwise the result is sent using the (optionally)
+ specified, that in turn sends the message to
+ whatever it is configured to.&lt;/p&gt;
+
+ &lt;p&gt;You can add parameters to the JmsListener, the values will be added as Headers to the JMS response message.&lt;/p&gt;
+
+ &lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
+ jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
+ &lt;/p&gt;
+
+ JMSListener re-implemented as a pushing listener rather than a pulling listener.
+ The JMS messages have to come in from an external source: an MDB or a Spring
+ message container.
+
+ This version of the &lt;code&gt;JmsListener&lt;/code&gt; supports distributed transactions using the XA-protocol.
+ No special action is required to have the listener join the transaction.
+ &lt;/p&gt;&lt;p&gt;
+ Setting listener.acknowledgeMode to "auto" means that messages are allways acknowledged (removed from
+ the queue, regardless of what the status of the Adapter is. "client" means that the message will only be removed from the queue
+ when the state of the Adapter equals the success state.
+ The "dups" mode instructs the session to lazily acknowledge the delivery of the messages. This is likely to result in the
+ delivery of duplicate messages if JMS fails. It should be used by consumers who are tolerant in processing duplicate messages.
+ In cases where the client is tolerant of duplicate messages, some enhancement in performance can be achieved using this mode,
+ since a session has lower overhead in trying to prevent duplicate messages.
+ &lt;/p&gt;
+ &lt;p&gt;The setting for listener.acknowledgeMode will only be processed if
+ the setting for listener.transacted.&lt;/p&gt;
+
+ &lt;p&gt;If useReplyTo is set and a replyTo-destination is
+ specified in the message, the JmsListener sends the result of the processing
+ in the pipeline to this destination. Otherwise the result is sent using the (optionally)
+ specified Sender, that in turn sends the message to
+ whatever it is configured to.&lt;/p&gt;
+
+ &lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
+ jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
+ &lt;/p&gt;
+
+ Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
             <xs:extension base="TibcoLogJmsListenerType">
@@ -3033,6 +3277,7 @@
         <xs:documentation>Controls automatically whether blobdata is stored compressed and/or serialized in the database. N.B. When set true, then the BLOB will be converted into a string Default: false</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+    <xs:attribute ref="additionalFields" />
     <xs:attribute ref="trace" />
   </xs:attributeGroup>
   <xs:attributeGroup name="JdbcListenerCumulativeAttributeGroup">
@@ -3265,6 +3510,7 @@
         <xs:documentation>Controls whether BLOB is considered stored compressed in the database Default: true</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+    <xs:attribute ref="additionalFields" />
     <xs:attribute ref="trace" />
     <xs:attributeGroup ref="JdbcFacadeCumulativeAttributeGroup" />
   </xs:attributeGroup>
@@ -3714,7 +3960,7 @@
     <xs:choice>
       <xs:element name="EsbJmsSender">
         <xs:annotation>
-          <xs:documentation>ESB (Enterprise Service Bus) extension of JmsSender.</xs:documentation>
+          <xs:documentation>ESB (Enterprise Service Bus) extension of @{codeJmsSender}.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -3728,7 +3974,16 @@
         <xs:annotation>
           <xs:documentation>JMS sender which will add an IMS header to the message and call the MQ specific logic.
 
- &lt;p&gt;See JmsSender for configuration&lt;/p&gt;</xs:documentation>
+ &lt;p&gt;See JmsSender for configuration&lt;/p&gt;
+
+ JMS sender which will call IBM WebSphere MQ specific &lt;code&gt;setTargetClient(JMSC.MQJMS_CLIENT_NONJMS_MQ)&lt;/code&gt; on the destination prior to sending a message.
+ This is needed when the MQ destination is not a JMS receiver otherwise format errors occur (e.g. dots are added after every character in the message).
+
+ Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -3740,7 +3995,11 @@
       </xs:element>
       <xs:element name="JmsSender">
         <xs:annotation>
-          <xs:documentation>This class sends messages with JMS.</xs:documentation>
+          <xs:documentation>Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -3752,13 +4011,14 @@
       </xs:element>
       <xs:element name="MQSender">
         <xs:annotation>
-          <xs:documentation>JMS sender which will call IBM WebSphere MQ specific
- setTargetClient(JMSC.MQJMS_CLIENT_NONJMS_MQ) on the destination prior to
- sending a message. This is needed when the MQ destination is not a JMS
- receiver otherwise format errors occur (e.g. dots are added after every
- character in the message).
+          <xs:documentation>JMS sender which will call IBM WebSphere MQ specific &lt;code&gt;setTargetClient(JMSC.MQJMS_CLIENT_NONJMS_MQ)&lt;/code&gt; on the destination prior to sending a message.
+ This is needed when the MQ destination is not a JMS receiver otherwise format errors occur (e.g. dots are added after every character in the message).
 
- &lt;p&gt;See JmsSender for configuration&lt;/p&gt;</xs:documentation>
+ Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -3924,7 +4184,7 @@
     <xs:choice>
       <xs:element name="EsbJmsErrorStorage">
         <xs:annotation>
-          <xs:documentation>ESB (Enterprise Service Bus) extension of JmsTransactionalStorage.
+          <xs:documentation>ESB (Enterprise Service Bus) extension of &lt;code&gt;JmsTransactionalStorage&lt;/code&gt;.
 
  &lt;p&gt;
  Depending on the &lt;code&gt;type&lt;/code&gt; of the &lt;code&gt;TransactionalStorage&lt;/code&gt;
@@ -3936,17 +4196,23 @@
  ESB.Infrastructure.US.Log.BusinessLog.2.AuditLog.1.Action&lt;/li&gt;
  &lt;/ul&gt;
  &lt;/p&gt;
- &lt;p&gt;
- &lt;b&gt;Configuration &lt;/b&gt;&lt;i&gt;(where deviating from
- JmsTransactionalStorage)&lt;/i&gt;&lt;b&gt;:&lt;/b&gt;
- &lt;table border="1"&gt;
- &lt;tr&gt;
- &lt;th&gt;attributes&lt;/th&gt;
- &lt;th&gt;description&lt;/th&gt;
- &lt;th&gt;default&lt;/th&gt;
- &lt;/tr&gt;
- &lt;/table&gt;
- &lt;/p&gt;</xs:documentation>
+
+ Implements a message log (&lt;code&gt;JmsMessageLog&lt;/code&gt;) or error store (&lt;code&gt;JmsErrorStorage&lt;/code&gt;) that uses JMS technology.
+ &lt;br/&gt;&lt;br/&gt;
+ &lt;b&gt;Message log:&lt;/b&gt; A message log writes messages in persistent storage for logging purposes.
+ When a message log appears in a receiver, it also ensures that the same message is only processed
+ once, even if a related pushing listener receives the same message multiple times.
+ &lt;br/&gt;&lt;br/&gt;
+ &lt;b&gt;Error store:&lt;/b&gt; Appears in a receiver or sender pipe to store messages that could not be processed.
+ Storing a message in the error store is the last resort of the Frank!Framework. Many types of listeners and senders
+ offer a retry mechanism. Only if several tries have failed, then an optional transaction is not rolled
+ back and the message is stored in the error store. Users can retry messages in an error store using the Frank!Console. When
+ this is done, the message is processed in the same way as messages received from the original source.
+ &lt;br/&gt;&lt;br/&gt;
+ How does a message log or error store see duplicate messages? The message log or error store
+ always appears in combination with a sender or listener. This sender or listener determines
+ a key based on the sent or received message. Messages with the same key are considered to
+ be the same.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -4240,7 +4506,7 @@
     <xs:choice>
       <xs:element name="EsbJmsMessageLog">
         <xs:annotation>
-          <xs:documentation>ESB (Enterprise Service Bus) extension of JmsTransactionalStorage.
+          <xs:documentation>ESB (Enterprise Service Bus) extension of &lt;code&gt;JmsTransactionalStorage&lt;/code&gt;.
 
  &lt;p&gt;
  Depending on the &lt;code&gt;type&lt;/code&gt; of the &lt;code&gt;TransactionalStorage&lt;/code&gt;
@@ -4252,17 +4518,23 @@
  ESB.Infrastructure.US.Log.BusinessLog.2.AuditLog.1.Action&lt;/li&gt;
  &lt;/ul&gt;
  &lt;/p&gt;
- &lt;p&gt;
- &lt;b&gt;Configuration &lt;/b&gt;&lt;i&gt;(where deviating from
- JmsTransactionalStorage)&lt;/i&gt;&lt;b&gt;:&lt;/b&gt;
- &lt;table border="1"&gt;
- &lt;tr&gt;
- &lt;th&gt;attributes&lt;/th&gt;
- &lt;th&gt;description&lt;/th&gt;
- &lt;th&gt;default&lt;/th&gt;
- &lt;/tr&gt;
- &lt;/table&gt;
- &lt;/p&gt;</xs:documentation>
+
+ Implements a message log (&lt;code&gt;JmsMessageLog&lt;/code&gt;) or error store (&lt;code&gt;JmsErrorStorage&lt;/code&gt;) that uses JMS technology.
+ &lt;br/&gt;&lt;br/&gt;
+ &lt;b&gt;Message log:&lt;/b&gt; A message log writes messages in persistent storage for logging purposes.
+ When a message log appears in a receiver, it also ensures that the same message is only processed
+ once, even if a related pushing listener receives the same message multiple times.
+ &lt;br/&gt;&lt;br/&gt;
+ &lt;b&gt;Error store:&lt;/b&gt; Appears in a receiver or sender pipe to store messages that could not be processed.
+ Storing a message in the error store is the last resort of the Frank!Framework. Many types of listeners and senders
+ offer a retry mechanism. Only if several tries have failed, then an optional transaction is not rolled
+ back and the message is stored in the error store. Users can retry messages in an error store using the Frank!Console. When
+ this is done, the message is processed in the same way as messages received from the original source.
+ &lt;br/&gt;&lt;br/&gt;
+ How does a message log or error store see duplicate messages? The message log or error store
+ always appears in combination with a sender or listener. This sender or listener determines
+ a key based on the sent or received message. Messages with the same key are considered to
+ be the same.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -6468,7 +6740,13 @@
  &lt;/p&gt;
  &lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
  &lt;code&gt;jakarta.jms.TextMessage&lt;/code&gt;s &lt;br/&gt;&lt;br/&gt;
- &lt;/p&gt;</xs:documentation>
+ &lt;/p&gt;
+
+ Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -6861,7 +7139,7 @@
       </xs:element>
       <xs:element name="EsbJmsSender">
         <xs:annotation>
-          <xs:documentation>ESB (Enterprise Service Bus) extension of JmsSender.</xs:documentation>
+          <xs:documentation>ESB (Enterprise Service Bus) extension of @{codeJmsSender}.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -7156,7 +7434,16 @@
         <xs:annotation>
           <xs:documentation>JMS sender which will add an IMS header to the message and call the MQ specific logic.
 
- &lt;p&gt;See JmsSender for configuration&lt;/p&gt;</xs:documentation>
+ &lt;p&gt;See JmsSender for configuration&lt;/p&gt;
+
+ JMS sender which will call IBM WebSphere MQ specific &lt;code&gt;setTargetClient(JMSC.MQJMS_CLIENT_NONJMS_MQ)&lt;/code&gt; on the destination prior to sending a message.
+ This is needed when the MQ destination is not a JMS receiver otherwise format errors occur (e.g. dots are added after every character in the message).
+
+ Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -7320,7 +7607,11 @@
       </xs:element>
       <xs:element name="JmsSender">
         <xs:annotation>
-          <xs:documentation>This class sends messages with JMS.</xs:documentation>
+          <xs:documentation>Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -7464,13 +7755,14 @@
       </xs:element>
       <xs:element name="MQSender">
         <xs:annotation>
-          <xs:documentation>JMS sender which will call IBM WebSphere MQ specific
- setTargetClient(JMSC.MQJMS_CLIENT_NONJMS_MQ) on the destination prior to
- sending a message. This is needed when the MQ destination is not a JMS
- receiver otherwise format errors occur (e.g. dots are added after every
- character in the message).
+          <xs:documentation>JMS sender which will call IBM WebSphere MQ specific &lt;code&gt;setTargetClient(JMSC.MQJMS_CLIENT_NONJMS_MQ)&lt;/code&gt; on the destination prior to sending a message.
+ This is needed when the MQ destination is not a JMS receiver otherwise format errors occur (e.g. dots are added after every character in the message).
 
- &lt;p&gt;See JmsSender for configuration&lt;/p&gt;</xs:documentation>
+ Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -20078,6 +20370,12 @@
   <xs:attribute name="peekQuery" type="xs:string">
     <xs:annotation>
       <xs:documentation>(only used when &lt;code&gt;peekUntransacted&lt;/code&gt;=&lt;code&gt;true&lt;/code&gt;) peek query to determine if the select query should be executed. Peek queries are, unlike select queries, executed without a transaction and without a rowlock Default: selectQuery</xs:documentation>
+    </xs:annotation>
+  </xs:attribute>
+  <xs:attribute name="additionalFields" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Comma-separated list of additional fields to be loaded from the table, besides Message, Key, MessageID and CorrelationID. Any fields listed here will
+ be added to the session as session-variables.</xs:documentation>
     </xs:annotation>
   </xs:attribute>
   <xs:attribute name="trace" type="frankBoolean" />
