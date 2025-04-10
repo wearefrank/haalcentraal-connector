@@ -19,7 +19,7 @@
             <FixedQuerySender
                 name="getPersonenSender"
                 queryType="SELECT"
-                query="SELECT * FROM persoonsgegevens WHERE bsn=?{bsn} ORDER BY registratie_datum DESC LIMIT 1"
+                query="SELECT data FROM persoonsgegevens WHERE bsn=?{bsn} ORDER BY registratie_datum DESC LIMIT 1"
                 includeFieldDefinition="false">
                 <Param name="bsn"/>
             </FixedQuerySender>
@@ -29,68 +29,19 @@
         <SenderPipe name="GetPersoon" storeResultInSessionKey="currentPersonData" getInputFromSessionKey="originalMessage">
             <IbisLocalSender javaListener="BrpGetPersoon" />
             <Forward name="exception" path="Exception" />
-            <Forward name="success" path="JsonComparator"/>
+            <Forward name="success" path="sortJsonKeys"/>
         </SenderPipe>
 
-        <!-- Compare stored and retrieved person data -->
-        <SenderPipe name="JsonComparator" storeResultInSessionKey="JsonComparatorResult">
-            <JavascriptSender
-                jsFileName="JSONcompare.js"
-                jsFunctionName="compareJsonObjects">
-            </JavascriptSender>
-            <Param name="storedPersonRecord" sessionKey="storedPersonRecord"
-                   xpathExpression="result/rowset/row/field[@name='DATA']" />
-            <Param name="currentPersonData" sessionKey="currentPersonData" />
-        </SenderPipe>
+        <DataSonnetPipe name="sortJsonKeys" getInputFromSessionKey="currentPersonData" styleSheetName="jsonnet/sortKeys.jsonnet"/>
         
-        <SenderPipe name="JsonHashHasDifference" preserveInput="true" storeResultInSessionKey="JsonHashHasDifferenceResult">
-            <IbisLocalSender javaListener="JsonHashHasDifferenceReceiver">
-                <Param name="storedPersonRecord" sessionKey="storedPersonRecord"
-                    xpathExpression="result/rowset/row/field[@name='DATA']" />
-                <Param name="currentPersonData" sessionKey="currentPersonData" />
-            </IbisLocalSender>
-            <Forward name="success" path="checkIfSame"/>
-        </SenderPipe>
+        <HashPipe name="hashJson" algorithm="SHA256" storeResultInSessionKey="currentPersonDataHash"/>
 
-        <XsltPipe name="checkIfSame" xpathExpression="$JsonHashHasDifferenceResult = $JsonComparatorResult" storeResultInSessionKey="check" getInputFromFixedValue="&lt;dummy/&gt;">
-            <Param name="JsonHashHasDifferenceResult" sessionKey="JsonHashHasDifferenceResult" type="STRING"/>
-            <Param name="JsonComparatorResult" sessionKey="JsonComparatorResult" type="STRING"/>
-        </XsltPipe>
+        <IfPipe name="HashesAreEqual" xpathExpression="$storedPersonDataHash = $currentPersonDataHash" getInputFromFixedValue="&lt;dummy/&gt;">
+            <Param name="storedPersonDataHash" sessionKey="storedPersonRecord" xpathExpression="result/rowset/row/field[@name='DATA']" type="STRING"/>
+            <Param name="currentPersonDataHash" sessionKey="currentPersonDataHash" type="STRING"/>
 
-        <IfPipe name="checkComparatorResults" xpathExpression="$check" getInputFromFixedValue="&lt;dummy/&gt;">
-            <Param name="check" sessionKey="check"/>
-            <Forward name="then" path="SameComparisonResultLog" />
-            <Forward name="else" path="ConcatSessionKeys" />
-        </IfPipe>
-
-        <ReplacerPipe name="ConcatSessionKeys" getInputFromFixedValue="?{JsonHashHasDifferenceResult}\0?{JsonComparatorResult}\0?{storedPersonRecord}\0?{currentPersonData}">
-            <Param name="JsonHashHasDifferenceResult" sessionKey="JsonHashHasDifferenceResult" />
-            <Param name="JsonComparatorResult" sessionKey="JsonComparatorResult" />
-            <Param name="storedPersonRecord" sessionKey="storedPersonRecord"
-                   xpathExpression="result/rowset/row/field[@name='DATA']" />
-            <Param name="currentPersonData" sessionKey="currentPersonData" />
-        </ReplacerPipe>
-
-        <SenderPipe name="DifferentComparisonResultError">
-			<JdbcMessageLog slotId="${instance.name}/comparatorStore" type="M"/>
-            <FixedResultSender returnString="bad"/>
-            <Forward name="success" path="ShouldInsert" />
-            <Forward name="exception" path="ShouldInsert" />
-        </SenderPipe>
-
-        <SenderPipe name="SameComparisonResultLog">
-			<JdbcMessageLog slotId="${instance.name}/comparatorStore" storeFullMessage="false"/>
-            <FixedResultSender returnString="good"/>
-            <Forward name="success" path="ShouldInsert" />
-            <Forward name="exception" path="ShouldInsert" />
-        </SenderPipe>
-
-        <!-- <EchoPipe name="SameComparisonResultCounter"></EchoPipe> -->
-
-        <!-- Conditional check to insert new data if changes are detected -->
-        <IfPipe name="ShouldInsert" expressionValue="true" getInputFromSessionKey="JsonComparatorResult">
-            <Forward name="then" path="InsertPersoon" />
-            <Forward name="else" path="NotUpdatedExit" />
+            <Forward name="then" path="NotUpdatedExit" /> <!-- Hashes are the same, so no update found -->
+            <Forward name="else" path="InsertPersoon" /> <!-- Hashes are different, so update found -->
         </IfPipe>
 
         <!-- Insert the new data into the database -->
@@ -99,7 +50,7 @@
                 name="insertPersonenSender"
                 query="INSERT INTO persoonsgegevens(bsn, data, registratie_datum) VALUES(?,?,CURRENT_TIMESTAMP)">
                 <Param name="bsn" sessionKey="originalMessage" />
-                <Param name="data" sessionKey="currentPersonData" />
+                <Param name="data" sessionKey="currentPersonDataHash" />
             </FixedQuerySender>
         </SenderPipe>
 

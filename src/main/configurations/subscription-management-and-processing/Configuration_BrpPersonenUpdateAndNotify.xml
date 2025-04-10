@@ -24,7 +24,7 @@
 
             <JsonPipe name="persoonNew2xml" />
 
-            <IfPipe name="ShouldNotifySubscribers" xpathExpression="/root">
+            <IfPipe name="ShouldNotifySubscribers" xpathExpression="/root/text()">
                 <Forward name="then" path="GetApplicationConfig" />
                 <Forward name="else" path="EchoRetry" />
             </IfPipe>
