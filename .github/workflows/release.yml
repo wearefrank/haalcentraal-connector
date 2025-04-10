@@ -44,17 +44,18 @@ jobs:
     needs: analyze-commits
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
-    if: ${{ needs.analyze-commits.outputs.release-type != '' }}
+    if: ${{ needs.analyze-commits.outputs.version-next-type != '' }}
     with:
-      version: ${{ needs.analyze-commits.outputs.release-version }}
+      version: ${{ needs.analyze-commits.outputs.version-next-type }}
       run-frank-till-healthy-enabled: false
 
   run-larva-scenarios:
     uses: ./.github/workflows/run-larva-scenarios.yml
     needs:
       - ci
+      - analyze-commits
     with:
-      APP_VERSION: ${{ needs.analyze-commits.outputs.release-version }}
+      APP_VERSION: ${{ needs.analyze-commits.outputs.version-next }}
 
   release:
     runs-on: ubuntu-latest
