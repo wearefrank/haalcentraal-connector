@@ -1,5 +1,24 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.21.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.20.3...v1.21.0) (2025-04-10)
+
+### 🍕 Features
+
+* only use hash comparison ([a2fc10a](https://github.com/wearefrank/haalcentraal-connector/commit/a2fc10a1e7e3bd8d2de2ecd0a59863f547f7e3e8))
+
+### 🐛 Bug Fixes
+
+* bump ([2c2ba0d](https://github.com/wearefrank/haalcentraal-connector/commit/2c2ba0df1d5903f37535e1da37b28f8171e48ce8))
+* current tests pass again ([33e624d](https://github.com/wearefrank/haalcentraal-connector/commit/33e624d1744c3d5b4309fef0445647e7aa3f639f))
+* revert ci changes ([a3a37eb](https://github.com/wearefrank/haalcentraal-connector/commit/a3a37eb61f23fcdfc02a7ce7de985d36156b441e))
+* set version to latest ([746b985](https://github.com/wearefrank/haalcentraal-connector/commit/746b985923ee3cc49e781629e6fa780bc13ba5fc))
+
+### 🧑‍💻 Code Refactoring
+
+* change pipe names ([92fe415](https://github.com/wearefrank/haalcentraal-connector/commit/92fe415df2d0f0f67f060b1b80aca54117f8e890))
+* forward path ([c1ec090](https://github.com/wearefrank/haalcentraal-connector/commit/c1ec0907cb14a29f63ccedf023a1e6b3cee5e4d8))
+* rename pipename and add comment ([3e259a4](https://github.com/wearefrank/haalcentraal-connector/commit/3e259a4e0cdb6d274c0349a40f8d5f4c4390a4e9))
+
 ## [1.20.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.20.2...v1.20.3) (2025-03-26)
 
 ### 🤖 Build System
