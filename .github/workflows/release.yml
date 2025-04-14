@@ -55,7 +55,7 @@ jobs:
       - ci
       - analyze-commits
     with:
-      APP_VERSION: 'latest'
+      APP_VERSION: ${{ needs.analyze-commits.outputs.version-next }}
 
   release:
     runs-on: ubuntu-latest
