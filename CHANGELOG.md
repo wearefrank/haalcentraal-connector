@@ -1,5 +1,12 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.21.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.21.1...v1.21.2) (2025-04-14)
+
+### 🐛 Bug Fixes
+
+* move variable from secrets ([1b05952](https://github.com/wearefrank/haalcentraal-connector/commit/1b059521e5db27f3e542f36f2cb1fb23d98d5801))
+* set docker.io as registry prefix ([bd7219f](https://github.com/wearefrank/haalcentraal-connector/commit/bd7219f877fb438dc05ca46fba3ca922c9dc24bd))
+
 ## [1.21.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.21.0...v1.21.1) (2025-04-14)
 
 ### 🐛 Bug Fixes
