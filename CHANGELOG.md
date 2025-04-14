@@ -1,5 +1,13 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.21.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.21.0...v1.21.1) (2025-04-14)
+
+### 🐛 Bug Fixes
+
+* set app_version to version-next ([0cb1e21](https://github.com/wearefrank/haalcentraal-connector/commit/0cb1e21d3f13ac57c64fcb2042f28e64b7175e19))
+* update template variables ([c6f383a](https://github.com/wearefrank/haalcentraal-connector/commit/c6f383aa134d074caf087ba5c66a0dfa1c5fb16e))
+* version tag ([4545562](https://github.com/wearefrank/haalcentraal-connector/commit/4545562de49de6dc3c70bdbd968c30d6a6259bd6))
+
 ## [1.21.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.20.3...v1.21.0) (2025-04-10)
 
 ### 🍕 Features
