@@ -46,7 +46,7 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
     if: ${{ needs.analyze-commits.outputs.version-next-type != '' }}
     with:
-      version: ${{ needs.analyze-commits.outputs.version-next-type }}
+      version: ${{ needs.analyze-commits.outputs.version-next }}
       run-frank-till-healthy-enabled: false
 
   run-larva-scenarios:
