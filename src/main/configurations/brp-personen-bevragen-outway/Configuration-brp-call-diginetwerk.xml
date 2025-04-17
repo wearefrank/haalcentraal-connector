@@ -28,11 +28,12 @@
                     parametersToSkipWhenEmpty="Accept,Content-Type" contentType="application/json"
                     keystore="${haalcentraal_cert_path}"
                     keystorePassword="${haalcentraal_cert_pass}" keystoreAlias="haalcentraal"
-                    keystoreType="PKCS12">
+                    keystoreType="PKCS12"
+                    tokenEndpoint="${oauth.token.url}"
+                    scope="${oauth.scope}"
+                    clientAlias="oauth.credentials"
+                    oauthAuthenticationMethod="CLIENT_CREDENTIALS_BASIC_AUTH">
                     <Param name="url" value="${endpointType}" />
-                    <Param name="Authorization" pattern="Bearer {token}">
-                        <Param name="token" sessionKey="token" />
-                    </Param>
                     <Param name="Accept" sessionKey="headerAccept" />
                     <Param name="Content-Type" sessionKey="headerContent-Type" />
                 </HttpSender>
