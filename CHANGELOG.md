@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.21.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.21.2...v1.21.3) (2025-04-17)
+
+### 🐛 Bug Fixes
+
+* use httpsender oauth implementation ([728afcd](https://github.com/wearefrank/haalcentraal-connector/commit/728afcd31a97f940be2e2238ab379f3661e30a2f))
+
 ## [1.21.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.21.1...v1.21.2) (2025-04-14)
 
 ### 🐛 Bug Fixes
