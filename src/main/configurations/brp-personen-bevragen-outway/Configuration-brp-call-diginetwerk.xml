@@ -31,7 +31,8 @@
                     keystoreType="PKCS12"
                     tokenEndpoint="${oauth.token.url}"
                     scope="${oauth.scope}"
-                    clientAlias="${oauth.credentials}">
+                    clientAlias="oauth.credentials"
+                    oauthAuthenticationMethod="CLIENT_CREDENTIALS_BASIC_AUTH">
                     <Param name="url" value="${endpointType}" />
                     <Param name="Accept" sessionKey="headerAccept" />
                     <Param name="Content-Type" sessionKey="headerContent-Type" />
