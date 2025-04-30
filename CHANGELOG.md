@@ -1,5 +1,15 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.21.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.21.3...v1.21.4) (2025-04-30)
+
+### 🐛 Bug Fixes
+
+* root tag warning ([0c7f5ea](https://github.com/wearefrank/haalcentraal-connector/commit/0c7f5eacd4dbf08dda3b15a2f530dd545491dbb9))
+
+### 🤖 Build System
+
+* **dependencies:** bump f!f version to 9.2.0-20250430.042328 ([c49b7ea](https://github.com/wearefrank/haalcentraal-connector/commit/c49b7eac4e49fbc7a9ff65816368804dd8b1b75c))
+
 ## [1.21.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.21.2...v1.21.3) (2025-04-17)
 
 ### 🐛 Bug Fixes
