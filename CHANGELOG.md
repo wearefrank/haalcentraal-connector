@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.21.5](https://github.com/wearefrank/haalcentraal-connector/compare/v1.21.4...v1.21.5) (2025-04-30)
+
+### 🧑‍💻 Code Refactoring
+
+* remove token flow from brp flow ([1e598a3](https://github.com/wearefrank/haalcentraal-connector/commit/1e598a3ea6e3d06e52e7c085079b10c72ca53217))
+
 ## [1.21.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.21.3...v1.21.4) (2025-04-30)
 
 ### 🐛 Bug Fixes
