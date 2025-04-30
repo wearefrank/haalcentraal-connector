@@ -1,8 +1,8 @@
 <Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../FrankConfig.xsd">
-    <Adapter name="BrpCallDiginetwerk">
+    <Adapter name="BrpCallDiginetwerk" active="${brp.oauth.enabled}">
         <Receiver name="BrpCallDiginetwerk">
-            <JavaListener name="BrpCallDiginetwerk" />
+            <JavaListener name="CallBrpListener" />
         </Receiver>
         <Pipeline>
             <Exits>
@@ -19,11 +19,8 @@
                 <Exit name="ServiceUnavailable" state="ERROR" code="503" />
             </Exits>
 
-            <!-- required sessionKey: token -->
-            <EchoPipe name="PreventEmpty" />
-
             <SenderPipe name="PostBRPPersonenBevragenDiginetwerkSender"
-                getInputFromSessionKey="originalMessage" active="${isDiginetwerk}">
+                getInputFromSessionKey="originalMessage">
                 <HttpSender methodType="POST" headersParams="Authorization,Accept,Content-Type"
                     parametersToSkipWhenEmpty="Accept,Content-Type" contentType="application/json"
                     keystore="${haalcentraal_cert_path}"
@@ -32,8 +29,10 @@
                     tokenEndpoint="${oauth.token.url}"
                     scope="${oauth.scope}"
                     clientAlias="oauth.credentials"
+                    clientId="${oauth.client.id}"
+                    clientSecret="${oauth.client.secret}"
                     oauthAuthenticationMethod="CLIENT_CREDENTIALS_BASIC_AUTH">
-                    <Param name="url" value="${endpointType}" />
+                    <Param name="url" value="${endpoint.brp.diginet}" />
                     <Param name="Accept" sessionKey="headerAccept" />
                     <Param name="Content-Type" sessionKey="headerContent-Type" />
                 </HttpSender>

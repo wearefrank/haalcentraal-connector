@@ -22,39 +22,11 @@
 				<Exit name="ServiceUnavailable" state="ERROR" code="503" />
 			</Exits>
 
-			<!-- Configure HttpSender -->
-			<!-- 
-				{
-					"type": "ZoekMetGeslachtsnaamEnGeboortedatum",
-					"fields": [
-					"burgerservicenummer"
-					],
-					"gemeenteVanInschrijving": "0518",
-					"inclusiefOverledenPersonen": true,
-					"geboortedatum": "1964-09-24",
-					"geslachtsnaam": "Vries",
-					"geslacht": "V",
-					"voorvoegsel": "de",
-					"voornamen": "Dirk"
-				}
-			-->
-
-			<SenderPipe name="GetToken" preserveInput="true" active="${isDiginetwerk}">
-				<IbisLocalSender name="GetTokenSender" javaListener="GetToken"
-					returnedSessionKeys="token" />
-				<Forward name="exception" path="Exception" />
-			</SenderPipe>
-
-			<PutInSessionPipe name="PutLoopPreventionFalseInSession" sessionKey="loopPrevention"
-				value="false" active="${isDiginetwerk}" />
-
-			<!-- Call diginetwerk sender with retry mechanism -->
+			<!-- Call diginetwerk sender -->
 			<SenderPipe name="PostBRPPersonenBevragenDiginetwerk"
-				getInputFromSessionKey="originalMessage" storeResultInSessionKey="diginetwerkResult"
-				active="${isDiginetwerk}">
+				getInputFromSessionKey="originalMessage" storeResultInSessionKey="diginetwerkResult">
 				<IbisLocalSender name="RequestFromDiginetwerkSender"
-					javaListener="BrpCallDiginetwerk">
-					<Param name="token" sessionKey="token" />
+					javaListener="CallBrpListener">
 				</IbisLocalSender>
 				<Forward name="success" path="checkTheResponse" />
 				<Forward name="exception" path="Exception" />
@@ -67,15 +39,6 @@
 				<Forward name="429" path="TooManyRequest" />
 				<Forward name="500" path="ServerError" />
 				<Forward name="503" path="ServiceUnavailable" />
-			</SenderPipe>
-
-			<!-- Call proefomgeving sender -->
-			<SenderPipe name="BrpCallProefomgevingSender"
-				storeResultInSessionKey="proefomgevingResult">
-				<IbisLocalSender name="RequestFromProefomgevingSender"
-					javaListener="BrpCallProefomgeving">
-				</IbisLocalSender>
-				<Forward name="exception" path="BadRequest" />
 			</SenderPipe>
 
 			<IfPipe name="checkTheResponse" defaultMediaType="JSON" jsonPathExpression="$.title">
