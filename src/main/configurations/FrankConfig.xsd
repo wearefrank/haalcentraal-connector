@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Public FrankDoc XSD, should be used within an IDE to validate a configuration. -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="9.1.0-20250326.042330">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="9.2.0-20250430.042328">
   <xs:element name="Configuration">
     <xs:annotation>
       <xs:documentation>Container of Adapters that belong together.
@@ -339,7 +339,7 @@
      If set to 0, then there is no delay after messages that had an error.
  &lt;/p&gt;
  &lt;p&gt;
-     If this is not set on the receiver, then a default is taken from the configuration property `${receiver.defaultMaxBackoffDelay}` which
+     If this is not set on the receiver, then a default is taken from the configuration property &lt;pre&gt;${receiver.defaultMaxBackoffDelay}&lt;/pre&gt; which
      defaults to 60 seconds.
  &lt;/p&gt;</xs:documentation>
       </xs:annotation>
@@ -550,21 +550,21 @@
       <xs:annotation>
         <xs:documentation>The &lt;code&gt;transactionAttribute&lt;/code&gt; declares transactional behavior of execution. It applies both to database transactions and XA transactions.
  The pipeline uses this to start a new transaction or suspend the current one when required.
- For developers: it is equal to &lt;a href=\"https://docs.oracle.com/javaee/7/tutorial/transactions003.htm\"&gt;EJB transaction attribute&lt;/a&gt;.
+ For developers: it is equal to &lt;a href="https://docs.oracle.com/javaee/7/tutorial/transactions003.htm"&gt;EJB transaction attribute&lt;/a&gt;.
  Possible values for transactionAttribute:
-   &lt;table border=\"1\"&gt;
+ &lt;table border="1"&gt;
      &lt;tr&gt;&lt;th&gt;transactionAttribute&lt;/th&gt;&lt;th&gt;callers Transaction&lt;/th&gt;&lt;th&gt;Pipeline excecuted in Transaction&lt;/th&gt;&lt;/tr&gt;
-     &lt;tr&gt;&lt;td colspan=\"1\" rowspan=\"2\"&gt;Required&lt;/td&gt;    &lt;td&gt;none&lt;/td&gt;&lt;td&gt;T2&lt;/td&gt;&lt;/tr&gt;
+     &lt;tr&gt;&lt;td colspan="1" rowspan="2"&gt;Required&lt;/td&gt;    &lt;td&gt;none&lt;/td&gt;&lt;td&gt;T2&lt;/td&gt;&lt;/tr&gt;
  											      &lt;tr&gt;&lt;td&gt;T1&lt;/td&gt;  &lt;td&gt;T1&lt;/td&gt;&lt;/tr&gt;
-     &lt;tr&gt;&lt;td colspan=\"1\" rowspan=\"2\"&gt;RequiresNew&lt;/td&gt; &lt;td&gt;none&lt;/td&gt;&lt;td&gt;T2&lt;/td&gt;&lt;/tr&gt;
+     &lt;tr&gt;&lt;td colspan="1" rowspan="2"&gt;RequiresNew&lt;/td&gt; &lt;td&gt;none&lt;/td&gt;&lt;td&gt;T2&lt;/td&gt;&lt;/tr&gt;
  											      &lt;tr&gt;&lt;td&gt;T1&lt;/td&gt;  &lt;td&gt;T2&lt;/td&gt;&lt;/tr&gt;
-     &lt;tr&gt;&lt;td colspan=\"1\" rowspan=\"2\"&gt;Mandatory&lt;/td&gt;   &lt;td&gt;none&lt;/td&gt;&lt;td&gt;error&lt;/td&gt;&lt;/tr&gt;
+     &lt;tr&gt;&lt;td colspan="1" rowspan="2"&gt;Mandatory&lt;/td&gt;   &lt;td&gt;none&lt;/td&gt;&lt;td&gt;error&lt;/td&gt;&lt;/tr&gt;
  											      &lt;tr&gt;&lt;td&gt;T1&lt;/td&gt;  &lt;td&gt;T1&lt;/td&gt;&lt;/tr&gt;
-     &lt;tr&gt;&lt;td colspan=\"1\" rowspan=\"2\"&gt;NotSupported&lt;/td&gt;&lt;td&gt;none&lt;/td&gt;&lt;td&gt;none&lt;/td&gt;&lt;/tr&gt;
+     &lt;tr&gt;&lt;td colspan="1" rowspan="2"&gt;NotSupported&lt;/td&gt;&lt;td&gt;none&lt;/td&gt;&lt;td&gt;none&lt;/td&gt;&lt;/tr&gt;
  											      &lt;tr&gt;&lt;td&gt;T1&lt;/td&gt;  &lt;td&gt;none&lt;/td&gt;&lt;/tr&gt;
-     &lt;tr&gt;&lt;td colspan=\"1\" rowspan=\"2\"&gt;Supports&lt;/td&gt;    &lt;td&gt;none&lt;/td&gt;&lt;td&gt;none&lt;/td&gt;&lt;/tr&gt;
+     &lt;tr&gt;&lt;td colspan="1" rowspan="2"&gt;Supports&lt;/td&gt;    &lt;td&gt;none&lt;/td&gt;&lt;td&gt;none&lt;/td&gt;&lt;/tr&gt;
   										      &lt;tr&gt;&lt;td&gt;T1&lt;/td&gt;  &lt;td&gt;T1&lt;/td&gt;&lt;/tr&gt;
-     &lt;tr&gt;&lt;td colspan=\"1\" rowspan=\"2\"&gt;Never&lt;/td&gt;       &lt;td&gt;none&lt;/td&gt;&lt;td&gt;none&lt;/td&gt;&lt;/tr&gt;
+     &lt;tr&gt;&lt;td colspan="1" rowspan="2"&gt;Never&lt;/td&gt;       &lt;td&gt;none&lt;/td&gt;&lt;td&gt;none&lt;/td&gt;&lt;/tr&gt;
  											      &lt;tr&gt;&lt;td&gt;T1&lt;/td&gt;  &lt;td&gt;error&lt;/td&gt;&lt;/tr&gt;
    &lt;/table&gt; Default: Supports</xs:documentation>
       </xs:annotation>
@@ -575,6 +575,11 @@
     <xs:attribute name="transactionTimeout" type="frankInt">
       <xs:annotation>
         <xs:documentation>Timeout (in seconds) of transaction started to process a message. Default: &lt;code&gt;0&lt;/code&gt; (use system default)</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="name" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Name of the sender or the listener</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute ref="datasourceName" />
@@ -599,21 +604,6 @@
       </xs:annotation>
     </xs:attribute>
     <xs:attribute ref="connectionsArePooled" />
-    <xs:attribute ref="authentication" />
-    <xs:attribute ref="credentials" />
-    <xs:attribute ref="initialContextFactoryName" />
-    <xs:attribute ref="providerURL" />
-    <xs:attribute ref="securityProtocol" />
-    <xs:attribute ref="urlPkgPrefixes" />
-    <xs:attribute ref="principal" />
-    <xs:attribute ref="jndiAuthAlias" />
-    <xs:attribute ref="jndiContextPrefix" />
-    <xs:attribute ref="jndiProperties" />
-    <xs:attribute name="name" type="xs:string">
-      <xs:annotation>
-        <xs:documentation>Name of the sender or the listener</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
     <xs:attribute name="className" type="xs:string" fixed="org.frankframework.util.Locker" use="prohibited" />
     <xs:attribute ref="active" />
     <xs:attribute name="elementRole" type="xs:string" fixed="locker" use="prohibited" />
@@ -805,7 +795,7 @@
     <xs:sequence>
       <xs:group ref="JobElementGroup" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
-    <xs:attribute name="className" type="xs:string" fixed="org.frankframework.configuration.ScheduleManager" use="prohibited" />
+    <xs:attribute name="className" type="xs:string" fixed="org.frankframework.scheduler.ScheduleManager" use="prohibited" />
     <xs:attribute ref="active" />
     <xs:attribute name="elementRole" type="xs:string" fixed="scheduler" use="prohibited" />
     <xs:anyAttribute namespace="##other" processContents="skip" />
@@ -871,7 +861,7 @@
   <xs:complexType name="JmsRealmType">
     <xs:annotation>
       <xs:documentation>A JmsRealm is a definition of a JMS provider, and is kind of a utility
- class to prevent the tedeous work of repeatedly defining all parameters
+ class to prevent the tedious work of repeatedly defining all parameters
  to connect to a queue or topic.
  &lt;br/&gt;
  This class is not an extension of JNDIBase, which would be logical, because
@@ -1056,6 +1046,22 @@
           </xs:complexContent>
         </xs:complexType>
       </xs:element>
+      <xs:element name="JsonParam">
+        <xs:annotation>
+          <xs:documentation>A parameter which represents its value as a Message with mimetype &lt;pre&gt;application/json&lt;/pre&gt;. If the
+ derived value was of type &lt;pre&gt;application/xml&lt;/pre&gt; then it will be converted into JSON using the same rules as the
+ org.frankframework.pipes.JsonPipe.
+ If the derived value of the parameter was neither XML nor JSON format then a JSON will be constructed that looks like
+ &lt;code&gt;{&amp;quot;paramName&amp;quot;:value}&lt;/code&gt;. (The value will be quoted if it was not a number or boolean value).</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="JsonParameterType">
+              <xs:attribute name="elementRole" type="xs:string" fixed="param" use="prohibited" />
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="NumberParam">
         <xs:complexType>
           <xs:complexContent>
@@ -1110,13 +1116,13 @@
     </xs:attribute>
     <xs:attribute name="value" type="xs:string">
       <xs:annotation>
-        <xs:documentation>The value of the parameter, or the base for transformation using xpathExpression or stylesheet, or formatting.</xs:documentation>
+        <xs:documentation>The value of the parameter, or the base for transformation using xpathExpression, jpathExpression or stylesheet, or formatting.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="sessionKey" type="xs:string">
       <xs:annotation>
         <xs:documentation>Key of a PipelineSession-variable. &lt;br/&gt;If specified, the value of the PipelineSession variable is used as input for
- the xpathExpression or stylesheet, instead of the current input message. &lt;br/&gt;If no xpathExpression or stylesheet are
+ the xpathExpression, jpathExpression or stylesheet, instead of the current input message. &lt;br/&gt;If no xpathExpression, jpathExpression or stylesheet are
  specified, the value itself is returned. &lt;br/&gt;If the value '*' is specified, all existing sessionkeys are added as
  parameter of which the name starts with the name of this parameter. &lt;br/&gt;If also the name of the parameter has the
  value '*' then all existing sessionkeys are added as parameter (except tsReceived)</xs:documentation>
@@ -1132,6 +1138,11 @@
         <xs:documentation>Instead of a fixed &lt;code&gt;sessionKey&lt;/code&gt; it's also possible to use a XPath expression applied to the input message to extract the name of the session-variable.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+    <xs:attribute name="sessionKeyJPath" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Instead of a fixed &lt;code&gt;sessionKey&lt;/code&gt; it's also possible to use a JPath expression applied to the input message to extract the name of the session-variable.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="styleSheetName" type="xs:string">
       <xs:annotation>
         <xs:documentation>URL to a stylesheet that wil be applied to the contents of the message or the value of the session-variable.</xs:documentation>
@@ -1140,6 +1151,14 @@
     <xs:attribute name="xpathExpression" type="xs:string">
       <xs:annotation>
         <xs:documentation>the XPath expression to extract the parameter value from the (xml formatted) input or session-variable.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="jsonPathExpression" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>The JPath expression to extract the parameter value from the input or session-variable.
+ The input should be JSON or XML formatted, if it is XML formatter a simple XML-to-JSON conversion is done.
+ When &lt;code&gt;jsonPathExpression&lt;/code&gt; is set, then the value of the parameter will be derived using the same order
+ of precedence as with &lt;code&gt;xpathExpression&lt;/code&gt;.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="xsltVersion" type="frankInt">
@@ -1269,6 +1288,11 @@
     <xs:attributeGroup ref="DateParameterDeclaredAttributeGroup" />
     <xs:attributeGroup ref="AbstractParameterDeclaredAttributeGroup" />
   </xs:attributeGroup>
+  <xs:complexType name="JsonParameterType">
+    <xs:group ref="AbstractParameterDeclaredChildGroup" />
+    <xs:attributeGroup ref="AbstractParameterDeclaredAttributeGroup" />
+    <xs:attribute name="className" type="xs:string" fixed="org.frankframework.parameters.JsonParameter" use="prohibited" />
+  </xs:complexType>
   <xs:complexType name="NumberParameterType">
     <xs:group ref="AbstractParameterDeclaredChildGroup" />
     <xs:attributeGroup ref="NumberParameterCumulativeAttributeGroup" />
@@ -1407,7 +1431,7 @@
  listener that looks in a FileSystem for files.
  When a file is found, it is moved to an in-process folder, so that it isn't found more than once.
  &lt;br/&gt;
- The information specified by #setMessageType(IMessageType) is then passed to the pipeline.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;To avoid problems with duplicate filenames in folders like the &lt;code&gt;errorFolder&lt;/code&gt; or &lt;code&gt;processedFolder&lt;/code&gt;,
+ The information specified by &lt;code&gt;messageType&lt;/code&gt; is then passed to the pipeline.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;To avoid problems with duplicate filenames in folders like the &lt;code&gt;errorFolder&lt;/code&gt; or &lt;code&gt;processedFolder&lt;/code&gt;,
  you should configure either &lt;code&gt;overwrite=&amp;quot;true&amp;quot;&lt;/code&gt;, configure &lt;code&gt;numberOfBackups&lt;/code&gt; to a value larger than 0, or
  configure an &lt;code&gt;inProcessFolder&lt;/code&gt; and &lt;code&gt;fileTimeSensitive=&amp;quot;true&amp;quot;&lt;/code&gt;.
  These options can be used together as well.&lt;/p&gt;&lt;br&gt;&lt;b&gt;WARNING&lt;/b&gt;&lt;p&gt;In addition to the above, prior to release 9.0 it was not sufficient to configure &lt;code&gt;inProcessFolder&lt;/code&gt; and &lt;code&gt;fileTimeSensitive&lt;/code&gt;
@@ -1423,7 +1447,72 @@
       </xs:element>
       <xs:element name="EsbJmsListener">
         <xs:annotation>
-          <xs:documentation>ESB (Enterprise Service Bus) extension of JmsListener.</xs:documentation>
+          <xs:documentation>ESB (Enterprise Service Bus) extension of JmsListener.
+
+ A true multi-threaded Listener-class.
+ &lt;br/&gt;
+
+ Since version 4.1, Ibis supports distributed transactions using the XA-protocol. This feature is controlled by the
+ transacted attribute. If this is set to &lt;code&gt;true&lt;/code&gt;, received messages are
+ committed or rolled back, possibly together with other actions, by the receiver or the pipeline.
+ In case of a failure, all actions within the transaction are rolled back.
+ &lt;/p&gt;&lt;p&gt;
+ Setting listener.acknowledgeMode to "auto" means that messages are allways acknowledged (removed from
+ the queue, regardless of what the status of the Adapter is. "client" means that the message will only be removed from the queue
+ when the state of the Adapter equals the success state for committing.
+ The "dups" mode instructs the session to lazily acknowledge the delivery of the messages. This is likely to result in the
+ delivery of duplicate messages if JMS fails. It should be used by consumers who are tolerant in processing duplicate messages.
+ In cases where the client is tolerant of duplicate messages, some enhancement in performance can be achieved using this mode,
+ since a session has lower overhead in trying to prevent duplicate messages.
+ &lt;/p&gt;
+ &lt;p&gt;The setting for listener.acknowledgeMode will only be processed if
+ the setting for listener.transacted.&lt;/p&gt;
+
+ &lt;p&gt;If useReplyTo is set and a replyTo-destination is
+ specified in the message, the JmsListener sends the result of the processing
+ in the pipeline to this destination. Otherwise the result is sent using the (optionally)
+ specified, that in turn sends the message to
+ whatever it is configured to.&lt;/p&gt;
+
+ &lt;p&gt;You can add parameters to the JmsListener, the values will be added as Headers to the JMS response message.&lt;/p&gt;
+
+ &lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
+ jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
+ &lt;/p&gt;
+
+ JMSListener re-implemented as a pushing listener rather than a pulling listener.
+ The JMS messages have to come in from an external source: an MDB or a Spring
+ message container.
+
+ This version of the &lt;code&gt;JmsListener&lt;/code&gt; supports distributed transactions using the XA-protocol.
+ No special action is required to have the listener join the transaction.
+ &lt;/p&gt;&lt;p&gt;
+ Setting listener.acknowledgeMode to "auto" means that messages are allways acknowledged (removed from
+ the queue, regardless of what the status of the Adapter is. "client" means that the message will only be removed from the queue
+ when the state of the Adapter equals the success state.
+ The "dups" mode instructs the session to lazily acknowledge the delivery of the messages. This is likely to result in the
+ delivery of duplicate messages if JMS fails. It should be used by consumers who are tolerant in processing duplicate messages.
+ In cases where the client is tolerant of duplicate messages, some enhancement in performance can be achieved using this mode,
+ since a session has lower overhead in trying to prevent duplicate messages.
+ &lt;/p&gt;
+ &lt;p&gt;The setting for listener.acknowledgeMode will only be processed if
+ the setting for listener.transacted.&lt;/p&gt;
+
+ &lt;p&gt;If useReplyTo is set and a replyTo-destination is
+ specified in the message, the JmsListener sends the result of the processing
+ in the pipeline to this destination. Otherwise the result is sent using the (optionally)
+ specified Sender, that in turn sends the message to
+ whatever it is configured to.&lt;/p&gt;
+
+ &lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
+ jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
+ &lt;/p&gt;
+
+ Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -1468,7 +1557,7 @@
  listener that looks in a FileSystem for files.
  When a file is found, it is moved to an in-process folder, so that it isn't found more than once.
  &lt;br/&gt;
- The information specified by #setMessageType(IMessageType) is then passed to the pipeline.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;To avoid problems with duplicate filenames in folders like the &lt;code&gt;errorFolder&lt;/code&gt; or &lt;code&gt;processedFolder&lt;/code&gt;,
+ The information specified by &lt;code&gt;messageType&lt;/code&gt; is then passed to the pipeline.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;To avoid problems with duplicate filenames in folders like the &lt;code&gt;errorFolder&lt;/code&gt; or &lt;code&gt;processedFolder&lt;/code&gt;,
  you should configure either &lt;code&gt;overwrite=&amp;quot;true&amp;quot;&lt;/code&gt;, configure &lt;code&gt;numberOfBackups&lt;/code&gt; to a value larger than 0, or
  configure an &lt;code&gt;inProcessFolder&lt;/code&gt; and &lt;code&gt;fileTimeSensitive=&amp;quot;true&amp;quot;&lt;/code&gt;.
  These options can be used together as well.&lt;/p&gt;&lt;br&gt;&lt;b&gt;WARNING&lt;/b&gt;&lt;p&gt;In addition to the above, prior to release 9.0 it was not sufficient to configure &lt;code&gt;inProcessFolder&lt;/code&gt; and &lt;code&gt;fileTimeSensitive&lt;/code&gt;
@@ -1493,10 +1582,77 @@
  &lt;tr&gt;&lt;td&gt;jmsRealm&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;"qcf_tibco_p2p_ff"&lt;/td&gt;&lt;/tr&gt;
  &lt;tr&gt;&lt;td&gt;messageProtocol&lt;/td&gt;&lt;td&gt;protocol of ESB service to be called. Possible values
  &lt;ul&gt;
-   &lt;li&gt;"FF": Fire &amp; Forget protocol&lt;/li&gt;
+   &lt;li&gt;"FF": Fire &amp;amp; Forget protocol&lt;/li&gt;
    &lt;li&gt;"RR": Request-Reply protocol&lt;/li&gt;
  &lt;/ul&gt;&lt;/td&gt;&lt;td&gt;"FF"&lt;/td&gt;&lt;/tr&gt;
- &lt;/table&gt;&lt;/p&gt;</xs:documentation>
+ &lt;/table&gt;&lt;/p&gt;
+
+ ESB (Enterprise Service Bus) extension of JmsListener.
+
+ A true multi-threaded Listener-class.
+ &lt;br/&gt;
+
+ Since version 4.1, Ibis supports distributed transactions using the XA-protocol. This feature is controlled by the
+ transacted attribute. If this is set to &lt;code&gt;true&lt;/code&gt;, received messages are
+ committed or rolled back, possibly together with other actions, by the receiver or the pipeline.
+ In case of a failure, all actions within the transaction are rolled back.
+ &lt;/p&gt;&lt;p&gt;
+ Setting listener.acknowledgeMode to "auto" means that messages are allways acknowledged (removed from
+ the queue, regardless of what the status of the Adapter is. "client" means that the message will only be removed from the queue
+ when the state of the Adapter equals the success state for committing.
+ The "dups" mode instructs the session to lazily acknowledge the delivery of the messages. This is likely to result in the
+ delivery of duplicate messages if JMS fails. It should be used by consumers who are tolerant in processing duplicate messages.
+ In cases where the client is tolerant of duplicate messages, some enhancement in performance can be achieved using this mode,
+ since a session has lower overhead in trying to prevent duplicate messages.
+ &lt;/p&gt;
+ &lt;p&gt;The setting for listener.acknowledgeMode will only be processed if
+ the setting for listener.transacted.&lt;/p&gt;
+
+ &lt;p&gt;If useReplyTo is set and a replyTo-destination is
+ specified in the message, the JmsListener sends the result of the processing
+ in the pipeline to this destination. Otherwise the result is sent using the (optionally)
+ specified, that in turn sends the message to
+ whatever it is configured to.&lt;/p&gt;
+
+ &lt;p&gt;You can add parameters to the JmsListener, the values will be added as Headers to the JMS response message.&lt;/p&gt;
+
+ &lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
+ jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
+ &lt;/p&gt;
+
+ JMSListener re-implemented as a pushing listener rather than a pulling listener.
+ The JMS messages have to come in from an external source: an MDB or a Spring
+ message container.
+
+ This version of the &lt;code&gt;JmsListener&lt;/code&gt; supports distributed transactions using the XA-protocol.
+ No special action is required to have the listener join the transaction.
+ &lt;/p&gt;&lt;p&gt;
+ Setting listener.acknowledgeMode to "auto" means that messages are allways acknowledged (removed from
+ the queue, regardless of what the status of the Adapter is. "client" means that the message will only be removed from the queue
+ when the state of the Adapter equals the success state.
+ The "dups" mode instructs the session to lazily acknowledge the delivery of the messages. This is likely to result in the
+ delivery of duplicate messages if JMS fails. It should be used by consumers who are tolerant in processing duplicate messages.
+ In cases where the client is tolerant of duplicate messages, some enhancement in performance can be achieved using this mode,
+ since a session has lower overhead in trying to prevent duplicate messages.
+ &lt;/p&gt;
+ &lt;p&gt;The setting for listener.acknowledgeMode will only be processed if
+ the setting for listener.transacted.&lt;/p&gt;
+
+ &lt;p&gt;If useReplyTo is set and a replyTo-destination is
+ specified in the message, the JmsListener sends the result of the processing
+ in the pipeline to this destination. Otherwise the result is sent using the (optionally)
+ specified Sender, that in turn sends the message to
+ whatever it is configured to.&lt;/p&gt;
+
+ &lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
+ jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
+ &lt;/p&gt;
+
+ Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -1588,7 +1744,41 @@
 
  &lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
  jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
- &lt;/p&gt;</xs:documentation>
+ &lt;/p&gt;
+
+ JMSListener re-implemented as a pushing listener rather than a pulling listener.
+ The JMS messages have to come in from an external source: an MDB or a Spring
+ message container.
+
+ This version of the &lt;code&gt;JmsListener&lt;/code&gt; supports distributed transactions using the XA-protocol.
+ No special action is required to have the listener join the transaction.
+ &lt;/p&gt;&lt;p&gt;
+ Setting listener.acknowledgeMode to "auto" means that messages are allways acknowledged (removed from
+ the queue, regardless of what the status of the Adapter is. "client" means that the message will only be removed from the queue
+ when the state of the Adapter equals the success state.
+ The "dups" mode instructs the session to lazily acknowledge the delivery of the messages. This is likely to result in the
+ delivery of duplicate messages if JMS fails. It should be used by consumers who are tolerant in processing duplicate messages.
+ In cases where the client is tolerant of duplicate messages, some enhancement in performance can be achieved using this mode,
+ since a session has lower overhead in trying to prevent duplicate messages.
+ &lt;/p&gt;
+ &lt;p&gt;The setting for listener.acknowledgeMode will only be processed if
+ the setting for listener.transacted.&lt;/p&gt;
+
+ &lt;p&gt;If useReplyTo is set and a replyTo-destination is
+ specified in the message, the JmsListener sends the result of the processing
+ in the pipeline to this destination. Otherwise the result is sent using the (optionally)
+ specified Sender, that in turn sends the message to
+ whatever it is configured to.&lt;/p&gt;
+
+ &lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
+ jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
+ &lt;/p&gt;
+
+ Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -1642,7 +1832,7 @@
 
  Links to &lt;a href="https://www.eclipse.org/paho/files/javadoc" target="_blank"&gt;https://www.eclipse.org/paho/files/javadoc&lt;/a&gt; are opened in a new window/tab because the response from eclipse.org contains header X-Frame-Options:SAMEORIGIN which will make the browser refuse to open the link inside this frame.
 
- Requires a resource to be configured. Example `resources.yml`:
+ Requires a resource to be configured. Example &lt;pre&gt;resources.yml&lt;/pre&gt;:
  &lt;pre&gt;&lt;code&gt;mqtt:
    - name: &amp;quot;my-connection&amp;quot;
      type: &amp;quot;org.frankframework.jdbc.datasource.MqttClientSettings&amp;quot;
@@ -1654,7 +1844,7 @@
  The clientId is automatically determined from &lt;code&gt;transactionmanager.uid&lt;/code&gt;, but can optionally be overwritten. Be aware that the clientId must be unique
  for each instance of the framework.
  &lt;br&gt;&lt;br&gt;
- Inbound and outbound messages are persisted while they are in flight to prevent data loss. The default is an in memory store, but the `persistenceDirectory`
+ Inbound and outbound messages are persisted while they are in flight to prevent data loss. The default is an in memory store, but the &lt;pre&gt;persistenceDirectory&lt;/pre&gt;
  flag can be used to set the disk storage location.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
@@ -1694,7 +1884,13 @@
  &lt;/p&gt;
  &lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
  &lt;code&gt;jakarta.jms.TextMessage&lt;/code&gt;s &lt;br/&gt;&lt;br/&gt;
- &lt;/p&gt;</xs:documentation>
+ &lt;/p&gt;
+
+ Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -1732,7 +1928,13 @@
 
  &lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
  jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
- &lt;/p&gt;</xs:documentation>
+ &lt;/p&gt;
+
+ Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -1783,7 +1985,7 @@
  listener that looks in a FileSystem for files.
  When a file is found, it is moved to an in-process folder, so that it isn't found more than once.
  &lt;br/&gt;
- The information specified by #setMessageType(IMessageType) is then passed to the pipeline.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;To avoid problems with duplicate filenames in folders like the &lt;code&gt;errorFolder&lt;/code&gt; or &lt;code&gt;processedFolder&lt;/code&gt;,
+ The information specified by &lt;code&gt;messageType&lt;/code&gt; is then passed to the pipeline.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;To avoid problems with duplicate filenames in folders like the &lt;code&gt;errorFolder&lt;/code&gt; or &lt;code&gt;processedFolder&lt;/code&gt;,
  you should configure either &lt;code&gt;overwrite=&amp;quot;true&amp;quot;&lt;/code&gt;, configure &lt;code&gt;numberOfBackups&lt;/code&gt; to a value larger than 0, or
  configure an &lt;code&gt;inProcessFolder&lt;/code&gt; and &lt;code&gt;fileTimeSensitive=&amp;quot;true&amp;quot;&lt;/code&gt;.
  These options can be used together as well.&lt;/p&gt;&lt;br&gt;&lt;b&gt;WARNING&lt;/b&gt;&lt;p&gt;In addition to the above, prior to release 9.0 it was not sufficient to configure &lt;code&gt;inProcessFolder&lt;/code&gt; and &lt;code&gt;fileTimeSensitive&lt;/code&gt;
@@ -1823,7 +2025,7 @@
  listener that looks in a FileSystem for files.
  When a file is found, it is moved to an in-process folder, so that it isn't found more than once.
  &lt;br/&gt;
- The information specified by #setMessageType(IMessageType) is then passed to the pipeline.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;To avoid problems with duplicate filenames in folders like the &lt;code&gt;errorFolder&lt;/code&gt; or &lt;code&gt;processedFolder&lt;/code&gt;,
+ The information specified by &lt;code&gt;messageType&lt;/code&gt; is then passed to the pipeline.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;To avoid problems with duplicate filenames in folders like the &lt;code&gt;errorFolder&lt;/code&gt; or &lt;code&gt;processedFolder&lt;/code&gt;,
  you should configure either &lt;code&gt;overwrite=&amp;quot;true&amp;quot;&lt;/code&gt;, configure &lt;code&gt;numberOfBackups&lt;/code&gt; to a value larger than 0, or
  configure an &lt;code&gt;inProcessFolder&lt;/code&gt; and &lt;code&gt;fileTimeSensitive=&amp;quot;true&amp;quot;&lt;/code&gt;.
  These options can be used together as well.&lt;/p&gt;&lt;br&gt;&lt;b&gt;WARNING&lt;/b&gt;&lt;p&gt;In addition to the above, prior to release 9.0 it was not sufficient to configure &lt;code&gt;inProcessFolder&lt;/code&gt; and &lt;code&gt;fileTimeSensitive&lt;/code&gt;
@@ -1851,6 +2053,72 @@
         </xs:complexType>
       </xs:element>
       <xs:element name="TibcoLogJmsListener">
+        <xs:annotation>
+          <xs:documentation>A true multi-threaded Listener-class.
+ &lt;br/&gt;
+
+ Since version 4.1, Ibis supports distributed transactions using the XA-protocol. This feature is controlled by the
+ transacted attribute. If this is set to &lt;code&gt;true&lt;/code&gt;, received messages are
+ committed or rolled back, possibly together with other actions, by the receiver or the pipeline.
+ In case of a failure, all actions within the transaction are rolled back.
+ &lt;/p&gt;&lt;p&gt;
+ Setting listener.acknowledgeMode to "auto" means that messages are allways acknowledged (removed from
+ the queue, regardless of what the status of the Adapter is. "client" means that the message will only be removed from the queue
+ when the state of the Adapter equals the success state for committing.
+ The "dups" mode instructs the session to lazily acknowledge the delivery of the messages. This is likely to result in the
+ delivery of duplicate messages if JMS fails. It should be used by consumers who are tolerant in processing duplicate messages.
+ In cases where the client is tolerant of duplicate messages, some enhancement in performance can be achieved using this mode,
+ since a session has lower overhead in trying to prevent duplicate messages.
+ &lt;/p&gt;
+ &lt;p&gt;The setting for listener.acknowledgeMode will only be processed if
+ the setting for listener.transacted.&lt;/p&gt;
+
+ &lt;p&gt;If useReplyTo is set and a replyTo-destination is
+ specified in the message, the JmsListener sends the result of the processing
+ in the pipeline to this destination. Otherwise the result is sent using the (optionally)
+ specified, that in turn sends the message to
+ whatever it is configured to.&lt;/p&gt;
+
+ &lt;p&gt;You can add parameters to the JmsListener, the values will be added as Headers to the JMS response message.&lt;/p&gt;
+
+ &lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
+ jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
+ &lt;/p&gt;
+
+ JMSListener re-implemented as a pushing listener rather than a pulling listener.
+ The JMS messages have to come in from an external source: an MDB or a Spring
+ message container.
+
+ This version of the &lt;code&gt;JmsListener&lt;/code&gt; supports distributed transactions using the XA-protocol.
+ No special action is required to have the listener join the transaction.
+ &lt;/p&gt;&lt;p&gt;
+ Setting listener.acknowledgeMode to "auto" means that messages are allways acknowledged (removed from
+ the queue, regardless of what the status of the Adapter is. "client" means that the message will only be removed from the queue
+ when the state of the Adapter equals the success state.
+ The "dups" mode instructs the session to lazily acknowledge the delivery of the messages. This is likely to result in the
+ delivery of duplicate messages if JMS fails. It should be used by consumers who are tolerant in processing duplicate messages.
+ In cases where the client is tolerant of duplicate messages, some enhancement in performance can be achieved using this mode,
+ since a session has lower overhead in trying to prevent duplicate messages.
+ &lt;/p&gt;
+ &lt;p&gt;The setting for listener.acknowledgeMode will only be processed if
+ the setting for listener.transacted.&lt;/p&gt;
+
+ &lt;p&gt;If useReplyTo is set and a replyTo-destination is
+ specified in the message, the JmsListener sends the result of the processing
+ in the pipeline to this destination. Otherwise the result is sent using the (optionally)
+ specified Sender, that in turn sends the message to
+ whatever it is configured to.&lt;/p&gt;
+
+ &lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
+ jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
+ &lt;/p&gt;
+
+ Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
             <xs:extension base="TibcoLogJmsListenerType">
@@ -2413,21 +2681,53 @@
     <xs:attribute name="className" type="xs:string" fixed="org.frankframework.jndi.JndiBase" use="prohibited" />
   </xs:complexType>
   <xs:attributeGroup name="JndiBaseDeclaredAttributeGroup">
-    <xs:attribute ref="authentication" />
-    <xs:attribute ref="credentials" />
-    <xs:attribute ref="initialContextFactoryName" />
-    <xs:attribute ref="providerURL" />
-    <xs:attribute ref="securityProtocol" />
-    <xs:attribute ref="urlPkgPrefixes" />
+    <xs:attribute name="authentication" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>maps to the field context.security_authentication</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="credentials" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>username to connect to context, maps to context.security_credentials</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="initialContextFactoryName" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>class to use as initial context factory</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="providerURL" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Sets the value of providerURL</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="securityProtocol" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>maps to the field context.security_protocol</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="urlPkgPrefixes" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>maps to the field context.url_pkg_prefixes</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="jmsRealm" type="xs:string">
       <xs:annotation>
         <xs:documentation>loads JNDI (and other) properties from a JmsRealm</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute ref="principal" />
-    <xs:attribute ref="jndiAuthAlias" />
-    <xs:attribute ref="jndiContextPrefix" />
-    <xs:attribute ref="jndiProperties" />
+    <xs:attribute name="principal" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>username to connect to context, maps to context.security_principal</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="jndiAuthAlias" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>authentication alias, may be used to override principal and credential-settings</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="jndiContextPrefix" type="xs:string" />
+    <xs:attribute name="jndiProperties" type="xs:string" />
     <xs:attribute name="name" type="xs:string">
       <xs:annotation>
         <xs:documentation>Name of the sender or the listener</xs:documentation>
@@ -3033,17 +3333,23 @@
         <xs:documentation>Controls automatically whether blobdata is stored compressed and/or serialized in the database. N.B. When set true, then the BLOB will be converted into a string Default: false</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+    <xs:attribute ref="additionalFields" />
     <xs:attribute ref="trace" />
   </xs:attributeGroup>
   <xs:attributeGroup name="JdbcListenerCumulativeAttributeGroup">
     <xs:attributeGroup ref="JdbcListenerDeclaredAttributeGroup" />
-    <xs:attributeGroup ref="JdbcFacadeCumulativeAttributeGroup" />
+    <xs:attributeGroup ref="JdbcFacadeDeclaredAttributeGroup" />
   </xs:attributeGroup>
   <xs:complexType name="JdbcFacadeType">
-    <xs:attributeGroup ref="JdbcFacadeCumulativeAttributeGroup" />
+    <xs:attributeGroup ref="JdbcFacadeDeclaredAttributeGroup" />
     <xs:attribute name="className" type="xs:string" fixed="org.frankframework.jdbc.JdbcFacade" use="prohibited" />
   </xs:complexType>
   <xs:attributeGroup name="JdbcFacadeDeclaredAttributeGroup">
+    <xs:attribute name="name" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Name of the sender or the listener</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute ref="datasourceName" />
     <xs:attribute name="authAlias" type="xs:string">
       <xs:annotation>
@@ -3066,24 +3372,6 @@
       </xs:annotation>
     </xs:attribute>
     <xs:attribute ref="connectionsArePooled" />
-  </xs:attributeGroup>
-  <xs:attributeGroup name="JdbcFacadeCumulativeAttributeGroup">
-    <xs:attributeGroup ref="JdbcFacadeDeclaredAttributeGroup" />
-    <xs:attribute ref="authentication" />
-    <xs:attribute ref="credentials" />
-    <xs:attribute ref="initialContextFactoryName" />
-    <xs:attribute ref="providerURL" />
-    <xs:attribute ref="securityProtocol" />
-    <xs:attribute ref="urlPkgPrefixes" />
-    <xs:attribute ref="principal" />
-    <xs:attribute ref="jndiAuthAlias" />
-    <xs:attribute ref="jndiContextPrefix" />
-    <xs:attribute ref="jndiProperties" />
-    <xs:attribute name="name" type="xs:string">
-      <xs:annotation>
-        <xs:documentation>Name of the sender or the listener</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
     <xs:attribute ref="active" />
     <xs:anyAttribute namespace="##other" processContents="skip" />
   </xs:attributeGroup>
@@ -3265,8 +3553,9 @@
         <xs:documentation>Controls whether BLOB is considered stored compressed in the database Default: true</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+    <xs:attribute ref="additionalFields" />
     <xs:attribute ref="trace" />
-    <xs:attributeGroup ref="JdbcFacadeCumulativeAttributeGroup" />
+    <xs:attributeGroup ref="JdbcFacadeDeclaredAttributeGroup" />
   </xs:attributeGroup>
   <xs:complexType name="MqttListenerType">
     <xs:attributeGroup ref="MqttFacadeDeclaredAttributeGroup" />
@@ -3641,7 +3930,7 @@
   </xs:attributeGroup>
   <xs:attributeGroup name="SimpleJdbcListenerCumulativeAttributeGroup">
     <xs:attributeGroup ref="SimpleJdbcListenerDeclaredAttributeGroup" />
-    <xs:attributeGroup ref="JdbcFacadeCumulativeAttributeGroup" />
+    <xs:attributeGroup ref="JdbcFacadeDeclaredAttributeGroup" />
   </xs:attributeGroup>
   <xs:complexType name="TibcoLogJmsListenerType">
     <xs:group ref="AbstractJmsListenerDeclaredChildGroup" />
@@ -3714,7 +4003,7 @@
     <xs:choice>
       <xs:element name="EsbJmsSender">
         <xs:annotation>
-          <xs:documentation>ESB (Enterprise Service Bus) extension of JmsSender.</xs:documentation>
+          <xs:documentation>ESB (Enterprise Service Bus) extension of @{codeJmsSender}.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -3728,7 +4017,16 @@
         <xs:annotation>
           <xs:documentation>JMS sender which will add an IMS header to the message and call the MQ specific logic.
 
- &lt;p&gt;See JmsSender for configuration&lt;/p&gt;</xs:documentation>
+ &lt;p&gt;See JmsSender for configuration&lt;/p&gt;
+
+ JMS sender which will call IBM WebSphere MQ specific &lt;code&gt;setTargetClient(JMSC.MQJMS_CLIENT_NONJMS_MQ)&lt;/code&gt; on the destination prior to sending a message.
+ This is needed when the MQ destination is not a JMS receiver otherwise format errors occur (e.g. dots are added after every character in the message).
+
+ Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -3740,7 +4038,11 @@
       </xs:element>
       <xs:element name="JmsSender">
         <xs:annotation>
-          <xs:documentation>This class sends messages with JMS.</xs:documentation>
+          <xs:documentation>Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -3752,13 +4054,14 @@
       </xs:element>
       <xs:element name="MQSender">
         <xs:annotation>
-          <xs:documentation>JMS sender which will call IBM WebSphere MQ specific
- setTargetClient(JMSC.MQJMS_CLIENT_NONJMS_MQ) on the destination prior to
- sending a message. This is needed when the MQ destination is not a JMS
- receiver otherwise format errors occur (e.g. dots are added after every
- character in the message).
+          <xs:documentation>JMS sender which will call IBM WebSphere MQ specific &lt;code&gt;setTargetClient(JMSC.MQJMS_CLIENT_NONJMS_MQ)&lt;/code&gt; on the destination prior to sending a message.
+ This is needed when the MQ destination is not a JMS receiver otherwise format errors occur (e.g. dots are added after every character in the message).
 
- &lt;p&gt;See JmsSender for configuration&lt;/p&gt;</xs:documentation>
+ Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -3924,7 +4227,7 @@
     <xs:choice>
       <xs:element name="EsbJmsErrorStorage">
         <xs:annotation>
-          <xs:documentation>ESB (Enterprise Service Bus) extension of JmsTransactionalStorage.
+          <xs:documentation>ESB (Enterprise Service Bus) extension of &lt;code&gt;JmsTransactionalStorage&lt;/code&gt;.
 
  &lt;p&gt;
  Depending on the &lt;code&gt;type&lt;/code&gt; of the &lt;code&gt;TransactionalStorage&lt;/code&gt;
@@ -3936,17 +4239,23 @@
  ESB.Infrastructure.US.Log.BusinessLog.2.AuditLog.1.Action&lt;/li&gt;
  &lt;/ul&gt;
  &lt;/p&gt;
- &lt;p&gt;
- &lt;b&gt;Configuration &lt;/b&gt;&lt;i&gt;(where deviating from
- JmsTransactionalStorage)&lt;/i&gt;&lt;b&gt;:&lt;/b&gt;
- &lt;table border="1"&gt;
- &lt;tr&gt;
- &lt;th&gt;attributes&lt;/th&gt;
- &lt;th&gt;description&lt;/th&gt;
- &lt;th&gt;default&lt;/th&gt;
- &lt;/tr&gt;
- &lt;/table&gt;
- &lt;/p&gt;</xs:documentation>
+
+ Implements a message log (&lt;code&gt;JmsMessageLog&lt;/code&gt;) or error store (&lt;code&gt;JmsErrorStorage&lt;/code&gt;) that uses JMS technology.
+ &lt;br/&gt;&lt;br/&gt;
+ &lt;b&gt;Message log:&lt;/b&gt; A message log writes messages in persistent storage for logging purposes.
+ When a message log appears in a receiver, it also ensures that the same message is only processed
+ once, even if a related pushing listener receives the same message multiple times.
+ &lt;br/&gt;&lt;br/&gt;
+ &lt;b&gt;Error store:&lt;/b&gt; Appears in a receiver or sender pipe to store messages that could not be processed.
+ Storing a message in the error store is the last resort of the Frank!Framework. Many types of listeners and senders
+ offer a retry mechanism. Only if several tries have failed, then an optional transaction is not rolled
+ back and the message is stored in the error store. Users can retry messages in an error store using the Frank!Console. When
+ this is done, the message is processed in the same way as messages received from the original source.
+ &lt;br/&gt;&lt;br/&gt;
+ How does a message log or error store see duplicate messages? The message log or error store
+ always appears in combination with a sender or listener. This sender or listener determines
+ a key based on the sent or received message. Messages with the same key are considered to
+ be the same.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -4221,7 +4530,7 @@
   </xs:attributeGroup>
   <xs:attributeGroup name="AbstractJdbcMessageBrowserCumulativeAttributeGroup">
     <xs:attributeGroup ref="AbstractJdbcMessageBrowserDeclaredAttributeGroup" />
-    <xs:attributeGroup ref="JdbcFacadeCumulativeAttributeGroup" />
+    <xs:attributeGroup ref="JdbcFacadeDeclaredAttributeGroup" />
   </xs:attributeGroup>
   <xs:group name="MessageLogElementGroup">
     <xs:choice>
@@ -4240,7 +4549,7 @@
     <xs:choice>
       <xs:element name="EsbJmsMessageLog">
         <xs:annotation>
-          <xs:documentation>ESB (Enterprise Service Bus) extension of JmsTransactionalStorage.
+          <xs:documentation>ESB (Enterprise Service Bus) extension of &lt;code&gt;JmsTransactionalStorage&lt;/code&gt;.
 
  &lt;p&gt;
  Depending on the &lt;code&gt;type&lt;/code&gt; of the &lt;code&gt;TransactionalStorage&lt;/code&gt;
@@ -4252,17 +4561,23 @@
  ESB.Infrastructure.US.Log.BusinessLog.2.AuditLog.1.Action&lt;/li&gt;
  &lt;/ul&gt;
  &lt;/p&gt;
- &lt;p&gt;
- &lt;b&gt;Configuration &lt;/b&gt;&lt;i&gt;(where deviating from
- JmsTransactionalStorage)&lt;/i&gt;&lt;b&gt;:&lt;/b&gt;
- &lt;table border="1"&gt;
- &lt;tr&gt;
- &lt;th&gt;attributes&lt;/th&gt;
- &lt;th&gt;description&lt;/th&gt;
- &lt;th&gt;default&lt;/th&gt;
- &lt;/tr&gt;
- &lt;/table&gt;
- &lt;/p&gt;</xs:documentation>
+
+ Implements a message log (&lt;code&gt;JmsMessageLog&lt;/code&gt;) or error store (&lt;code&gt;JmsErrorStorage&lt;/code&gt;) that uses JMS technology.
+ &lt;br/&gt;&lt;br/&gt;
+ &lt;b&gt;Message log:&lt;/b&gt; A message log writes messages in persistent storage for logging purposes.
+ When a message log appears in a receiver, it also ensures that the same message is only processed
+ once, even if a related pushing listener receives the same message multiple times.
+ &lt;br/&gt;&lt;br/&gt;
+ &lt;b&gt;Error store:&lt;/b&gt; Appears in a receiver or sender pipe to store messages that could not be processed.
+ Storing a message in the error store is the last resort of the Frank!Framework. Many types of listeners and senders
+ offer a retry mechanism. Only if several tries have failed, then an optional transaction is not rolled
+ back and the message is stored in the error store. Users can retry messages in an error store using the Frank!Console. When
+ this is done, the message is processed in the same way as messages received from the original source.
+ &lt;br/&gt;&lt;br/&gt;
+ How does a message log or error store see duplicate messages? The message log or error store
+ always appears in combination with a sender or listener. This sender or listener determines
+ a key based on the sent or received message. Messages with the same key are considered to
+ be the same.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -6302,7 +6617,7 @@
     </xs:attribute>
     <xs:attribute name="diskPersistent" type="frankBoolean">
       <xs:annotation>
-        <xs:documentation>If &lt;code&gt;true&lt;/code&gt;, the cache is stored on disk and survives configuration reloads &amp; JVM restarts. Default: false</xs:documentation>
+        <xs:documentation>If &lt;code&gt;true&lt;/code&gt;, the cache is stored on disk and survives configuration reloads and JVM restarts. Default: false</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="diskExpiryThreadIntervalSeconds" type="frankInt">
@@ -6468,7 +6783,13 @@
  &lt;/p&gt;
  &lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
  &lt;code&gt;jakarta.jms.TextMessage&lt;/code&gt;s &lt;br/&gt;&lt;br/&gt;
- &lt;/p&gt;</xs:documentation>
+ &lt;/p&gt;
+
+ Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -6789,6 +7110,7 @@
        &amp;lt;property name=&amp;quot;ArrivedAt&amp;quot; type=&amp;quot;datetime&amp;quot; formatString=&amp;quot;yyyy-MM-dd'T'HH:mm:ss.SSSz&amp;quot;&amp;gt;2014-11-27T16:43:01.268+0100&amp;lt;/property&amp;gt;
        &amp;lt;property name=&amp;quot;ArrivedBy&amp;quot;&amp;gt;HDN&amp;lt;/property&amp;gt;
        &amp;lt;property name=&amp;quot;DocumentType&amp;quot;&amp;gt;Geldlening&amp;lt;/property&amp;gt;
+       &amp;lt;property name=&amp;quot;DocumentDetail&amp;quot; isNull=&amp;quot;true&amp;quot; /&amp;gt;
     &amp;lt;/properties&amp;gt;
  &amp;lt;/cmis&amp;gt;&lt;/code&gt;&lt;/pre&gt;
  &lt;/p&gt;
@@ -6837,7 +7159,7 @@
       <xs:element name="DirectQuerySender">
         <xs:annotation>
           <xs:documentation>QuerySender that interprets the input message as a query, possibly with attributes.
- Messages are expected to contain sql-text.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Please note that the default value of &lt;code&gt;trimSpaces&lt;/code&gt; is `true`&lt;/p&gt;</xs:documentation>
+ Messages are expected to contain sql-text.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Please note that the default value of &lt;code&gt;trimSpaces&lt;/code&gt; is &lt;pre&gt;true&lt;/pre&gt;&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -6861,7 +7183,7 @@
       </xs:element>
       <xs:element name="EsbJmsSender">
         <xs:annotation>
-          <xs:documentation>ESB (Enterprise Service Bus) extension of JmsSender.</xs:documentation>
+          <xs:documentation>ESB (Enterprise Service Bus) extension of @{codeJmsSender}.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -6885,7 +7207,32 @@
       </xs:element>
       <xs:element name="FixedQuerySender">
         <xs:annotation>
-          <xs:documentation>QuerySender that assumes a fixed query, possibly with attributes.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;See DB2XMLWriter for ResultSet!&lt;/p&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Please note that the default value of &lt;code&gt;trimSpaces&lt;/code&gt; is `true`&lt;/p&gt;</xs:documentation>
+          <xs:documentation>QuerySender that assumes a fixed query, possibly with attributes.
+ 
+ Example of a &lt;code&gt;XML&lt;/code&gt; result:
+ &lt;pre&gt;&lt;code&gt;&amp;lt;result&amp;gt;
+     &amp;lt;fielddefinition&amp;gt;
+         &amp;lt;field name=&amp;quot;FIELDNAME&amp;quot;
+             type=&amp;quot;columnType&amp;quot;
+             columnDisplaySize=&amp;quot;&amp;quot;
+             precision=&amp;quot;&amp;quot;
+             scale=&amp;quot;&amp;quot;
+             isCurrency=&amp;quot;&amp;quot;
+             columnTypeName=&amp;quot;&amp;quot;
+             columnClassName=&amp;quot;&amp;quot;/&amp;gt;
+         &amp;lt;field ...../&amp;gt;
+     &amp;lt;/fielddefinition&amp;gt;
+     &amp;lt;rowset&amp;gt;
+         &amp;lt;row number=&amp;quot;1&amp;quot;&amp;gt;
+             &amp;lt;field name=&amp;quot;FIELDNAME&amp;quot;&amp;gt;value&amp;lt;/field&amp;gt;
+             &amp;lt;field name=&amp;quot;FIELDNAME&amp;quot; null=&amp;quot;true&amp;quot;&amp;gt;&amp;lt;/field&amp;gt;
+             &amp;lt;field name=&amp;quot;FIELDNAME&amp;quot;&amp;gt;value&amp;lt;/field&amp;gt;
+             &amp;lt;field name=&amp;quot;FIELDNAME&amp;quot;&amp;gt;value&amp;lt;/field&amp;gt;
+         &amp;lt;/row&amp;gt;
+     &amp;lt;/rowset&amp;gt;
+ &amp;lt;/result&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+ 
+ See DB2XMLWriter for more information about the ResultSet!&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;The result &lt;code&gt;fieldname&lt;/code&gt; and &lt;code&gt;columntype&lt;/code&gt; are always capital case.&lt;/p&gt;&lt;br&gt;&lt;b&gt;TIP&lt;/b&gt;&lt;p&gt;The default value of &lt;code&gt;trimSpaces&lt;/code&gt; is &lt;pre&gt;true&lt;/pre&gt;.&lt;/p&gt;&lt;br&gt;&lt;b&gt;TIP&lt;/b&gt;&lt;p&gt;The default value of &lt;code&gt;useNamedParams&lt;/code&gt; is determined by the presence of &lt;code&gt;?&amp;#123;...&amp;#125;&lt;/code&gt; in the query.&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -7134,14 +7481,10 @@
 
  &lt;p&gt;&lt;b&gt;Expected message format:&lt;/b&gt;&lt;/p&gt;
  &lt;p&gt;GET methods expect a message looking like this:
- &lt;pre&gt;
-    param_name=param_value&amp;another_param_name=another_param_value
- &lt;/pre&gt;
+ &lt;pre&gt;&lt;code&gt;param_name=param_value&amp;amp;another_param_name=another_param_value&lt;/code&gt;&lt;/pre&gt;
  &lt;p&gt;POST AND PUT methods expect a message similar as GET, or looking like this:
- &lt;pre&gt;
-   param_name=param_value
-   another_param_name=another_param_value
- &lt;/pre&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;When used as MTOM sender and MTOM receiver doesn't support Content-Transfer-Encoding "base64", messages without line feeds will give an error.
+ &lt;pre&gt;&lt;code&gt;param_name=param_value
+   another_param_name=another_param_value&lt;/code&gt;&lt;/pre&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;When used as MTOM sender and MTOM receiver doesn't support Content-Transfer-Encoding "base64", messages without line feeds will give an error.
  This can be fixed by setting the Content-Transfer-Encoding in the MTOM sender.&lt;/p&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;The use of `multi-value` parameters can be achieved by adding multiple parameters with the same name.&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
@@ -7156,7 +7499,16 @@
         <xs:annotation>
           <xs:documentation>JMS sender which will add an IMS header to the message and call the MQ specific logic.
 
- &lt;p&gt;See JmsSender for configuration&lt;/p&gt;</xs:documentation>
+ &lt;p&gt;See JmsSender for configuration&lt;/p&gt;
+
+ JMS sender which will call IBM WebSphere MQ specific &lt;code&gt;setTargetClient(JMSC.MQJMS_CLIENT_NONJMS_MQ)&lt;/code&gt; on the destination prior to sending a message.
+ This is needed when the MQ destination is not a JMS receiver otherwise format errors occur (e.g. dots are added after every character in the message).
+
+ Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -7320,7 +7672,11 @@
       </xs:element>
       <xs:element name="JmsSender">
         <xs:annotation>
-          <xs:documentation>This class sends messages with JMS.</xs:documentation>
+          <xs:documentation>Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -7464,13 +7820,14 @@
       </xs:element>
       <xs:element name="MQSender">
         <xs:annotation>
-          <xs:documentation>JMS sender which will call IBM WebSphere MQ specific
- setTargetClient(JMSC.MQJMS_CLIENT_NONJMS_MQ) on the destination prior to
- sending a message. This is needed when the MQ destination is not a JMS
- receiver otherwise format errors occur (e.g. dots are added after every
- character in the message).
+          <xs:documentation>JMS sender which will call IBM WebSphere MQ specific &lt;code&gt;setTargetClient(JMSC.MQJMS_CLIENT_NONJMS_MQ)&lt;/code&gt; on the destination prior to sending a message.
+ This is needed when the MQ destination is not a JMS receiver otherwise format errors occur (e.g. dots are added after every character in the message).
 
- &lt;p&gt;See JmsSender for configuration&lt;/p&gt;</xs:documentation>
+ Provides functions for jms connections, queues and topics and acts as a facade
+ to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+ &lt;br/&gt;
+ The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+ This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -7582,7 +7939,7 @@
 
  Links to &lt;a href="https://www.eclipse.org/paho/files/javadoc" target="_blank"&gt;https://www.eclipse.org/paho/files/javadoc&lt;/a&gt; are opened in a new window/tab because the response from eclipse.org contains header X-Frame-Options:SAMEORIGIN which will make the browser refuse to open the link inside this frame.
 
- Requires a resource to be configured. Example `resources.yml`:
+ Requires a resource to be configured. Example &lt;pre&gt;resources.yml&lt;/pre&gt;:
  &lt;pre&gt;&lt;code&gt;mqtt:
    - name: &amp;quot;my-connection&amp;quot;
      type: &amp;quot;org.frankframework.jdbc.datasource.MqttClientSettings&amp;quot;
@@ -7594,7 +7951,7 @@
  The clientId is automatically determined from &lt;code&gt;transactionmanager.uid&lt;/code&gt;, but can optionally be overwritten. Be aware that the clientId must be unique
  for each instance of the framework.
  &lt;br&gt;&lt;br&gt;
- Inbound and outbound messages are persisted while they are in flight to prevent data loss. The default is an in memory store, but the `persistenceDirectory`
+ Inbound and outbound messages are persisted while they are in flight to prevent data loss. The default is an in memory store, but the &lt;pre&gt;persistenceDirectory&lt;/pre&gt;
  flag can be used to set the disk storage location.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
@@ -7674,7 +8031,7 @@
       </xs:element>
       <xs:element name="ResultSet2FileSender">
         <xs:annotation>
-          <xs:documentation>QuerySender that writes each row in a ResultSet to a file.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Please note that the default value of &lt;code&gt;trimSpaces&lt;/code&gt; is `true`&lt;/p&gt;</xs:documentation>
+          <xs:documentation>QuerySender that writes each row in a ResultSet to a file.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Please note that the default value of &lt;code&gt;trimSpaces&lt;/code&gt; is &lt;pre&gt;true&lt;/pre&gt;&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -7879,7 +8236,7 @@
  			&amp;lt;/rowset&amp;gt;
  		&amp;lt;/result&amp;gt;
  	&amp;lt;/resultset&amp;gt;&lt;/code&gt;&lt;/pre&gt;
- &lt;/p&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Support for stored procedures is currently experimental and changes in the currently produced output-format are expected.&lt;/p&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Please note that the default value of &lt;code&gt;trimSpaces&lt;/code&gt; is `true`&lt;/p&gt;</xs:documentation>
+ &lt;/p&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Support for stored procedures is currently experimental and changes in the currently produced output-format are expected.&lt;/p&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Please note that the default value of &lt;code&gt;trimSpaces&lt;/code&gt; is &lt;pre&gt;true&lt;/pre&gt;&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -8031,7 +8388,7 @@
 
   sql   - type [0..1] one of {select;ddl;other}, other by default
         - query&lt;/code&gt;&lt;/pre&gt;
- &lt;br/&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Please note that the default value of &lt;code&gt;trimSpaces&lt;/code&gt; is `true`&lt;/p&gt;</xs:documentation>
+ &lt;br/&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Please note that the default value of &lt;code&gt;trimSpaces&lt;/code&gt; is &lt;pre&gt;true&lt;/pre&gt;&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -8554,7 +8911,7 @@
   </xs:attributeGroup>
   <xs:attributeGroup name="AbstractJdbcSenderCumulativeAttributeGroup">
     <xs:attributeGroup ref="AbstractJdbcSenderDeclaredAttributeGroup" />
-    <xs:attributeGroup ref="JdbcFacadeCumulativeAttributeGroup" />
+    <xs:attributeGroup ref="JdbcFacadeDeclaredAttributeGroup" />
   </xs:attributeGroup>
   <xs:attributeGroup name="AbstractJdbcQuerySenderDeclaredAttributeGroup">
     <xs:attribute ref="packageContent" />
@@ -11321,7 +11678,7 @@
     <xs:attribute name="warn" type="frankBoolean">
       <xs:annotation>
         <xs:documentation>If set &lt;code&gt;true&lt;/code&gt;, send warnings to logging and console about syntax problems in the configured schema('s).
- Alternatively, warnings can be switched off using suppression properties &lt;code&gt;XSD_VALIDATION_WARNINGS_SUPPRESS_KEY&lt;/code&gt;, &lt;code&gt;XSD_VALIDATION_ERROR_SUPPRESS_KEY&lt;/code&gt; and &lt;code&gt;XSD_VALIDATION_FATAL_ERROR_SUPPRESS_KEY&lt;/code&gt; Default: true</xs:documentation>
+ Alternatively, warnings can be switched off using suppression properties SuppressKeys#XSD_VALIDATION_WARNINGS_SUPPRESS_KEY, SuppressKeys#XSD_VALIDATION_ERROR_SUPPRESS_KEY and SuppressKeys#XSD_VALIDATION_FATAL_ERROR_SUPPRESS_KEY Default: true</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="ignoreUnknownNamespaces" type="frankBoolean">
@@ -11700,11 +12057,6 @@
     <xs:attribute name="datasourceName" type="xs:string">
       <xs:annotation>
         <xs:documentation>JNDI name of datasource to be used, can be configured via jmsRealm, too Default: &lt;code&gt;jdbc.datasource.default&lt;/code&gt;</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="jmsRealm" type="xs:string">
-      <xs:annotation>
-        <xs:documentation>loads JNDI (and other) properties from a JmsRealm</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:attributeGroup>
@@ -12524,7 +12876,7 @@
         <xs:annotation>
           <xs:documentation>Pipe that throws an exception based on the input message.
  &lt;br/&gt;
- The `success` forward is only used when the (deprecated) attribute `throwException` has been set to `false`. Otherwise, the (default) `exception` forward will be used.&lt;br&gt;&lt;br&gt;&lt;b&gt;WARNING&lt;/b&gt;&lt;p&gt;The attribute `throwException` has been deprecated and thus the `success` forward will be removed along with the `throwException` attribute.&lt;/p&gt;</xs:documentation>
+ The &lt;pre&gt;success&lt;/pre&gt; forward is only used when the (deprecated) attribute &lt;pre&gt;throwException&lt;/pre&gt; has been set to &lt;pre&gt;false&lt;/pre&gt;. Otherwise, the (default) &lt;pre&gt;exception&lt;/pre&gt; forward will be used.&lt;br&gt;&lt;br&gt;&lt;b&gt;WARNING&lt;/b&gt;&lt;p&gt;The attribute &lt;pre&gt;throwException&lt;/pre&gt; has been deprecated and thus the &lt;pre&gt;success&lt;/pre&gt; forward will be removed along with the &lt;pre&gt;throwException&lt;/pre&gt; attribute.&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -12824,15 +13176,16 @@
       </xs:element>
       <xs:element name="IfPipe">
         <xs:annotation>
-          <xs:documentation>Selects a forward based on an expression. The expression type is coupled to the mediaType:
+          <xs:documentation>&lt;p&gt;Selects a forward based on an expression. The expression type is coupled to the mediaType:&lt;/p&gt;
  &lt;ul&gt;
      &lt;li&gt;XML (application/xml) uses Xpath.&lt;/li&gt;
      &lt;li&gt;JSON (application/json) uses jsonPath.&lt;/li&gt;
  &lt;/ul&gt;
- The XML mediaType is the default type. If you want to use JSON, you need to set this using 'mimeType' in the Message.
+
+ &lt;p&gt;The XML mediaType is the default type. If you want to use JSON, you need to set this using 'mimeType' in the Message.&lt;/p&gt;
 
  &lt;h4&gt;Expressions&lt;/h4&gt;
- Expressions are used to select nodes in the given input document. Imagine a collection of books:
+ &lt;p&gt;Expressions are used to select nodes in the given input document. Imagine a collection of books:&lt;/p&gt;
  &lt;pre&gt;&lt;code&gt;{
    &amp;quot;store&amp;quot;: {
      &amp;quot;book&amp;quot;: [
@@ -12865,48 +13218,37 @@
      ]
    }
  }&lt;/code&gt;&lt;/pre&gt;
- &lt;p&gt;
- With both expression languages, you'll be able to select one or multiple nodes from this collection.
- &lt;br/&gt;
- Using this pipe, there are two options. Use it only with an &lt;code&gt;expression&lt;/code&gt; or combine it with an &lt;code&gt;expressionValue&lt;/code&gt;. When using the expression,
- the pipe evaluates to &lt;code&gt;thenForwardName&lt;/code&gt; when &lt;em&gt;there is a match&lt;/em&gt;, even if it is empty. In the given example, this might be one of:
+
+ &lt;p&gt;With both expression languages, you'll be able to select one or multiple nodes from this collection.&lt;/p&gt;
+
+ &lt;p&gt;Using this pipe, there are two options. Use it only with an &lt;code&gt;expression&lt;/code&gt; or combine it with an &lt;code&gt;expressionValue&lt;/code&gt;. When using the expression,
+ the pipe evaluates to &lt;code&gt;thenForwardName&lt;/code&gt; when &lt;em&gt;there is a match&lt;/em&gt;, even if it is empty. In the given example, this might be one of:&lt;/p&gt;
  &lt;pre&gt;&lt;code&gt;$.store
    $.store.book[1]
    $.store.book[?(@.price == 22.99)].author
    $.store.book[?(@.category == 'fiction')]&lt;/code&gt;&lt;/pre&gt;
 
  &lt;h4&gt;expressionValue&lt;/h4&gt;
- When using expression combined with expressionValue, the pipe evaluates to &lt;code&gt;thenForwardName&lt;/code&gt; when &lt;em&gt;the matched value is equal to
- expressionValue&lt;/em&gt;. This needs to be an exact match.
- &lt;br/&gt;
+ &lt;p&gt;When using expression combined with expressionValue, the pipe evaluates to &lt;code&gt;thenForwardName&lt;/code&gt; when &lt;em&gt;the matched value is equal to
+ expressionValue&lt;/em&gt;. This needs to be an exact match.&lt;/p&gt;
 
  &lt;h4&gt;XML/XPATH&lt;/h4&gt;
- Xpath has been around a long time. Information about the syntax can be found everywhere on the internet.
+ &lt;p&gt;Xpath has been around a long time. Information about the syntax can be found everywhere on the internet.
  The XML implementation wraps the Xpath expression in an XSL. This enables us to use complex expressions which evaluate to true or false instead of
  being used only as a selector of nodes in the input XML. This is available to be backwards compatible with the XmlIf pipe.
- For instance, take the following example input:
+ For instance, take the following example input:&lt;/p&gt;
  &lt;pre&gt;&lt;code&gt;&amp;lt;results&amp;gt;
      &amp;lt;result name=&amp;quot;test&amp;quot;&amp;gt;&amp;lt;/result&amp;gt;
      &amp;lt;result name=&amp;quot;test&amp;quot;&amp;gt;&amp;lt;/result&amp;gt;
    &amp;lt;/results&amp;gt;&lt;/code&gt;&lt;/pre&gt;
- Examples with complex expressions might be something like: &lt;code&gt;number(count(/results/result[contains(@name , 'test')])) &amp;gt; 1&lt;/code&gt;, to test if there's more
+
+ &lt;p&gt;Examples with complex expressions might be something like: &lt;code&gt;number(count(/results/result[contains(@name , 'test')])) &amp;gt; 1&lt;/code&gt;, to test if there's more
  than one node found containing the string 'test'. Please check if a simpler, less error-prone expression like
- &lt;code&gt;/results/result[contains(@name, 'test')]&lt;/code&gt; can suffice.
- &lt;p&gt;&lt;/p&gt;
+ &lt;code&gt;/results/result[contains(@name, 'test')]&lt;/code&gt; can suffice.&lt;/p&gt;
 
  &lt;h4&gt;Without expression&lt;/h4&gt;
- Without an expression, the default behaviour is to assume the input is a string. The code will try to match the string to an optional regular expression
- or tries to match the string value to the optional expressionValue.
- &lt;p&gt;&lt;/p&gt;
-
- &lt;h4&gt;Resources&lt;/h4&gt;
- &lt;ul&gt;
-     &lt;li&gt;&lt;a href="https://github.com/json-path/JsonPath"&gt;JsonPath / Jayway implementation including examples&lt;/a&gt;&lt;/li&gt;
-     &lt;li&gt;&lt;a href="https://jsonpath.fly.dev/"&gt;JsonPath online evaluator&lt;/a&gt;&lt;/li&gt;
-     &lt;li&gt;&lt;a href="https://www.w3schools.com/xml/xpath_syntax.asp"&gt;Xpath syntax&lt;/a&gt;&lt;/li&gt;
-     &lt;li&gt;&lt;a href="https://www.freeformatter.com/xpath-tester.html"&gt;Xpath online evaluator&lt;/a&gt;&lt;/li&gt;
-     &lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/XPath"&gt;Xpath information and history&lt;/a&gt;&lt;/li&gt;
- &lt;/ul&gt;</xs:documentation>
+ &lt;p&gt;Without an expression, the default behaviour is to assume the input is a string. The code will try to match the string to an optional regular expression
+ or tries to match the string value to the optional expressionValue.&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -13108,27 +13450,24 @@
       </xs:element>
       <xs:element name="LdapFindGroupMembershipsPipe">
         <xs:annotation>
-          <xs:documentation>Pipe that returns the memberships of a userDN.
- The input is a fullDn, of a user or a group.
- &lt;br/&gt;
- Sample result:&lt;br/&gt;&lt;code&gt;&lt;pre&gt;
-	&amp;lt;ldap&amp;gt;
-	 &amp;lt;entry name="CN=xxyyzz,OU=Users,DC=domain,DC=ext"&amp;gt;
-	   &amp;lt;attributes&amp;gt;
-	    &amp;lt;attribute&amp;gt;
-	    &amp;lt;attribute name="memberOf" value="Extern"/&amp;gt;
-	    &amp;lt;attribute name="departmentCode" value="358000"/&amp;gt;
-	    &amp;lt;attribute name="organizationalHierarchy"&amp;gt;
-	        &amp;lt;item value="ou=zzyyxx"/&amp;gt;
-	        &amp;lt;item value="ou=OPS&amp;amp;IT,ou=Group,ou=domain,o=ext"/&amp;gt;
-	    &amp;lt;/attribute&gt;
-	    &amp;lt;attribute name="givenName" value="Gerrit"/&gt;
-	   &amp;lt;/attributes&amp;gt;
-	  &amp;lt;/entry&amp;gt;
-   &amp;lt;entry&amp;gt; .... &amp;lt;/entry&amp;gt;
-   .....
-	&amp;lt;/ldap&amp;gt;
- &lt;/pre&gt;&lt;/code&gt; &lt;br/&gt;</xs:documentation>
+          <xs:documentation>&lt;p&gt;Pipe that returns the memberships of a userDN. The input is a fullDn, of a user or a group.&lt;/p&gt;
+ &lt;p&gt;Sample result:&lt;/p&gt;
+
+ &lt;pre&gt;&lt;code&gt;&amp;lt;ldap&amp;gt;
+     &amp;lt;entry name=&amp;quot;CN=xxyyzz,OU=Users,DC=domain,DC=ext&amp;quot;&amp;gt;
+         &amp;lt;attributes&amp;gt;
+             &amp;lt;attribute&amp;gt;
+             &amp;lt;attribute name=&amp;quot;memberOf&amp;quot; value=&amp;quot;Extern&amp;quot;/&amp;gt;
+             &amp;lt;attribute name=&amp;quot;departmentCode&amp;quot; value=&amp;quot;358000&amp;quot;/&amp;gt;
+             &amp;lt;attribute name=&amp;quot;organizationalHierarchy&amp;quot;&amp;gt;
+                 &amp;lt;item value=&amp;quot;ou=zzyyxx&amp;quot;/&amp;gt;
+                 &amp;lt;item value=&amp;quot;ou=OPS&amp;amp;IT,ou=Group,ou=domain,o=ext&amp;quot;/&amp;gt;
+             &amp;lt;/attribute&amp;gt;
+             &amp;lt;attribute name=&amp;quot;givenName&amp;quot; value=&amp;quot;Gerrit&amp;quot;&amp;gt;
+         &amp;lt;/attributes&amp;gt;
+     &amp;lt;/entry&amp;gt;
+     &amp;lt;entry&amp;gt; .... &amp;lt;/entry&amp;gt;
+ &amp;lt;/ldap&amp;gt;&lt;/code&gt;&lt;/pre&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -15103,7 +15442,7 @@
     </xs:attribute>
     <xs:attribute name="rootElementName" type="xs:string">
       <xs:annotation>
-        <xs:documentation>When direction is JSON2XML, specifies the name of the root element when `addXmlRootElement` is &lt;code&gt;true&lt;/code&gt;.
+        <xs:documentation>When direction is JSON2XML, specifies the name of the root element when &lt;pre&gt;addXmlRootElement&lt;/pre&gt; is &lt;code&gt;true&lt;/code&gt;.
  When direction is XML2JSON, can not be used. Default: root</xs:documentation>
       </xs:annotation>
     </xs:attribute>
@@ -17113,7 +17452,7 @@
       </xs:element>
       <xs:element name="CheckReloadJob">
         <xs:annotation>
-          <xs:documentation>Frank!Framework job which periodically looks in the &lt;code&gt;IBISCONFIG&lt;/code&gt; table to see if a new Configuration should be loaded.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;This is a default job that can be controlled with the property `checkReload.active` and `checkReload.interval`.&lt;/p&gt;</xs:documentation>
+          <xs:documentation>Frank!Framework job which periodically looks in the &lt;code&gt;IBISCONFIG&lt;/code&gt; table to see if a new Configuration should be loaded.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;This is a default job that can be controlled with the property &lt;pre&gt;checkReload.active&lt;/pre&gt; and &lt;pre&gt;checkReload.interval&lt;/pre&gt;.&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -17341,7 +17680,7 @@
  &lt;/p&gt;
 
  &lt;p&gt;Pay attention to the effects of '?' and '*' in the day-of-week and
- day-of-month fields!&lt;/p&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;This is a default job that can be controlled with the property `cleanup.database.active` and `cleanup.database.cron`.&lt;/p&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Support for specifying both a day-of-week and a day-of-month
+ day-of-month fields!&lt;/p&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;This is a default job that can be controlled with the property &lt;pre&gt;cleanup.database.active&lt;/pre&gt; and &lt;pre&gt;cleanup.database.cron&lt;/pre&gt;.&lt;/p&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Support for specifying both a day-of-week and a day-of-month
           value is not complete (you'll need to use the '?' character in on of these fields).&lt;/p&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Be careful when setting fire times between mid-night and 1:00 AM -
           "daylight savings" can cause a skip or a repeat depending on whether
           the time moves back or jumps forward.&lt;/p&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Specified in the Configuration.xml inside a &lt;code&gt;&amp;lt;scheduler&amp;gt;&lt;/code&gt; element. 
@@ -17828,7 +18167,7 @@
     Since they have been removed from the database, remove them from the Quartz Scheduler
  
  
- Frank!Framework job which periodically looks in the `IBISSCHEDULES` table to see if a new DatabaseJob should be loaded.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;This is a default job that can be controlled with the property `loadDatabaseSchedules.active` and `loadDatabaseSchedules.interval`.&lt;/p&gt;</xs:documentation>
+ Frank!Framework job which periodically looks in the &lt;pre&gt;IBISSCHEDULES&lt;/pre&gt; table to see if a new DatabaseJob should be loaded.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;This is a default job that can be controlled with the property &lt;pre&gt;loadDatabaseSchedules.active&lt;/pre&gt; and &lt;pre&gt;loadDatabaseSchedules.interval&lt;/pre&gt;.&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -17841,7 +18180,7 @@
       <xs:element name="RecoverAdaptersJob">
         <xs:annotation>
           <xs:documentation>Frank!Framework Adapter recovery-job, which monitors all adapter states, attempts to recover them if required,
- and logs this information to the &lt;code&gt;HEARTBEAT&lt;/code&gt; log appender.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;This is a default job that can be controlled with the property `recover.adapters.interval`.&lt;/p&gt;</xs:documentation>
+ and logs this information to the &lt;code&gt;HEARTBEAT&lt;/code&gt; log appender.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;This is a default job that can be controlled with the property &lt;pre&gt;recover.adapters.interval&lt;/pre&gt;.&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -17854,7 +18193,7 @@
       <xs:element name="SendMessageJob">
         <xs:annotation>
           <xs:documentation>Scheduled job to send messages to a FrankListener.
- Message may be `null` (or empty).
+ Message may be &lt;pre&gt;null&lt;/pre&gt; (or empty).
  
  &lt;h3&gt;Possible cron expressions:&lt;/h3&gt;
  &lt;p&gt;
@@ -18714,6 +19053,15 @@
  DEPRECATED: Type LIST can also be used in larva test to Convert a List to an xml-string (&amp;lt;items&amp;gt;&amp;lt;item&amp;gt;...&amp;lt;/item&amp;gt;&amp;lt;item&amp;gt;...&amp;lt;/item&amp;gt;&amp;lt;/items&amp;gt;)</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
+      <xs:enumeration value="JSON">
+        <xs:annotation>
+          <xs:documentation>A parameter which represents its value as a Message with mimetype &lt;pre&gt;application/json&lt;/pre&gt;. If the
+ derived value was of type &lt;pre&gt;application/xml&lt;/pre&gt; then it will be converted into JSON using the same rules as the
+ org.frankframework.pipes.JsonPipe.
+ If the derived value of the parameter was neither XML nor JSON format then a JSON will be constructed that looks like
+ &lt;code&gt;{&amp;quot;paramName&amp;quot;:value}&lt;/code&gt;. (The value will be quoted if it was not a number or boolean value).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="XmlTypeAttributeValuesType">
@@ -18847,7 +19195,7 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="FF">
         <xs:annotation>
-          <xs:documentation>Fire &amp; Forget protocol</xs:documentation>
+          <xs:documentation>Fire &amp;amp; Forget protocol</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="RR">
@@ -19028,7 +19376,7 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="FF">
         <xs:annotation>
-          <xs:documentation>Fire &amp; Forget protocol</xs:documentation>
+          <xs:documentation>Fire &amp;amp; Forget protocol</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="RR">
@@ -19410,38 +19758,38 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="CLIENT_CREDENTIALS_BASIC_AUTH">
         <xs:annotation>
-          <xs:documentation>Requires `tokenEndpoint`, `clientId` and `clientSecret` to be set.
- Implements &lt;a href="https://datatracker.ietf.org/doc/html/rfc6749#section-4.4"&gt;rfc6749&lt;/a&gt;. The `clientId` and `clientSecret` are sent as basic authorization
- to the authorization server. The `accessToken` is then used in the Authorization header to authenticate against the resource server.</xs:documentation>
+          <xs:documentation>Requires &lt;pre&gt;tokenEndpoint&lt;/pre&gt;, &lt;pre&gt;clientId&lt;/pre&gt; and &lt;pre&gt;clientSecret&lt;/pre&gt; to be set.
+ Implements &lt;a href="https://datatracker.ietf.org/doc/html/rfc6749#section-4.4"&gt;rfc6749&lt;/a&gt;. The &lt;pre&gt;clientId&lt;/pre&gt; and &lt;pre&gt;clientSecret&lt;/pre&gt; are sent as basic authorization
+ to the authorization server. The &lt;pre&gt;accessToken&lt;/pre&gt; is then used in the Authorization header to authenticate against the resource server.</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="CLIENT_CREDENTIALS_QUERY_PARAMETERS">
         <xs:annotation>
-          <xs:documentation>Requires `tokenEndpoint`, `clientId` and `clientSecret` to be set.
- Implements &lt;a href="https://datatracker.ietf.org/doc/html/rfc6749#section-4.4"&gt;rfc6749&lt;/a&gt;. The `clientId` and `clientSecret` are sent in the form body
- to the authorization server. The `accessToken` is then used in the Authorization header to authenticate against the resource server.</xs:documentation>
+          <xs:documentation>Requires &lt;pre&gt;tokenEndpoint&lt;/pre&gt;, &lt;pre&gt;clientId&lt;/pre&gt; and &lt;pre&gt;clientSecret&lt;/pre&gt; to be set.
+ Implements &lt;a href="https://datatracker.ietf.org/doc/html/rfc6749#section-4.4"&gt;rfc6749&lt;/a&gt;. The &lt;pre&gt;clientId&lt;/pre&gt; and &lt;pre&gt;clientSecret&lt;/pre&gt; are sent in the form body
+ to the authorization server. The &lt;pre&gt;accessToken&lt;/pre&gt; is then used in the Authorization header to authenticate against the resource server.</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="RESOURCE_OWNER_PASSWORD_CREDENTIALS_BASIC_AUTH">
         <xs:annotation>
-          <xs:documentation>Requires `tokenEndpoint`, `clientId`, `clientSecret`, `username` and `password` to be set.
- Implements &lt;a href="https://datatracker.ietf.org/doc/html/rfc6749#section-4.3"&gt;rfc6749&lt;/a&gt;. The `clientId` and `clientSecret` are sent as basic authorization
- to the authorization server. The `username` and `password` are sent in the form body to the authorization server.
- The `accessToken` is then used in the Authorization header to authenticate against the resource server.</xs:documentation>
+          <xs:documentation>Requires &lt;pre&gt;tokenEndpoint&lt;/pre&gt;, &lt;pre&gt;clientId&lt;/pre&gt;, &lt;pre&gt;clientSecret&lt;/pre&gt;, &lt;pre&gt;username&lt;/pre&gt; and &lt;pre&gt;password&lt;/pre&gt; to be set.
+ Implements &lt;a href="https://datatracker.ietf.org/doc/html/rfc6749#section-4.3"&gt;rfc6749&lt;/a&gt;. The &lt;pre&gt;clientId&lt;/pre&gt; and &lt;pre&gt;clientSecret&lt;/pre&gt; are sent as basic authorization
+ to the authorization server. The &lt;pre&gt;username&lt;/pre&gt; and &lt;pre&gt;password&lt;/pre&gt; are sent in the form body to the authorization server.
+ The &lt;pre&gt;accessToken&lt;/pre&gt; is then used in the Authorization header to authenticate against the resource server.</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="RESOURCE_OWNER_PASSWORD_CREDENTIALS_QUERY_PARAMETERS">
         <xs:annotation>
-          <xs:documentation>Requires `tokenEndpoint`, `clientId`, `clientSecret`, `username` and `password` to be set.
- Implements &lt;a href="https://datatracker.ietf.org/doc/html/rfc6749#section-4.3"&gt;rfc6749&lt;/a&gt;. The `clientId`, `clientSecret`, `username`
- and `password` are sent in the form body to the authorization server.
- The `accessToken` is then used in the Authorization header to authenticate against the resource server.</xs:documentation>
+          <xs:documentation>Requires &lt;pre&gt;tokenEndpoint&lt;/pre&gt;, &lt;pre&gt;clientId&lt;/pre&gt;, &lt;pre&gt;clientSecret&lt;/pre&gt;, &lt;pre&gt;username&lt;/pre&gt; and &lt;pre&gt;password&lt;/pre&gt; to be set.
+ Implements &lt;a href="https://datatracker.ietf.org/doc/html/rfc6749#section-4.3"&gt;rfc6749&lt;/a&gt;. The &lt;pre&gt;clientId&lt;/pre&gt;, &lt;pre&gt;clientSecret&lt;/pre&gt;, &lt;pre&gt;username&lt;/pre&gt;
+ and &lt;pre&gt;password&lt;/pre&gt; are sent in the form body to the authorization server.
+ The &lt;pre&gt;accessToken&lt;/pre&gt; is then used in the Authorization header to authenticate against the resource server.</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="SAML_ASSERTION">
         <xs:annotation>
-          <xs:documentation>Requires `samlNameId`, `samlIssuer`, `samlAudience`, `samlAssertionExpiry`, and a certificate and private key.
- Generates a new SAML assertion, which will be exchanged for a token by the authorization server. The `accessToken` is then used
+          <xs:documentation>Requires &lt;pre&gt;samlNameId&lt;/pre&gt;, &lt;pre&gt;samlIssuer&lt;/pre&gt;, &lt;pre&gt;samlAudience&lt;/pre&gt;, &lt;pre&gt;samlAssertionExpiry&lt;/pre&gt;, and a certificate and private key.
+ Generates a new SAML assertion, which will be exchanged for a token by the authorization server. The &lt;pre&gt;accessToken&lt;/pre&gt; is then used
  in the Authorization header to authenticate against the resource server.</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
@@ -19750,7 +20098,7 @@
       </xs:enumeration>
       <xs:enumeration value="SIGN">
         <xs:annotation>
-          <xs:documentation>Encrypts and then signs the given input. On top of the requirements for Encrypt action, signing requires senders to bet set for user's email; and secretKey &amp; secretPassword to be set to private key's path and it's password (password is optional, if private key does not have protection).</xs:documentation>
+          <xs:documentation>Encrypts and then signs the given input. On top of the requirements for the &lt;code&gt;Encrypt&lt;/code&gt; action, signing requires senders to be set for user's email; and secretKey &lt;pre&gt;&amp;amp;&lt;/pre&gt; secretPassword to be set to private key's path and it's password (password is optional, if private key does not have protection).</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="DECRYPT">
@@ -19760,7 +20108,7 @@
       </xs:enumeration>
       <xs:enumeration value="VERIFY">
         <xs:annotation>
-          <xs:documentation>Decrypts and verifies the given input. On top of the requirements for Decrypt action, verification expects list of senders' email's and corresponding public keys. However, sender emails does not have to be set, and in that case, this pipe will only validate that someone signed the input.</xs:documentation>
+          <xs:documentation>Decrypts and verifies the given input. On top of the requirements for the &lt;code&gt;Decrypt&lt;/code&gt; action, verification expects list of senders' email's and corresponding public keys. However, sender emails does not have to be set, and in that case, this pipe will only validate that someone signed the input.</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
     </xs:restriction>
@@ -19793,7 +20141,7 @@
       </xs:enumeration>
       <xs:enumeration value="FF">
         <xs:annotation>
-          <xs:documentation>Fire &amp; Forget</xs:documentation>
+          <xs:documentation>Fire &amp;amp; Forget</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
     </xs:restriction>
@@ -20028,48 +20376,6 @@
       <xs:documentation>If set &lt;code&gt;false&lt;/code&gt;, the destinationName is used directly instead of performing a JNDI lookup Default: true</xs:documentation>
     </xs:annotation>
   </xs:attribute>
-  <xs:attribute name="authentication" type="xs:string">
-    <xs:annotation>
-      <xs:documentation>maps to the field context.security_authentication</xs:documentation>
-    </xs:annotation>
-  </xs:attribute>
-  <xs:attribute name="credentials" type="xs:string">
-    <xs:annotation>
-      <xs:documentation>username to connect to context, maps to context.security_credentials</xs:documentation>
-    </xs:annotation>
-  </xs:attribute>
-  <xs:attribute name="initialContextFactoryName" type="xs:string">
-    <xs:annotation>
-      <xs:documentation>class to use as initial context factory</xs:documentation>
-    </xs:annotation>
-  </xs:attribute>
-  <xs:attribute name="providerURL" type="xs:string">
-    <xs:annotation>
-      <xs:documentation>Sets the value of providerURL</xs:documentation>
-    </xs:annotation>
-  </xs:attribute>
-  <xs:attribute name="securityProtocol" type="xs:string">
-    <xs:annotation>
-      <xs:documentation>maps to the field context.security_protocol</xs:documentation>
-    </xs:annotation>
-  </xs:attribute>
-  <xs:attribute name="urlPkgPrefixes" type="xs:string">
-    <xs:annotation>
-      <xs:documentation>maps to the field context.url_pkg_prefixes</xs:documentation>
-    </xs:annotation>
-  </xs:attribute>
-  <xs:attribute name="principal" type="xs:string">
-    <xs:annotation>
-      <xs:documentation>username to connect to context, maps to context.security_principal</xs:documentation>
-    </xs:annotation>
-  </xs:attribute>
-  <xs:attribute name="jndiAuthAlias" type="xs:string">
-    <xs:annotation>
-      <xs:documentation>authentication alias, may be used to override principal and credential-settings</xs:documentation>
-    </xs:annotation>
-  </xs:attribute>
-  <xs:attribute name="jndiContextPrefix" type="xs:string" />
-  <xs:attribute name="jndiProperties" type="xs:string" />
   <xs:attribute name="peekUntransacted" type="frankBoolean">
     <xs:annotation>
       <xs:documentation>when true, then PollingListener container will execute getRawMessage() only when hasRawMessageAvailable() has returned true. This avoids rolling back a lot of XA transactions, that appears to be problematic on MS SQL Server Default: true</xs:documentation>
@@ -20078,6 +20384,12 @@
   <xs:attribute name="peekQuery" type="xs:string">
     <xs:annotation>
       <xs:documentation>(only used when &lt;code&gt;peekUntransacted&lt;/code&gt;=&lt;code&gt;true&lt;/code&gt;) peek query to determine if the select query should be executed. Peek queries are, unlike select queries, executed without a transaction and without a rowlock Default: selectQuery</xs:documentation>
+    </xs:annotation>
+  </xs:attribute>
+  <xs:attribute name="additionalFields" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Comma-separated list of additional fields to be loaded from the table, besides Message, Key, MessageID and CorrelationID. Any fields listed here will
+ be added to the session as session-variables.</xs:documentation>
     </xs:annotation>
   </xs:attribute>
   <xs:attribute name="trace" type="frankBoolean" />
@@ -20277,21 +20589,21 @@
     <xs:annotation>
       <xs:documentation>The &lt;code&gt;transactionAttribute&lt;/code&gt; declares transactional behavior of execution. It applies both to database transactions and XA transactions.
  The pipeline uses this to start a new transaction or suspend the current one when required.
- For developers: it is equal to &lt;a href=\"https://docs.oracle.com/javaee/7/tutorial/transactions003.htm\"&gt;EJB transaction attribute&lt;/a&gt;.
+ For developers: it is equal to &lt;a href="https://docs.oracle.com/javaee/7/tutorial/transactions003.htm"&gt;EJB transaction attribute&lt;/a&gt;.
  Possible values for transactionAttribute:
-   &lt;table border=\"1\"&gt;
+ &lt;table border="1"&gt;
      &lt;tr&gt;&lt;th&gt;transactionAttribute&lt;/th&gt;&lt;th&gt;callers Transaction&lt;/th&gt;&lt;th&gt;Pipeline excecuted in Transaction&lt;/th&gt;&lt;/tr&gt;
-     &lt;tr&gt;&lt;td colspan=\"1\" rowspan=\"2\"&gt;Required&lt;/td&gt;    &lt;td&gt;none&lt;/td&gt;&lt;td&gt;T2&lt;/td&gt;&lt;/tr&gt;
+     &lt;tr&gt;&lt;td colspan="1" rowspan="2"&gt;Required&lt;/td&gt;    &lt;td&gt;none&lt;/td&gt;&lt;td&gt;T2&lt;/td&gt;&lt;/tr&gt;
  											      &lt;tr&gt;&lt;td&gt;T1&lt;/td&gt;  &lt;td&gt;T1&lt;/td&gt;&lt;/tr&gt;
-     &lt;tr&gt;&lt;td colspan=\"1\" rowspan=\"2\"&gt;RequiresNew&lt;/td&gt; &lt;td&gt;none&lt;/td&gt;&lt;td&gt;T2&lt;/td&gt;&lt;/tr&gt;
+     &lt;tr&gt;&lt;td colspan="1" rowspan="2"&gt;RequiresNew&lt;/td&gt; &lt;td&gt;none&lt;/td&gt;&lt;td&gt;T2&lt;/td&gt;&lt;/tr&gt;
  											      &lt;tr&gt;&lt;td&gt;T1&lt;/td&gt;  &lt;td&gt;T2&lt;/td&gt;&lt;/tr&gt;
-     &lt;tr&gt;&lt;td colspan=\"1\" rowspan=\"2\"&gt;Mandatory&lt;/td&gt;   &lt;td&gt;none&lt;/td&gt;&lt;td&gt;error&lt;/td&gt;&lt;/tr&gt;
+     &lt;tr&gt;&lt;td colspan="1" rowspan="2"&gt;Mandatory&lt;/td&gt;   &lt;td&gt;none&lt;/td&gt;&lt;td&gt;error&lt;/td&gt;&lt;/tr&gt;
  											      &lt;tr&gt;&lt;td&gt;T1&lt;/td&gt;  &lt;td&gt;T1&lt;/td&gt;&lt;/tr&gt;
-     &lt;tr&gt;&lt;td colspan=\"1\" rowspan=\"2\"&gt;NotSupported&lt;/td&gt;&lt;td&gt;none&lt;/td&gt;&lt;td&gt;none&lt;/td&gt;&lt;/tr&gt;
+     &lt;tr&gt;&lt;td colspan="1" rowspan="2"&gt;NotSupported&lt;/td&gt;&lt;td&gt;none&lt;/td&gt;&lt;td&gt;none&lt;/td&gt;&lt;/tr&gt;
  											      &lt;tr&gt;&lt;td&gt;T1&lt;/td&gt;  &lt;td&gt;none&lt;/td&gt;&lt;/tr&gt;
-     &lt;tr&gt;&lt;td colspan=\"1\" rowspan=\"2\"&gt;Supports&lt;/td&gt;    &lt;td&gt;none&lt;/td&gt;&lt;td&gt;none&lt;/td&gt;&lt;/tr&gt;
+     &lt;tr&gt;&lt;td colspan="1" rowspan="2"&gt;Supports&lt;/td&gt;    &lt;td&gt;none&lt;/td&gt;&lt;td&gt;none&lt;/td&gt;&lt;/tr&gt;
   										      &lt;tr&gt;&lt;td&gt;T1&lt;/td&gt;  &lt;td&gt;T1&lt;/td&gt;&lt;/tr&gt;
-     &lt;tr&gt;&lt;td colspan=\"1\" rowspan=\"2\"&gt;Never&lt;/td&gt;       &lt;td&gt;none&lt;/td&gt;&lt;td&gt;none&lt;/td&gt;&lt;/tr&gt;
+     &lt;tr&gt;&lt;td colspan="1" rowspan="2"&gt;Never&lt;/td&gt;       &lt;td&gt;none&lt;/td&gt;&lt;td&gt;none&lt;/td&gt;&lt;/tr&gt;
  											      &lt;tr&gt;&lt;td&gt;T1&lt;/td&gt;  &lt;td&gt;error&lt;/td&gt;&lt;/tr&gt;
    &lt;/table&gt; Default: Supports</xs:documentation>
     </xs:annotation>
@@ -20394,7 +20706,7 @@
   </xs:attribute>
   <xs:attribute name="outputSoapBody" type="xs:string">
     <xs:annotation>
-      <xs:documentation>Identical to the &lt;code&gt;soapBody&lt;/code&gt; attribute except that it's used for the output message instead of the input message. For more information see &lt;a href=\"#note1\"&gt;note 1&lt;/a&gt;</xs:documentation>
+      <xs:documentation>Identical to the &lt;code&gt;soapBody&lt;/code&gt; attribute except that it's used for the output message instead of the input message.</xs:documentation>
     </xs:annotation>
   </xs:attribute>
   <xs:attribute name="soapHeader" type="xs:string">
@@ -20494,7 +20806,7 @@
   <xs:attribute name="warn" type="frankBoolean">
     <xs:annotation>
       <xs:documentation>If set &lt;code&gt;true&lt;/code&gt;, send warnings to logging and console about syntax problems in the configured schema('s).
- Alternatively, warnings can be switched off using suppression properties &lt;code&gt;XSD_VALIDATION_WARNINGS_SUPPRESS_KEY&lt;/code&gt;, &lt;code&gt;XSD_VALIDATION_ERROR_SUPPRESS_KEY&lt;/code&gt; and &lt;code&gt;XSD_VALIDATION_FATAL_ERROR_SUPPRESS_KEY&lt;/code&gt; Default: true</xs:documentation>
+ Alternatively, warnings can be switched off using suppression properties SuppressKeys#XSD_VALIDATION_WARNINGS_SUPPRESS_KEY, SuppressKeys#XSD_VALIDATION_ERROR_SUPPRESS_KEY and SuppressKeys#XSD_VALIDATION_FATAL_ERROR_SUPPRESS_KEY Default: true</xs:documentation>
     </xs:annotation>
   </xs:attribute>
   <xs:attribute name="ignoreCaching" type="frankBoolean">
@@ -20703,7 +21015,7 @@
   </xs:attribute>
   <xs:attribute name="oauthAuthenticationMethod">
     <xs:annotation>
-      <xs:documentation>Only used when `tokenEndpoint` has been configured. Sets the OAuth authentication method and controls which authentication flow should be used.</xs:documentation>
+      <xs:documentation>Only used when &lt;pre&gt;tokenEndpoint&lt;/pre&gt; has been configured. Sets the OAuth authentication method and controls which authentication flow should be used.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="OauthAuthenticationMethodAttributeValuesType variableRef" />
