@@ -1,4 +1,4 @@
-<Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+<Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
     <Adapter name="BrpGetPersoon">
         <Receiver name="BrpGetPersoon">
             <JavaListener name="BrpGetPersoon" />
@@ -64,4 +64,4 @@
         </XsltPipe>
         </Pipeline>
     </Adapter>
-</Configuration>
+</Module>
