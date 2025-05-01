@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.21.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.21.5...v1.21.6) (2025-05-01)
+
+### 🐛 Bug Fixes
+
+*  endpoint definition ([12325e1](https://github.com/wearefrank/haalcentraal-connector/commit/12325e1dd52b821299df0296c1ee91a80379d439))
+
 ## [1.21.5](https://github.com/wearefrank/haalcentraal-connector/compare/v1.21.4...v1.21.5) (2025-04-30)
 
 ### 🧑‍💻 Code Refactoring
