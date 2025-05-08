@@ -29,7 +29,7 @@
                     tokenEndpoint="${oauth.token.url}"
                     scope="${oauth.scope}"
                     clientAlias="oauth.credentials"
-                    oauthAuthenticationMethod="CLIENT_CREDENTIALS_QUERY_PARAMETERS">
+                    oauthAuthenticationMethod="CLIENT_CREDENTIALS_BASIC_AUTH">
                     <Param name="url" value="${endpoint.brp.diginet}" />
                     <Param name="Accept" sessionKey="headerAccept" />
                     <Param name="Content-Type" sessionKey="headerContent-Type" />
