@@ -1,5 +1,15 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.21.10](https://github.com/wearefrank/haalcentraal-connector/compare/v1.21.9...v1.21.10) (2025-05-08)
+
+### 🐛 Bug Fixes
+
+* Merge pull request [#173](https://github.com/wearefrank/haalcentraal-connector/issues/173) from wearefrank/revert-auth-method ([be49b8b](https://github.com/wearefrank/haalcentraal-connector/commit/be49b8b84bcadb4353601e57af30e47f0e68d481))
+
+### ⏩ Reverts
+
+* Revert "change auth method to query params" ([82781ef](https://github.com/wearefrank/haalcentraal-connector/commit/82781ef9ecc352ac3f1a53f3c5472be40468904c))
+
 ## [1.21.9](https://github.com/wearefrank/haalcentraal-connector/compare/v1.21.8...v1.21.9) (2025-05-08)
 
 ### 🐛 Bug Fixes
