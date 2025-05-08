@@ -1,0 +1,112 @@
+<Adapter name="BagSynchronize" description="Bag Synchronize Object">
+    <Pipeline>
+        <Exits>
+            <Exit name="Exit" state="SUCCESS" />
+            <Exit name="Exception" state="ERROR" />
+            <Exit name="BadRequest" state="ERROR" code="400" />
+            <Exit name="NotAuthorized" state="ERROR" code="401" />
+            <Exit name="Forbidden" state="ERROR" code="403" />
+            <Exit name="NotFound" state="ERROR" code="404" />
+            <Exit name="NotAcceptable" state="ERROR" code="406" />
+            <Exit name="UnsupportedMediaType" state="ERROR" code="415" />
+            <Exit name="TooManyRequest" state="ERROR" code="429" />
+            <Exit name="ServerError" state="ERROR" code="500" />
+            <Exit name="ServiceUnavailable" state="ERROR" code="503" />
+        </Exits>
+
+        <!-- Retrieve stored person record from database -->
+        <SenderPipe name="GetStoredRecord" storeResultInSessionKey="storedRecord">
+            <FixedQuerySender
+                name="getPersonenSender"
+                queryType="SELECT"
+                query="SELECT * FROM objects WHERE identifier=? ORDER BY registratie_datum DESC LIMIT 1"
+                includeFieldDefinition="false">
+                <Param name="identifier"/>
+            </FixedQuerySender>
+        </SenderPipe>
+
+        <!-- Retrieve person from Brp -->
+        <SenderPipe name="GetObject" storeResultInSessionKey="newRecord" getInputFromSessionKey="originalMessage">
+            <IbisLocalSender javaListener="BagGetObject" />
+            <Forward name="exception" path="Exception" />
+            <Forward name="success" path="JsonComparator"/>
+        </SenderPipe>
+
+        <!-- Compare stored and retrieved person data -->
+        <SenderPipe name="JsonComparator" storeResultInSessionKey="JsonComparatorResult">
+            <JavascriptSender
+                jsFileName="JSONcompare.js"
+                jsFunctionName="compareJsonObjects">
+            </JavascriptSender>
+            <Param name="storedRecord" sessionKey="storedRecord"
+                   xpathExpression="result/rowset/row/field[@name='DATA']" />
+            <Param name="newRecord" sessionKey="newRecord" />
+        </SenderPipe>
+        
+        <SenderPipe name="JsonHashHasDifference" preserveInput="true" storeResultInSessionKey="JsonHashHasDifferenceResult">
+            <IbisLocalSender javaListener="JsonHashHasDifferenceReceiver">
+                <Param name="storedRecord" sessionKey="storedRecord"
+                    xpathExpression="result/rowset/row/field[@name='DATA']" />
+                <Param name="newRecord" sessionKey="newRecord" />
+            </IbisLocalSender>
+            <Forward name="success" path="checkIfSame"/>
+        </SenderPipe>
+
+        <XsltPipe name="checkIfSame" xpathExpression="$JsonHashHasDifferenceResult = $JsonComparatorResult" storeResultInSessionKey="check" getInputFromFixedValue="&lt;dummy/&gt;">
+            <Param name="JsonHashHasDifferenceResult" sessionKey="JsonHashHasDifferenceResult" type="STRING"/>
+            <Param name="JsonComparatorResult" sessionKey="JsonComparatorResult" type="STRING"/>
+        </XsltPipe>
+
+        <IfPipe name="checkComparatorResults" xpathExpression="$check" getInputFromFixedValue="&lt;dummy/&gt;">
+            <Param name="check" sessionKey="check"/>
+            <Forward name="then" path="SameComparisonResultLog" />
+            <Forward name="else" path="ConcatSessionKeys" />
+        </IfPipe>
+
+        <ReplacerPipe name="ConcatSessionKeys" getInputFromFixedValue="?{JsonHashHasDifferenceResult}\0?{JsonComparatorResult}\0?{storedRecord}\0?{newRecord}">
+            <Param name="JsonHashHasDifferenceResult" sessionKey="JsonHashHasDifferenceResult" />
+            <Param name="JsonComparatorResult" sessionKey="JsonComparatorResult" />
+            <Param name="storedRecord" sessionKey="storedRecord"
+                   xpathExpression="result/rowset/row/field[@name='DATA']" />
+            <Param name="newRecord" sessionKey="newRecord" />
+        </ReplacerPipe>
+
+        <SenderPipe name="DifferentComparisonResultError">
+			<JdbcMessageLog slotId="${instance.name}/comparatorStore" type="M"/>
+            <FixedResultSender returnString="bad"/>
+            <Forward name="success" path="ShouldInsert" />
+            <Forward name="exception" path="ShouldInsert" />
+        </SenderPipe>
+
+        <SenderPipe name="SameComparisonResultLog">
+			<JdbcMessageLog slotId="${instance.name}/comparatorStore" storeFullMessage="false"/>
+            <FixedResultSender returnString="good"/>
+            <Forward name="success" path="ShouldInsert" />
+            <Forward name="exception" path="ShouldInsert" />
+        </SenderPipe>
+
+        <!-- <EchoPipe name="SameComparisonResultCounter"></EchoPipe> -->
+
+        <!-- Conditional check to insert new data if changes are detected -->
+        <IfPipe name="ShouldInsert" expressionValue="true" getInputFromSessionKey="JsonComparatorResult">
+            <Forward name="then" path="InsertObject" />
+            <Forward name="else" path="NotUpdatedExit" />
+        </IfPipe>
+
+        <!-- Insert the new data into the database -->
+        <SenderPipe name="InsertObject" preserveInput="true">
+            <FixedQuerySender
+                name="insertPersonenSender"
+                query="INSERT INTO objects (identifier, data, registratie_datum) VALUES (?,?,CURRENT_TIMESTAMP)">
+                <Param name="identifier" sessionKey="originalMessage" />
+                <Param name="data" sessionKey="newRecord" />
+            </FixedQuerySender>
+        </SenderPipe>
+
+        <EchoPipe name="UpdatedExit" getInputFromFixedValue="true">
+            <Forward name="success" path="Exit" />
+        </EchoPipe>
+        
+        <EchoPipe name="NotUpdatedExit" getInputFromFixedValue="false" />
+    </Pipeline>
+</Adapter>

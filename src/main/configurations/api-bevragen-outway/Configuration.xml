@@ -2,10 +2,12 @@
 	<!ENTITY brp-pb-outway SYSTEM "Configuration-brp-pb-outway.xml">
 	<!ENTITY brp-call-proefomgeving SYSTEM "Configuration-brp-call-proefomgeving.xml">
 	<!ENTITY brp-call-diginetwerk SYSTEM "Configuration-brp-call-diginetwerk.xml">
+	<!ENTITY bag-outway SYSTEM "Configuration-bag-outway.xml">
 	]>
 
-<Configuration name="brp-personen-bevragen-outway">
+<Configuration name="api-bevragen-outway">
 	&brp-pb-outway;
 	&brp-call-proefomgeving;
 	&brp-call-diginetwerk;
+<!--	&bag-outway;-->
 </Configuration>

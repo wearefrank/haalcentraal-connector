@@ -11,11 +11,12 @@
     <!ENTITY BrpPersonenAfnemersIndicatieReceiver SYSTEM "Configuration_BrpPersonenAfnemersIndicatieReceiver.xml">
     <!ENTITY QueueNotificationTask SYSTEM "Configuration_QueueNotificationTask.xml">
     <!ENTITY CreateBulkImportTasks SYSTEM "Configuration_CreateBulkImportTasks.xml">
+    <!ENTITY ProcessBulkImportBAG SYSTEM "Configuration_ProcessBulkImportBAG.xml">
     <!ENTITY ProcessBulkImportTask SYSTEM "Configuration_ProcessBulkImportTask.xml">
     <!ENTITY GetPersoon SYSTEM "Configuration_BrpGetPersoon.xml">
 ]>
 
-<Configuration name="subscription-management-and-processing">
+<Configuration name="bag-subscription-management-and-processing">
     &BrpPersonenUpdateAndNotify;
 	&BrpPersonenSynchronizePersoon;
 	&BrpPersonenQuerySender;
@@ -29,5 +30,6 @@
     &QueueNotificationTask;
 	&CreateBulkImportTasks;
 	&ProcessBulkImportTask;
+	&ProcessBulkImportBAG;
     &GetPersoon;
 </Configuration>

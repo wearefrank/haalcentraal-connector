@@ -1,7 +1,0 @@
-<!DOCTYPE Configuration [
-	<!ENTITY brp-bevragen-client-soap SYSTEM "Configuration-brp-pb-client-soap.xml">
-]>
-
-<Configuration name="brp-personen-bevragen-soap">
-	&brp-bevragen-client-soap;
-</Configuration>

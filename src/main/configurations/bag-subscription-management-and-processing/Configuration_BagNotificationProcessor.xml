@@ -1,0 +1,120 @@
+<Module 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+
+	<Adapter name="BagNotificationProcessor"
+		description="bag notification processor">
+		<Receiver name="BagNotificationProcessorDailyTaskListener">
+			<JdbcTableListener tableName="tasks" statusField="status" statusValueInProcess="X" statusValueError="E" statusValueProcessed="C" keyField="task_id" messageField="identifier" selectCondition="scheduled_start &lt;= NOW()"/>
+		</Receiver>
+
+		<Receiver name="NotificationProcessorApi" active="${NotificationProcessorApi.active}">
+			<ApiListener name="NotificationProcessorApiListener" uriPattern="notification" method="POST" allowAllParams="true" />
+		</Receiver>
+
+		<Pipeline>
+			<Exits>
+				<Exit name="EXIT" state="SUCCESS" />
+				<Exit name="EXCEPTION" state="ERROR" />
+				<Exit name="NoSubscribersToObject" state="SUCCESS" />
+			</Exits>
+
+			<SenderPipe name="manualyStartTask" onlyIfSessionKey="HttpMethod">
+				<FixedQuerySender queryType="SELECT" name="updateScheduledStart" query="UPDATE tasks SET status = 'C' WHERE task_id = ? RETURNING identifier">
+					<Param name="task_id" sessionKey="originalMessage" />
+				</FixedQuerySender>
+				<Forward name="success" path="ExtractBsnFromTask" />
+			</SenderPipe>
+			
+            <PutInSessionPipe name="ExtractIdentifierFromTask" onlyIfSessionKey="HttpMethod">
+                <Param name="identifier" xpathExpression="/result/rowset/row/field[@name='IDENTIFIER']" />
+                <Param name="key" sessionKey="originalMessage" />
+                <Param name="mid" sessionKey="originalMessage" />
+                <Forward name="success" path="ExtractIncomingNotificationData"/>
+            </PutInSessionPipe>
+
+            <PutInSessionPipe name="ExtractIncomingNotificationData" unlessSessionKey="HttpMethod">
+                <Param name="identifier" sessionKey="originalMessage" />
+                <Forward name="success" path="GetSubscribers"/>
+            </PutInSessionPipe>
+
+			<!-- Check if subscribers are found for the task bsn -->
+            <SenderPipe name="GetSubscribers">
+                <FixedQuerySender
+					name="getSubscribersSender"
+                    queryType="SELECT"
+					query="SELECT 1 FROM subscripties WHERE identifier=? AND eind_datum IS NULL"
+					includeFieldDefinition="false">
+					<Param name="identifier" sessionKey="identifier"/>
+            	</FixedQuerySender> 
+                <Forward name="success" path="CheckSubscriptionCount" />
+                <Forward name="exception" path="EXCEPTION" />
+            </SenderPipe>
+
+            <!-- Check if subscriptions are found -->
+            <IfPipe name="CheckSubscriptionCount" xpathExpression="count(result/rowset/row) > 0">
+				<!-- Process the task if subscribers are found, else exit -->
+                <Forward name="then" path="UpdateAndNotify"/>
+                <Forward name="else" path="NoSubscribersToObject"/>
+            </IfPipe>
+
+			<SenderPipe name="UpdateAndNotify" getInputFromSessionKey="bsn">
+                <IbisLocalSender name="UpdateAndNotifySender" javaListener="BagUpdateAndNotify" />
+			</SenderPipe>
+
+			<IfPipe name="CheckUpdateSuccess" expressionValue="true">
+				<Forward name="then" path="EXIT" />
+				<Forward name="else" path="GetCurrentTask" />
+			</IfPipe>
+
+			<SenderPipe name="GetCurrentTask" >
+				<FixedQuerySender queryType="SELECT" name="getCurrentTask" query="SELECT * FROM tasks WHERE task_id = ?">
+					<Param name="task_id" sessionKey="key" />
+				</FixedQuerySender>
+				<Forward name="success" path="CheckAttemptCount" />
+			</SenderPipe>
+
+			<IfPipe name="CheckAttemptCount" xpathExpression="/result/rowset/row/field[@name='ATTEMPT'] > 3">
+				<Forward name="then" path="SetTaskStatusE" />
+				<Forward name="else" path="RetryNotification" />
+			</IfPipe>
+
+			<SenderPipe name="SetTaskStatusE" onlyIfSessionKey="HttpMethod">
+				<FixedQuerySender queryType="SELECT" name="updateScheduledStart" query="UPDATE tasks SET status = 'E' WHERE task_id = ? RETURNING status">
+					<Param name="task_id" sessionKey="originalMessage" />
+				</FixedQuerySender>
+				<Forward name="success" path="EXCEPTION" />
+			</SenderPipe>
+
+			<!-- Add a new task to retry synchronization -->
+            <SenderPipe name="RetryNotification">
+                <FixedQuerySender
+					name="CreateRetryTask"
+                    queryType="SELECT"
+					query="WITH last_attempt AS (
+								SELECT correlation_id, attempt, scheduled_start
+								FROM tasks
+								WHERE task_id = ?
+							)
+							INSERT INTO tasks (correlation_id, created_at, scheduled_start, status, attempt, identifier)
+							SELECT
+								correlation_id,
+								CURRENT_TIMESTAMP,
+								CASE
+									WHEN EXTRACT(DOW FROM scheduled_start + INTERVAL '24 hours') = 6 THEN scheduled_start + INTERVAL '3 days'
+									WHEN EXTRACT(DOW FROM scheduled_start + INTERVAL '24 hours') = 0 THEN scheduled_start + INTERVAL '2 days'
+									ELSE scheduled_start + INTERVAL '24 hours'
+								END AS scheduled_start,
+								'P',
+								attempt + 1,
+								?
+							FROM last_attempt
+							RETURNING task_id; ">
+					<Param name="task_id" sessionKey="mid" type="INTEGER" />
+					<Param name="identifier" sessionKey="identifier" type="STRING" />
+            	</FixedQuerySender> 
+                <Forward name="success" path="EXIT" />
+            </SenderPipe>
+		</Pipeline>
+	</Adapter>
+</Module>

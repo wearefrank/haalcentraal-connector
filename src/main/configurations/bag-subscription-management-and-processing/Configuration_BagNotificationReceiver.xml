@@ -1,0 +1,55 @@
+<Module 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+	<Adapter name="BagNotificationReceiver"
+		description="bag notification receiver">
+
+		<Receiver name="BagNotificationReceiver">
+			<JavaListener name="BagNotificationReceiver" />
+		</Receiver>
+        
+        <Receiver name="RestEndpointRouter">
+			<ApiListener name="RestEndpointRouter" uriPattern="${haalcentraal_connector.bag.notification.rest.endpoint}" method="POST" allowAllParams="true" />
+		</Receiver>
+
+		<Pipeline>
+			<Exits>
+				<Exit name="EXIT" state="SUCCESS" code="202" />
+				<Exit name="BadRequest" state="ERROR" code="400" empty="true" />
+			</Exits>
+
+			<JsonValidatorPipe name="jsonValidator" schema="json/DataChangeNotificationSchema.json" onlyIfSessionKey="HttpMethod">
+                <Forward name="success" path="InputJsonToXml" />
+                <Forward name="exception" path="BadRequestPipe" />
+            </JsonValidatorPipe>
+
+            <JsonPipe name="InputJsonToXml" prettyPrint="true" storeResultInSessionKey="xmlInputMessage">
+                <Forward name="success" path="ExtractIncomingNotificationData"/>
+            </JsonPipe>
+            
+            <PutInSessionPipe name="ExtractIncomingNotificationData">
+                <Param name="identifier" xpathExpression="root/data/identifier" />
+            </PutInSessionPipe>
+
+            <!-- Add bsn to the update processing queue -->
+            <SenderPipe name="InsertNotification" getInputFromSessionKey="originalMessage">
+                <FixedQuerySender
+					name="CreateNewTask"
+                    queryType="SELECT"
+					query="INSERT INTO tasks (identifier, scheduled_start, correlation_id) VALUES (?, NOW() + INTERVAL '1 hour', gen_random_uuid()) RETURNING task_id">
+					<Param name="bsn" sessionKey="bsn" />
+            	</FixedQuerySender> 
+				<!-- TODO: Form return value -->
+                <Forward name="success" path="ExitPipe" />
+            </SenderPipe>
+
+			<JsonPipe name="ExitPipe" direction="XML2JSON">
+				<Forward name="success" path="EXIT"/>
+			</JsonPipe>
+
+			<JsonPipe name="BadRequestPipe" direction="XML2JSON">
+				<Forward name="success" path="BadRequest"/>
+			</JsonPipe>
+		</Pipeline>
+	</Adapter>
+</Module>

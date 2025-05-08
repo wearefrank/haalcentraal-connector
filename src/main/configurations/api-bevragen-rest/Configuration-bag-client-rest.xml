@@ -1,0 +1,30 @@
+<Module
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+    <Adapter name="BagClientRest">
+        <Receiver name="BagClientRestReceiver">
+            <ApiListener
+                name="BagClientRestListener"
+                uriPattern="haalcentraal_api"
+                method="POST"
+                headerParams="Accept,Content-Type"
+                produces="JSON"
+                allowAllParams="true"
+                />
+        </Receiver>
+        <Pipeline>
+            <Exits>
+                <Exit name="Exit" state="SUCCESS"/>
+                <Exit name="Error" state="ERROR"/>
+            </Exits>
+            <SenderPipe name="requestProxyPipe" getInputFromSessionKey="originalMessage">
+                <IbisLocalSender javaListener="BagOutwayListener">
+                    <Param name="headerAccept" sessionKey="headers" xpathExpression="/headers/header[@name = 'Accept']/text()"/>
+                    <Param name="headerContent-Type" sessionKey="headers" xpathExpression="/headers/header[@name = 'Content-Type']/text()"/>
+                </IbisLocalSender>
+                <Forward name="success" path="Exit"/>
+                <Forward name="exception" path="Error"/>
+            </SenderPipe>
+        </Pipeline>
+    </Adapter>
+</Module>

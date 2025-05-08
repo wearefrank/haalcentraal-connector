@@ -1,0 +1,17 @@
+<!DOCTYPE Configuration [
+    <!ENTITY BagGetObject SYSTEM "Configuration_BagGetObject.xml">
+    <!ENTITY BagNotificationProcessor SYSTEM "Configuration_BagNotificationProcessor.xml">
+    <!ENTITY BagNotificationReceiver SYSTEM "Configuration_BagNotificationReceiver.xml">
+    <!ENTITY BagSynchronize SYSTEM "Configuration_BagSynchronize.xml">
+    <!ENTITY BagUpdateAndNotify SYSTEM "Configuration_BagUpdateAndNotify.xml">
+    <!ENTITY EndpointRouter SYSTEM "Configuration_EndpointRouter.xml">
+]>
+
+<Configuration name="bag-subscription-management-and-processing">
+<!--	&BagGetObject;-->
+<!--	&BagNotificationReceiver;-->
+<!--	&BagNotificationProcessor;-->
+<!--	&BagSynchronize;-->
+<!--	&BagUpdateAndNotify;-->
+<!--	&EndpointRouter;-->
+</Configuration>

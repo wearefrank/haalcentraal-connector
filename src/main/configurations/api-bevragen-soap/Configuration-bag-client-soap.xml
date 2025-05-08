@@ -1,0 +1,139 @@
+<Module
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+	<Adapter name="BrpPbClientSoap"
+		description="ZoekPersonen">
+
+		<Receiver name="BrpPbClientSoapReceiver">
+			<JavaListener name="BrpPbClientSoapListener" />
+		</Receiver>
+
+		<Pipeline>
+			<Exits>
+				<Exit name="Exit" state="SUCCESS" />
+				<Exit name="Exception" state="ERROR" />
+				<Exit name="BadRequest" state="ERROR" code="400" />
+				<Exit name="NotAuthorized" state="ERROR" code="401" />
+				<Exit name="Forbidden" state="ERROR" code="403" />
+				<Exit name="NotFound" state="ERROR" code="404" />
+				<Exit name="NotAcceptable" state="ERROR" code="406" />
+				<Exit name="UnsupportedMediaType" state="ERROR" code="415" />
+				<Exit name="TooManyRequest" state="ERROR" code="429" />
+				<Exit name="ServerError" state="ERROR" code="500" />
+				<Exit name="ServiceUnavailable" state="ERROR" code="503" />
+			</Exits>
+
+			<XsltPipe name="MAP_Stuf301_Stuurgegevens_to_Context"
+				styleSheetName="xsl/GetInputValues.xslt"
+				getInputFromSessionKey="originalMessage">
+				<Forward name="success" path="storeValues" />
+			</XsltPipe>
+
+			<PutInSessionPipe name="storeValues">
+				<Param name="varZenderApplicatie" xpathExpression="Root/Record/varZenderApplicatie" />
+				<Param name="varReferentienummer"
+					xpathExpression="Root/Record/varReferentienummer" />
+				<Param name="tijdstipBericht"
+					xpathExpression="Root/Record/tijdstipBericht" />
+				<Param name="indicatorVervolgvraag"
+					xpathExpression="Root/Record/indicatorVervolgvraag" />
+				<Forward name="success" path="ReadFieldsFile" />
+			</PutInSessionPipe>
+
+			<LocalFileSystemPipe name="ReadFieldsFile"
+				action="read"
+				storeResultInSessionKey="fields">
+				<Param name="filename"
+					value="${configurations.directory}/bag-bevragen-soap/xsl/fields.xml" />
+				<Forward name="success" path="mappingStufToJson" />
+			</LocalFileSystemPipe>
+
+			<XsltPipe name="mappingStufToJson" getInputFromSessionKey="originalMessage"
+				styleSheetName="xsl/mappingStufToJson.xslt">
+				<Param name="varZenderOrganisatie" sessionKey="varZenderOrganisatie" />
+				<Param name="apps_requestwithAdres" pattern="${apps_requestwithAdres}" />
+				<Param name="gemeenteVanInschrijving" sessionKey="gemeenteVanInschrijving" />
+				<Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
+				<Param name="inclusiefOverledenPersonen" value="${inclusiefOverledenPersonen}" />
+				<Param name="fields" sessionKey="fields" type="DOMDOC" />
+				<Forward name="success" path="checkIfAppAllowedForRequest" />
+			</XsltPipe>
+
+			<IfPipe name="checkIfAppAllowedForRequest" xpathExpression="exists(root/text)">
+				<Forward name="then" path="Exception" />
+				<Forward name="else" path="CheckHCInput" />
+			</IfPipe>
+
+			<Json2XmlValidatorPipe
+				name="CheckHCInput"
+				root="root"
+				outputFormat="JSON"
+				schema="xsd/CheckHCInput.xsd"
+				throwException="true">
+			</Json2XmlValidatorPipe>
+
+			<SenderPipe name="BagBevragen" storeResultInSessionKey="body">
+				<IbisLocalSender name="BagBevragen"
+					javaListener="BagOutwayListener"
+					returnedSessionKeys="Error" />
+				<Param name="gemeenteVanInschrijving" sessionKey="gemeenteVanInschrijving"
+					defaultValue="${gemeenteVanInschrijving}" />
+				<Param name="SOAPAction" sessionKey="SOAPAction" />
+				<Forward name="success" path="JsonToXml" />
+				<Forward name="exception" path="Exception" />
+			</SenderPipe>
+
+			<JsonPipe name="JsonToXml" storeResultInSessionKey="xmlbody" />
+
+			<PutInSessionPipe name="StoreIdentifier">
+				<Param name="identifier" xpathExpression="(//identifier)[1]/text()" />
+			</PutInSessionPipe>
+
+			<!-- Check if object has a key -->
+			<SenderPipe name="GetObjectSleutel" storeResultInSessionKey="objectsleutel">
+				<FixedQuerySender
+					name="FetchObjectSleutel"
+					queryType="SELECT"
+					query="SELECT sleutel FROM objectsleutels WHERE identifier=?{identifier}"
+					scalar="true">
+					<Param name="identifier" sessionKey="identifier" />
+				</FixedQuerySender>
+			</SenderPipe>
+
+			<!-- Check if a result was found -->
+			<IfPipe name="HasKey" getInputFromSessionKey="objectsleutel">
+				<Forward name="then" path="MapResponse" />
+				<Forward name="else" path="CreateKey" />
+			</IfPipe>
+
+			<!-- Create a new key if no key was found -->
+			<HashPipe name="CreateKey"
+				algorithm="SHA" 
+				storeResultInSessionKey="objectsleutel"
+				hashEncoding="Hex" 
+				getInputFromSessionKey="identifier"/>
+
+			<SenderPipe name="StoreKeyInDatabase">
+				<FixedQuerySender
+					name="CreateObjectSleutel"
+					query="INSERT INTO objectsleutels (identifier, sleutel) VALUES (?, ?)">
+					<Param name="identifier" sessionKey="identifier" />
+					<Param name="objectsleutel" sessionKey="objectsleutel" />
+				</FixedQuerySender>
+			</SenderPipe>
+
+			<XsltPipe name="MapResponse"
+				styleSheetName="xsl/mappingJsonToStuf.xslt"
+				storeResultInSessionKey="MapResponse"
+				getInputFromSessionKey="xmlbody">
+				<Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
+				<Param name="varReferentienummer" sessionKey="varReferentienummer" />
+				<Param name="indicatorVervolgvraag" sessionKey="indicatorVervolgvraag" />
+				<Param name="originalMessage" sessionKey="originalMessage" type="DOMDOC" />
+				<Param name="sleutelVerzendend" sessionKey="objectsleutel" />
+				<Forward name="success" path="Exit" />
+			</XsltPipe>
+
+		</Pipeline>
+	</Adapter>
+</Module>

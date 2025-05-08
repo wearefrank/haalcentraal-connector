@@ -1,7 +1,9 @@
 <!DOCTYPE Configuration [
 	<!ENTITY brp-pb-client-rest SYSTEM "Configuration-brp-pb-client-rest.xml">
+	<!ENTITY bag-client-rest SYSTEM "Configuration-bag-client-rest.xml">
 ]>
 
-<Configuration name="brp-personen-bevragen-rest">
+<Configuration name="api-bevragen-rest">
 	&brp-pb-client-rest;
+<!--	&bag-client-rest;-->
 </Configuration>

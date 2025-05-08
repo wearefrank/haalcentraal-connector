@@ -1,0 +1,8 @@
+<!DOCTYPE Configuration [
+	<!ENTITY brp-client-soap SYSTEM "Configuration-brp-pb-client-soap.xml">
+	<!ENTITY bag-client-soap SYSTEM "Configuration-bag-client-soap.xml">
+]>
+
+<Configuration name="api-bevragen-soap">
+	&brp-client-soap;
+</Configuration>

@@ -30,6 +30,20 @@
 
 			<IfPipe name="IfBsnPresent" getInputFromSessionKey="bsn" preserveInput="true">
 				<Forward name="then" path="GetApplicationConfig"/>
+				<Forward name="else" path="IfKeyPresent"/>
+			</IfPipe>
+
+			<IfPipe name="IfKeyPresent" getInputFromSessionKey="persoonsSleutel" preserveInput="true">
+				<Forward name="then" path="MapKeyToBsn"/>
+				<Forward name="else" path="BadRequest"/>
+			</IfPipe>
+
+			<SenderPipe name="MapKeyToBsn" getInputFromSessionKey="persoonsSleutel" storeResultInSessionKey="bsn" preserveInput="true">
+				<FixedQuerySender scalar="true" query="SELECT bsn FROM bsn_to_key_map WHERE key = ? LIMIT 1"/>
+			</SenderPipe>
+
+			<IfPipe name="IfBsnPresentNow" getInputFromSessionKey="bsn" preserveInput="true">
+				<Forward name="then" path="GetApplicationConfig"/>
 				<Forward name="else" path="BadRequest"/>
 			</IfPipe>
 

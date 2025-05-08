@@ -14,7 +14,7 @@
 			<column name="data" type="text" />
 			<column name="registratie_datum" type="datetime" />
 		</createTable>
-		<addAutoIncrement tableName="persoonsgegevens" columnName="id" />
+		<addAutoIncrement tableName="persoonsgegevens" columnName="id" columnDataType="int"/>
 	</changeSet>
 
 	<!-- ChangeSet 2: Create 'Applicaties' table -->
@@ -43,7 +43,7 @@
 			<column name="begin_datum" type="datetime" />
 			<column name="eind_datum" type="datetime" />
 		</createTable>
-		<addAutoIncrement tableName="subscripties" columnName="id" />
+		<addAutoIncrement tableName="subscripties" columnName="id" columnDataType="int"/>
 	</changeSet>
 
 	<!-- ChangeSet 4: Create 'Tasks' table -->
@@ -136,5 +136,22 @@
 			</column>
 			<column name="sleutel" type="varchar(40)" />
 		</createTable>
+	</changeSet>
+
+	<changeSet id="HCC-11" author="Lenard van der Maas">
+		<comment>Create bagkeys table</comment>
+		<createTable tableName="bagkeys">
+			<column name="type" type="varchar(10)">
+				<constraints nullable="false" />
+			</column>
+			<column name="identifier" type="varchar(32)">
+				<constraints nullable="false" />
+			</column>
+			<column name="key" type="text" />
+		</createTable>
+		<addPrimaryKey columnNames="type, identifier"
+					   constraintName="bagkeys_pk"
+					   tableName="bagkeys"
+					   validate="true"/>
 	</changeSet>
 </databaseChangeLog>

@@ -1,0 +1,189 @@
+<Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+    <Adapter name="EndpointRouter"
+        description="">
+        <Receiver name="SoapEndpointRouter">
+            <ApiListener name="SoapEndpointRouter" uriPattern="${haalcentraal_connector.soap.endpoint}" method="POST"  headerParams="gemeenteVanInschrijving,SOAPAction" allowAllParams="true"/>
+        </Receiver>
+
+        <Pipeline>
+            <Exits>
+                <Exit name="EXIT" state="SUCCESS"/>
+                <Exit name="EXCEPTION" state="ERROR"/>
+                <Exit name="202" state="SUCCESS" code="202"/>
+                <Exit name="400" state="ERROR" code="400"/>
+                <Exit name="500" state="ERROR" code="500"/>
+            </Exits>
+            <PutInSessionPipe name="storeValues">
+				<Param name="SOAPAction" sessionKey="headers" xpathExpression="/headers/header[@name = 'SOAPAction']/text()" />
+				<Param name="gemeenteVanInschrijving" sessionKey="headers" xpathExpression="/headers/header[@name = 'gemeenteVanInschrijving']/text() " />
+				<Forward name="success" path="ValidateInput" />
+			</PutInSessionPipe>
+
+            <WsdlXmlValidatorPipe 
+                name="ValidateInput"
+                getInputFromSessionKey="originalMessage"
+                soapBody="npsLk01"
+                ignoreUnknownNamespaces="true"
+                wsdl="xsd/Bg0310_20211208_patch32/WSC_HLN_BG310_Volgindicatie_172030028052150900416737000015.wsdl"
+                >
+                <Forward name="success" path="UnwrapSoapMessage"/>
+                <Forward name="failure" path="ValidateInput2"/>
+            </WsdlXmlValidatorPipe>
+
+            <WsdlXmlValidatorPipe 
+                name="ValidateInput2"
+                ignoreUnknownNamespaces="true"
+                soapBody="npsLv01"
+                wsdl="xsd/Bg0310_20211208_patch32/BeantwoordVraag_WSP_BG0310_VraagAntwoord.wsdl"
+                >
+                <Forward name="success" path="LegalizeSoapActionForPipeName"/>
+                <Forward name="failure" path="WsdlValidationSoftFailForwarder"/>
+            </WsdlXmlValidatorPipe>
+
+            <XmlSwitchPipe 
+                name="WsdlValidationSoftFailForwarder"
+                xpathExpression="$SoftFail = true()"
+                >
+                <Param name="SoftFail" value="${haalcentraal_connector.endpoint.softfail}" type="BOOLEAN"/>
+                <Forward name="true" path="LegalizeSoapActionForPipeName" />
+                <Forward name="false" path="InvalidXml" />
+            </XmlSwitchPipe>
+
+            <SoapWrapperPipe 
+                name="UnwrapSoapMessage"
+                direction="UNWRAP"
+                storeResultInSessionKey="Stuurgegevens"
+                >
+                <Forward name="success" path="LegalizeSoapActionForPipeName"/>
+                <Forward name="exception" path="BackEndError"/>
+            </SoapWrapperPipe>
+
+            <XsltPipe
+                name="LegalizeSoapActionForPipeName"
+                preserveInput="true"
+                xpathExpression="replace($Action, '/', '_')"
+                storeResultInSessionKey="LegalizedSoapAction"
+                >
+                <Param name="Action" sessionKey="SOAPAction"/>
+                <Forward name="success" path="ForwardBySoapActionSwitch"/>
+                <Forward name="exception" path="BackEndError"/>
+            </XsltPipe>
+
+            <XmlSwitchPipe 
+                name="ForwardBySoapActionSwitch"
+                forwardNameSessionKey="LegalizedSoapAction"
+                notFoundForwardName="storeSOAPActionError"
+                />
+            
+            <!-- SenderPipes -->
+            <SenderPipe
+                name="http:__www.egem.nl_StUF_sector_bg_0310_npsLk01">
+                <IbisLocalSender
+                    name="BrpPersonenAfnemersIndicatieReceiver"
+                    javaListener="BrpPersonenAfnemersIndicatieReceiver"
+                    returnedSessionKeys="Error">
+                </IbisLocalSender>
+                <Forward name="success" path="EXIT" />
+                <Forward name="exception" path="BadRequest" />  
+                <Forward name="400" path="BadRequest" />   
+                <Forward name="500" path="ServerError" />   
+                <Forward name="404" path="BackEndError" />
+            </SenderPipe>
+
+            <SenderPipe
+                name="http:__www.egem.nl_StUF_sector_bg_0310_npsLv01">
+                <IbisLocalSender
+                    name="BrpPersonenQuerySender"
+                    javaListener="BrpPersonenQuerySender"
+                    returnedSessionKeys="Error">
+                    <Param name="gemeenteVanInschrijving" sessionKey="gemeenteVanInschrijving" defaultValue="${gemeenteVanInschrijving}"/>
+                    <Param name="SOAPAction" sessionKey="SOAPAction" />
+                </IbisLocalSender>
+                <Forward name="success" path="EXIT" />
+                <Forward name="exception" path="BackEndError" />
+            </SenderPipe>
+
+            <!-- SoapWrapperPipes -->
+
+            <!-- ERRORS -->
+            <PutInSessionPipe name="storeSOAPActionError" onlyIfSessionKey="SOAPAction">
+                <Param name="reason" pattern="Unsupported SOAP-action. No implementation found for: {SOAPAction}" />
+             </PutInSessionPipe>
+
+             <PutInSessionPipe name="storeSOAPActionError1" unlessSessionKey="SOAPAction">
+                <Param name="reason" pattern="Unsupported SOAP-action. SOAP-action cannot be empty" />
+             </PutInSessionPipe>
+
+            <XsltPipe 
+                name="UnsupportedSoapActionError"
+                getInputFromFixedValue="&lt;dummy/&gt;"
+                styleSheetName="xsl/BuildError.xsl"
+                storeResultInSessionKey="Error">
+                <Param name="cause" sessionKey="Error" type="DOMDOC" />
+                <Param name="code" value="TechnicalError" /> <!-- codes: TechnicalError, TranslationError, ConfigurationError-->
+                <Param name="reason" sessionKey="reason" />
+                <!-- <Param name="details" sessionKey="" /> -->  
+                <!-- <Param name="detailsXml" type="DOMDOC" /> -->
+                <Forward name="success" path="BackEndError" />
+                <Forward name="exception" path="BackEndError" />   
+            </XsltPipe>  
+
+            <PutInSessionPipe name="InvalidXml">
+                <Param name="errorCode" value="INVALID_XML"/>
+                <Param name="errorReason" value="XML was invalid"/>
+                <Forward name="success" path="WrapFo03Response"/>
+            </PutInSessionPipe>
+
+            <PutInSessionPipe name="NotWellFormed">
+                <Param name="errorCode" value="NOT_WELL_FORMED_XML"/>
+                <Param name="errorReason" value="XML was not according to xsd"/>                
+                <Forward name="success" path="WrapFo03Response"/>
+            </PutInSessionPipe>
+
+            <PutInSessionPipe name="BackEndError" unlessSessionKey="errorCode">
+                <Param name="errorCode" styleSheetName="xsl/BackEndError.xsl"/>
+                <Param name="errorReason" xpathExpression="/error/reason"/>
+                <Param name="errorDetailText" xpathExpression="concat(/error/code, ' ', /error/reason, ' ', /error/details)"/>
+                <Param name="errorDetailXML" xpathExpression="/error/detailsXml" type="DOMDOC" />
+                <Forward name="success" path="WrapFo03Response"/>
+            </PutInSessionPipe>
+            
+            <XsltPipe
+                name="BadRequest"
+                getInputFromFixedValue="&lt;dummy/&gt;"
+                styleSheetName="xsl/BuildError.xsl"
+                storeResultInSessionKey="Error"
+                >
+                <Param name="cause" sessionKey="Error" type="DOMDOC" />
+                <Param name="code" value="BadRequest" />
+                <Forward name="success" path="WrapFo03Response" />
+                <Forward name="exception" path="WrapFo03Response" />
+            </XsltPipe>
+
+            <XsltPipe
+                name="ServerError"
+                getInputFromFixedValue="&lt;dummy/&gt;"
+                styleSheetName="xsl/BuildError.xsl"
+                storeResultInSessionKey="Error"
+                >
+                <Param name="cause" sessionKey="Error" type="DOMDOC" />
+                <Param name="code" value="TechnicalError" />
+                <Param name="detailsXml" type="DOMDOC" />
+                <Forward name="success" path="WrapFo03Response" />
+                <Forward name="exception" path="WrapFo03Response" />
+            </XsltPipe>
+            
+            <SoapWrapperPipe
+                name="WrapFo03Response"
+                soapBodyStyleSheet="xsl/CreateFo03Response.xslt"
+                >
+                <Param name="Stuurgegevens" sessionKey="originalMessage" type="DOMDOC"/>
+                <Param name="errorCode"   sessionKey="errorCode"/>
+                <Param name="errorReason" sessionKey="errorReason"/>
+                <Param name="errorDetailText" sessionKey="errorDetailText"/>
+                <Param name="errorDetailXML" sessionKey="errorDetailXML" type="DOMDOC"/>
+                <Forward name="success" path="400"/>
+            </SoapWrapperPipe>
+        </Pipeline>
+    </Adapter>
+</Module>
