@@ -1,5 +1,15 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.21.7](https://github.com/wearefrank/haalcentraal-connector/compare/v1.21.6...v1.21.7) (2025-05-08)
+
+### 🐛 Bug Fixes
+
+* remove unused credential properties ([258e53e](https://github.com/wearefrank/haalcentraal-connector/commit/258e53e6fcfe56e73a365f51c5e6c5b015fadfc9))
+
+### 🤖 Build System
+
+* **dependencies:** bump f!f version to 9.2.0-20250508.042328 ([87b02a9](https://github.com/wearefrank/haalcentraal-connector/commit/87b02a9e283a4902c36afd13f262fe92cd55ea2a))
+
 ## [1.21.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.21.5...v1.21.6) (2025-05-01)
 
 ### 🐛 Bug Fixes
