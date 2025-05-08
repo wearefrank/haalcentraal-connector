@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Public FrankDoc XSD, should be used within an IDE to validate a configuration. -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="9.2.0-20250430.042328">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="9.2.0-20250508.042328">
   <xs:element name="Configuration">
     <xs:annotation>
       <xs:documentation>Container of Adapters that belong together.
@@ -20665,7 +20665,7 @@
   </xs:attribute>
   <xs:attribute name="durationThreshold" type="frankInt">
     <xs:annotation>
-      <xs:documentation>If durationThreshold &gt;=0 and the duration of the message processing exceeded the value specified (in milliseconds) the message is logged informatory to be analyzed Default: -1</xs:documentation>
+      <xs:documentation>If durationThreshold &gt;=0 and the duration of the message processing exceeded the value specified (in milliseconds) the message will be logged and a monitor event will be fired. Default: -1</xs:documentation>
     </xs:annotation>
   </xs:attribute>
   <xs:attribute name="removeCompactMsgNamespaces" type="frankBoolean" />
