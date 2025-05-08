@@ -29,8 +29,6 @@
                     tokenEndpoint="${oauth.token.url}"
                     scope="${oauth.scope}"
                     clientAlias="oauth.credentials"
-                    clientId="${oauth.client.id}"
-                    clientSecret="${oauth.client.secret}"
                     oauthAuthenticationMethod="CLIENT_CREDENTIALS_BASIC_AUTH">
                     <Param name="url" value="${endpoint.brp.diginet}" />
                     <Param name="Accept" sessionKey="headerAccept" />
