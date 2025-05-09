@@ -54,6 +54,15 @@
 
 			<JsonPipe name="ConvertFilteredApplicationsToXml" storeResultInSessionKey="FilteredApplication" onlyIfSessionKey="applicationData" />
 
+			<ForEachChildElementPipe name="mapBagIdentifiersToKeys"
+									 elementXPathExpression="root/personen/verblijfplaats/adresseerbaarObjectIdentificatie"
+									 getInputFromSessionKey="inputXml"
+									 storeResultInSessionKey="bagKeys">
+				<FixedQuerySender queryType="SELECT" query="SELECT `key` FROM bagkeys WHERE identifier=?">
+					<Param name="identifier"/>
+				</FixedQuerySender>
+			</ForEachChildElementPipe>
+
 			<XsltPipe
 				name="mappingJsonToStuf"
 				styleSheetName="xsl/mappingJsonToStuf.xslt"
@@ -67,6 +76,7 @@
 				<Param name="sleutelVerzendend" xpathExpression="/root/persoonsSleutel"/>
 				<Param name="sleutelOntvangend" xpathExpression="/root/afnemersSleutel"/>
 				<Param name="varZenderApplicatie" xpathExpression="/root/applicationId"/>
+				<Param name="bagkeys" sessionKey="bagKeys" type="DOMDOC"/>
 				<!-- <Forward name="success" path="callback" /> -->
 				<Forward name="exception" path="EXCEPTION" />
 			</XsltPipe>

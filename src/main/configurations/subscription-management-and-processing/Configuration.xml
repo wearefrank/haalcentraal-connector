@@ -11,6 +11,7 @@
     <!ENTITY QueueNotificationTask SYSTEM "Configuration_QueueNotificationTask.xml">
     <!ENTITY CreateBulkImportTasks SYSTEM "Configuration_CreateBulkImportTasks.xml">
     <!ENTITY ProcessBulkImportTask SYSTEM "Configuration_ProcessBulkImportTask.xml">
+    <!ENTITY ProcessBulkImportTasksBAG SYSTEM "Configuration_ProcessBulkImportBAG.xml">
     <!ENTITY GetPersoon SYSTEM "Configuration_BrpGetPersoon.xml">
 ]>
 
@@ -27,5 +28,6 @@
     &QueueNotificationTask;
 	&CreateBulkImportTasks;
 	&ProcessBulkImportTask;
+	&ProcessBulkImportTasksBAG;
     &GetPersoon;
 </Configuration>

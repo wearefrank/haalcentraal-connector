@@ -144,4 +144,20 @@
         <modifyDataType tableName="persoonsgegevens" columnName="data" newDataType="character(44)" />
 	</changeSet>
 
+	<changeSet id="HCC-12" author="Lenard van der Maas">
+		<comment>Create bagkeys table</comment>
+		<createTable tableName="bagkeys">
+			<column name="type" type="varchar(10)">
+				<constraints nullable="false" />
+			</column>
+			<column name="identifier" type="varchar(32)">
+				<constraints nullable="false" />
+			</column>
+			<column name="key" type="text" />
+		</createTable>
+		<addPrimaryKey columnNames="type, identifier"
+					   constraintName="bagkeys_pk"
+					   tableName="bagkeys"
+					   validate="true"/>
+	</changeSet>
 </databaseChangeLog>
