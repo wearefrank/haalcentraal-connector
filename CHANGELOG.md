@@ -1,5 +1,16 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.21.10...v1.22.0) (2025-05-09)
+
+### 🍕 Features
+
+* bag keys for brp callback ([cc0c976](https://github.com/wearefrank/haalcentraal-connector/commit/cc0c97605bd3604e19e0995d9cdf2a5f2f6124bc))
+
+### 🐛 Bug Fixes
+
+* commit computeKeyStates.xsl ([c0ab091](https://github.com/wearefrank/haalcentraal-connector/commit/c0ab091b9f89c2f4d28af0d277afbeb6bc5db097))
+* commit processBulkImportBAG adapter ([338d4e1](https://github.com/wearefrank/haalcentraal-connector/commit/338d4e15e8fdbd310f2a44dbbe62e00f6e1521cf))
+
 ## [1.21.10](https://github.com/wearefrank/haalcentraal-connector/compare/v1.21.9...v1.21.10) (2025-05-08)
 
 ### 🐛 Bug Fixes
