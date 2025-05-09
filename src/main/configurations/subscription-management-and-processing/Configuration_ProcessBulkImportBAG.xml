@@ -1,0 +1,35 @@
+<Adapter name="ProcessBulkImportBAG">
+    <Receiver name="ProcessBulkImportBAGReceiver">
+        <JavaListener name="ProcessBulkImportBAGListener"/>
+    </Receiver>
+    <Pipeline>
+        <CsvParserPipe name="Csv2Xml" storeResultInSessionKey="incomingRecords"/>
+
+        <SenderPipe name="GetOldRecords">
+            <FixedQuerySender name="GetOldRecordsSender" queryType="SELECT" query="SELECT * FROM bagkeys"/>
+        </SenderPipe>
+
+        <XsltPipe name="ComputeKeyStates" storeResultInSessionKey="subscriptionStates" styleSheetName="xsl/computeKeyStates.xsl">
+            <Param name="incomingRecords" sessionKey="incomingRecords" type="DOMDOC"/>
+        </XsltPipe>
+
+        <!-- TODO: Check how to handle duplicate subscriptions: override keys, end old, or both active -->
+
+        <ForEachChildElementPipe name="ForEachNewRecord" elementXPathExpression="root/toBeAdded/record" ignoreExceptions="true" preserveInput="true">
+            <FixedQuerySender
+                    name="CreateNewRecord"
+                    query="INSERT INTO bagkeys (type, `key`, identifier) VALUES ('1', ?, ?)">
+                <Param name="key" xpathExpression="record/key" />
+                <Param name="identifier" xpathExpression="record/identifier" />
+            </FixedQuerySender>
+        </ForEachChildElementPipe>
+
+        <ForEachChildElementPipe name="ForEachRecordToRemove" elementXPathExpression="root/toBeEnded/record" ignoreExceptions="true" preserveInput="true">
+            <FixedQuerySender name="RemoveRecord"
+                              query="DELETE FROM bagkeys WHERE type='1' AND `key`=? AND identifier=?">
+                <Param name="key" xpathExpression="record/key"/>
+                <Param name="identifier" xpathExpression="record/identifier"/>
+            </FixedQuerySender>
+        </ForEachChildElementPipe>
+    </Pipeline>
+</Adapter>
