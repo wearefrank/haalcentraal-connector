@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Public FrankDoc XSD, should be used within an IDE to validate a configuration. -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="9.2.0-20250508.042328">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="9.2.0-20250512.173626">
   <xs:element name="Configuration">
     <xs:annotation>
       <xs:documentation>Container of Adapters that belong together.
@@ -5471,19 +5471,20 @@
     <xs:attribute name="className" type="xs:string" fixed="org.frankframework.pipes.JsonValidator" use="prohibited" />
   </xs:complexType>
   <xs:attributeGroup name="JsonValidatorDeclaredAttributeGroup">
-    <xs:attribute name="schema" type="xs:string">
+    <xs:attribute name="schema" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>The JSON Schema to validate to</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="subSchemaPrefix" type="xs:string">
       <xs:annotation>
-        <xs:documentation>Prefix to element name to find subschema in schema Default: /definitions/</xs:documentation>
+        <xs:documentation>The subSchemaPrefix is an optional attribute used when referencing a subschema located in a nested structure, such as $defs or definitions. 
+ Adding only the subSchema attribute is not enough if your schema organizes definitions in nested objects. Add root attribute to complete the process. Default: /definitions/</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="reasonSessionKey" type="xs:string">
       <xs:annotation>
-        <xs:documentation>If set: key of session variable to store reasons of mis-validation in Default: failureReason</xs:documentation>
+        <xs:documentation>If set: creates a sessionKey to store any errors when validating the json output Default: failureReason</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:attributeGroup>
@@ -13772,33 +13773,10 @@
           </xs:complexContent>
         </xs:complexType>
       </xs:element>
-      <xs:element name="Samba1Pipe">
-        <xs:annotation>
-          <xs:documentation>Uses the (old) SMB 1 protocol.
- &lt;br/&gt;
- Only supports NTLM authentication.</xs:documentation>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:complexContent>
-            <xs:extension base="Samba1PipeType">
-              <xs:attribute name="elementRole" type="xs:string" fixed="pipe" use="prohibited" />
-            </xs:extension>
-          </xs:complexContent>
-        </xs:complexType>
-      </xs:element>
       <xs:element name="Samba2Pipe">
         <xs:complexType>
           <xs:complexContent>
             <xs:extension base="Samba2PipeType">
-              <xs:attribute name="elementRole" type="xs:string" fixed="pipe" use="prohibited" />
-            </xs:extension>
-          </xs:complexContent>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="SambaPipe">
-        <xs:complexType>
-          <xs:complexContent>
-            <xs:extension base="SambaPipeType">
               <xs:attribute name="elementRole" type="xs:string" fixed="pipe" use="prohibited" />
             </xs:extension>
           </xs:complexContent>
@@ -16511,52 +16489,6 @@
     <xs:attributeGroup ref="JdbcIteratingPipeBaseCumulativeAttributeGroup" />
     <xs:attribute name="className" type="xs:string" fixed="org.frankframework.jdbc.ResultSetIteratingPipe" use="prohibited" />
   </xs:complexType>
-  <xs:complexType name="Samba1PipeType">
-    <xs:group ref="AbstractPipeDeclaredChildGroup" />
-    <xs:attributeGroup ref="Samba1PipeCumulativeAttributeGroup" />
-    <xs:attribute name="className" type="xs:string" fixed="org.frankframework.pipes.Samba1Pipe" use="prohibited" />
-  </xs:complexType>
-  <xs:attributeGroup name="Samba1PipeDeclaredAttributeGroup">
-    <xs:attribute name="share" type="xs:string">
-      <xs:annotation>
-        <xs:documentation>The destination, aka smb://xxx/yyy share</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="username" type="xs:string">
-      <xs:annotation>
-        <xs:documentation>The SMB share username</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="password" type="xs:string">
-      <xs:annotation>
-        <xs:documentation>The SMB share password</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="authAlias" type="xs:string">
-      <xs:annotation>
-        <xs:documentation>Alias used to obtain credentials for the SMB share</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="domainName" type="xs:string">
-      <xs:annotation>
-        <xs:documentation>logon/authentication domain, in case the user account is bound to a domain such as Active Directory.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="force" type="frankBoolean">
-      <xs:annotation>
-        <xs:documentation>when &lt;code&gt;true&lt;/code&gt;, intermediate directories are created also Default: false</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="listHiddenFiles" type="frankBoolean">
-      <xs:annotation>
-        <xs:documentation>controls whether hidden files are seen or not Default: false</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:attributeGroup>
-  <xs:attributeGroup name="Samba1PipeCumulativeAttributeGroup">
-    <xs:attributeGroup ref="Samba1PipeDeclaredAttributeGroup" />
-    <xs:attributeGroup ref="AbstractFileSystemPipeCumulativeAttributeGroup" />
-  </xs:attributeGroup>
   <xs:complexType name="Samba2PipeType">
     <xs:group ref="AbstractPipeDeclaredChildGroup" />
     <xs:attributeGroup ref="Samba2PipeCumulativeAttributeGroup" />
@@ -16627,11 +16559,6 @@
     <xs:attributeGroup ref="Samba2PipeDeclaredAttributeGroup" />
     <xs:attributeGroup ref="AbstractFileSystemPipeCumulativeAttributeGroup" />
   </xs:attributeGroup>
-  <xs:complexType name="SambaPipeType">
-    <xs:group ref="AbstractPipeDeclaredChildGroup" />
-    <xs:attributeGroup ref="Samba2PipeCumulativeAttributeGroup" />
-    <xs:attribute name="className" type="xs:string" fixed="org.frankframework.pipes.SambaPipe" use="prohibited" />
-  </xs:complexType>
   <xs:complexType name="SapLUWManagerType">
     <xs:group ref="AbstractPipeDeclaredChildGroup" />
     <xs:attributeGroup ref="SapLUWManagerCumulativeAttributeGroup" />
