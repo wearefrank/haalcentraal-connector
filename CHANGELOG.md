@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.1...v1.22.2) (2025-05-13)
+
+### 🐛 Bug Fixes
+
+* add back token to sender ([46df672](https://github.com/wearefrank/haalcentraal-connector/commit/46df672131a032b9bfd5afcb8522e97439545eba))
+
 ## [1.22.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.0...v1.22.1) (2025-05-13)
 
 ### 🐛 Bug Fixes
