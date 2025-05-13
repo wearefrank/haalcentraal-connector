@@ -1,6 +1,6 @@
 <Module>
-    <!-- <SendMessageJob name="UpdateTokenOnStartup" interval="0" javaListener="UpdateTokenListener" active="${isDiginetwerk}"/> -->
-    <!-- <SendMessageJob name="UpdateTokenEvery9Minutes" cronExpression="0 0/9 * ? * * *" javaListener="UpdateTokenListener" active="${isDiginetwerk}"/> -->
+    <SendMessageJob name="UpdateTokenOnStartup" interval="0" javaListener="UpdateTokenListener" active="${isDiginetwerk}"/>
+    <SendMessageJob name="UpdateTokenEvery9Minutes" cronExpression="0 0/9 * ? * * *" javaListener="UpdateTokenListener" active="${isDiginetwerk}"/>
     <Adapter name="UpdateToken">
         <Receiver name="UpdateTokenReceiver">
             <JavaListener name="UpdateTokenListener" returnedSessionKeys="token" />
