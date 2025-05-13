@@ -1,5 +1,16 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.0...v1.22.1) (2025-05-13)
+
+### 🐛 Bug Fixes
+
+* add back retry loop ([206eca0](https://github.com/wearefrank/haalcentraal-connector/commit/206eca065e8fde62d42c6a2cf0331bf36ee647bb))
+* revert oauth changes ([238de1d](https://github.com/wearefrank/haalcentraal-connector/commit/238de1dbc113b9a7490013e06d3a18fd9b5f0cb6))
+
+### ⏩ Reverts
+
+* Revert "remove scheduled token refresh" ([6dd5a47](https://github.com/wearefrank/haalcentraal-connector/commit/6dd5a47233d769140e731bcd1075bcfd100b33ec))
+
 ## [1.22.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.21.10...v1.22.0) (2025-05-09)
 
 ### 🍕 Features
