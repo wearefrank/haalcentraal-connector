@@ -27,6 +27,9 @@
                     keystorePassword="${haalcentraal_cert_pass}" keystoreAlias="haalcentraal"
                     keystoreType="PKCS12">
                     <Param name="url" value="${endpoint.brp.diginet}" />
+                    <Param name="Authorization" pattern="Bearer {token}">
+                        <Param name="token" sessionKey="token" />
+                    </Param>
                     <Param name="Accept" sessionKey="headerAccept" />
                     <Param name="Content-Type" sessionKey="headerContent-Type" />
                 </HttpSender>
