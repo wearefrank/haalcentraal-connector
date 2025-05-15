@@ -22,6 +22,7 @@ xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl
                         <StUF:ontvanger>
                             <StUF:organisatie><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:zender/StUF:organisatie"/></StUF:organisatie>
                             <StUF:applicatie><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:zender/StUF:applicatie"/></StUF:applicatie>
+                            <StUF:administratie><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:zender/StUF:administratie"/></StUF:administratie>
                             <StUF:gebruiker><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:zender/StUF:gebruiker"/></StUF:gebruiker>
                         </StUF:ontvanger>
                         <StUF:referentienummer><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:referentienummer"/></StUF:referentienummer>
