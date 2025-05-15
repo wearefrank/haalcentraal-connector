@@ -3,7 +3,12 @@
         <JavaListener name="ProcessBulkImportBAGListener"/>
     </Receiver>
     <Pipeline>
-        <CsvParserPipe name="Csv2Xml" storeResultInSessionKey="incomingRecords"/>
+        <IfPipe name="IfTypeSpecified" getInputFromSessionKey="type">
+            <Forward name="then" path="Csv2Xml"/>
+            <Forward name="else" path="ERROR"/>
+        </IfPipe>
+
+        <CsvParserPipe name="Csv2Xml" getInputFromSessionKey="originalMessage" storeResultInSessionKey="incomingRecords"/>
 
         <SenderPipe name="GetOldRecords">
             <FixedQuerySender name="GetOldRecordsSender" queryType="SELECT" query="SELECT * FROM bagkeys"/>
@@ -26,7 +31,8 @@
 
         <ForEachChildElementPipe name="ForEachRecordToRemove" elementXPathExpression="root/toBeEnded/record" ignoreExceptions="true" preserveInput="true">
             <FixedQuerySender name="RemoveRecord"
-                              query="DELETE FROM bagkeys WHERE type='1' AND `key`=? AND identifier=?">
+                              query="DELETE FROM bagkeys WHERE type=? AND `key`=? AND identifier=?">
+                <Param name="type" sessionKey="type"/>
                 <Param name="key" xpathExpression="record/key"/>
                 <Param name="identifier" xpathExpression="record/identifier"/>
             </FixedQuerySender>

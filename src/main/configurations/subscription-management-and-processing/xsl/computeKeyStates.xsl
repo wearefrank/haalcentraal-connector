@@ -6,10 +6,10 @@
         <xsl:variable name="currentPairs">
             <xsl:for-each select="result/rowset/row">
                 <pair>
-                    <key><xsl:value-of select="concat(field[2],field[3])"/></key>
+                    <key><xsl:value-of select="concat(field[@name='IDENTIFIER'],field[@name='ID'])"/></key>
                     <record>
-                        <identifier><xsl:value-of select="field[2]"/></identifier>
-                        <key><xsl:value-of select="field[3]"/></key>
+                        <identifier><xsl:value-of select="field[@name='IDENTIFIER']"/></identifier>
+                        <key><xsl:value-of select="field[@name='ID']"/></key>
                     </record>
                 </pair>
             </xsl:for-each>
@@ -19,8 +19,8 @@
                 <pair>
                     <key><xsl:value-of select="concat(ID,Identificatie)"/></key>
                     <record>
-                        <identifier><xsl:value-of select="ID"/></identifier>
-                        <key><xsl:value-of select="Identificatie"/></key>
+                        <identifier><xsl:value-of select="Identificatie"/></identifier>
+                        <key><xsl:value-of select="ID"/></key>
                     </record>
                 </pair>
             </xsl:for-each>
