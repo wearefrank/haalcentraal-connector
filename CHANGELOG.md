@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.3...v1.22.4) (2025-05-15)
+
+### 🐛 Bug Fixes
+
+* use type column to specify object type of bag object when retrieving keys from db ([90f8e3a](https://github.com/wearefrank/haalcentraal-connector/commit/90f8e3a7d4dc9dff75368e3a80bfb7fe0e95de6d))
+
 ## [1.22.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.2...v1.22.3) (2025-05-15)
 
 ### 🐛 Bug Fixes
