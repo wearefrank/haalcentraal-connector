@@ -8,36 +8,30 @@ xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl
     <xsl:param name="errorDetailXML" as="node()?" />
     
     <xsl:template match="/">
-        <SOAP-ENV:Fault>
-            <faultcode>SOAP-ENV:Server</faultcode>
-            <faultstring><xsl:value-of select="$errorReason"/></faultstring>
-            <detail>
-                <StUF:Fo03Bericht>
-                    <StUF:stuurgegevens>
-                        <StUF:berichtcode>Fo03</StUF:berichtcode>
-                        <StUF:zender>
-                            <StUF:organisatie><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:ontvanger/StUF:organisatie"/></StUF:organisatie>
-                            <StUF:applicatie><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:ontvanger/StUF:applicatie"/></StUF:applicatie>
-                        </StUF:zender>
-                        <StUF:ontvanger>
-                            <StUF:organisatie><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:zender/StUF:organisatie"/></StUF:organisatie>
-                            <StUF:applicatie><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:zender/StUF:applicatie"/></StUF:applicatie>
-                            <StUF:administratie><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:zender/StUF:administratie"/></StUF:administratie>
-                            <StUF:gebruiker><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:zender/StUF:gebruiker"/></StUF:gebruiker>
-                        </StUF:ontvanger>
-                        <StUF:referentienummer><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:referentienummer"/></StUF:referentienummer>
-                        <StUF:tijdstipBericht><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:tijdstipBericht"/></StUF:tijdstipBericht>
-                        <StUF:crossRefnummer><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:referentienummer"/></StUF:crossRefnummer>
-                    </StUF:stuurgegevens>
-                    <StUF:body>
-                        <StUF:code><xsl:value-of select="$errorCode"/></StUF:code>
-                        <StUF:plek>server</StUF:plek>
-                        <StUF:omschrijving><xsl:value-of select="$errorReason"/></StUF:omschrijving>
-                        <StUF:details><xsl:value-of select="$errorDetailText"/></StUF:details>
-                        <StUF:detailsXML><xsl:copy-of select="$errorDetailXML"/></StUF:detailsXML>
-                    </StUF:body>
-                </StUF:Fo03Bericht>
-            </detail>
-        </SOAP-ENV:Fault>
+        <StUF:Fo03Bericht>
+            <StUF:stuurgegevens>
+                <StUF:berichtcode>Fo03</StUF:berichtcode>
+                <StUF:zender>
+                    <StUF:organisatie><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:ontvanger/StUF:organisatie"/></StUF:organisatie>
+                    <StUF:applicatie><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:ontvanger/StUF:applicatie"/></StUF:applicatie>
+                </StUF:zender>
+                <StUF:ontvanger>
+                    <StUF:organisatie><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:zender/StUF:organisatie"/></StUF:organisatie>
+                    <StUF:applicatie><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:zender/StUF:applicatie"/></StUF:applicatie>
+                    <StUF:administratie><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:zender/StUF:administratie"/></StUF:administratie>
+                    <StUF:gebruiker><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:zender/StUF:gebruiker"/></StUF:gebruiker>
+                </StUF:ontvanger>
+                <StUF:referentienummer><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:referentienummer"/></StUF:referentienummer>
+                <StUF:tijdstipBericht><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:tijdstipBericht"/></StUF:tijdstipBericht>
+                <StUF:crossRefnummer><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:referentienummer"/></StUF:crossRefnummer>
+            </StUF:stuurgegevens>
+            <StUF:body>
+                <StUF:code><xsl:value-of select="$errorCode"/></StUF:code>
+                <StUF:plek>server</StUF:plek>
+                <StUF:omschrijving><xsl:value-of select="$errorReason"/></StUF:omschrijving>
+                <StUF:details><xsl:value-of select="$errorDetailText"/></StUF:details>
+                <StUF:detailsXML><xsl:copy-of select="$errorDetailXML"/></StUF:detailsXML>
+            </StUF:body>
+        </StUF:Fo03Bericht>
     </xsl:template>
 </xsl:stylesheet>
