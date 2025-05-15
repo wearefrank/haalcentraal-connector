@@ -1,36 +1,32 @@
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-  <soapenv:Body>
-    <SOAP-ENV:Fault xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:ZKN="http://www.egem.nl/StUF/sector/zkn/0310" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-      <faultcode>SOAP-ENV:Server</faultcode>
-      <faultstring>Unsupported SOAP-action. SOAP-action cannot be empty</faultstring>
-      <detail>
-        <StUF:Fo03Bericht>
-          <StUF:stuurgegevens>
-            <StUF:berichtcode>Fo03</StUF:berichtcode>
-            <StUF:zender>
-              <StUF:organisatie>test1</StUF:organisatie>
-              <StUF:applicatie>test123</StUF:applicatie>
-            </StUF:zender>
-            <StUF:ontvanger>
-              <StUF:organisatie>0518</StUF:organisatie>
-              <StUF:applicatie>LBA</StUF:applicatie>
-              <StUF:gebruiker/>
-            </StUF:ontvanger>
-            <StUF:referentienummer>af20ca23-3955-4406-89d2-3048f0017564</StUF:referentienummer>
-            <StUF:tijdstipBericht>20241014193050762</StUF:tijdstipBericht>
-            <StUF:crossRefnummer>af20ca23-3955-4406-89d2-3048f0017564</StUF:crossRefnummer>
-          </StUF:stuurgegevens>
-          <StUF:body>
-            <StUF:code>500</StUF:code>
-            <StUF:plek>server</StUF:plek>
-            <StUF:omschrijving>Unsupported SOAP-action. SOAP-action cannot be empty</StUF:omschrijving>
-            <StUF:details>TechnicalError Unsupported SOAP-action. SOAP-action cannot be empty</StUF:details>
-            <StUF:detailsXML>
-              <detailsXml/>
-            </StUF:detailsXML>
-          </StUF:body>
-        </StUF:Fo03Bericht>
-      </detail>
-    </SOAP-ENV:Fault>
-  </soapenv:Body>
-</soapenv:Envelope>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><StUF:Fo03Bericht xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310"
+                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:StUF="http://www.egem.nl/StUF/StUF0301"
+                  xmlns:ZKN="http://www.egem.nl/StUF/sector/zkn/0310"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <StUF:stuurgegevens>
+      <StUF:berichtcode>Fo03</StUF:berichtcode>
+      <StUF:zender>
+         <StUF:organisatie>test1</StUF:organisatie>
+         <StUF:applicatie>test123</StUF:applicatie>
+      </StUF:zender>
+      <StUF:ontvanger>
+         <StUF:organisatie>0518</StUF:organisatie>
+         <StUF:applicatie>LBA</StUF:applicatie>
+         <StUF:administratie/>
+         <StUF:gebruiker/>
+      </StUF:ontvanger>
+      <StUF:referentienummer>31c43f1d-937a-4b03-a151-ba370d03bc45</StUF:referentienummer>
+      <StUF:tijdstipBericht>20241014193050762</StUF:tijdstipBericht>
+      <StUF:crossRefnummer>af20ca23-3955-4406-89d2-3048f0017564</StUF:crossRefnummer>
+   </StUF:stuurgegevens>
+   <StUF:body>
+      <StUF:code>500</StUF:code>
+      <StUF:plek>server</StUF:plek>
+      <StUF:omschrijving>Unsupported SOAP-action. SOAP-action cannot be empty</StUF:omschrijving>
+      <StUF:details>TechnicalError Unsupported SOAP-action. SOAP-action cannot be empty </StUF:details>
+      <StUF:detailsXML>
+         <detailsXml/>
+      </StUF:detailsXML>
+   </StUF:body>
+</StUF:Fo03Bericht>
+</soapenv:Body></soapenv:Envelope>

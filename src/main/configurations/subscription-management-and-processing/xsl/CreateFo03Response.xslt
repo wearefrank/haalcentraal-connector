@@ -6,6 +6,7 @@ xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl
     <xsl:param name="errorCode" select="''" as="xs:string" />
     <xsl:param name="errorDetailText" select="''" as="xs:string" />
     <xsl:param name="errorDetailXML" as="node()?" />
+    <xsl:param name="referentienummer" />
     
     <xsl:template match="/">
         <StUF:Fo03Bericht>
@@ -21,7 +22,7 @@ xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl
                     <StUF:administratie><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:zender/StUF:administratie"/></StUF:administratie>
                     <StUF:gebruiker><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:zender/StUF:gebruiker"/></StUF:gebruiker>
                 </StUF:ontvanger>
-                <StUF:referentienummer><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:referentienummer"/></StUF:referentienummer>
+                <StUF:referentienummer><xsl:value-of select="$referentienummer"/></StUF:referentienummer>
                 <StUF:tijdstipBericht><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:tijdstipBericht"/></StUF:tijdstipBericht>
                 <StUF:crossRefnummer><xsl:value-of select="$Stuurgegevens//BG:stuurgegevens/StUF:referentienummer"/></StUF:crossRefnummer>
             </StUF:stuurgegevens>

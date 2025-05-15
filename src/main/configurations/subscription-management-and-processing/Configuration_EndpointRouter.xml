@@ -183,6 +183,7 @@
                 <Param name="errorReason" sessionKey="errorReason"/>
                 <Param name="errorDetailText" sessionKey="errorDetailText"/>
                 <Param name="errorDetailXML" sessionKey="errorDetailXML" type="DOMDOC"/>
+                <Param name="referentienummer" pattern="{uuid}" />
                 <Forward name="success" path="200"/>
             </SoapWrapperPipe>
         </Pipeline>
