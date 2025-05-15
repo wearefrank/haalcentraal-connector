@@ -3,6 +3,12 @@
         <JavaListener name="ProcessBulkImportBAGListener"/>
     </Receiver>
     <Pipeline>
+
+        <Exits>
+            <Exit name="EXIT" state="SUCCESS"/>
+            <Exit name="ERROR" state="ERROR"/>
+        </Exits>
+
         <IfPipe name="IfTypeSpecified" getInputFromSessionKey="type">
             <Forward name="then" path="Csv2Xml"/>
             <Forward name="else" path="ERROR"/>
@@ -11,7 +17,9 @@
         <CsvParserPipe name="Csv2Xml" getInputFromSessionKey="originalMessage" storeResultInSessionKey="incomingRecords"/>
 
         <SenderPipe name="GetOldRecords">
-            <FixedQuerySender name="GetOldRecordsSender" queryType="SELECT" query="SELECT * FROM bagkeys"/>
+            <FixedQuerySender name="GetOldRecordsSender" queryType="SELECT" query="SELECT * FROM bagkeys where type=?">
+                <Param name="type" sessionKey="type"/>
+            </FixedQuerySender>
         </SenderPipe>
 
         <XsltPipe name="ComputeKeyStates" storeResultInSessionKey="subscriptionStates" styleSheetName="xsl/computeKeyStates.xsl">
@@ -23,7 +31,8 @@
         <ForEachChildElementPipe name="ForEachNewRecord" elementXPathExpression="root/toBeAdded/record" ignoreExceptions="true" preserveInput="true">
             <FixedQuerySender
                     name="CreateNewRecord"
-                    query="INSERT INTO bagkeys (type, `key`, identifier) VALUES ('1', ?, ?)">
+                    query="INSERT INTO bagkeys (type, `key`, identifier) VALUES (?, ?, ?)">
+                <Param name="type" sessionKey="type"/>
                 <Param name="key" xpathExpression="record/key" />
                 <Param name="identifier" xpathExpression="record/identifier" />
             </FixedQuerySender>

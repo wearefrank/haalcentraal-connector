@@ -58,7 +58,7 @@
 									 elementXPathExpression="root/personen/verblijfplaats/adresseerbaarObjectIdentificatie"
 									 getInputFromSessionKey="inputXml"
 									 storeResultInSessionKey="bagKeys">
-				<FixedQuerySender queryType="SELECT" query="SELECT * FROM bagkeys WHERE identifier=?">
+				<FixedQuerySender queryType="SELECT" query="SELECT * FROM bagkeys WHERE identifier=? and type='TGO'">
 					<Param name="identifier" xpathExpression="adresseerbaarObjectIdentificatie/text()"/>
 				</FixedQuerySender>
 			</ForEachChildElementPipe>
