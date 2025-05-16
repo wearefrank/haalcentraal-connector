@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.5](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.4...v1.22.5) (2025-05-16)
+
+### 🐛 Bug Fixes
+
+* bag keys finally ([8996b5e](https://github.com/wearefrank/haalcentraal-connector/commit/8996b5e45aded68e89ef09d85c02c8d6823a03b7))
+
 ## [1.22.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.3...v1.22.4) (2025-05-15)
 
 ### 🐛 Bug Fixes
