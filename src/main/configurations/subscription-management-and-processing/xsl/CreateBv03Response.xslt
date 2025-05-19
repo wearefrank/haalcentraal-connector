@@ -1,6 +1,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:ZKN="http://www.egem.nl/StUF/sector/zkn/0310" version="2.0">
 	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
     <xsl:param name="Stuurgegevens" as="node()?" />
+    <xsl:param name="referentienummer" />
    
 	<xsl:template match="/">
         <StUF:Bv03Bericht>
@@ -14,7 +15,7 @@
                     <StUF:organisatie><xsl:value-of select="$Stuurgegevens//stuurgegevens/zender/organisatie"/></StUF:organisatie>
                     <StUF:applicatie><xsl:value-of select="$Stuurgegevens//stuurgegevens/zender/applicatie"/></StUF:applicatie>
                 </StUF:ontvanger>
-                <StUF:referentienummer><xsl:value-of select="$Stuurgegevens//stuurgegevens/referentienummer"/></StUF:referentienummer>
+                <StUF:referentienummer><xsl:value-of select="$referentienummer"/></StUF:referentienummer>
                 <StUF:tijdstipBericht>
                     <xsl:value-of select="format-dateTime(current-dateTime(), '[Y0001][M01][D01][h01][m01][s01]')" />
                 </StUF:tijdstipBericht>
