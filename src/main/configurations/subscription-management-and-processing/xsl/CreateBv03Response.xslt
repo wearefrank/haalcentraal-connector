@@ -13,7 +13,6 @@
                 <StUF:ontvanger>
                     <StUF:organisatie><xsl:value-of select="$Stuurgegevens//stuurgegevens/zender/organisatie"/></StUF:organisatie>
                     <StUF:applicatie><xsl:value-of select="$Stuurgegevens//stuurgegevens/zender/applicatie"/></StUF:applicatie>
-                    <StUF:gebruiker><xsl:value-of select="$Stuurgegevens//stuurgegevens/zender/gebruiker"/></StUF:gebruiker>
                 </StUF:ontvanger>
                 <StUF:referentienummer><xsl:value-of select="$Stuurgegevens//stuurgegevens/referentienummer"/></StUF:referentienummer>
                 <StUF:tijdstipBericht><xsl:value-of select="$Stuurgegevens//stuurgegevens/tijdstipBericht"/></StUF:tijdstipBericht>
