@@ -15,7 +15,7 @@
         </Exits>
 
         <!-- Validate bsn -->
-        <IfPipe name="ValidateBSN" xpathExpression="string-length($bsn) = 9" expressionValue="true" getInputFromFixedValue="&lt;dummy/&gt;" preserveInput="true">
+        <IfPipe name="ValidateBSN" xpathExpression="string-length($bsn) = 9 and matches($bsn, '^\d{9}$')" expressionValue="true" getInputFromFixedValue="&lt;dummy/&gt;" preserveInput="true">
             <Param name="bsn" sessionKey="originalMessage" />
             <Forward name="then" path="GetStoredPersonRecord" />
             <Forward name="else" path="BadRequest_Exception" />
