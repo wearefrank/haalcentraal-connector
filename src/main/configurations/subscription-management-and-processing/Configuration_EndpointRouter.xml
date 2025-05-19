@@ -184,6 +184,7 @@
                 <Param name="errorDetailText" sessionKey="errorDetailText"/>
                 <Param name="errorDetailXML" sessionKey="errorDetailXML" type="DOMDOC"/>
                 <Param name="referentienummer" pattern="{uuid}" />
+                <Param name="tijdstipBericht" pattern="{now}" type="TIMESTAMP" />
                 <Forward name="success" path="200"/>
             </SoapWrapperPipe>
         </Pipeline>
