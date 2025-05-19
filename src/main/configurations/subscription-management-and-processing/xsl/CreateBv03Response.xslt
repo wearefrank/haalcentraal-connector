@@ -15,7 +15,9 @@
                     <StUF:applicatie><xsl:value-of select="$Stuurgegevens//stuurgegevens/zender/applicatie"/></StUF:applicatie>
                 </StUF:ontvanger>
                 <StUF:referentienummer><xsl:value-of select="$Stuurgegevens//stuurgegevens/referentienummer"/></StUF:referentienummer>
-                <StUF:tijdstipBericht><xsl:value-of select="$Stuurgegevens//stuurgegevens/tijdstipBericht"/></StUF:tijdstipBericht>
+                <StUF:tijdstipBericht>
+                    <xsl:value-of select="format-dateTime(current-dateTime(), '[Y0001][M01][D01][h01][m01][s01]')" />
+                </StUF:tijdstipBericht>
                 <StUF:crossRefnummer><xsl:value-of select="$Stuurgegevens//stuurgegevens/referentienummer"/></StUF:crossRefnummer>
             </StUF:stuurgegevens>
         </StUF:Bv03Bericht>
