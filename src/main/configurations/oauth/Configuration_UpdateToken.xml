@@ -1,5 +1,5 @@
 <Module>
-    <SendMessageJob name="UpdateTokenOnStartup" interval="0" javaListener="UpdateTokenListener" active="${isDiginetwerk}"/>
+    <SendMessageJob name="UpdateTokenOnStartup" interval="0" javaListener="UpdateTokenOnStartupListener" active="${isDiginetwerk}"/>
     <SendMessageJob name="UpdateTokenEvery9Minutes" cronExpression="0 0/9 * ? * * *" javaListener="UpdateTokenListener" active="${isDiginetwerk}"/>
     <Adapter name="UpdateToken">
         <Receiver name="UpdateTokenReceiver">
@@ -47,6 +47,18 @@
             <LocalFileSystemPipe name="WriteTokenToFile" filename="token.txt" action="write" overwrite="true" active="${isDiginetwerk}" />
 
             <EchoPipe name="PreventEmptyPipe" />
+        </Pipeline>
+    </Adapter>
+    <Adapter name="UpdateTokenOnStartup">
+        <Receiver name="UpdateTokenOnStartupReceiver">
+            <JavaListener name="UpdateTokenOnStartupListener"/>
+        </Receiver>
+
+        <Pipeline>
+            <LocalFileSystemPipe action="create" name="token.txt"/>
+            <SenderPipe name="UpdateToken">
+                <IbisLocalSender name="UpdateTokenSender" javaListener="UpdateTokenListener"/>
+            </SenderPipe>
         </Pipeline>
     </Adapter>
 </Module>
