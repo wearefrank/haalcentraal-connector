@@ -1,5 +1,13 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.5...v1.22.6) (2025-05-20)
+
+### 🐛 Bug Fixes
+
+* create token file on startup ([259c308](https://github.com/wearefrank/haalcentraal-connector/commit/259c308c0c35ef9d4707b6a6df2bc2018137cdda))
+* more token stuff ([0390ac5](https://github.com/wearefrank/haalcentraal-connector/commit/0390ac5a63a873f115e3527eb38380d5d10610cc))
+* oauth enabled property ([fa0efa8](https://github.com/wearefrank/haalcentraal-connector/commit/fa0efa8fdf30d81c669db2c31c2e48915c6eac72))
+
 ## [1.22.5](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.4...v1.22.5) (2025-05-16)
 
 ### 🐛 Bug Fixes
