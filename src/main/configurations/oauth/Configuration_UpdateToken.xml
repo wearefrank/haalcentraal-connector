@@ -1,6 +1,6 @@
 <Module>
-    <SendMessageJob name="UpdateTokenOnStartup" interval="0" javaListener="UpdateTokenOnStartupListener" active="${oauthEnabled}"/>
-    <SendMessageJob name="UpdateTokenEvery9Minutes" cronExpression="0 0/9 * ? * * *" javaListener="UpdateTokenListener" active="${oauthEnabled}"/>
+    <SendMessageJob name="UpdateTokenOnStartup" interval="0" javaListener="UpdateTokenOnStartupListener" active="${brp.oauth.enabled}"/>
+    <SendMessageJob name="UpdateTokenEvery9Minutes" cronExpression="0 0/9 * ? * * *" javaListener="UpdateTokenListener" active="${brp.oauth.enabled}"/>
     <Adapter name="UpdateToken">
         <Receiver name="UpdateTokenReceiver">
             <JavaListener name="UpdateTokenListener" returnedSessionKeys="token" />
@@ -13,7 +13,7 @@
             </Exits>
 
             <!-- Request an authorization token -->
-            <SenderPipe name="BrpAuthorizationRequest" active="${oauthEnabled}">
+            <SenderPipe name="BrpAuthorizationRequest" active="${brp.oauth.enabled}">
                 <HttpSender
                         url="${oauth.token.url}"
                         methodType="POST"
@@ -36,15 +36,15 @@
 
             <!-- Parse the response -->
             <JsonValidatorPipe name="BrpBpTokenResponseValidator"
-                               schema="BrpBpTokenResponseValidator.json" active="${oauthEnabled}">
+                               schema="BrpBpTokenResponseValidator.json" active="${brp.oauth.enabled}">
                 <Forward name="failure" path="ERROR" />
             </JsonValidatorPipe>
 
             <!-- Extract and store required data from the response -->
             <JsonPipe name="JsonToXml" active="${isDiginetwerk}" />
-            <XsltPipe name="TokenExtractor" xpathExpression="/root/access_token" storeResultInSessionKey="token" active="${oauthEnabled}" />
+            <XsltPipe name="TokenExtractor" xpathExpression="/root/access_token" storeResultInSessionKey="token" active="${brp.oauth.enabled}" />
 
-            <LocalFileSystemPipe name="WriteTokenToFile" filename="token.txt" action="write" overwrite="true" active="${oauthEnabled}" />
+            <LocalFileSystemPipe name="WriteTokenToFile" filename="token.txt" action="write" overwrite="true" active="${brp.oauth.enabled}" />
 
             <EchoPipe name="PreventEmptyPipe" />
         </Pipeline>
