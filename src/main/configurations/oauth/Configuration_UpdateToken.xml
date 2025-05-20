@@ -41,7 +41,7 @@
             </JsonValidatorPipe>
 
             <!-- Extract and store required data from the response -->
-            <JsonPipe name="JsonToXml" active="${isDiginetwerk}" />
+            <JsonPipe name="JsonToXml" active="${brp.oauth.enabled}" />
             <XsltPipe name="TokenExtractor" xpathExpression="/root/access_token" storeResultInSessionKey="token" active="${brp.oauth.enabled}" />
 
             <LocalFileSystemPipe name="WriteTokenToFile" filename="token.txt" action="write" overwrite="true" active="${brp.oauth.enabled}" />
