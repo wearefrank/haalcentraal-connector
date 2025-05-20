@@ -1,6 +1,6 @@
 <Module>
-    <SendMessageJob name="UpdateTokenOnStartup" interval="0" javaListener="UpdateTokenOnStartupListener" active="${isDiginetwerk}"/>
-    <SendMessageJob name="UpdateTokenEvery9Minutes" cronExpression="0 0/9 * ? * * *" javaListener="UpdateTokenListener" active="${isDiginetwerk}"/>
+    <SendMessageJob name="UpdateTokenOnStartup" interval="0" javaListener="UpdateTokenOnStartupListener" active="${oauthEnabled}"/>
+    <SendMessageJob name="UpdateTokenEvery9Minutes" cronExpression="0 0/9 * ? * * *" javaListener="UpdateTokenListener" active="${oauthEnabled}"/>
     <Adapter name="UpdateToken">
         <Receiver name="UpdateTokenReceiver">
             <JavaListener name="UpdateTokenListener" returnedSessionKeys="token" />
@@ -13,7 +13,7 @@
             </Exits>
 
             <!-- Request an authorization token -->
-            <SenderPipe name="BrpAuthorizationRequest" active="${isDiginetwerk}">
+            <SenderPipe name="BrpAuthorizationRequest" active="${oauthEnabled}">
                 <HttpSender
                         url="${oauth.token.url}"
                         methodType="POST"
@@ -36,15 +36,15 @@
 
             <!-- Parse the response -->
             <JsonValidatorPipe name="BrpBpTokenResponseValidator"
-                               schema="BrpBpTokenResponseValidator.json" active="${isDiginetwerk}">
+                               schema="BrpBpTokenResponseValidator.json" active="${oauthEnabled}">
                 <Forward name="failure" path="ERROR" />
             </JsonValidatorPipe>
 
             <!-- Extract and store required data from the response -->
             <JsonPipe name="JsonToXml" active="${isDiginetwerk}" />
-            <XsltPipe name="TokenExtractor" xpathExpression="/root/access_token" storeResultInSessionKey="token" active="${isDiginetwerk}" />
+            <XsltPipe name="TokenExtractor" xpathExpression="/root/access_token" storeResultInSessionKey="token" active="${oauthEnabled}" />
 
-            <LocalFileSystemPipe name="WriteTokenToFile" filename="token.txt" action="write" overwrite="true" active="${isDiginetwerk}" />
+            <LocalFileSystemPipe name="WriteTokenToFile" filename="token.txt" action="write" overwrite="true" active="${oauthEnabled}" />
 
             <EchoPipe name="PreventEmptyPipe" />
         </Pipeline>
@@ -55,7 +55,7 @@
         </Receiver>
 
         <Pipeline>
-            <LocalFileSystemPipe action="create" name="token.txt"/>
+            <LocalFileSystemPipe name="CreateTokenFile" action="create" filename="token.txt"/>
             <SenderPipe name="UpdateToken">
                 <IbisLocalSender name="UpdateTokenSender" javaListener="UpdateTokenListener"/>
             </SenderPipe>
