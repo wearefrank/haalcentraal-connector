@@ -1,5 +1,18 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.7](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.6...v1.22.7) (2025-05-21)
+
+### 🐛 Bug Fixes
+
+* add administratie field to fo03 mapping ([6f2a892](https://github.com/wearefrank/haalcentraal-connector/commit/6f2a892ae9c2068f7eb18126b5273e6076926ea8))
+* add bsn guard to prevent malformed input processing ([ac39a72](https://github.com/wearefrank/haalcentraal-connector/commit/ac39a7295ef8576ddd4d4bf519b0c47be463bf0b))
+* FO03 message corrections ([58cdd26](https://github.com/wearefrank/haalcentraal-connector/commit/58cdd26a818fce61726b0c5b00fd70c8d9803aaf))
+* generate new referentienummer ([e785955](https://github.com/wearefrank/haalcentraal-connector/commit/e785955316e961e2279f87dae7236fa39db22a47))
+* remove fault wrap ([7336d30](https://github.com/wearefrank/haalcentraal-connector/commit/7336d300476715c05742d3ae4486d4f442f0d205))
+* remove gebruiker from Bv03 response ([972bfc3](https://github.com/wearefrank/haalcentraal-connector/commit/972bfc3132e410bd6daade9f26e829d3ced78dc2))
+* set tijdstipBericht to time of creation ([b92e1ad](https://github.com/wearefrank/haalcentraal-connector/commit/b92e1ad8d2a3f3e5586bd302056e0f1a48d59d19))
+* update timestamp formatting ([6fc96b4](https://github.com/wearefrank/haalcentraal-connector/commit/6fc96b4ede4c305c3c4a214f9a0c82fd8ca3e65e))
+
 ## [1.22.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.5...v1.22.6) (2025-05-20)
 
 ### 🐛 Bug Fixes
