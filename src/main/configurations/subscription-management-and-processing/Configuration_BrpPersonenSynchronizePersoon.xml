@@ -14,6 +14,13 @@
             <Exit name="ServiceUnavailable" state="ERROR" code="503" />
         </Exits>
 
+        <!-- Validate bsn -->
+        <IfPipe name="ValidateBSN" xpathExpression="string-length($bsn) = 9 and matches($bsn, '^\d{9}$')" expressionValue="true" getInputFromFixedValue="&lt;dummy/&gt;" preserveInput="true">
+            <Param name="bsn" sessionKey="originalMessage" />
+            <Forward name="then" path="GetStoredPersonRecord" />
+            <Forward name="else" path="BadRequest_Exception" />
+        </IfPipe>
+
         <!-- Retrieve stored person record from database -->
         <SenderPipe name="GetStoredPersonRecord" storeResultInSessionKey="storedPersonRecord">
             <FixedQuerySender
@@ -58,6 +65,16 @@
             <Forward name="success" path="Exit" />
         </EchoPipe>
         
-        <EchoPipe name="NotUpdatedExit" getInputFromFixedValue="false" />
+        <EchoPipe name="NotUpdatedExit" getInputFromFixedValue="false">
+            <Forward name="success" path="Exit" />
+            <Forward name="exception" path="Exit" />
+        </EchoPipe>
+
+        <XsltPipe name="BadRequest_Exception" getInputFromFixedValue="&lt;dummy/&gt;" styleSheetName="xsl/BuildError.xsl" storeResultInSessionKey="Error">
+            <Param name="cause" sessionKey="Error" type="DOMDOC" />
+            <Param name="reason" pattern="Malformed BSN: must be exactly 9 digits, input was: {originalMessage}" ignoreUnresolvablePatternElements="true"/>
+            <Forward name="success" path="BadRequest" />
+            <Forward name="exception" path="BadRequest" />
+        </XsltPipe>
     </Pipeline>
 </Adapter>

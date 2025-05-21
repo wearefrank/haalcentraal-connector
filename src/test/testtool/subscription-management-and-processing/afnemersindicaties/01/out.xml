@@ -9,10 +9,9 @@
       <StUF:ontvanger>
          <StUF:organisatie>1883</StUF:organisatie>
          <StUF:applicatie>LBA</StUF:applicatie>
-         <StUF:gebruiker>SH9999</StUF:gebruiker>
       </StUF:ontvanger>
       <StUF:referentienummer>66960c945cc6</StUF:referentienummer>
-      <StUF:tijdstipBericht>2024071608005200</StUF:tijdstipBericht>
+      <StUF:tijdstipBericht></StUF:tijdstipBericht>
       <StUF:crossRefnummer>66960c945cc6</StUF:crossRefnummer>
    </StUF:stuurgegevens>
 </StUF:Bv03Bericht>
