@@ -146,6 +146,14 @@
 				<Forward name="exception" path="Exception" />
 			</SenderPipe>
 
+
+			<!-- Get application information from config -->
+			<DataSonnetPipe name="FilterBSN" getInputFromSessionKey="currentPersonData"
+				storeResultInSessionKey="twet"
+				styleSheetName="jsonnet/FilterBsnFromPersoon.jsonnet">
+				<Param name="bsn" sessionKey="originalMessage" xpathExpression="/npsLk01/object/inp.bsn" defaultValue="-1" />
+			</DataSonnetPipe>
+
 			<SenderPipe name="CallQueueNotificationTask">
 				<IbisLocalSender 
 					name="CallQueueNotificationsListener"
