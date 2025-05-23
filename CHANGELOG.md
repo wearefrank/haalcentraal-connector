@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.8](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.7...v1.22.8) (2025-05-23)
+
+### 🐛 Bug Fixes
+
+* move properties to resource folder ([e22fab4](https://github.com/wearefrank/haalcentraal-connector/commit/e22fab41261d81f02ea704415bcb4e4371876361))
+
 ## [1.22.7](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.6...v1.22.7) (2025-05-21)
 
 ### 🐛 Bug Fixes
