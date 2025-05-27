@@ -53,7 +53,7 @@
         </Receiver>
 
         <Pipeline>
-            <LocalFileSystemPipe name="CreateTokenFile" action="create" filename="token.txt"/>
+            <LocalFileSystemPipe name="CreateTokenFile" action="create" overwrite="true" filename="token.txt"/>
             <SenderPipe name="UpdateToken">
                 <IbisLocalSender name="UpdateTokenSender" javaListener="UpdateTokenListener"/>
             </SenderPipe>
