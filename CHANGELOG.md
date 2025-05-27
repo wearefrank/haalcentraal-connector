@@ -1,5 +1,14 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.9](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.8...v1.22.9) (2025-05-27)
+
+### 🐛 Bug Fixes
+
+* Merge pull request [#196](https://github.com/wearefrank/haalcentraal-connector/issues/196) from wearefrank/file-overwrite ([c68413c](https://github.com/wearefrank/haalcentraal-connector/commit/c68413cd543d1c755eb326a93dfcada93f52f716))
+* overwrite file on startup ([4bd1b7f](https://github.com/wearefrank/haalcentraal-connector/commit/4bd1b7f66aac9d6f48fc718d7bb63379f51b13d8))
+* prevent looping ([38deed2](https://github.com/wearefrank/haalcentraal-connector/commit/38deed2caf52c580fc8fde639244cebaf735fe22))
+* property name ([64c38ec](https://github.com/wearefrank/haalcentraal-connector/commit/64c38ec1961bac82399cb0b6996ddadd0766028d))
+
 ## [1.22.8](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.7...v1.22.8) (2025-05-23)
 
 ### 🐛 Bug Fixes
