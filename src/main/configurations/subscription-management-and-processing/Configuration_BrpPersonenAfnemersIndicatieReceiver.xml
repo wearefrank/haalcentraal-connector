@@ -40,7 +40,7 @@
 
             <SenderPipe name="GetBsnByPersoonsSleutel" storeResultInSessionKey="persoonsSleutelBsn">
                 <FixedQuerySender
-                    name="GetSubscribersByBsnQuery"
+                    name="GetBsnByPersoonsSleutel"
                     queryType="SELECT"
                     query="SELECT bsn FROM persoonssleutels WHERE sleutel=?">
                     <Param name="persoonsSleutel" sessionKey="persoonsSleutel" />
