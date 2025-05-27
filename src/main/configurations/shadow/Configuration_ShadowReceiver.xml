@@ -10,9 +10,40 @@
         <PutInSessionPipe name="ExtractIncomingNotificationData" preserveInput="true">
             <Param name="appId" xpathExpression="npsLk01/stuurgegevens/ontvanger/applicatie" />
             <Param name="bsn" xpathExpression="(//*[local-name()='inp.bsn'])[1]/text()" />
+			<Param name="persoonsSleutel" sessionKey="originalMessage" xpathExpression="/npsLk01/object/@*[local-name()='sleutelOntvangend']" />
         </PutInSessionPipe>
 
-        <SenderPipe name="StoreMessage">
+        <IfPipe name="IfBsnPresent" getInputFromSessionKey="bsn" preserveInput="true">
+            <Forward name="then" path="StoreMessage"/>
+            <Forward name="else" path="IfpersoonsSleutelPresent"/>
+        </IfPipe>
+
+        <IfPipe name="IfpersoonsSleutelPresent" getInputFromSessionKey="persoonsSleutel" preserveInput="true">
+            <Forward name="then" path="GetBsnByPersoonsSleutel"/>
+            <Forward name="else" path="Error"/>
+        </IfPipe>
+
+        <SenderPipe name="GetBsnByPersoonsSleutel" storeResultInSessionKey="persoonsSleutelBsn">
+            <FixedQuerySender
+                name="GetSubscribersByBsnQuery"
+                queryType="SELECT"
+                query="SELECT bsn FROM persoonssleutels WHERE sleutel=?">
+                <Param name="persoonsSleutel" sessionKey="persoonsSleutel" />
+            </FixedQuerySender>
+            <Forward name="success" path="PutInBsnFromPersoonsSleutel" />
+            <Forward name="exception" path="Error" />
+        </SenderPipe>
+
+        <PutInSessionPipe name="PutInBsnFromPersoonsSleutel">
+            <Param name="bsn" sessionKey="persoonsSleutelBsn" xpathExpression="/result/rowset/row/field[@name='BSN']" />
+        </PutInSessionPipe>
+
+        <IfPipe name="IfBsnPresent2" getInputFromSessionKey="bsn" preserveInput="true">
+            <Forward name="then" path="StoreMessage"/>
+            <Forward name="else" path="Error"/>
+        </IfPipe>
+
+        <SenderPipe name="StoreMessage" getInputFromSessionKey="originalMessage">
             <FixedQuerySender name="storeMessage" query="INSERT INTO shadowmessages (message, app_id, bsn, is_frank, timestamp) VALUES (?, ?, ?, false, CURRENT_TIMESTAMP)">
                 <Param name="message"  type="BINARY" />
                 <Param name="appId" sessionKey="appId" />

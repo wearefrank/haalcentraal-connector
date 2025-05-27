@@ -31,7 +31,38 @@
 
 			<PutInSessionPipe name="StoreBsn" preserveInput="true">
 				<Param name="bsn" xpathExpression="root/personen/burgerservicenummer"/>
+				<Param name="persoonsSleutel" xpathExpression="/root/persoonsSleutel"/>
 			</PutInSessionPipe>
+
+			<IfPipe name="IfBsnPresent" getInputFromSessionKey="bsn" preserveInput="true">
+				<Forward name="then" path="GetApplicationConfig"/>
+				<Forward name="else" path="IfpersoonsSleutelPresent"/>
+			</IfPipe>
+
+			<IfPipe name="IfpersoonsSleutelPresent" getInputFromSessionKey="persoonsSleutel" preserveInput="true">
+				<Forward name="then" path="GetBsnByPersoonsSleutel"/>
+				<Forward name="else" path="BadRequest"/>
+			</IfPipe>
+
+			<SenderPipe name="GetBsnByPersoonsSleutel" storeResultInSessionKey="persoonsSleutelBsn">
+				<FixedQuerySender
+					name="GetSubscribersByBsnQuery"
+					queryType="SELECT"
+					query="SELECT bsn FROM persoonssleutels WHERE sleutel=?">
+					<Param name="persoonsSleutel" sessionKey="persoonsSleutel" />
+				</FixedQuerySender>
+				<Forward name="success" path="PutInBsnFromPersoonsSleutel" />
+				<Forward name="exception" path="BadRequest" />
+			</SenderPipe>
+
+			<PutInSessionPipe name="PutInBsnFromPersoonsSleutel">
+				<Param name="bsn" sessionKey="persoonsSleutelBsn" xpathExpression="/result/rowset/row/field[@name='BSN']" />
+			</PutInSessionPipe>
+
+			<IfPipe name="IfBsnPresent2" getInputFromSessionKey="bsn" preserveInput="true">
+				<Forward name="then" path="GetApplicationConfig"/>
+				<Forward name="else" path="Error"/>
+			</IfPipe>
 
 			<!-- Read application config file -->
 			<LocalFileSystemPipe name="GetApplicationConfig" action="read"

@@ -53,6 +53,11 @@
                 <Param name="bsn" sessionKey="persoonsSleutelBsn" xpathExpression="/result/rowset/row/field[@name='BSN']" />
 			</PutInSessionPipe>
 
+			<IfPipe name="IfBsnPresent2" getInputFromSessionKey="bsn" preserveInput="true">
+				<Forward name="then" path="GetApplicationConfig"/>
+				<Forward name="else" path="BadRequest"/>
+			</IfPipe>
+
 			<!-- Read application config file -->
 			<LocalFileSystemPipe name="GetApplicationConfig" action="read"
 				storeResultInSessionKey="applicationConfig" getInputFromSessionKey="originalMessage">
