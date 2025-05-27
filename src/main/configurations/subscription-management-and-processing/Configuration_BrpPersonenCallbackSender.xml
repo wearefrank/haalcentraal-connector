@@ -61,7 +61,7 @@
 
 			<IfPipe name="IfBsnPresent2" getInputFromSessionKey="bsn" preserveInput="true">
 				<Forward name="then" path="GetApplicationConfig"/>
-				<Forward name="else" path="Error"/>
+				<Forward name="else" path="BadRequest"/>
 			</IfPipe>
 
 			<!-- Read application config file -->
