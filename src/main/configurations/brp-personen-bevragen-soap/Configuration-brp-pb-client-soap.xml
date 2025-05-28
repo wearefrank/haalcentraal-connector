@@ -90,7 +90,6 @@
 			</PutInSessionPipe>
 
 			<!-- Check if bsn has a key -->
-			<!-- TODO: uitzoeken of dit kan met scalar, en hoe -->
 			<SenderPipe name="GetPersoonssleutel" storeResultInSessionKey="persoonssleutel">
 				<FixedQuerySender
 					name="FetchPersoonssleutel"
