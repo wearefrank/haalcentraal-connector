@@ -78,9 +78,9 @@
 			</IfPipe>
 
 			<!-- Check if a subscriber needs to be either added or removed -->
-			<IfPipe name="CheckVerwerkingssoort" xpathExpression="$originalMessage = 'T'" expressionValue="true"
+			<IfPipe name="CheckVerwerkingssoort" xpathExpression="$verwerkingssoort = 'T'" expressionValue="true"
 				getInputFromSessionKey="originalMessage">
-				<Param name="originalMessage" sessionKey="originalMessage"
+				<Param name="verwerkingssoort" sessionKey="originalMessage"
 					xpathExpression="npsLk01/object/@verwerkingssoort" />
 				<Forward name="then" path="GetSubscribers" />
 				<Forward name="else" path="EndSubscription" />
