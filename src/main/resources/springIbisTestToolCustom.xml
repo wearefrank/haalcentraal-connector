@@ -34,6 +34,16 @@
                     <property name="regex" value="\b(\d{9})\b"/>
                     <property name="sessionKey" value="originalMessage" />
                 </bean>
+                <bean class="nl.nn.testtool.metadata.CheckpointNameMetadataFieldExtractor">
+                    <property name="name" value="Soort"/>
+                    <property name="label" value="Soort"/>
+                    <property name="checkpointName" value="Parameter verwerkingssoort" />
+                </bean>
+                <bean class="nl.nn.testtool.metadata.CheckpointNameMetadataFieldExtractor">
+                    <property name="name" value="Gebruiker"/>
+                    <property name="label" value="Gebruiker"/>
+                    <property name="checkpointName" value="Parameter gebruiker" />
+                </bean>
             </list>
         </property>
     </bean>
@@ -49,6 +59,8 @@
                 <value>Zender</value>
                 <value>Ontvanger</value>
                 <value>BSN</value>
+                <value>Soort</value>
+                <value>Gebruiker</value>
                 <value>correlationId</value>
                 <value>status</value>
                 <value>numberOfCheckpoints</value>
