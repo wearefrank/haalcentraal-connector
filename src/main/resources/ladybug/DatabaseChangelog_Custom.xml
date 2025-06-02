@@ -32,4 +32,11 @@
             <column name="ONTVANGER" type="java.sql.Types.VARCHAR(255)"/>
         </addColumn>
     </changeSet>
+    <changeSet id="addColumnOntvanger" author="Vincent de Gans">
+        <comment>Add column (Verwerkings)soort and gebruiker</comment>
+        <addColumn tableName="LADYBUG">
+            <column name="SOORT" type="java.sql.Types.VARCHAR(255)"/>
+            <column name="GEBRUIKER" type="java.sql.Types.VARCHAR(255)"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
