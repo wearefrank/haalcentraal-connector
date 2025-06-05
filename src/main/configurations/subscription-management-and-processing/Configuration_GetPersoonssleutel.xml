@@ -1,0 +1,47 @@
+<Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+    <Adapter name="GetPersoonssleutel">
+        <Receiver name="GetPersoonssleutel">
+            <JavaListener name="GetPersoonssleutel" />
+        </Receiver>
+        <Pipeline>
+            <Exits>
+                <Exit name="Exit" state="SUCCESS" />
+                <Exit name="Exception" state="ERROR" />
+            </Exits>
+
+            <!-- Check if bsn has a key -->
+			<SenderPipe name="GetPersoonssleutel" storeResultInSessionKey="persoonssleutel">
+				<FixedQuerySender
+					name="FetchPersoonssleutel"
+					queryType="SELECT"
+					query="SELECT sleutel FROM persoonssleutels WHERE bsn=?{burgerservicenummer}"
+					scalar="true">
+					<Param name="burgerservicenummer" sessionKey="originalMessage" />
+				</FixedQuerySender>
+			</SenderPipe>
+
+			<!-- Check if a result was found -->
+			<IfPipe name="HasKey" getInputFromSessionKey="persoonssleutel">
+				<Forward name="then" path="Exit" />
+				<Forward name="else" path="CreateKey" />
+			</IfPipe>
+
+			<!-- Create a new key if no key was found -->
+			<HashPipe name="CreateKey"
+				algorithm="SHA" 
+				storeResultInSessionKey="persoonssleutel" 
+				hashEncoding="Hex" 
+				getInputFromSessionKey="originalMessage"/>
+
+			<!-- Store the created key in the database -->
+			<SenderPipe name="StoreKeyInDatabase" preserveInput="true">
+				<FixedQuerySender
+					name="CreatePersoonssleutel"
+					query="INSERT INTO persoonssleutels (bsn, sleutel) VALUES (?, ?)">
+					<Param name="burgerservicenummer" sessionKey="originalMessage" />
+					<Param name="persoonssleutel" sessionKey="persoonssleutel" />
+				</FixedQuerySender>
+			</SenderPipe>
+        </Pipeline>
+    </Adapter>
+</Module>
