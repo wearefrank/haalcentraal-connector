@@ -89,8 +89,8 @@
 				<Param name="bsn" xpathExpression="(//burgerservicenummer)[1]/text()" />
 			</PutInSessionPipe>
 
-			<SenderPipe name="GetPersoonssleutel" storeResultInSessionKey="persoonssleutel" getInputFromSessionKey="bsn">
-                <FrankSender name="GetPersoonssleutel" target="GetPersoonssleutel" />
+			<SenderPipe name="GetPersoonssleutelSender" storeResultInSessionKey="persoonssleutel" getInputFromSessionKey="bsn">
+                <IbisLocalSender name="GetPersoonssleutelSenderClient"  JavaListener="GetPersoonssleutel" />
 				<Forward name="success" path="MapResponse" />
                 <Forward name="exception" path="Exception" />
             </SenderPipe>

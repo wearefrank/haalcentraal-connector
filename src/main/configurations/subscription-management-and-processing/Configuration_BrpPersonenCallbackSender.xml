@@ -64,7 +64,7 @@
 			</ForEachChildElementPipe>
 
 			<SenderPipe name="GetPersoonssleutel" storeResultInSessionKey="persoonssleutel" getInputFromSessionKey="bsn">
-                <FrankSender name="GetPersoonssleutel" target="GetPersoonssleutel" />
+                <IbisLocalSender name="GetPersoonssleutelSender"  JavaListener="GetPersoonssleutel" />
 				<Forward name="success" path="mappingJsonToStuf" />
                 <Forward name="exception" path="EXCEPTION" />
             </SenderPipe>
