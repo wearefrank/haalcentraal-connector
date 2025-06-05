@@ -62,7 +62,7 @@
             <XsltPipe
                 name="LegalizeSoapActionForPipeName"
                 preserveInput="true"
-                xpathExpression="replace($Action, '/', '_')"
+                xpathExpression="replace(replace($Action, '&quot;', ''), '/', '_')"
                 storeResultInSessionKey="LegalizedSoapAction"
                 >
                 <Param name="Action" sessionKey="SOAPAction"/>
