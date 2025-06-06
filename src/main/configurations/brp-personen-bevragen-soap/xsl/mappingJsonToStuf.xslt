@@ -290,7 +290,12 @@
                                         </test>
                                     </inp.datumInschrijving>
                                     <vbt.aanduidingVerblijfstitel><xsl:copy-of select="verblijfstitel/aanduiding/code"/></vbt.aanduidingVerblijfstitel>
-                                    <ing.datumVerkrijgingVerblijfstitel><xsl:copy-of select="verblijfstitel/datumIngang/datum"/></ing.datumVerkrijgingVerblijfstitel>
+                                    <ing.datumVerkrijgingVerblijfstitel>
+                                        <test>
+                                            <xsl:variable name="date" select="verblijfstitel/datumIngang/datum"/>
+                                            <xsl:value-of select="translate($date, '-', '')" />
+                                        </test>
+                                    </ing.datumVerkrijgingVerblijfstitel>
                                     <ing.datumVerliesVerblijfstitel>
                                         <test>
                                             <xsl:variable name="date" select="verblijfstitel/datumEinde/datum"/>
