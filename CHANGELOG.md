@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.10](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.9...v1.22.10) (2025-06-06)
+
+### 🐛 Bug Fixes
+
+* remove quotes from SoapAction for parsing ([0f7a984](https://github.com/wearefrank/haalcentraal-connector/commit/0f7a984ca9fa2beaee42cc4349576883be4e6411))
+
 ## [1.22.9](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.8...v1.22.9) (2025-05-27)
 
 ### 🐛 Bug Fixes
