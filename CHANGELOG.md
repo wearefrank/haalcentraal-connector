@@ -1,5 +1,17 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.11](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.10...v1.22.11) (2025-06-06)
+
+### 🐛 Bug Fixes
+
+* add property to disable shadow database sender, when callback is enabled ([f7da30d](https://github.com/wearefrank/haalcentraal-connector/commit/f7da30da1aa65f351be87b089a588506347da946))
+* date formatting for datumVerkrijgingVerblijfstitel ([6ad3edc](https://github.com/wearefrank/haalcentraal-connector/commit/6ad3edcfc5e25c8930838f60450998dcd4f99a89))
+* date formatting in mapping ([ec4a74a](https://github.com/wearefrank/haalcentraal-connector/commit/ec4a74af575105a701cdd5a69e44392dca6bcd91))
+
+### 🧑‍💻 Code Refactoring
+
+* Extract persoonssleutel logic to module ([166f871](https://github.com/wearefrank/haalcentraal-connector/commit/166f8711be0094051aa0266eb2016959d249fc74))
+
 ## [1.22.10](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.9...v1.22.10) (2025-06-06)
 
 ### 🐛 Bug Fixes
