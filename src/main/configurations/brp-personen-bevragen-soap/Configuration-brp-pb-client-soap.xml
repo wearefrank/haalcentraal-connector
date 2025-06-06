@@ -89,39 +89,11 @@
 				<Param name="bsn" xpathExpression="(//burgerservicenummer)[1]/text()" />
 			</PutInSessionPipe>
 
-			<!-- Check if bsn has a key -->
-			<!-- TODO: uitzoeken of dit kan met scalar, en hoe -->
-			<SenderPipe name="GetPersoonssleutel" storeResultInSessionKey="persoonssleutel">
-				<FixedQuerySender
-					name="FetchPersoonssleutel"
-					queryType="SELECT"
-					query="SELECT sleutel FROM persoonssleutels WHERE bsn=?{burgerservicenummer}"
-					scalar="true">
-					<Param name="burgerservicenummer" sessionKey="bsn" />
-				</FixedQuerySender>
-			</SenderPipe>
-
-			<!-- Check if a result was found -->
-			<IfPipe name="HasKey" getInputFromSessionKey="persoonssleutel">
-				<Forward name="then" path="MapResponse" />
-				<Forward name="else" path="CreateKey" />
-			</IfPipe>
-
-			<!-- Create a new key if no key was found -->
-			<HashPipe name="CreateKey"
-				algorithm="SHA" 
-				storeResultInSessionKey="persoonssleutel" 
-				hashEncoding="Hex" 
-				getInputFromSessionKey="bsn"/>
-
-			<SenderPipe name="StoreKeyInDatabase">
-				<FixedQuerySender
-					name="CreatePersoonssleutel"
-					query="INSERT INTO persoonssleutels (bsn, sleutel) VALUES (?, ?)">
-					<Param name="burgerservicenummer" sessionKey="bsn" />
-					<Param name="persoonssleutel" sessionKey="persoonssleutel" />
-				</FixedQuerySender>
-			</SenderPipe>
+			<SenderPipe name="GetPersoonssleutelSender" storeResultInSessionKey="persoonssleutel" getInputFromSessionKey="bsn">
+                <IbisLocalSender name="GetPersoonssleutelSenderClient"  JavaListener="GetPersoonssleutel" />
+				<Forward name="success" path="MapResponse" />
+                <Forward name="exception" path="Exception" />
+            </SenderPipe>
 
 			<XsltPipe name="MapResponse"
 				styleSheetName="xsl/mappingJsonToStuf.xslt"
