@@ -89,10 +89,16 @@
 									 elementXPathExpression="root/personen/verblijfplaats/adresseerbaarObjectIdentificatie"
 									 getInputFromSessionKey="inputXml"
 									 storeResultInSessionKey="bagKeys">
-				<FixedQuerySender queryType="SELECT" query="SELECT * FROM bagkeys WHERE identifier=?">
-					<Param name="identifier" xpathExpression="string(//adresseerbaarObjectIdentificatie)"/>
+				<FixedQuerySender queryType="SELECT" query="SELECT * FROM bagkeys WHERE identifier=? and type='TGO'">
+					<Param name="identifier" xpathExpression="adresseerbaarObjectIdentificatie/text()"/>
 				</FixedQuerySender>
 			</ForEachChildElementPipe>
+
+			<SenderPipe name="GetPersoonssleutel" storeResultInSessionKey="persoonssleutel" getInputFromSessionKey="bsn">
+                <IbisLocalSender name="GetPersoonssleutelSender"  JavaListener="GetPersoonssleutel" />
+				<Forward name="success" path="mappingJsonToStuf" />
+                <Forward name="exception" path="EXCEPTION" />
+            </SenderPipe>
 
 			<XsltPipe
 				name="mappingJsonToStuf"
@@ -104,7 +110,7 @@
 				<Param name="administratie" xpathExpression="/root/administratie"/>
 				<Param name="referentienummer" pattern="{uuid}"/>
 				<Param name="mutatiesoort" xpathExpression="/root/mutatiesoort"/>
-				<Param name="sleutelVerzendend" xpathExpression="/root/persoonsSleutel"/>
+				<Param name="sleutelVerzendend" sessionKey="persoonssleutel"/>
 				<Param name="sleutelOntvangend" xpathExpression="/root/afnemersSleutel"/>
 				<Param name="varZenderApplicatie" xpathExpression="/root/applicationId"/>
 				<Param name="bagkeys" sessionKey="bagKeys" type="DOMDOC"/>
@@ -116,7 +122,7 @@
 				<Param name="url" xpathExpression="root/app/url" />
 			</PutInSessionPipe>
 
-			<SenderPipe name="SendMessageToShadowdb">
+			<SenderPipe name="SendMessageToShadowdb" active="!${enableCallback}">
 				<FixedQuerySender name="storeCallbackMessage" query="INSERT INTO shadowmessages (message, app_id, bsn, is_frank, timestamp) VALUES (?, ?, ?, True, CURRENT_TIMESTAMP)">
 					<Param name="message" sessionKey="soapMessage" type="BINARY" />
 					<Param name="appId" xpathExpression="root/app/applicatie" sessionKey="FilteredApplication" />

@@ -1,5 +1,77 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.11](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.10...v1.22.11) (2025-06-06)
+
+### 🐛 Bug Fixes
+
+* add property to disable shadow database sender, when callback is enabled ([f7da30d](https://github.com/wearefrank/haalcentraal-connector/commit/f7da30da1aa65f351be87b089a588506347da946))
+* date formatting for datumVerkrijgingVerblijfstitel ([6ad3edc](https://github.com/wearefrank/haalcentraal-connector/commit/6ad3edcfc5e25c8930838f60450998dcd4f99a89))
+* date formatting in mapping ([ec4a74a](https://github.com/wearefrank/haalcentraal-connector/commit/ec4a74af575105a701cdd5a69e44392dca6bcd91))
+
+### 🧑‍💻 Code Refactoring
+
+* Extract persoonssleutel logic to module ([166f871](https://github.com/wearefrank/haalcentraal-connector/commit/166f8711be0094051aa0266eb2016959d249fc74))
+
+## [1.22.10](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.9...v1.22.10) (2025-06-06)
+
+### 🐛 Bug Fixes
+
+* remove quotes from SoapAction for parsing ([0f7a984](https://github.com/wearefrank/haalcentraal-connector/commit/0f7a984ca9fa2beaee42cc4349576883be4e6411))
+
+## [1.22.9](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.8...v1.22.9) (2025-05-27)
+
+### 🐛 Bug Fixes
+
+* Merge pull request [#196](https://github.com/wearefrank/haalcentraal-connector/issues/196) from wearefrank/file-overwrite ([c68413c](https://github.com/wearefrank/haalcentraal-connector/commit/c68413cd543d1c755eb326a93dfcada93f52f716))
+* overwrite file on startup ([4bd1b7f](https://github.com/wearefrank/haalcentraal-connector/commit/4bd1b7f66aac9d6f48fc718d7bb63379f51b13d8))
+* prevent looping ([38deed2](https://github.com/wearefrank/haalcentraal-connector/commit/38deed2caf52c580fc8fde639244cebaf735fe22))
+* property name ([64c38ec](https://github.com/wearefrank/haalcentraal-connector/commit/64c38ec1961bac82399cb0b6996ddadd0766028d))
+
+## [1.22.8](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.7...v1.22.8) (2025-05-23)
+
+### 🐛 Bug Fixes
+
+* move properties to resource folder ([e22fab4](https://github.com/wearefrank/haalcentraal-connector/commit/e22fab41261d81f02ea704415bcb4e4371876361))
+
+## [1.22.7](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.6...v1.22.7) (2025-05-21)
+
+### 🐛 Bug Fixes
+
+* add administratie field to fo03 mapping ([6f2a892](https://github.com/wearefrank/haalcentraal-connector/commit/6f2a892ae9c2068f7eb18126b5273e6076926ea8))
+* add bsn guard to prevent malformed input processing ([ac39a72](https://github.com/wearefrank/haalcentraal-connector/commit/ac39a7295ef8576ddd4d4bf519b0c47be463bf0b))
+* FO03 message corrections ([58cdd26](https://github.com/wearefrank/haalcentraal-connector/commit/58cdd26a818fce61726b0c5b00fd70c8d9803aaf))
+* generate new referentienummer ([e785955](https://github.com/wearefrank/haalcentraal-connector/commit/e785955316e961e2279f87dae7236fa39db22a47))
+* remove fault wrap ([7336d30](https://github.com/wearefrank/haalcentraal-connector/commit/7336d300476715c05742d3ae4486d4f442f0d205))
+* remove gebruiker from Bv03 response ([972bfc3](https://github.com/wearefrank/haalcentraal-connector/commit/972bfc3132e410bd6daade9f26e829d3ced78dc2))
+* set tijdstipBericht to time of creation ([b92e1ad](https://github.com/wearefrank/haalcentraal-connector/commit/b92e1ad8d2a3f3e5586bd302056e0f1a48d59d19))
+* update timestamp formatting ([6fc96b4](https://github.com/wearefrank/haalcentraal-connector/commit/6fc96b4ede4c305c3c4a214f9a0c82fd8ca3e65e))
+
+## [1.22.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.5...v1.22.6) (2025-05-20)
+
+### 🐛 Bug Fixes
+
+* create token file on startup ([259c308](https://github.com/wearefrank/haalcentraal-connector/commit/259c308c0c35ef9d4707b6a6df2bc2018137cdda))
+* more token stuff ([0390ac5](https://github.com/wearefrank/haalcentraal-connector/commit/0390ac5a63a873f115e3527eb38380d5d10610cc))
+* oauth enabled property ([fa0efa8](https://github.com/wearefrank/haalcentraal-connector/commit/fa0efa8fdf30d81c669db2c31c2e48915c6eac72))
+
+## [1.22.5](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.4...v1.22.5) (2025-05-16)
+
+### 🐛 Bug Fixes
+
+* bag keys finally ([8996b5e](https://github.com/wearefrank/haalcentraal-connector/commit/8996b5e45aded68e89ef09d85c02c8d6823a03b7))
+
+## [1.22.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.3...v1.22.4) (2025-05-15)
+
+### 🐛 Bug Fixes
+
+* use type column to specify object type of bag object when retrieving keys from db ([90f8e3a](https://github.com/wearefrank/haalcentraal-connector/commit/90f8e3a7d4dc9dff75368e3a80bfb7fe0e95de6d))
+
+## [1.22.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.2...v1.22.3) (2025-05-15)
+
+### 🐛 Bug Fixes
+
+* last things for bagkeys ([e5ece15](https://github.com/wearefrank/haalcentraal-connector/commit/e5ece15fb853ff6fa1c1d788bdff301159d63641))
+
 ## [1.22.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.1...v1.22.2) (2025-05-13)
 
 ### 🐛 Bug Fixes

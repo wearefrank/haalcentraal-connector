@@ -13,6 +13,7 @@
     <!ENTITY ProcessBulkImportTask SYSTEM "Configuration_ProcessBulkImportTask.xml">
     <!ENTITY ProcessBulkImportTasksBAG SYSTEM "Configuration_ProcessBulkImportBAG.xml">
     <!ENTITY GetPersoon SYSTEM "Configuration_BrpGetPersoon.xml">
+    <!ENTITY GetPersoonssleutel SYSTEM "Configuration_GetPersoonssleutel.xml">
 ]>
 
 <Configuration name="subscription-management-and-processing">
@@ -23,6 +24,7 @@
 	&BrpPersonenNotificationProcessor;
 	&BrpPersonenNotificationReceiver;
 	&BrpPersonenCallbackSender;
+    &GetPersoonssleutel;
 	&EndpointRouter;
 	&BrpPersonenAfnemersIndicatieReceiver;
     &QueueNotificationTask;

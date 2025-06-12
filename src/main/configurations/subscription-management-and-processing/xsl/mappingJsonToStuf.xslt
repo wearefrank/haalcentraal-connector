@@ -121,11 +121,11 @@
                                             <xsl:choose>
                                                 <xsl:when test="string-length(verblijfplaats/nummeraanduidingIdentificatie)!=0">
                                                     <num.identificatie><xsl:copy-of select="verblijfplaats/nummeraanduidingIdentificatie"/></num.identificatie>
-                                                    <oao.identificatie doNotCreate="true"/>
+                                                    <aoa.identificatie doNotCreate="true"/>
                                                 </xsl:when>
                                                 <xsl:otherwise>
                                                     <num.identificatie doNotCreate="true"/>
-                                                    <oao.identificatie><xsl:value-of select="$bagkeys/results/result/result/rowset/row[field[@name = 'IDENTIFIER'] = current()/verblijfplaats/adresseerbaarObjectIdentificatie]/field[@name = 'KEY']"/></oao.identificatie>
+                                                    <aoa.identificatie><test><xsl:value-of select="$bagkeys/results/result/result/rowset/row[field[@name = 'IDENTIFIER'] = current()/verblijfplaats/adresseerbaarObjectIdentificatie]/field[@name = 'KEY']"/></test></aoa.identificatie>
                                                 </xsl:otherwise>
                                             </xsl:choose>
                                             <!-- <wpl.identificatie>
@@ -150,7 +150,7 @@
                                 <xsl:choose>
                                     <xsl:when test="./verblijfplaats/type/text() = &apos;Adres&apos;">
                                         <verblijfsadres>
-                                            <aoa.identificatie><xsl:value-of select="$bagkeys/results/result/result/rowset/row[field[@name = 'IDENTIFIER'] = current()/verblijfplaats/adresseerbaarObjectIdentificatie]/field[@name = 'KEY']"/></aoa.identificatie>
+                                            <aoa.identificatie><test><xsl:value-of select="$bagkeys/results/result/result/rowset/row[field[@name = 'IDENTIFIER'] = current()/verblijfplaats/adresseerbaarObjectIdentificatie]/field[@name = 'KEY']"/></test></aoa.identificatie>
                                             <!-- <wpl.identificatie>
                                                  <xsl:copy-of select="$external-data/woonplaatsen/woonplaats[name = $woonplaats]/code"/>
                                                  </wpl.identificatie> -->
@@ -201,7 +201,7 @@
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <verblijfsadres>
-                                                    <aoa.identificatie><xsl:value-of select="$bagkeys/results/result/result/rowset/row[field[@name = 'IDENTIFIER'] = current()/verblijfplaats/adresseerbaarObjectIdentificatie]/field[@name = 'KEY']"/></aoa.identificatie>
+                                                    <aoa.identificatie><test><test><xsl:value-of select="$bagkeys/results/result/result/rowset/row[field[@name = 'IDENTIFIER'] = current()/verblijfplaats/adresseerbaarObjectIdentificatie]/field[@name = 'KEY']"/></test></test></aoa.identificatie>
                                                     <wpl.woonplaatsNaam><test><xsl:value-of select="substring-after(substring-after(adressering/adresregel2, ' '), ' ')"/></test></wpl.woonplaatsNaam>
                                                     <aoa.woonplaatsWaarinGelegen>
                                                         <wpl.identificatie></wpl.identificatie>
@@ -294,7 +294,12 @@
                                     </test>
                                 </inp.datumInschrijving>
                                 <vbt.aanduidingVerblijfstitel><xsl:copy-of select="verblijfstitel/aanduiding/code"/></vbt.aanduidingVerblijfstitel>
-                                <ing.datumVerkrijgingVerblijfstitel><xsl:copy-of select="verblijfstitel/datumIngang/datum"/></ing.datumVerkrijgingVerblijfstitel>
+                                <ing.datumVerkrijgingVerblijfstitel>
+                                    <test>
+                                        <xsl:variable name="date" select="verblijfstitel/datumIngang/datum"/>
+                                        <xsl:value-of select="translate($date, '-', '')" />
+                                    </test>
+                                </ing.datumVerkrijgingVerblijfstitel>
                                 <ing.datumVerliesVerblijfstitel>
                                     <test>
                                         <xsl:variable name="date" select="verblijfstitel/datumEinde/datum"/>
@@ -536,11 +541,11 @@
                                 <xsl:choose>
                                     <xsl:when test="string-length(verblijfplaats/nummeraanduidingIdentificatie)!=0">
                                         <num.identificatie><xsl:copy-of select="verblijfplaats/nummeraanduidingIdentificatie"/></num.identificatie>
-                                        <oao.identificatie doNotCreate="true"/>
+                                        <aoa.identificatie doNotCreate="true"/>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <num.identificatie doNotCreate="true"/>
-                                        <oao.identificatie><xsl:value-of select="$bagkeys/results/result/result/rowset/row[field[@name = 'IDENTIFIER'] = current()/verblijfplaats/adresseerbaarObjectIdentificatie]/field[@name = 'KEY']"/></oao.identificatie>
+                                        <aoa.identificatie><test><xsl:value-of select="$bagkeys/results/result/result/rowset/row[field[@name = 'IDENTIFIER'] = current()/verblijfplaats/adresseerbaarObjectIdentificatie]/field[@name = 'KEY']"/></test></aoa.identificatie>
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </adresAanduidingGrp>
@@ -665,11 +670,11 @@
                                 <xsl:choose>
                                     <xsl:when test="string-length(verblijfplaats/nummeraanduidingIdentificatie)!=0">
                                         <num.identificatie><xsl:copy-of select="verblijfplaats/nummeraanduidingIdentificatie"/></num.identificatie>
-                                        <oao.identificatie doNotCreate="true"/>
+                                        <aoa.identificatie doNotCreate="true"/>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <num.identificatie doNotCreate="true"/>
-                                        <oao.identificatie><xsl:value-of select="$bagkeys/results/result/result/rowset/row[field[@name = 'IDENTIFIER'] = current()/verblijfplaats/adresseerbaarObjectIdentificatie]/field[@name = 'KEY']"/></oao.identificatie>
+                                        <aoa.identificatie><test><xsl:value-of select="$bagkeys/results/result/result/rowset/row[field[@name = 'IDENTIFIER'] = current()/verblijfplaats/adresseerbaarObjectIdentificatie]/field[@name = 'KEY']"/></test></aoa.identificatie>
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </adresAanduidingGrp>
@@ -754,11 +759,11 @@
                                 <xsl:choose>
                                     <xsl:when test="string-length(verblijfplaats/nummeraanduidingIdentificatie)!=0">
                                         <num.identificatie><xsl:copy-of select="verblijfplaats/nummeraanduidingIdentificatie"/></num.identificatie>
-                                        <oao.identificatie doNotCreate="true"/>
+                                        <aoa.identificatie doNotCreate="true"/>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <num.identificatie doNotCreate="true"/>
-                                        <oao.identificatie><xsl:value-of select="$bagkeys/results/result/result/rowset/row[field[@name = 'IDENTIFIER'] = current()/verblijfplaats/adresseerbaarObjectIdentificatie]/field[@name = 'KEY']"/></oao.identificatie>
+                                        <aoa.identificatie><test><xsl:value-of select="$bagkeys/results/result/result/rowset/row[field[@name = 'IDENTIFIER'] = current()/verblijfplaats/adresseerbaarObjectIdentificatie]/field[@name = 'KEY']"/></test></aoa.identificatie>
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </adresAanduidingGrp>

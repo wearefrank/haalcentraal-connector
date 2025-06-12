@@ -9,6 +9,7 @@
             <Exits>
                 <Exit name="EXIT" state="SUCCESS"/>
                 <Exit name="EXCEPTION" state="ERROR"/>
+                <Exit name="200" state="SUCCESS" code="200"/>
                 <Exit name="202" state="SUCCESS" code="202"/>
                 <Exit name="400" state="ERROR" code="400"/>
                 <Exit name="500" state="ERROR" code="500"/>
@@ -61,7 +62,7 @@
             <XsltPipe
                 name="LegalizeSoapActionForPipeName"
                 preserveInput="true"
-                xpathExpression="replace($Action, '/', '_')"
+                xpathExpression="replace(replace($Action, '&quot;', ''), '/', '_')"
                 storeResultInSessionKey="LegalizedSoapAction"
                 >
                 <Param name="Action" sessionKey="SOAPAction"/>
@@ -182,7 +183,8 @@
                 <Param name="errorReason" sessionKey="errorReason"/>
                 <Param name="errorDetailText" sessionKey="errorDetailText"/>
                 <Param name="errorDetailXML" sessionKey="errorDetailXML" type="DOMDOC"/>
-                <Forward name="success" path="400"/>
+                <Param name="referentienummer" pattern="{uuid}" />
+                <Forward name="success" path="200"/>
             </SoapWrapperPipe>
         </Pipeline>
     </Adapter>

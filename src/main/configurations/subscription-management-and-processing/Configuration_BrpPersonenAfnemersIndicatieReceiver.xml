@@ -195,6 +195,7 @@
 				soapBodyStyleSheet="xsl/CreateBv03Response.xslt">
 				<Param name="Stuurgegevens" xpathExpression="/*/stuurgegevens"
 					defaultValue="&lt;stuurgegevens/&gt;" type="DOMDOC" />
+				<Param name="referentienummer" pattern="{uuid}"/>
 				<Forward name="success" path="EXIT" />
 			</SoapWrapperPipe>
 		</Pipeline>
