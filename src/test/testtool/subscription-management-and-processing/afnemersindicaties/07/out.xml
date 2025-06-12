@@ -9,10 +9,9 @@
       <StUF:ontvanger>
          <StUF:organisatie>1883</StUF:organisatie>
          <StUF:applicatie>LBA</StUF:applicatie>
-         <StUF:gebruiker/>
       </StUF:ontvanger>
-      <StUF:referentienummer>66960c945cc6</StUF:referentienummer>
-      <StUF:tijdstipBericht>2024071608005200</StUF:tijdstipBericht>
+      <StUF:referentienummer>53fe0e79-b13a-4260-b49b-1af98c6dea35</StUF:referentienummer>
+      <StUF:tijdstipBericht>20250612102754</StUF:tijdstipBericht>
       <StUF:crossRefnummer>66960c945cc6</StUF:crossRefnummer>
    </StUF:stuurgegevens>
 </StUF:Bv03Bericht>
