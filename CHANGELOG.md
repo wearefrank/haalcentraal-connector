@@ -1,5 +1,22 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.12](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.11...v1.22.12) (2025-06-12)
+
+### 🐛 Bug Fixes
+
+* error to badrequest ([b79d5d1](https://github.com/wearefrank/haalcentraal-connector/commit/b79d5d1607a971842190345b8cc9809c36542c0a))
+* jsonnet filters bsn ([19db1e7](https://github.com/wearefrank/haalcentraal-connector/commit/19db1e70c15aa95c6dafda850a9326f9804da613))
+* sleutel to bsn for shadow compare ([eaaee99](https://github.com/wearefrank/haalcentraal-connector/commit/eaaee99078921a2e3e27edafef80ed561f04344d))
+* test ([f0b8bb1](https://github.com/wearefrank/haalcentraal-connector/commit/f0b8bb15fd6dfeed0b7d9abf3de4e1cebb83f2fd))
+
+### 🧑‍💻 Code Refactoring
+
+* better filtering ([cb57fb4](https://github.com/wearefrank/haalcentraal-connector/commit/cb57fb4e24963d0558ee6b98c0e033b1311cd779))
+
+### ✅ Tests
+
+* larva for persoonssleutels ([2ecfe0f](https://github.com/wearefrank/haalcentraal-connector/commit/2ecfe0f65291fdaebb392da7f5c0018010099dfe))
+
 ## [1.22.11](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.10...v1.22.11) (2025-06-06)
 
 ### 🐛 Bug Fixes
