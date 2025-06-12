@@ -30,12 +30,37 @@
 
 			<IfPipe name="IfBsnPresent" getInputFromSessionKey="bsn" preserveInput="true">
 				<Forward name="then" path="GetApplicationConfig"/>
+				<Forward name="else" path="IfpersoonsSleutelPresent"/>
+			</IfPipe>
+
+			<IfPipe name="IfpersoonsSleutelPresent" getInputFromSessionKey="persoonsSleutel" preserveInput="true">
+				<Forward name="then" path="GetBsnByPersoonsSleutel"/>
+				<Forward name="else" path="BadRequest"/>
+			</IfPipe>
+
+            <SenderPipe name="GetBsnByPersoonsSleutel" storeResultInSessionKey="persoonsSleutelBsn">
+                <FixedQuerySender
+                    name="GetBsnByPersoonsSleutel"
+                    queryType="SELECT"
+                    query="SELECT bsn FROM persoonssleutels WHERE sleutel=?">
+                    <Param name="persoonsSleutel" sessionKey="persoonsSleutel" />
+                </FixedQuerySender>
+                <Forward name="success" path="PutInBsnFromPersoonsSleutel" />
+                <Forward name="exception" path="BadRequest" />
+            </SenderPipe>
+
+			<PutInSessionPipe name="PutInBsnFromPersoonsSleutel">
+                <Param name="bsn" sessionKey="persoonsSleutelBsn" xpathExpression="/result/rowset/row/field[@name='BSN']" />
+			</PutInSessionPipe>
+
+			<IfPipe name="IfBsnPresent2" getInputFromSessionKey="bsn" preserveInput="true">
+				<Forward name="then" path="GetApplicationConfig"/>
 				<Forward name="else" path="BadRequest"/>
 			</IfPipe>
 
 			<!-- Read application config file -->
 			<LocalFileSystemPipe name="GetApplicationConfig" action="read"
-				storeResultInSessionKey="applicationConfig">
+				storeResultInSessionKey="applicationConfig" getInputFromSessionKey="originalMessage">
 				<Param name="filename" value="${applicationConfigPath}" />
 			</LocalFileSystemPipe>
 
@@ -68,8 +93,7 @@
                     queryType="SELECT"
 					query="SELECT 1 FROM subscripties WHERE bsn=?{burgerservicenummer} AND eind_datum IS NULL"
 					includeFieldDefinition="false">
-					<Param name="burgerservicenummer" sessionKey="originalMessage"
-						xpathExpression="npsLk01/object/inp.bsn" type="STRING"/>
+					<Param name="burgerservicenummer" sessionKey="bsn" type="STRING"/>
             	</FixedQuerySender> 
                 <Forward name="success" path="CheckSubscriptionCount" />
                 <Forward name="exception" path="BadRequest" />
@@ -127,11 +151,19 @@
 				<Forward name="exception" path="Exception" />
 			</SenderPipe>
 
+
+			<!-- Get application information from config -->
+			<DataSonnetPipe name="FilterBSN" getInputFromSessionKey="currentPersonData"
+				storeResultInSessionKey="filteredPersoon"
+				styleSheetName="jsonnet/FilterBsnFromPersoon.jsonnet">
+				<Param name="bsn" sessionKey="originalMessage" xpathExpression="/npsLk01/object/inp.bsn" defaultValue="-1" />
+			</DataSonnetPipe>
+
 			<SenderPipe name="CallQueueNotificationTask">
 				<IbisLocalSender 
 					name="CallQueueNotificationsListener"
 					javaListener="QueueNotificationTask">
-					<Param name="currentPersonData" sessionKey="currentPersonData" />
+					<Param name="currentPersonData" sessionKey="filteredPersoon" />
 					<Param name="ApplicationId" sessionKey="applicationId" />
 					<Param name="mutatiesoort" value="T" />
 					<Param name="gebruiker" sessionKey="gebruiker" />
@@ -147,8 +179,7 @@
 				<FixedQuerySender
 					name="EndSubscriptionSender"
 					query="UPDATE subscripties SET eind_datum = CURRENT_TIMESTAMP WHERE bsn=?{burgerservicenummer} AND app_id=?{appId} AND eind_datum IS NULL">
-					<Param name="burgerservicenummer" sessionKey="originalMessage"
-						xpathExpression="npsLk01/object/inp.bsn" />
+					<Param name="burgerservicenummer" sessionKey="bsn"/>
 					<Param name="appId" sessionKey="applicationId" />
 				</FixedQuerySender>
 			</SenderPipe>
