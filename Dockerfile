@@ -5,6 +5,7 @@ FROM frankframework/frankframework:${FF_VERSION} AS ff-base
 # Copy dependencies
 COPY --chown=tomcat lib/server/ /usr/local/tomcat/lib/
 COPY --chown=tomcat lib/webapp/ /usr/local/tomcat/webapps/ROOT/WEB-INF/lib/
+COPY --chown=tomcat src/main/java/ladybug-frontend-0.1.0-SNAPSHOT.jar /usr/local/tomcat/webapps/ROOT/WEB-INF/lib/ladybug-frontend-0.1.0-20250407.114528.jar
 
 ### Uncomment this section if the Frank! contains custom classes.
 ## section: custom-code(start)
