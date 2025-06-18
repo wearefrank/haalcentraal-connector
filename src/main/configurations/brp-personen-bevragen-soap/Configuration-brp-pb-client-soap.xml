@@ -90,7 +90,7 @@
 			</PutInSessionPipe>
 
 			<SenderPipe name="GetPersoonssleutelSender" storeResultInSessionKey="persoonssleutel" getInputFromSessionKey="bsn">
-                <IbisLocalSender name="GetPersoonssleutelSenderClient"  JavaListener="GetPersoonssleutel" />
+                <IbisLocalSender name="GetPersoonssleutelSenderClient" javaListener="GetPersoonssleutel" />
 				<Forward name="success" path="MapResponse" />
                 <Forward name="exception" path="Exception" />
             </SenderPipe>
