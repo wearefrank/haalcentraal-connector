@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.14](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.13...v1.22.14) (2025-06-24)
+
+### 🐛 Bug Fixes
+
+* add envelope around callback message ([71e0cf1](https://github.com/wearefrank/haalcentraal-connector/commit/71e0cf1f32e6acca8644337ee01de919eac52eb5))
+
 ## [1.22.13](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.12...v1.22.13) (2025-06-18)
 
 ### 🐛 Bug Fixes
