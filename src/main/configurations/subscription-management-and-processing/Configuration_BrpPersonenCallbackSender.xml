@@ -118,6 +118,10 @@
 				<Forward name="exception" path="EXCEPTION" />
 			</XsltPipe>
 
+			<SoapWrapperPipe name="WrapResponse" getInputFromSessionKey="soapMessage" storeResultInSessionKey="soapMessage">
+				<Forward name="success" path="EXIT"/>
+			</SoapWrapperPipe>
+
 			<PutInSessionPipe name="ExtractUrl" getInputFromSessionKey="FilteredApplication">
 				<Param name="url" xpathExpression="root/app/url" />
 			</PutInSessionPipe>
