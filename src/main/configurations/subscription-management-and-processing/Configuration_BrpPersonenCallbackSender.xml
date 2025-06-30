@@ -100,9 +100,9 @@
                 <Forward name="exception" path="EXCEPTION" />
             </SenderPipe>
 
-			<XsltPipe
+			<SoapWrapperPipe
 				name="mappingJsonToStuf"
-				styleSheetName="xsl/mappingJsonToStuf.xslt"
+				soapBodyStyleSheet="xsl/mappingJsonToStuf.xslt"
 				getInputFromSessionKey="inputXml"
 				storeResultInSessionKey="soapMessage">
 				<Param name="organisatie" sessionKey="FilteredApplication" xpathExpression="/root/app/organisatie"/>
@@ -116,10 +116,6 @@
 				<Param name="bagkeys" sessionKey="bagKeys" type="DOMDOC"/>
 				<!-- <Forward name="success" path="callback" /> -->
 				<Forward name="exception" path="EXCEPTION" />
-			</XsltPipe>
-
-			<SoapWrapperPipe name="WrapResponse" getInputFromSessionKey="soapMessage" storeResultInSessionKey="soapMessage">
-				<Forward name="success" path="EXIT"/>
 			</SoapWrapperPipe>
 
 			<PutInSessionPipe name="ExtractUrl" getInputFromSessionKey="FilteredApplication">
