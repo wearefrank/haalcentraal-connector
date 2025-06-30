@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.15](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.14...v1.22.15) (2025-06-30)
+
+### 🐛 Bug Fixes
+
+* Merge pull request [#217](https://github.com/wearefrank/haalcentraal-connector/issues/217) from wearefrank/fix-forward ([9a15fe2](https://github.com/wearefrank/haalcentraal-connector/commit/9a15fe24a518e6a4f5eb741bea203bc205ed8cb3))
+
 ## [1.22.14](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.13...v1.22.14) (2025-06-24)
 
 ### 🐛 Bug Fixes
