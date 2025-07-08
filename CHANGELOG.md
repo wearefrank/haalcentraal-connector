@@ -1,5 +1,12 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.16](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.15...v1.22.16) (2025-07-08)
+
+### 🐛 Bug Fixes
+
+* Merge pull request [#222](https://github.com/wearefrank/haalcentraal-connector/issues/222) from wearefrank/oauth-properties ([2616195](https://github.com/wearefrank/haalcentraal-connector/commit/2616195be90a5f082b9cff8629de668aa7ef7c64))
+* typo ([58f739d](https://github.com/wearefrank/haalcentraal-connector/commit/58f739d30fa0736013b42df778097422f0de1040))
+
 ## [1.22.15](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.14...v1.22.15) (2025-06-30)
 
 ### 🐛 Bug Fixes
