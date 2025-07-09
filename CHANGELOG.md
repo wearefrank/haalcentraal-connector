@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.17](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.16...v1.22.17) (2025-07-09)
+
+### 🐛 Bug Fixes
+
+* add scope to httpsender ([f4d90c3](https://github.com/wearefrank/haalcentraal-connector/commit/f4d90c3ed9e872aba1a0066d65afed1e5220fc90))
+
 ## [1.22.16](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.15...v1.22.16) (2025-07-08)
 
 ### 🐛 Bug Fixes
