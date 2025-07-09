@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.18](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.17...v1.22.18) (2025-07-09)
+
+### 🐛 Bug Fixes
+
+* add soap headers to callback ([bc9ccda](https://github.com/wearefrank/haalcentraal-connector/commit/bc9ccdafed59c897b13a782756eb5d9166051a8a))
+
 ## [1.22.17](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.16...v1.22.17) (2025-07-09)
 
 ### 🐛 Bug Fixes
