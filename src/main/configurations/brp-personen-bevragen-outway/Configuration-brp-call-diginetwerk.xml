@@ -28,6 +28,7 @@
                     keystoreType="PKCS12"
                     tokenEndpoint="${oauth.token.url}"
                     clientAlias="oauth.credentials"
+                    scope="${oauth.scope}"
                     oauthAuthenticationMethod="CLIENT_CREDENTIALS_BASIC_AUTH">
                     <Param name="url" value="${endpoint.brp.diginet}" />
                     <Param name="Accept" sessionKey="headerAccept" />
