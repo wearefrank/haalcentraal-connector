@@ -135,14 +135,15 @@
 			<SenderPipe
 				name="callback"
 				getInputFromSessionKey="soapMessage" active="${enableCallback}">
-				<HttpSender
-					methodType="POST"
-					contentType="application/xml"
+				<WebServiceSender
+					soap="false"
+					soapAction="http://www.egem.nl/StUF/sector/bg/0310/npsLk01"
+					contentType="text/xml"
 					keystore="${haalcentraal_cert_path}"
 					keystorePassword="${haalcentraal_cert_pass}"
 					keystoreAlias="haalcentraal"
 					keystoreType="PKCS12">
-				</HttpSender>
+				</WebServiceSender>
 				<Param name="url" sessionKey="url" />
 				<Forward name="success" path="echoPipe" />
 				<Forward name="exception" path="EXCEPTION" />
