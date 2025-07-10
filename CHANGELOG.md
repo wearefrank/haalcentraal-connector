@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.21](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.20...v1.22.21) (2025-07-10)
+
+### 🐛 Bug Fixes
+
+* remove reference to removed forward ([d7fda30](https://github.com/wearefrank/haalcentraal-connector/commit/d7fda30736ab916b95eca840c43a7d5eac33d9a4))
+
 ## [1.22.20](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.19...v1.22.20) (2025-07-10)
 
 ### 🐛 Bug Fixes
