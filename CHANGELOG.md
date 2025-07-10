@@ -1,5 +1,16 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.19](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.18...v1.22.19) (2025-07-10)
+
+### 🐛 Bug Fixes
+
+* Merge pull request [#227](https://github.com/wearefrank/haalcentraal-connector/issues/227) from wearefrank/revert-oauth-properties ([1b88321](https://github.com/wearefrank/haalcentraal-connector/commit/1b883213ff0ddc2190872ad997ef47809c7591c4))
+
+### ⏩ Reverts
+
+* Revert "enable oauth through properties" ([ce6151f](https://github.com/wearefrank/haalcentraal-connector/commit/ce6151ffdcba95dafaafd1d111d2222c1f92ffd2))
+* Revert "fix: add scope to httpsender" ([f852ab0](https://github.com/wearefrank/haalcentraal-connector/commit/f852ab094b9ca23ea086e72b33e2e1ea0690b2ad))
+
 ## [1.22.18](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.17...v1.22.18) (2025-07-09)
 
 ### 🐛 Bug Fixes
