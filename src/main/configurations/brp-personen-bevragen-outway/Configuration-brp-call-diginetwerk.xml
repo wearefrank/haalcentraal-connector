@@ -25,12 +25,11 @@
                     parametersToSkipWhenEmpty="Accept,Content-Type" contentType="application/json"
                     keystore="${haalcentraal_cert_path}"
                     keystorePassword="${haalcentraal_cert_pass}" keystoreAlias="haalcentraal"
-                    keystoreType="PKCS12"
-                    tokenEndpoint="${oauth.token.url}"
-                    clientAlias="oauth.credentials"
-                    scope="${oauth.scope}"
-                    oauthAuthenticationMethod="CLIENT_CREDENTIALS_BASIC_AUTH">
+                    keystoreType="PKCS12">
                     <Param name="url" value="${endpoint.brp.diginet}" />
+                    <Param name="Authorization" pattern="Bearer {token}">
+                        <Param name="token" sessionKey="token" />
+                    </Param>
                     <Param name="Accept" sessionKey="headerAccept" />
                     <Param name="Content-Type" sessionKey="headerContent-Type" />
                 </HttpSender>
