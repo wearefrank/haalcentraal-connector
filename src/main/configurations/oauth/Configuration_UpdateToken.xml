@@ -1,6 +1,6 @@
 <Module>
-    <SendMessageJob name="UpdateTokenOnStartup" interval="0" javaListener="UpdateTokenOnStartupListener" />
-    <SendMessageJob name="UpdateTokenEvery9Minutes" cronExpression="0 0/9 * ? * * *" javaListener="UpdateTokenListener" />
+    <!-- <SendMessageJob name="UpdateTokenOnStartup" interval="0" javaListener="UpdateTokenOnStartupListener" /> -->
+    <!-- <SendMessageJob name="UpdateTokenEvery9Minutes" cronExpression="0 0/9 * ? * * *" javaListener="UpdateTokenListener" /> -->
     <Adapter name="UpdateToken">
         <Receiver name="UpdateTokenReceiver">
             <JavaListener name="UpdateTokenListener" returnedSessionKeys="token" />

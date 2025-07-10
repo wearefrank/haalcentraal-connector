@@ -22,21 +22,21 @@
 				<Exit name="ServiceUnavailable" state="ERROR" code="503" />
 			</Exits>
 
-			<SenderPipe name="GetToken" preserveInput="true" active="${brp.oauth.enabled}">
+			<!-- <SenderPipe name="GetToken" preserveInput="true" active="${brp.oauth.enabled}">
 				<IbisLocalSender name="GetTokenSender" javaListener="GetToken"
 					returnedSessionKeys="token" />
 				<Forward name="exception" path="Exception" />
 			</SenderPipe>
 
 			<PutInSessionPipe name="PutLoopPreventionFalseInSession" sessionKey="loopPrevention"
-				value="false" active="${brp.oauth.enabled}" />
+				value="false" active="${brp.oauth.enabled}" /> -->
 
 			<!-- Call diginetwerk sender with retry mechanism -->
 			<SenderPipe name="PostBRPPersonenBevragenDiginetwerk" active="${brp.oauth.enabled}"
 				getInputFromSessionKey="originalMessage" storeResultInSessionKey="diginetwerkResult">
 				<IbisLocalSender name="RequestFromDiginetwerkSender"
 					javaListener="CallBrpListener">
-					<Param name="token" sessionKey="token" />
+					<!-- <Param name="token" sessionKey="token" /> -->
 				</IbisLocalSender>
 				<Forward name="success" path="checkTheResponse" />
 				<Forward name="exception" path="Exception" />
@@ -51,7 +51,7 @@
 				<Forward name="503" path="ServiceUnavailable" />
 			</SenderPipe>
 
-			<IfPipe name="IfLoopPreventionPipe" getInputFromSessionKey="loopPrevention"
+			<!-- <IfPipe name="IfLoopPreventionPipe" getInputFromSessionKey="loopPrevention"
 				preserveInput="true" expressionValue="true" active="${brp.oauth.enabled}">
 				<Forward name="then" path="Exit" />
 				<Forward name="else" path="PutLoopPreventionTrueInSession" />
@@ -73,7 +73,7 @@
 			<EchoPipe name="ReturnDiginetwerkResult" getInputFromSessionKey="diginetwerkResult"
 				active="${brp.oauth.enabled}">
 				<Forward name="success" path="Exception" />
-			</EchoPipe>
+			</EchoPipe> -->
 
 			<!-- Call proefomgeving sender -->
 			<SenderPipe name="BrpCallProefomgevingSender" active="!${brp.oauth.enabled}"

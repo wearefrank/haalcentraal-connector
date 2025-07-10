@@ -21,6 +21,8 @@ COPY src/main/java /tmp/java
 RUN mkdir /tmp/classes && \
     javac \
     /tmp/java/nl/nn/adapterframework/DeploymentSpecificsBeanPostProcessor.java \
+    /tmp/java/org/frankframework/http/authentication/AbstractClientCredentials.java \
+    /tmp/java/org/frankframework/http/AbstractHttpSession.java \
     -classpath "/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/*:/usr/local/tomcat/lib/*" \
     -verbose -d /tmp/classes
 
