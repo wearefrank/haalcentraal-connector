@@ -1,5 +1,13 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.20](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.19...v1.22.20) (2025-07-10)
+
+### 🐛 Bug Fixes
+
+* add scope to sender ([3f5b347](https://github.com/wearefrank/haalcentraal-connector/commit/3f5b347b65ec02a48d2c5cc2e0188723cd57709b))
+* custom resourceserver attribute ([fde5555](https://github.com/wearefrank/haalcentraal-connector/commit/fde555517d4d154a42a2b550c8ca7169725cc1da))
+* move oauth logic to diginetwerk sender ([84ae1c3](https://github.com/wearefrank/haalcentraal-connector/commit/84ae1c3e2742854fc6b5a374160c3b51dafc1f8b))
+
 ## [1.22.19](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.18...v1.22.19) (2025-07-10)
 
 ### 🐛 Bug Fixes
