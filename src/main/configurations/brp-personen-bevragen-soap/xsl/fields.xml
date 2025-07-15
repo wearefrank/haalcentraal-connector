@@ -47,7 +47,7 @@ receive from Haalcentraal-->
         <fields>europeesKiesrecht</fields>
         <fields>partners.naam.geslachtsnaam</fields>
         <fields>partners.naam.voorvoegsel</fields>
-        <fields>partners.ontbindingHuwelijkPartnerschap"</fields>
+        <fields>partners.ontbindingHuwelijkPartnerschap</fields>
         <fields>partners.soortVerbintenis</fields>
     </DEC_ZKN>
     <LBA>
@@ -109,7 +109,7 @@ receive from Haalcentraal-->
         <fields>verblijfplaats</fields>
         <fields>verblijfplaatsBinnenland</fields>
         <fields>adresseringBinnenland</fields>
-        <fields>partners.ontbindingHuwelijkPartnerschap"</fields>
+        <fields>partners.ontbindingHuwelijkPartnerschap</fields>
         <fields>partners.soortVerbintenis</fields>
         <fields>datumEersteInschrijvingGBA</fields>
         <fields>immigratie</fields>
