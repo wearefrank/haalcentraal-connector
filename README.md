@@ -15,12 +15,16 @@ Build configuration from template:
 ### Configurations
 
 #### **brp-personen-bevragen-outway**
+This configuration is used to query persons. Requests are routed through this configuration to abstract the underlying SOAP or REST API calls.
 
 #### **brp-personen-bevragen-rest**
+This configuration handles REST API requests for querying persons. It forwards the requests to the brp-personen-bevragen-outway configuration, which in turn communicates with the BRP API.
 
 #### **brp-personen-bevragen-soap**
+This configuration handles SOAP API requests for querying persons. It forwards the requests to the brp-personen-bevragen-outway configuration, which in turn communicates with the BRP API.
 
 #### **oauth**
+This configuration handles the retrieval of OAuth tokens for authentication with the BRP API.
 
 #### **subscription-management-and-processing**
 
