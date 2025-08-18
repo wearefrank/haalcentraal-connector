@@ -54,14 +54,51 @@ This configuration handles the retrieval of OAuth tokens for authentication with
 
 Database structure for tasks:
 
-| **Column Name**     | **Data Type** | **Default Value**          | **Description**                                                                 |
-|---------------------|---------------|----------------------------|---------------------------------------------------------------------------------|
-| `task_id`           | `SERIAL`      | N/A                        | Auto-incrementing identifier for the task (Primary Key part 1).                 |
-| `created_at`        | `TIMESTAMP`   | `CURRENT_TIMESTAMP`        | The timestamp when the task was created.                                         |
-| `scheduled_start`   | `TIMESTAMP`   | `CURRENT_TIMESTAMP`        | The timestamp when the task is scheduled to start (default 1 hour after insert). |
-| `status`            | `CHAR(1)`     | `'P'`                      | The current status of the task. ('P' = Pending, other values as needed).        |
-| `is_retry`          | `BOOLEAN`     | `FALSE`                    | Indicates whether the task is a retry (Boolean value).                          |
-| `message`           | `TEXT`        | N/A                        | The message associated with the task, storing the data in JSON or plain text.    |
+| **Column Name**     | **Data Type**   | **Default Value**   | **Description**                                                                 |
+|---------------------|-----------------|---------------------|---------------------------------------------------------------------------------|
+| `task_id`           | `SERIAL`        | N/A                 | Auto-incrementing identifier for the task (Primary Key).                        |
+| `created_at`        | `TIMESTAMP`     | `CURRENT_TIMESTAMP` | The timestamp when the task was created.                                        |
+| `scheduled_start`   | `TIMESTAMP`     | `CURRENT_TIMESTAMP` | The timestamp when the task is scheduled to start.                              |
+| `status`            | `CHAR(1)`       | `'P'`               | Task status (`P` = Pending, others as needed).                                  |
+| `attempt`           | `SMALLINT`      | `1`                 | Number of attempts for processing this task.                                    |
+| `bsn`               | `TEXT`          | N/A                 | Burgerservicenummer associated with the task.                                   |
+| `correlation_id`    | `UUID`          | N/A                 | Unique correlation identifier for tracking the task.                            |
+
+Database structure for subscriptions:
+
+| **Column Name**       | **Data Type**    | **Default Value** | **Description**                                                                |
+|-----------------------|------------------|-------------------|--------------------------------------------------------------------------------|
+| `id`                  | `INT` (AUTO INC.)| N/A               | Auto-incrementing identifier for the subscription (Primary Key).               |
+| `bsn`                 | `TEXT`           | N/A               | Burgerservicenummer (citizen service number). Stored as text.                  |
+| `app_id`              | `VARCHAR(255)`   | N/A               | Foreign key reference to `applicaties.id` (NOT NULL).                          |
+| `begin_datum`         | `DATETIME`       | N/A               | Start date of the subscription.                                                |
+| `eind_datum`          | `DATETIME`       | N/A               | End date of the subscription.                                                  |
+| `persoons_sleutel`    | `VARCHAR(255)`   | N/A               | Key linking subscription to a person’s record.                                 |
+| `afnemers_sleutel`    | `VARCHAR(255)`   | N/A               | Key linking subscription to the receiving party.                               |
+
+Database structure for person information:
+
+| **Column Name**      | **Data Type**     | **Default Value** | **Description**                                                                 |
+|----------------------|-------------------|-------------------|---------------------------------------------------------------------------------|
+| `id`                 | `INT` (AUTO INC.) | N/A               | Auto-incrementing identifier for the record (Primary Key).                       |
+| `bsn`                | `TEXT`            | N/A               | Burgerservicenummer (citizen service number). Stored as text to preserve leading zeros. |
+| `data`               | `CHAR(44)`        | N/A               | Encoded data (Base64 format, optimized for storage efficiency).                  |
+| `registratie_datum`  | `DATETIME`        | N/A               | Date and time when the record was registered.                                   |
+
+Database structure for person keys:
+
+| **Column Name** | **Data Type**   | **Default Value** | **Description**                                   |
+|-----------------|-----------------|-------------------|---------------------------------------------------|
+| `bsn`           | `VARCHAR(9)`    | N/A               | Burgerservicenummer (Primary Key).                |
+| `sleutel`       | `VARCHAR(40)`   | N/A               | Key associated with the person.                   |
+
+Database structure for BAG keys:
+
+| **Column Name** | **Data Type**   | **Default Value** | **Description**                                      |
+|-----------------|-----------------|-------------------|------------------------------------------------------|
+| `type`          | `VARCHAR(10)`   | N/A               | Type of BAG key (Primary Key part 1).                |
+| `identifier`    | `VARCHAR(32)`   | N/A               | Unique identifier (Primary Key part 2).              |
+| `key`           | `TEXT`          | N/A               | Cryptographic key or value associated with the entry.|
 
 - **Configuration_BrpPersonenNotificationReceiver.xml**  
     API endpoint that places the notification in the message store, receives identifier(s) that specify which person(s) information changed.
