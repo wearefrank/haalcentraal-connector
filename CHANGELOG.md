@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.23](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.22...v1.22.23) (2025-09-19)
+
+### 🐛 Bug Fixes
+
+* update callback mutatiesoort from 'W' to 'T' ([fab1cfd](https://github.com/wearefrank/haalcentraal-connector/commit/fab1cfd5f98b9d4d9241ff447a43c64e94bd76af))
+
 ## [1.22.22](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.21...v1.22.22) (2025-07-15)
 
 ### 🐛 Bug Fixes
