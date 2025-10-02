@@ -330,7 +330,20 @@
                                     </inp.emigratieLand>
                                     <aanduidingBijzonderNederlanderschap><xsl:copy-of select="nationaliteit/aanduidingBijzonderNederlanderschap"/></aanduidingBijzonderNederlanderschap>
                                     <ing.aanduidingEuropeesKiesrecht><xsl:copy-of select="europeesKiesrecht/aanduiding/code"/></ing.aanduidingEuropeesKiesrecht>
-                                    <ing.indicatieGezagMinderjarige><xsl:copy-of select="gezagsverhouding/indicatieGezagMinderjarige"/></ing.indicatieGezagMinderjarige>
+                                    <ing.indicatieGezagMinderjarige>
+                                        <test>
+                                            <xsl:choose>
+                                                <xsl:when test="//gezag/type/text() = 'GezamenlijkOuderlijkGezag'">12</xsl:when>
+                                                <xsl:when test="//gezag/type/text() = 'GezamenlijkGezag'">
+                                                    <xsl:value-of select="concat(//ouders[burgerservicenummer = //gezag/ouder[1]/burgerservicenummer]/ouderAanduiding, 'D')"/>
+                                                </xsl:when>
+                                                <xsl:when test="//gezag/type/text() = 'EenhoofdigOuderlijkGezag'">
+                                                    <xsl:value-of select="//ouders[burgerservicenummer = //gezag/ouder[1]/burgerservicenummer]/ouderAanduiding"/>
+                                                </xsl:when>
+                                                <xsl:when test="//gezag/type/text() = 'Voogdij'">D</xsl:when>
+                                            </xsl:choose>
+                                        </test>
+                                    </ing.indicatieGezagMinderjarige>
                                     <ing.indicatieCurateleRegister><xsl:copy-of select="gezagsverhouding/indicatieCurateleRegister"/></ing.indicatieCurateleRegister>
                                     <inp.datumOpschortingBijhouding>
                                         <test>
