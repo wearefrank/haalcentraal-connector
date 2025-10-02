@@ -330,6 +330,7 @@
                                     </inp.emigratieLand>
                                     <aanduidingBijzonderNederlanderschap><xsl:copy-of select="nationaliteit/aanduidingBijzonderNederlanderschap"/></aanduidingBijzonderNederlanderschap>
                                     <ing.aanduidingEuropeesKiesrecht><xsl:copy-of select="europeesKiesrecht/aanduiding/code"/></ing.aanduidingEuropeesKiesrecht>
+                                    <!-- Check if this value is returned correctly, or if a child <code> element is expected instead -->
                                     <ing.indicatieGezagMinderjarige>
                                         <test>
                                             <xsl:choose>
@@ -514,7 +515,7 @@
                     <xsl:element name="BG:{$mappedElement/local-name()}">
                         <xsl:choose>
                             <xsl:when test="$mappedElement/*/text() != ''">
-                                <xsl:value-of select="$mappedElement/*" />
+                                <xsl:value-of select="normalize-space($mappedElement/*)" />
                             </xsl:when>
                             <xsl:when test="$mappedElement/*/text() = ''">
                                 <xsl:attribute
