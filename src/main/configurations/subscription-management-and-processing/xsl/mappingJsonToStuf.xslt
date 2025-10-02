@@ -489,7 +489,7 @@
                     <xsl:element name="BG:{$mappedElement/local-name()}">
                         <xsl:choose>
                             <xsl:when test="$mappedElement/*/text() != ''">
-                                <xsl:value-of select="normalize-space($mappedElement/*" />
+                                <xsl:value-of select="normalize-space($mappedElement/*)" />
                             </xsl:when>
                             <xsl:when test="$mappedElement/*/text() = ''">
                                 <xsl:attribute name="xsi:nil">true</xsl:attribute>
