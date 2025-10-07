@@ -297,7 +297,7 @@
                                                             </test>
                                                         </aoa.postcode>
                                                         <aoa.huisnummer><test><xsl:value-of select="replace(adressering/adresregel1, '\D', '')"/></test></aoa.huisnummer>
-                                                        <aoa.huisletter><test><xsl:value-of select="substring-after(normalize-space(substring-after(adressering/adresregel1, ' ')), ' ')"/></test></aoa.huisletter>
+                                                        <aoa.huisletter><test><xsl:value-of select="replace(substring-after(normalize-space(substring-after(adressering/adresregel1, ' ')), ' '), '[^A-Za-z]', '')"/></test></aoa.huisletter>
                                                         <aoa.huisnummertoevoeging/>
                                                         <inp.locatiebeschrijving/>
                                                         <begindatumVerblijf/>
