@@ -197,9 +197,13 @@
                                                             <xsl:copy-of select="verblijfplaats/verblijfadres/huisnummer"/>
                                                         </xsl:when>
                                                         <xsl:when test="string(adressering/adresregel1)">
-                                                            <dummy>
-                                                                <xsl:value-of select="replace(adressering/adresregel1, '\D', '')"/>
-                                                            </dummy>
+                                                            <xsl:analyze-string select="normalize-space(adressering/adresregel1)" regex=".*\s+(\d+)\s*([a-zA-Z0-9-]+)?">
+                                                                <xsl:matching-substring>
+                                                                    <dummy>
+                                                                        <xsl:value-of select="regex-group(1)"/>
+                                                                    </dummy>
+                                                                </xsl:matching-substring>
+                                                            </xsl:analyze-string>
                                                         </xsl:when>
                                                         <xsl:otherwise/>
                                                     </xsl:choose>
@@ -211,9 +215,13 @@
                                                             <xsl:copy-of select="verblijfplaats/verblijfadres/huisletter"/>
                                                         </xsl:when>
                                                         <xsl:when test="string(adressering/adresregel1)">
-                                                            <dummy>
-                                                                <xsl:value-of select="replace(substring-after(normalize-space(substring-after(adressering/adresregel1, ' ')), ' '), '[^A-Za-z]', '')"/>
-                                                            </dummy>
+                                                            <xsl:analyze-string select="normalize-space(adressering/adresregel1)" regex=".*\s+\d+\s+([a-zA-Z0-9-]+)">
+                                                                <xsl:matching-substring>
+                                                                    <dummy>
+                                                                        <xsl:value-of select="regex-group(1)"/>
+                                                                    </dummy>
+                                                                </xsl:matching-substring>
+                                                            </xsl:analyze-string>
                                                         </xsl:when>
                                                         <xsl:otherwise/>
                                                     </xsl:choose>
@@ -309,7 +317,15 @@
                                                             </test>
                                                         </aoa.postcode>
                                                         <aoa.huisnummer><test><xsl:value-of select="replace(adressering/adresregel1, '\D', '')"/></test></aoa.huisnummer>
-                                                        <aoa.huisletter><test><xsl:value-of select="replace(substring-after(normalize-space(substring-after(adressering/adresregel1, ' ')), ' '), '[^A-Za-z]', '')"/></test></aoa.huisletter>
+                                                        <aoa.huisletter>
+                                                            <xsl:analyze-string select="normalize-space(adressering/adresregel1)" regex=".*\s+\d+\s+([a-zA-Z0-9-]+)">
+                                                                <xsl:matching-substring>
+                                                                    <dummy>
+                                                                        <xsl:value-of select="regex-group(1)"/>
+                                                                    </dummy>
+                                                                </xsl:matching-substring>
+                                                            </xsl:analyze-string>
+                                                        </aoa.huisletter>
                                                         <aoa.huisnummertoevoeging/>
                                                         <inp.locatiebeschrijving/>
                                                         <begindatumVerblijf/>

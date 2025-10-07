@@ -45,7 +45,7 @@
 						<BG:gor.openbareRuimteNaam>Nieuwe Parklaan</BG:gor.openbareRuimteNaam>
 						<BG:aoa.postcode>1234 AB</BG:aoa.postcode>
 						<BG:aoa.huisnummer>21</BG:aoa.huisnummer>
-						<BG:aoa.huisletter>NieuweParklaan</BG:aoa.huisletter>
+						<BG:aoa.huisletter StUF:noValue="geenWaarde" xsi:nil="true"/>
 						<BG:aoa.huisnummertoevoeging StUF:noValue="geenWaarde" xsi:nil="true"/>
 					</BG:adresAanduidingGrp>
 				</BG:gerelateerde>
