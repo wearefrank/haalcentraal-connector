@@ -1,0 +1,74 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><BG:npsLa01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:a="http://www.egem.nl/StUF/StUF0301" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<BG:stuurgegevens>
+		<StUF:berichtcode>La01</StUF:berichtcode>
+		<StUF:zender>
+			<StUF:organisatie>test1</StUF:organisatie>
+			<StUF:applicatie>test123</StUF:applicatie>
+		</StUF:zender>
+		<StUF:ontvanger>
+			<StUF:organisatie>1883</StUF:organisatie>
+			<StUF:applicatie>TOP</StUF:applicatie>
+			<StUF:gebruiker>Gebruiker</StUF:gebruiker>
+		</StUF:ontvanger>
+		<StUF:crossRefnummer>949d839e-d3c7-4bb2-a3a8-44ffe33c51c1</StUF:crossRefnummer>
+		<StUF:entiteittype>NPS</StUF:entiteittype>
+	</BG:stuurgegevens>
+	<BG:parameters>
+		<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+		<StUF:aantalVoorkomens>1</StUF:aantalVoorkomens>
+	</BG:parameters>
+	<BG:antwoord>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="2b32eb6dd8506eb06b8f588b7a255a5be07570f9">
+			<BG:inp.bsn>999993628</BG:inp.bsn>
+			<BG:geslachtsnaam>Huijgen</BG:geslachtsnaam>
+			<BG:voorvoegselGeslachtsnaam StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:voorletters>G.</BG:voorletters>
+			<BG:voornamen>Geertje</BG:voornamen>
+			<BG:aanduidingNaamgebruik>V</BG:aanduidingNaamgebruik>
+			<BG:geslachtsnaamPartner xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:voorvoegselGeslachtsnaamPartner StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:aanhefAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:voornamenAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+			<BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
+			<BG:geboortedatum>19010613</BG:geboortedatum>
+			<BG:inp.geboorteplaats StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.geboorteLand StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:overlijdensdatum StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.verblijftIn StUF:entiteittype="NPSTGO">
+				<BG:gerelateerde StUF:entiteittype="TGO">
+					<BG:adresAanduidingGrp>
+						<BG:wpl.woonplaatsNaam>'s-Gravenhage</BG:wpl.woonplaatsNaam>
+						<BG:aoa.woonplaatsWaarinGelegen>
+							<BG:wpl.woonplaatsNaam StUF:noValue="geenWaarde" xsi:nil="true"/>
+						</BG:aoa.woonplaatsWaarinGelegen>
+						<BG:gor.openbareRuimteNaam>Nieuwe Parklaan</BG:gor.openbareRuimteNaam>
+						<BG:aoa.postcode>1234 AB</BG:aoa.postcode>
+						<BG:aoa.huisnummer>21</BG:aoa.huisnummer>
+						<BG:aoa.huisletter StUF:noValue="geenWaarde" xsi:nil="true"/>
+						<BG:aoa.huisnummertoevoeging StUF:noValue="geenWaarde" xsi:nil="true"/>
+					</BG:adresAanduidingGrp>
+				</BG:gerelateerde>
+			</BG:inp.verblijftIn>
+			<BG:verblijfsadres>
+				<BG:wpl.woonplaatsNaam>'s-Gravenhage</BG:wpl.woonplaatsNaam>
+				<BG:aoa.woonplaatsWaarinGelegen>
+					<BG:wpl.woonplaatsNaam xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+				</BG:aoa.woonplaatsWaarinGelegen>
+				<BG:gor.openbareRuimteNaam>Nieuwe Parklaan</BG:gor.openbareRuimteNaam>
+				<BG:aoa.postcode>1234 AB</BG:aoa.postcode>
+				<BG:aoa.huisnummer>21</BG:aoa.huisnummer>
+				<BG:aoa.huisletter StUF:noValue="geenWaarde" xsi:nil="true"/>
+				<BG:aoa.huisnummertoevoeging StUF:noValue="geenWaarde" xsi:nil="true"/>
+				<BG:inp.locatiebeschrijving StUF:noValue="geenWaarde" xsi:nil="true"/>
+			</BG:verblijfsadres>
+			<BG:sub.correspondentieAdres/>
+			<BG:sub.telefoonnummer StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:sub.emailadres StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.burgerlijkeStaat>1</BG:inp.burgerlijkeStaat>
+			<BG:inp.gemeenteVanInschrijving StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:ing.indicatieGezagMinderjarige StUF:noValue="geenWaarde" xsi:nil="true"/>
+			<BG:inp.indicatieGeheim>0</BG:inp.indicatieGeheim>
+		</BG:object>
+	</BG:antwoord>
+</BG:npsLa01></soapenv:Body></soapenv:Envelope>

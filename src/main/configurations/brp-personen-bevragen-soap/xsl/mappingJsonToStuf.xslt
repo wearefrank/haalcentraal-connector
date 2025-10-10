@@ -116,31 +116,134 @@
                                         <gerelateerde StUF:entiteittype="TGO">
                                             <adresAanduidingGrp>
                                                 <xsl:choose>
-                                                    <xsl:when test="string-length(verblijfplaats/nummeraanduidingIdentificatie)!=0">
-                                                        <num.identificatie><xsl:copy-of select="verblijfplaats/nummeraanduidingIdentificatie"/></num.identificatie>
+                                                    <xsl:when test="string-length(verblijfplaats/nummeraanduidingIdentificatie) != 0">
+                                                        <num.identificatie>
+                                                            <xsl:copy-of select="verblijfplaats/nummeraanduidingIdentificatie"/>
+                                                        </num.identificatie>
                                                         <oao.identificatie doNotCreate="true"/>
                                                     </xsl:when>
+
+                                                    <xsl:when test="string-length(verblijfplaats/adresseerbaarObjectIdentificatie) != 0">
+                                                        <num.identificatie doNotCreate="true"/>
+                                                        <oao.identificatie>
+                                                            <xsl:copy-of select="verblijfplaats/adresseerbaarObjectIdentificatie"/>
+                                                        </oao.identificatie>
+                                                    </xsl:when>
+
                                                     <xsl:otherwise>
                                                         <num.identificatie doNotCreate="true"/>
-                                                        <oao.identificatie><xsl:copy-of select="verblijfplaats/adresseerbaarObjectIdentificatie"/></oao.identificatie>
+                                                        <oao.identificatie doNotCreate="true"/>
                                                     </xsl:otherwise>
                                                 </xsl:choose>
-                                                <!-- <wpl.identificatie>
-                                                     <xsl:copy-of select="$external-data/woonplaatsen/woonplaats[name = $woonplaats]/code" />
-                                                     </wpl.identificatie> -->
-                                                <wpl.woonplaatsNaam><xsl:copy-of select="verblijfplaats/verblijfadres/woonplaats"/></wpl.woonplaatsNaam>
+
+                                                <wpl.woonplaatsNaam>
+                                                    <xsl:choose>
+                                                        <xsl:when test="string(verblijfplaats/verblijfadres/woonplaats)">
+                                                            <xsl:copy-of select="verblijfplaats/verblijfadres/woonplaats"/>
+                                                        </xsl:when>
+                                                        <xsl:when test="string(adressering/adresregel2)">
+                                                            <dummy>
+                                                                <xsl:value-of select="substring-after(substring-after(adressering/adresregel2, ' '), ' ')"/>
+                                                            </dummy>
+                                                        </xsl:when>
+                                                        <xsl:otherwise/>
+                                                    </xsl:choose>
+                                                </wpl.woonplaatsNaam>
+
                                                 <aoa.woonplaatsWaarinGelegen>
-                                                    <wpl.woonplaatsNaam><xsl:copy-of select="verblijfplaats/verblijfadres/woonplaats"/></wpl.woonplaatsNaam>
+                                                    <wpl.woonplaatsNaam>
+                                                        <xsl:copy-of select="verblijfplaats/verblijfadres/woonplaats"/>
+                                                    </wpl.woonplaatsNaam>
                                                 </aoa.woonplaatsWaarinGelegen>
-                                                <gor.identificatie></gor.identificatie>
-                                                <opr.identificatie></opr.identificatie>
-                                                <gor.openbareRuimteNaam><xsl:copy-of select="verblijfplaats/verblijfadres/officieleStraatnaam"/></gor.openbareRuimteNaam>
-                                                <gor.straatnaam><xsl:copy-of select="verblijfplaats/verblijfadres/korteStraatnaam"/></gor.straatnaam>
-                                                <aoa.postcode><xsl:copy-of select="verblijfplaats/verblijfadres/postcode"/></aoa.postcode>
-                                                <aoa.huisnummer><xsl:copy-of select="verblijfplaats/verblijfadres/huisnummer"/></aoa.huisnummer>
-                                                <aoa.huisletter><xsl:copy-of select="verblijfplaats/verblijfadres/huisletter"/></aoa.huisletter>
-                                                <aoa.huisnummertoevoeging><xsl:copy-of select="verblijfplaats/verblijfadres/huisnummertoevoeging"/></aoa.huisnummertoevoeging>
-                                                <ogo.locatieAanduiding><xsl:copy-of select="verblijfplaats/verblijfadres/locatiebeschrijving"/></ogo.locatieAanduiding>
+
+                                                <gor.identificatie/>
+                                                <opr.identificatie/>
+
+                                                <gor.openbareRuimteNaam>
+                                                    <xsl:choose>
+                                                        <xsl:when test="string(verblijfplaats/verblijfadres/officieleStraatnaam)">
+                                                            <xsl:copy-of select="verblijfplaats/verblijfadres/officieleStraatnaam"/>
+                                                        </xsl:when>
+                                                        <xsl:when test="string(adressering/adresregel1)">
+                                                            <dummy>
+                                                                <xsl:value-of select="replace(adressering/adresregel1, '\s*\d.*', '')"/>
+                                                            </dummy>
+                                                        </xsl:when>
+                                                        <xsl:otherwise/>
+                                                    </xsl:choose>
+                                                </gor.openbareRuimteNaam>
+
+                                                <gor.straatnaam>
+                                                    <xsl:copy-of select="verblijfplaats/verblijfadres/korteStraatnaam"/>
+                                                </gor.straatnaam>
+
+                                                <aoa.postcode>
+                                                    <xsl:choose>
+                                                        <xsl:when test="string(verblijfplaats/verblijfadres/postcode)">
+                                                            <xsl:copy-of select="verblijfplaats/verblijfadres/postcode"/>
+                                                        </xsl:when>
+                                                        <xsl:when test="string(adressering/adresregel2)">
+                                                            <dummy>
+                                                                <xsl:value-of select="replace(adressering/adresregel2, '(\d{4}\s*[A-Za-z]{2}).*', '$1')"/>
+                                                            </dummy>
+                                                        </xsl:when>
+                                                        <xsl:otherwise/>
+                                                    </xsl:choose>
+                                                </aoa.postcode>
+
+                                                <aoa.huisnummer>
+                                                    <xsl:choose>
+                                                        <xsl:when test="string(verblijfplaats/verblijfadres/huisnummer)">
+                                                            <xsl:copy-of select="verblijfplaats/verblijfadres/huisnummer"/>
+                                                        </xsl:when>
+                                                        <xsl:when test="string(adressering/adresregel1)">
+                                                            <xsl:analyze-string select="normalize-space(adressering/adresregel1)" regex=".*\s+(\d+)\s*([a-zA-Z0-9-]+)?">
+                                                                <xsl:matching-substring>
+                                                                    <dummy>
+                                                                        <xsl:value-of select="regex-group(1)"/>
+                                                                    </dummy>
+                                                                </xsl:matching-substring>
+                                                            </xsl:analyze-string>
+                                                        </xsl:when>
+                                                        <xsl:otherwise/>
+                                                    </xsl:choose>
+                                                </aoa.huisnummer>
+
+                                                <aoa.huisletter>
+                                                    <xsl:choose>
+                                                        <xsl:when test="string(verblijfplaats/verblijfadres/huisletter)">
+                                                            <xsl:copy-of select="verblijfplaats/verblijfadres/huisletter"/>
+                                                        </xsl:when>
+                                                        <xsl:when test="string(adressering/adresregel1)">
+                                                            <xsl:analyze-string select="normalize-space(adressering/adresregel1)" regex=".*\s+\d+\s+([a-zA-Z0-9-]+)">
+                                                                <xsl:matching-substring>
+                                                                    <dummy>
+                                                                        <xsl:value-of select="regex-group(1)"/>
+                                                                    </dummy>
+                                                                </xsl:matching-substring>
+                                                            </xsl:analyze-string>
+                                                        </xsl:when>
+                                                        <xsl:otherwise/>
+                                                    </xsl:choose>
+                                                </aoa.huisletter>
+
+                                                <aoa.huisnummertoevoeging>
+                                                    <xsl:copy-of select="verblijfplaats/verblijfadres/huisnummertoevoeging"/>
+                                                </aoa.huisnummertoevoeging>
+
+                                                <ogo.locatieAanduiding>
+                                                    <xsl:choose>
+                                                        <xsl:when test="string(verblijfplaats/verblijfadres/locatiebeschrijving)">
+                                                            <xsl:copy-of select="verblijfplaats/verblijfadres/locatiebeschrijving"/>
+                                                        </xsl:when>
+                                                        <xsl:when test="string(adressering/adresregel3)">
+                                                            <dummy>
+                                                                <xsl:copy-of select="adressering/adresregel3"/>
+                                                            </dummy>
+                                                        </xsl:when>
+                                                        <xsl:otherwise/>
+                                                    </xsl:choose>
+                                                </ogo.locatieAanduiding>
                                             </adresAanduidingGrp>
                                         </gerelateerde>
                                     </inp.verblijftIn>
@@ -214,7 +317,15 @@
                                                             </test>
                                                         </aoa.postcode>
                                                         <aoa.huisnummer><test><xsl:value-of select="replace(adressering/adresregel1, '\D', '')"/></test></aoa.huisnummer>
-                                                        <aoa.huisletter><test><xsl:value-of select="substring-after(normalize-space(substring-after(adressering/adresregel1, ' ')), ' ')"/></test></aoa.huisletter>
+                                                        <aoa.huisletter>
+                                                            <xsl:analyze-string select="normalize-space(adressering/adresregel1)" regex=".*\s+\d+\s+([a-zA-Z0-9-]+)">
+                                                                <xsl:matching-substring>
+                                                                    <dummy>
+                                                                        <xsl:value-of select="regex-group(1)"/>
+                                                                    </dummy>
+                                                                </xsl:matching-substring>
+                                                            </xsl:analyze-string>
+                                                        </aoa.huisletter>
                                                         <aoa.huisnummertoevoeging/>
                                                         <inp.locatiebeschrijving/>
                                                         <begindatumVerblijf/>
@@ -330,7 +441,21 @@
                                     </inp.emigratieLand>
                                     <aanduidingBijzonderNederlanderschap><xsl:copy-of select="nationaliteit/aanduidingBijzonderNederlanderschap"/></aanduidingBijzonderNederlanderschap>
                                     <ing.aanduidingEuropeesKiesrecht><xsl:copy-of select="europeesKiesrecht/aanduiding/code"/></ing.aanduidingEuropeesKiesrecht>
-                                    <ing.indicatieGezagMinderjarige><xsl:copy-of select="gezagsverhouding/indicatieGezagMinderjarige"/></ing.indicatieGezagMinderjarige>
+                                    <!-- Check if this value is returned correctly, or if a child <code> element is expected instead -->
+                                    <ing.indicatieGezagMinderjarige>
+                                        <test>
+                                            <xsl:choose>
+                                                <xsl:when test="//gezag/type/text() = 'GezamenlijkOuderlijkGezag'">12</xsl:when>
+                                                <xsl:when test="//gezag/type/text() = 'GezamenlijkGezag'">
+                                                    <xsl:value-of select="concat(//ouders[burgerservicenummer = //gezag/ouder[1]/burgerservicenummer]/ouderAanduiding, 'D')"/>
+                                                </xsl:when>
+                                                <xsl:when test="//gezag/type/text() = 'EenhoofdigOuderlijkGezag'">
+                                                    <xsl:value-of select="//ouders[burgerservicenummer = //gezag/ouder[1]/burgerservicenummer]/ouderAanduiding"/>
+                                                </xsl:when>
+                                                <xsl:when test="//gezag/type/text() = 'Voogdij'">D</xsl:when>
+                                            </xsl:choose>
+                                        </test>
+                                    </ing.indicatieGezagMinderjarige>
                                     <ing.indicatieCurateleRegister><xsl:copy-of select="gezagsverhouding/indicatieCurateleRegister"/></ing.indicatieCurateleRegister>
                                     <inp.datumOpschortingBijhouding>
                                         <test>
@@ -501,7 +626,7 @@
                     <xsl:element name="BG:{$mappedElement/local-name()}">
                         <xsl:choose>
                             <xsl:when test="$mappedElement/*/text() != ''">
-                                <xsl:value-of select="$mappedElement/*" />
+                                <xsl:value-of select="normalize-space($mappedElement/*)" />
                             </xsl:when>
                             <xsl:when test="$mappedElement/*/text() = ''">
                                 <xsl:attribute
