@@ -29,11 +29,7 @@ services:
       servlet.WebContentServlet.securityRoles: IbisAdmin
 
       # ClassLoader Configurations
-      configurations.brp-personen-bevragen-client.classLoaderType: ScanningDirectoryClassLoader
-      configurations.brp-personen-bevragen-server.classLoaderType: ScanningDirectoryClassLoader
-      configurations.subscription-management-and-processing.classLoaderType: ScanningDirectoryClassLoader
-      configurations.shadow.classLoaderType: ScanningDirectoryClassLoader
-      configurations.oauth.classLoaderType: ScanningDirectoryClassLoader
+      configurations.directory.classLoaderType: ScanningDirectoryClassLoader
 
 volumes:
   frank-logs:
