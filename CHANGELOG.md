@@ -1,5 +1,13 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.22.24](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.23...v1.22.24) (2025-10-10)
+
+### 🐛 Bug Fixes
+
+* add dummy tags for post-processing ([747253b](https://github.com/wearefrank/haalcentraal-connector/commit/747253bf250277e05be5fb2503699742ecb51dcd))
+* double fields ([a7e80fb](https://github.com/wearefrank/haalcentraal-connector/commit/a7e80fbc131a3e75fb9224e7825ea680d248786a))
+* only allow letters in huisletter ([b46803c](https://github.com/wearefrank/haalcentraal-connector/commit/b46803c215f98628f55bcb0de1a0fff554ed60a2))
+
 ## [1.22.23](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.22...v1.22.23) (2025-09-19)
 
 ### 🐛 Bug Fixes
