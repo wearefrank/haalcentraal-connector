@@ -1,5 +1,15 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.23.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.23.0...v1.23.1) (2025-10-13)
+
+### 🐛 Bug Fixes
+
+* Merge pull request [#263](https://github.com/wearefrank/haalcentraal-connector/issues/263) from wearefrank/bump-f!f-version-to-9.3.0 ([92385a8](https://github.com/wearefrank/haalcentraal-connector/commit/92385a8c7c279c964e1c4b4650e72107a26fa20c))
+
+### 🤖 Build System
+
+* **dependencies:** bump f!f version to 9.3.0 ([747f351](https://github.com/wearefrank/haalcentraal-connector/commit/747f351c2e4c3c12b2f1a5abe3ac115b76ffd12b))
+
 ## [1.23.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.24...v1.23.0) (2025-10-10)
 
 ### 🍕 Features
