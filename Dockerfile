@@ -1,4 +1,4 @@
-ARG FF_VERSION=9.3.0-20251004.042332
+ARG FF_VERSION=9.3.0
 
 FROM frankframework/frankframework:${FF_VERSION} AS ff-base
 
