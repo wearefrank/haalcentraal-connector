@@ -3,11 +3,12 @@ services:
     build:
       context: .
       args:
-        FF_VERSION: ${FF_VERSION:-9.2.0-20250508.042328}
+        FF_VERSION: ${FF_VERSION:-9.2.0}
     image: wearefrank/haalcentraal-connector:${VERSION:-latest}
     ports:
       - "${PORT:-8080}:8080"
     environment:
+      dtap.stage: STUB
       application.server.type.custom: ${TRANSACTION_MANAGER:-NARAYANA}
       credentialFactory.class: nl.nn.credentialprovider.PropertyFileCredentialFactory
       credentialFactory.map.properties: /opt/frank/secrets/credentials.properties
