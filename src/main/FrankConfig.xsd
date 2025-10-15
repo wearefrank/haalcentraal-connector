@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Public FrankDoc XSD, should be used within an IDE to validate a configuration. -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="9.3.0">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="9.4.0-20251015.042338">
   <xs:element name="Configuration">
     <xs:annotation>
       <xs:documentation>Container of Adapters that belong together.
@@ -16420,11 +16420,6 @@
         <xs:documentation>whether or not to write results to the logfile (testtool4&amp;lt;instance.name&amp;gt;) Default: false</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="writeToSystemOut" type="frankBoolean">
-      <xs:annotation>
-        <xs:documentation>whether or not to write results to system out Default: false</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
     <xs:attribute name="checkRoles" type="frankBoolean">
       <xs:annotation>
         <xs:documentation>Set this to &lt;code&gt;true&lt;/code&gt; if you wish to enforce the
@@ -16455,11 +16450,6 @@
   </xs:complexType>
   <xs:attributeGroup name="LarvaPipeDeclaredAttributeGroup">
     <xs:attribute name="writeToLog" type="frankBoolean">
-      <xs:annotation>
-        <xs:documentation>Default: false</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="writeToSystemOut" type="frankBoolean">
       <xs:annotation>
         <xs:documentation>Default: false</xs:documentation>
       </xs:annotation>
