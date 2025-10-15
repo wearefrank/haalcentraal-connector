@@ -6,7 +6,7 @@
 
 		<Receiver name="BrpPersonenQuerySender">
 			<WebServiceListener name="BrpPersonenQuerySenderListener" 
-                address="${haalcentraal_connector.soap.endpoint}" 
+                address="${haalcentraal_connector.soap.endpoint}/querysender" 
 				soapAction="http://www.egem.nl/StUF/sector/bg/0310/npsLv01" />
 		</Receiver>
 
