@@ -334,7 +334,21 @@
                                 </inp.emigratieLand>
                                 <aanduidingBijzonderNederlanderschap><xsl:copy-of select="nationaliteit/aanduidingBijzonderNederlanderschap"/></aanduidingBijzonderNederlanderschap>
                                 <ing.aanduidingEuropeesKiesrecht><xsl:copy-of select="europeesKiesrecht/aanduiding/code"/></ing.aanduidingEuropeesKiesrecht>
-                                <ing.indicatieGezagMinderjarige><xsl:copy-of select="gezagsverhouding/indicatieGezagMinderjarige"/></ing.indicatieGezagMinderjarige>
+                                <!-- Check if this value is returned correctly, or if a child <code> element is expected instead -->
+                                <ing.indicatieGezagMinderjarige>
+                                    <test>
+                                        <xsl:choose>
+                                            <xsl:when test="//gezag/type/text() = 'GezamenlijkOuderlijkGezag'">12</xsl:when>
+                                            <xsl:when test="//gezag/type/text() = 'GezamenlijkGezag'">
+                                                <xsl:value-of select="concat(//ouders[burgerservicenummer = //gezag/ouder[1]/burgerservicenummer]/ouderAanduiding, 'D')"/>
+                                            </xsl:when>
+                                            <xsl:when test="//gezag/type/text() = 'EenhoofdigOuderlijkGezag'">
+                                                <xsl:value-of select="//ouders[burgerservicenummer = //gezag/ouder[1]/burgerservicenummer]/ouderAanduiding"/>
+                                            </xsl:when>
+                                            <xsl:when test="//gezag/type/text() = 'Voogdij'">D</xsl:when>
+                                        </xsl:choose>
+                                    </test>
+                                </ing.indicatieGezagMinderjarige>
                                 <ing.indicatieCurateleRegister><xsl:copy-of select="gezagsverhouding/indicatieCurateleRegister"/></ing.indicatieCurateleRegister>
                                 <inp.datumOpschortingBijhouding>
                                     <test>
@@ -475,8 +489,7 @@
                     <xsl:element name="BG:{$mappedElement/local-name()}">
                         <xsl:choose>
                             <xsl:when test="$mappedElement/*/text() != ''">
-                                <xsl:value-of select="$mappedElement/*" />
-                                
+                                <xsl:value-of select="normalize-space($mappedElement/*)" />
                             </xsl:when>
                             <xsl:when test="$mappedElement/*/text() = ''">
                                 <xsl:attribute name="xsi:nil">true</xsl:attribute>

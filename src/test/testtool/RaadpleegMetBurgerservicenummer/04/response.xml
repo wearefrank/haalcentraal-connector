@@ -35,7 +35,7 @@
 						<BG:gor.straatnaam>Burg Waldeckstraat</BG:gor.straatnaam>
 						<BG:aoa.postcode>2552TS</BG:aoa.postcode>
 						<BG:aoa.huisnummer>1</BG:aoa.huisnummer>
-						<BG:aoa.huisletter StUF:noValue="geenWaarde" xsi:nil="true"/>
+						<BG:aoa.huisletter>BIS</BG:aoa.huisletter>
 						<BG:aoa.huisnummertoevoeging>BIS</BG:aoa.huisnummertoevoeging>
 					</BG:adresAanduidingGrp>
 				</BG:gerelateerde>

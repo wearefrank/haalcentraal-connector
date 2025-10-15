@@ -1,5 +1,39 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.23.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.23.0...v1.23.1) (2025-10-13)
+
+### 🐛 Bug Fixes
+
+* Merge pull request [#263](https://github.com/wearefrank/haalcentraal-connector/issues/263) from wearefrank/bump-f!f-version-to-9.3.0 ([92385a8](https://github.com/wearefrank/haalcentraal-connector/commit/92385a8c7c279c964e1c4b4650e72107a26fa20c))
+
+### 🤖 Build System
+
+* **dependencies:** bump f!f version to 9.3.0 ([747f351](https://github.com/wearefrank/haalcentraal-connector/commit/747f351c2e4c3c12b2f1a5abe3ac115b76ffd12b))
+
+## [1.23.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.24...v1.23.0) (2025-10-10)
+
+### 🍕 Features
+
+* Merge pull request [#260](https://github.com/wearefrank/haalcentraal-connector/issues/260) from wearefrank/bump-f!f-version-to-9.3.0-20251004.042332 ([1504c23](https://github.com/wearefrank/haalcentraal-connector/commit/1504c23ea991527cd0f36ee0b6b572b9a9f84d2f))
+
+### 🤖 Build System
+
+* **dependencies:** bump f!f version to 9.3.0-20251004.042332 ([6c173be](https://github.com/wearefrank/haalcentraal-connector/commit/6c173be97a316b01695dbd85d6c773dc27f1d4cf))
+
+## [1.22.24](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.23...v1.22.24) (2025-10-10)
+
+### 🐛 Bug Fixes
+
+* add dummy tags for post-processing ([747253b](https://github.com/wearefrank/haalcentraal-connector/commit/747253bf250277e05be5fb2503699742ecb51dcd))
+* double fields ([a7e80fb](https://github.com/wearefrank/haalcentraal-connector/commit/a7e80fbc131a3e75fb9224e7825ea680d248786a))
+* only allow letters in huisletter ([b46803c](https://github.com/wearefrank/haalcentraal-connector/commit/b46803c215f98628f55bcb0de1a0fff554ed60a2))
+
+## [1.22.23](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.22...v1.22.23) (2025-09-19)
+
+### 🐛 Bug Fixes
+
+* update callback mutatiesoort from 'W' to 'T' ([fab1cfd](https://github.com/wearefrank/haalcentraal-connector/commit/fab1cfd5f98b9d4d9241ff447a43c64e94bd76af))
+
 ## [1.22.22](https://github.com/wearefrank/haalcentraal-connector/compare/v1.22.21...v1.22.22) (2025-07-15)
 
 ### 🐛 Bug Fixes

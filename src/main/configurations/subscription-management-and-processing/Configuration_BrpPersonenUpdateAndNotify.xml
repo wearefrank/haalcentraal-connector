@@ -55,7 +55,7 @@
                     <Param name="ApplicationId" xpathExpression="//field[@name='APP_ID']/text()" />
                     <Param name="afnemersSleutel" xpathExpression="//field[@name='AFNEMERS_SLEUTEL']/text()" />
                     <Param name="persoonsSleutel" xpathExpression="//field[@name='PERSOONS_SLEUTEL']/text()" />
-                    <Param name="mutatiesoort" value="W" />
+                    <Param name="mutatiesoort" value="T" />
                 </IbisLocalSender>
                 <Forward name="success" path="EchoSuccess" />
                 <Forward name="exception" path="EXCEPTION" />

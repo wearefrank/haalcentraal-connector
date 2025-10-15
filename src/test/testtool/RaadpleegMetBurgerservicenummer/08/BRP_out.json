@@ -1,0 +1,34 @@
+{
+    "type": "ZoekMetGeslachtsnaamEnGeboortedatum",
+    "personen": [
+        {
+            "burgerservicenummer": "999993628",
+            "geboorte": {
+                "datum": {
+                    "type": "Datum",
+                    "datum": "1901-06-13",
+                    "langFormaat": "13 juni 1901"
+                }
+            },
+            "geslacht": {
+                "code": "V",
+                "omschrijving": "vrouw"
+            },
+            "leeftijd": 99,
+            "naam": {
+                "aanduidingNaamgebruik": {
+                    "code": "V",
+                    "omschrijving": "geslachtsnaam echtgenoot/geregistreerd partner voor eigen geslachtsnaam"
+                },
+                "voornamen": "Geertje",
+                "geslachtsnaam": "Huijgen",
+                "voorletters": "G.",
+                "volledigeNaam": "Geertje Huijgen"
+            },
+            "adressering": {
+                "adresregel1": "Nieuwe Parklaan 21",
+                "adresregel2": "1234 AB  's-Gravenhage"
+            }
+        }
+    ]
+}
