@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Public FrankDoc XSD, should be used within an IDE to validate a configuration. -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="9.3.0">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="9.4.0-20251018.042331">
   <xs:element name="Configuration">
     <xs:annotation>
       <xs:documentation>Container of Adapters that belong together.
@@ -1323,7 +1323,8 @@
     </xs:attribute>
     <xs:attribute name="contextKey" type="xs:string">
       <xs:annotation>
-        <xs:documentation>key of message context variable to use as source, instead of the message found from input message or sessionKey itself</xs:documentation>
+        <xs:documentation>Key of org.frankframework.stream.MessageContext variable to use as source, instead of the Message found from input message or sessionKey itself. Use a &lt;pre&gt;*&lt;/pre&gt;
+ to get an XML or JSON document containing all values from the org.frankframework.stream.MessageContext.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="sessionKeyXPath" type="xs:string">
@@ -1396,6 +1397,7 @@
  &lt;li&gt;{hostname}: the name of the machine the application runs on&lt;/li&gt;
  &lt;li&gt;{username}: username from the credentials found using authAlias, or the username attribute&lt;/li&gt;
  &lt;li&gt;{password}: password from the credentials found using authAlias, or the password attribute&lt;/li&gt;
+ &lt;li&gt;{principal}: Name of the current principal, similar to the org.frankframework.pipes.GetPrincipalPipe.&lt;/li&gt;
  &lt;li&gt;{fixeddate}: fake date, for testing only&lt;/li&gt;
  &lt;li&gt;{fixeduid}: fake uid, for testing only&lt;/li&gt;
  &lt;li&gt;{fixedhostname}: fake hostname, for testing only&lt;/li&gt;
@@ -5052,8 +5054,8 @@
     &amp;lt;location class=&amp;quot;org.frankframework.pipes.SwitchPipe&amp;quot; name=&amp;quot;ServiceSwitch&amp;quot;/&amp;gt;
     &amp;lt;details&amp;gt;Exception and stacktrace&amp;lt;/details&amp;gt;
     &amp;lt;params&amp;gt;
-      &amp;lt;param name=&amp;quot;sampleParam&amp;gt;paramValue&amp;lt;/param&amp;gt;
-      &amp;lt;param name=&amp;quot;errorCode&amp;gt;535&amp;lt;/param&amp;gt;
+      &amp;lt;param name=&amp;quot;sampleParam&amp;quot;&amp;gt;paramValue&amp;lt;/param&amp;gt;
+      &amp;lt;param name=&amp;quot;errorCode&amp;quot;&amp;gt;535&amp;lt;/param&amp;gt;
     &amp;lt;/params&amp;gt;
     &amp;lt;originalMessage messageId=&amp;quot;...&amp;quot; receivedTime=&amp;quot;Mon Oct 27 12:10:18 CET 2003&amp;quot; &amp;gt;
         &amp;lt;![CDATA[contents of message for which the error occurred]]&amp;gt;
@@ -16420,11 +16422,6 @@
         <xs:documentation>whether or not to write results to the logfile (testtool4&amp;lt;instance.name&amp;gt;) Default: false</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="writeToSystemOut" type="frankBoolean">
-      <xs:annotation>
-        <xs:documentation>whether or not to write results to system out Default: false</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
     <xs:attribute name="checkRoles" type="frankBoolean">
       <xs:annotation>
         <xs:documentation>Set this to &lt;code&gt;true&lt;/code&gt; if you wish to enforce the
@@ -16455,11 +16452,6 @@
   </xs:complexType>
   <xs:attributeGroup name="LarvaPipeDeclaredAttributeGroup">
     <xs:attribute name="writeToLog" type="frankBoolean">
-      <xs:annotation>
-        <xs:documentation>Default: false</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="writeToSystemOut" type="frankBoolean">
       <xs:annotation>
         <xs:documentation>Default: false</xs:documentation>
       </xs:annotation>
