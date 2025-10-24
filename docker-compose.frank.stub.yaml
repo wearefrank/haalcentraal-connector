@@ -7,7 +7,7 @@ services:
       context: .
       pull: true
       args:
-        FF_VERSION: ${FF_VERSION:-9.3.0}
+        FF_VERSION: ${FF_VERSION:-9.4.0-20251024.042332}
     image: wearefrank/haalcentraal-connector:${VERSION:-latest}
     environment:
       # Stage configuration
