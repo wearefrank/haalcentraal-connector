@@ -1,5 +1,7 @@
 services:
   frank:
+    depends_on:
+      - personen-mock
     extends:
       file: docker-compose.yaml
       service: frank
@@ -11,6 +13,17 @@ services:
     image: wearefrank/haalcentraal-connector:${VERSION:-latest}
     environment:
       configurations.directory.classLoaderType: ScanningDirectoryClassLoader
+
+      endpoint.brp.public.test: http://personen-mock:5010/haalcentraal/api/brp/personen
+
+  personen-mock:
+    container_name: personen-mock
+    image: ghcr.io/brp-api/personen-mock:2.6.0-latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Release
+      - ASPNETCORE_URLS=http://+:5010
+    ports:
+      - "5010:5010"
 
 volumes:
   frank-logs:
