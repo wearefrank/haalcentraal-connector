@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.24.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.23.2...v1.24.0) (2025-10-27)
+
+### 🍕 Features
+
+* add mock brp for dev environment ([e67f485](https://github.com/wearefrank/haalcentraal-connector/commit/e67f48547b50d55012a0190a2f8394837de2181e))
+
 ## [1.23.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.23.1...v1.23.2) (2025-10-27)
 
 ### 🤖 Build System
