@@ -1,5 +1,15 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.23.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.23.1...v1.23.2) (2025-10-27)
+
+### 🤖 Build System
+
+* **dependencies:** update node-version in workflow to v24 ([b3456d6](https://github.com/wearefrank/haalcentraal-connector/commit/b3456d6110869178a970bbb0dc75f9b2c52ceb6b))
+
+### 🔁 Continuous Integration
+
+* workflow for cleaning up run artifact after workflow completion ([0225b97](https://github.com/wearefrank/haalcentraal-connector/commit/0225b97fc915dcd015557130e82cdd212b75bd3f))
+
 ## [1.23.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.23.0...v1.23.1) (2025-10-13)
 
 ### 🐛 Bug Fixes
