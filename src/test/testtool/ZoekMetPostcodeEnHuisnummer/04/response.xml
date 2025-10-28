@@ -33,7 +33,7 @@
 			<BG:geslachtsnaamAanschrijving xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
 			<BG:adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
 			<BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
-			<BG:geboortedatum>19800526</BG:geboortedatum>
+			<BG:geboortedatum>20000101</BG:geboortedatum>
 			<BG:inp.geboorteplaats StUF:noValue="geenWaarde" xsi:nil="true"/>
 			<BG:inp.geboorteLand StUF:noValue="geenWaarde" xsi:nil="true"/>
 			<BG:overlijdensdatum StUF:noValue="geenWaarde" xsi:nil="true"/>
