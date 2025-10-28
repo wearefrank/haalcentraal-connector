@@ -1,0 +1,127 @@
+<soapenv:Envelope xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310"
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:stuf="http://www.egem.nl/StUF/StUF0301">
+    <soapenv:Header />
+    <soapenv:Body>
+        <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310"
+            xmlns:StUF="http://www.egem.nl/StUF/StUF0301"
+            xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <BG:stuurgegevens>
+                <StUF:berichtcode>Lv01</StUF:berichtcode>
+                <StUF:zender>
+                    <StUF:organisatie />
+                    <StUF:applicatie>TOP</StUF:applicatie>
+                    <StUF:gebruiker>TEST</StUF:gebruiker>
+                </StUF:zender>
+                <StUF:ontvanger>
+                    <StUF:organisatie>test</StUF:organisatie>
+                    <StUF:applicatie>test123</StUF:applicatie>
+                </StUF:ontvanger>
+                <StUF:referentienummer>6bdd32e3-91bb-44ac-befb-cccc3ec661fe</StUF:referentienummer>
+                <StUF:tijdstipBericht>20241015062939134</StUF:tijdstipBericht>
+                <StUF:entiteittype>NPS</StUF:entiteittype>
+            </BG:stuurgegevens>
+            <BG:parameters>
+                <StUF:sortering>01</StUF:sortering>
+                <StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+                <StUF:maximumAantal>50</StUF:maximumAantal>
+                <StUF:indicatorAantal>true</StUF:indicatorAantal>
+            </BG:parameters>
+            <BG:vanaf a:entiteittype="NPS" xmlns:a="http://www.egem.nl/StUF/StUF0301">
+                <BG:geslachtsnaam>persoon</BG:geslachtsnaam>
+                <BG:geboortedatum>20000101</BG:geboortedatum>
+            </BG:vanaf>
+            <BG:totEnMet a:entiteittype="NPS" xmlns:a="http://www.egem.nl/StUF/StUF0301">
+                <BG:geslachtsnaam>persoon</BG:geslachtsnaam>
+                <BG:geboortedatum>20000101</BG:geboortedatum>
+            </BG:totEnMet>
+            <BG:scope>
+                <BG:object StUF:entiteittype="NPS" StUF:sleutelGegevensbeheer=""
+                    StUF:sleutelVerzendend="">
+                    <BG:inp.bsn xsi:nil="true" />
+                    <BG:sub.typering xsi:nil="true" />
+                    <BG:inp.a-nummer xsi:nil="true" />
+                    <BG:geslachtsnaam xsi:nil="true" />
+                    <BG:voorvoegselGeslachtsnaam xsi:nil="true" />
+                    <BG:voorletters xsi:nil="true" />
+                    <BG:voornamen xsi:nil="true" />
+                    <BG:aanduidingNaamgebruik xsi:nil="true" />
+                    <BG:geslachtsnaamPartner xsi:nil="true" />
+                    <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true" />
+                    <BG:aanhefAanschrijving xsi:nil="true" />
+                    <BG:voornamenAanschrijving xsi:nil="true" />
+                    <BG:geslachtsnaamAanschrijving xsi:nil="true" />
+                    <BG:adellijkeTitelPredikaat xsi:nil="true" />
+                    <BG:geslachtsaanduiding xsi:nil="true" />
+                    <BG:geboortedatum xsi:nil="true" />
+                    <BG:inp.geboorteplaats xsi:nil="true" />
+                    <BG:inp.geboorteLand xsi:nil="true" />
+                    <BG:overlijdensdatum xsi:nil="true" />
+                    <BG:verblijfsadres>
+                        <BG:aoa.identificatie xsi:nil="true" />
+                        <BG:wpl.identificatie xsi:nil="true" />
+                        <BG:wpl.woonplaatsNaam xsi:nil="true" />
+                        <BG:aoa.woonplaatsWaarinGelegen>
+                            <BG:wpl.identificatie xsi:nil="true" />
+                            <BG:wpl.woonplaatsNaam xsi:nil="true" />
+                        </BG:aoa.woonplaatsWaarinGelegen>
+                        <BG:gor.identificatie xsi:nil="true" />
+                        <BG:opr.identificatie xsi:nil="true" />
+                        <BG:gor.openbareRuimteNaam xsi:nil="true" />
+                        <BG:gor.straatnaam xsi:nil="true" />
+                        <BG:aoa.postcode xsi:nil="true" />
+                        <BG:aoa.huisnummer xsi:nil="true" />
+                        <BG:aoa.huisletter xsi:nil="true" />
+                        <BG:aoa.huisnummertoevoeging xsi:nil="true" />
+                        <BG:inp.locatiebeschrijving xsi:nil="true" />
+                        <BG:begindatumVerblijf xsi:nil="true" />
+                    </BG:verblijfsadres>
+                    <BG:sub.verblijfBuitenland>
+                        <BG:lnd.landcode xsi:nil="true" />
+                        <BG:lnd.landnaam xsi:nil="true" />
+                        <BG:sub.adresBuitenland1 xsi:nil="true" />
+                        <BG:sub.adresBuitenland2 xsi:nil="true" />
+                        <BG:sub.adresBuitenland3 xsi:nil="true" />
+                    </BG:sub.verblijfBuitenland>
+                    <BG:sub.correspondentieAdres>
+                        <BG:typering xsi:nil="true" />
+                        <BG:wpl.woonplaatsNaam xsi:nil="true" />
+                        <BG:aoa.woonplaatsWaarinGelegen>
+                            <BG:wpl.identificatie xsi:nil="true" />
+                            <BG:wpl.woonplaatsNaam xsi:nil="true" />
+                        </BG:aoa.woonplaatsWaarinGelegen>
+                        <BG:postcode xsi:nil="true" />
+                        <BG:aoa.identificatie xsi:nil="true" />
+                        <BG:wpl.identificatie xsi:nil="true" />
+                        <BG:opr.identificatie xsi:nil="true" />
+                        <BG:gor.openbareRuimteNaam xsi:nil="true" />
+                        <BG:gor.straatnaam xsi:nil="true" />
+                        <BG:aoa.huisnummer xsi:nil="true" />
+                        <BG:aoa.huisletter xsi:nil="true" />
+                        <BG:aoa.huisnummertoevoeging xsi:nil="true" />
+                        <BG:sub.postadresType xsi:nil="true" />
+                        <BG:sub.postadresNummer xsi:nil="true" />
+                    </BG:sub.correspondentieAdres>
+                    <BG:sub.telefoonnummer xsi:nil="true" />
+                    <BG:sub.faxnummer xsi:nil="true" />
+                    <BG:sub.emailadres xsi:nil="true" />
+                    <BG:sub.url xsi:nil="true" />
+                    <BG:sub.rekeningnummerBankGiro xsi:nil="true" />
+                    <BG:inp.burgerlijkeStaat xsi:nil="true" />
+                    <BG:inp.gemeenteVanInschrijving xsi:nil="true" />
+                    <BG:inp.datumInschrijving xsi:nil="true" />
+                    <BG:vbt.aanduidingVerblijfstitel xsi:nil="true" />
+                    <BG:inp.datumVestigingInNederland xsi:nil="true" />
+                    <BG:inp.immigratieLand xsi:nil="true" />
+                    <BG:inp.datumVertrekUitNederland xsi:nil="true" />
+                    <BG:inp.emigratieLand xsi:nil="true" />
+                    <BG:ing.indicatieGezagMinderjarige xsi:nil="true" />
+                    <BG:inp.indicatieGeheim xsi:nil="true" />
+                    <BG:ing.indicatieBlokkering xsi:nil="true" />
+                </BG:object>
+            </BG:scope>
+        </BG:npsLv01>
+    </soapenv:Body>
+</soapenv:Envelope>

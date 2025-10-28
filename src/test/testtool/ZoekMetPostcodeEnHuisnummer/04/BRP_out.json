@@ -1,0 +1,81 @@
+{
+    "type": "ZoekMetPostcodeEnHuisnummer",
+    "personen": [
+        {
+            "burgerservicenummer": "999994335",
+            "geboorte": {
+                "datum": {
+                    "type": "Datum",
+                    "datum": "2000-01-01",
+                    "langFormaat": "1 januari 2000"
+                }
+            },
+            "geslacht": {
+                "code": "M",
+                "omschrijving": "man"
+            },
+            "leeftijd": 44,
+            "naam": {
+                "voornamen": "Pepijn Floris",
+                "geslachtsnaam": "Holthuizen",
+                "voorletters": "P.F.",
+                "volledigeNaam": "Pepijn Floris Holthuizen"
+            },
+            "adressering": {
+                "adresregel1": "Jonkheer van Riemsdijkln 88",
+                "adresregel2": "2497 BV 'S-GRAVENHAGE"
+            }
+        },
+        {
+            "burgerservicenummer": "999994736",
+            "geboorte": {
+                "datum": {
+                    "type": "Datum",
+                    "datum": "1951-12-23",
+                    "langFormaat": "23 december 1951"
+                }
+            },
+            "geslacht": {
+                "code": "V",
+                "omschrijving": "vrouw"
+            },
+            "leeftijd": 72,
+            "naam": {
+                "voornamen": "Karin Monique",
+                "voorvoegsel": "du",
+                "geslachtsnaam": "Burck",
+                "voorletters": "K.M.",
+                "volledigeNaam": "Karin Monique du Burck"
+            },
+            "adressering": {
+                "adresregel1": "Jonkheer van Riemsdijkln 88",
+                "adresregel2": "2497 BV 'S-GRAVENHAGE"
+            }
+        },
+        {
+            "burgerservicenummer": "999994293",
+            "geboorte": {
+                "datum": {
+                    "type": "Datum",
+                    "datum": "1946-01-21",
+                    "langFormaat": "21 januari 1946"
+                }
+            },
+            "geslacht": {
+                "code": "M",
+                "omschrijving": "man"
+            },
+            "leeftijd": 78,
+            "naam": {
+                "voornamen": "Dirk",
+                "geslachtsnaam": "Holthuizen",
+                "voorletters": "D.",
+                "volledigeNaam": "Dirk Holthuizen"
+            },
+            "adressering": {
+                "adresregel1": "Jonkheer van Riemsdijkln 88",
+                "adresregel2": "2497 BV 'S-GRAVENHAGE"
+            }
+        }
+    ]
+}
