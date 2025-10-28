@@ -30,11 +30,11 @@
                 <StUF:indicatorAantal>true</StUF:indicatorAantal>
             </BG:parameters>
             <BG:vanaf a:entiteittype="NPS" xmlns:a="http://www.egem.nl/StUF/StUF0301">
-                <BG:geslachtsnaam>persoon</BG:geslachtsnaam>
+                <BG:geslachtsnaam>Pepijn</BG:geslachtsnaam>
                 <BG:geboortedatum>20000101</BG:geboortedatum>
             </BG:vanaf>
             <BG:totEnMet a:entiteittype="NPS" xmlns:a="http://www.egem.nl/StUF/StUF0301">
-                <BG:geslachtsnaam>persoon</BG:geslachtsnaam>
+                <BG:geslachtsnaam>Pepijn</BG:geslachtsnaam>
                 <BG:geboortedatum>20000101</BG:geboortedatum>
             </BG:totEnMet>
             <BG:scope>
