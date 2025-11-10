@@ -1,5 +1,12 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.24.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.1...v1.24.2) (2025-11-10)
+
+### 🐛 Bug Fixes
+
+* Merge pull request [#276](https://github.com/wearefrank/haalcentraal-connector/issues/276) from wearefrank/update-ff ([c83a211](https://github.com/wearefrank/haalcentraal-connector/commit/c83a211d263afd4ff217cec4d743ee8510e1b5f3))
+* Update frank!framework to 9.3.1 ([a6a180d](https://github.com/wearefrank/haalcentraal-connector/commit/a6a180d9a5749bf17f9521f1a6ae7cc0eb802d41))
+
 ## [1.24.1](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.0...v1.24.1) (2025-10-28)
 
 ### 🐛 Bug Fixes
