@@ -1,0 +1,44 @@
+<Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+    <Adapter name="BrpGetWijzigingen" active="${brp.update.enabled}">
+        <Receiver name="BrpGetWijzigingen">
+            <JavaListener name="BrpGetWijzigingen" />
+        </Receiver>
+        <Pipeline>
+            <Exits>
+                <Exit name="Exit" state="SUCCESS" />
+                <Exit name="Exception" state="ERROR" />
+                <Exit name="BadRequest" state="ERROR" code="400" />
+                <Exit name="NotAuthorized" state="ERROR" code="401" />
+                <Exit name="Forbidden" state="ERROR" code="403" />
+                <Exit name="NotFound" state="ERROR" code="404" />
+                <Exit name="NotAcceptable" state="ERROR" code="406" />
+                <Exit name="UnsupportedMediaType" state="ERROR" code="415" />
+                <Exit name="TooManyRequest" state="ERROR" code="429" />
+                <Exit name="ServerError" state="ERROR" code="500" />
+                <Exit name="ServiceUnavailable" state="ERROR" code="503" />
+            </Exits>
+
+            <SenderPipe name="GetBRPWijzigingen">
+                <HttpSender methodType="GET" headersParams="X-API-KEY,Accept,Content-Type"
+                    parametersToSkipWhenEmpty="Accept,Content-Type" contentType="application/json">
+                    <Param name="url" value="${endpoint.brp.mock.test}/wijzigingen"/>
+                    <Param name="X-API-KEY" value="d8ZCxIm65WH7CMGYaTFZLpGgVZZOMvx3" hidden="true" />
+                    <Param name="Accept" sessionKey="headerAccept" />
+                    <Param name="Content-Type" sessionKey="headerContent-Type" />
+                </HttpSender>
+
+                <Forward name="success" path="Exit" />
+                <Forward name="400" path="BadRequest" />
+                <Forward name="401" path="NotAuthorized" />
+                <Forward name="403" path="Forbidden" />
+                <Forward name="404" path="NotFound" />
+                <Forward name="406" path="NotAcceptable" />
+                <Forward name="415" path="UnsupportedMediaType" />
+                <Forward name="429" path="TooManyRequest" />
+                <Forward name="500" path="ServerError" />
+                <Forward name="503" path="ServiceUnavailable" />
+            </SenderPipe>
+        </Pipeline>
+    </Adapter>
+</Module>

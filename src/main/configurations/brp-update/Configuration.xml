@@ -1,0 +1,13 @@
+<!DOCTYPE Configuration [
+	<!ENTITY brp-get-volgindicaties SYSTEM "Configuration-brp-get-volgindicaties.xml">
+	<!ENTITY brp-get-volgindicatiesWithBSN SYSTEM "Configuration-brp-get-volgindicatiesWithBSN.xml">
+	<!ENTITY brp-get-wijzigingen SYSTEM "Configuration-brp-get-wijzigingen.xml">
+	<!ENTITY brp-put-volgindicatiesWithBSN SYSTEM "Configuration-brp-put-volgindicatiesWithBSN.xml">
+	]>
+
+<Configuration name="brp-personen-bevragen-outway">
+	&brp-get-volgindicaties;
+	&brp-get-volgindicatiesWithBSN;
+	&brp-get-wijzigingen;
+	&brp-put-volgindicatiesWithBSN;
+</Configuration>
