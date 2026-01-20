@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.24.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.2...v1.24.3) (2026-01-20)
+
+### 🐛 Bug Fixes
+
+* Merge pull request [#303](https://github.com/wearefrank/haalcentraal-connector/issues/303) from wearefrank/custom-code-technical-debt ([d71b16c](https://github.com/wearefrank/haalcentraal-connector/commit/d71b16ce7de78799b018cd3f91affd3cca7011e9))
+
 ## [1.24.2](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.1...v1.24.2) (2025-11-10)
 
 ### 🐛 Bug Fixes
