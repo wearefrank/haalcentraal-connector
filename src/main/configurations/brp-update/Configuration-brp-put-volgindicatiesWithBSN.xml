@@ -21,11 +21,29 @@
 
             <IfPipe name="ValidateBSN" xpathExpression="string-length($burgerservicenummer) = 9 and matches($burgerservicenummer, '^\d{9}$')" expressionValue="true" getInputFromFixedValue="&lt;dummy/&gt;" preserveInput="true">
                 <Param name="burgerservicenummer" sessionKey="burgerservicenummer" />
-                <Forward name="then" path="PutBRPVolgindicatiesWithBSN" />
+                <Forward name="then" path="hasEindDatum" />
                 <Forward name="else" path="BadRequest" />
             </IfPipe>
 
-            <SenderPipe name="PutBRPVolgindicatiesWithBSN">
+            <IfPipe name="hasEindDatum" xpathExpression="$einddatum" getInputFromFixedValue="&lt;dummy/&gt;">
+                <Param name="einddatum" sessionKey="einddatum" />
+                <Forward name="then" path="body" />
+                <Forward name="else" path="emptyBody" />
+            </IfPipe>
+
+            <PutInSessionPipe name="body">
+                <Param name="body" xpathExpression="concat('{ &quot;einddatum&quot;: &quot;', $einddatum, '&quot; }')">
+                    <Param name="einddatum" sessionKey="einddatum" />
+                </Param>
+
+                    <Forward name="success" path="PutBRPVolgindicatiesWithBSN"/>
+            </PutInSessionPipe>
+
+            <EchoPipe name="emptyBody" storeResultInSessionKey="body" getInputFromFixedValue="{}">
+                <Forward name="success" path="PutBRPVolgindicatiesWithBSN"/>
+            </EchoPipe>
+
+            <SenderPipe name="PutBRPVolgindicatiesWithBSN" getInputFromSessionKey="body">
                 <HttpSender methodType="PUT" headersParams="X-API-KEY,Accept,Content-Type"
                     parametersToSkipWhenEmpty="Accept,Content-Type" contentType="application/json">
                     <Param name="url" xpathExpression="concat('${endpoint.brp.mock.test}/volgindicaties/', $burgerservicenummer)" value="&lt;dummy/&gt;">

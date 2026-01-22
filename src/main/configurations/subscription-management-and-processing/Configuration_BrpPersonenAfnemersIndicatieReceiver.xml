@@ -86,8 +86,31 @@
 				<Forward name="else" path="EndSubscription" />
 			</IfPipe>
 
+            <SenderPipe name="GetSubscribers" active="${brp.update.enabled}">
+                <IbisLocalSender name="BrpGetVolgindicatiesWithBSN" javaListener="BrpGetVolgindicatiesWithBSN" />
+				<Param name="burgerservicenummer" sessionKey="bsn" type="STRING"/>
+                <Forward name="success" path="JsonToXml" />
+                <Forward name="exception" path="BadRequest" />
+                <Forward name="timeout" path="CouldNotSynchronize" />
+            </SenderPipe>
+
+			<JsonPipe name="JsonToXml" storeResultInSessionKey="xmlbody" />
+
+            <!-- Check if subscriptions are found -->
+            <IfPipe
+                name="CheckSubscriptionCount"
+                xpathExpression="count(/root/*) > 0 and (/root/einddatum = '' or xs:date(/root/einddatum) > current-date())"
+				expressionValue="true" 
+				namespaceDefs="xs=http://www.w3.org/2001/XMLSchema"
+				active="${brp.update.enabled}"
+            >
+                <Forward name="then" path="GetPersoon"/>
+                <Forward name="else" path="SynchronizePersoon"/>
+                <Forward name="exception" path="BadRequest"/>
+            </IfPipe>
+
             <!-- Retrieve active subscriptions to current bsn -->
-            <SenderPipe name="GetSubscribers">
+            <SenderPipe name="GetSubscribers" active="!${brp.update.enabled}">
                 <FixedQuerySender
 					name="getPersonenSender"
                     queryType="SELECT"
@@ -104,11 +127,19 @@
                 name="CheckSubscriptionCount"
                 xpathExpression="count(result/rowset/row) > 0"
 				expressionValue="true"
+				active="!${brp.update.enabled}"
             >
                 <Forward name="then" path="GetPersoon"/>
                 <Forward name="else" path="SynchronizePersoon"/>
                 <Forward name="exception" path="BadRequest"/>
             </IfPipe>
+
+			<!-- Retrieve person from Brp -->
+			<SenderPipe name="GetPersoon" storeResultInSessionKey="currentPersonData" getInputFromSessionKey="bsn">
+				<IbisLocalSender javaListener="BrpGetPersoon" />
+				<Forward name="exception" path="Exception" />
+				<Forward name="success" path="InsertNewSubscription"/>
+			</SenderPipe>
 
 			<!-- Add persoonsgegevens to db if none are found -->
 			<SenderPipe name="SynchronizePersoon" getInputFromSessionKey="bsn">
@@ -118,15 +149,15 @@
 				<Forward name="400" path="BadRequest" />
 				<Forward name="exception" path="CouldNotSynchronize" />
 				<Forward name="404" path="NotFound" />
-				<Forward name="success" path="InsertNewSubscription" />
 			</SenderPipe>
 
-			<!-- Retrieve person from Brp -->
-			<SenderPipe name="GetPersoon" storeResultInSessionKey="currentPersonData" getInputFromSessionKey="bsn">
-				<IbisLocalSender javaListener="BrpGetPersoon" />
-				<Forward name="exception" path="Exception" />
-				<Forward name="success" path="InsertNewSubscription"/>
-			</SenderPipe>
+            <SenderPipe name="BrpPutVolgindicatiesWithBSN" active="${brp.update.enabled}">
+                <IbisLocalSender name="BrpPutVolgindicatiesWithBSN" javaListener="BrpPutVolgindicatiesWithBSN" />
+				<Param name="burgerservicenummer" sessionKey="bsn" type="STRING"/>
+                <Forward name="success" path="InsertNewSubscription" />
+                <Forward name="exception" path="BadRequest" />
+                <Forward name="timeout" path="CouldNotSynchronize" />
+            </SenderPipe>
 
 			<!-- Insert the new subscriber into the database -->
 			<!-- If a subscription is already open, no new subscription will be created -->
@@ -186,8 +217,39 @@
 
 			<IfPipe name="CheckNoSubscriptionEnded" xpathExpression="/result/rowsupdated = 0" expressionValue="true">
 				<Forward name="then" path="NotFound" />
-				<Forward name="else" path="WrapBv03Response" />
+				<Forward name="else" path="inbetween" />
 			</IfPipe>
+			
+			<EchoPipe name="inbetween">
+
+			</EchoPipe>
+			<!-- Check if subscribers are found for the task bsn -->
+            <SenderPipe name="GetSubscribersEnd" active="${brp.update.enabled}">
+                <FixedQuerySender
+					name="getPersonenSender"
+                    queryType="SELECT"
+					query="SELECT 1 FROM subscripties WHERE bsn=?{burgerservicenummer} AND eind_datum IS NULL"
+					includeFieldDefinition="false">
+					<Param name="burgerservicenummer" sessionKey="bsn" type="STRING"/>
+            	</FixedQuerySender> 
+                <Forward name="success" path="hasNoSubscriptions" />
+                <Forward name="exception" path="Exception" />
+            </SenderPipe>
+
+            <IfPipe name="hasNoSubscriptions" xpathExpression="count(result/rowset/row) = 0" active="${brp.update.enabled}" >
+				<!-- Process the task if subscribers are found, else exit -->
+                <Forward name="then" path="UnsubscribeBrpPutVolgindicatiesWithBSN"/>
+                <Forward name="else" path="WrapBv03Response"/>
+            </IfPipe>
+
+            <SenderPipe name="UnsubscribeBrpPutVolgindicatiesWithBSN" active="${brp.update.enabled}">
+                <IbisLocalSender name="BrpPutVolgindicatiesWithBSN" javaListener="BrpPutVolgindicatiesWithBSN" />
+				<Param name="burgerservicenummer" sessionKey="bsn" type="STRING"/>
+				<Param name="einddatum" xpathExpression="format-date(current-date(), '[Y]-[M01]-[D01]')" xsltVersion="2"/>
+                <Forward name="success" path="WrapBv03Response" />
+                <Forward name="exception" path="BadRequest" />
+                <Forward name="timeout" path="CouldNotSynchronize" />
+            </SenderPipe>
 
 			<SoapWrapperPipe
 				getInputFromSessionKey="originalMessage"
