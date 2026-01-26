@@ -14,7 +14,7 @@ jobs:
       version-next-tag: ${{ steps.next-version.outputs.release-tag }}
       version-next-type: ${{ steps.next-version.outputs.release-type }}
     steps:
-      - uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
+      - uses: step-security/harden-runner@e3f713f2d8f53843e71c69a996d56f51aa9adfb9 # v2.14.1
         with:
           disable-sudo: true
           egress-policy: audit
@@ -22,10 +22,10 @@ jobs:
             github.com:443
 
       - name: Checkout
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #4.1.1
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd #6.0.2
       
       - name: "Setup Node"
-        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 #4.0.2
+        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 #6.2.0
         with:
           node-version: 24
       
@@ -64,29 +64,29 @@ jobs:
       - ci
       - run-larva-scenarios
     steps:
-      - uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
+      - uses: step-security/harden-runner@e3f713f2d8f53843e71c69a996d56f51aa9adfb9 # v2.14.1
         with:
           egress-policy: audit
 
       - name: Checkout
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #4.1.1
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd #6.0.2
         with:
           token: ${{ secrets.WEAREFRANK_BOT_PAT }}
 
       - name: Download Pre-build Artifacts
-        uses: actions/download-artifact@eaceaf801fd36c7dee90939fad912460b18a1ffe #4.1.2
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 #7.0.0
         with:
           pattern: pre-build-*
           merge-multiple: true
   
       - name: Download Build Artifacts
-        uses: actions/download-artifact@eaceaf801fd36c7dee90939fad912460b18a1ffe #4.1.2
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 #7.0.0
         with:
           pattern: build-*
           merge-multiple: true
 
       - name: Setup Node
-        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 #4.0.2
+        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 #6.2.0
         with:
           node-version: 24
       
