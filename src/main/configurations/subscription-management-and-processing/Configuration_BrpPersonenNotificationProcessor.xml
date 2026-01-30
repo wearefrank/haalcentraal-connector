@@ -3,7 +3,8 @@
     xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
 
 	<Adapter name="BrpPersonenNotificationProcessor"
-		description="brp personen notification processor">
+		description="brp personen notification processor"
+		active="!${brp.update.enabled}">
 		<Receiver name="BrpPersonenNotificationProcessorDailyTaskListener">
 			<JdbcTableListener tableName="tasks" statusField="status" statusValueInProcess="X" statusValueError="E" statusValueProcessed="C" keyField="task_id" messageField="bsn" selectCondition="scheduled_start &lt;= NOW()"/>
 		</Receiver>

@@ -1,0 +1,37 @@
+<Module
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+	<Adapter name="BrpPersonenUpdateBsnReceiver"
+		description="BrpPersonenUpdateBsnReceiver"
+		active="${brp.update.enabled}">
+
+		<Receiver name="BrpPersonenUpdateBsnReceiver">
+			<JavaListener name="BrpPersonenUpdateBsnReceiver" />
+		</Receiver>
+
+		<Receiver>
+			<MessageStoreListener slotId="${instance.name}/updateBsnStore" statusValueInProcess="I" />
+		</Receiver>
+
+		<Pipeline>
+			<Exits>
+				<Exit name="EXIT" state="SUCCESS" />
+				<Exit name="EXCEPTION" state="ERROR" />
+			</Exits>
+
+            <PutInSessionPipe name="FormatBsn">
+                <Param name="bsn" sessionKey="originalMessage" xpathExpression="/bsn/text()"/>
+            </PutInSessionPipe>
+			
+			<SenderPipe name="updateandnotify" getInputFromSessionKey="bsn">
+				<IbisLocalSender name="personenUpdater" javaListener="BrpPersonenUpdateAndNotify"/>
+			</SenderPipe>
+
+			<IfPipe name="CheckUpdateSuccess" expressionValue="true">
+				<Forward name="then" path="EXIT" />
+				<Forward name="else" path="EXCEPTION" />
+			</IfPipe>
+
+		</Pipeline>
+	</Adapter>
+</Module>

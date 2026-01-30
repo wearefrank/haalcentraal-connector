@@ -2,7 +2,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
 	<Adapter name="BrpPersonenNotificationReceiver"
-		description="brp personen notification receiver">
+		description="brp personen notification receiver"
+		active="!${brp.update.enabled}">
 
 		<Receiver name="BrpPersonenNotificationReceiver">
 			<JavaListener name="BrpPersonenNotificationReceiver" />

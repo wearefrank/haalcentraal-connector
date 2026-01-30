@@ -1,0 +1,69 @@
+<Module 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+
+	<Adapter name="BrpPersonenUpdateScheduler"
+		description="Brp Personen Update Scheduler processor"
+		active="${brp.update.enabled}">
+
+		
+        <Receiver name="BrpPersonenUpdateScheduler">
+            <JavaListener name="BrpPersonenUpdateScheduler" />
+        </Receiver>
+
+		<Pipeline>
+			<Exits>
+				<Exit name="EXIT" state="SUCCESS" />
+				<Exit name="EXCEPTION" state="ERROR" />
+			</Exits>
+			
+            <SenderPipe name="GetWijzigingenFromDate">
+                <IbisLocalSender name="BrpGetWijzigingen" javaListener="BrpGetWijzigingen" />
+				<Param name="date" xpathExpression="format-date(current-date(), '[Y]-[M01]-[D01]')" xsltVersion="2"/>
+                <Forward name="success" path="JsonToXml" />
+                <Forward name="exception" path="EXCEPTION" />
+                <Forward name="timeout" path="EXCEPTION" />
+            </SenderPipe>
+
+			<JsonPipe name="JsonToXml" storeResultInSessionKey="xmlbody" />
+
+			<!-- Update subscriptions to historic bsns to current bsn -->
+			<ForEachChildElementPipe name="SubscribtionIterator" getInputFromSessionKey="xmlbody" 
+				storeResultInSessionKey="haveSubscriptions"
+				elementXPathExpression="root/burgerservicenummers">
+                <FixedQuerySender
+					name="getPersonenSender"
+                    queryType="SELECT"
+					query="SELECT ?{bsn} FROM subscripties WHERE bsn=?{bsn} AND eind_datum IS NULL"
+					includeFieldDefinition="false">
+					<Param name="bsn" xpathExpression="./burgerservicenummers"/>
+            	</FixedQuerySender>
+				<Forward name="success" path="FilterOnlySubscribedBSN"/>
+				<Forward name="exception" path="EXCEPTION"/>
+			</ForEachChildElementPipe>
+
+			
+			<XsltPipe name="FilterOnlySubscribedBSN"
+				styleSheetName="xsl/FilterSubscribersBsn.xslt"
+				storeResultInSessionKey="FilteredBSN">
+				<Forward name="success" path="bsnUpdaterIterator" />
+			</XsltPipe>
+			
+			<!-- Update subscriptions to historic bsns to current bsn -->
+			<ForEachChildElementPipe name="bsnUpdaterIterator" getInputFromSessionKey="FilteredBSN"
+				elementXPathExpression="burgerservicesnummers/bsn" parallel="true">
+				<MessageStoreSender slotId="${instance.name}/updateBsnStore" />
+				<Forward name="success" path="EXIT"/>
+				<Forward name="exception" path="EXCEPTION"/>
+			</ForEachChildElementPipe>
+
+		</Pipeline>
+	</Adapter>
+	<Scheduler>
+        <SendMessageJob name="BrpPersonenUpdateSchedulerJob"
+            active="${brp.update.enabled}"
+            javaListener="BrpPersonenUpdateScheduler"
+            cronExpression="0 0 5 ? * * *">
+        </SendMessageJob>
+	</Scheduler>
+</Module>
