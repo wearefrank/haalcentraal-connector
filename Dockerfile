@@ -1,45 +1,19 @@
-ARG FF_VERSION=9.3.1-20251108.210034
+ARG FF_VERSION=10.0.0-20260117.042331
 
-FROM frankframework/frankframework:${FF_VERSION} AS ff-base
+FROM maven AS build
+# Set the working directory in the container
+WORKDIR /app
+# Copy the pom.xml and the project files to the container
+COPY pom.xml .
+COPY src ./src
+# Build the application using Maven
+RUN mvn clean package -DskipTests
 
-# Copy dependencies
-COPY --chown=tomcat lib/server/ /usr/local/tomcat/lib/
-COPY --chown=tomcat lib/webapp/ /usr/local/tomcat/webapps/ROOT/WEB-INF/lib/
+FROM frankframework/frankframework:${FF_VERSION}
 
-### Uncomment this section if the Frank! contains custom classes.
-## section: custom-code(start)
-
-# Compile custom class
-FROM eclipse-temurin:17-jdk-jammy AS custom-code-builder
-
-# Copy dependencies
-COPY --from=ff-base /usr/local/tomcat/lib/ /usr/local/tomcat/lib/
-COPY --from=ff-base /usr/local/tomcat/webapps/ROOT /usr/local/tomcat/webapps/ROOT
-
-# Copy custom class
-COPY src/main/java /tmp/java
-RUN mkdir /tmp/classes && \
-    javac \
-    /tmp/java/org/frankframework/http/authentication/AbstractClientCredentials.java \
-    /tmp/java/org/frankframework/http/AbstractHttpSession.java \
-    -classpath "/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/*:/usr/local/tomcat/lib/*" \
-    -verbose -d /tmp/classes
-
-FROM ff-base
-
-## section: custom-code(end)
-
-
-# Copy database connection settings
-COPY --chown=tomcat src/main/webapp/META-INF/context.xml /usr/local/tomcat/conf/Catalina/localhost/ROOT.xml
-
-# Try to make custom classes work
-# COPY --chown=tomcat src/main/webapp/WEB-INF/classes /usr/local/tomcat/webapps/ROOT/WEB-INF/classes
-
-# Copy Frank!
-COPY --chown=tomcat src/main/configurations/ /opt/frank/configurations/
-COPY --chown=tomcat src/main/secrets/ /opt/frank/secrets/
-COPY --chown=tomcat src/main/resources/ /opt/frank/resources/
+# Copy Frank!mvn
+COPY --chown=tomcat src/main/ /opt/frank/
+COPY --from=build --chown=tomcat /app/target/haalcentraal-connector-*.jar /opt/frank/resources/
 COPY --chown=tomcat src/test/testtool/ /opt/frank/testtool/
 
 ADD Staat-der-Nederlanden-Private-Root-CA-G1.pem /usr/local/share/ca-certificates/Staat-der-Nederlanden-Private-Root-CA-G1.crt
@@ -58,13 +32,7 @@ RUN keytool -import -noprompt -trustcacerts -alias privateServicesQuoVadis -keys
 ### Uncomment this section if the Frank! contains custom classes.
 ## section: custom-code(start)
 
-# Copy compiled custom classes
-COPY --from=custom-code-builder --chown=tomcat /tmp/classes/ /usr/local/tomcat/webapps/ROOT/WEB-INF/classes
 
-## section: custom-code(end)
-
-ENV credentialFactory.class=nl.nn.credentialprovider.PropertyFileCredentialFactory
-ENV credentialFactory.map.properties=/opt/frank/secrets/credentials.properties
 ENV authentication.clientSecret=dummy
 
 # COPY --chown=tomcat entrypoint.sh /scripts/entrypoint.sh

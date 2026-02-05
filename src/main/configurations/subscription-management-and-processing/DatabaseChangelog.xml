@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd">
 
 	<!-- ChangeSet 1: Create 'Persoonsgegevens' table -->
-	<changeSet id="HCC-1" author="Vincent de Gans">
+	<changeSet id="HCC-1" author="Vincent de Gans" dbms="postgresql">
 		<comment>Create the 'Persoonsgegevens' table</comment>
 		<createTable tableName="persoonsgegevens">
 			<column name="id" type="int">
@@ -15,6 +15,20 @@
 			<column name="registratie_datum" type="datetime" />
 		</createTable>
 		<addAutoIncrement tableName="persoonsgegevens" columnName="id" />
+	</changeSet>
+
+	<!-- ChangeSet 1: Create 'Persoonsgegevens' table -->
+	<changeSet id="HCC-1-h2" author="Vincent de Gans" dbms="h2">
+		<comment>Create the 'Persoonsgegevens' table</comment>
+		<createTable tableName="persoonsgegevens">
+			<column name="id" type="int">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="bsn" type="int" />
+			<column name="data" type="text" />
+			<column name="registratie_datum" type="datetime" />
+		</createTable>
+		<addAutoIncrement tableName="persoonsgegevens" columnName="id" columnDataType="int" />
 	</changeSet>
 
 	<!-- ChangeSet 2: Create 'Applicaties' table -->
@@ -32,7 +46,7 @@
 	</changeSet>
 
 	<!-- ChangeSet 3: Create 'Subscripties' table -->
-	<changeSet id="HCC-3" author="Vincent de Gans">
+	<changeSet id="HCC-3" author="Vincent de Gans" dbms="postgresql">
 		<comment>Create the 'Subscripties' table</comment>
 		<createTable tableName="subscripties">
 			<column name="id" type="int">
@@ -44,6 +58,20 @@
 			<column name="eind_datum" type="datetime" />
 		</createTable>
 		<addAutoIncrement tableName="subscripties" columnName="id" />
+	</changeSet>
+
+	<changeSet id="HCC-3-h2" author="Vincent de Gans" dbms="h2">
+		<comment>Create the 'Subscripties' table</comment>
+		<createTable tableName="subscripties">
+			<column name="id" type="int">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="bsn" type="int" />
+			<column name="app_id" type="varchar(255)" />
+			<column name="begin_datum" type="datetime" />
+			<column name="eind_datum" type="datetime" />
+		</createTable>
+		<addAutoIncrement tableName="subscripties" columnName="id" columnDataType="int" />
 	</changeSet>
 
 	<!-- ChangeSet 4: Create 'Tasks' table -->
