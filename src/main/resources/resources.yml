@@ -1,0 +1,14 @@
+jdbc:
+  - name: "haalcentraal-connector"
+    type: "org.h2.jdbcx.JdbcDataSource"
+    url: "jdbc:h2:/opt/frank/h2/haalcentraal-connector"
+
+  - name: haalcentraal-connector-postgresql
+    type: org.postgresql.xa.PGXADataSource
+    url: jdbc:postgresql://${jdbc.hostname}:${jdbc.port:-5432}/${jdbc.database}?tcpKeepAlive=${jdbc.tcpKeepAlive:-true}${jdbc.adittionalUrlParameters}
+    authalias: jdbc
+
+  - name: ladybug
+    type: org.postgresql.ds.PGSimpleDataSource
+    url: jdbc:postgresql://${jdbc.hostname}:${jdbc.port:-5432}/${jdbc.database}?tcpKeepAlive=${jdbc.tcpKeepAlive:-true}${jdbc.adittionalUrlParameters}
+    authalias: jdbc
