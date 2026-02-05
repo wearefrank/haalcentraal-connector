@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Public FrankDoc XSD, should be used within an IDE to validate a configuration. -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="10.0.0-20260117.042331">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="10.0.0-20260203.042333">
   <xs:element name="Configuration">
     <xs:annotation>
       <xs:documentation>Container of Adapters that belong together.
@@ -1219,7 +1219,36 @@ Configure/start/stop lifecycles are managed by Spring.</xs:documentation>
         <xs:annotation>
           <xs:documentation>Parameter that resolves it's value to either &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;.
 &lt;p/&gt;
-{@inheritClassDoc}&lt;br&gt;&lt;br&gt;&lt;b&gt;TIP&lt;/b&gt;&lt;p&gt;&lt;code&gt;!false&lt;/code&gt; also resolves to &lt;code&gt;true&lt;/code&gt;, and &lt;code&gt;!true&lt;/code&gt; is seen as &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;</xs:documentation>
+Generic parameter definition.
+
+&lt;p&gt;
+A parameter resembles an attribute. However, while attributes get their value at configuration-time,
+parameters get their value at the time of processing the message. Value can be retrieved from the message itself,
+a fixed value, or from the pipelineSession. If this does not result in a value (or if neither of these is specified), a default value
+can be specified. If an XPathExpression, XSLT stylesheet or JSONPathExpression is specified, it will be applied to the message, the value retrieved
+from the pipelineSession or the fixed value specified. If the transformation produces no output, the default value
+of the parameter is taken if provided.
+&lt;/p&gt;
+Examples:
+&lt;pre&gt;&lt;code&gt;stored under SessionKey 'TransportInfo':
+ &amp;lt;transportinfo&amp;gt;
+  &amp;lt;to&amp;gt;***@zonnet.nl&amp;lt;/to&amp;gt;
+  &amp;lt;to&amp;gt;***@zonnet.nl&amp;lt;/to&amp;gt;
+  &amp;lt;cc&amp;gt;***@zonnet.nl&amp;lt;/cc&amp;gt;
+ &amp;lt;/transportinfo&amp;gt;
+
+to obtain all 'to' addressees as a parameter:
+sessionKey="TransportInfo"
+xpathExpression="transportinfo/to"
+type="xml"
+
+Result:
+  &amp;lt;to&amp;gt;***@zonnet.nl&amp;lt;/to&amp;gt;
+  &amp;lt;to&amp;gt;***@zonnet.nl&amp;lt;/to&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+N.B. to obtain a fixed value: a non-existing 'dummy' &lt;code&gt;sessionKey&lt;/code&gt; in combination with the fixed value in &lt;code&gt;defaultValue&lt;/code&gt; is used traditionally.
+The current version of parameter supports the &lt;code&gt;value&lt;/code&gt; attribute, that is sufficient to set a fixed value.&lt;br&gt;&lt;br&gt;&lt;b&gt;TIP&lt;/b&gt;&lt;p&gt;&lt;code&gt;!false&lt;/code&gt; also resolves to &lt;code&gt;true&lt;/code&gt;, and &lt;code&gt;!true&lt;/code&gt; is seen as &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -1655,7 +1684,14 @@ Example usage:&lt;br&gt;
 
 &lt;/p&gt;
 
-{@inheritClassDoc}</xs:documentation>
+listener that looks in a FileSystem for files.
+When a file is found, it is moved to an in-process folder, so that it isn't found more than once.
+&lt;br/&gt;
+The information specified by &lt;code&gt;messageType&lt;/code&gt; is then passed to the pipeline.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;To avoid problems with duplicate filenames in folders like the &lt;code&gt;errorFolder&lt;/code&gt; or &lt;code&gt;processedFolder&lt;/code&gt;,
+you should configure either &lt;code&gt;overwrite=&amp;quot;true&amp;quot;&lt;/code&gt;, configure &lt;code&gt;numberOfBackups&lt;/code&gt; to a value larger than 0, or
+configure an &lt;code&gt;inProcessFolder&lt;/code&gt; and &lt;code&gt;fileTimeSensitive=&amp;quot;true&amp;quot;&lt;/code&gt;.
+These options can be used together as well.&lt;/p&gt;&lt;br&gt;&lt;b&gt;WARNING&lt;/b&gt;&lt;p&gt;In addition to the above, prior to release 9.0 it was not sufficient to configure &lt;code&gt;inProcessFolder&lt;/code&gt; and &lt;code&gt;fileTimeSensitive&lt;/code&gt;
+to avoid potential duplicate filename errors. Prior to release 9.0, it is recommended to configure &lt;code&gt;numberOfBackups&lt;/code&gt; to avoid these issues.&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -1669,7 +1705,70 @@ Example usage:&lt;br&gt;
         <xs:annotation>
           <xs:documentation>ESB (Enterprise Service Bus) extension of JmsListener.
 
-{@inheritClassDoc}</xs:documentation>
+A true multi-threaded Listener-class.
+&lt;br/&gt;
+
+Since version 4.1, Ibis supports distributed transactions using the XA-protocol. This feature is controlled by the
+transacted attribute. If this is set to &lt;code&gt;true&lt;/code&gt;, received messages are
+committed or rolled back, possibly together with other actions, by the receiver or the pipeline.
+In case of a failure, all actions within the transaction are rolled back.
+&lt;/p&gt;&lt;p&gt;
+Setting listener.acknowledgeMode to "auto" means that messages are allways acknowledged (removed from
+the queue, regardless of what the status of the Adapter is. "client" means that the message will only be removed from the queue
+when the state of the Adapter equals the success state for committing.
+The "dups" mode instructs the session to lazily acknowledge the delivery of the messages. This is likely to result in the
+delivery of duplicate messages if JMS fails. It should be used by consumers who are tolerant in processing duplicate messages.
+In cases where the client is tolerant of duplicate messages, some enhancement in performance can be achieved using this mode,
+since a session has lower overhead in trying to prevent duplicate messages.
+&lt;/p&gt;
+&lt;p&gt;The setting for listener.acknowledgeMode will only be processed if
+the setting for listener.transacted.&lt;/p&gt;
+
+&lt;p&gt;If useReplyTo is set and a replyTo-destination is
+specified in the message, the JmsListener sends the result of the processing
+in the pipeline to this destination. Otherwise the result is sent using the (optionally)
+specified, that in turn sends the message to
+whatever it is configured to.&lt;/p&gt;
+
+&lt;p&gt;You can add parameters to the JmsListener, the values will be added as Headers to the JMS response message.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
+jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
+&lt;/p&gt;
+
+JMSListener re-implemented as a pushing listener rather than a pulling listener.
+The JMS messages have to come in from an external source: an MDB or a Spring
+message container.
+
+This version of the &lt;code&gt;JmsListener&lt;/code&gt; supports distributed transactions using the XA-protocol.
+No special action is required to have the listener join the transaction.
+&lt;/p&gt;&lt;p&gt;
+Setting listener.acknowledgeMode to "auto" means that messages are allways acknowledged (removed from
+the queue, regardless of what the status of the Adapter is. "client" means that the message will only be removed from the queue
+when the state of the Adapter equals the success state.
+The "dups" mode instructs the session to lazily acknowledge the delivery of the messages. This is likely to result in the
+delivery of duplicate messages if JMS fails. It should be used by consumers who are tolerant in processing duplicate messages.
+In cases where the client is tolerant of duplicate messages, some enhancement in performance can be achieved using this mode,
+since a session has lower overhead in trying to prevent duplicate messages.
+&lt;/p&gt;
+&lt;p&gt;The setting for listener.acknowledgeMode will only be processed if
+the setting for listener.transacted.&lt;/p&gt;
+
+&lt;p&gt;If useReplyTo is set and a replyTo-destination is
+specified in the message, the JmsListener sends the result of the processing
+in the pipeline to this destination. Otherwise the result is sent using the (optionally)
+specified Sender, that in turn sends the message to
+whatever it is configured to.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
+jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
+&lt;/p&gt;
+
+Provides functions for jms connections, queues and topics and acts as a facade
+to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+&lt;br/&gt;
+The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -1711,7 +1810,14 @@ See the org.frankframework.senders.FrankSender documentation for more informatio
         <xs:annotation>
           <xs:documentation>File listener for an FTP connection.
 
-{@inheritClassDoc}</xs:documentation>
+listener that looks in a FileSystem for files.
+When a file is found, it is moved to an in-process folder, so that it isn't found more than once.
+&lt;br/&gt;
+The information specified by &lt;code&gt;messageType&lt;/code&gt; is then passed to the pipeline.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;To avoid problems with duplicate filenames in folders like the &lt;code&gt;errorFolder&lt;/code&gt; or &lt;code&gt;processedFolder&lt;/code&gt;,
+you should configure either &lt;code&gt;overwrite=&amp;quot;true&amp;quot;&lt;/code&gt;, configure &lt;code&gt;numberOfBackups&lt;/code&gt; to a value larger than 0, or
+configure an &lt;code&gt;inProcessFolder&lt;/code&gt; and &lt;code&gt;fileTimeSensitive=&amp;quot;true&amp;quot;&lt;/code&gt;.
+These options can be used together as well.&lt;/p&gt;&lt;br&gt;&lt;b&gt;WARNING&lt;/b&gt;&lt;p&gt;In addition to the above, prior to release 9.0 it was not sufficient to configure &lt;code&gt;inProcessFolder&lt;/code&gt; and &lt;code&gt;fileTimeSensitive&lt;/code&gt;
+to avoid potential duplicate filename errors. Prior to release 9.0, it is recommended to configure &lt;code&gt;numberOfBackups&lt;/code&gt; to avoid these issues.&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -1737,7 +1843,72 @@ See the org.frankframework.senders.FrankSender documentation for more informatio
 &lt;/ul&gt;&lt;/td&gt;&lt;td&gt;"FF"&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;&lt;/p&gt;
 
-{@inheritClassDoc}</xs:documentation>
+ESB (Enterprise Service Bus) extension of JmsListener.
+
+A true multi-threaded Listener-class.
+&lt;br/&gt;
+
+Since version 4.1, Ibis supports distributed transactions using the XA-protocol. This feature is controlled by the
+transacted attribute. If this is set to &lt;code&gt;true&lt;/code&gt;, received messages are
+committed or rolled back, possibly together with other actions, by the receiver or the pipeline.
+In case of a failure, all actions within the transaction are rolled back.
+&lt;/p&gt;&lt;p&gt;
+Setting listener.acknowledgeMode to "auto" means that messages are allways acknowledged (removed from
+the queue, regardless of what the status of the Adapter is. "client" means that the message will only be removed from the queue
+when the state of the Adapter equals the success state for committing.
+The "dups" mode instructs the session to lazily acknowledge the delivery of the messages. This is likely to result in the
+delivery of duplicate messages if JMS fails. It should be used by consumers who are tolerant in processing duplicate messages.
+In cases where the client is tolerant of duplicate messages, some enhancement in performance can be achieved using this mode,
+since a session has lower overhead in trying to prevent duplicate messages.
+&lt;/p&gt;
+&lt;p&gt;The setting for listener.acknowledgeMode will only be processed if
+the setting for listener.transacted.&lt;/p&gt;
+
+&lt;p&gt;If useReplyTo is set and a replyTo-destination is
+specified in the message, the JmsListener sends the result of the processing
+in the pipeline to this destination. Otherwise the result is sent using the (optionally)
+specified, that in turn sends the message to
+whatever it is configured to.&lt;/p&gt;
+
+&lt;p&gt;You can add parameters to the JmsListener, the values will be added as Headers to the JMS response message.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
+jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
+&lt;/p&gt;
+
+JMSListener re-implemented as a pushing listener rather than a pulling listener.
+The JMS messages have to come in from an external source: an MDB or a Spring
+message container.
+
+This version of the &lt;code&gt;JmsListener&lt;/code&gt; supports distributed transactions using the XA-protocol.
+No special action is required to have the listener join the transaction.
+&lt;/p&gt;&lt;p&gt;
+Setting listener.acknowledgeMode to "auto" means that messages are allways acknowledged (removed from
+the queue, regardless of what the status of the Adapter is. "client" means that the message will only be removed from the queue
+when the state of the Adapter equals the success state.
+The "dups" mode instructs the session to lazily acknowledge the delivery of the messages. This is likely to result in the
+delivery of duplicate messages if JMS fails. It should be used by consumers who are tolerant in processing duplicate messages.
+In cases where the client is tolerant of duplicate messages, some enhancement in performance can be achieved using this mode,
+since a session has lower overhead in trying to prevent duplicate messages.
+&lt;/p&gt;
+&lt;p&gt;The setting for listener.acknowledgeMode will only be processed if
+the setting for listener.transacted.&lt;/p&gt;
+
+&lt;p&gt;If useReplyTo is set and a replyTo-destination is
+specified in the message, the JmsListener sends the result of the processing
+in the pipeline to this destination. Otherwise the result is sent using the (optionally)
+specified Sender, that in turn sends the message to
+whatever it is configured to.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
+jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
+&lt;/p&gt;
+
+Provides functions for jms connections, queues and topics and acts as a facade
+to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+&lt;br/&gt;
+The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -1840,7 +2011,39 @@ whatever it is configured to.&lt;/p&gt;
 jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
 &lt;/p&gt;
 
-{@inheritClassDoc}</xs:documentation>
+JMSListener re-implemented as a pushing listener rather than a pulling listener.
+The JMS messages have to come in from an external source: an MDB or a Spring
+message container.
+
+This version of the &lt;code&gt;JmsListener&lt;/code&gt; supports distributed transactions using the XA-protocol.
+No special action is required to have the listener join the transaction.
+&lt;/p&gt;&lt;p&gt;
+Setting listener.acknowledgeMode to "auto" means that messages are allways acknowledged (removed from
+the queue, regardless of what the status of the Adapter is. "client" means that the message will only be removed from the queue
+when the state of the Adapter equals the success state.
+The "dups" mode instructs the session to lazily acknowledge the delivery of the messages. This is likely to result in the
+delivery of duplicate messages if JMS fails. It should be used by consumers who are tolerant in processing duplicate messages.
+In cases where the client is tolerant of duplicate messages, some enhancement in performance can be achieved using this mode,
+since a session has lower overhead in trying to prevent duplicate messages.
+&lt;/p&gt;
+&lt;p&gt;The setting for listener.acknowledgeMode will only be processed if
+the setting for listener.transacted.&lt;/p&gt;
+
+&lt;p&gt;If useReplyTo is set and a replyTo-destination is
+specified in the message, the JmsListener sends the result of the processing
+in the pipeline to this destination. Otherwise the result is sent using the (optionally)
+specified Sender, that in turn sends the message to
+whatever it is configured to.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
+jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
+&lt;/p&gt;
+
+Provides functions for jms connections, queues and topics and acts as a facade
+to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+&lt;br/&gt;
+The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -1909,7 +2112,22 @@ See /IAF_util/IAF_DatabaseChangelog.xml for the structure of table IBISSTORE.</x
 
 Links to &lt;a href="https://www.eclipse.org/paho/files/javadoc" target="_blank"&gt;https://www.eclipse.org/paho/files/javadoc&lt;/a&gt; are opened in a new window/tab because the response from eclipse.org contains header X-Frame-Options:SAMEORIGIN which will make the browser refuse to open the link inside this frame.
 
-{@inheritClassDoc}</xs:documentation>
+Requires a resource to be configured. Example &lt;pre&gt;resources.yml&lt;/pre&gt;:
+&lt;pre&gt;&lt;code&gt;mqtt:
+  - name: &amp;quot;my-connection&amp;quot;
+    url: &amp;quot;tcp://host:port&amp;quot;
+    username: &amp;quot;&amp;quot;
+    password: &amp;quot;&amp;quot;
+    authalias: &amp;quot;${property.name.here}&amp;quot;
+    properties:
+      automaticReconnect: &amp;quot;true&amp;quot;
+      cleanSession: &amp;quot;false&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+The clientId is automatically determined from &lt;code&gt;transactionmanager.uid&lt;/code&gt;, but can optionally be overwritten. Be aware that the clientId must be unique
+for each instance of the framework.
+&lt;br&gt;&lt;br&gt;
+Inbound and outbound messages are persisted while they are in flight to prevent data loss. The default is an in memory store, but the &lt;pre&gt;persistenceDirectory&lt;/pre&gt;
+flag can be used to set the disk storage location.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -1950,7 +2168,11 @@ Links to &lt;a href="https://www.eclipse.org/paho/files/javadoc" target="_blank"
  &lt;code&gt;jakarta.jms.TextMessage&lt;/code&gt;s &lt;br/&gt;&lt;br/&gt;
  &lt;/p&gt;
 
- {@inheritClassDoc}</xs:documentation>
+Provides functions for jms connections, queues and topics and acts as a facade
+to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+&lt;br/&gt;
+The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -1990,7 +2212,11 @@ whatever it is configured to.&lt;/p&gt;
 jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
 &lt;/p&gt;
 
-{@inheritClassDoc}</xs:documentation>
+Provides functions for jms connections, queues and topics and acts as a facade
+to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+&lt;br/&gt;
+The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -2017,7 +2243,14 @@ to receive messages from Servlets.</xs:documentation>
         <xs:annotation>
           <xs:documentation>File listener for an SMB2 or SMB3 share.
 
-{@inheritClassDoc}</xs:documentation>
+listener that looks in a FileSystem for files.
+When a file is found, it is moved to an in-process folder, so that it isn't found more than once.
+&lt;br/&gt;
+The information specified by &lt;code&gt;messageType&lt;/code&gt; is then passed to the pipeline.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;To avoid problems with duplicate filenames in folders like the &lt;code&gt;errorFolder&lt;/code&gt; or &lt;code&gt;processedFolder&lt;/code&gt;,
+you should configure either &lt;code&gt;overwrite=&amp;quot;true&amp;quot;&lt;/code&gt;, configure &lt;code&gt;numberOfBackups&lt;/code&gt; to a value larger than 0, or
+configure an &lt;code&gt;inProcessFolder&lt;/code&gt; and &lt;code&gt;fileTimeSensitive=&amp;quot;true&amp;quot;&lt;/code&gt;.
+These options can be used together as well.&lt;/p&gt;&lt;br&gt;&lt;b&gt;WARNING&lt;/b&gt;&lt;p&gt;In addition to the above, prior to release 9.0 it was not sufficient to configure &lt;code&gt;inProcessFolder&lt;/code&gt; and &lt;code&gt;fileTimeSensitive&lt;/code&gt;
+to avoid potential duplicate filename errors. Prior to release 9.0, it is recommended to configure &lt;code&gt;numberOfBackups&lt;/code&gt; to avoid these issues.&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -2029,7 +2262,14 @@ to receive messages from Servlets.</xs:documentation>
       </xs:element>
       <xs:element name="SapListener">
         <xs:annotation>
-          <xs:documentation>{@inheritClassDoc}</xs:documentation>
+          <xs:documentation>Implementation of a IPushingListener,
+that enables a Receiver to receive messages from SAP-systems.
+
+In SAP, the function to be called is an RFC-function to the destination that is registered using &lt;code&gt;progid&lt;/code&gt;.
+&lt;/b&gt;
+N.B. If no requestFieldIndex or requestFieldName is specified, input is converted to xml;
+If no replyFieldIndex or replyFieldName is specified, output is converted from xml.
+&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -2043,7 +2283,14 @@ to receive messages from Servlets.</xs:documentation>
         <xs:annotation>
           <xs:documentation>File listener for an SFTP connection.
 
-{@inheritClassDoc}</xs:documentation>
+listener that looks in a FileSystem for files.
+When a file is found, it is moved to an in-process folder, so that it isn't found more than once.
+&lt;br/&gt;
+The information specified by &lt;code&gt;messageType&lt;/code&gt; is then passed to the pipeline.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;To avoid problems with duplicate filenames in folders like the &lt;code&gt;errorFolder&lt;/code&gt; or &lt;code&gt;processedFolder&lt;/code&gt;,
+you should configure either &lt;code&gt;overwrite=&amp;quot;true&amp;quot;&lt;/code&gt;, configure &lt;code&gt;numberOfBackups&lt;/code&gt; to a value larger than 0, or
+configure an &lt;code&gt;inProcessFolder&lt;/code&gt; and &lt;code&gt;fileTimeSensitive=&amp;quot;true&amp;quot;&lt;/code&gt;.
+These options can be used together as well.&lt;/p&gt;&lt;br&gt;&lt;b&gt;WARNING&lt;/b&gt;&lt;p&gt;In addition to the above, prior to release 9.0 it was not sufficient to configure &lt;code&gt;inProcessFolder&lt;/code&gt; and &lt;code&gt;fileTimeSensitive&lt;/code&gt;
+to avoid potential duplicate filename errors. Prior to release 9.0, it is recommended to configure &lt;code&gt;numberOfBackups&lt;/code&gt; to avoid these issues.&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -2068,7 +2315,70 @@ other management of processing messages in parallel.</xs:documentation>
       </xs:element>
       <xs:element name="TibcoLogJmsListener">
         <xs:annotation>
-          <xs:documentation>{@inheritClassDoc}</xs:documentation>
+          <xs:documentation>A true multi-threaded Listener-class.
+&lt;br/&gt;
+
+Since version 4.1, Ibis supports distributed transactions using the XA-protocol. This feature is controlled by the
+transacted attribute. If this is set to &lt;code&gt;true&lt;/code&gt;, received messages are
+committed or rolled back, possibly together with other actions, by the receiver or the pipeline.
+In case of a failure, all actions within the transaction are rolled back.
+&lt;/p&gt;&lt;p&gt;
+Setting listener.acknowledgeMode to "auto" means that messages are allways acknowledged (removed from
+the queue, regardless of what the status of the Adapter is. "client" means that the message will only be removed from the queue
+when the state of the Adapter equals the success state for committing.
+The "dups" mode instructs the session to lazily acknowledge the delivery of the messages. This is likely to result in the
+delivery of duplicate messages if JMS fails. It should be used by consumers who are tolerant in processing duplicate messages.
+In cases where the client is tolerant of duplicate messages, some enhancement in performance can be achieved using this mode,
+since a session has lower overhead in trying to prevent duplicate messages.
+&lt;/p&gt;
+&lt;p&gt;The setting for listener.acknowledgeMode will only be processed if
+the setting for listener.transacted.&lt;/p&gt;
+
+&lt;p&gt;If useReplyTo is set and a replyTo-destination is
+specified in the message, the JmsListener sends the result of the processing
+in the pipeline to this destination. Otherwise the result is sent using the (optionally)
+specified, that in turn sends the message to
+whatever it is configured to.&lt;/p&gt;
+
+&lt;p&gt;You can add parameters to the JmsListener, the values will be added as Headers to the JMS response message.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
+jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
+&lt;/p&gt;
+
+JMSListener re-implemented as a pushing listener rather than a pulling listener.
+The JMS messages have to come in from an external source: an MDB or a Spring
+message container.
+
+This version of the &lt;code&gt;JmsListener&lt;/code&gt; supports distributed transactions using the XA-protocol.
+No special action is required to have the listener join the transaction.
+&lt;/p&gt;&lt;p&gt;
+Setting listener.acknowledgeMode to "auto" means that messages are allways acknowledged (removed from
+the queue, regardless of what the status of the Adapter is. "client" means that the message will only be removed from the queue
+when the state of the Adapter equals the success state.
+The "dups" mode instructs the session to lazily acknowledge the delivery of the messages. This is likely to result in the
+delivery of duplicate messages if JMS fails. It should be used by consumers who are tolerant in processing duplicate messages.
+In cases where the client is tolerant of duplicate messages, some enhancement in performance can be achieved using this mode,
+since a session has lower overhead in trying to prevent duplicate messages.
+&lt;/p&gt;
+&lt;p&gt;The setting for listener.acknowledgeMode will only be processed if
+the setting for listener.transacted.&lt;/p&gt;
+
+&lt;p&gt;If useReplyTo is set and a replyTo-destination is
+specified in the message, the JmsListener sends the result of the processing
+in the pipeline to this destination. Otherwise the result is sent using the (optionally)
+specified Sender, that in turn sends the message to
+whatever it is configured to.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Notice:&lt;/b&gt; the JmsListener is ONLY capable of processing
+jakarta.jms.TextMessages and jakarta.jms.BytesMessage&lt;br/&gt;&lt;br/&gt;
+&lt;/p&gt;
+
+Provides functions for jms connections, queues and topics and acts as a facade
+to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+&lt;br/&gt;
+The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -4116,7 +4426,11 @@ This is slightly different from the namespaceURI which routes messages based on 
         <xs:annotation>
           <xs:documentation>ESB (Enterprise Service Bus) extension of &lt;code&gt;JmsSender&lt;/code&gt;.
 
-{@inheritClassDoc}</xs:documentation>
+Provides functions for jms connections, queues and topics and acts as a facade
+to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+&lt;br/&gt;
+The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -4132,7 +4446,14 @@ This is slightly different from the namespaceURI which routes messages based on 
 
 &lt;p&gt;See JmsSender for configuration&lt;/p&gt;
 
-{@inheritClassDoc}</xs:documentation>
+JMS sender which will call IBM WebSphere MQ specific &lt;code&gt;setTargetClient(JMSC.MQJMS_CLIENT_NONJMS_MQ)&lt;/code&gt; on the destination prior to sending a message.
+This is needed when the MQ destination is not a JMS receiver otherwise format errors occur (e.g. dots are added after every character in the message).
+
+Provides functions for jms connections, queues and topics and acts as a facade
+to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+&lt;br/&gt;
+The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -4144,7 +4465,11 @@ This is slightly different from the namespaceURI which routes messages based on 
       </xs:element>
       <xs:element name="JmsSender">
         <xs:annotation>
-          <xs:documentation>{@inheritClassDoc}</xs:documentation>
+          <xs:documentation>Provides functions for jms connections, queues and topics and acts as a facade
+to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+&lt;br/&gt;
+The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -4159,7 +4484,11 @@ This is slightly different from the namespaceURI which routes messages based on 
           <xs:documentation>JMS sender which will call IBM WebSphere MQ specific &lt;code&gt;setTargetClient(JMSC.MQJMS_CLIENT_NONJMS_MQ)&lt;/code&gt; on the destination prior to sending a message.
 This is needed when the MQ destination is not a JMS receiver otherwise format errors occur (e.g. dots are added after every character in the message).
 
-{@inheritClassDoc}</xs:documentation>
+Provides functions for jms connections, queues and topics and acts as a facade
+to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+&lt;br/&gt;
+The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -4349,7 +4678,30 @@ ESB.Infrastructure.US.Log.BusinessLog.2.AuditLog.1.Action&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/p&gt;
 
-{@inheritClassDoc}</xs:documentation>
+Implements a message log (&lt;code&gt;JmsMessageLog&lt;/code&gt;) or error store (&lt;code&gt;JmsErrorStorage&lt;/code&gt;) that uses JMS technology.
+&lt;br/&gt;&lt;br/&gt;
+&lt;b&gt;Message log:&lt;/b&gt; A message log writes messages in persistent storage for logging purposes.
+When a message log appears in a receiver, it also ensures that the same message is only processed
+once, even if a related pushing listener receives the same message multiple times.
+&lt;br/&gt;&lt;br/&gt;
+&lt;b&gt;Error store:&lt;/b&gt; Appears in a receiver or sender pipe to store messages that could not be processed.
+Storing a message in the error store is the last resort of the Frank!Framework. Many types of listeners and senders
+offer a retry mechanism. Only if several tries have failed, then an optional transaction is not rolled
+back and the message is stored in the error store. Users can retry messages in an error store using the Frank!Console. When
+this is done, the message is processed in the same way as messages received from the original source.
+&lt;br/&gt;&lt;br/&gt;
+How does a message log or error store see duplicate messages? The message log or error store
+always appears in combination with a sender or listener. This sender or listener determines
+a key based on the sent or received message. Messages with the same key are considered to
+be the same.
+
+Basic browser of JMS Messages.
+
+Provides functions for jms connections, queues and topics and acts as a facade
+to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+&lt;br/&gt;
+The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -4424,7 +4776,13 @@ always appears in combination with a sender or listener. This sender or listener
 a key based on the sent or received message. Messages with the same key are considered to
 be the same.
 
-{@inheritClassDoc}</xs:documentation>
+Basic browser of JMS Messages.
+
+Provides functions for jms connections, queues and topics and acts as a facade
+to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+&lt;br/&gt;
+The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -4670,7 +5028,30 @@ ESB.Infrastructure.US.Log.BusinessLog.2.AuditLog.1.Action&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/p&gt;
 
-{@inheritClassDoc}</xs:documentation>
+Implements a message log (&lt;code&gt;JmsMessageLog&lt;/code&gt;) or error store (&lt;code&gt;JmsErrorStorage&lt;/code&gt;) that uses JMS technology.
+&lt;br/&gt;&lt;br/&gt;
+&lt;b&gt;Message log:&lt;/b&gt; A message log writes messages in persistent storage for logging purposes.
+When a message log appears in a receiver, it also ensures that the same message is only processed
+once, even if a related pushing listener receives the same message multiple times.
+&lt;br/&gt;&lt;br/&gt;
+&lt;b&gt;Error store:&lt;/b&gt; Appears in a receiver or sender pipe to store messages that could not be processed.
+Storing a message in the error store is the last resort of the Frank!Framework. Many types of listeners and senders
+offer a retry mechanism. Only if several tries have failed, then an optional transaction is not rolled
+back and the message is stored in the error store. Users can retry messages in an error store using the Frank!Console. When
+this is done, the message is processed in the same way as messages received from the original source.
+&lt;br/&gt;&lt;br/&gt;
+How does a message log or error store see duplicate messages? The message log or error store
+always appears in combination with a sender or listener. This sender or listener determines
+a key based on the sent or received message. Messages with the same key are considered to
+be the same.
+
+Basic browser of JMS Messages.
+
+Provides functions for jms connections, queues and topics and acts as a facade
+to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+&lt;br/&gt;
+The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -4745,7 +5126,13 @@ always appears in combination with a sender or listener. This sender or listener
 a key based on the sent or received message. Messages with the same key are considered to
 be the same.
 
-{@inheritClassDoc}</xs:documentation>
+Basic browser of JMS Messages.
+
+Provides functions for jms connections, queues and topics and acts as a facade
+to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+&lt;br/&gt;
+The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -4924,6 +5311,20 @@ If the transformation does not succeed, this 'standard' error message is returne
       <xs:simpleType>
         <xs:union memberTypes="DataSonnetOutputTypeAttributeValuesType variableRef" />
       </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="imports" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>List of stylesheets / DataSonnet files imported by the stylesheet to be executed. Stylesheets are only evaluated as JSonnet files if the filename has the extension &lt;pre&gt;.ds&lt;/pre&gt; or &lt;pre&gt;.libsonnet&lt;/pre&gt;.
+
+&lt;p&gt;
+    The list of stylesheets is expected to be a comma-separated list of files, which are loaded from the configuration.
+    Import statements in DataSonnet cannot be used unless each file to be imported is listed here in the &lt;code&gt;imports&lt;/code&gt; attribute.
+&lt;/p&gt;
+&lt;p&gt;
+    Imported files may not be able to use DataSonnet functions from DataSonnet's own libraries, normally available as &lt;code&gt;ds.map()&lt;/code&gt; and the like. The
+    cause for this is not yet known.
+&lt;/p&gt;</xs:documentation>
+      </xs:annotation>
     </xs:attribute>
   </xs:attributeGroup>
   <xs:attributeGroup name="DataSonnetErrorMessageFormatterCumulativeAttributeGroup">
@@ -7033,7 +7434,11 @@ N.B. the default values shown can be overridden using properties in appConstants
  &lt;code&gt;jakarta.jms.TextMessage&lt;/code&gt;s &lt;br/&gt;&lt;br/&gt;
  &lt;/p&gt;
 
- {@inheritClassDoc}</xs:documentation>
+Provides functions for jms connections, queues and topics and acts as a facade
+to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+&lt;br/&gt;
+The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -7448,7 +7853,11 @@ Messages are expected to contain sql-text.&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/
         <xs:annotation>
           <xs:documentation>ESB (Enterprise Service Bus) extension of &lt;code&gt;JmsSender&lt;/code&gt;.
 
-{@inheritClassDoc}</xs:documentation>
+Provides functions for jms connections, queues and topics and acts as a facade
+to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+&lt;br/&gt;
+The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -7739,7 +8148,18 @@ of the sub-adapter for the extra error-handling done by the target receiver.
       </xs:element>
       <xs:element name="HttpSender">
         <xs:annotation>
-          <xs:documentation>{@inheritClassDoc}</xs:documentation>
+          <xs:documentation>Sender for the HTTP protocol using HttpMethod. By default, any response code outside the 2xx or 3xx range
+is considered an error and the &lt;code&gt;exception&lt;/code&gt; forward of the SenderPipe is followed if present and if there
+is no forward for the specific HTTP status code. Forwards for specific HTTP codes (e.g. "200", "201", ...)
+are returned by this sender, so they are available to the SenderPipe.
+
+&lt;p&gt;&lt;b&gt;Expected message format:&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;GET methods expect a message looking like this:
+&lt;pre&gt;&lt;code&gt;param_name=param_value&amp;amp;another_param_name=another_param_value&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;POST AND PUT methods expect a message similar as GET, or looking like this:
+&lt;pre&gt;&lt;code&gt;param_name=param_value
+  another_param_name=another_param_value&lt;/code&gt;&lt;/pre&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;When used as MTOM sender and MTOM receiver doesn't support Content-Transfer-Encoding "base64", messages without line feeds will give an error.
+This can be fixed by setting the Content-Transfer-Encoding in the MTOM sender.&lt;/p&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;The use of `multi-value` parameters can be achieved by adding multiple parameters with the same name.&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -7755,7 +8175,14 @@ of the sub-adapter for the extra error-handling done by the target receiver.
 
 &lt;p&gt;See JmsSender for configuration&lt;/p&gt;
 
-{@inheritClassDoc}</xs:documentation>
+JMS sender which will call IBM WebSphere MQ specific &lt;code&gt;setTargetClient(JMSC.MQJMS_CLIENT_NONJMS_MQ)&lt;/code&gt; on the destination prior to sending a message.
+This is needed when the MQ destination is not a JMS receiver otherwise format errors occur (e.g. dots are added after every character in the message).
+
+Provides functions for jms connections, queues and topics and acts as a facade
+to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+&lt;br/&gt;
+The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -7872,7 +8299,8 @@ In the Adapter to be called:
       </xs:element>
       <xs:element name="IdocSender">
         <xs:annotation>
-          <xs:documentation>{@inheritClassDoc}</xs:documentation>
+          <xs:documentation>Implementation of sender that sends an IDoc to SAP.
+N.B. The sending of the iDoc is committed right after the XA transaction is completed.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -7929,7 +8357,11 @@ Will trigger the inner-sender with data: 'echo me'.&lt;br&gt;&lt;br&gt;&lt;b&gt;
       </xs:element>
       <xs:element name="JmsSender">
         <xs:annotation>
-          <xs:documentation>{@inheritClassDoc}</xs:documentation>
+          <xs:documentation>Provides functions for jms connections, queues and topics and acts as a facade
+to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+&lt;br/&gt;
+The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -8090,7 +8522,11 @@ Sample result of a &lt;code&gt;search&lt;/code&gt; operation:&lt;br/&gt;
           <xs:documentation>JMS sender which will call IBM WebSphere MQ specific &lt;code&gt;setTargetClient(JMSC.MQJMS_CLIENT_NONJMS_MQ)&lt;/code&gt; on the destination prior to sending a message.
 This is needed when the MQ destination is not a JMS receiver otherwise format errors occur (e.g. dots are added after every character in the message).
 
-{@inheritClassDoc}</xs:documentation>
+Provides functions for jms connections, queues and topics and acts as a facade
+to hide for clients whether a &lt;code&gt;Queue&lt;/code&gt; or &lt;code&gt;Topic&lt;/code&gt; is used.
+&lt;br/&gt;
+The &lt;code&gt;destinationType&lt;/code&gt; field specifies which type should be used.&lt;br/&gt;
+This class sends messages with JMS.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -8202,7 +8638,22 @@ Example configuration:
 
 Links to &lt;a href="https://www.eclipse.org/paho/files/javadoc" target="_blank"&gt;https://www.eclipse.org/paho/files/javadoc&lt;/a&gt; are opened in a new window/tab because the response from eclipse.org contains header X-Frame-Options:SAMEORIGIN which will make the browser refuse to open the link inside this frame.
 
-{@inheritClassDoc}</xs:documentation>
+Requires a resource to be configured. Example &lt;pre&gt;resources.yml&lt;/pre&gt;:
+&lt;pre&gt;&lt;code&gt;mqtt:
+  - name: &amp;quot;my-connection&amp;quot;
+    url: &amp;quot;tcp://host:port&amp;quot;
+    username: &amp;quot;&amp;quot;
+    password: &amp;quot;&amp;quot;
+    authalias: &amp;quot;${property.name.here}&amp;quot;
+    properties:
+      automaticReconnect: &amp;quot;true&amp;quot;
+      cleanSession: &amp;quot;false&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+The clientId is automatically determined from &lt;code&gt;transactionmanager.uid&lt;/code&gt;, but can optionally be overwritten. Be aware that the clientId must be unique
+for each instance of the framework.
+&lt;br&gt;&lt;br&gt;
+Inbound and outbound messages are persisted while they are in flight to prevent data loss. The default is an in memory store, but the &lt;pre&gt;persistenceDirectory&lt;/pre&gt;
+flag can be used to set the disk storage location.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -8324,7 +8775,10 @@ Server not found in Kerberos database (7): Verify that the hostname is the FQDN 
       </xs:element>
       <xs:element name="SapSender">
         <xs:annotation>
-          <xs:documentation>{@inheritClassDoc}</xs:documentation>
+          <xs:documentation>Implementation of sender that calls a SAP RFC-function.
+
+N.B. If no requestFieldIndex or requestFieldName is specified, input is converted from xml;
+If no replyFieldIndex or replyFieldName is specified, output is converted to xml.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -15593,6 +16047,20 @@ See &lt;a href="https://en.wikipedia.org/wiki/C0_and_C1_control_codes#Field_sepa
         <xs:union memberTypes="DataSonnetOutputTypeAttributeValuesType variableRef" />
       </xs:simpleType>
     </xs:attribute>
+    <xs:attribute name="imports" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>List of stylesheets / DataSonnet files imported by the stylesheet to be executed. Stylesheets are only evaluated as JSonnet files if the filename has the extension &lt;pre&gt;.ds&lt;/pre&gt; or &lt;pre&gt;.libsonnet&lt;/pre&gt;.
+
+&lt;p&gt;
+    The list of stylesheets is expected to be a comma-separated list of files, which are loaded from the configuration.
+    Import statements in DataSonnet cannot be used unless each file to be imported is listed here in the &lt;code&gt;imports&lt;/code&gt; attribute.
+&lt;/p&gt;
+&lt;p&gt;
+    Imported files may not be able to use DataSonnet functions from DataSonnet's own libraries, normally available as &lt;code&gt;ds.map()&lt;/code&gt; and the like. The
+    cause for this is not yet known.
+&lt;/p&gt;</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:attributeGroup>
   <xs:attributeGroup name="DataSonnetPipeCumulativeAttributeGroup">
     <xs:attributeGroup ref="DataSonnetPipeDeclaredAttributeGroup" />
@@ -17831,7 +18299,223 @@ Use with caution, they may create memory leaks. Default: true</xs:documentation>
         <xs:annotation>
           <xs:documentation>Job which can stop/start adapters and receivers.
 
-{@inheritClassDoc}</xs:documentation>
+&lt;h3&gt;Possible cron expressions:&lt;/h3&gt;
+&lt;p&gt;
+A "Cron-Expression" is a string comprised of 6 or 7 fields separated by
+white space. The 6 mandatory and 1 optional fields are as follows:&lt;br/&gt;
+&lt;/p&gt;
+&lt;table cellspacing="8"&gt;
+  &lt;tr&gt;
+    &lt;th align="left"&gt;Field Name&lt;/th&gt;
+    &lt;th align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;th align="left"&gt;Allowed Values&lt;/th&gt;
+    &lt;th align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;th align="left"&gt;Allowed Special Characters&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Seconds&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;0-59&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Minutes&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;0-59&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Hours&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;0-23&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Day-of-month&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;1-31&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * ? / L C&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Month&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;1-12 or JAN-DEC&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Day-of-Week&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;1-7 or SUN-SAT&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * ? / L C #&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Year (Optional)&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&gt;empty, 1970-2099&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The '*' character is used to specify all values. For example, "*" in
+the minute field means "every minute".&lt;/p&gt;
+
+&lt;p&gt;The '?' character is allowed for the day-of-month and day-of-week fields.
+It is used to specify 'no specific value'. This is useful when you need
+to specify something in one of the two fields, but not the other. See the
+examples below for clarification.&lt;/p&gt;
+
+&lt;p&gt;The '-' character is used to specify ranges For example "10-12" in the
+hour field means "the hours 10, 11 and 12".&lt;/p&gt;
+
+&lt;p&gt;The ',' character is used to specify additional values. For example
+"MON,WED,FRI" in the day-of-week field means "the days Monday,
+Wednesday, and Friday".&lt;/p&gt;
+
+&lt;p&gt;The '/' character is used to specify increments. For example "0/15" in
+the seconds field means "the seconds 0, 15, 30, and 45".  And "5/15" in
+the seconds field means "the seconds 5, 20, 35, and 50".  You can also
+specify '/' after the '*' character - in this case '*' is equivalent to
+having '0' before the '/'.&lt;/p&gt;
+
+&lt;p&gt;The 'L' character is allowed for the day-of-month and day-of-week fields.
+This character is short-hand for "last", but it has different meaning in each of
+the two fields.  For example, the value "L" in the  day-of-month field means
+"the last day of the month" - day 31 for  January, day 28 for February on
+non-leap years.  If used in the day-of-week field by itself, it simply
+means "7" or "SAT". But if used in the day-of-week field after another value,
+it means "the last xxx day of the month" - for example "6L" means
+"the last Friday of the month".  When using the 'L' option, it is
+important not to specify lists, or ranges of values, as you'll get confusing
+results.&lt;/p&gt;
+
+&lt;p&gt;The '#' character is allowed for the day-of-week field.  This character
+is used to specify "the nth" XX day of the month.  For example, the value
+of "6#3" in the day-of-week field means the third Friday of the month
+(day 6 = Friday and "#3" = the 3rd one in the month). Other
+examples: "2#1" = the first Monday of the month and  "4#5" = the fifth
+Wednesday of the month.  Note that if you specify "#5" and there is not 5 of
+the given day-of-week in the month, then no firing will occur that month.&lt;/p&gt;
+
+&lt;p&gt;The 'C' character is allowed for the day-of-month and day-of-week fields.
+This character is short-hand for "calendar".  This means values are
+calculated against the associated calendar, if any.  If no calendar is
+associated, then it is equivalent to having an all-inclusive calendar.
+A value of "5C" in the day-of-month field means "the first day included by
+the calendar on or after the 5th".  A value of "1C" in the day-of-week field
+means "the first day included by the calendar on or after Sunday".&lt;/p&gt;
+
+&lt;p&gt;The legal characters and the names of months and days of the week are not
+case sensitive.&lt;/p&gt;
+
+&lt;p&gt;Here are some full examples:&lt;br/&gt;
+&lt;table cellspacing="8"&gt;
+  &lt;tr&gt;
+    &lt;th align="left"&gt;Expression&lt;/th&gt;
+    &lt;th align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;th align="left"&gt;Meaning&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 0 12 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 12pm (noon) every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * *"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 * * ? *"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 * * ? 2005"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every day during the year 2005&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 * 14 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire every minute starting at 2pm and ending at 2:59pm, every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 0/5 14 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire every 5 minutes starting at 2pm and ending at 2:55pm, every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 0/5 14,18 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire every 5 minutes starting at 2pm and ending at 2:55pm, AND fire every 5 minutes starting at 6pm and ending at 6:55pm, every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 0-5 14 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire every minute starting at 2pm and ending at 2:05pm, every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 10,44 14 ? 3 WED"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 2:10pm and at 2:44pm every Wednesday in the month of March.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * MON-FRI"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every Monday, Tuesday, Wednesday, Thursday and Friday&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 15 * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the 15th day of every month&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 L * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the last day of every month&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * 6L"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the last Friday of every month&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * 6L"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the last Friday of every month&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * 6L 2002-2005"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on every last friday of every month during the years 2002, 2003, 2004 and 2005&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * 6#3"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the third Friday of every month&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Pay attention to the effects of '?' and '*' in the day-of-week and
+day-of-month fields!&lt;/p&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Support for specifying both a day-of-week and a day-of-month
+         value is not complete (you'll need to use the '?' character in on of these fields).&lt;/p&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Be careful when setting fire times between mid-night and 1:00 AM -
+         "daylight savings" can cause a skip or a repeat depending on whether
+         the time moves back or jumps forward.&lt;/p&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Specified in the Configuration.xml inside a &lt;code&gt;&amp;lt;scheduler&amp;gt;&lt;/code&gt; element.
+         The scheduler element must be a direct child of configuration, not of adapter.&lt;/p&gt;&lt;br&gt;&lt;b&gt;TIP&lt;/b&gt;&lt;p&gt;All registered jobs are displayed in the Frank!Console under 'Scheduler'.&lt;/p&gt;&lt;br&gt;&lt;b&gt;WARNING&lt;/b&gt;&lt;p&gt;Support for the features described for the 'C' character is not complete.&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -17859,7 +18543,223 @@ Use with caution, they may create memory leaks. Default: true</xs:documentation>
 Find all MessageLogs and Lockers in the current configuration and removes database
 entries which have surpassed their corresponding ExpiryDateField.
 
-{@inheritClassDoc}&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;This is a default job that can be controlled with the property &lt;pre&gt;cleanup.database.active&lt;/pre&gt; and &lt;pre&gt;cleanup.database.cron&lt;/pre&gt;.&lt;/p&gt;</xs:documentation>
+&lt;h3&gt;Possible cron expressions:&lt;/h3&gt;
+&lt;p&gt;
+A "Cron-Expression" is a string comprised of 6 or 7 fields separated by
+white space. The 6 mandatory and 1 optional fields are as follows:&lt;br/&gt;
+&lt;/p&gt;
+&lt;table cellspacing="8"&gt;
+  &lt;tr&gt;
+    &lt;th align="left"&gt;Field Name&lt;/th&gt;
+    &lt;th align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;th align="left"&gt;Allowed Values&lt;/th&gt;
+    &lt;th align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;th align="left"&gt;Allowed Special Characters&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Seconds&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;0-59&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Minutes&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;0-59&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Hours&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;0-23&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Day-of-month&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;1-31&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * ? / L C&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Month&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;1-12 or JAN-DEC&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Day-of-Week&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;1-7 or SUN-SAT&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * ? / L C #&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Year (Optional)&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&gt;empty, 1970-2099&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The '*' character is used to specify all values. For example, "*" in
+the minute field means "every minute".&lt;/p&gt;
+
+&lt;p&gt;The '?' character is allowed for the day-of-month and day-of-week fields.
+It is used to specify 'no specific value'. This is useful when you need
+to specify something in one of the two fields, but not the other. See the
+examples below for clarification.&lt;/p&gt;
+
+&lt;p&gt;The '-' character is used to specify ranges For example "10-12" in the
+hour field means "the hours 10, 11 and 12".&lt;/p&gt;
+
+&lt;p&gt;The ',' character is used to specify additional values. For example
+"MON,WED,FRI" in the day-of-week field means "the days Monday,
+Wednesday, and Friday".&lt;/p&gt;
+
+&lt;p&gt;The '/' character is used to specify increments. For example "0/15" in
+the seconds field means "the seconds 0, 15, 30, and 45".  And "5/15" in
+the seconds field means "the seconds 5, 20, 35, and 50".  You can also
+specify '/' after the '*' character - in this case '*' is equivalent to
+having '0' before the '/'.&lt;/p&gt;
+
+&lt;p&gt;The 'L' character is allowed for the day-of-month and day-of-week fields.
+This character is short-hand for "last", but it has different meaning in each of
+the two fields.  For example, the value "L" in the  day-of-month field means
+"the last day of the month" - day 31 for  January, day 28 for February on
+non-leap years.  If used in the day-of-week field by itself, it simply
+means "7" or "SAT". But if used in the day-of-week field after another value,
+it means "the last xxx day of the month" - for example "6L" means
+"the last Friday of the month".  When using the 'L' option, it is
+important not to specify lists, or ranges of values, as you'll get confusing
+results.&lt;/p&gt;
+
+&lt;p&gt;The '#' character is allowed for the day-of-week field.  This character
+is used to specify "the nth" XX day of the month.  For example, the value
+of "6#3" in the day-of-week field means the third Friday of the month
+(day 6 = Friday and "#3" = the 3rd one in the month). Other
+examples: "2#1" = the first Monday of the month and  "4#5" = the fifth
+Wednesday of the month.  Note that if you specify "#5" and there is not 5 of
+the given day-of-week in the month, then no firing will occur that month.&lt;/p&gt;
+
+&lt;p&gt;The 'C' character is allowed for the day-of-month and day-of-week fields.
+This character is short-hand for "calendar".  This means values are
+calculated against the associated calendar, if any.  If no calendar is
+associated, then it is equivalent to having an all-inclusive calendar.
+A value of "5C" in the day-of-month field means "the first day included by
+the calendar on or after the 5th".  A value of "1C" in the day-of-week field
+means "the first day included by the calendar on or after Sunday".&lt;/p&gt;
+
+&lt;p&gt;The legal characters and the names of months and days of the week are not
+case sensitive.&lt;/p&gt;
+
+&lt;p&gt;Here are some full examples:&lt;br/&gt;
+&lt;table cellspacing="8"&gt;
+  &lt;tr&gt;
+    &lt;th align="left"&gt;Expression&lt;/th&gt;
+    &lt;th align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;th align="left"&gt;Meaning&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 0 12 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 12pm (noon) every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * *"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 * * ? *"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 * * ? 2005"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every day during the year 2005&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 * 14 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire every minute starting at 2pm and ending at 2:59pm, every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 0/5 14 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire every 5 minutes starting at 2pm and ending at 2:55pm, every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 0/5 14,18 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire every 5 minutes starting at 2pm and ending at 2:55pm, AND fire every 5 minutes starting at 6pm and ending at 6:55pm, every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 0-5 14 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire every minute starting at 2pm and ending at 2:05pm, every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 10,44 14 ? 3 WED"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 2:10pm and at 2:44pm every Wednesday in the month of March.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * MON-FRI"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every Monday, Tuesday, Wednesday, Thursday and Friday&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 15 * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the 15th day of every month&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 L * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the last day of every month&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * 6L"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the last Friday of every month&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * 6L"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the last Friday of every month&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * 6L 2002-2005"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on every last friday of every month during the years 2002, 2003, 2004 and 2005&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * 6#3"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the third Friday of every month&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Pay attention to the effects of '?' and '*' in the day-of-week and
+day-of-month fields!&lt;/p&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;This is a default job that can be controlled with the property &lt;pre&gt;cleanup.database.active&lt;/pre&gt; and &lt;pre&gt;cleanup.database.cron&lt;/pre&gt;.&lt;/p&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Support for specifying both a day-of-week and a day-of-month
+         value is not complete (you'll need to use the '?' character in on of these fields).&lt;/p&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Be careful when setting fire times between mid-night and 1:00 AM -
+         "daylight savings" can cause a skip or a repeat depending on whether
+         the time moves back or jumps forward.&lt;/p&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Specified in the Configuration.xml inside a &lt;code&gt;&amp;lt;scheduler&amp;gt;&lt;/code&gt; element.
+         The scheduler element must be a direct child of configuration, not of adapter.&lt;/p&gt;&lt;br&gt;&lt;b&gt;TIP&lt;/b&gt;&lt;p&gt;All registered jobs are displayed in the Frank!Console under 'Scheduler'.&lt;/p&gt;&lt;br&gt;&lt;b&gt;WARNING&lt;/b&gt;&lt;p&gt;Support for the features described for the 'C' character is not complete.&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -17875,7 +18775,223 @@ entries which have surpassed their corresponding ExpiryDateField.
 stale (untouched) for the given &lt;code&gt;retention&lt;/code&gt; duration.
 See DirectoryCleaner for more info.
 
-{@inheritClassDoc}</xs:documentation>
+&lt;h3&gt;Possible cron expressions:&lt;/h3&gt;
+&lt;p&gt;
+A "Cron-Expression" is a string comprised of 6 or 7 fields separated by
+white space. The 6 mandatory and 1 optional fields are as follows:&lt;br/&gt;
+&lt;/p&gt;
+&lt;table cellspacing="8"&gt;
+  &lt;tr&gt;
+    &lt;th align="left"&gt;Field Name&lt;/th&gt;
+    &lt;th align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;th align="left"&gt;Allowed Values&lt;/th&gt;
+    &lt;th align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;th align="left"&gt;Allowed Special Characters&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Seconds&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;0-59&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Minutes&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;0-59&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Hours&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;0-23&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Day-of-month&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;1-31&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * ? / L C&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Month&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;1-12 or JAN-DEC&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Day-of-Week&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;1-7 or SUN-SAT&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * ? / L C #&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Year (Optional)&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&gt;empty, 1970-2099&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The '*' character is used to specify all values. For example, "*" in
+the minute field means "every minute".&lt;/p&gt;
+
+&lt;p&gt;The '?' character is allowed for the day-of-month and day-of-week fields.
+It is used to specify 'no specific value'. This is useful when you need
+to specify something in one of the two fields, but not the other. See the
+examples below for clarification.&lt;/p&gt;
+
+&lt;p&gt;The '-' character is used to specify ranges For example "10-12" in the
+hour field means "the hours 10, 11 and 12".&lt;/p&gt;
+
+&lt;p&gt;The ',' character is used to specify additional values. For example
+"MON,WED,FRI" in the day-of-week field means "the days Monday,
+Wednesday, and Friday".&lt;/p&gt;
+
+&lt;p&gt;The '/' character is used to specify increments. For example "0/15" in
+the seconds field means "the seconds 0, 15, 30, and 45".  And "5/15" in
+the seconds field means "the seconds 5, 20, 35, and 50".  You can also
+specify '/' after the '*' character - in this case '*' is equivalent to
+having '0' before the '/'.&lt;/p&gt;
+
+&lt;p&gt;The 'L' character is allowed for the day-of-month and day-of-week fields.
+This character is short-hand for "last", but it has different meaning in each of
+the two fields.  For example, the value "L" in the  day-of-month field means
+"the last day of the month" - day 31 for  January, day 28 for February on
+non-leap years.  If used in the day-of-week field by itself, it simply
+means "7" or "SAT". But if used in the day-of-week field after another value,
+it means "the last xxx day of the month" - for example "6L" means
+"the last Friday of the month".  When using the 'L' option, it is
+important not to specify lists, or ranges of values, as you'll get confusing
+results.&lt;/p&gt;
+
+&lt;p&gt;The '#' character is allowed for the day-of-week field.  This character
+is used to specify "the nth" XX day of the month.  For example, the value
+of "6#3" in the day-of-week field means the third Friday of the month
+(day 6 = Friday and "#3" = the 3rd one in the month). Other
+examples: "2#1" = the first Monday of the month and  "4#5" = the fifth
+Wednesday of the month.  Note that if you specify "#5" and there is not 5 of
+the given day-of-week in the month, then no firing will occur that month.&lt;/p&gt;
+
+&lt;p&gt;The 'C' character is allowed for the day-of-month and day-of-week fields.
+This character is short-hand for "calendar".  This means values are
+calculated against the associated calendar, if any.  If no calendar is
+associated, then it is equivalent to having an all-inclusive calendar.
+A value of "5C" in the day-of-month field means "the first day included by
+the calendar on or after the 5th".  A value of "1C" in the day-of-week field
+means "the first day included by the calendar on or after Sunday".&lt;/p&gt;
+
+&lt;p&gt;The legal characters and the names of months and days of the week are not
+case sensitive.&lt;/p&gt;
+
+&lt;p&gt;Here are some full examples:&lt;br/&gt;
+&lt;table cellspacing="8"&gt;
+  &lt;tr&gt;
+    &lt;th align="left"&gt;Expression&lt;/th&gt;
+    &lt;th align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;th align="left"&gt;Meaning&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 0 12 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 12pm (noon) every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * *"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 * * ? *"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 * * ? 2005"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every day during the year 2005&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 * 14 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire every minute starting at 2pm and ending at 2:59pm, every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 0/5 14 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire every 5 minutes starting at 2pm and ending at 2:55pm, every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 0/5 14,18 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire every 5 minutes starting at 2pm and ending at 2:55pm, AND fire every 5 minutes starting at 6pm and ending at 6:55pm, every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 0-5 14 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire every minute starting at 2pm and ending at 2:05pm, every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 10,44 14 ? 3 WED"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 2:10pm and at 2:44pm every Wednesday in the month of March.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * MON-FRI"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every Monday, Tuesday, Wednesday, Thursday and Friday&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 15 * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the 15th day of every month&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 L * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the last day of every month&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * 6L"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the last Friday of every month&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * 6L"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the last Friday of every month&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * 6L 2002-2005"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on every last friday of every month during the years 2002, 2003, 2004 and 2005&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * 6#3"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the third Friday of every month&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Pay attention to the effects of '?' and '*' in the day-of-week and
+day-of-month fields!&lt;/p&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Support for specifying both a day-of-week and a day-of-month
+         value is not complete (you'll need to use the '?' character in on of these fields).&lt;/p&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Be careful when setting fire times between mid-night and 1:00 AM -
+         "daylight savings" can cause a skip or a repeat depending on whether
+         the time moves back or jumps forward.&lt;/p&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Specified in the Configuration.xml inside a &lt;code&gt;&amp;lt;scheduler&amp;gt;&lt;/code&gt; element.
+         The scheduler element must be a direct child of configuration, not of adapter.&lt;/p&gt;&lt;br&gt;&lt;b&gt;TIP&lt;/b&gt;&lt;p&gt;All registered jobs are displayed in the Frank!Console under 'Scheduler'.&lt;/p&gt;&lt;br&gt;&lt;b&gt;WARNING&lt;/b&gt;&lt;p&gt;Support for the features described for the 'C' character is not complete.&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -17889,7 +19005,223 @@ See DirectoryCleaner for more info.
         <xs:annotation>
           <xs:documentation>Scheduled job to execute JDBC Queries using a FixedQuerySender.
 
-{@inheritClassDoc}</xs:documentation>
+&lt;h3&gt;Possible cron expressions:&lt;/h3&gt;
+&lt;p&gt;
+A "Cron-Expression" is a string comprised of 6 or 7 fields separated by
+white space. The 6 mandatory and 1 optional fields are as follows:&lt;br/&gt;
+&lt;/p&gt;
+&lt;table cellspacing="8"&gt;
+  &lt;tr&gt;
+    &lt;th align="left"&gt;Field Name&lt;/th&gt;
+    &lt;th align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;th align="left"&gt;Allowed Values&lt;/th&gt;
+    &lt;th align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;th align="left"&gt;Allowed Special Characters&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Seconds&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;0-59&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Minutes&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;0-59&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Hours&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;0-23&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Day-of-month&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;1-31&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * ? / L C&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Month&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;1-12 or JAN-DEC&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Day-of-Week&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;1-7 or SUN-SAT&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * ? / L C #&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Year (Optional)&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&gt;empty, 1970-2099&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The '*' character is used to specify all values. For example, "*" in
+the minute field means "every minute".&lt;/p&gt;
+
+&lt;p&gt;The '?' character is allowed for the day-of-month and day-of-week fields.
+It is used to specify 'no specific value'. This is useful when you need
+to specify something in one of the two fields, but not the other. See the
+examples below for clarification.&lt;/p&gt;
+
+&lt;p&gt;The '-' character is used to specify ranges For example "10-12" in the
+hour field means "the hours 10, 11 and 12".&lt;/p&gt;
+
+&lt;p&gt;The ',' character is used to specify additional values. For example
+"MON,WED,FRI" in the day-of-week field means "the days Monday,
+Wednesday, and Friday".&lt;/p&gt;
+
+&lt;p&gt;The '/' character is used to specify increments. For example "0/15" in
+the seconds field means "the seconds 0, 15, 30, and 45".  And "5/15" in
+the seconds field means "the seconds 5, 20, 35, and 50".  You can also
+specify '/' after the '*' character - in this case '*' is equivalent to
+having '0' before the '/'.&lt;/p&gt;
+
+&lt;p&gt;The 'L' character is allowed for the day-of-month and day-of-week fields.
+This character is short-hand for "last", but it has different meaning in each of
+the two fields.  For example, the value "L" in the  day-of-month field means
+"the last day of the month" - day 31 for  January, day 28 for February on
+non-leap years.  If used in the day-of-week field by itself, it simply
+means "7" or "SAT". But if used in the day-of-week field after another value,
+it means "the last xxx day of the month" - for example "6L" means
+"the last Friday of the month".  When using the 'L' option, it is
+important not to specify lists, or ranges of values, as you'll get confusing
+results.&lt;/p&gt;
+
+&lt;p&gt;The '#' character is allowed for the day-of-week field.  This character
+is used to specify "the nth" XX day of the month.  For example, the value
+of "6#3" in the day-of-week field means the third Friday of the month
+(day 6 = Friday and "#3" = the 3rd one in the month). Other
+examples: "2#1" = the first Monday of the month and  "4#5" = the fifth
+Wednesday of the month.  Note that if you specify "#5" and there is not 5 of
+the given day-of-week in the month, then no firing will occur that month.&lt;/p&gt;
+
+&lt;p&gt;The 'C' character is allowed for the day-of-month and day-of-week fields.
+This character is short-hand for "calendar".  This means values are
+calculated against the associated calendar, if any.  If no calendar is
+associated, then it is equivalent to having an all-inclusive calendar.
+A value of "5C" in the day-of-month field means "the first day included by
+the calendar on or after the 5th".  A value of "1C" in the day-of-week field
+means "the first day included by the calendar on or after Sunday".&lt;/p&gt;
+
+&lt;p&gt;The legal characters and the names of months and days of the week are not
+case sensitive.&lt;/p&gt;
+
+&lt;p&gt;Here are some full examples:&lt;br/&gt;
+&lt;table cellspacing="8"&gt;
+  &lt;tr&gt;
+    &lt;th align="left"&gt;Expression&lt;/th&gt;
+    &lt;th align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;th align="left"&gt;Meaning&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 0 12 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 12pm (noon) every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * *"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 * * ? *"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 * * ? 2005"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every day during the year 2005&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 * 14 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire every minute starting at 2pm and ending at 2:59pm, every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 0/5 14 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire every 5 minutes starting at 2pm and ending at 2:55pm, every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 0/5 14,18 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire every 5 minutes starting at 2pm and ending at 2:55pm, AND fire every 5 minutes starting at 6pm and ending at 6:55pm, every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 0-5 14 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire every minute starting at 2pm and ending at 2:05pm, every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 10,44 14 ? 3 WED"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 2:10pm and at 2:44pm every Wednesday in the month of March.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * MON-FRI"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every Monday, Tuesday, Wednesday, Thursday and Friday&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 15 * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the 15th day of every month&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 L * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the last day of every month&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * 6L"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the last Friday of every month&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * 6L"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the last Friday of every month&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * 6L 2002-2005"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on every last friday of every month during the years 2002, 2003, 2004 and 2005&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * 6#3"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the third Friday of every month&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Pay attention to the effects of '?' and '*' in the day-of-week and
+day-of-month fields!&lt;/p&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Support for specifying both a day-of-week and a day-of-month
+         value is not complete (you'll need to use the '?' character in on of these fields).&lt;/p&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Be careful when setting fire times between mid-night and 1:00 AM -
+         "daylight savings" can cause a skip or a repeat depending on whether
+         the time moves back or jumps forward.&lt;/p&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Specified in the Configuration.xml inside a &lt;code&gt;&amp;lt;scheduler&amp;gt;&lt;/code&gt; element.
+         The scheduler element must be a direct child of configuration, not of adapter.&lt;/p&gt;&lt;br&gt;&lt;b&gt;TIP&lt;/b&gt;&lt;p&gt;All registered jobs are displayed in the Frank!Console under 'Scheduler'.&lt;/p&gt;&lt;br&gt;&lt;b&gt;WARNING&lt;/b&gt;&lt;p&gt;Support for the features described for the 'C' character is not complete.&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -17938,7 +19270,223 @@ and logs this information to the &lt;code&gt;HEARTBEAT&lt;/code&gt; log appender
           <xs:documentation>Scheduled job to send messages to a FrankListener.
 Message may be &lt;pre&gt;null&lt;/pre&gt; (or empty).
 
-{@inheritClassDoc}</xs:documentation>
+&lt;h3&gt;Possible cron expressions:&lt;/h3&gt;
+&lt;p&gt;
+A "Cron-Expression" is a string comprised of 6 or 7 fields separated by
+white space. The 6 mandatory and 1 optional fields are as follows:&lt;br/&gt;
+&lt;/p&gt;
+&lt;table cellspacing="8"&gt;
+  &lt;tr&gt;
+    &lt;th align="left"&gt;Field Name&lt;/th&gt;
+    &lt;th align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;th align="left"&gt;Allowed Values&lt;/th&gt;
+    &lt;th align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;th align="left"&gt;Allowed Special Characters&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Seconds&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;0-59&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Minutes&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;0-59&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Hours&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;0-23&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Day-of-month&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;1-31&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * ? / L C&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Month&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;1-12 or JAN-DEC&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Day-of-Week&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;1-7 or SUN-SAT&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * ? / L C #&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;Year (Optional)&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&gt;empty, 1970-2099&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;&lt;code&gt;, - * /&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The '*' character is used to specify all values. For example, "*" in
+the minute field means "every minute".&lt;/p&gt;
+
+&lt;p&gt;The '?' character is allowed for the day-of-month and day-of-week fields.
+It is used to specify 'no specific value'. This is useful when you need
+to specify something in one of the two fields, but not the other. See the
+examples below for clarification.&lt;/p&gt;
+
+&lt;p&gt;The '-' character is used to specify ranges For example "10-12" in the
+hour field means "the hours 10, 11 and 12".&lt;/p&gt;
+
+&lt;p&gt;The ',' character is used to specify additional values. For example
+"MON,WED,FRI" in the day-of-week field means "the days Monday,
+Wednesday, and Friday".&lt;/p&gt;
+
+&lt;p&gt;The '/' character is used to specify increments. For example "0/15" in
+the seconds field means "the seconds 0, 15, 30, and 45".  And "5/15" in
+the seconds field means "the seconds 5, 20, 35, and 50".  You can also
+specify '/' after the '*' character - in this case '*' is equivalent to
+having '0' before the '/'.&lt;/p&gt;
+
+&lt;p&gt;The 'L' character is allowed for the day-of-month and day-of-week fields.
+This character is short-hand for "last", but it has different meaning in each of
+the two fields.  For example, the value "L" in the  day-of-month field means
+"the last day of the month" - day 31 for  January, day 28 for February on
+non-leap years.  If used in the day-of-week field by itself, it simply
+means "7" or "SAT". But if used in the day-of-week field after another value,
+it means "the last xxx day of the month" - for example "6L" means
+"the last Friday of the month".  When using the 'L' option, it is
+important not to specify lists, or ranges of values, as you'll get confusing
+results.&lt;/p&gt;
+
+&lt;p&gt;The '#' character is allowed for the day-of-week field.  This character
+is used to specify "the nth" XX day of the month.  For example, the value
+of "6#3" in the day-of-week field means the third Friday of the month
+(day 6 = Friday and "#3" = the 3rd one in the month). Other
+examples: "2#1" = the first Monday of the month and  "4#5" = the fifth
+Wednesday of the month.  Note that if you specify "#5" and there is not 5 of
+the given day-of-week in the month, then no firing will occur that month.&lt;/p&gt;
+
+&lt;p&gt;The 'C' character is allowed for the day-of-month and day-of-week fields.
+This character is short-hand for "calendar".  This means values are
+calculated against the associated calendar, if any.  If no calendar is
+associated, then it is equivalent to having an all-inclusive calendar.
+A value of "5C" in the day-of-month field means "the first day included by
+the calendar on or after the 5th".  A value of "1C" in the day-of-week field
+means "the first day included by the calendar on or after Sunday".&lt;/p&gt;
+
+&lt;p&gt;The legal characters and the names of months and days of the week are not
+case sensitive.&lt;/p&gt;
+
+&lt;p&gt;Here are some full examples:&lt;br/&gt;
+&lt;table cellspacing="8"&gt;
+  &lt;tr&gt;
+    &lt;th align="left"&gt;Expression&lt;/th&gt;
+    &lt;th align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;th align="left"&gt;Meaning&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 0 12 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 12pm (noon) every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * *"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 * * ? *"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 * * ? 2005"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every day during the year 2005&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 * 14 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire every minute starting at 2pm and ending at 2:59pm, every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 0/5 14 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire every 5 minutes starting at 2pm and ending at 2:55pm, every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 0/5 14,18 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire every 5 minutes starting at 2pm and ending at 2:55pm, AND fire every 5 minutes starting at 6pm and ending at 6:55pm, every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 0-5 14 * * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire every minute starting at 2pm and ending at 2:05pm, every day&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 10,44 14 ? 3 WED"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 2:10pm and at 2:44pm every Wednesday in the month of March.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * MON-FRI"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am every Monday, Tuesday, Wednesday, Thursday and Friday&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 15 * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the 15th day of every month&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 L * ?"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the last day of every month&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * 6L"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the last Friday of every month&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * 6L"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the last Friday of every month&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * 6L 2002-2005"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on every last friday of every month during the years 2002, 2003, 2004 and 2005&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="left"&gt;&lt;code&gt;"0 15 10 ? * 6#3"&lt;/code&gt;&lt;/td&gt;
+    &lt;td align="left"&gt;&amp;nbsp;&lt;/th&gt;
+    &lt;td align="left"&gt;Fire at 10:15am on the third Friday of every month&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Pay attention to the effects of '?' and '*' in the day-of-week and
+day-of-month fields!&lt;/p&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Support for specifying both a day-of-week and a day-of-month
+         value is not complete (you'll need to use the '?' character in on of these fields).&lt;/p&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Be careful when setting fire times between mid-night and 1:00 AM -
+         "daylight savings" can cause a skip or a repeat depending on whether
+         the time moves back or jumps forward.&lt;/p&gt;&lt;br&gt;&lt;b&gt;INFO&lt;/b&gt;&lt;p&gt;Specified in the Configuration.xml inside a &lt;code&gt;&amp;lt;scheduler&amp;gt;&lt;/code&gt; element.
+         The scheduler element must be a direct child of configuration, not of adapter.&lt;/p&gt;&lt;br&gt;&lt;b&gt;TIP&lt;/b&gt;&lt;p&gt;All registered jobs are displayed in the Frank!Console under 'Scheduler'.&lt;/p&gt;&lt;br&gt;&lt;b&gt;WARNING&lt;/b&gt;&lt;p&gt;Support for the features described for the 'C' character is not complete.&lt;/p&gt;</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:complexContent>
@@ -19480,7 +21028,7 @@ in the Authorization header to authenticate against the resource server.</xs:doc
       </xs:enumeration>
       <xs:enumeration value="changeUnicodePwd">
         <xs:annotation>
-          <xs:documentation>Typical user change-password operation (one of the two methods to modify the unicodePwd attribute in AD (http://support.microsoft.com/kb/263991)). Configuration requirements:
+          <xs:documentation>Typical user change-password operation (one of the two methods to modify the unicodePwd attribute in AD (&lt;a href="http://support.microsoft.com/kb/263991"&gt;see this Microsoft Knowledgebase article&lt;/a&gt;)). Configuration requirements:
 &lt;ul&gt;
 	  &lt;li&gt;parameter 'entryName', resolving to RDN of user who's password should be changed&lt;/li&gt;
 	  &lt;li&gt;parameter 'oldPassword', current password, will be encoded as required by Active Directory (a UTF-16 encoded Unicode string containing the password surrounded by quotation marks) before sending it to the LDAP server. It's advised to set attribute hidden to true for parameter.&lt;/li&gt;
