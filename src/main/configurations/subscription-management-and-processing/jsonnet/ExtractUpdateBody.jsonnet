@@ -1,3 +1,3 @@
 {
-    personen: std.parseJson(payload).updatedJson.personen
+    personen: payload.updatedJson.personen
 }
