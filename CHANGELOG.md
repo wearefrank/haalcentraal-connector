@@ -1,5 +1,15 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.24.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.3...v1.24.4) (2026-02-05)
+
+### 🐛 Bug Fixes
+
+* Add h2 support ([186fbe0](https://github.com/wearefrank/haalcentraal-connector/commit/186fbe0364811a4f30fb222f820817d222f433d4))
+
+### 🤖 Build System
+
+* **dependencies:** bump f!f version to 9.4.1 ([09789e7](https://github.com/wearefrank/haalcentraal-connector/commit/09789e7161beca4715aaa6bfef98d14ab0312638))
+
 ## [1.24.3](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.2...v1.24.3) (2026-01-20)
 
 ### 🐛 Bug Fixes
