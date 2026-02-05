@@ -1,5 +1,5 @@
 /*
-   Copyright 2017-2025 WeAreFrank!
+   Copyright 2017-2026 WeAreFrank!
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -27,9 +27,6 @@ import java.util.concurrent.TimeUnit;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLParameters;
-
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpHost;
@@ -68,6 +65,8 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.pool.ConnPoolControl;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.logging.log4j.Logger;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import org.springframework.context.ApplicationContext;
 import org.springframework.util.Assert;
 
@@ -77,6 +76,7 @@ import lombok.Setter;
 import org.frankframework.configuration.ConfigurationException;
 import org.frankframework.configuration.ConfigurationWarning;
 import org.frankframework.configuration.ConfigurationWarnings;
+import org.frankframework.configuration.SuppressKeys;
 import org.frankframework.core.FrankElement;
 import org.frankframework.core.PipeLineSession;
 import org.frankframework.core.TimeoutException;
@@ -309,11 +309,12 @@ public abstract class AbstractHttpSession implements ConfigurableLifecycle, HasK
 	private boolean disableCookies = false;
 
 	private @Getter CredentialFactory credentials;
+	private @Getter boolean configured = false;
 
 	/**
 	 * Makes sure only http(s) requests can be performed.
 	 */
-	protected URI getURI(@Nonnull String url) throws URISyntaxException {
+	protected URI getURI(@NonNull String url) throws URISyntaxException {
 		if(StringUtils.isBlank(url)) {
 			throw new URISyntaxException("<null>", "no url provided");
 		}
@@ -336,26 +337,25 @@ public abstract class AbstractHttpSession implements ConfigurableLifecycle, HasK
 
 	@Override
 	public void configure() throws ConfigurationException {
-		// TODO find out if this really breaks proxy authentication or not.
-		defaultHttpClientContext = HttpClientContext.create(); //Only create a new HttpContext when configure is called (which doesn't happen when using a SharedResource)
-//		httpClientBuilder.disableAuthCaching();
+		// Only create a new HttpContext when configure is called (which doesn't happen when using a SharedResource)
+		defaultHttpClientContext = HttpClientContext.create();
 
 		if (getMaxConnections() <= 0) {
 			throw new ConfigurationException("maxConnections is set to ["+getMaxConnections()+"], which is not enough for adequate operation");
 		}
 
-		if (oauthAuthenticationMethod == null) {
+		if (getOauthAuthenticationMethod() == null) {
 			if (getTokenEndpoint() != null) {
-				ConfigurationWarnings.add(this, log, "Use oauthAuthenticationMethod to explicitly set the Oauth2 method to be used. This is currently automatically determined, but will be removed in the future.");
+				ConfigurationWarnings.add(this, log, "Use oauthAuthenticationMethod to explicitly set the Oauth2 method to be used. This is currently automatically determined, but will be removed in the future.", SuppressKeys.DEPRECATION_SUPPRESS_KEY);
 			}
 			oauthAuthenticationMethod = OauthAuthenticationMethod.determineOauthAuthenticationMethod(this);
 		}
 
-		credentials = getCredentialFactory(oauthAuthenticationMethod);
+		credentials = getCredentialFactory(getOauthAuthenticationMethod());
 
 		if (oauthAuthenticationMethod != null) {
 			try {
-				authenticator = oauthAuthenticationMethod.newAuthenticator(this);
+				authenticator = getOauthAuthenticationMethod().newAuthenticator(this);
 				authenticator.configure();
 			} catch (HttpAuthenticationException e) {
 				throw new ConfigurationException(e);
@@ -366,7 +366,7 @@ public abstract class AbstractHttpSession implements ConfigurableLifecycle, HasK
 
 		AuthSSLContextFactory.verifyKeystoreConfiguration(this, this);
 
-		if (StringUtils.isNotEmpty(getTokenEndpoint()) && StringUtils.isEmpty(credentials.getUsername()) && StringUtils.isEmpty(credentials.getPassword())) {
+		if (StringUtils.isNotEmpty(getTokenEndpoint()) && StringUtils.isEmpty(getCredentials().getUsername()) && StringUtils.isEmpty(getCredentials().getPassword())) {
 			// Should be unreachable since an exception would have been thrown at: authenticator.configure()
 			throw new ConfigurationException("To obtain an accessToken at tokenEndpoint ["+getTokenEndpoint()+"] a clientAuthAlias or ClientId and ClientSecret must be specified");
 		}
@@ -405,6 +405,7 @@ public abstract class AbstractHttpSession implements ConfigurableLifecycle, HasK
 		configureRedirectStrategy();
 
 		httpClientContext = defaultHttpClientContext; // Ensure a local instance is used when no SharedResource is present.
+		configured = true;
 	}
 
 	private void validateProtocolsAndCiphers() throws ConfigurationException {
@@ -586,7 +587,7 @@ public abstract class AbstractHttpSession implements ConfigurableLifecycle, HasK
 		Assert.notNull(defaultHttpClientContext, "no HttpClientContext created during configure"); // This should be set in #configure()
 
 		CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-		if (StringUtils.isNotEmpty(credentials.getUsername()) || StringUtils.isNotEmpty(getTokenEndpoint())) {
+		if (StringUtils.isNotEmpty(getCredentials().getUsername()) || StringUtils.isNotEmpty(getTokenEndpoint())) {
 
 			credentialsProvider.setCredentials(new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT), getDomainAwareCredentials());
 
@@ -599,7 +600,7 @@ public abstract class AbstractHttpSession implements ConfigurableLifecycle, HasK
 				httpClientBuilder.setTargetAuthenticationStrategy(new OAuthPreferringAuthenticationStrategy());
 			}
 		}
-		if (proxy!=null) {
+		if (proxy != null) {
 			AuthScope authScope = new AuthScope(proxy, proxyRealm, AuthScope.ANY_SCHEME);
 			if (StringUtils.isNotEmpty(proxyCredentials.getUsername())) {
 				Credentials httpCredentials = new UsernamePasswordCredentials(proxyCredentials.getUsername(), proxyCredentials.getPassword());
@@ -629,9 +630,10 @@ public abstract class AbstractHttpSession implements ConfigurableLifecycle, HasK
 	 * {@link OAuthAccessTokenManager} decides if and when to refresh the access token.
 	 */
 	private void preAuthenticate(HttpClientContext clientContext) {
-		if (credentials != null && !StringUtils.isEmpty(credentials.getUsername())) {
+		// This is only executed when credentials are available.
+		if (getCredentials() != null && !StringUtils.isEmpty(getCredentials().getUsername())) {
 			AuthState authState = clientContext.getTargetAuthState();
-			if (authState==null) {
+			if (authState == null) {
 				authState = new AuthState();
 				clientContext.setAttribute(HttpClientContext.TARGET_AUTH_STATE, authState);
 			}
@@ -643,19 +645,19 @@ public abstract class AbstractHttpSession implements ConfigurableLifecycle, HasK
 	public Credentials getDomainAwareCredentials() {
 		String uname;
 		if (StringUtils.isNotEmpty(getAuthDomain())) {
-			uname = getAuthDomain() + "\\" + credentials.getUsername();
+			uname = getAuthDomain() + "\\" + getCredentials().getUsername();
 		} else {
-			uname = credentials.getUsername();
+			uname = getCredentials().getUsername();
 		}
 
-		return new UsernamePasswordCredentials(uname, credentials.getPassword());
+		return new UsernamePasswordCredentials(uname, getCredentials().getPassword());
 	}
 
 	private AuthenticationScheme getPreferredAuthenticationScheme() {
 		return StringUtils.isNotEmpty(getTokenEndpoint()) ? AuthenticationScheme.OAUTH : AuthenticationScheme.BASIC;
 	}
 
-	@Nonnull
+	@NonNull
 	protected SSLConnectionSocketFactory getSSLConnectionSocketFactory() throws ConfigurationException {
 		SSLConnectionSocketFactory sslConnectionSocketFactory;
 		HostnameVerifier hostnameVerifier = verifyHostname ? new DefaultHostnameVerifier() : new NoopHostnameVerifier();
@@ -708,12 +710,7 @@ public abstract class AbstractHttpSession implements ConfigurableLifecycle, HasK
 			hardTimeout = getTimeout(); // Default timeout
 		}
 
-		TimeoutGuard tg = new TimeoutGuard(1+hardTimeout/1000, getName()) {
-			@Override
-			protected void abort() {
-				httpRequestBase.abort();
-			}
-		};
+		TimeoutGuard tg = new TimeoutGuard(1+hardTimeout/1000, getName(), httpRequestBase::abort);
 
 		try {
 			log.trace("executing request using HttpClient [{}] HttpContext [{}] timeout [{}]", client::hashCode, () -> context, () -> hardTimeout);
