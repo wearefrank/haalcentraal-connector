@@ -49936,9 +49936,22 @@ return "Response 1"</con:dispatchPath>
         <con:settings/>
         <con:script/>
         <con:responseContent>{
- "einddatum": "2019-08-24",
- "begindatum": "2019-01-15",
- "burgerservicenummer": "123456782"
+  "_links": {
+    "self": {
+      "href": "https://datapunt.voorbeeldgemeente.nl/api/v{major-versie}/resourcename/{resource-identificatie}",
+      "templated": true,
+      "title": "string"
+    },
+    "ingeschrevenPersoon": {
+      "href": "https://datapunt.voorbeeldgemeente.nl/api/v{major-versie}/resourcename/{resource-identificatie}",
+      "templated": true,
+      "title": "string"
+    }
+  },
+  "burgerservicenummers": [
+    "555555021",
+    "999990482"
+  ]
 }</con:responseContent>
       </con:response>
     </con:restMockAction>
