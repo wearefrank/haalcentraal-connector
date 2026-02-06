@@ -17,9 +17,9 @@
 				<Exit name="EXCEPTION" state="ERROR" />
 			</Exits>
 			
-            <SenderPipe name="GetWijzigingenFromDate">
+            <SenderPipe name="GetWijzigingenFromDate" getInputFromFixedValue="&lt;dummy/&gt;">
                 <IbisLocalSender name="BrpGetWijzigingen" javaListener="BrpGetWijzigingen" />
-				<Param name="date" xpathExpression="format-date(current-date(), '[Y]-[M01]-[D01]')" xsltVersion="2"/>
+				<Param name="date" xpathExpression="format-date(current-date(), '[Y]-[M01]-[D01]')"/>
                 <Forward name="success" path="JsonToXml" />
                 <Forward name="exception" path="EXCEPTION" />
                 <Forward name="timeout" path="EXCEPTION" />

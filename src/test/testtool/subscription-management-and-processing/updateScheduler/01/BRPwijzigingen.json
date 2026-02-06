@@ -1,0 +1,18 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://datapunt.voorbeeldgemeente.nl/api/v{major-versie}/resourcename/{resource-identificatie}",
+      "templated": true,
+      "title": "string"
+    },
+    "ingeschrevenPersoon": {
+      "href": "https://datapunt.voorbeeldgemeente.nl/api/v{major-versie}/resourcename/{resource-identificatie}",
+      "templated": true,
+      "title": "string"
+    }
+  },
+  "burgerservicenummers": [
+    "555555021",
+    "999990482"
+  ]
+}
