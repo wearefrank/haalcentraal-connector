@@ -14,6 +14,8 @@
     <!ENTITY ProcessBulkImportTasksBAG SYSTEM "Configuration_ProcessBulkImportBAG.xml">
     <!ENTITY GetPersoon SYSTEM "Configuration_BrpGetPersoon.xml">
     <!ENTITY GetPersoonssleutel SYSTEM "Configuration_GetPersoonssleutel.xml">
+    <!ENTITY BrpPersonenUpdateScheduler SYSTEM "Configuration_BrpPersonenUpdateScheduler.xml">
+    <!ENTITY BrpPersonenUpdateBsnReceiver SYSTEM "Configuration_BrpPersonenUpdateBsnReceiver.xml">
 ]>
 
 <Configuration name="subscription-management-and-processing">
@@ -32,4 +34,6 @@
 	&ProcessBulkImportTask;
 	&ProcessBulkImportTasksBAG;
     &GetPersoon;
+    &BrpPersonenUpdateScheduler;
+    &BrpPersonenUpdateBsnReceiver;
 </Configuration>
