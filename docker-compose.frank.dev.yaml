@@ -9,7 +9,7 @@ services:
       context: .
       pull: true
       args:
-        FF_VERSION: ${FF_VERSION:-9.4.1}
+        FF_VERSION: ${FF_VERSION:-10.1.0-20260214.042336}
     image: wearefrank/haalcentraal-connector:${VERSION:-latest}
     environment:
       configurations.directory.classLoaderType: ScanningDirectoryClassLoader
