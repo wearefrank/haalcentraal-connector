@@ -1,1 +1,72 @@
-<!-- This empty pom is to tell the Frank!Runner this project uses the Maven structure -->
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.frankframework</groupId>
+		<artifactId>configuration-parent</artifactId>
+		<version>10.0.0-20260120.042330</version>
+	</parent>
+
+	<groupId>org.wearefrank</groupId>
+	<artifactId>haalcentraal-connector</artifactId>
+
+	<version>1.25.0</version>
+
+	<name>haalcentraal-connector</name>
+	<description>tbd</description>
+
+	<organization>
+		<name>WeAreFrank!</name>
+	</organization>
+
+	<properties>
+		<framework.version>10.0.0-20260120.042330</framework.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.frankframework</groupId>
+			<artifactId>frankframework-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.42</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>frankframework</id>
+			<name>frankframework</name>
+			<url>https://nexus.frankframework.org/repository/public</url>
+		</repository>
+	</repositories>
+<!--
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>zip-configurations</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<phase>package</phase>
+						<configuration>
+							<classifier>configurations</classifier>
+							<classesDirectory>src/main/configurations</classesDirectory>
+						</configuration>
+					</execution>
+
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+-->
+</project>
