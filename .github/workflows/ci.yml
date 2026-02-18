@@ -30,7 +30,7 @@ jobs:
         uses: wearefrank/ci-cd-templates/next-reference@main
 
   ci:
-    uses: wearefrank/ci-cd-templates/.github/workflows/ci-generic.yml@main
+    uses: wearefrank/ci-cd-templates/.github/workflows/ci-generic.yml@frank-run-till-healthy-rename-and-use-wait-till-healthy-action
     needs:
       - version-next
     secrets:
