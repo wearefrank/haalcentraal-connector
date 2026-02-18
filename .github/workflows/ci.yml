@@ -30,14 +30,13 @@ jobs:
         uses: wearefrank/ci-cd-templates/next-reference@main
 
   ci:
-    uses: wearefrank/ci-cd-templates/.github/workflows/docker-ci-generic.yml@generic-docker-ci-registry-backend
+    uses: wearefrank/ci-cd-templates/.github/workflows/ci-generic.yml@generic-ci-registry-backend
     needs:
       - version-next
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
     with:
       version: ${{ needs.version-next.outputs.version-next }}
-      image-artifact-backend: gh-artifacts
 
   run-larva-scenarios:
     uses: ./.github/workflows/run-larva-scenarios.yml
