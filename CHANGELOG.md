@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.24.5](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.4...v1.24.5) (2026-02-18)
+
+### 🤖 Build System
+
+* **dependencies:** bump the github-actions group across 1 directory with 7 updates ([394c615](https://github.com/wearefrank/haalcentraal-connector/commit/394c61504e701634ad9e23eb185104103a6d52f9))
+
 ## [1.24.4](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.3...v1.24.4) (2026-02-05)
 
 ### 🐛 Bug Fixes
