@@ -37,6 +37,7 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
     with:
       version: ${{ needs.version-next.outputs.version-next }}
+      image-artifact-backend: gh-artifacts
 
   run-larva-scenarios:
     uses: ./.github/workflows/run-larva-scenarios.yml
