@@ -27,21 +27,29 @@ jobs:
 
       - name: Next Reference
         id: reference
-        uses: wearefrank/ci-cd-templates/next-reference@main
+        uses: wearefrank/ci-cd-templates/next-reference@f497e160d12e5b4c5e7685038aaf6e89ff87628d #2.4.5
 
   ci:
-    uses: wearefrank/ci-cd-templates/.github/workflows/ci-generic.yml@main
+    uses: wearefrank/ci-cd-templates/.github/workflows/ci-generic.yml@f497e160d12e5b4c5e7685038aaf6e89ff87628d #2.4.5
     needs:
       - version-next
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
     with:
       version: ${{ needs.version-next.outputs.version-next }}
+      run-frank-till-healthy-enabled: false
 
-  run-larva-scenarios:
-    uses: ./.github/workflows/run-larva-scenarios.yml
+  larva:
+    uses: wearefrank/ci-cd-templates/.github/workflows/larva-testrunner.yml@f497e160d12e5b4c5e7685038aaf6e89ff87628d #2.4.5
     needs:
       - version-next
       - ci
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
     with:
-      APP_VERSION: ${{ needs.version-next.outputs.version-next }}
+      image-ref: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}-staging@${{ needs.ci.outputs.image-digest }}
+      setup-script: |
+        docker run -d --name haalcentraal-connector -p 8080:8080 -e dtap.stage=LOC -e stub4testtool.configuration=true -e stub4testtool.xsl=custom4testtool.xsl -e isDiginetwerk=false -e enableCallback=false -e application.security.console.authentication.type=NONE -e application.security.testtool.authentication.type=NONE "${IMAGE_ID:-${IMAGE_REF}}"
+      teardown-script: |
+        docker stop "${CONTAINER_ID}"
+        docker rm --volumes "${CONTAINER_ID}"
