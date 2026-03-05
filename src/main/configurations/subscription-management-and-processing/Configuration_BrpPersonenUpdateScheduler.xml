@@ -137,14 +137,14 @@
         <SendMessageJob name="BrpPersonenUpdateSchedulerJob"
             active="${brp.update.enabled}"
             javaListener="BrpPersonenUpdateScheduler"
-            cronExpression="0 0 2 ? * * *">
+            cronExpression="0 0 5 ? * * *">
 			<Locker objectId="BrpPersonenUpdateScheduler-Lock" retention="1" />
         </SendMessageJob>
 		
         <SendMessageJob name="AutoRetry_PersonenUpdateSchedulerJob"
             active="${brp.update.enabled}"
             javaListener="AutoRetry_PersonenUpdateScheduler"
-            cronExpression="0 0 5 ? * * *">
+            cronExpression="0 0 2 ? * * *">
 			<Locker objectId="AutoRetry_PersonenUpdateScheduler-Lock" retention="1" />
         </SendMessageJob>
 	</Scheduler>
