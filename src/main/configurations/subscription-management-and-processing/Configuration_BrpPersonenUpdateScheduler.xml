@@ -19,7 +19,7 @@
 			
             <SenderPipe name="GetWijzigingenFromDate" getInputFromFixedValue="&lt;dummy/&gt;">
                 <IbisLocalSender name="BrpGetWijzigingen" javaListener="BrpGetWijzigingen" />
-				<Param name="date" xpathExpression="format-date(current-date(), '[Y]-[M01]-[D01]')"/>
+				<Param name="date" namespaceDefs="xs=http://www.w3.org/2001/XMLSchema" xpathExpression="format-date(current-date() - xs:dayTimeDuration('P1D'), '[Y]-[M01]-[D01]')"/>
                 <Forward name="success" path="JsonToXml" />
                 <Forward name="exception" path="EXCEPTION" />
                 <Forward name="timeout" path="EXCEPTION" />
@@ -59,11 +59,93 @@
 
 		</Pipeline>
 	</Adapter>
+
+    <Adapter
+        name="AutoPersonenUpdateScheduler"
+		active="${brp.update.enabled}"
+        description=""
+        >
+        <Receiver name="AutoRetry_WorkflowSelector">
+            <JavaListener name="AutoRetry_PersonenUpdateScheduler"/>
+        </Receiver>
+
+        <Pipeline>
+            <Exits>
+                <Exit name="EXIT" state="SUCCESS" />
+                <Exit name="EXCEPTION" state="ERROR" />
+            </Exits>
+
+            <SenderPipe
+                name="SetDuplicatesToMaxRetry"
+                >
+				<FixedQuerySender
+					name="SetDuplicatesToMaxRetry" 
+					query="WITH ranked AS (
+							SELECT 
+								MESSAGEID,
+								ROW_NUMBER() OVER (
+									PARTITION BY MESSAGE
+									ORDER BY MESSAGEDATE DESC
+								) AS rn
+							FROM IBISSTORE
+							WHERE TYPE = 'E'
+							AND SLOTID = ?{slotId}
+							AND (
+									LABEL IS NULL 
+									OR CAST(LABEL AS NUMERIC) &lt; ?{maxRetries}
+								)
+						)
+
+						UPDATE IBISSTORE s
+						SET LABEL = (?{maxRetries})::text
+						FROM ranked r
+						WHERE s.MESSAGEID = r.MESSAGEID
+						AND r.rn > 1;"
+                    />
+                    <Param name="slotId" value="${instance.name}/updateBsnStore" />
+                    <Param name="maxRetries" value="${MAX_RETRIES}" type="INTEGER" />
+			</SenderPipe>
+
+            <SenderPipe
+                name="UpdateErrorMessagesToMessagesSender"
+                >
+				<FixedQuerySender
+					name="UpdateErrorMessagesToMessagesFixedQuerySender" 
+					query="UPDATE IBISSTORE s
+							SET 
+								TYPE = 'M',
+								LABEL = (
+									CASE 
+										WHEN s.LABEL IS NULL THEN '1'
+										ELSE (CAST(s.LABEL AS NUMERIC) + 1)::text
+									END
+								)
+							WHERE s.TYPE = 'E'
+							AND s.SLOTID = ?{slotId}
+							AND (
+									s.LABEL IS NULL 
+									OR CAST(s.LABEL AS NUMERIC) &lt; ?{maxRetries}
+								);"
+                    />
+                    <Param name="slotId" value="${instance.name}/updateBsnStore" />
+                    <Param name="maxRetries" value="${MAX_RETRIES}" type="INTEGER" />
+			</SenderPipe>
+        </Pipeline>
+    </Adapter>
+
 	<Scheduler>
         <SendMessageJob name="BrpPersonenUpdateSchedulerJob"
             active="${brp.update.enabled}"
             javaListener="BrpPersonenUpdateScheduler"
+            cronExpression="0 0 2 ? * * *">
+			<Locker objectId="BrpPersonenUpdateScheduler-Lock" retention="1" />
+        </SendMessageJob>
+		
+        <SendMessageJob name="AutoRetry_PersonenUpdateSchedulerJob"
+            active="${brp.update.enabled}"
+            javaListener="AutoRetry_PersonenUpdateScheduler"
             cronExpression="0 0 5 ? * * *">
+			<Locker objectId="AutoRetry_PersonenUpdateScheduler-Lock" retention="1" />
         </SendMessageJob>
 	</Scheduler>
 </Module>
