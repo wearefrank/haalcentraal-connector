@@ -50,7 +50,8 @@ jobs:
       image-ref: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}-staging@${{ needs.ci.outputs.image-digest }}
       setup-script: |
         docker run -d --name haalcentraal-connector -p 8080:8080 -e dtap.stage=LOC -e stub4testtool.configuration=true -e stub4testtool.xsl=custom4testtool.xsl -e isDiginetwerk=false -e enableCallback=false -e application.security.console.authentication.type=NONE -e application.security.testtool.authentication.type=NONE "${IMAGE_ID:-${IMAGE_REF}}"
-        sleep 4m
+        timeout 300s bash -c 'until [ "$(docker inspect -f "{{.State.Health.Status}}" haalcentraal-connector 2>/dev/null)" == "healthy" ]; do sleep 5; done'
+        sleep 10
       teardown-script: |
         docker stop "${CONTAINER_ID}"
         docker rm --volumes "${CONTAINER_ID}"
