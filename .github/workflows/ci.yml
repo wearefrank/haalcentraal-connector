@@ -30,7 +30,7 @@ jobs:
         uses: wearefrank/ci-cd-templates/next-reference@f497e160d12e5b4c5e7685038aaf6e89ff87628d #2.4.5
 
   ci:
-    uses: wearefrank/ci-cd-templates/.github/workflows/ci-generic.yml@f497e160d12e5b4c5e7685038aaf6e89ff87628d #2.4.5
+    uses: wearefrank/ci-cd-templates/.github/workflows/ci-generic.yml@buildx-cache-eof-issue
     needs:
       - version-next
     secrets:
