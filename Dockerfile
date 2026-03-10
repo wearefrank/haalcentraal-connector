@@ -14,6 +14,7 @@ FROM frankframework/frankframework:${FF_VERSION}
 COPY --link --from=build --chown=2000:2000 /app/target/haalcentraal-connector-*.jar /opt/frank/resources/
 COPY --link --chown=2000:2000 src/main/ /opt/frank/
 COPY --link --chown=2000:2000 src/test/testtool/ /opt/frank/testtool/
+ADD --link --chown=2000:2000 --checksum=sha256:cab1cd67cfa25c25de4348e532298028288a877ba01c77d1619fe45416193387 https://github.com/pgjdbc/pgjdbc/releases/download/REL42.7.10/postgresql-42.7.10.jar /opt/frank/drivers/
 
 ADD --link --chmod=644 --chown=2000:2000 Staat-der-Nederlanden-Private-Root-CA-G1.pem /usr/local/share/ca-certificates/Staat-der-Nederlanden-Private-Root-CA-G1.crt
 ADD --link --chmod=644 --chown=2000:2000 DomPrivateServicesCA-G1.pem /usr/local/share/ca-certificates/DomPrivateServicesCA-G1.crt
