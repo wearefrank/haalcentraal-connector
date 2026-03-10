@@ -5,33 +5,29 @@ FROM maven AS build
 WORKDIR /app
 # Copy the pom.xml and the project files to the container
 COPY pom.xml .
-COPY src ./src
+COPY --link src ./src
 # Build the application using Maven
-RUN mvn clean package -DskipTests
+RUN --mount=type=cache,target=~/.m2/repository mvn clean package -DskipTests
 
 FROM frankframework/frankframework:${FF_VERSION}
-
 # Copy Frank!mvn
-COPY --chown=tomcat src/main/ /opt/frank/
-COPY --from=build --chown=tomcat /app/target/haalcentraal-connector-*.jar /opt/frank/resources/
-COPY --chown=tomcat src/test/testtool/ /opt/frank/testtool/
+COPY --link --from=build --chown=2000:2000 /app/target/haalcentraal-connector-*.jar /opt/frank/resources/
+COPY --link --chown=2000:2000 src/main/ /opt/frank/
+COPY --link --chown=2000:2000 src/test/testtool/ /opt/frank/testtool/
 
-ADD Staat-der-Nederlanden-Private-Root-CA-G1.pem /usr/local/share/ca-certificates/Staat-der-Nederlanden-Private-Root-CA-G1.crt
-ADD DomPrivateServicesCA-G1.pem /usr/local/share/ca-certificates/DomPrivateServicesCA-G1.crt
-ADD QuoVadis-PKIoverheid-Private-Services-CA-G1-PEM.pem /usr/local/share/ca-certificates/QuoVadis-PKIoverheid-Private-Services-CA-G1-PEM.crt
+ADD --link --chmod=644 --chown=2000:2000 Staat-der-Nederlanden-Private-Root-CA-G1.pem /usr/local/share/ca-certificates/Staat-der-Nederlanden-Private-Root-CA-G1.crt
+ADD --link --chmod=644 --chown=2000:2000 DomPrivateServicesCA-G1.pem /usr/local/share/ca-certificates/DomPrivateServicesCA-G1.crt
+ADD --link --chmod=644 --chown=2000:2000 QuoVadis-PKIoverheid-Private-Services-CA-G1-PEM.pem /usr/local/share/ca-certificates/QuoVadis-PKIoverheid-Private-Services-CA-G1-PEM.crt
+
 USER root
-RUN chmod 644 /usr/local/share/ca-certificates/Staat-der-Nederlanden-Private-Root-CA-G1.crt
-RUN chmod 644 /usr/local/share/ca-certificates/DomPrivateServicesCA-G1.crt
-RUN chmod 644 /usr/local/share/ca-certificates/QuoVadis-PKIoverheid-Private-Services-CA-G1-PEM.crt
-RUN update-ca-certificates
+RUN update-ca-certificates && \
+	keytool -import -noprompt -trustcacerts -alias privateRoot -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -file /usr/local/share/ca-certificates/Staat-der-Nederlanden-Private-Root-CA-G1.crt && \
+	keytool -import -noprompt -trustcacerts -alias privateServices -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -file /usr/local/share/ca-certificates/DomPrivateServicesCA-G1.crt && \
+	keytool -import -noprompt -trustcacerts -alias privateServicesQuoVadis -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -file /usr/local/share/ca-certificates/QuoVadis-PKIoverheid-Private-Services-CA-G1-PEM.crt
 
-RUN keytool -import -noprompt -trustcacerts -alias privateRoot -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -file /usr/local/share/ca-certificates/Staat-der-Nederlanden-Private-Root-CA-G1.crt
-RUN keytool -import -noprompt -trustcacerts -alias privateServices -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -file /usr/local/share/ca-certificates/DomPrivateServicesCA-G1.crt
-RUN keytool -import -noprompt -trustcacerts -alias privateServicesQuoVadis -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -file /usr/local/share/ca-certificates/QuoVadis-PKIoverheid-Private-Services-CA-G1-PEM.crt
-
+USER tomcat
 ### Uncomment this section if the Frank! contains custom classes.
 ## section: custom-code(start)
-
 
 ENV authentication.clientSecret=dummy
 
