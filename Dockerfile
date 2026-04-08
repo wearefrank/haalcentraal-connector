@@ -5,7 +5,7 @@ FROM maven AS build
 WORKDIR /app
 # Copy the pom.xml and the project files to the container
 COPY pom.xml .
-COPY --link src ./src
+COPY --link src/main/java ./src/main/java
 # Build the application using Maven
 RUN --mount=type=cache,target=~/.m2/repository mvn clean package -DskipTests
 
