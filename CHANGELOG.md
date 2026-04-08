@@ -1,5 +1,24 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.24.7](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.6...v1.24.7) (2026-04-08)
+
+### 🐛 Bug Fixes
+
+* add default values to resources.yml ([4adfd99](https://github.com/wearefrank/haalcentraal-connector/commit/4adfd99eea528e7926a0eaf15bcdbd68ceb498d6))
+
+### 🧑‍💻 Code Refactoring
+
+* Use maven to build custom code ([e305074](https://github.com/wearefrank/haalcentraal-connector/commit/e305074ab1e2ce6c24c86ca107e75ffd447bfc91))
+
+### 🤖 Build System
+
+* **dependencies:** bump f!f version to 10.0.0-20260117.042331 ([4a2f072](https://github.com/wearefrank/haalcentraal-connector/commit/4a2f072aa2049d80e55e8c02ffd6664f6033acc1))
+* **dependencies:** bump f!f version to 10.0.0-20260203.042333 ([3aceb72](https://github.com/wearefrank/haalcentraal-connector/commit/3aceb726c5090dfd1856a64846e7b09e95cd16fa))
+
+### 🔁 Continuous Integration
+
+* only copy java folder in build stage ([f6b5758](https://github.com/wearefrank/haalcentraal-connector/commit/f6b5758b22020d6af93172b09ae2ed08fae513c4))
+
 ## [1.24.6](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.5...v1.24.6) (2026-03-09)
 
 ### 🤖 Build System
