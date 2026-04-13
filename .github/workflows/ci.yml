@@ -15,7 +15,7 @@ jobs:
       version-next: ${{ steps.reference.outputs.next-reference }}
       version-next-strict: ${{ steps.reference.outputs.next-reference }}
     steps:
-      - uses: step-security/harden-runner@a90bcbc6539c36a85cdfeb73f7e2f433735f215b # v2.15.0
+      - uses: step-security/harden-runner@f808768d1510423e83855289c910610ca9b43176 # v2.17.0
         with:
           disable-sudo: true
           egress-policy: block
@@ -27,10 +27,10 @@ jobs:
 
       - name: Next Reference
         id: reference
-        uses: wearefrank/ci-cd-templates/next-reference@f497e160d12e5b4c5e7685038aaf6e89ff87628d #2.4.5
+        uses: wearefrank/ci-cd-templates/next-reference@d7447a21c0c753a1e0869cfa87aff768454a667b #2.4.9
 
   ci:
-    uses: wearefrank/ci-cd-templates/.github/workflows/ci-generic.yml@f497e160d12e5b4c5e7685038aaf6e89ff87628d #2.4.5
+    uses: wearefrank/ci-cd-templates/.github/workflows/ci-generic.yml@d7447a21c0c753a1e0869cfa87aff768454a667b #2.4.9
     needs:
       - version-next
     secrets:
@@ -40,7 +40,7 @@ jobs:
       run-frank-till-healthy-enabled: false
 
   larva:
-    uses: wearefrank/ci-cd-templates/.github/workflows/larva-testrunner.yml@f497e160d12e5b4c5e7685038aaf6e89ff87628d #2.4.5
+    uses: wearefrank/ci-cd-templates/.github/workflows/larva-testrunner.yml@d7447a21c0c753a1e0869cfa87aff768454a667b #2.4.9
     needs:
       - version-next
       - ci
