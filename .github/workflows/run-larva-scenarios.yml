@@ -1,6 +1,7 @@
 name: Run Larva Scenarios
 
 on:
+  workflow_dispatch:
   workflow_call:
     inputs:
       APP_VERSION:
