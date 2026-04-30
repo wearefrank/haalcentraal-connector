@@ -1,4 +1,4 @@
-local applications = std.parseJson(applicationConfig).Applications;
+local applications = applicationConfig.Applications;
 local appIds = [applicationId];
 
 {

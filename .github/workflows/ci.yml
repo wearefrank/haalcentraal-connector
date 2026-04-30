@@ -15,7 +15,7 @@ jobs:
       version-next: ${{ steps.reference.outputs.next-reference }}
       version-next-strict: ${{ steps.reference.outputs.next-reference }}
     steps:
-      - uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
+      - uses: step-security/harden-runner@a90bcbc6539c36a85cdfeb73f7e2f433735f215b # v2.15.0
         with:
           disable-sudo: true
           egress-policy: block
@@ -23,25 +23,35 @@ jobs:
             github.com:443
 
       - name: Checkout
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #4.1.1
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd #6.0.2
 
       - name: Next Reference
         id: reference
-        uses: wearefrank/ci-cd-templates/next-reference@main
+        uses: wearefrank/ci-cd-templates/next-reference@f497e160d12e5b4c5e7685038aaf6e89ff87628d #2.4.5
 
   ci:
-    uses: wearefrank/ci-cd-templates/.github/workflows/ci-generic.yml@main
+    uses: wearefrank/ci-cd-templates/.github/workflows/ci-generic.yml@f497e160d12e5b4c5e7685038aaf6e89ff87628d #2.4.5
     needs:
       - version-next
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
     with:
       version: ${{ needs.version-next.outputs.version-next }}
+      run-frank-till-healthy-enabled: false
 
-  run-larva-scenarios:
-    uses: ./.github/workflows/run-larva-scenarios.yml
+  larva:
+    uses: wearefrank/ci-cd-templates/.github/workflows/larva-testrunner.yml@f497e160d12e5b4c5e7685038aaf6e89ff87628d #2.4.5
     needs:
       - version-next
       - ci
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
     with:
-      APP_VERSION: ${{ needs.version-next.outputs.version-next }}
+      image-ref: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}-staging@${{ needs.ci.outputs.image-digest }}
+      setup-script: |
+        docker run -d --name haalcentraal-connector -p 8080:8080 -e dtap.stage=LOC -e stub4testtool.configuration=true -e stub4testtool.xsl=custom4testtool.xsl -e isDiginetwerk=false -e enableCallback=false -e application.security.console.authentication.type=NONE -e application.security.testtool.authentication.type=NONE "${IMAGE_ID:-${IMAGE_REF}}"
+        timeout 300s bash -c 'until [ "$(docker inspect -f "{{.State.Health.Status}}" haalcentraal-connector 2>/dev/null)" == "healthy" ]; do sleep 5; done'
+        sleep 10
+      teardown-script: |
+        docker stop "${CONTAINER_ID}"
+        docker rm --volumes "${CONTAINER_ID}"

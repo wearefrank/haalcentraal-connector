@@ -3,7 +3,7 @@
 ## Background
 For many years the municipalities in Netherlands depended on system called DDS (data distributie systeem) for querying and delivering Persoons Gegevens (from BRP). Now the shift to Haalcentraal API's retreiving this data from a central location, requires a migration path. This component is meant to deliver a seamless migration path. It offers STuff endpoints for 'legacy' system to query persoons data, but also the native REST api is served. So regardless of the application that is used on a department, it can connect trhough this component to request HaalCentraal BRP data. No more need for a local copy onprem.
 Additionally, it provides a mechanisme for 'afnemersindicatie', transformed to a subscription model that will deliver the same feauture as DDS did. The only dependancy for that, is that the used BRP application itself can nofitify this component on which BSN has changed data. It only needs the BSN as event, the component will handle the rest.
-The current implementation serves a webhook endpoint for that event, but its possible to get the bsn (list) in other ways too (txt file, DB transactions). THe best results are achieved when the events can be synchronised with the procudere of delivering BSN data changes to the "landelijke voorziening". Other timings are also fine, but not as fast.
+The current implementation serves a webhook endpoint for that event, but its possible to get the bsn (list) in other ways too (txt file, DB transactions). The best results are achieved when the events can be synchronised with the procudere of delivering BSN data changes to the "landelijke voorziening". Other timings are also fine, but not as fast.
 For implementing this component, there is also a feature to run in 'shadow' mode. This will help ensuring the produced 'afnemersindicatie' callback message to be in line with the DDS produced ones.
 
 Build configuration from template:
@@ -15,12 +15,16 @@ Build configuration from template:
 ### Configurations
 
 #### **brp-personen-bevragen-outway**
+This configuration is used to query persons. Requests are routed through this configuration to abstract the underlying SOAP or REST API calls.
 
 #### **brp-personen-bevragen-rest**
+This configuration handles REST API requests for querying persons. It forwards the requests to the brp-personen-bevragen-outway configuration, which in turn communicates with the BRP API.
 
 #### **brp-personen-bevragen-soap**
+This configuration handles SOAP API requests for querying persons. It forwards the requests to the brp-personen-bevragen-outway configuration, which in turn communicates with the BRP API.
 
 #### **oauth**
+This configuration handles the retrieval of OAuth tokens for authentication with the BRP API.
 
 #### **subscription-management-and-processing**
 
@@ -50,14 +54,51 @@ Build configuration from template:
 
 Database structure for tasks:
 
-| **Column Name**     | **Data Type** | **Default Value**          | **Description**                                                                 |
-|---------------------|---------------|----------------------------|---------------------------------------------------------------------------------|
-| `task_id`           | `SERIAL`      | N/A                        | Auto-incrementing identifier for the task (Primary Key part 1).                 |
-| `created_at`        | `TIMESTAMP`   | `CURRENT_TIMESTAMP`        | The timestamp when the task was created.                                         |
-| `scheduled_start`   | `TIMESTAMP`   | `CURRENT_TIMESTAMP`        | The timestamp when the task is scheduled to start (default 1 hour after insert). |
-| `status`            | `CHAR(1)`     | `'P'`                      | The current status of the task. ('P' = Pending, other values as needed).        |
-| `is_retry`          | `BOOLEAN`     | `FALSE`                    | Indicates whether the task is a retry (Boolean value).                          |
-| `message`           | `TEXT`        | N/A                        | The message associated with the task, storing the data in JSON or plain text.    |
+| **Column Name**     | **Data Type**   | **Default Value**   | **Description**                                                                 |
+|---------------------|-----------------|---------------------|---------------------------------------------------------------------------------|
+| `task_id`           | `SERIAL`        | N/A                 | Auto-incrementing identifier for the task (Primary Key).                        |
+| `created_at`        | `TIMESTAMP`     | `CURRENT_TIMESTAMP` | The timestamp when the task was created.                                        |
+| `scheduled_start`   | `TIMESTAMP`     | `CURRENT_TIMESTAMP` | The timestamp when the task is scheduled to start.                              |
+| `status`            | `CHAR(1)`       | `'P'`               | Task status (`P` = Pending, others as needed).                                  |
+| `attempt`           | `SMALLINT`      | `1`                 | Number of attempts for processing this task.                                    |
+| `bsn`               | `TEXT`          | N/A                 | Burgerservicenummer associated with the task.                                   |
+| `correlation_id`    | `UUID`          | N/A                 | Unique correlation identifier for tracking the task.                            |
+
+Database structure for subscriptions:
+
+| **Column Name**       | **Data Type**    | **Default Value** | **Description**                                                                |
+|-----------------------|------------------|-------------------|--------------------------------------------------------------------------------|
+| `id`                  | `INT` (AUTO INC.)| N/A               | Auto-incrementing identifier for the subscription (Primary Key).               |
+| `bsn`                 | `TEXT`           | N/A               | Burgerservicenummer (citizen service number). Stored as text.                  |
+| `app_id`              | `VARCHAR(255)`   | N/A               | Foreign key reference to `applicaties.id` (NOT NULL).                          |
+| `begin_datum`         | `DATETIME`       | N/A               | Start date of the subscription.                                                |
+| `eind_datum`          | `DATETIME`       | N/A               | End date of the subscription.                                                  |
+| `persoons_sleutel`    | `VARCHAR(255)`   | N/A               | Key linking subscription to a person’s record.                                 |
+| `afnemers_sleutel`    | `VARCHAR(255)`   | N/A               | Key linking subscription to the receiving party.                               |
+
+Database structure for person information:
+
+| **Column Name**      | **Data Type**     | **Default Value** | **Description**                                                                 |
+|----------------------|-------------------|-------------------|---------------------------------------------------------------------------------|
+| `id`                 | `INT` (AUTO INC.) | N/A               | Auto-incrementing identifier for the record (Primary Key).                       |
+| `bsn`                | `TEXT`            | N/A               | Burgerservicenummer (citizen service number). Stored as text to preserve leading zeros. |
+| `data`               | `CHAR(44)`        | N/A               | Encoded data (Base64 format, optimized for storage efficiency).                  |
+| `registratie_datum`  | `DATETIME`        | N/A               | Date and time when the record was registered.                                   |
+
+Database structure for person keys:
+
+| **Column Name** | **Data Type**   | **Default Value** | **Description**                                   |
+|-----------------|-----------------|-------------------|---------------------------------------------------|
+| `bsn`           | `VARCHAR(9)`    | N/A               | Burgerservicenummer (Primary Key).                |
+| `sleutel`       | `VARCHAR(40)`   | N/A               | Key associated with the person.                   |
+
+Database structure for BAG keys:
+
+| **Column Name** | **Data Type**   | **Default Value** | **Description**                                      |
+|-----------------|-----------------|-------------------|------------------------------------------------------|
+| `type`          | `VARCHAR(10)`   | N/A               | Type of BAG key (Primary Key part 1).                |
+| `identifier`    | `VARCHAR(32)`   | N/A               | Unique identifier (Primary Key part 2).              |
+| `key`           | `TEXT`          | N/A               | Cryptographic key or value associated with the entry.|
 
 - **Configuration_BrpPersonenNotificationReceiver.xml**  
     API endpoint that places the notification in the message store, receives identifier(s) that specify which person(s) information changed.

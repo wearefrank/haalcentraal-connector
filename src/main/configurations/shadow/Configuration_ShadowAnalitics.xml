@@ -50,7 +50,7 @@
             </SenderPipe>
 
             <ReplacerPipe name="ConcatData" getInputFromFixedValue="&lt;overview&gt;?{overview}&lt;/overview&gt; ?{differences}">
-                <Param name="overview" sessionKey="overview" xpathExpression="//row[@number=0]/field" type="XML" />
+                <Param name="overview" sessionKey="overview" xpathExpression="//row[@number=0]/field" xpathResult="XML" />
                 <Param name="differences" sessionKey="differences" />
             </ReplacerPipe>
             

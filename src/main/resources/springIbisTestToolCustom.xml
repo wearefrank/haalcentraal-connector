@@ -7,28 +7,28 @@
 
     <import resource="springIbisTestTool.xml" />
 
-    <bean name="metadataExtractor" class="nl.nn.testtool.MetadataExtractor">
+    <bean name="metadataExtractor" class="org.wearefrank.ladybug.MetadataExtractor">
         <property name="extraMetadataFieldExtractors">
             <list>
-                <bean class="nl.nn.testtool.metadata.StatusMetadataFieldExtractor" />
-                <bean class="nl.nn.testtool.metadata.SessionKeyMetadataFieldExtractor">
+                <bean class="org.wearefrank.ladybug.metadata.StatusMetadataFieldExtractor" />
+                <bean class="org.wearefrank.ladybug.metadata.SessionKeyMetadataFieldExtractor">
                     <property name="name" value="soapAction"/>
                     <property name="label" value="SOAPAction"/>
                     <property name="sessionKey" value="SOAPAction" />
                 </bean>
-                <bean class="nl.nn.testtool.metadata.XpathMetadataFieldExtractor">
+                <bean class="org.wearefrank.ladybug.metadata.XpathMetadataFieldExtractor">
                     <property name="name" value="Zender"/>
                     <property name="label" value="Zender"/>
                     <property name="extractFrom" value="all"/>
                     <property name="xpath" value="//*[local-name()='zender']/*[local-name()='applicatie']/text()" />
                 </bean>
-                <bean class="nl.nn.testtool.metadata.XpathMetadataFieldExtractor">
+                <bean class="org.wearefrank.ladybug.metadata.XpathMetadataFieldExtractor">
                     <property name="name" value="Ontvanger"/>
                     <property name="label" value="Ontvanger"/>
                     <property name="extractFrom" value="all"/>
                     <property name="xpath" value="//*[local-name()='ontvanger']/*[local-name()='applicatie']/text()" />
                 </bean>
-                <bean class="nl.nn.testtool.metadata.SessionKeyMetadataFieldExtractor">
+                <bean class="org.wearefrank.ladybug.metadata.SessionKeyMetadataFieldExtractor">
                     <property name="name" value="BSN"/>
                     <property name="label" value="BSN"/>
                     <property name="regex" value="\b(\d{9})\b"/>
