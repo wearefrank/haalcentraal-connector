@@ -5,7 +5,9 @@
 		description="query sender voor brp personen">
 
 		<Receiver name="BrpPersonenQuerySender">
-			<JavaListener name="BrpPersonenQuerySender" />
+			<WebServiceListener name="BrpPersonenQuerySenderListener" 
+                address="${haalcentraal_connector.soap.endpoint}/querysender" 
+				soapAction="http://www.egem.nl/StUF/sector/bg/0310/npsLv01" />
 		</Receiver>
 
 		<Pipeline>
@@ -22,6 +24,35 @@
 				<Exit name="ServerError" state="ERROR" code="500" />
 				<Exit name="ServiceUnavailable" state="ERROR" code="503" />
 			</Exits>
+
+			
+            <WsdlXmlValidatorPipe 
+                name="ValidateInput"
+                ignoreUnknownNamespaces="true"
+                soapBody="npsLv01"
+                wsdl="xsd/Bg0310_20211208_patch32/BeantwoordVraag_WSP_BG0310_VraagAntwoord.wsdl"
+                >
+                <Forward name="success" path="UnwrapSoapMessage"/>
+                <Forward name="failure" path="WsdlValidationSoftFailForwarder"/>
+            </WsdlXmlValidatorPipe>
+
+            <XmlSwitchPipe 
+                name="WsdlValidationSoftFailForwarder"
+                xpathExpression="$SoftFail = true()"
+                >
+                <Param name="SoftFail" value="${haalcentraal_connector.endpoint.softfail}" type="BOOLEAN"/>
+                <Forward name="true" path="BRPPersonenBevragen" />
+                <Forward name="false" path="InvalidXml" />
+            </XmlSwitchPipe>
+
+            <SoapWrapperPipe 
+                name="UnwrapSoapMessage"
+                direction="UNWRAP"
+                storeResultInSessionKey="Stuurgegevens"
+                >
+                <Forward name="success" path="BRPPersonenBevragen"/>
+                <Forward name="exception" path="BackEndError"/>
+            </SoapWrapperPipe>
 
 			<SenderPipe name="BRPPersonenBevragen">
 				<IbisLocalSender name="BPRPersonenBevragen" javaListener="BrpPbClientSoapListener"
@@ -43,6 +74,20 @@
                 <Param name="senderPipeName" value="PostBRPPersonenBevragenTestEnv" />
                 <Forward name="success" path="Exception" />
             </XsltPipe>  
+
+			<PutInSessionPipe name="InvalidXml">
+                <Param name="errorCode" value="INVALID_XML"/>
+                <Param name="errorReason" value="XML was invalid"/>
+                <Forward name="success" path="EXIT"/>
+            </PutInSessionPipe>
+
+			<PutInSessionPipe name="BackEndError" unlessSessionKey="errorCode">
+                <Param name="errorCode" styleSheetName="xsl/BackEndError.xsl"/>
+                <Param name="errorReason" xpathExpression="/error/reason"/>
+                <Param name="errorDetailText" xpathExpression="concat(/error/code, ' ', /error/reason, ' ', /error/details)"/>
+                <Param name="errorDetailXML" xpathExpression="/error/detailsXml" type="DOMDOC" />
+                <Forward name="success" path="EXIT"/>
+            </PutInSessionPipe>
 
 			<SoapWrapperPipe name="WrapResponse" getInputFromSessionKey="MapResponse">
 				<Forward name="success" path="EXIT"/>

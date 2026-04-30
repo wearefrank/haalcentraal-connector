@@ -3,12 +3,14 @@
 	xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
 	<Adapter name="BrpPersonenAfnemersIndicatieReceiver"
 		description="brp personen afnemers indicatie receiver">
-
+		
 		<Receiver name="BrpPersonenAfnemersIndicatieReceiver">
-			<JavaListener name="BrpPersonenAfnemersIndicatieReceiver" />
+			<WebServiceListener name="BrpPersonenAfnemersIndicatieListener"
+				address="${haalcentraal_connector.soap.endpoint}" 
+			 	soapAction='http://www.egem.nl/StUF/sector/bg/0310/npsLk01' />
 		</Receiver>
 
-		<Pipeline>
+		<Pipeline> 
 			<Exits>
 				<Exit name="EXIT" state="SUCCESS" />
 				<Exit name="BadRequest" state="ERROR" code="400" empty="false" />
@@ -18,6 +20,35 @@
 				<Exit name="CouldNotSubscribe" state="ERROR" empty="true" />
 				<Exit name="Exception" state="ERROR" empty="true" />
 			</Exits>
+
+			<WsdlXmlValidatorPipe 
+				name="ValidateInput"
+				getInputFromSessionKey="originalMessage"
+				soapBody="npsLk01"
+				ignoreUnknownNamespaces="true"
+				wsdl="xsd/Bg0310_20211208_patch32/WSC_HLN_BG310_Volgindicatie_172030028052150900416737000015.wsdl"
+				>
+				<Forward name="success" path="UnwrapSoapMessage"/>
+				<Forward name="failure" path="WsdlValidationSoftFailForwarder"/>
+			</WsdlXmlValidatorPipe>
+
+			<XmlSwitchPipe 
+				name="WsdlValidationSoftFailForwarder"
+				xpathExpression="$SoftFail = true()"
+				>
+				<Param name="SoftFail" value="${haalcentraal_connector.endpoint.softfail}" type="BOOLEAN"/>
+				<Forward name="true" path="ExtractDataFromInput" />
+				<Forward name="false" path="InvalidXml" />
+			</XmlSwitchPipe>
+
+			<SoapWrapperPipe 
+				name="UnwrapSoapMessage"
+				direction="UNWRAP"
+				storeResultInSessionKey="Stuurgegevens"
+				>
+				<Forward name="success" path="ExtractDataFromInput"/>
+				<Forward name="exception" path="BackEndError"/>
+			</SoapWrapperPipe>
 
 			<PutInSessionPipe name="ExtractDataFromInput">
 				<Param name="bsn" sessionKey="originalMessage" xpathExpression="/npsLk01/object/inp.bsn" />
@@ -188,6 +219,21 @@
 				<Forward name="then" path="NotFound" />
 				<Forward name="else" path="WrapBv03Response" />
 			</IfPipe>
+
+			<PutInSessionPipe name="InvalidXml">
+                <Param name="errorCode" value="INVALID_XML"/>
+                <Param name="errorReason" value="XML was invalid"/>
+                <Forward name="success" path="WrapBv03Response"/>
+            </PutInSessionPipe>
+
+			
+            <PutInSessionPipe name="BackEndError" unlessSessionKey="errorCode">
+                <Param name="errorCode" styleSheetName="xsl/BackEndError.xsl"/>
+                <Param name="errorReason" xpathExpression="/error/reason"/>
+                <Param name="errorDetailText" xpathExpression="concat(/error/code, ' ', /error/reason, ' ', /error/details)"/>
+                <Param name="errorDetailXML" xpathExpression="/error/detailsXml" type="DOMDOC" />
+                <Forward name="success" path="WrapBv03Response"/>
+            </PutInSessionPipe>
 
 			<SoapWrapperPipe
 				getInputFromSessionKey="originalMessage"
