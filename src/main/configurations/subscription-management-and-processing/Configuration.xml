@@ -6,7 +6,6 @@
     <!ENTITY BrpPersonenNotificationProcessor SYSTEM "Configuration_BrpPersonenNotificationProcessor.xml">
     <!ENTITY BrpPersonenNotificationReceiver SYSTEM "Configuration_BrpPersonenNotificationReceiver.xml">
     <!ENTITY BrpPersonenCallbackSender SYSTEM "Configuration_BrpPersonenCallbackSender.xml">
-    <!ENTITY EndpointRouter SYSTEM "Configuration_EndpointRouter.xml">
     <!ENTITY BrpPersonenAfnemersIndicatieReceiver SYSTEM "Configuration_BrpPersonenAfnemersIndicatieReceiver.xml">
     <!ENTITY QueueNotificationTask SYSTEM "Configuration_QueueNotificationTask.xml">
     <!ENTITY CreateBulkImportTasks SYSTEM "Configuration_CreateBulkImportTasks.xml">
@@ -14,8 +13,6 @@
     <!ENTITY ProcessBulkImportTasksBAG SYSTEM "Configuration_ProcessBulkImportBAG.xml">
     <!ENTITY GetPersoon SYSTEM "Configuration_BrpGetPersoon.xml">
     <!ENTITY GetPersoonssleutel SYSTEM "Configuration_GetPersoonssleutel.xml">
-    <!ENTITY npsLk01SoapEndpoint SYSTEM "Configuration_npsLk01SoapEndpoint.xml">
-    <!ENTITY npsLv01SoapEndpoint SYSTEM "Configuration_npsLv01SoapEndpoint.xml">
 ]>
 
 <Configuration name="subscription-management-and-processing">
@@ -27,13 +24,10 @@
 	&BrpPersonenNotificationReceiver;
 	&BrpPersonenCallbackSender;
     &GetPersoonssleutel;
-	&EndpointRouter;
 	&BrpPersonenAfnemersIndicatieReceiver;
     &QueueNotificationTask;
 	&CreateBulkImportTasks;
 	&ProcessBulkImportTask;
 	&ProcessBulkImportTasksBAG;
     &GetPersoon;
-	&npsLk01SoapEndpoint;
-	&npsLv01SoapEndpoint;
 </Configuration>

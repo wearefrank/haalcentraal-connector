@@ -8,24 +8,65 @@
 			<JavaListener name="BrpPersonenAfnemersIndicatieReceiver" />
 		</Receiver>
 
+		<Receiver name="npsLk01SoapEndpointReceiver">
+            <WebServiceListener name="npsLk01SoapEndpoint" soap="false" soapAction="http://www.egem.nl/StUF/sector/bg/0310/npsLk01"/>
+		</Receiver>
+
 		<Pipeline>
 			<Exits>
-				<Exit name="EXIT" state="SUCCESS" />
-				<Exit name="BadRequest" state="ERROR" code="400" empty="false" />
-				<Exit name="AlreadySubscribed" state="SUCCESS" code="409" empty="false" />
+				<Exit name="EXIT" state="SUCCESS" code="200"/>
+				<!-- <Exit name="BadRequest" state="ERROR" code="400" empty="false" /> -->
+				<!-- <Exit name="AlreadySubscribed" state="SUCCESS" code="409" empty="false" />
 				<Exit name="NotFound" state="ERROR" code="404" empty="false" />
 				<Exit name="CouldNotSynchronize" state="ERROR" code="500" empty="false" />
-				<Exit name="CouldNotSubscribe" state="ERROR" empty="true" />
-				<Exit name="Exception" state="ERROR" empty="true" />
+				<Exit name="CouldNotSubscribe" state="ERROR" empty="true" /> -->
+				<!-- <Exit name="Exception" state="ERROR" empty="true" /> -->
 			</Exits>
 
+			<!-- voor shadowreceiver, bericht is al unwrapped -->
+			<PutInSessionPipe name="StuurgegevensInSession">
+				<Param name="Stuurgegevens" sessionKey="originalMessage"/>
+			</PutInSessionPipe>
+
+            <WsdlXmlValidatorPipe 
+                name="ValidateInput"
+                getInputFromSessionKey="originalMessage"
+                soapBody="npsLk01"
+                ignoreUnknownNamespaces="true"
+                wsdl="xsd/Bg0310_20211208_patch32/WSC_HLN_BG310_Volgindicatie_172030028052150900416737000015.wsdl"
+				onlyIfSessionKey="soapProtocol"
+                >
+                <Forward name="success" path="UnwrapSoapMessage"/>
+                <Forward name="failure" path="WsdlValidationSoftFailForwarder"/>
+            </WsdlXmlValidatorPipe>
+
+            <XmlSwitchPipe 
+                name="WsdlValidationSoftFailForwarder"
+                xpathExpression="$SoftFail = true()"
+				onlyIfSessionKey="soapProtocol"
+                >
+                <Param name="SoftFail" value="${haalcentraal_connector.endpoint.softfail}" type="BOOLEAN"/>
+                <Forward name="true" path="UnwrapSoapMessage" />
+                <Forward name="false" path="InvalidXml" />
+            </XmlSwitchPipe>
+
+            <SoapWrapperPipe 
+                name="UnwrapSoapMessage"
+                direction="UNWRAP"
+                storeResultInSessionKey="Stuurgegevens"
+				onlyIfSessionKey="soapProtocol"
+                >
+                <Forward name="success" path="ExtractDataFromInput"/>
+                <Forward name="exception" path="BackEndError"/>
+            </SoapWrapperPipe>
+
 			<PutInSessionPipe name="ExtractDataFromInput">
-				<Param name="bsn" sessionKey="originalMessage" xpathExpression="/npsLk01/object/inp.bsn" />
-				<Param name="gebruiker" sessionKey="originalMessage" xpathExpression="/npsLk01/stuurgegevens/zender/gebruiker" />
-				<Param name="administratie" sessionKey="originalMessage" xpathExpression="/npsLk01/stuurgegevens/zender/administratie" />
-				<Param name="applicationId" sessionKey="originalMessage" xpathExpression="/npsLk01/stuurgegevens/zender/applicatie" />
-				<Param name="persoonsSleutel" sessionKey="originalMessage" xpathExpression="/npsLk01/object/@*[local-name()='sleutelOntvangend']" />
-				<Param name="afnemersSleutel" sessionKey="originalMessage" xpathExpression="/npsLk01/object/@*[local-name()='sleutelVerzendend']" />
+				<Param name="bsn" sessionKey="Stuurgegevens" xpathExpression="/npsLk01/object/inp.bsn" />
+				<Param name="gebruiker" sessionKey="Stuurgegevens" xpathExpression="/npsLk01/stuurgegevens/zender/gebruiker" />
+				<Param name="administratie" sessionKey="Stuurgegevens" xpathExpression="/npsLk01/stuurgegevens/zender/administratie" />
+				<Param name="applicationId" sessionKey="Stuurgegevens" xpathExpression="/npsLk01/stuurgegevens/zender/applicatie" />
+				<Param name="persoonsSleutel" sessionKey="Stuurgegevens" xpathExpression="/npsLk01/object/@*[local-name()='sleutelOntvangend']" />
+				<Param name="afnemersSleutel" sessionKey="Stuurgegevens" xpathExpression="/npsLk01/object/@*[local-name()='sleutelVerzendend']" />
 			</PutInSessionPipe>
 
 			<IfPipe name="IfBsnPresent" getInputFromSessionKey="bsn" preserveInput="true">
@@ -60,7 +101,7 @@
 
 			<!-- Read application config file -->
 			<LocalFileSystemPipe name="GetApplicationConfig" action="read"
-				storeResultInSessionKey="applicationConfig" getInputFromSessionKey="originalMessage">
+				storeResultInSessionKey="applicationConfig" getInputFromSessionKey="Stuurgegevens">
 				<Param name="filename" value="${applicationConfigPath}" />
 			</LocalFileSystemPipe>
 
@@ -74,13 +115,13 @@
 
 			<IfPipe name="CheckApplicationExists" defaultMediaType="JSON" jsonPathExpression="$.app[0].applicatie">
 				<Forward name="then" path="CheckVerwerkingssoort" />
-				<Forward name="else" path="CouldNotSubscribe" />
+				<Forward name="else" path="BadRequest" />
 			</IfPipe>
 
 			<!-- Check if a subscriber needs to be either added or removed -->
-			<IfPipe name="CheckVerwerkingssoort" xpathExpression="$originalMessage = 'T'" expressionValue="true"
-				getInputFromSessionKey="originalMessage">
-				<Param name="originalMessage" sessionKey="originalMessage"
+			<IfPipe name="CheckVerwerkingssoort" xpathExpression="$Stuurgegevens = 'T'" expressionValue="true"
+				getInputFromSessionKey="Stuurgegevens">
+				<Param name="Stuurgegevens" sessionKey="Stuurgegevens"
 					xpathExpression="npsLk01/object/@verwerkingssoort" />
 				<Forward name="then" path="GetSubscribers" />
 				<Forward name="else" path="EndSubscription" />
@@ -116,21 +157,21 @@
 					target="BrpPersonenSynchronizePersoon" 
 					returnedSessionKeys="currentPersonData"/>
 				<Forward name="400" path="BadRequest" />
-				<Forward name="exception" path="CouldNotSynchronize" />
-				<Forward name="404" path="NotFound" />
+				<Forward name="exception" path="ServerError" />
+				<Forward name="404" path="BackEndError" />
 				<Forward name="success" path="InsertNewSubscription" />
 			</SenderPipe>
 
 			<!-- Retrieve person from Brp -->
 			<SenderPipe name="GetPersoon" storeResultInSessionKey="currentPersonData" getInputFromSessionKey="bsn">
 				<IbisLocalSender javaListener="BrpGetPersoon" />
-				<Forward name="exception" path="Exception" />
+				<Forward name="exception" path="BadRequest" />
 				<Forward name="success" path="InsertNewSubscription"/>
 			</SenderPipe>
 
 			<!-- Insert the new subscriber into the database -->
 			<!-- If a subscription is already open, no new subscription will be created -->
-			<SenderPipe name="InsertNewSubscription" getInputFromSessionKey="originalMessage">
+			<SenderPipe name="InsertNewSubscription" getInputFromSessionKey="Stuurgegevens">
 				<FixedQuerySender
 					name="InsertSubscriptionSender"
 					query="
@@ -148,7 +189,7 @@
 					<Param name="persoonsSleutel" sessionKey="persoonsSleutel" />
 					<Param name="afnemersSleutel" sessionKey="afnemersSleutel" />
 				</FixedQuerySender>
-				<Forward name="exception" path="Exception" />
+				<Forward name="exception" path="BadRequest" />
 			</SenderPipe>
 
 
@@ -156,7 +197,7 @@
 			<DataSonnetPipe name="FilterBSN" getInputFromSessionKey="currentPersonData"
 				storeResultInSessionKey="filteredPersoon"
 				styleSheetName="jsonnet/FilterBsnFromPersoon.jsonnet">
-				<Param name="bsn" sessionKey="originalMessage" xpathExpression="/npsLk01/object/inp.bsn" defaultValue="-1" />
+				<Param name="bsn" sessionKey="Stuurgegevens" xpathExpression="/npsLk01/object/inp.bsn" defaultValue="-1" />
 			</DataSonnetPipe>
 
 			<SenderPipe name="CallQueueNotificationTask">
@@ -175,7 +216,7 @@
 			</SenderPipe>
 
 			<!-- Set the end date for the specified subscription to now -->
-			<SenderPipe name="EndSubscription" getInputFromSessionKey="originalMessage">
+			<SenderPipe name="EndSubscription" getInputFromSessionKey="Stuurgegevens">
 				<FixedQuerySender
 					name="EndSubscriptionSender"
 					query="UPDATE subscripties SET eind_datum = CURRENT_TIMESTAMP WHERE bsn=?{burgerservicenummer} AND app_id=?{appId} AND eind_datum IS NULL">
@@ -185,19 +226,79 @@
 			</SenderPipe>
 
 			<IfPipe name="CheckNoSubscriptionEnded" xpathExpression="/result/rowsupdated = 0" expressionValue="true">
-				<Forward name="then" path="NotFound" />
+				<Forward name="then" path="BackEndError" />
 				<Forward name="else" path="WrapBv03Response" />
 			</IfPipe>
 
 			<SoapWrapperPipe
-				getInputFromSessionKey="originalMessage"
+				getInputFromSessionKey="Stuurgegevens"
 				name="WrapBv03Response"
 				soapBodyStyleSheet="xsl/CreateBv03Response.xslt">
-				<Param name="Stuurgegevens" xpathExpression="/*/stuurgegevens"
+				<Param name="Stuurgegevens" sessionKey="Stuurgegevens" xpathExpression="/*/stuurgegevens"
 					defaultValue="&lt;stuurgegevens/&gt;" type="DOMDOC" />
 				<Param name="referentienummer" pattern="{uuid}"/>
 				<Forward name="success" path="EXIT" />
 			</SoapWrapperPipe>
+
+            <!-- ERRORS -->
+
+            <PutInSessionPipe name="InvalidXml">
+                <Param name="errorCode" value="INVALID_XML"/>
+                <Param name="errorReason" value="XML was invalid"/>
+                <Forward name="success" path="WrapFo03Response"/>
+            </PutInSessionPipe>
+
+            <PutInSessionPipe name="NotWellFormed">
+                <Param name="errorCode" value="NOT_WELL_FORMED_XML"/>
+                <Param name="errorReason" value="XML was not according to xsd"/>                
+                <Forward name="success" path="WrapFo03Response"/>
+            </PutInSessionPipe>
+
+            <PutInSessionPipe name="BackEndError" unlessSessionKey="errorCode">
+                <Param name="errorCode" styleSheetName="xsl/BackEndError.xsl"/>
+                <Param name="errorReason" xpathExpression="/error/reason"/>
+                <Param name="errorDetailText" xpathExpression="concat(/error/code, ' ', /error/reason, ' ', /error/details)"/>
+                <Param name="errorDetailXML" xpathExpression="/error/detailsXml" type="DOMDOC" />
+                <Forward name="success" path="WrapFo03Response"/>
+            </PutInSessionPipe>
+            
+            <XsltPipe
+                name="BadRequest"
+                getInputFromFixedValue="&lt;dummy/&gt;"
+                styleSheetName="xsl/BuildError.xsl"
+                storeResultInSessionKey="Error"
+                >
+                <Param name="cause" sessionKey="Error" type="DOMDOC" />
+                <Param name="code" value="BadRequest" />
+                <Forward name="success" path="WrapFo03Response" />
+                <Forward name="exception" path="WrapFo03Response" />
+            </XsltPipe>
+
+            <XsltPipe
+                name="ServerError"
+                getInputFromFixedValue="&lt;dummy/&gt;"
+                styleSheetName="xsl/BuildError.xsl"
+                storeResultInSessionKey="Error"
+                >
+                <Param name="cause" sessionKey="Error" type="DOMDOC" />
+                <Param name="code" value="TechnicalError" />
+                <Param name="detailsXml" type="DOMDOC" />
+                <Forward name="success" path="WrapFo03Response" />
+                <Forward name="exception" path="WrapFo03Response" />
+            </XsltPipe>
+            
+            <SoapWrapperPipe
+                name="WrapFo03Response"
+                soapBodyStyleSheet="xsl/CreateFo03Response.xslt"
+                >
+                <Param name="Stuurgegevens" sessionKey="originalMessage" type="DOMDOC"/>
+                <Param name="errorCode"   sessionKey="errorCode"/>
+                <Param name="errorReason" sessionKey="errorReason"/>
+                <Param name="errorDetailText" sessionKey="errorDetailText"/>
+                <Param name="errorDetailXML" sessionKey="errorDetailXML" type="DOMDOC"/>
+                <Param name="referentienummer" pattern="{uuid}" />
+                <Forward name="success" path="EXIT"/>
+            </SoapWrapperPipe>
 		</Pipeline>
 	</Adapter>
 </Module>
