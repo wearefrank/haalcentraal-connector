@@ -14,6 +14,8 @@
     <!ENTITY ProcessBulkImportTasksBAG SYSTEM "Configuration_ProcessBulkImportBAG.xml">
     <!ENTITY GetPersoon SYSTEM "Configuration_BrpGetPersoon.xml">
     <!ENTITY GetPersoonssleutel SYSTEM "Configuration_GetPersoonssleutel.xml">
+    <!ENTITY npsLk01SoapEndpoint SYSTEM "Configuration_npsLk01SoapEndpoint.xml">
+    <!ENTITY npsLv01SoapEndpoint SYSTEM "Configuration_npsLv01SoapEndpoint.xml">
 ]>
 
 <Configuration name="subscription-management-and-processing">
@@ -32,4 +34,6 @@
 	&ProcessBulkImportTask;
 	&ProcessBulkImportTasksBAG;
     &GetPersoon;
+	&npsLk01SoapEndpoint;
+	&npsLv01SoapEndpoint;
 </Configuration>
