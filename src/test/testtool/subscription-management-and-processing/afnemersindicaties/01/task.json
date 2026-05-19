@@ -2,7 +2,7 @@
     "applicationId": "LBA",
     "mutatiesoort": "T",
     "gebruiker": "SH9999",
-    "administratie": "B.1234",
+    "administratie": null,
     "afnemersSleutel": "LBA.00000142157",
     "persoonsSleutel": null,
     "personen": [

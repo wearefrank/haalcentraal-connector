@@ -56,7 +56,7 @@
 			</SenderPipe>
 
 			<JsonPipe name="ErrorJsonToXml">
-                <Forward name="success" path="BackEndError" />
+                <Forward name="success" path="buildErrorMsg" />
             </JsonPipe>
 
             <XsltPipe
