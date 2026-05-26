@@ -13,6 +13,18 @@
 		</Receiver>
 
 		<Pipeline>
+
+            <WsdlXmlInputValidator 
+                name="ValidateInput"
+                getInputFromSessionKey="originalMessage"
+                soapBody="npsLk01"
+                ignoreUnknownNamespaces="true"
+                wsdl="xsd/Bg0310_20211208_patch32/WSC_HLN_BG310_Volgindicatie_172030028052150900416737000015.wsdl"
+				onlyIfSessionKey="soapProtocol"
+                >
+                <Forward name="failure" path="WsdlValidationSoftFailForwarder"/>
+            </WsdlXmlInputValidator>
+			
 			<Exits>
 				<Exit name="EXIT" state="SUCCESS" code="200"/>
 				<!-- <Exit name="BadRequest" state="ERROR" code="400" empty="false" /> -->
@@ -26,19 +38,8 @@
 			<!-- voor shadowreceiver, bericht is al unwrapped -->
 			<PutInSessionPipe name="StuurgegevensInSession">
 				<Param name="Stuurgegevens" sessionKey="originalMessage"/>
+                <Forward name="success" path="UnwrapSoapMessage" />
 			</PutInSessionPipe>
-
-            <WsdlXmlValidatorPipe 
-                name="ValidateInput"
-                getInputFromSessionKey="originalMessage"
-                soapBody="npsLk01"
-                ignoreUnknownNamespaces="true"
-                wsdl="xsd/Bg0310_20211208_patch32/WSC_HLN_BG310_Volgindicatie_172030028052150900416737000015.wsdl"
-				onlyIfSessionKey="soapProtocol"
-                >
-                <Forward name="success" path="UnwrapSoapMessage"/>
-                <Forward name="failure" path="WsdlValidationSoftFailForwarder"/>
-            </WsdlXmlValidatorPipe>
 
             <XmlSwitchPipe 
                 name="WsdlValidationSoftFailForwarder"

@@ -13,6 +13,17 @@
         </Receiver>
 
 		<Pipeline>
+
+            <WsdlXmlInputValidator 
+                name="ValidateInput"
+                getInputFromSessionKey="originalMessage"
+                ignoreUnknownNamespaces="true"
+                soapBody="npsLv01"
+                wsdl="xsd/Bg0310_20211208_patch32/BeantwoordVraag_WSP_BG0310_VraagAntwoord.wsdl"
+                >
+                <Forward name="failure" path="WsdlValidationSoftFailForwarder"/>
+            </WsdlXmlInputValidator>
+
 			<Exits>
 				<Exit name="EXIT" state="SUCCESS" code="200"/>
 				<!-- <Exit name="Exception" state="ERROR"/> -->
@@ -27,24 +38,6 @@
 				<Exit name="ServiceUnavailable" state="ERROR" code="503" /> -->
 			</Exits>
 
-            <WsdlXmlValidatorPipe 
-                name="ValidateInput"
-                ignoreUnknownNamespaces="true"
-                soapBody="npsLv01"
-                wsdl="xsd/Bg0310_20211208_patch32/BeantwoordVraag_WSP_BG0310_VraagAntwoord.wsdl"
-                >
-                <Forward name="success" path="BRPPersonenBevragen"/>
-                <Forward name="failure" path="WsdlValidationSoftFailForwarder"/>
-            </WsdlXmlValidatorPipe>
-
-            <XmlSwitchPipe 
-                name="WsdlValidationSoftFailForwarder"
-                xpathExpression="$SoftFail = true()"
-                >
-                <Param name="SoftFail" value="${haalcentraal_connector.endpoint.softfail}" type="BOOLEAN"/>
-                <Forward name="true" path="BRPPersonenBevragen" />
-                <Forward name="false" path="InvalidXml" />
-            </XmlSwitchPipe>
 
 			<SenderPipe name="BRPPersonenBevragen">
 				<IbisLocalSender name="BPRPersonenBevragen" javaListener="BrpPbClientSoapListener"
@@ -54,6 +47,15 @@
 				<Forward name="success" path="WrapResponse" />
 				<Forward name="exception" path="ErrorJsonToXml" />
 			</SenderPipe>
+
+            <XmlSwitchPipe 
+                name="WsdlValidationSoftFailForwarder"
+                xpathExpression="$SoftFail = true()"
+                >
+                <Param name="SoftFail" value="${haalcentraal_connector.endpoint.softfail}" type="BOOLEAN"/>
+                <Forward name="true" path="BRPPersonenBevragen" />
+                <Forward name="false" path="InvalidXml" />
+            </XmlSwitchPipe>
 
 			<JsonPipe name="ErrorJsonToXml">
                 <Forward name="success" path="buildErrorMsg" />
