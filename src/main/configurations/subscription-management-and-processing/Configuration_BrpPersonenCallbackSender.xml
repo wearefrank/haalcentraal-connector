@@ -141,7 +141,8 @@
 					contentType="text/xml"
 					keystore="${haalcentraal_cert_path}"
 					keystorePassword="${haalcentraal_cert_pass}"
-					keystoreAlias="haalcentraal"
+					keystoreAuthAlias="${haalcentraal_cert_pass_authAlias}"
+					keystoreAlias="${haalcentraal_cert_alias}"
 					keystoreType="PKCS12">
 				</WebServiceSender>
 				<Param name="url" sessionKey="url" />
