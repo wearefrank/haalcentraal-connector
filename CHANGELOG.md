@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.24.9](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.8...v1.24.9) (2026-06-12)
+
+### 🧑‍💻 Code Refactoring
+
+* add 'haalcentraal_cert_pass_authAlias' property to support providing keystore password via an authAlias ([0644634](https://github.com/wearefrank/haalcentraal-connector/commit/0644634973c2c6964b5319f364aa5be6c2c236a6))
+
 ## [1.24.8](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.7...v1.24.8) (2026-04-15)
 
 ### 🐛 Bug Fixes
