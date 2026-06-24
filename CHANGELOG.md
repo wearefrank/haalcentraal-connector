@@ -1,5 +1,17 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.24.10](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.9...v1.24.10) (2026-06-24)
+
+### 🧑‍💻 Code Refactoring
+
+* remove endpointrouters ([94388bd](https://github.com/wearefrank/haalcentraal-connector/commit/94388bda3f56629328d9eb7cc80d2f7408398594))
+
+### ✅ Tests
+
+* change soap url ([faf222a](https://github.com/wearefrank/haalcentraal-connector/commit/faf222a8b611d12a6c6a6909fb200aa230f35ec3))
+* disable test, can be removed ([dbdac58](https://github.com/wearefrank/haalcentraal-connector/commit/dbdac58cee3aeafab44defe1b7501be9582b2dab))
+* fix test changes ([519ef0b](https://github.com/wearefrank/haalcentraal-connector/commit/519ef0be822f8eb4d7df5769464e4d23983888a8))
+
 ## [1.24.9](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.8...v1.24.9) (2026-06-12)
 
 ### 🧑‍💻 Code Refactoring
