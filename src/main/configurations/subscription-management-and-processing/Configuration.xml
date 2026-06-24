@@ -6,7 +6,6 @@
     <!ENTITY BrpPersonenNotificationProcessor SYSTEM "Configuration_BrpPersonenNotificationProcessor.xml">
     <!ENTITY BrpPersonenNotificationReceiver SYSTEM "Configuration_BrpPersonenNotificationReceiver.xml">
     <!ENTITY BrpPersonenCallbackSender SYSTEM "Configuration_BrpPersonenCallbackSender.xml">
-    <!ENTITY EndpointRouter SYSTEM "Configuration_EndpointRouter.xml">
     <!ENTITY BrpPersonenAfnemersIndicatieReceiver SYSTEM "Configuration_BrpPersonenAfnemersIndicatieReceiver.xml">
     <!ENTITY QueueNotificationTask SYSTEM "Configuration_QueueNotificationTask.xml">
     <!ENTITY CreateBulkImportTasks SYSTEM "Configuration_CreateBulkImportTasks.xml">
@@ -25,7 +24,6 @@
 	&BrpPersonenNotificationReceiver;
 	&BrpPersonenCallbackSender;
     &GetPersoonssleutel;
-	&EndpointRouter;
 	&BrpPersonenAfnemersIndicatieReceiver;
     &QueueNotificationTask;
 	&CreateBulkImportTasks;

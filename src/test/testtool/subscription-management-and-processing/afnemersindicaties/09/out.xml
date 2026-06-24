@@ -1,1 +1,30 @@
-<result><fielddefinition><field name="BSN" type="VARCHAR" columnDisplaySize="9" precision="9" scale="0" isCurrency="false" columnTypeName="VARCHAR" columnClassName="java.lang.String"/></fielddefinition><rowset/></result>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><StUF:Fo03Bericht xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310"
+                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:StUF="http://www.egem.nl/StUF/StUF0301"
+                  xmlns:ZKN="http://www.egem.nl/StUF/sector/zkn/0310"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <StUF:stuurgegevens>
+      <StUF:berichtcode>Fo03</StUF:berichtcode>
+      <StUF:zender>
+         <StUF:organisatie>NEDGR</StUF:organisatie>
+         <StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
+      </StUF:zender>
+      <StUF:ontvanger>
+         <StUF:organisatie>1883</StUF:organisatie>
+         <StUF:applicatie>LBA</StUF:applicatie>
+         <StUF:administratie/>
+         <StUF:gebruiker/>
+      </StUF:ontvanger>
+      <StUF:referentienummer>df4af23c-cb61-41f8-b518-fadc9e0a295c</StUF:referentienummer>
+      <StUF:tijdstipBericht>20260519034318</StUF:tijdstipBericht>
+      <StUF:crossRefnummer>66960c945cc6</StUF:crossRefnummer>
+   </StUF:stuurgegevens>
+   <StUF:body>
+      <StUF:code/>
+      <StUF:plek>server</StUF:plek>
+      <StUF:omschrijving/>
+      <StUF:details/>
+      <StUF:detailsXML/>
+   </StUF:body>
+</StUF:Fo03Bericht>
+</soapenv:Body></soapenv:Envelope>

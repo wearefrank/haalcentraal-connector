@@ -1,0 +1,28 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:stuf="http://www.egem.nl/StUF/StUF0301">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:npsLk01 xmlns:stuf="http://www.egem.nl/StUF/StUF0301">
+         <ns:stuurgegevens>
+            <stuf:berichtcode>Lk01</stuf:berichtcode>
+            <stuf:zender>
+               <stuf:organisatie>1883</stuf:organisatie>
+               <stuf:applicatie>LBA</stuf:applicatie>
+            </stuf:zender>
+            <stuf:ontvanger>
+               <stuf:organisatie>NEDGR</stuf:organisatie>
+               <stuf:applicatie>NEDMAG_VnA</stuf:applicatie>
+            </stuf:ontvanger>
+            <stuf:referentienummer>66960c945cc6</stuf:referentienummer>
+            <stuf:tijdstipBericht>2024071608005200</stuf:tijdstipBericht>
+            <stuf:entiteittype>NPS</stuf:entiteittype>
+         </ns:stuurgegevens>
+         <ns:parameters>
+            <stuf:mutatiesoort>T</stuf:mutatiesoort>
+            <stuf:indicatorOvername>V</stuf:indicatorOvername>
+         </ns:parameters>
+         <ns:object stuf:entiteittype="NPS" stuf:sleutelVerzendend="LBA.00000142157" stuf:verwerkingssoort="T">
+            <ns:inp.bsn>555555021</ns:inp.bsn>
+         </ns:object>
+      </ns:npsLk01>
+   </soapenv:Body>
+</soapenv:Envelope>
