@@ -27,14 +27,14 @@ jobs:
       - name: "Setup Node"
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f #6.3.0
         with:
-          node-version: 24
+          node-version: lts/*
       
       - name: Install dependencies
-        run: yarn global add semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/github @semantic-release/exec @semantic-release/release-notes-generator @semantic-release/commit-analyzer conventional-changelog-conventionalcommits
+        run: corepack yarn --cwd .github/semantic-release install --frozen-lockfile
       
       - name: Get next version
         id: next-version
-        run: semantic-release --dryRun
+        run: corepack yarn --cwd .github/semantic-release semantic-release --dryRun
         env:
           GITHUB_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
           GH_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
@@ -96,13 +96,13 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f #6.3.0
         with:
-          node-version: 24
+          node-version: lts/*
       
       - name: Install dependencies
-        run: yarn global add semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/github @semantic-release/exec @semantic-release/release-notes-generator @semantic-release/commit-analyzer conventional-changelog-conventionalcommits
+        run: corepack yarn --cwd .github/semantic-release install --frozen-lockfile
       
       - name: Semantic Release
-        run: semantic-release
+        run: corepack yarn --cwd .github/semantic-release semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
           GH_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
