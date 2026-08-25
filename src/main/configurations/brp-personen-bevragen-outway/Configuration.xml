@@ -37,9 +37,9 @@
 			name="outway-oauth2-connector"
 			active="${hcc.outway-oauth2-connector.active}"
 
-			clientAlias="{hcc.outway.clientAlias}"
-			clientId="{hcc.outway.clientId}"
-			clientSecret="{hcc.outway.clientSecret}"
+			clientAlias="${hcc.outway.clientAlias}"
+			clientId="${hcc.outway.clientId}"
+			clientSecret="${hcc.outway.clientSecret}"
 			tokenEndpoint="${hcc.outway.tokenEndpoint}"
 			oauthAuthenticationMethod="${hcc.outway.oauthAuthenticationMethod}"
 			scope="${hcc.outway.scope}"
