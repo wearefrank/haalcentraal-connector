@@ -21,18 +21,14 @@
 
             <SenderPipe name="PostBRPPersonenBevragenDiginetwerkSender"
                 getInputFromSessionKey="originalMessage">
-                <HttpSender methodType="POST" headersParams="Authorization,Accept,Content-Type"
-                    parametersToSkipWhenEmpty="Accept,Content-Type" contentType="application/json"
-                    keystore="${haalcentraal_cert_path}"
-                    keystorePassword="${haalcentraal_cert_pass}"
-                    keystoreAuthAlias="${haalcentraal_cert_pass_authAlias}"
-                    keystoreAlias="${haalcentraal_cert_alias}"
-                    keystoreType="PKCS12"
-                    tokenEndpoint="${oauth.token.url}"
-                    clientAlias="oauth.credentials"
-                    scope="${oauth.scope}"
-                    resourceServer="ResourceServer01"
-                    oauthAuthenticationMethod="CLIENT_CREDENTIALS_BASIC_AUTH">
+                <HttpSender 
+                    methodType="POST" 
+                    headersParams="Authorization,Accept,Content-Type"
+                    parametersToSkipWhenEmpty="Accept,Content-Type" 
+                    contentType="application/json"
+                    sharedResourceRef="outway-${hcc.outway.authType}-connector"
+                    resourceServer="${hcc.outway.resource.server}"
+                    >
                     <Param name="url" value="${endpoint.brp.diginet}" />
                     <Param name="Accept" sessionKey="headerAccept" />
                     <Param name="Content-Type" sessionKey="headerContent-Type" />

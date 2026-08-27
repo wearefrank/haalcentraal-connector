@@ -8,4 +8,52 @@
 	&brp-pb-outway;
 	&brp-call-proefomgeving;
 	&brp-call-diginetwerk;
+
+	<SharedResources>
+		<HttpSession
+			name="outway-none-connector"
+			active="${hcc.outway-none-connector.active}"
+
+			proxyHost="${hcc.outway.proxy.host}"
+			proxyPort="${hcc.outway.proxy.port}"
+			proxyAuthAlias="${hcc.outway.proxy.authAlias}"
+			/>
+		<HttpSession
+			name="outway-mtls-connector"
+			active="${hcc.outway-mtls-connector.active}"
+			
+			keystore="${hcc.outway.keystore.uri}"
+			keystoreType="${hcc.outway.keystore.type}"
+			keystoreAuthAlias="${hcc.outway.keystore.authAlias}"
+			keystoreAlias="${hcc.outway.keystore.alias}"
+			keystoreAliasAuthAlias="${hcc.outway.keystore.aliasAuthAlias}"
+			keystorePassword="${hcc.outway.keystore.password}"
+
+			proxyHost="${hcc.outway.proxy.host}"
+			proxyPort="${hcc.outway.proxy.port}"
+			proxyAuthAlias="${hcc.outway.proxy.authAlias}"
+			/>
+		<HttpSession
+			name="outway-oauth2-connector"
+			active="${hcc.outway-oauth2-connector.active}"
+
+			clientAlias="${hcc.outway.clientAlias}"
+			clientId="${hcc.outway.clientId}"
+			clientSecret="${hcc.outway.clientSecret}"
+			tokenEndpoint="${hcc.outway.tokenEndpoint}"
+			oauthAuthenticationMethod="${hcc.outway.oauthAuthenticationMethod}"
+			scope="${hcc.outway.scope}"
+				
+			proxyHost="${hcc.outway.proxy.host}"
+			proxyPort="${hcc.outway.proxy.port}"
+			proxyAuthAlias="${hcc.outway.proxy.authAlias}"
+
+			keystore="${hcc.outway.keystore.uri}"
+			keystoreType="${hcc.outway.keystore.type}"
+			keystoreAuthAlias="${hcc.outway.keystore.authAlias}"
+			keystoreAlias="${hcc.outway.keystore.alias}"
+			keystoreAliasAuthAlias="${hcc.outway.keystore.aliasAuthAlias}"
+			keystorePassword="${hcc.outway.keystore.password}"
+			/>
+	</SharedResources>
 </Configuration>

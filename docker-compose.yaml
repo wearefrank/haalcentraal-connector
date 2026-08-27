@@ -8,6 +8,11 @@ services:
     ports:
       - "${PORT:-8080}:8080"
     environment:
+      #authType options: none, mtls, oauth2 
+      hcc.outway.authType: oauth2
+      hcc.outway-none-connector.active: false
+      hcc.outway-mtls-connector.active: false
+      hcc.outway-oauth2-connector.active: true
       application.server.type.custom: ${TRANSACTION_MANAGER:-NARAYANA}
       credentialFactory.class: nl.nn.credentialprovider.PropertyFileCredentialFactory
       credentialFactory.map.properties: /opt/frank/secrets/credentials.properties
