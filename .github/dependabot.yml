@@ -24,3 +24,26 @@ updates:
     groups:
       github-actions:
         patterns: [ "*" ]
+
+  - package-ecosystem: "npm"
+    directory: "/.github/semantic-release"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    commit-message:
+      prefix: "build(dependencies):"
+    groups:
+      semantic-release:
+        patterns: [ "*" ]
+
+  # - package-ecosystem: "docker"
+  #   directory: "/"
+  #   schedule:
+  #     interval: "daily"
+  #   commit-message:
+  #     prefix: "build(dependencies):"
+  #   # Currently does not seem to be possible to exclude snapshot builds directly.
+  #   # FF tags snapshot builds with 'latest', which leads to dependabot not recognizing snapshots as pre-releases.
+  #   ignore:
+  #     - dependency-name: "frankframework/frankframework"
+  #       versions: ["~> 10"]
