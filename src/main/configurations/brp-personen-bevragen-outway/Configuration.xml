@@ -9,7 +9,7 @@
 	&brp-call-proefomgeving;
 	&brp-call-diginetwerk;
 
-	<SharedResources>
+	<SharedResources active="${brp.oauth.enabled}">
 		<HttpSession
 			name="outway-none-connector"
 			active="${hcc.outway-none-connector.active}"
