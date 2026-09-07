@@ -34,7 +34,7 @@ jobs:
       
       - name: Get next version
         id: next-version
-        run: corepack yarn --cwd .github/semantic-release semantic-release --dryRun --debug
+        run: ./.github/semantic-release/node_modules/.bin/semantic-release --dryRun --debug
         env:
           GITHUB_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
           GH_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
