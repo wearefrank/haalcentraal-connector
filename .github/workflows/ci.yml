@@ -7,37 +7,6 @@ on:
       - master
 
 jobs:
-  analyze-commits:
-    runs-on: ubuntu-latest
-    outputs:
-      version-next: ${{ steps.next-version.outputs.release-version }}
-      version-next-tag: ${{ steps.next-version.outputs.release-tag }}
-      version-next-type: ${{ steps.next-version.outputs.release-type }}
-    steps:
-      - uses: step-security/harden-runner@a90bcbc6539c36a85cdfeb73f7e2f433735f215b # v2.15.0
-        with:
-          disable-sudo: true
-          egress-policy: audit
-          allowed-endpoints: >
-            github.com:443
-
-      - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd #6.0.2
-      
-      - name: "Setup Node"
-        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f #6.3.0
-        with:
-          node-version: lts/*
-      
-      - name: Install dependencies
-        run: corepack yarn --cwd .github/semantic-release install --frozen-lockfile
-      
-      - name: Get next version
-        id: next-version
-        run: ./.github/semantic-release/node_modules/.bin/semantic-release --dryRun --debug
-        env:
-          GITHUB_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
-          GH_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
   version-next:
     runs-on: ubuntu-latest
     permissions:
