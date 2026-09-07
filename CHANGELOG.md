@@ -1,5 +1,24 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.24.11](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.10...v1.24.11) (2026-09-07)
+
+### 🐛 Bug Fixes
+
+* use old auth/sharedResource related properties as default for the new ones for backwards compatability ([0bec60d](https://github.com/wearefrank/haalcentraal-connector/commit/0bec60dffa7001429be8998ff36cbbf48fa197cb))
+
+### 🧑‍💻 Code Refactoring
+
+* implement none, mtls and oauth2 connectors as SharedResources for brp-bevragen to easily configure different auth methods ([#378](https://github.com/wearefrank/haalcentraal-connector/issues/378)) ([88d7cf6](https://github.com/wearefrank/haalcentraal-connector/commit/88d7cf66443337d833b41b7223ebf2f10fb845ec))
+
+### 🤖 Build System
+
+* **dependencies:** bump f!f version to 10.0.2-20260708.060525 ([#382](https://github.com/wearefrank/haalcentraal-connector/issues/382)) ([d6d3059](https://github.com/wearefrank/haalcentraal-connector/commit/d6d30596a55af76f2c671157f8e0a5a0aa7ceb09))
+
+### 🔁 Continuous Integration
+
+* execute semantic-release in root of repo instead of install folder so that .releaserc will be picked up ([#386](https://github.com/wearefrank/haalcentraal-connector/issues/386)) ([e57becb](https://github.com/wearefrank/haalcentraal-connector/commit/e57becb75c4ac6ca9c1f2c30d3ccdf385924baa3))
+* refactor semantic-release dependency management ([#379](https://github.com/wearefrank/haalcentraal-connector/issues/379)) ([39edadf](https://github.com/wearefrank/haalcentraal-connector/commit/39edadf896e87092a2c977f68b5f7eae6c39efb1))
+
 ## [1.24.10](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.9...v1.24.10) (2026-06-24)
 
 ### 🧑‍💻 Code Refactoring
