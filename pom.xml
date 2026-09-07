@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.frankframework</groupId>
 		<artifactId>configuration-parent</artifactId>
-		<version>10.0.0-20260120.042330</version>
+		<version>10.0.2-20260708.060525</version>
 	</parent>
 
 	<groupId>org.wearefrank</groupId>
@@ -21,7 +21,7 @@
 	</organization>
 
 	<properties>
-		<framework.version>10.0.0-20260120.042330</framework.version>
+		<framework.version>10.0.2-20260708.060525</framework.version>
 	</properties>
 
 	<dependencies>
