@@ -34,7 +34,7 @@ jobs:
       
       - name: Get next version
         id: next-version
-        run: corepack yarn --cwd .github/semantic-release semantic-release --dryRun
+        run: ./.github/semantic-release/node_modules/.bin/semantic-release --dryRun
         env:
           GITHUB_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
           GH_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
@@ -102,7 +102,7 @@ jobs:
         run: corepack yarn --cwd .github/semantic-release install --frozen-lockfile
       
       - name: Semantic Release
-        run: corepack yarn --cwd .github/semantic-release semantic-release
+        run: ./.github/semantic-release/node_modules/.bin/semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
           GH_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
