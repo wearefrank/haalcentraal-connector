@@ -1,15 +1,13 @@
 <!DOCTYPE Configuration [
 	<!ENTITY brp-pb-outway SYSTEM "Configuration-brp-pb-outway.xml">
-	<!ENTITY brp-call-proefomgeving SYSTEM "Configuration-brp-call-proefomgeving.xml">
 	<!ENTITY brp-call-diginetwerk SYSTEM "Configuration-brp-call-diginetwerk.xml">
 	]>
 
 <Configuration name="brp-personen-bevragen-outway">
 	&brp-pb-outway;
-	&brp-call-proefomgeving;
 	&brp-call-diginetwerk;
 
-	<SharedResources active="${brp.oauth.enabled}">
+	<SharedResources>
 		<HttpSession
 			name="outway-none-connector"
 			active="${hcc.outway-none-connector.active}"
@@ -43,6 +41,7 @@
 			tokenEndpoint="${hcc.outway.tokenEndpoint}"
 			oauthAuthenticationMethod="${hcc.outway.oauthAuthenticationMethod}"
 			scope="${hcc.outway.scope}"
+			resourceServer="${hcc.outway.resource.server}"
 				
 			proxyHost="${hcc.outway.proxy.host}"
 			proxyPort="${hcc.outway.proxy.port}"
