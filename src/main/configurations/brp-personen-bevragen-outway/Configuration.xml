@@ -7,7 +7,7 @@
 	&brp-pb-outway;
 	&brp-call-diginetwerk;
 
-	<SharedResources>
+	<SharedResources active="!${brp.proefomgeving.active}">
 		<HttpSession
 			name="outway-none-connector"
 			active="${hcc.outway-none-connector.active}"
