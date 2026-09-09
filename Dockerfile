@@ -1,4 +1,4 @@
-ARG FF_VERSION=10.0.2-20260708.060525
+ARG FF_VERSION=10.3.0-20260909.042322
 
 FROM maven AS build
 # Set the working directory in the container

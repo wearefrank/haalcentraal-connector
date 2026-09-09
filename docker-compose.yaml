@@ -3,7 +3,7 @@ services:
     build:
       context: .
       args:
-        FF_VERSION: ${FF_VERSION:-10.0.2-20260708.060525}
+        FF_VERSION: ${FF_VERSION:-10.3.0-20260909.042322}
     image: wearefrank/haalcentraal-connector:${VERSION:-latest}
     ports:
       - "${PORT:-8080}:8080"
