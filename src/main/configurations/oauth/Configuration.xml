@@ -7,7 +7,7 @@
 <Configuration name="oauth"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../FrankConfig.xsd"
-        active="${brp.oauth.enabled}">
+        active="!${brp.proefomgeving.active}">
     &UpdateToken;
     &GetToken;
     &CheckTokenExpired;
