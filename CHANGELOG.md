@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.24.15](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.14...v1.24.15) (2026-09-14)
+
+### 🐛 Bug Fixes
+
+* duplicate httpsessions in multiple configs ([#393](https://github.com/wearefrank/haalcentraal-connector/issues/393)) ([74d2332](https://github.com/wearefrank/haalcentraal-connector/commit/74d23320949e3ea61d972c306de984e6cefabb37))
+
 ## [1.24.14](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.13...v1.24.14) (2026-09-14)
 
 ### 🐛 Bug Fixes
