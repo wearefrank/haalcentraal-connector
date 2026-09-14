@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.24.13](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.12...v1.24.13) (2026-09-14)
+
+### 🐛 Bug Fixes
+
+* use sharedresourceref in callback sender ([#391](https://github.com/wearefrank/haalcentraal-connector/issues/391)) ([6fdc819](https://github.com/wearefrank/haalcentraal-connector/commit/6fdc819b86c7710446b162468e758063a4f9ae07))
+
 ## [1.24.12](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.11...v1.24.12) (2026-09-09)
 
 ### 🐛 Bug Fixes
