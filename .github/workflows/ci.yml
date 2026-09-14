@@ -15,7 +15,7 @@ jobs:
       version-next: ${{ steps.reference.outputs.next-reference }}
       version-next-strict: ${{ steps.reference.outputs.next-reference }}
     steps:
-      - uses: step-security/harden-runner@a90bcbc6539c36a85cdfeb73f7e2f433735f215b # v2.15.0
+      - uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
           disable-sudo: true
           egress-policy: block
@@ -23,14 +23,14 @@ jobs:
             github.com:443
 
       - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd #6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #7.0.1
 
       - name: Next Reference
         id: reference
-        uses: wearefrank/ci-cd-templates/next-reference@f497e160d12e5b4c5e7685038aaf6e89ff87628d #2.4.5
+        uses: wearefrank/ci-cd-templates/next-reference@3ea6c89c3ffb6c75528377110fea41851bc87c01 #2.4.11
 
   ci:
-    uses: wearefrank/ci-cd-templates/.github/workflows/ci-generic.yml@f497e160d12e5b4c5e7685038aaf6e89ff87628d #2.4.5
+    uses: wearefrank/ci-cd-templates/.github/workflows/ci-generic.yml@3ea6c89c3ffb6c75528377110fea41851bc87c01 #2.4.11
     needs:
       - version-next
     secrets:
@@ -40,7 +40,7 @@ jobs:
       run-frank-till-healthy-enabled: false
 
   larva:
-    uses: wearefrank/ci-cd-templates/.github/workflows/larva-testrunner.yml@f497e160d12e5b4c5e7685038aaf6e89ff87628d #2.4.5
+    uses: wearefrank/ci-cd-templates/.github/workflows/larva-testrunner.yml@3ea6c89c3ffb6c75528377110fea41851bc87c01 #2.4.11
     needs:
       - version-next
       - ci
