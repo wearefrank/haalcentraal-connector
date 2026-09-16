@@ -31,7 +31,7 @@
 	&ProcessBulkImportTasksBAG;
     &GetPersoon;
     
-    <SharedResources active="${brp.oauth.enabled}">
+	<SharedResources active="!${brp.proefomgeving.active}">
         <HttpSession
             name="outway-none-connector"
             active="${hcc.outway-none-connector.active}"
