@@ -1,5 +1,29 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.24.15](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.14...v1.24.15) (2026-09-14)
+
+### 🐛 Bug Fixes
+
+* duplicate httpsessions in multiple configs ([#393](https://github.com/wearefrank/haalcentraal-connector/issues/393)) ([74d2332](https://github.com/wearefrank/haalcentraal-connector/commit/74d23320949e3ea61d972c306de984e6cefabb37))
+
+## [1.24.14](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.13...v1.24.14) (2026-09-14)
+
+### 🐛 Bug Fixes
+
+* move sharedresource to common conf ([#392](https://github.com/wearefrank/haalcentraal-connector/issues/392)) ([30b2c5a](https://github.com/wearefrank/haalcentraal-connector/commit/30b2c5a932f1efb72888b28b0a7c62edb1a961e0))
+
+## [1.24.13](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.12...v1.24.13) (2026-09-14)
+
+### 🐛 Bug Fixes
+
+* use sharedresourceref in callback sender ([#391](https://github.com/wearefrank/haalcentraal-connector/issues/391)) ([6fdc819](https://github.com/wearefrank/haalcentraal-connector/commit/6fdc819b86c7710446b162468e758063a4f9ae07))
+
+## [1.24.12](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.11...v1.24.12) (2026-09-09)
+
+### 🐛 Bug Fixes
+
+* confginame ([5d2b443](https://github.com/wearefrank/haalcentraal-connector/commit/5d2b4430d34b78ede1e44a16a137ab6bd6162194))
+
 ## [1.24.11](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.10...v1.24.11) (2026-09-07)
 
 ### 🐛 Bug Fixes
