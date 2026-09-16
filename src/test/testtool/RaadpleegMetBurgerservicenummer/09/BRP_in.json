@@ -1,0 +1,28 @@
+{
+    "type": "RaadpleegMetBurgerservicenummer",
+    "fields": [
+        "burgerservicenummer",
+        "adressering",
+        "datumInschrijvingInGemeente",
+        "geboorte",
+        "gemeenteVanInschrijving",
+        "geslacht",
+        "leeftijd",
+        "naam",
+        "nationaliteiten",
+        "overlijden",
+        "verblijfplaats",
+        "verblijfplaatsBinnenland",
+        "adresseringBinnenland",
+        "datumEersteInschrijvingGBA",
+        "immigratie",
+        "indicatieGezagMinderjarige",
+        "kinderen",
+        "ouders",
+        "partners",
+        "verblijfstitel"
+    ],
+    "burgerservicenummer": [
+        "999993628"
+    ]
+}
