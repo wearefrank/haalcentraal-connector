@@ -84,17 +84,14 @@
 			</SenderPipe>
 
             <!-- Check if person was found -->
-            <IfPipe defaultMediaType="JSON" name="CheckResult" jsonPathExpression="$.personen[0].burgerservicenummer" expressionValue="${bsn}">
-                <Param name="bsn" sessionKey="originalMessage" xpathExpression="//vanaf/inp.bsn/text()" />
+            <IfPipe defaultMediaType="JSON" name="CheckResult" jsonPathExpression="$.personen[0]">
                 <Forward name="then" path="JsonToXml" />
                 <Forward name="else" path="PersoonNotFound_Exception" />
             </IfPipe>
 
             <XsltPipe name="PersoonNotFound_Exception" getInputFromFixedValue="&lt;dummy/&gt;" styleSheetName="xsl/BuildError.xsl" storeResultInSessionKey="Error">
                 <Param name="cause" sessionKey="Error" type="DOMDOC" />
-                <Param name="reason" xpathExpression="concat('No Persoon with the burgerservicenummer:', $bsn, ' is found.')">
-	                <Param name="bsn" sessionKey="originalMessage" xpathExpression="//vanaf/inp.bsn/text()" />
-				</Param>
+                <Param name="reason" value="No person found matching the provided information in the request"/>
                 <Param name="detailsXml" type="DOMDOC" />
                 <Forward name="success" path="NotFound" />
                 <Forward name="exception" path="NotFound" />
