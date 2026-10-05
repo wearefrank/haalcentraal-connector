@@ -1,5 +1,20 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.24.16](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.15...v1.24.16) (2026-09-16)
+
+### 🐛 Bug Fixes
+
+* larva test ([4930bd7](https://github.com/wearefrank/haalcentraal-connector/commit/4930bd7ab4573403774891ac78ba28197bd0715e))
+
+### ⏩ Reverts
+
+* oath.enable propertie for backwards compatability ([43f9600](https://github.com/wearefrank/haalcentraal-connector/commit/43f9600bbfe33d4b23bd78efeaa22bd9546ba1d8))
+
+### 🧑‍💻 Code Refactoring
+
+* active property ([d02e0a1](https://github.com/wearefrank/haalcentraal-connector/commit/d02e0a1de8dd83a9516e5f9ee1b5e40e3b450139))
+* cleanup active flags and move dedicated proefomgeving sender ([62be283](https://github.com/wearefrank/haalcentraal-connector/commit/62be28372b32186ad74a07435de466bd02375794))
+
 ## [1.24.15](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.14...v1.24.15) (2026-09-14)
 
 ### 🐛 Bug Fixes
