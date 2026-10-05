@@ -246,6 +246,20 @@
                                                 </ogo.locatieAanduiding>
                                             </adresAanduidingGrp>
                                         </gerelateerde>
+                                        <StUF:tijdvakRelatie>
+                                            <StUF:beginRelatie>
+                                                <test>
+                                                    <xsl:variable name="date" select="verblijfplaats/datumVan/datum"/>
+                                                    <xsl:value-of select="translate($date, '-', '')" />
+                                                </test>
+                                            </StUF:beginRelatie>
+                                            <StUF:eindRelatie>
+                                                <test>
+                                                    <xsl:variable name="date" select="verblijfplaats/datumTot/datum"/>
+                                                    <xsl:value-of select="translate($date, '-', '')" />
+                                                </test>                                            
+                                            </StUF:eindRelatie>
+                                        </StUF:tijdvakRelatie>
                                     </inp.verblijftIn>
                                     <xsl:choose>
                                         <xsl:when test="./verblijfplaats/type/text() = &apos;Adres&apos;">
