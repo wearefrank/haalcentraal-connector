@@ -246,18 +246,20 @@
                                                 </ogo.locatieAanduiding>
                                             </adresAanduidingGrp>
                                         </gerelateerde>
-                                        <xsl:if test="verblijfplaats/datumVan/datum or verblijfplaats/datumTot/datum">
-                                            <StUF:tijdvakRelatie>
-                                                <StUF:beginRelatie xsi:nil="true" StUF:noValue="geenWaarde">
+                                        <StUF:tijdvakRelatie>
+                                            <StUF:beginRelatie>
+                                                <test>
                                                     <xsl:variable name="date" select="verblijfplaats/datumVan/datum"/>
                                                     <xsl:value-of select="translate($date, '-', '')" />
-                                                </StUF:beginRelatie>
-                                                <StUF:eindRelatie xsi:nil="true" StUF:noValue="geenWaarde">
+                                                </test>
+                                            </StUF:beginRelatie>
+                                            <StUF:eindRelatie>
+                                                <test>
                                                     <xsl:variable name="date" select="verblijfplaats/datumTot/datum"/>
                                                     <xsl:value-of select="translate($date, '-', '')" />
-                                                </StUF:eindRelatie>
-                                            </StUF:tijdvakRelatie>
-                                        </xsl:if>
+                                                </test>                                            
+                                            </StUF:eindRelatie>
+                                        </StUF:tijdvakRelatie>
                                     </inp.verblijftIn>
                                     <xsl:choose>
                                         <xsl:when test="./verblijfplaats/type/text() = &apos;Adres&apos;">
