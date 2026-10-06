@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310">
+            <BG:stuurgegevens>
+                <StUF:berichtcode xmlns:StUF="http://www.egem.nl/StUF/StUF0301">Lv01</StUF:berichtcode>
+                <StUF:zender xmlns:StUF="http://www.egem.nl/StUF/StUF0301">
+                    <StUF:organisatie>1883</StUF:organisatie>
+                    <StUF:applicatie>TOP</StUF:applicatie>
+                    <StUF:gebruiker>Gebruiker</StUF:gebruiker>
+                </StUF:zender>
+                <StUF:ontvanger xmlns:StUF="http://www.egem.nl/StUF/StUF0301">
+                    <StUF:organisatie>test1</StUF:organisatie>
+                    <StUF:applicatie>test123</StUF:applicatie>
+                </StUF:ontvanger>
+                <StUF:referentienummer xmlns:StUF="http://www.egem.nl/StUF/StUF0301">949d839e-d3c7-4bb2-a3a8-44ffe33c51c1</StUF:referentienummer>
+                <StUF:tijdstipBericht xmlns:StUF="http://www.egem.nl/StUF/StUF0301">20251001134335</StUF:tijdstipBericht>
+                <StUF:entiteittype xmlns:StUF="http://www.egem.nl/StUF/StUF0301">NPS</StUF:entiteittype>
+            </BG:stuurgegevens>
+            <BG:parameters>
+                <StUF:sortering xmlns:StUF="http://www.egem.nl/StUF/StUF0301">0</StUF:sortering>
+                <StUF:indicatorVervolgvraag xmlns:StUF="http://www.egem.nl/StUF/StUF0301">false</StUF:indicatorVervolgvraag>
+                <StUF:maximumAantal xmlns:StUF="http://www.egem.nl/StUF/StUF0301">1</StUF:maximumAantal>
+            </BG:parameters>
+            <BG:gelijk xmlns:StUF="http://www.egem.nl/StUF/StUF0301" StUF:entiteittype="NPS">
+                <BG:inp.bsn StUF:exact="true">999993628</BG:inp.bsn>
+            </BG:gelijk>
+            <BG:scope>
+                <BG:object xmlns:StUF="http://www.egem.nl/StUF/StUF0301" StUF:entiteittype="NPS">
+                    <BG:inp.bsn xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:sub.typering xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:geslachtsnaam xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:voorvoegselGeslachtsnaam xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:voorletters xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:voornamen xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:aanduidingNaamgebruik xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:geslachtsnaamPartner xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:aanhefAanschrijving xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:voornamenAanschrijving xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:geslachtsnaamAanschrijving xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:geslachtsaanduiding xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:geboortedatum xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:inp.geboorteplaats xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:inp.geboorteLand xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:overlijdensdatum xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:inp.verblijftIn StUF:entiteittype="NPSTGO">
+                        <BG:gerelateerde StUF:entiteittype="TGO">
+                            <BG:adresAanduidingGrp>
+                                <BG:wpl.woonplaatsNaam xsi:nil="true"
+                                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                                <BG:aoa.woonplaatsWaarinGelegen>
+                                    <BG:wpl.woonplaatsNaam xsi:nil="true"
+                                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                                </BG:aoa.woonplaatsWaarinGelegen>
+                                <BG:gor.openbareRuimteNaam xsi:nil="true"
+                                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                                <BG:aoa.postcode xsi:nil="true"
+                                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                                <BG:aoa.huisnummer xsi:nil="true"
+                                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                                <BG:aoa.huisletter xsi:nil="true"
+                                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                                <BG:aoa.huisnummertoevoeging xsi:nil="true"
+                                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            </BG:adresAanduidingGrp>
+                        </BG:gerelateerde>
+                    </BG:inp.verblijftIn>
+                    <BG:verblijfsadres>
+                        <BG:wpl.woonplaatsNaam xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        <BG:aoa.woonplaatsWaarinGelegen>
+                            <BG:wpl.woonplaatsNaam xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </BG:aoa.woonplaatsWaarinGelegen>
+                        <BG:gor.openbareRuimteNaam xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        <BG:aoa.postcode xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        <BG:aoa.huisnummer xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        <BG:aoa.huisletter xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        <BG:aoa.huisnummertoevoeging xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        <BG:inp.locatiebeschrijving xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    </BG:verblijfsadres>
+                    <BG:sub.correspondentieAdres>
+                        <BG:typering xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        <BG:wpl.woonplaatsNaam xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        <BG:aoa.woonplaatsWaarinGelegen>
+                            <BG:wpl.woonplaatsNaam xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </BG:aoa.woonplaatsWaarinGelegen>
+                        <BG:postcode xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        <BG:gor.openbareRuimteNaam xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        <BG:aoa.huisnummer xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        <BG:aoa.huisletter xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        <BG:aoa.huisnummertoevoeging xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        <BG:sub.postadresType xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        <BG:sub.postadresNummer xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    </BG:sub.correspondentieAdres>
+                    <BG:sub.telefoonnummer xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:sub.emailadres xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:inp.burgerlijkeStaat xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:inp.gemeenteVanInschrijving xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:ing.indicatieGezagMinderjarige xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:inp.indicatieGeheim xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
+                        <BG:gerelateerde StUF:entiteittype="NPS">
+                            <BG:inp.bsn xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:anp.identificatie xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:sub.typering xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:geslachtsnaam xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:voorvoegselGeslachtsnaam xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:voorletters xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:voornamen xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:aanduidingNaamgebruik xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:geslachtsnaamPartner xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:aanhefAanschrijving xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:voornamenAanschrijving xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:geslachtsnaamAanschrijving xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:geslachtsaanduiding xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:geboortedatum xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:overlijdensdatum xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:inp.burgerlijkeStaat xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:ing.indicatieGezagMinderjarige xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:inp.indicatieGeheim xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </BG:gerelateerde>
+                        <BG:soortVerbintenis xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        <BG:datumSluiting xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        <BG:datumOntbinding xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    </BG:inp.heeftAlsEchtgenootPartner>
+                    <BG:inp.heeftAlsKinderen StUF:entiteittype="NPSNPSKND">
+                        <BG:gerelateerde StUF:entiteittype="NPS">
+                            <BG:inp.bsn xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:anp.identificatie xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:sub.typering xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:geslachtsnaam xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:voorvoegselGeslachtsnaam xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:voorletters xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:voornamen xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:aanduidingNaamgebruik xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:geslachtsnaamPartner xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:aanhefAanschrijving xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:voornamenAanschrijving xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:geslachtsnaamAanschrijving xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:geslachtsaanduiding xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:geboortedatum xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:overlijdensdatum xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:inp.burgerlijkeStaat xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:ing.indicatieGezagMinderjarige xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:inp.indicatieGeheim xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </BG:gerelateerde>
+                    </BG:inp.heeftAlsKinderen>
+                    <BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
+                        <BG:gerelateerde StUF:entiteittype="NPS">
+                            <BG:inp.bsn xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:anp.identificatie xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:sub.typering xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:geslachtsnaam xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:voorvoegselGeslachtsnaam xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:voorletters xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:voornamen xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:aanduidingNaamgebruik xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:geslachtsnaamPartner xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:voorvoegselGeslachtsnaamPartner xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:aanhefAanschrijving xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:voornamenAanschrijving xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:geslachtsnaamAanschrijving xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:geslachtsaanduiding xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:geboortedatum xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:overlijdensdatum xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:inp.burgerlijkeStaat xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:ing.indicatieGezagMinderjarige xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            <BG:inp.indicatieGeheim xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </BG:gerelateerde>
+                    </BG:inp.heeftAlsOuders>
+                    <BG:inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT">
+                        <BG:gerelateerde StUF:entiteittype="NAT">
+                            <BG:code xsi:nil="true"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </BG:gerelateerde>
+                        <BG:inp.datumVerkrijging xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    </BG:inp.heeftAlsNationaliteit>
+                </BG:object>
+            </BG:scope>
+        </BG:npsLv01>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

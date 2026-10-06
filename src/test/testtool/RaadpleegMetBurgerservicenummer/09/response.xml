@@ -1,0 +1,44 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><StUF:Fo03Bericht xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310"
+                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:StUF="http://www.egem.nl/StUF/StUF0301"
+                  xmlns:ZKN="http://www.egem.nl/StUF/sector/zkn/0310"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <StUF:stuurgegevens>
+      <StUF:berichtcode>Fo03</StUF:berichtcode>
+      <StUF:zender>
+         <StUF:organisatie>test1</StUF:organisatie>
+         <StUF:applicatie>test123</StUF:applicatie>
+      </StUF:zender>
+      <StUF:ontvanger>
+         <StUF:organisatie>1883</StUF:organisatie>
+         <StUF:applicatie>TOP</StUF:applicatie>
+         <StUF:administratie/>
+         <StUF:gebruiker>Gebruiker</StUF:gebruiker>
+      </StUF:ontvanger>
+      <StUF:referentienummer>c9fe36cb-29a7-4ba5-a174-dd7f45d0cf89</StUF:referentienummer>
+      <StUF:tijdstipBericht>20260916034814</StUF:tijdstipBericht>
+      <StUF:crossRefnummer>949d839e-d3c7-4bb2-a3a8-44ffe33c51c1</StUF:crossRefnummer>
+   </StUF:stuurgegevens>
+   <StUF:body>
+      <StUF:code>500</StUF:code>
+      <StUF:plek>server</StUF:plek>
+      <StUF:omschrijving>some negative response from BRP API Personen received by PostBRPPersonenBevragenTestEnv</StUF:omschrijving>
+      <StUF:details>TechnicalError some negative response from BRP API Personen received by PostBRPPersonenBevragenTestEnv </StUF:details>
+      <StUF:detailsXML>
+         <detailsXml>
+            <root>
+               <error>
+                  <cause/>
+                  <code>TechnicalError</code>
+                  <reason>No person found matching the provided information in the request</reason>
+                  <details/>
+                  <detailsXml>
+                     <dummy/>
+                  </detailsXml>
+               </error>
+            </root>
+         </detailsXml>
+      </StUF:detailsXML>
+   </StUF:body>
+</StUF:Fo03Bericht>
+</soapenv:Body></soapenv:Envelope>
