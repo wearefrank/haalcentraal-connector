@@ -1,5 +1,18 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.24.17](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.16...v1.24.17) (2026-10-07)
+
+### 🧑‍💻 Code Refactoring
+
+* add 'tijdvakRelatie' to 'inp.verblijftIn' BRP-Personen translation ([#401](https://github.com/wearefrank/haalcentraal-connector/issues/401)) ([4cd0ef1](https://github.com/wearefrank/haalcentraal-connector/commit/4cd0ef120f282b0fe7e25c6b73059a211c4336b9))
+* add error handling for 'RaadpleegMetBurgerservicenummer' returning an empty list ([#396](https://github.com/wearefrank/haalcentraal-connector/issues/396)) ([7424b39](https://github.com/wearefrank/haalcentraal-connector/commit/7424b39f9c5c845919bb98c3d5851e5e04437f81))
+* move sharedresource properties to /resources/DeploymentSpecifics.properties ([#395](https://github.com/wearefrank/haalcentraal-connector/issues/395)) ([935e364](https://github.com/wearefrank/haalcentraal-connector/commit/935e36463baf640a614df0ca9925904c90d4643a))
+* remove obsolete manual oauth2 token request flow and simplify 'proefomgeving' related properties ([#397](https://github.com/wearefrank/haalcentraal-connector/issues/397)) ([daa6d43](https://github.com/wearefrank/haalcentraal-connector/commit/daa6d43f0d393321e046c3e0477cd933760003d5))
+
+### 🤖 Build System
+
+* **docker:** revert to MacGyver style custom code compilation and fix for jdk23+ compatibility ([#384](https://github.com/wearefrank/haalcentraal-connector/issues/384)) ([0e15c23](https://github.com/wearefrank/haalcentraal-connector/commit/0e15c23d85eff3914e611745fc51e4a3dc78d323))
+
 ## [1.24.16](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.15...v1.24.16) (2026-09-16)
 
 ### 🐛 Bug Fixes
