@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.24.18](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.17...v1.24.18) (2026-10-09)
+
+### 🐛 Bug Fixes
+
+* include BSN in callback when subscribing with persoonsSleutel. ([#409](https://github.com/wearefrank/haalcentraal-connector/issues/409)) ([7b39839](https://github.com/wearefrank/haalcentraal-connector/commit/7b39839f55f60d22c7ae68b98759151d72a6c302))
+
 ## [1.24.17](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.16...v1.24.17) (2026-10-07)
 
 ### 🧑‍💻 Code Refactoring
