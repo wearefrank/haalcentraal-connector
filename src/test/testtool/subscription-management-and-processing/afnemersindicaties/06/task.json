@@ -8,6 +8,7 @@
     "personen": [
         {
             "aNummer": "3959725474",
+            "burgerservicenummer": "555555021",
             "geslacht": {
                 "code": "M",
                 "omschrijving": "man"
