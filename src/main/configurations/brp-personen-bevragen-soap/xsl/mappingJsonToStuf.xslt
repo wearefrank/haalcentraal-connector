@@ -394,35 +394,23 @@
                                     <sub.rekeningnummerBankGiro></sub.rekeningnummerBankGiro>
                                     <inp.burgerlijkeStaat>
                                         <number>
-                                            <xsl:if test="$originalMessage//BG:inp.bsn/text() !=''">
+                                            <xsl:if test="$originalMessage//BG:inp.bsn/text() != ''">
+                                                <xsl:variable name="actief" select="partners[not(ontbindingHuwelijkPartnerschap/datum)]"/>
+                                                <xsl:variable name="ontbonden" select="partners[ontbindingHuwelijkPartnerschap/datum]"/>
+                                                <xsl:variable name="laatste">
+                                                    <xsl:for-each select="$ontbonden">
+                                                        <xsl:sort select="string(ontbindingHuwelijkPartnerschap/datum/datum)" order="descending"/>
+                                                        <xsl:if test="position() = 1"><xsl:value-of select="soortVerbintenis/code"/></xsl:if>
+                                                    </xsl:for-each>
+                                                </xsl:variable>
                                                 <xsl:choose>
-                                                    <xsl:when test="./partners !=''">
-                                                        <xsl:choose>
-                                                            <xsl:when test="./partners/soortVerbintenis/code/text() ='H'">
-                                                                <xsl:choose>
-                                                                    <xsl:when test="not(exists(./partners/ontbindingHuwelijkPartnerschap/text()))">
-                                                                        <xsl:value-of select="2" />
-                                                                    </xsl:when>
-                                                                    <xsl:otherwise>
-                                                                        <xsl:value-of select="3" />
-                                                                    </xsl:otherwise>
-                                                                </xsl:choose>
-                                                            </xsl:when>
-                                                            <xsl:when test="./partners/soortVerbintenis/code/text() ='P'">
-                                                                <xsl:choose>
-                                                                    <xsl:when test="not(exists(./partners/ontbindingHuwelijkPartnerschap/text()))">
-                                                                        <xsl:value-of select="5" />
-                                                                    </xsl:when>
-                                                                    <xsl:otherwise>
-                                                                        <xsl:value-of select="6" />
-                                                                    </xsl:otherwise>
-                                                                </xsl:choose>
-                                                            </xsl:when>
-                                                        </xsl:choose>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                        <xsl:value-of select="1" />
-                                                    </xsl:otherwise>
+                                                    <xsl:when test="$actief[soortVerbintenis/code = 'H']">2</xsl:when>
+                                                    <xsl:when test="$actief[soortVerbintenis/code = 'P']">5</xsl:when>
+                                                    <xsl:when test="$actief"><xsl:attribute name="noValue">waardeOnbekend</xsl:attribute></xsl:when>
+                                                    <xsl:when test="$laatste = 'H'">3</xsl:when><!-- 4 bij overlijden partner -->
+                                                    <xsl:when test="$laatste = 'P'">6</xsl:when><!-- 7 bij overlijden partner -->
+                                                    <xsl:when test="$ontbonden"><xsl:attribute name="noValue">waardeOnbekend</xsl:attribute></xsl:when>
+                                                    <xsl:otherwise>1</xsl:otherwise>
                                                 </xsl:choose>
                                             </xsl:if>
                                         </number>
@@ -658,6 +646,10 @@
                     <xsl:element name="{if (namespace-uri($mappedElement) != '') then name($mappedElement) else concat('BG:', local-name($mappedElement))}"
                                  namespace="{if (namespace-uri($mappedElement) != '') then namespace-uri($mappedElement) else 'http://www.egem.nl/StUF/sector/bg/0310'}">
                         <xsl:choose>
+                            <xsl:when test="$mappedElement/*/@noValue">
+                                <xsl:attribute name="StUF:noValue" select="$mappedElement/*/@noValue"/>
+                                <xsl:attribute name="xsi:nil">true</xsl:attribute>
+                            </xsl:when>
                             <xsl:when test="$mappedElement/*/text() != ''">
                                 <xsl:value-of select="normalize-space($mappedElement/*)" />
                             </xsl:when>
@@ -763,39 +755,15 @@
                     </xsl:choose>
                     <inp.burgerlijkeStaat>
                         <number>
+                            <xsl:variable name="ontbonden" select="exists(ontbindingHuwelijkPartnerschap/datum)"/>
                             <xsl:choose>
-                                <xsl:when
-                                    test=". !=''">
-                                    <xsl:choose>
-                                        <xsl:when
-                                            test="./soortVerbintenis/code/text() ='H'">
-                                            <xsl:choose>
-                                                <xsl:when test="not(exists(./ontbindingHuwelijkPartnerschap/text()))">
-                                                    <xsl:value-of select="2" />
-                                                </xsl:when>
-                                                <xsl:otherwise>
-                                                    <xsl:value-of select="3" />
-                                                </xsl:otherwise>
-                                            </xsl:choose>
-                                        </xsl:when>
-                                        <xsl:when
-                                            test="./soortVerbintenis/code/text() ='P'">
-                                            <xsl:choose>
-                                                <xsl:when test="not(exists(./ontbindingHuwelijkPartnerschap/text()))">
-                                                    <xsl:value-of select="5" />
-                                                </xsl:when>
-                                                <xsl:otherwise>
-                                                    <xsl:value-of select="6" />
-                                                </xsl:otherwise>
-                                            </xsl:choose>
-                                        </xsl:when>
-                                    </xsl:choose>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:value-of select="1" />
-                                </xsl:otherwise>
-                            </xsl:choose> 
-                        </number>                                                                                   
+                                <xsl:when test="soortVerbintenis/code = 'H' and not($ontbonden)">2</xsl:when>
+                                <xsl:when test="soortVerbintenis/code = 'P' and not($ontbonden)">5</xsl:when>
+                                <xsl:when test="soortVerbintenis/code = 'H'">3</xsl:when>
+                                <xsl:when test="soortVerbintenis/code = 'P'">6</xsl:when>
+                                <xsl:otherwise><xsl:attribute name="noValue">waardeOnbekend</xsl:attribute></xsl:otherwise>
+                            </xsl:choose>
+                        </number>
                     </inp.burgerlijkeStaat>
                 </gerelateerde>
                 <inp.indicatieGeheim>

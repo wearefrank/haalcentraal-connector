@@ -55,7 +55,7 @@
 			</BG:verblijfsadres>
 			<BG:inp.adresHerkomst>W</BG:inp.adresHerkomst>
 			<BG:sub.correspondentieAdres/>
-			<BG:inp.burgerlijkeStaat>2</BG:inp.burgerlijkeStaat>
+			<BG:inp.burgerlijkeStaat>3</BG:inp.burgerlijkeStaat>
 			<BG:inp.gemeenteVanInschrijving>0518</BG:inp.gemeenteVanInschrijving>
 			<BG:inp.datumInschrijving>20060318</BG:inp.datumInschrijving>
 			<BG:vbt.aanduidingVerblijfstitel StUF:noValue="geenWaarde" xsi:nil="true"/>
