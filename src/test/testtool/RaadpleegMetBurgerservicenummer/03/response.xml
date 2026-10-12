@@ -85,6 +85,8 @@
 					<BG:inp.burgerlijkeStaat>2</BG:inp.burgerlijkeStaat>
 				</BG:gerelateerde>
 				<BG:soortVerbintenis xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+				<BG:datumSluiting xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+				<BG:datumOntbinding xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
 			</BG:inp.heeftAlsEchtgenootPartner>
 			<BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
 				<BG:gerelateerde StUF:entiteittype="NPS">
