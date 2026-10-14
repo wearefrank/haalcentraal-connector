@@ -120,9 +120,16 @@
 
 			<PutInSessionPipe name="ExtractUrl" getInputFromSessionKey="FilteredApplication">
 				<Param name="url" xpathExpression="root/app/url" />
+				<Param name="enableCallback" sessionKey="enableCallback" defaultValue="${enableCallback:-false}" />
+				<Forward name="success" path="IfCallbackEnabled" />
 			</PutInSessionPipe>
 
-			<SenderPipe name="SendMessageToShadowdb" active="!${enableCallback}">
+			<IfPipe name="IfCallbackEnabled" getInputFromSessionKey="enableCallback" expressionValue="true">
+				<Forward name="then" path="callback" />
+				<Forward name="else" path="SendMessageToShadowdb" />
+			</IfPipe>
+
+			<SenderPipe name="SendMessageToShadowdb">
 				<FixedQuerySender name="storeCallbackMessage" query="INSERT INTO shadowmessages (message, app_id, bsn, is_frank, timestamp) VALUES (?, ?, ?, True, CURRENT_TIMESTAMP)">
 					<Param name="message" sessionKey="soapMessage" type="BINARY" />
 					<Param name="appId" xpathExpression="root/app/applicatie" sessionKey="FilteredApplication" />
@@ -134,7 +141,7 @@
 
 			<SenderPipe
 				name="callback"
-				getInputFromSessionKey="soapMessage" active="${enableCallback}">
+				getInputFromSessionKey="soapMessage">
 				<WebServiceSender
 					soap="false"
 					soapAction="http://www.egem.nl/StUF/sector/bg/0310/npsLk01"
