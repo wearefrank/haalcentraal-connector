@@ -665,8 +665,8 @@
                 <datumOntbinding>
                     <test><xsl:value-of select="local:formatteer-datum(ontbindingHuwelijkPartnerschap/datum)"/></test>
                 </datumOntbinding>
-                <redenOntbinding>
-                    <test><!-- S of O uit de overlijdens-check van issue 1; anders leeg --></test>
+                <redenOntbinding> <!-- S of O uit de overlijdens-check van issue 1; anders leeg. Tijdelijk alleen S of leeg -->
+                    <test><xsl:if test="ontbindingHuwelijkPartnerschap/datum">S</xsl:if></test>
                 </redenOntbinding>
             </inp.heeftAlsEchtgenootPartner>
         </xsl:variable>
