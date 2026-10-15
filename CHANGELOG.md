@@ -1,5 +1,12 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.24.19](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.18...v1.24.19) (2026-10-15)
+
+### 🤖 Build System
+
+* **dependencies:** bump f!f version to 10.2.1-20261010.034831 ([#414](https://github.com/wearefrank/haalcentraal-connector/issues/414)) ([e5e3412](https://github.com/wearefrank/haalcentraal-connector/commit/e5e341228694ba655eb5f1b9111491d7d1a040e5))
+* **dependencies:** bump f!f version to 10.3.0-20261010.042321 ([#410](https://github.com/wearefrank/haalcentraal-connector/issues/410)) ([d83e80c](https://github.com/wearefrank/haalcentraal-connector/commit/d83e80c8357028a899f554932dd5fd7dd4c22237))
+
 ## [1.24.18](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.17...v1.24.18) (2026-10-09)
 
 ### 🐛 Bug Fixes
