@@ -9,8 +9,27 @@
                 xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                 xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"
                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml"
-                exclude-result-prefixes="xsd"
-    >
+                xmlns:local="http://frankframework.org/xpath-functions"
+                exclude-result-prefixes="xsd local">
+
+    <xsl:function name="local:formatteer-datum" as="xsd:string">
+        <xsl:param name="d" as="element()?"/>
+        <xsl:choose>
+            <xsl:when test="$d/type = 'Datum'">
+                <xsl:sequence select="translate($d/datum, '-', '')"/>
+            </xsl:when>
+            <xsl:when test="$d/type = 'JaarMaandDatum'">
+                <xsl:sequence select="concat(format-number(number($d/jaar), '0000'),
+                                         format-number(number($d/maand), '00'), '00')"/>
+            </xsl:when>
+            <xsl:when test="$d/type = 'JaarDatum'">
+                <xsl:sequence select="concat(format-number(number($d/jaar), '0000'), '0000')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:sequence select="''"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
     
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
     <xsl:param name="berichtcode">La01</xsl:param>
@@ -791,6 +810,15 @@
                     </test>             
                 </inp.indicatieGeheim>
                 <soortVerbintenis><xsl:copy-of select="soortVerbintenis/code"/></soortVerbintenis>
+                <datumSluiting>
+                    <test><xsl:value-of select="local:formatteer-datum(aangaanHuwelijkPartnerschap/datum)"/></test>
+                </datumSluiting>
+                <datumOntbinding>
+                    <test><xsl:value-of select="local:formatteer-datum(ontbindingHuwelijkPartnerschap/datum)"/></test>
+                </datumOntbinding>
+                <redenOntbinding> <!-- S of O uit de overlijdens-check van issue 1; anders leeg. Tijdelijk alleen S of leeg -->
+                    <test><xsl:if test="ontbindingHuwelijkPartnerschap/datum">S</xsl:if></test>
+                </redenOntbinding>
             </inp.heeftAlsEchtgenootPartner>
         </xsl:variable>
         <xsl:apply-templates select="$originalMessage//BG:inp.heeftAlsEchtgenootPartner">
