@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "appid": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bsn": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$"
+    }
+  },
+  "required": ["appid", "bsn"],
+  "additionalProperties": false
+}

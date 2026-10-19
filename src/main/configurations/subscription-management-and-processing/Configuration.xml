@@ -13,6 +13,7 @@
     <!ENTITY ProcessBulkImportTasksBAG SYSTEM "Configuration_ProcessBulkImportBAG.xml">
     <!ENTITY GetPersoon SYSTEM "Configuration_BrpGetPersoon.xml">
     <!ENTITY GetPersoonssleutel SYSTEM "Configuration_GetPersoonssleutel.xml">
+    <!ENTITY BrpPersonenForcedSync SYSTEM "Configuration_BrpPersonenForcedSync.xml">
 ]>
 
 <Configuration name="subscription-management-and-processing">
@@ -30,6 +31,7 @@
 	&ProcessBulkImportTask;
 	&ProcessBulkImportTasksBAG;
     &GetPersoon;
+    &BrpPersonenForcedSync;
     
 	<SharedResources active="!${brp.proefomgeving.active}">
         <HttpSession

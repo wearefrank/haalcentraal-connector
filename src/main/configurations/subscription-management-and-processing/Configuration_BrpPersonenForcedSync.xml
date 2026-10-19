@@ -1,0 +1,117 @@
+<Module
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+
+    <Adapter name="BrpPersonenForcedSync"
+        description="Synchroniseert een persoon op verzoek van een applicatie en verstuurt een callback">
+
+        <Receiver name="BrpPersonenForcedSync">
+            <JavaListener name="BrpPersonenForcedSync" />
+        </Receiver>
+
+        <Receiver name="BrpPersonenForcedSyncApi">
+<!--                uriPattern="${haalcentraal_connector.forcedsync.rest.endpoint}"-->
+            <ApiListener
+                name="BrpPersonenForcedSyncApiListener"
+                uriPattern="/forcedsyncrest"
+                method="POST"
+                consumes="JSON"
+                produces="JSON"
+                allowAllParams="true" />
+        </Receiver>
+
+        <Pipeline>
+            <JsonInputValidator name="ValidateRequest" schema="json/ForcedSyncRequestSchema.json">
+                <Forward name="success" path="RequestToXml" />
+                <Forward name="failure" path="BadRequestResponse" />
+                <Forward name="parserError" path="BadRequestResponse" />
+            </JsonInputValidator >
+
+            <Exits>
+                <Exit name="EXIT" state="SUCCESS" code="200" />
+                <Exit name="BadRequest" state="ERROR" code="400" />
+                <Exit name="Forbidden" state="ERROR" code="403" />
+                <Exit name="ServerError" state="ERROR" code="500" />
+            </Exits>
+
+            <JsonPipe name="RequestToXml" />
+
+            <PutInSessionPipe name="ExtractRequestData">
+                <Param name="appId" xpathExpression="/root/appid" />
+                <Param name="bsn" xpathExpression="/root/bsn" />
+            </PutInSessionPipe>
+
+            <SenderPipe name="GetRequesterSubscription" storeResultInSessionKey="requesterSubscription">
+                <FixedQuerySender
+                    name="GetRequesterSubscriptionQuery"
+                    queryType="SELECT"
+                    query="SELECT * FROM subscripties WHERE bsn=?{bsn} AND app_id=?{appId} AND eind_datum IS NULL">
+                    <Param name="bsn" sessionKey="bsn" type="STRING" />
+                    <Param name="appId" sessionKey="appId" type="STRING" />
+                </FixedQuerySender>
+                <Forward name="success" path="CheckRequesterIsSubscribed" />
+                <Forward name="exception" path="ServerErrorResponse" />
+            </SenderPipe>
+
+            <IfPipe name="CheckRequesterIsSubscribed" xpathExpression="count(/result/rowset/row) > 0" expressionValue="true">
+                <Forward name="then" path="UpdateAndNotify" />
+                <Forward name="else" path="NotSubscribedResponse" />
+            </IfPipe>
+
+            <SenderPipe name="UpdateAndNotify" getInputFromSessionKey="bsn">
+                <IbisLocalSender name="UpdateAndNotifySender"
+                    javaListener="BrpPersonenUpdateAndNotify"
+                    returnedSessionKeys="currentPersonData" />
+                <Forward name="success" path="CheckPersonChanged" />
+                <Forward name="200" path="CheckPersonChanged" />
+                <Forward name="exception" path="ServerErrorResponse" />
+            </SenderPipe>
+
+            <IfPipe name="CheckPersonChanged" expressionValue="true">
+                <Forward name="then" path="ChangedResponse" />
+                <Forward name="else" path="QueueForcedCallbackForRequester" />
+            </IfPipe>
+
+            <!-- No changes: forced callback for the requesting app only -->
+            <SenderPipe name="QueueForcedCallbackForRequester">
+                <IbisLocalSender
+                    name="QueueForcedCallbackSender"
+                    javaListener="QueueNotificationTask">
+                    <Param name="currentPersonData" sessionKey="currentPersonData" />
+                    <Param name="ApplicationId" sessionKey="appId" />
+                    <Param name="afnemersSleutel" sessionKey="requesterSubscription" xpathExpression="/result/rowset/row[1]/field[@name='AFNEMERS_SLEUTEL']/text()" />
+                    <Param name="persoonsSleutel" sessionKey="requesterSubscription" xpathExpression="/result/rowset/row[1]/field[@name='PERSOONS_SLEUTEL']/text()" />
+                    <Param name="mutatiesoort" value="T" />
+                </IbisLocalSender>
+                <Forward name="success" path="NotChangedResponse" />
+                <Forward name="exception" path="ServerErrorResponse" />
+            </SenderPipe>
+
+            <!-- Responses -->
+            <EchoPipe name="ChangedResponse"
+                getInputFromFixedValue='{"changed": true, "callback": "all-subscribers"}'>
+                <Forward name="success" path="EXIT" />
+            </EchoPipe>
+
+            <EchoPipe name="NotChangedResponse"
+                getInputFromFixedValue='{"changed": false, "callback": "requester-only"}'>
+                <Forward name="success" path="EXIT" />
+            </EchoPipe>
+
+            <EchoPipe name="BadRequestResponse"
+                getInputFromFixedValue='{"status": 400, "title": "Ongeldig verzoek: verwacht een JSON-object met appid en een bsn van 9 cijfers"}'>
+                <Forward name="success" path="BadRequest" />
+            </EchoPipe>
+
+            <EchoPipe name="NotSubscribedResponse"
+                getInputFromFixedValue='{"status": 403, "title": "Applicatie heeft geen actieve subscriptie op deze persoon"}'>
+                <Forward name="success" path="Forbidden" />
+            </EchoPipe>
+
+            <EchoPipe name="ServerErrorResponse"
+                getInputFromFixedValue='{"status": 500, "title": "Synchroniseren of versturen van de callback is mislukt"}'>
+                <Forward name="success" path="ServerError" />
+            </EchoPipe>
+        </Pipeline>
+    </Adapter>
+</Module>
