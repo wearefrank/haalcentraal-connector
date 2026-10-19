@@ -39,6 +39,10 @@
 						<BG:aoa.huisnummertoevoeging>BIS</BG:aoa.huisnummertoevoeging>
 					</BG:adresAanduidingGrp>
 				</BG:gerelateerde>
+				<StUF:tijdvakRelatie>
+					<StUF:beginRelatie>20150808</StUF:beginRelatie>
+					<StUF:eindRelatie StUF:noValue="geenWaarde" xsi:nil="true"/>
+				</StUF:tijdvakRelatie>
 			</BG:inp.verblijftIn>
 			<BG:verblijfsadres>
 				<BG:wpl.woonplaatsNaam>'s-Gravenhage</BG:wpl.woonplaatsNaam>

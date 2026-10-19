@@ -1,0 +1,20 @@
+{
+    "type": "RaadpleegMetBurgerservicenummer",
+    "personen": [
+        {
+            "burgerservicenummer": "555555021",
+            "verblijfplaats": {
+                "type": "Adres",
+                "nummeraanduidingIdentificatie": "0518200001756291",
+                "datumVan": {
+                    "type": "Datum",
+                    "datum": "2015-08-08"
+                },
+                "datumTot": {
+                    "type": "Datum",
+                    "datum": "2026-10-19"
+                }
+            }
+        }
+    ]
+}
