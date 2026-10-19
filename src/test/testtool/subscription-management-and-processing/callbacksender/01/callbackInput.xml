@@ -65,6 +65,10 @@
                <BG:ogo.locatieAanduiding xsi:nil="true" StUF:noValue="geenWaarde"/>
             </BG:adresAanduidingGrp>
          </BG:gerelateerde>
+         <StUF:tijdvakRelatie>
+            <StUF:beginRelatie>20250612</StUF:beginRelatie>
+            <StUF:eindRelatie xsi:nil="true" StUF:noValue="geenWaarde"/>
+         </StUF:tijdvakRelatie>
       </BG:inp.verblijftIn>
       <BG:verblijfsadres>
          <BG:aoa.identificatie xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>

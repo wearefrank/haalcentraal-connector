@@ -1,0 +1,51 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310"
+                  xmlns:StUF="http://www.egem.nl/StUF/StUF0301"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <BG:npsLv01>
+            <BG:stuurgegevens>
+                <StUF:berichtcode>Lv01</StUF:berichtcode>
+                <StUF:zender>
+                    <StUF:applicatie>GWS</StUF:applicatie>
+                    <StUF:gebruiker>PROD</StUF:gebruiker>
+                </StUF:zender>
+                <StUF:ontvanger>
+                    <StUF:organisatie>NEDGR</StUF:organisatie>
+                    <StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
+                </StUF:ontvanger>
+                <StUF:referentienummer>tijdvakRelatie-test</StUF:referentienummer>
+                <StUF:tijdstipBericht>20241015055521156</StUF:tijdstipBericht>
+                <StUF:entiteittype>NPS</StUF:entiteittype>
+            </BG:stuurgegevens>
+            <BG:parameters>
+                <StUF:sortering>7</StUF:sortering>
+                <StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+                <StUF:maximumAantal>30</StUF:maximumAantal>
+            </BG:parameters>
+            <BG:vanaf StUF:entiteittype="NPS">
+                <BG:inp.bsn>555555021</BG:inp.bsn>
+            </BG:vanaf>
+            <BG:totEnMet StUF:entiteittype="NPS">
+                <BG:inp.bsn>555555021</BG:inp.bsn>
+            </BG:totEnMet>
+            <BG:scope>
+                <BG:object StUF:entiteittype="NPS">
+                    <BG:inp.bsn xsi:nil="true"/>
+                    <BG:inp.verblijftIn StUF:entiteittype="NPSTGO">
+                        <BG:gerelateerde StUF:entiteittype="TGO">
+                            <BG:adresAanduidingGrp>
+                                <BG:num.identificatie xsi:nil="true"/>
+                            </BG:adresAanduidingGrp>
+                        </BG:gerelateerde>
+                        <StUF:tijdvakRelatie>
+                            <StUF:beginRelatie xsi:nil="true"/>
+                            <StUF:eindRelatie xsi:nil="true"/>
+                        </StUF:tijdvakRelatie>
+                    </BG:inp.verblijftIn>
+                </BG:object>
+            </BG:scope>
+        </BG:npsLv01>
+    </soapenv:Body>
+</soapenv:Envelope>

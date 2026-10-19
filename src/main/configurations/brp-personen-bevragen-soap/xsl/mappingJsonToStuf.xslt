@@ -271,14 +271,12 @@
                                         <StUF:tijdvakRelatie>
                                             <StUF:beginRelatie>
                                                 <test>
-                                                    <xsl:variable name="date" select="verblijfplaats/datumVan/datum"/>
-                                                    <xsl:value-of select="translate($date, '-', '')" />
+                                                    <xsl:value-of select="local:formatteer-datum(verblijfplaats/datumVan)" />
                                                 </test>
                                             </StUF:beginRelatie>
                                             <StUF:eindRelatie>
                                                 <test>
-                                                    <xsl:variable name="date" select="verblijfplaats/datumTot/datum"/>
-                                                    <xsl:value-of select="translate($date, '-', '')" />
+                                                    <xsl:value-of select="local:formatteer-datum(verblijfplaats/datumTot)" />
                                                 </test>                                            
                                             </StUF:eindRelatie>
                                         </StUF:tijdvakRelatie>
