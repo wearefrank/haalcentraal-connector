@@ -1,0 +1,1 @@
+<result><rowset><row number="0"><field name="ID">1</field><field name="BSN">555555021</field><field name="APP_ID">LBA</field><field name="BEGIN_DATUM">2025-02-21 16:05:05</field><field name="EIND_DATUM" null="true"/><field name="PERSOONS_SLEUTEL">HCC-key-555555021</field><field name="AFNEMERS_SLEUTEL">LBA-001</field></row></rowset></result>

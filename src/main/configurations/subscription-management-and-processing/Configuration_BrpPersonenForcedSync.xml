@@ -41,7 +41,7 @@
                 <Param name="bsn" xpathExpression="/root/bsn" />
             </PutInSessionPipe>
 
-            <SenderPipe name="GetRequesterSubscription" storeResultInSessionKey="requesterSubscription">
+            <SenderPipe name="GetRequesterSubscription" getInputFromSessionKey="bsn" storeResultInSessionKey="requesterSubscription">
                 <FixedQuerySender
                     name="GetRequesterSubscriptionQuery"
                     queryType="SELECT"

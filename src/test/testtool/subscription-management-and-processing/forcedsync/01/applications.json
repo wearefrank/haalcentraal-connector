@@ -1,0 +1,14 @@
+{
+	"Applications": [
+		{
+			"organisatie": "4321",
+			"url": "https://httpbin.org/anything",
+			"applicatie": "DEC_ZKN"
+		},
+		{
+			"organisatie": "1234",
+			"url": "https://wearefrank.nl/",
+			"applicatie": "LBA"
+		}
+	]
+}
