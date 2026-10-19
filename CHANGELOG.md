@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.24.20](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.19...v1.24.20) (2026-10-19)
+
+### 🧑‍💻 Code Refactoring
+
+* missing datumsluiting datumontbinding and redenontbinding ([#413](https://github.com/wearefrank/haalcentraal-connector/issues/413)) ([5a50523](https://github.com/wearefrank/haalcentraal-connector/commit/5a5052310e64b6c210e38af16e91065ba99ee6ff))
+
 ## [1.24.19](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.18...v1.24.19) (2026-10-15)
 
 ### 🤖 Build System
