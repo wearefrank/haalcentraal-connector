@@ -59,7 +59,10 @@
         </verblijfsadres>
         <sub.correspondentieAdres authorizedApplications="GWS" />
         <inp.burgerlijkeStaat authorizedApplications="TOP,GWS" />
-        <soortVerbintenis authorizedApplications="GWS,TOP" />
+        <soortVerbintenis authorizedApplications="DEC_ZKN,GWS,TOP" />
+        <datumSluiting authorizedApplications="DEC_ZKN,LBA,GWS,TOP" />
+        <datumOntbinding authorizedApplications="DEC_ZKN,LBA,GWS,TOP" />
+        <redenOntbinding authorizedApplications="DEC_ZKN,LBA,GWS,TOP" />
     </inp.heeftAlsEchtgenootPartner>
     <inp.heeftAlsKinderen>
         <inp.bsn authorizedApplications="GWS,TOP" />
