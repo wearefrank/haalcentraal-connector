@@ -70,6 +70,8 @@
 					<BG:inp.burgerlijkeStaat>2</BG:inp.burgerlijkeStaat>
 				</BG:gerelateerde>
 				<BG:soortVerbintenis xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+				<BG:datumSluiting>19200403</BG:datumSluiting>
+				<BG:datumOntbinding StUF:noValue="geenWaarde" xsi:nil="true"/>
 			</BG:inp.heeftAlsEchtgenootPartner>
 			<BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
 				<BG:gerelateerde StUF:entiteittype="NPS">

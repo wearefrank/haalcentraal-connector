@@ -62,6 +62,9 @@
             <inp.burgerlijkeStaat authorizedApplications="TOP,GWS" />
         </gerelateerde>
         <soortVerbintenis authorizedApplications="GWS,TOP" />
+        <datumSluiting authorizedApplications="LBA, GWS,TOP" />
+        <datumOntbinding authorizedApplications="LBA,GWS,TOP" />
+        <redenOntbinding authorizedApplications="LBA,GWS,TOP" />
     </inp.heeftAlsEchtgenootPartner>
     <inp.heeftAlsKinderen>
         <gerelateerde>
