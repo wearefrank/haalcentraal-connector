@@ -1,0 +1,41 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310"
+                  xmlns:StUF="http://www.egem.nl/StUF/StUF0301">
+    <soapenv:Body>
+        <BG:npsLa01>
+            <BG:stuurgegevens>
+                <StUF:berichtcode>La01</StUF:berichtcode>
+                <StUF:zender>
+                    <StUF:organisatie>NEDGR</StUF:organisatie>
+                    <StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
+                </StUF:zender>
+                <StUF:ontvanger>
+                    <StUF:applicatie>GWS</StUF:applicatie>
+                    <StUF:gebruiker>PROD</StUF:gebruiker>
+                </StUF:ontvanger>
+                <StUF:crossRefnummer>tijdvakRelatie-test</StUF:crossRefnummer>
+                <StUF:entiteittype>NPS</StUF:entiteittype>
+            </BG:stuurgegevens>
+            <BG:parameters>
+                <StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+                <StUF:aantalVoorkomens>1</StUF:aantalVoorkomens>
+            </BG:parameters>
+            <BG:antwoord>
+                <BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="existingkey">
+                    <BG:inp.bsn>555555021</BG:inp.bsn>
+                    <BG:inp.verblijftIn StUF:entiteittype="NPSTGO">
+                        <BG:gerelateerde StUF:entiteittype="TGO">
+                            <BG:adresAanduidingGrp>
+                                <BG:num.identificatie>0518200001756291</BG:num.identificatie>
+                            </BG:adresAanduidingGrp>
+                        </BG:gerelateerde>
+                        <StUF:tijdvakRelatie>
+                            <StUF:beginRelatie>20240700</StUF:beginRelatie>
+                            <StUF:eindRelatie>19990000</StUF:eindRelatie>
+                        </StUF:tijdvakRelatie>
+                    </BG:inp.verblijftIn>
+                </BG:object>
+            </BG:antwoord>
+        </BG:npsLa01>
+    </soapenv:Body>
+</soapenv:Envelope>

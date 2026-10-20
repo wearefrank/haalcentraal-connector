@@ -48,7 +48,10 @@
     <xsl:variable name="external-data" select="document('woonplaatsen.xml')" as="node()?" />
     <xsl:param name="geslachtsnaam"><xsl:value-of select="/root/personen/naam/geslachtsnaam"/></xsl:param>
     <xsl:param name="voorvoegsel"><xsl:value-of select="count(/root/personen/naam/voorvoegsel)"/></xsl:param>
-    
+
+    <!-- Include the correct namespaces for all future new elements in the mapping.
+         The automatic 'BG' prefix is this in place as a fallback for existing elements without a namespace. -->
+     
     <xsl:template match="/">
         <xsl:apply-templates select="$originalMessage//BG:npsLv01">
             <xsl:with-param name="personen" select="root/personen"/>
@@ -268,14 +271,12 @@
                                         <StUF:tijdvakRelatie>
                                             <StUF:beginRelatie>
                                                 <test>
-                                                    <xsl:variable name="date" select="verblijfplaats/datumVan/datum"/>
-                                                    <xsl:value-of select="translate($date, '-', '')" />
+                                                    <xsl:value-of select="local:formatteer-datum(verblijfplaats/datumVan)" />
                                                 </test>
                                             </StUF:beginRelatie>
                                             <StUF:eindRelatie>
                                                 <test>
-                                                    <xsl:variable name="date" select="verblijfplaats/datumTot/datum"/>
-                                                    <xsl:value-of select="translate($date, '-', '')" />
+                                                    <xsl:value-of select="local:formatteer-datum(verblijfplaats/datumTot)" />
                                                 </test>                                            
                                             </StUF:eindRelatie>
                                         </StUF:tijdvakRelatie>
@@ -623,13 +624,12 @@
     <xsl:template match="BG:object//*[*]">
         <xsl:param name="mapping" />
         <xsl:param name="authorizedApplicationsMap" as="node()?" />
-        <xsl:param name="prefix">BG</xsl:param>
-        
-        <xsl:variable name="mappedElement" select="$mapping/*[name()=current()/local-name()]" />
+        <xsl:variable name="mappedElement" select="$mapping/*[local-name()=current()/local-name()]" />
         <xsl:variable name="newAuthorizedApplicationsMap" select="$authorizedApplicationsMap/*[name()=current()/local-name()]" />
         
         <xsl:if test="$mappedElement[not(@doNotCreate='true')]">
-            <xsl:element name="{$prefix}:{local-name()}" exclude-result-prefixes=""> <!-- Adding prefix -->
+            <xsl:element name="{if (namespace-uri($mappedElement) != '') then name($mappedElement) else concat('BG:', local-name($mappedElement))}"
+                         namespace="{if (namespace-uri($mappedElement) != '') then namespace-uri($mappedElement) else 'http://www.egem.nl/StUF/sector/bg/0310'}">
                 <!-- Copy all attributes except a:entiteittype -->
                 <xsl:copy-of select="@*[not(name() = 'a:entiteittype')]" />                
                 <!-- Rename a:entiteittype to stuf:entiteittype -->
@@ -641,7 +641,6 @@
                 <xsl:apply-templates select="*">
                     <xsl:with-param name="mapping" select="$mappedElement" />
                     <xsl:with-param name="authorizedApplicationsMap" select="$newAuthorizedApplicationsMap" />
-                    <xsl:with-param name="prefix" select="$prefix" /> <!-- Passing prefix to child elements -->
                 </xsl:apply-templates>
             </xsl:element>
         </xsl:if>
@@ -650,13 +649,14 @@
     <xsl:template match="BG:object//*[not(*)]">
         <xsl:param name="mapping" />
         <xsl:param name="authorizedApplicationsMap" as="node()?"/>
-        <xsl:variable name="mappedElement" select="$mapping/*[name()=current()/local-name()]"/>
+        <xsl:variable name="mappedElement" select="$mapping/*[local-name()=current()/local-name()]"/>
         <xsl:variable name="authorizedApplications" select="$authorizedApplicationsMap/*[name()=current()/local-name()]"/>
         <xsl:if test="$mappedElement[not(@doNotCreate='true')]">            
             <xsl:choose>
                 <xsl:when test="not(exists($authorizedApplications/@authorizedApplications)) or contains($authorizedApplications/@authorizedApplications, $varZenderApplicatie)">
                     
-                    <xsl:element name="BG:{$mappedElement/local-name()}">
+                    <xsl:element name="{if (namespace-uri($mappedElement) != '') then name($mappedElement) else concat('BG:', local-name($mappedElement))}"
+                                 namespace="{if (namespace-uri($mappedElement) != '') then namespace-uri($mappedElement) else 'http://www.egem.nl/StUF/sector/bg/0310'}">
                         <xsl:choose>
                             <xsl:when test="$mappedElement/*/text() != ''">
                                 <xsl:value-of select="normalize-space($mappedElement/*)" />
@@ -677,7 +677,8 @@
                     </xsl:element>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:element name="BG:{$mappedElement/local-name()}">
+                    <xsl:element name="{if (namespace-uri($mappedElement) != '') then name($mappedElement) else concat('BG:', local-name($mappedElement))}"
+                                 namespace="{if (namespace-uri($mappedElement) != '') then namespace-uri($mappedElement) else 'http://www.egem.nl/StUF/sector/bg/0310'}">
                         <xsl:attribute name="xsi:nil">true</xsl:attribute>
                         <xsl:attribute
                             name="StUF:noValue"><xsl:value-of
