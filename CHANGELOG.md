@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.24.21](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.20...v1.24.21) (2026-10-20)
+
+### 🐛 Bug Fixes
+
+* tijdvakRelatie missing in both soap and callback responses ([#419](https://github.com/wearefrank/haalcentraal-connector/issues/419)) ([9eb8e00](https://github.com/wearefrank/haalcentraal-connector/commit/9eb8e00859e32811bf10659e7eea49e33244537e))
+
 ## [1.24.20](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.19...v1.24.20) (2026-10-19)
 
 ### 🧑‍💻 Code Refactoring
