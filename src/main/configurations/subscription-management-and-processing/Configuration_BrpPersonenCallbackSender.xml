@@ -100,21 +100,27 @@
                 <Forward name="exception" path="EXCEPTION" />
             </SenderPipe>
 
-			<SoapWrapperPipe
+			<SenderPipe
 				name="mappingJsonToStuf"
-				soapBodyStyleSheet="xsl/mappingJsonToStuf.xslt"
-				getInputFromSessionKey="inputXml"
+				getInputFromSessionKey="originalMessage">
+				<IbisLocalSender name="Map_JsonToStufSender" javaListener="Map_JsonToStuf">
+					<Param name="organisatie" sessionKey="FilteredApplication" xpathExpression="/root/app/organisatie"/>
+					<Param name="gebruiker" sessionKey="inputXml" xpathExpression="/root/gebruiker"/>
+					<Param name="administratie" sessionKey="inputXml" xpathExpression="/root/administratie"/>
+					<Param name="referentienummer" pattern="{uuid}"/>
+					<Param name="mutatiesoort" value="T"/>
+					<Param name="sleutelVerzendend" sessionKey="persoonssleutel"/>
+					<Param name="sleutelOntvangend" sessionKey="inputXml" xpathExpression="/root/afnemersSleutel"/>
+					<Param name="varZenderApplicatie" sessionKey="inputXml" xpathExpression="/root/applicationId"/>
+					<Param name="bagkeys" sessionKey="bagKeys"/>
+				</IbisLocalSender>
+				<Forward name="success" path="WrapInSoapEnvelope" />
+				<Forward name="exception" path="EXCEPTION" />
+			</SenderPipe>
+
+			<SoapWrapperPipe
+				name="WrapInSoapEnvelope"
 				storeResultInSessionKey="soapMessage">
-				<Param name="organisatie" sessionKey="FilteredApplication" xpathExpression="/root/app/organisatie"/>
-				<Param name="gebruiker" xpathExpression="/root/gebruiker"/>
-				<Param name="administratie" xpathExpression="/root/administratie"/>
-				<Param name="referentienummer" pattern="{uuid}"/>
-				<Param name="mutatiesoort" value="T"/>
-				<Param name="sleutelVerzendend" sessionKey="persoonssleutel"/>
-				<Param name="sleutelOntvangend" xpathExpression="/root/afnemersSleutel"/>
-				<Param name="varZenderApplicatie" xpathExpression="/root/applicationId"/>
-				<Param name="bagkeys" sessionKey="bagKeys" type="DOMDOC"/>
-				<!-- <Forward name="success" path="callback" /> -->
 				<Forward name="exception" path="EXCEPTION" />
 			</SoapWrapperPipe>
 
