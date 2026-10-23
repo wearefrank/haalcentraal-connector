@@ -1,0 +1,7 @@
+<!DOCTYPE Configuration [
+    <!ENTITY MappingJsonToStuf SYSTEM "Configuration_MappingJsonToStuf.xml">
+]>
+
+<Configuration name="common">
+    &MappingJsonToStuf;
+</Configuration>

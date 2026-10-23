@@ -26,6 +26,9 @@ This configuration handles SOAP API requests for querying persons. It forwards t
 #### **oauth**
 This configuration handles the retrieval of OAuth tokens for authentication with the BRP API.
 
+#### **common**
+This configuration contains mapping adapters (prefixed with `Map_`) that are shared by the other configurations. Configurations cannot access each other's files, so a shared translation lives here and is called with an `IbisLocalSender`. A mapping adapter only contains the translation: all source data and context is passed in as parameters and it never fetches data itself, so it can be tested in isolation.
+
 #### **subscription-management-and-processing**
 
 - **BuildInfo.properties**  
@@ -154,7 +157,6 @@ Database structure for BAG keys:
     ```plaintext
     brp-personen-bevragen-soap/xsl/
     ├── mappingStufToJson.xslt
-    ├── mappingJsonToStuf.xslt
     ├── GetInputValues.xslt
     └── fields.xml
     ```
@@ -173,38 +175,19 @@ Database structure for BAG keys:
     - The required fields for each application are determined using the `fields.xml` file.
     - Based on the type of search, the necessary fields are extracted from the **Stuf (npsLv01) message**.
     
-    `mappingJsonToStuf.xslt`
-    This XSLT file converts the **JSON response** received from the **BRP API Personen** back into the **Stuf (npsLa01) message format**. 
-    
-    #### Transformation Steps:
-    1. **Identify Necessary Values**: 
-       - Extract input values using `GetInputValues.xslt`.
-       - These values are used in the **stuurgegevens** (header data) and to determine the sending application.
-    2. **Verify Required Fields**:
-       - Check which fields from **Stuf (npsLa01)** are present in the input message.
-       - Populate the response message using the corresponding fields from the **BRP API Personen**.
-    3. **Handling Empty Fields**:
-       - If a field exists but has no value or the field is not present in the response message, the attribute `xsi:nil="true"` is set.
-       - The attribute `StUF:noValue` is assigned the value `geenWaarde` (no value).
-       - If the field is not present in the response message, the attribute StUF:noValue is added, taking the value waardeOnbekend (unknown value).
+    The JSON response of the **BRP API Personen** is mapped back to **Stuf (npsLa01)** by the `Map_JsonToStuf` adapter in the **common** configuration.
     
     
     ## Directory Structure
     
     ```plaintext
     subscription-management-and-processing/xsl/
-    ├── mappingJsonToStuf.xslt
-    ├── npsLk01.xml
     ├── ControlDataToContext.xslt
     ├── BuildError.xsl
     ├── BackEndError.xsl
     ├── ParseNegativeHttpResult.xsl    
     ```
-     `mappingStufToJson.xslt`
-    This XSLT file is used to create a Stuf (npsLk01) message by placing person information into the appropriate fields based on the message format in npsLk01.xml.
-    - If a field exists but has no value or is not present in the response message, the attribute xsi:nil="true" is set.
-    - The attribute StUF:noValue is assigned the value geenWaarde (no value).
-    - If the field is not present in the response message, the attribute StUF:noValue is added with the value waardeOnbekend (unknown value).
+    The person information is mapped to **Stuf (npsLk01)** by the `Map_JsonToStuf` adapter in the **common** configuration.
   
     **Error Handling**
   

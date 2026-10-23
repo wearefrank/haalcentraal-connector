@@ -1,0 +1,41 @@
+<Module
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
+
+	<Adapter name="Map_JsonToStuf"
+			description="Mapping van BRP-personen JSON naar StUF-BG npsLa01/npsLk01">
+
+		<Receiver name="Map_JsonToStuf">
+			<JavaListener name="Map_JsonToStuf" />
+		</Receiver>
+
+		<Pipeline>
+			<Exits>
+				<Exit name="EXIT" state="SUCCESS" />
+				<Exit name="EXCEPTION" state="ERROR" />
+			</Exits>
+
+			<JsonPipe name="JsonToXml">
+				<Forward name="exception" path="EXCEPTION" />
+			</JsonPipe>
+
+			<XsltPipe name="MapJsonToStuf" styleSheetName="xsl/mappingJsonToStuf.xslt">
+				<Param name="originalMessage" sessionKey="vraagBericht" type="DOMDOC" />
+				<Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
+				<Param name="varReferentienummer" sessionKey="varReferentienummer" />
+				<Param name="indicatorVervolgvraag" sessionKey="indicatorVervolgvraag" />
+				<Param name="sleutelVerzendend" sessionKey="sleutelVerzendend" />
+				<Param name="organisatie" sessionKey="organisatie" />
+				<Param name="gebruiker" sessionKey="gebruiker" />
+				<Param name="administratie" sessionKey="administratie" />
+				<Param name="referentienummer" sessionKey="referentienummer" />
+				<Param name="mutatiesoort" sessionKey="mutatiesoort" />
+				<Param name="sleutelOntvangend" sessionKey="sleutelOntvangend" />
+				<Param name="bagkeys" sessionKey="bagkeys" type="DOMDOC" />
+				<Forward name="success" path="EXIT" />
+				<Forward name="exception" path="EXCEPTION" />
+			</XsltPipe>
+		</Pipeline>
+	</Adapter>
+
+</Module>

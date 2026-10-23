@@ -97,7 +97,7 @@
                 <Forward name="exception" path="NotFound" />
             </XsltPipe>
 
-			<JsonPipe name="JsonToXml" storeResultInSessionKey="xmlbody" />
+			<JsonPipe name="JsonToXml" />
 
 			<PutInSessionPipe name="StoreBsn">
 				<Param name="bsn" xpathExpression="(//burgerservicenummer)[1]/text()" />
@@ -109,17 +109,19 @@
                 <Forward name="exception" path="Exception" />
             </SenderPipe>
 
-			<XsltPipe name="MapResponse"
-				styleSheetName="xsl/mappingJsonToStuf.xslt"
+			<SenderPipe name="MapResponse"
 				storeResultInSessionKey="MapResponse"
-				getInputFromSessionKey="xmlbody">
-				<Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
-				<Param name="varReferentienummer" sessionKey="varReferentienummer" />
-				<Param name="indicatorVervolgvraag" sessionKey="indicatorVervolgvraag" />
-				<Param name="originalMessage" sessionKey="originalMessage" type="DOMDOC" />
-				<Param name="sleutelVerzendend" sessionKey="persoonssleutel" />
+				getInputFromSessionKey="body">
+				<IbisLocalSender name="Map_JsonToStufSender" javaListener="Map_JsonToStuf">
+					<Param name="vraagBericht" sessionKey="originalMessage" />
+					<Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
+					<Param name="varReferentienummer" sessionKey="varReferentienummer" />
+					<Param name="indicatorVervolgvraag" sessionKey="indicatorVervolgvraag" />
+					<Param name="sleutelVerzendend" sessionKey="persoonssleutel" />
+				</IbisLocalSender>
 				<Forward name="success" path="Exit" />
-			</XsltPipe>
+				<Forward name="exception" path="Exception" />
+			</SenderPipe>
 
 		</Pipeline>
 	</Adapter>
