@@ -1,0 +1,50 @@
+<soapenv:Envelope xmlns:StUF="http://www.egem.nl/StUF/StUF0301"
+    xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310"
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <soapenv:Header />
+    <soapenv:Body>
+        <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <BG:stuurgegevens>
+                <StUF:berichtcode>Lv01</StUF:berichtcode>
+                <StUF:zender>
+                    <StUF:organisatie>0518</StUF:organisatie>
+                    <StUF:applicatie>DEC_ZKN</StUF:applicatie>
+                    <StUF:gebruiker>Test1</StUF:gebruiker>
+                </StUF:zender>
+                <StUF:ontvanger>
+                    <StUF:organisatie>test</StUF:organisatie>
+                    <StUF:applicatie>test_A</StUF:applicatie>
+                </StUF:ontvanger>
+                <StUF:referentienummer>2d8e1294-7238-428f-ae2b-69ed723aa64f</StUF:referentienummer>
+                <StUF:tijdstipBericht>20241014152137643</StUF:tijdstipBericht>
+                <StUF:entiteittype>NPS</StUF:entiteittype>
+            </BG:stuurgegevens>
+            <BG:parameters>
+                <StUF:sortering>1</StUF:sortering>
+                <StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+                <StUF:maximumAantal>50</StUF:maximumAantal>
+                <StUF:indicatorAantal>true</StUF:indicatorAantal>
+            </BG:parameters>
+            <BG:gelijk StUF:entiteittype="NPS">
+                <BG:inp.bsn>999991243</BG:inp.bsn>
+            </BG:gelijk>
+            <BG:scope>
+                <BG:object StUF:entiteittype="NPS" StUF:sleutelGegevensbeheer="" StUF:sleutelVerzendend="">
+                    <BG:inp.bsn xsi:nil="true" />
+                    <BG:inp.burgerlijkeStaat xsi:nil="true" />
+                    <BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
+                        <BG:gerelateerde StUF:entiteittype="NPS">
+                            <BG:inp.bsn xsi:nil="true" />
+                            <BG:inp.burgerlijkeStaat xsi:nil="true" />
+                        </BG:gerelateerde>
+                        <BG:soortVerbintenis xsi:nil="true" />
+                        <BG:datumSluiting xsi:nil="true" />
+                        <BG:datumOntbinding xsi:nil="true" />
+                    </BG:inp.heeftAlsEchtgenootPartner>
+                </BG:object>
+            </BG:scope>
+        </BG:npsLv01>
+    </soapenv:Body>
+</soapenv:Envelope>
