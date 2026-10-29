@@ -1,0 +1,35 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><BG:npsLa01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:a="http://www.egem.nl/StUF/StUF0301" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<BG:stuurgegevens>
+		<StUF:berichtcode>La01</StUF:berichtcode>
+		<StUF:zender>
+			<StUF:organisatie>test</StUF:organisatie>
+			<StUF:applicatie>test_A</StUF:applicatie>
+		</StUF:zender>
+		<StUF:ontvanger>
+			<StUF:organisatie>0518</StUF:organisatie>
+			<StUF:applicatie>DEC_ZKN</StUF:applicatie>
+			<StUF:gebruiker>Test1</StUF:gebruiker>
+		</StUF:ontvanger>
+		<StUF:crossRefnummer>2d8e1294-7238-428f-ae2b-69ed723aa64f</StUF:crossRefnummer>
+		<StUF:entiteittype>NPS</StUF:entiteittype>
+	</BG:stuurgegevens>
+	<BG:parameters>
+		<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+		<StUF:aantalVoorkomens>1</StUF:aantalVoorkomens>
+	</BG:parameters>
+	<BG:antwoord>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="ac47aaecf19c4a1c779f4c64c05c84a7c0c17d54">
+                    <BG:inp.bsn>999991243</BG:inp.bsn>
+                    <BG:inp.burgerlijkeStaat>2</BG:inp.burgerlijkeStaat>
+                    <BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
+                        <BG:gerelateerde StUF:entiteittype="NPS">
+                            <BG:inp.bsn>999993859</BG:inp.bsn>
+                            <BG:inp.burgerlijkeStaat>2</BG:inp.burgerlijkeStaat>
+                        </BG:gerelateerde>
+                        <BG:soortVerbintenis>H</BG:soortVerbintenis>
+                        <BG:datumSluiting>19200403</BG:datumSluiting>
+                        <BG:datumOntbinding StUF:noValue="geenWaarde" xsi:nil="true"/>
+                    </BG:inp.heeftAlsEchtgenootPartner>
+                </BG:object>
+	</BG:antwoord>
+</BG:npsLa01></soapenv:Body></soapenv:Envelope>
