@@ -614,18 +614,6 @@
                             </sub.correspondentieAdres>
                         </xsl:otherwise>                        
                     </xsl:choose>
-                    <inp.burgerlijkeStaat>
-                        <number>
-                            <xsl:variable name="ontbonden" select="exists(ontbindingHuwelijkPartnerschap/datum)"/>
-                            <xsl:choose>
-                                <xsl:when test="soortVerbintenis/code = 'H' and not($ontbonden)">2</xsl:when>
-                                <xsl:when test="soortVerbintenis/code = 'P' and not($ontbonden)">5</xsl:when>
-                                <xsl:when test="soortVerbintenis/code = 'H'">3</xsl:when>
-                                <xsl:when test="soortVerbintenis/code = 'P'">6</xsl:when>
-                                <xsl:otherwise><xsl:attribute name="noValue">waardeOnbekend</xsl:attribute></xsl:otherwise>
-                            </xsl:choose>
-                        </number>
-                    </inp.burgerlijkeStaat>
                 </gerelateerde>
                 <inp.indicatieGeheim>
                     <test>
