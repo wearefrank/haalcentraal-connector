@@ -291,7 +291,7 @@
                                         <xsl:variable name="ontbonden" select="partners[ontbindingHuwelijkPartnerschap/datum]"/>
                                         <xsl:variable name="laatste">
                                             <xsl:for-each select="$ontbonden">
-                                                <xsl:sort select="string(ontbindingHuwelijkPartnerschap/datum/datum)" order="descending"/>
+                                                <xsl:sort select="local:formatteer-datum(ontbindingHuwelijkPartnerschap/datum)" order="descending"/>
                                                 <xsl:if test="position() = 1"><xsl:value-of select="soortVerbintenis/code"/></xsl:if>
                                             </xsl:for-each>
                                         </xsl:variable>
