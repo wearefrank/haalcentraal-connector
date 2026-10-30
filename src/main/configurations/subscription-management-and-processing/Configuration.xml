@@ -73,7 +73,6 @@
             proxyPort="${hcc.outway.proxy.port}"
             proxyAuthAlias="${hcc.outway.proxy.authAlias}"
             />
-        <!-- Legacy hcc.outway.authType=oauth2 maps to this session -->
         <HttpSession
             name="outway-oauth2mtls-connector"
             active="${hcc.outway.callback.oauth2mtls.active}"

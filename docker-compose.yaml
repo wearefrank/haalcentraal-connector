@@ -9,7 +9,7 @@ services:
       - "${PORT:-8080}:8080"
     environment:
       # Outgoing connections, see src/main/resources/DeploymentSpecifics.properties
-      # authType options: none, header, mtls, oauth2, oauth2mtls
+      # authType options: none (default), header, mtls, oauth2, oauth2mtls
       # hcc.outway.brp.authType: oauth2mtls
       # hcc.outway.brp.url: https://...
       # hcc.outway.callback.authType: oauth2mtls

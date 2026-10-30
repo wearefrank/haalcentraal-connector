@@ -14,12 +14,13 @@ services:
     environment:
       configurations.directory.classLoaderType: ScanningDirectoryClassLoader
 
-#      endpoint.brp.public.test: http://personen-mock:5010/haalcentraal/api/brp/personen # 999993653
-#      endpoint.brp.public.test: http://host.docker.internal:8088/personen # 555555555, 123456789, 987654321
-#      endpoint.brp.public.test: https://proefomgeving.haalcentraal.nl/haalcentraal/api/brp/personen # 555555021
+      hcc.outway.brp.authType: none
+      hcc.outway.brp.url: http://personen-mock:5010/haalcentraal/api/brp/personen
+#      hcc.outway.brp.url: http://host.docker.internal:8088/personen
 
-#      hcc.outway.brp.authType: none
-#      hcc.outway.brp.url: http://personen-mock:5010/haalcentraal/api/brp/personen
+#      # Proef omgeving (X-API-KEY)
+#      hcc.outway.brp.authType: header
+#      hcc.outway.brp.url: https://proefomgeving.haalcentraal.nl/haalcentraal/api/brp/personen
 
   personen-mock:
     container_name: personen-mock
