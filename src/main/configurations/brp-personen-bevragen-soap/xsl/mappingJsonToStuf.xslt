@@ -74,6 +74,9 @@
                     <xsl:apply-templates select="BG:parameters"/>
                     <BG:antwoord>
                         <xsl:for-each select="$personen">
+                            <!-- Also use a dissolved partner: with naamgebruik P/V/N the ex-partner's name is still used. -->
+                            <!-- Which of several active partners is taken is not specified, the first is arbitrary but harmless. -->
+                            <xsl:variable name="partner" select="(partners[not(ontbindingHuwelijkPartnerschap/datum)], partners)[1]"/>
                             <xsl:variable name="mapping">
                                 <object StUF:entiteittype="NPS">
                                     <xsl:choose>
@@ -92,8 +95,8 @@
                                     <voorletters><xsl:copy-of select="naam/voorletters" /></voorletters>
                                     <voornamen><xsl:copy-of select="naam/voornamen" /></voornamen>
                                     <aanduidingNaamgebruik><xsl:copy-of select="naam/aanduidingNaamgebruik/code" /></aanduidingNaamgebruik>
-                                    <geslachtsnaamPartner><xsl:copy-of select="partners/naam/geslachtsnaam" /></geslachtsnaamPartner>
-                                    <voorvoegselGeslachtsnaamPartner><xsl:copy-of select="partners/naam/voorvoegsel" /></voorvoegselGeslachtsnaamPartner>
+                                    <geslachtsnaamPartner><xsl:copy-of select="$partner/naam/geslachtsnaam" /></geslachtsnaamPartner>
+                                    <voorvoegselGeslachtsnaamPartner><xsl:copy-of select="$partner/naam/voorvoegsel" /></voorvoegselGeslachtsnaamPartner>
                                     <aanhefAanschrijving><xsl:copy-of select="adressering/aanhef" /></aanhefAanschrijving>
                                     <voornamenAanschrijving></voornamenAanschrijving>
                                     <geslachtsnaamAanschrijving>
@@ -104,14 +107,14 @@
                                                 </xsl:when>
                                                 <xsl:when test="naam/aanduidingNaamgebruik/code = 'N'">
                                                     <xsl:value-of
-                                                        select="concat(naam/geslachtsnaam, '-',partners/naam/geslachtsnaam)" />
+                                                        select="concat(naam/geslachtsnaam, '-',$partner/naam/geslachtsnaam)" />
                                                 </xsl:when>
                                                 <xsl:when test="naam/aanduidingNaamgebruik/code = 'P'">
-                                                    <xsl:value-of select="partners/naam/geslachtsnaam" />
+                                                    <xsl:value-of select="$partner/naam/geslachtsnaam" />
                                                 </xsl:when>
                                                 <xsl:when test="naam/aanduidingNaamgebruik/code = 'V'">
                                                     <xsl:value-of
-                                                        select="concat(partners/naam/geslachtsnaam, '-',naam/geslachtsnaam)" />
+                                                        select="concat($partner/naam/geslachtsnaam, '-',naam/geslachtsnaam)" />
                                                 </xsl:when>
                                             </xsl:choose>
                                         </text>
