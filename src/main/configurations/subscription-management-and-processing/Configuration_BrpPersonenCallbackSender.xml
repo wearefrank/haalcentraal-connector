@@ -139,7 +139,7 @@
 					soap="false"
 					soapAction="http://www.egem.nl/StUF/sector/bg/0310/npsLk01"
 					contentType="text/xml"
-					sharedResourceRef="outway-${hcc.outway.authType}-connector"
+					sharedResourceRef="outway-${hcc.outway.callback.authType}-connector"
 					>
 				</WebServiceSender>
 				<Param name="url" sessionKey="url" />
