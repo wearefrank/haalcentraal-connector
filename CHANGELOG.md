@@ -1,5 +1,23 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.24.22](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.21...v1.24.22) (2026-10-30)
+
+### 🐛 Bug Fixes
+
+* fixed burgelijke staat mapping in SOAP translation ([b801216](https://github.com/wearefrank/haalcentraal-connector/commit/b801216b8673f16943cec1f8c88850ae924f0a3f))
+
+### 🧑‍💻 Code Refactoring
+
+* take into account incomplete dates in 'ontbonden' sorting method ([d416915](https://github.com/wearefrank/haalcentraal-connector/commit/d416915c8568335a58b359bacdfaac9247e031d2))
+
+### ✅ Tests
+
+* verify burgerlijke staat is "geregistreerd partner" (5) for a person with an active registered partnership ([09cf2c3](https://github.com/wearefrank/haalcentraal-connector/commit/09cf2c3047c02eace44fab141c9c7b0ed2e287ec))
+* verify burgerlijke staat is "gescheiden" (3) for a person with a dissolved marriage ([342aead](https://github.com/wearefrank/haalcentraal-connector/commit/342aead7a3aef048c607ae5dd261b72e1b6e9f8f))
+* verify burgerlijke staat is "gescheiden" (3) when the marriage was dissolved on an incomplete date (year and month only) ([688cf79](https://github.com/wearefrank/haalcentraal-connector/commit/688cf79274d3703d5f32526874b750211d836bbe))
+* verify burgerlijke staat is "partnerschap beëindigd" (6) for a person with a dissolved registered partnership ([af24859](https://github.com/wearefrank/haalcentraal-connector/commit/af24859835bed5eb0cc9dac421474e3621e458bd))
+* verify burgerlijke staat stays "gehuwd" (2) when a marriage dissolution is only under investigation and has no date ([48e3115](https://github.com/wearefrank/haalcentraal-connector/commit/48e3115feff414b528dc085a04847a66556d1648))
+
 ## [1.24.21](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.20...v1.24.21) (2026-10-20)
 
 ### 🐛 Bug Fixes
