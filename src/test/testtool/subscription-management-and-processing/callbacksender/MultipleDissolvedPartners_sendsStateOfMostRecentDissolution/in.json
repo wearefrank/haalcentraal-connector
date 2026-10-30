@@ -1,0 +1,208 @@
+{
+  "applicationId": "DEC_ZKN",
+  "mutatiesoort": "T",
+  "gebruiker": null,
+  "administratie": null,
+  "afnemersSleutel": "LBA.00000142157",
+  "persoonsSleutel": "529148a9a8f563968aeebd4aa8c48aef41a70fac",
+  "personen": [
+    {
+      "aNummer": "3959725474",
+      "burgerservicenummer": "555555021",
+      "datumEersteInschrijvingGBA": {
+        "type": "Datum",
+        "datum": "2002-07-02",
+        "langFormaat": "2 juli 2002"
+      },
+      "geslacht": {
+        "code": "M",
+        "omschrijving": "man"
+      },
+      "leeftijd": 22,
+      "naam": {
+        "aanduidingNaamgebruik": {
+          "code": "E",
+          "omschrijving": "eigen geslachtsnaam"
+        },
+        "voornamen": "Kees",
+        "voorvoegsel": "van den",
+        "geslachtsnaam": "Verhuistest",
+        "voorletters": "K.",
+        "volledigeNaam": "Kees van den Verhuistest"
+      },
+      "nationaliteiten": [
+        {
+          "type": "Nationaliteit",
+          "datumIngangGeldigheid": {
+            "type": "Datum",
+            "datum": "2002-07-01",
+            "langFormaat": "1 juli 2002"
+          },
+          "nationaliteit": {
+            "code": "0001",
+            "omschrijving": "Nederlandse"
+          },
+          "redenOpname": {
+            "code": "017",
+            "omschrijving": "Rijkswet op het Nederlanderschap 1984, art. 3, lid 1"
+          }
+        }
+      ],
+      "geboorte": {
+        "land": {
+          "code": "6030",
+          "omschrijving": "Nederland"
+        },
+        "plaats": {
+          "code": "0530",
+          "omschrijving": "Hellevoetsluis"
+        },
+        "datum": {
+          "type": "Datum",
+          "datum": "2002-07-01",
+          "langFormaat": "1 juli 2002"
+        }
+      },
+      "verblijfplaats": {
+        "type": "Adres",
+        "verblijfadres": {
+          "officieleStraatnaam": "Laan van Nieuw-Oost-Indië",
+          "korteStraatnaam": "Laan van Nieuw-O-Indië",
+          "huisnummer": 101,
+          "huisletter": "A",
+          "postcode": "2593BL",
+          "woonplaats": "'s-Gravenhage"
+        },
+        "functieAdres": {
+          "code": "W",
+          "omschrijving": "woonadres"
+        },
+        "adresseerbaarObjectIdentificatie": "0518010000466195",
+        "nummeraanduidingIdentificatie": "0518200000466194",
+        "datumVan": {
+          "type": "JaarMaandDatum",
+          "jaar": 2024,
+          "maand": 7
+        },
+        "datumTot": {
+          "type": "JaarDatum",
+          "jaar": 1999
+        },
+        "datumIngangGeldigheid": {
+          "type": "Datum",
+          "datum": "2025-06-12",
+          "langFormaat": "12 juni 2025"
+        }
+      },
+      "immigratie": {},
+      "gemeenteVanInschrijving": {
+        "code": "0518",
+        "omschrijving": "'s-Gravenhage"
+      },
+      "datumInschrijvingInGemeente": {
+        "type": "Datum",
+        "datum": "2006-03-18",
+        "langFormaat": "18 maart 2006"
+      },
+      "adressering": {
+        "aanhef": "Geachte heer Van den Verhuistest",
+        "aanschrijfwijze": {
+          "naam": "K. van den Verhuistest"
+        },
+        "gebruikInLopendeTekst": "de heer Van den Verhuistest",
+        "adresregel1": "Laan van Nieuw-O-Indië 101 A",
+        "adresregel2": "2593 BL  'S-GRAVENHAGE"
+      },
+      "gezag": [],
+      "kinderen": [],
+      "ouders": [
+        {
+          "geslacht": {
+            "code": "V",
+            "omschrijving": "vrouw"
+          },
+          "ouderAanduiding": "1",
+          "datumIngangFamilierechtelijkeBetrekking": {
+            "type": "Datum",
+            "datum": "2002-07-01",
+            "langFormaat": "1 juli 2002"
+          },
+          "naam": {
+            "voornamen": "Carolina",
+            "voorvoegsel": "van den",
+            "geslachtsnaam": "Verhuistest",
+            "voorletters": "C."
+          },
+          "geboorte": {
+            "land": {
+              "code": "6030",
+              "omschrijving": "Nederland"
+            },
+            "plaats": {
+              "code": "0599",
+              "omschrijving": "Rotterdam"
+            },
+            "datum": {
+              "type": "Datum",
+              "datum": "1971-08-23",
+              "langFormaat": "23 augustus 1971"
+            }
+          }
+        }
+      ],
+      "partners": [
+    {
+      "burgerservicenummer": "999993859",
+      "geslacht": { "code": "V", "omschrijving": "vrouw" },
+      "soortVerbintenis": { "code": "H", "omschrijving": "huwelijk" },
+      "naam": { "voornamen": "Anna", "geslachtsnaam": "Jansen", "voorletters": "A." },
+      "geboorte": {
+        "land": { "code": "6030", "omschrijving": "Nederland" },
+        "plaats": { "code": "0599", "omschrijving": "Rotterdam" },
+        "datum": { "type": "Datum", "datum": "2001-05-04", "langFormaat": "4 mei 2001" }
+      },
+      "aangaanHuwelijkPartnerschap": {
+        "datum": { "type": "Datum", "datum": "1985-01-10", "langFormaat": "10 januari 1985" }
+      },
+      "ontbindingHuwelijkPartnerschap": {
+        "datum": { "type": "Datum", "datum": "1990-05-17", "langFormaat": "17 mei 1990" }
+      }
+    },
+    {
+      "burgerservicenummer": "999993860",
+      "geslacht": { "code": "V", "omschrijving": "vrouw" },
+      "soortVerbintenis": { "code": "P", "omschrijving": "geregistreerd partnerschap" },
+      "naam": { "voornamen": "Anna", "geslachtsnaam": "Jansen", "voorletters": "A." },
+      "geboorte": {
+        "land": { "code": "6030", "omschrijving": "Nederland" },
+        "plaats": { "code": "0599", "omschrijving": "Rotterdam" },
+        "datum": { "type": "Datum", "datum": "2001-05-04", "langFormaat": "4 mei 2001" }
+      },
+      "aangaanHuwelijkPartnerschap": {
+        "datum": { "type": "Datum", "datum": "2001-02-03", "langFormaat": "3 februari 2001" }
+      },
+      "ontbindingHuwelijkPartnerschap": {
+        "datum": { "type": "JaarMaandDatum", "jaar": 2010, "maand": 11, "langFormaat": "november 2010" }
+      }
+    },
+    {
+      "burgerservicenummer": "999993861",
+      "geslacht": { "code": "V", "omschrijving": "vrouw" },
+      "soortVerbintenis": { "code": "H", "omschrijving": "huwelijk" },
+      "naam": { "voornamen": "Anna", "geslachtsnaam": "Jansen", "voorletters": "A." },
+      "geboorte": {
+        "land": { "code": "6030", "omschrijving": "Nederland" },
+        "plaats": { "code": "0599", "omschrijving": "Rotterdam" },
+        "datum": { "type": "Datum", "datum": "2001-05-04", "langFormaat": "4 mei 2001" }
+      },
+      "aangaanHuwelijkPartnerschap": {
+        "datum": { "type": "Datum", "datum": "1992-04-04", "langFormaat": "4 april 1992" }
+      },
+      "ontbindingHuwelijkPartnerschap": {
+        "datum": { "type": "Datum", "datum": "1999-06-02", "langFormaat": "2 juni 1999" }
+      }
+    }
+      ]
+    }
+  ]
+}
