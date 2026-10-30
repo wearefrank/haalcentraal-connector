@@ -1,5 +1,31 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.24.23](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.22...v1.24.23) (2026-10-30)
+
+### 🐛 Bug Fixes
+
+* fixed burgelijke staat mapping in callback translation ([429ff38](https://github.com/wearefrank/haalcentraal-connector/commit/429ff38168a23331d9ecf0d5ff5fe0371b95f014))
+* prevent the SOAP translation from failing for a person with multiple partners ([c46ac28](https://github.com/wearefrank/haalcentraal-connector/commit/c46ac280728dc8557f69f705e25e032e73c04da6))
+* take incomplete dissolution dates into account when choosing the latest ontbonden partner in the callback translation ([1728363](https://github.com/wearefrank/haalcentraal-connector/commit/1728363e69d31f3bc234e41d972d5bc66cadfc82))
+
+### 📝 Documentation
+
+* explain the choice of partner for the partner name in the callback translation ([cd54308](https://github.com/wearefrank/haalcentraal-connector/commit/cd54308225ab944e55b68a8871338d31b43dd82a))
+
+### 🧑‍💻 Code Refactoring
+
+* choose callback/shadowdb route at runtime instead of via active attribute ([1923ba2](https://github.com/wearefrank/haalcentraal-connector/commit/1923ba2350b73c52687be1802553b412d83cca59))
+* remove unused partner-level burgerlijke staat mapping from the callback translation ([619936e](https://github.com/wearefrank/haalcentraal-connector/commit/619936eb6b1a1692a5f4158fca45f8a3b7908514))
+
+### ✅ Tests
+
+* verify the callback sends burgerlijke staat "gehuwd" (2) when a marriage dissolution is only under investigation and has no date ([3b7d272](https://github.com/wearefrank/haalcentraal-connector/commit/3b7d272aab9897bf592367f83f56dcb733c29618))
+* verify the callback sends burgerlijke staat "geregistreerd partner" (5) for a person with a dissolved marriage and an active registered partnership ([fabe6bc](https://github.com/wearefrank/haalcentraal-connector/commit/fabe6bc1d7617978217d28c24fed61649b21a1cf))
+* verify the callback sends burgerlijke staat "gescheiden" (3) when the marriage was dissolved on an incomplete date (year and month only) ([3ecb53f](https://github.com/wearefrank/haalcentraal-connector/commit/3ecb53f3c4bbb1c498b9b3f63dbf8c1f5b7280fd))
+* verify the callback sends burgerlijke staat as waardeOnbekend for a dissolved partner with an unknown type of verbintenis ([b9651fb](https://github.com/wearefrank/haalcentraal-connector/commit/b9651fbb901ea8a82cf4c6e08bc3f3f7ac95f61f))
+* verify the callback sends burgerlijke staat as waardeOnbekend for an active partner with an unknown type of verbintenis ([34e6308](https://github.com/wearefrank/haalcentraal-connector/commit/34e6308a6fc4a9fe728e7173b29070943f65f492))
+* verify the callback sends the burgerlijke staat of the most recently dissolved relation (6) for a person with multiple dissolved relations ([4820fe4](https://github.com/wearefrank/haalcentraal-connector/commit/4820fe45767813b6467e080998905db99a544feb))
+
 ## [1.24.22](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.21...v1.24.22) (2026-10-30)
 
 ### 🐛 Bug Fixes
