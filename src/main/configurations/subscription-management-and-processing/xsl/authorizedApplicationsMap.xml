@@ -59,7 +59,6 @@
                 <aoa.identificatie authorizedApplications="DEC_ZKN,GWS,TOP,PGAx-SG-ZVH" />
             </verblijfsadres>
             <sub.correspondentieAdres authorizedApplications="GWS" />
-            <inp.burgerlijkeStaat authorizedApplications="TOP,GWS" />
         </gerelateerde>
         <soortVerbintenis authorizedApplications="GWS,TOP" />
         <datumSluiting authorizedApplications="LBA, GWS,TOP" />
