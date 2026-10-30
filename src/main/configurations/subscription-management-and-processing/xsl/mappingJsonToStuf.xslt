@@ -77,6 +77,8 @@
                     <xsl:apply-templates select="BG:stuurgegevens"/>
                     <xsl:apply-templates select="BG:parameters"/>
                     <xsl:for-each select="$personen">
+                        <!-- Also use a dissolved partner: with naamgebruik P/V/N the ex-partner's name is still used. -->
+                        <!-- Which of several active partners is taken is not specified, the first is arbitrary but harmless. -->
                         <xsl:variable name="partner" select="(partners[not(ontbindingHuwelijkPartnerschap/datum)], partners)[1]"/>
                         <xsl:variable name="mapping">
                             <object>
