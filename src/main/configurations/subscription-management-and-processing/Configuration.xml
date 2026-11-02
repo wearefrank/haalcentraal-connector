@@ -31,19 +31,22 @@
 	&ProcessBulkImportTasksBAG;
     &GetPersoon;
     
-	<SharedResources active="!${brp.proefomgeving.active}">
+    <!-- One HttpSession per authType, selected via 'outway-${hcc.outway.callback.authType}-connector'.
+         Only the session matching hcc.outway.callback.authType is active, see DeploymentSpecifics.properties.
+         A session per authType is needed because FF errors on attributes that are empty or have default values. -->
+    <SharedResources>
         <HttpSession
             name="outway-none-connector"
-            active="${hcc.outway-none-connector.active}"
-            
+            active="${hcc.outway.callback.none.active}"
+
             proxyHost="${hcc.outway.proxy.host}"
             proxyPort="${hcc.outway.proxy.port}"
             proxyAuthAlias="${hcc.outway.proxy.authAlias}"
             />
         <HttpSession
             name="outway-mtls-connector"
-            active="${hcc.outway-mtls-connector.active}"
-            
+            active="${hcc.outway.callback.mtls.active}"
+
             keystore="${hcc.outway.keystore.uri}"
             keystoreType="${hcc.outway.keystore.type}"
             keystoreAuthAlias="${hcc.outway.keystore.authAlias}"
@@ -57,8 +60,23 @@
             />
         <HttpSession
             name="outway-oauth2-connector"
-            active="${hcc.outway-oauth2-connector.active}"
-            
+            active="${hcc.outway.callback.oauth2.active}"
+
+            clientAlias="${hcc.outway.clientAlias}"
+            clientId="${hcc.outway.clientId}"
+            clientSecret="${hcc.outway.clientSecret}"
+            tokenEndpoint="${hcc.outway.tokenEndpoint}"
+            oauthAuthenticationMethod="${hcc.outway.oauthAuthenticationMethod}"
+            scope="${hcc.outway.scope}"
+
+            proxyHost="${hcc.outway.proxy.host}"
+            proxyPort="${hcc.outway.proxy.port}"
+            proxyAuthAlias="${hcc.outway.proxy.authAlias}"
+            />
+        <HttpSession
+            name="outway-oauth2mtls-connector"
+            active="${hcc.outway.callback.oauth2mtls.active}"
+
             clientAlias="${hcc.outway.clientAlias}"
             clientId="${hcc.outway.clientId}"
             clientSecret="${hcc.outway.clientSecret}"
