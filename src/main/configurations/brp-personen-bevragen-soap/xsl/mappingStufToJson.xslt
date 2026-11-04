@@ -9,9 +9,9 @@
         <xsl:param name="el" as="element()?"/>
         <xsl:param name="min" as="xs:integer"/>
         <xsl:variable name="zoekwaarde" select="normalize-space($el)" />
-        <xsl:sequence select="if ($el/@StUF:exact = 'false'
+        <xsl:sequence select="if (normalize-space($el/@StUF:exact) = ('false', '0')
                               and string-length($zoekwaarde) ge $min
-                              and not(ends-with($zoekwaarde, '*')))
+                              and not(contains($zoekwaarde, '*')))
                           then concat($zoekwaarde, '*')
                           else $zoekwaarde"/>
     </xsl:function>
