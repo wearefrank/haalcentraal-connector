@@ -29,7 +29,7 @@
             </BG:parameters>
             <BG:gelijk StUF:entiteittype="NPS">
                 <BG:geslachtsnaam StUF:exact="false">Rafi</BG:geslachtsnaam>
-                <BG:voornamen StUF:exact="false">Jo</BG:voornamen>
+                <BG:voornamen StUF:exact="false">J</BG:voornamen>
                 <BG:geboortedatum>19490228</BG:geboortedatum>
             </BG:gelijk>
             <BG:scope>

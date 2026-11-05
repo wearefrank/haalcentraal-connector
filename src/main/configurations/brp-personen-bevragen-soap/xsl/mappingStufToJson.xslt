@@ -100,7 +100,7 @@
                     </xsl:if>
                     <xsl:if test="(//*[local-name()='voornamen'])[1]/text()">
                         <voornamen>
-                            <xsl:value-of select="hc:zoekwaarde((//*[local-name()='voornamen'])[1], 3)" />
+                            <xsl:value-of select="hc:zoekwaarde((//*[local-name()='voornamen'])[1], 1)" />
                         </voornamen>
                     </xsl:if>
                 </xsl:when>
