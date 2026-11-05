@@ -1,0 +1,16 @@
+{
+    "type": "ZoekMetStraatHuisnummerEnGemeenteVanInschrijving",
+    "fields": [
+        "adressering",
+        "burgerservicenummer",
+        "geboorte",
+        "geslacht",
+        "leeftijd",
+        "naam",
+        "adresseringBinnenland"
+    ],
+    "gemeenteVanInschrijving": "1883",
+    "inclusiefOverledenPersonen": false,
+    "huisnummer": 88,
+    "straat": "Rijksweg"
+}

@@ -1,0 +1,16 @@
+{
+    "type": "ZoekMetNaamEnGemeenteVanInschrijving",
+    "fields": [
+        "adressering",
+        "burgerservicenummer",
+        "geboorte",
+        "geslacht",
+        "leeftijd",
+        "naam",
+        "adresseringBinnenland"
+    ],
+    "gemeenteVanInschrijving": "1883",
+    "inclusiefOverledenPersonen": false,
+    "geslachtsnaam": "Holthuizen",
+    "voornamen": "Pepijn Floris"
+}
