@@ -1,0 +1,15 @@
+{
+    "type": "ZoekMetGeslachtsnaamEnGeboortedatum",
+    "fields": [
+        "adressering",
+        "burgerservicenummer",
+        "geboorte",
+        "geslacht",
+        "leeftijd",
+        "naam",
+        "adresseringBinnenland"
+    ],
+    "inclusiefOverledenPersonen": false,
+    "geboortedatum": "1949-02-28",
+    "geslachtsnaam": "Rafi*"
+}

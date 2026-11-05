@@ -1,5 +1,21 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
-                xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301">
+                xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310"
+                xmlns:StUF="http://www.egem.nl/StUF/StUF0301"
+                xmlns:hc="urn:haalcentraal-connector"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                exclude-result-prefixes="hc xs">
+
+    <xsl:function name="hc:zoekwaarde" as="xs:string">
+        <xsl:param name="el" as="element()?"/>
+        <xsl:param name="min" as="xs:integer"/>
+        <xsl:variable name="zoekwaarde" select="normalize-space($el)" />
+        <xsl:sequence select="if (normalize-space($el/@StUF:exact) = ('false', '0')
+                              and string-length($zoekwaarde) ge $min
+                              and not(contains($zoekwaarde, '*')))
+                          then concat($zoekwaarde, '*')
+                          else $zoekwaarde"/>
+    </xsl:function>
+
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" omit-xml-declaration="yes" />
     <xsl:param name="varZenderApplicatie" />
     <xsl:param name="apps_requestwithAdres" />
@@ -71,7 +87,7 @@
                             select="concat(substring($geboortedatum, 1, 4), '-', substring($geboortedatum, 5, 2), '-', substring($geboortedatum, 7, 2))" />
                     </geboortedatum>
                     <geslachtsnaam>
-                        <xsl:value-of select="(//*[local-name()='geslachtsnaam'])[1]/text()" />
+                        <xsl:value-of select="hc:zoekwaarde((//*[local-name()='geslachtsnaam'])[1], 3)" />
                     </geslachtsnaam>
 
                     <xsl:if test="(//*[local-name()='geslacht'])[1] != ''">
@@ -83,7 +99,9 @@
                         </voorvoegsel>
                     </xsl:if>
                     <xsl:if test="(//*[local-name()='voornamen'])[1]/text()">
-                        <voornamen><xsl:value-of select="(//*[local-name()='voornamen'])[1]/text()" /></voornamen>
+                        <voornamen>
+                            <xsl:value-of select="hc:zoekwaarde((//*[local-name()='voornamen'])[1], 1)" />
+                        </voornamen>
                     </xsl:if>
                 </xsl:when>
                 <!-- Zoek met naam + gemeente -->
@@ -107,7 +125,7 @@
                                 <geslacht><xsl:value-of select="(//*[local-name()='geslacht'])[1]" /></geslacht>
                             </xsl:if>
                             <geslachtsnaam>
-                                <xsl:value-of select="(//*[local-name()='geslachtsnaam'])[1]/text()" />
+                                <xsl:value-of select="hc:zoekwaarde((//*[local-name()='geslachtsnaam'])[1], 3)" />
                             </geslachtsnaam>
                             <xsl:if test="(//*[local-name()='voorvoegselGeslachtsnaam'])[1]/text() != ''">
                                 <voorvoegsel>
@@ -115,7 +133,7 @@
                                 </voorvoegsel>
                             </xsl:if>
                             <voornamen>
-                                <xsl:value-of select="(//*[local-name()='voornamen'])[1]/text()" />
+                                <xsl:value-of select="hc:zoekwaarde((//*[local-name()='voornamen'])[1], 3)" />
                             </voornamen>
                         </xsl:when>
                         <xsl:otherwise>
@@ -188,7 +206,7 @@
                                 </huisnummertoevoeging>
                             </xsl:if>
                             <straat>
-                                <xsl:value-of select="(//*[local-name()='gor.straatnaam'])[1]/text()" />
+                                <xsl:value-of select="hc:zoekwaarde((//*[local-name()='gor.straatnaam'])[1], 7)" />
                             </straat>
                         </xsl:when>
                         <xsl:otherwise>
