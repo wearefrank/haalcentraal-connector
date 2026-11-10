@@ -105,9 +105,48 @@
 
 			<SenderPipe name="GetPersoonssleutelSender" storeResultInSessionKey="persoonssleutel" getInputFromSessionKey="bsn">
                 <IbisLocalSender name="GetPersoonssleutelSenderClient" javaListener="GetPersoonssleutel" />
-				<Forward name="success" path="MapResponse" />
+				<Forward name="success" path="BepaalPartnerBsn" />
                 <Forward name="exception" path="Exception" />
             </SenderPipe>
+
+			<XsltPipe name="BepaalPartnerBsn"
+			          styleSheetName="xsl/BepaalPartnerBsn.xslt"
+			          getInputFromSessionKey="xmlbody"
+			          storeResultInSessionKey="partnerBsnXml">
+				<Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
+				<Param name="originalMessage" sessionKey="originalMessage" type="DOMDOC" />
+				<Forward name="success" path="PartnerOpvragingNodig" />
+			</XsltPipe>
+
+			<IfPipe name="PartnerOpvragingNodig" xpathExpression="string-length(normalize-space(/partnerBsn)) &gt; 0">
+				<Forward name="then" path="BouwPartnerRequest" />
+				<Forward name="else" path="MapResponse" />
+			</IfPipe>
+
+			<XsltPipe name="BouwPartnerRequest" getInputFromSessionKey="partnerBsnXml"
+			          omitXmlDeclaration="true"
+			          xsltVersion="2"
+			          styleSheetName="xsl/BouwPartnerRequest.xslt">
+				<Forward name="success" path="CheckPartnerRequest" />
+			</XsltPipe>
+
+			<Json2XmlValidatorPipe name="CheckPartnerRequest"
+			                       root="root"
+			                       outputFormat="JSON"
+			                       schema="xsd/CheckHCInput.xsd"
+			                       throwException="true" />
+
+			<SenderPipe name="BRPPartnerOpvragen" storeResultInSessionKey="partnerBody">
+				<IbisLocalSender name="BRPPartnerOpvragenSender" javaListener="BrpPbOutwayListener" />
+				<Param name="gemeenteVanInschrijving" sessionKey="gemeenteVanInschrijving"
+				       defaultValue="${gemeenteVanInschrijving}" />
+				<Forward name="success" path="PartnerNaarXml" />
+				<Forward name="exception" path="MapResponse" />
+			</SenderPipe>
+
+			<JsonPipe name="PartnerNaarXml" storeResultInSessionKey="partnerXml">
+				<Forward name="success" path="MapResponse" />
+			</JsonPipe>
 
 			<XsltPipe name="MapResponse"
 				styleSheetName="xsl/mappingJsonToStuf.xslt"
@@ -118,6 +157,7 @@
 				<Param name="indicatorVervolgvraag" sessionKey="indicatorVervolgvraag" />
 				<Param name="originalMessage" sessionKey="originalMessage" type="DOMDOC" />
 				<Param name="sleutelVerzendend" sessionKey="persoonssleutel" />
+				<Param name="partnerResultaat" sessionKey="partnerXml" type="DOMDOC" defaultValue="&lt;root/&gt;" />
 				<Forward name="success" path="Exit" />
 			</XsltPipe>
 
