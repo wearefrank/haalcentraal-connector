@@ -1,5 +1,11 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.24.24](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.23...v1.24.24) (2026-11-10)
+
+### 🐛 Bug Fixes
+
+* translate StUF:exact="false" on name and street fields to haalcentraal wildcard ([#431](https://github.com/wearefrank/haalcentraal-connector/issues/431)) ([a7279b7](https://github.com/wearefrank/haalcentraal-connector/commit/a7279b77db9d1689cfb376ef4b3df751e88039bd))
+
 ## [1.24.23](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.22...v1.24.23) (2026-10-30)
 
 ### 🐛 Bug Fixes
