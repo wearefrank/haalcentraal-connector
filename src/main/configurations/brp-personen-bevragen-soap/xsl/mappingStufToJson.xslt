@@ -25,8 +25,11 @@
     <xsl:template match="/">
         <xsl:param name="vanafBSN" select="//BG:vanaf//*[local-name() = 'inp.bsn']" />
         <xsl:param name="totEnMetBSN" select="//BG:totEnMet//*[local-name() = 'inp.bsn']" />
+        <xsl:variable name="gemeenteUitBericht" select="normalize-space((//BG:gelijk//BG:inp.gemeenteVanInschrijving)[1])" />
+        <xsl:variable name="gemeente" select="if ($gemeenteUitBericht != '') then $gemeenteUitBericht else normalize-space($gemeenteVanInschrijving)" />
         <root>
             <xsl:choose>
+                <!-- Zoek op BSN -->
                 <xsl:when test="boolean(//*[contains(name(),'bsn')]/text())">
                     <type>RaadpleegMetBurgerservicenummer</type>
                     <xsl:choose>
@@ -104,43 +107,6 @@
                         </voornamen>
                     </xsl:if>
                 </xsl:when>
-                <!-- Zoek met naam + gemeente -->
-                <xsl:when test="((boolean((//*[contains(name(),'geslachtsnaam')])[1]/text())) and
-                                 (boolean((//*[contains(name(),'voornamen')])[1]/text())) and
-                                 ($gemeenteVanInschrijving != '') and
-                                 (boolean((//*[contains(name(),'woonplaatsNaam')])[1]/text())))">
-                    <xsl:choose>
-                        <xsl:when test="contains($apps_requestwithAdres, $varZenderApplicatie)">
-                            <type>ZoekMetNaamEnGemeenteVanInschrijving</type>
-                            <xsl:for-each select="$fields/root/zoekMet/fields">
-                                <fields><xsl:value-of select="." /></fields>
-                            </xsl:for-each>
-                            <gemeenteVanInschrijving>
-                                <xsl:value-of select="$gemeenteVanInschrijving" />
-                            </gemeenteVanInschrijving>
-                            <inclusiefOverledenPersonen>
-                                <xsl:value-of select="$inclusiefOverledenPersonen" />
-                            </inclusiefOverledenPersonen>
-                            <xsl:if test="(//*[local-name()='geslacht'])[1] != ''">
-                                <geslacht><xsl:value-of select="(//*[local-name()='geslacht'])[1]" /></geslacht>
-                            </xsl:if>
-                            <geslachtsnaam>
-                                <xsl:value-of select="hc:zoekwaarde((//*[local-name()='geslachtsnaam'])[1], 3)" />
-                            </geslachtsnaam>
-                            <xsl:if test="(//*[local-name()='voorvoegselGeslachtsnaam'])[1]/text() != ''">
-                                <voorvoegsel>
-                                    <xsl:value-of select="(//*[local-name()='voorvoegselGeslachtsnaam'])[1]/text()" />
-                                </voorvoegsel>
-                            </xsl:if>
-                            <voornamen>
-                                <xsl:value-of select="hc:zoekwaarde((//*[local-name()='voornamen'])[1], 3)" />
-                            </voornamen>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <text>The app <xsl:value-of select="$varZenderApplicatie" /> is not allowed for this request</text>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:when>
                 <!-- Zoek met postcode + huisnummer -->
                 <xsl:when test="((boolean((//*[contains(name(),'postcode')])[1]/text())) and
                                  (boolean((//*[contains(name(),'huisnummer')])[1]/text())))">
@@ -176,10 +142,9 @@
                     </xsl:choose>
                 </xsl:when>
                 <!-- Zoek met straat, huisnummer, gemeente -->
-                <xsl:when test="((boolean((//*[contains(name(),'straatnaam')])[1]/text())) and
-                                 (boolean((//*[contains(name(),'woonplaatsNaam')])[1]/text())) and
-                                 ($gemeenteVanInschrijving != '') and
-                                 (boolean((//*[contains(name(),'huisnummer')])[1]/text())))">
+                <xsl:when test="((boolean((//*[contains(name(),'gor.straatnaam')])[1]/text())) and
+                                 ($gemeente != '') and
+                                 (boolean((//*[contains(name(),'aoa.huisnummer')])[1]/text())))">
                     <xsl:choose>
                         <xsl:when test="contains($apps_requestwithAdres, $varZenderApplicatie)">
                             <type>ZoekMetStraatHuisnummerEnGemeenteVanInschrijving</type>
@@ -187,7 +152,7 @@
                                 <fields><xsl:value-of select="." /></fields>
                             </xsl:for-each>
                             <gemeenteVanInschrijving>
-                                <xsl:value-of select="$gemeenteVanInschrijving" />
+                                <xsl:value-of select="$gemeente" />
                             </gemeenteVanInschrijving>
                             <inclusiefOverledenPersonen>
                                 <xsl:value-of select="$inclusiefOverledenPersonen" />
@@ -208,6 +173,42 @@
                             <straat>
                                 <xsl:value-of select="hc:zoekwaarde((//*[local-name()='gor.straatnaam'])[1], 7)" />
                             </straat>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <text>The app <xsl:value-of select="$varZenderApplicatie" /> is not allowed for this request</text>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <!-- Zoek met naam + gemeente -->
+                <xsl:when test="((boolean((//*[contains(name(),'geslachtsnaam')])[1]/text())) and
+                                 (boolean((//*[contains(name(),'voornamen')])[1]/text())) and
+                                 ($gemeente != ''))">
+                    <xsl:choose>
+                        <xsl:when test="contains($apps_requestwithAdres, $varZenderApplicatie)">
+                            <type>ZoekMetNaamEnGemeenteVanInschrijving</type>
+                            <xsl:for-each select="$fields/root/zoekMet/fields">
+                                <fields><xsl:value-of select="." /></fields>
+                            </xsl:for-each>
+                            <gemeenteVanInschrijving>
+                                <xsl:value-of select="$gemeente" />
+                            </gemeenteVanInschrijving>
+                            <inclusiefOverledenPersonen>
+                                <xsl:value-of select="$inclusiefOverledenPersonen" />
+                            </inclusiefOverledenPersonen>
+                            <xsl:if test="(//*[local-name()='geslacht'])[1] != ''">
+                                <geslacht><xsl:value-of select="(//*[local-name()='geslacht'])[1]" /></geslacht>
+                            </xsl:if>
+                            <geslachtsnaam>
+                                <xsl:value-of select="hc:zoekwaarde((//*[local-name()='geslachtsnaam'])[1], 3)" />
+                            </geslachtsnaam>
+                            <xsl:if test="(//*[local-name()='voorvoegselGeslachtsnaam'])[1]/text() != ''">
+                                <voorvoegsel>
+                                    <xsl:value-of select="(//*[local-name()='voorvoegselGeslachtsnaam'])[1]/text()" />
+                                </voorvoegsel>
+                            </xsl:if>
+                            <voornamen>
+                                <xsl:value-of select="hc:zoekwaarde((//*[local-name()='voornamen'])[1], 3)" />
+                            </voornamen>
                         </xsl:when>
                         <xsl:otherwise>
                             <text>The app <xsl:value-of select="$varZenderApplicatie" /> is not allowed for this request</text>
