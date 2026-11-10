@@ -1,0 +1,10 @@
+{
+  "type": "RaadpleegMetBurgerservicenummer",
+  "fields": [
+    "burgerservicenummer",
+    "overlijden.datum"
+  ],
+  "burgerservicenummer": [
+    "999993860"
+  ]
+}
