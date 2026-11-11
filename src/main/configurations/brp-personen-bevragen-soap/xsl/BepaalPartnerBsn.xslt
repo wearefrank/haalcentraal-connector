@@ -31,6 +31,7 @@
             <xsl:if test="count($persoon) = 1
                           and $originalMessage//BG:inp.bsn/text() != ''
                           and exists($originalMessage//BG:scope/BG:object/BG:inp.burgerlijkeStaat)
+                          and normalize-space($varZenderApplicatie) != ''
                           and contains($geautoriseerd, $varZenderApplicatie)
                           and not($persoon/partners[not(ontbindingHuwelijkPartnerschap/datum)])">
                 <xsl:for-each select="$persoon/partners[ontbindingHuwelijkPartnerschap/datum]">

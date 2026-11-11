@@ -134,7 +134,10 @@
 			                       root="root"
 			                       outputFormat="JSON"
 			                       schema="xsd/CheckHCInput.xsd"
-			                       throwException="true" />
+			                       throwException="true">
+				<Forward name="success" path="BRPPartnerOpvragen" />
+				<Forward name="exception" path="MapResponse" />
+			</Json2XmlValidatorPipe>
 
 			<SenderPipe name="BRPPartnerOpvragen" storeResultInSessionKey="partnerBody">
 				<IbisLocalSender name="BRPPartnerOpvragenSender" javaListener="BrpPbOutwayListener" />

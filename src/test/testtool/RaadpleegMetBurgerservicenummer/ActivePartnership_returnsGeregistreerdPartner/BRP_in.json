@@ -23,7 +23,8 @@
         "partners.naam.geslachtsnaam",
         "partners.naam.voorvoegsel",
         "partners.ontbindingHuwelijkPartnerschap",
-        "partners.soortVerbintenis"
+        "partners.soortVerbintenis",
+        "partners.burgerservicenummer"
     ],
     "burgerservicenummer": [
         "999991243"

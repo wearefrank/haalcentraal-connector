@@ -28,6 +28,7 @@
         <xsl:variable name="persoon" select="root/personen"/>
         <partnerBsn>
             <xsl:if test="count($persoon) = 1
+                          and normalize-space($varZenderApplicatie) != ''
                           and contains($geautoriseerd, $varZenderApplicatie)
                           and not($persoon/partners[not(ontbindingHuwelijkPartnerschap/datum)])">
                 <xsl:for-each select="$persoon/partners[ontbindingHuwelijkPartnerschap/datum]">
