@@ -32,7 +32,8 @@
                           and not($persoon/partners[not(ontbindingHuwelijkPartnerschap/datum)])">
                 <xsl:for-each select="$persoon/partners[ontbindingHuwelijkPartnerschap/datum]">
                     <xsl:sort select="local:formatteer-datum(ontbindingHuwelijkPartnerschap/datum)" order="descending"/>
-                    <xsl:if test="position() = 1"><xsl:value-of select="burgerservicenummer"/></xsl:if>
+                    <!-- Alleen opvragen als de verbintenis de burgerlijke staat bepaalt (H of P); bij een onbekende soort wordt het toch waardeOnbekend -->
+                    <xsl:if test="position() = 1 and soortVerbintenis/code = ('H', 'P')"><xsl:value-of select="burgerservicenummer"/></xsl:if>
                 </xsl:for-each>
             </xsl:if>
         </partnerBsn>
