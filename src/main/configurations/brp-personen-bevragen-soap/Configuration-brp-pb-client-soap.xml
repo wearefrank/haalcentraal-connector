@@ -105,13 +105,13 @@
 
 			<SenderPipe name="GetPersoonssleutelSender" storeResultInSessionKey="persoonssleutel" getInputFromSessionKey="bsn">
 				<IbisLocalSender name="GetPersoonssleutelSenderClient" javaListener="GetPersoonssleutel" />
-				<Forward name="success" path="GetPartnerBsnIfAllowed" />
+				<Forward name="success" path="GetPartnerIfNeededAndAllowed" />
 				<Forward name="exception" path="Exception" />
 			</SenderPipe>
 
-			<!-- naam veranderen / variables / dingen duidelijk maken -->
-			<XsltPipe name="GetPartnerBsnIfAllowed"
-			          styleSheetName="xsl/GetPartnerBsnIfAllowed.xslt"
+			<!-- BSN van de laatst ontbonden partner als diens overlijdensdatum nodig is voor burgerlijkeStaat of redenOntbinding -->
+			<XsltPipe name="GetPartnerIfNeededAndAllowed"
+			          styleSheetName="xsl/GetPartnerIfNeededAndAllowed.xslt"
 			          getInputFromSessionKey="xmlbody"
 			          storeResultInSessionKey="partnerBsnXml">
 				<Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
