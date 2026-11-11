@@ -2,7 +2,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="../FrankConfig.xsd">
 	<Adapter name="BrpPbClientSoap"
-		description="ZoekPersonen">
+	description="ZoekPersonen">
 
 		<Receiver name="BrpPbClientSoapReceiver">
 			<JavaListener name="BrpPbClientSoapListener" />
@@ -104,10 +104,53 @@
 			</PutInSessionPipe>
 
 			<SenderPipe name="GetPersoonssleutelSender" storeResultInSessionKey="persoonssleutel" getInputFromSessionKey="bsn">
-                <IbisLocalSender name="GetPersoonssleutelSenderClient" javaListener="GetPersoonssleutel" />
+				<IbisLocalSender name="GetPersoonssleutelSenderClient" javaListener="GetPersoonssleutel" />
+				<Forward name="success" path="GetPartnerBsnIfAllowed" />
+				<Forward name="exception" path="Exception" />
+			</SenderPipe>
+
+			<!-- naam veranderen / variables / dingen duidelijk maken -->
+			<XsltPipe name="GetPartnerBsnIfAllowed"
+			          styleSheetName="xsl/GetPartnerBsnIfAllowed.xslt"
+			          getInputFromSessionKey="xmlbody"
+			          storeResultInSessionKey="partnerBsnXml">
+				<Param name="varZenderApplicatie" sessionKey="varZenderApplicatie" />
+				<Param name="originalMessage" sessionKey="originalMessage" type="DOMDOC" />
+				<Forward name="success" path="PartnerOpvragingNodig" />
+			</XsltPipe>
+
+			<IfPipe name="PartnerOpvragingNodig" xpathExpression="string-length(normalize-space(/partnerBsn)) &gt; 0">
+				<Forward name="then" path="BouwPartnerRequest" />
+				<Forward name="else" path="MapResponse" />
+			</IfPipe>
+
+			<XsltPipe name="BouwPartnerRequest" getInputFromSessionKey="partnerBsnXml"
+			          omitXmlDeclaration="true"
+			          xsltVersion="2"
+			          styleSheetName="xsl/BouwPartnerRequest.xslt">
+				<Forward name="success" path="CheckPartnerRequest" />
+			</XsltPipe>
+
+			<Json2XmlValidatorPipe name="CheckPartnerRequest"
+			                       root="root"
+			                       outputFormat="JSON"
+			                       schema="xsd/CheckHCInput.xsd"
+			                       throwException="true">
+				<Forward name="success" path="BRPPartnerOpvragen" />
+				<Forward name="exception" path="MapResponse" />
+			</Json2XmlValidatorPipe>
+
+			<SenderPipe name="BRPPartnerOpvragen" storeResultInSessionKey="partnerBody">
+				<IbisLocalSender name="BRPPartnerOpvragenSender" javaListener="BrpPbOutwayListener" />
+				<Param name="gemeenteVanInschrijving" sessionKey="gemeenteVanInschrijving"
+				       defaultValue="${gemeenteVanInschrijving}" />
+				<Forward name="success" path="PartnerNaarXml" />
+				<Forward name="exception" path="MapResponse" />
+			</SenderPipe>
+
+			<JsonPipe name="PartnerNaarXml" storeResultInSessionKey="partnerXml">
 				<Forward name="success" path="MapResponse" />
-                <Forward name="exception" path="Exception" />
-            </SenderPipe>
+			</JsonPipe>
 
 			<XsltPipe name="MapResponse"
 				styleSheetName="xsl/mappingJsonToStuf.xslt"
@@ -118,6 +161,7 @@
 				<Param name="indicatorVervolgvraag" sessionKey="indicatorVervolgvraag" />
 				<Param name="originalMessage" sessionKey="originalMessage" type="DOMDOC" />
 				<Param name="sleutelVerzendend" sessionKey="persoonssleutel" />
+				<Param name="partnerResultaat" sessionKey="partnerXml" type="DOMDOC" defaultValue="&lt;root/&gt;" />
 				<Forward name="success" path="Exit" />
 			</XsltPipe>
 
