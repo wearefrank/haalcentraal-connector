@@ -1,0 +1,6 @@
+{
+  "type": "https://datatracker.ietf.org/doc/html/rfc7231#section-6.6.1",
+  "title": "Interne serverfout.",
+  "status": 500,
+  "instance": "/haalcentraal/api/brp/personen"
+}

@@ -23,7 +23,7 @@
                     <BG:inp.burgerlijkeStaat StUF:noValue="waardeOnbekend" xsi:nil="true"/>
                     <BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
                         <BG:gerelateerde StUF:entiteittype="NPS">
-                            <BG:inp.bsn>999993859</BG:inp.bsn>
+                            <BG:inp.bsn xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
                             <BG:inp.burgerlijkeStaat StUF:noValue="waardeOnbekend" xsi:nil="true"/>
                         </BG:gerelateerde>
                         <BG:soortVerbintenis>.</BG:soortVerbintenis>

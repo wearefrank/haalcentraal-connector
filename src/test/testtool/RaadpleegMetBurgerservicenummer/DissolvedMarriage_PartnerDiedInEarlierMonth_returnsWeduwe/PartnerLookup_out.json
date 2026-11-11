@@ -1,0 +1,16 @@
+{
+  "type": "RaadpleegMetBurgerservicenummer",
+  "personen": [
+    {
+      "burgerservicenummer": "999993859",
+      "overlijden": {
+        "datum": {
+          "type": "JaarMaandDatum",
+          "jaar": 1990,
+          "maand": 4,
+          "langFormaat": "april 1990"
+        }
+      }
+    }
+  ]
+}

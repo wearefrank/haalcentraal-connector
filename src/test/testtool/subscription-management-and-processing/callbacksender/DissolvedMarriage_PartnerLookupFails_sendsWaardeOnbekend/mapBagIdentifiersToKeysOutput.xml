@@ -1,0 +1,5 @@
+<results>
+<result item="1">
+<result><fielddefinition><field name="TYPE" type="VARCHAR" columnDisplaySize="10" precision="10" scale="0" isCurrency="false" columnTypeName="VARCHAR" columnClassName="java.lang.String"/><field name="IDENTIFIER" type="VARCHAR" columnDisplaySize="32" precision="32" scale="0" isCurrency="false" columnTypeName="VARCHAR" columnClassName="java.lang.String"/><field name="KEY" type="VARCHAR" columnDisplaySize="2147483647" precision="2147483647" scale="0" isCurrency="false" columnTypeName="TEXT" columnClassName="java.lang.String"/></fielddefinition><rowset/></result>
+</result>
+</results>
