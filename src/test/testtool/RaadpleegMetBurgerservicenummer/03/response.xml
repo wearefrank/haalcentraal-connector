@@ -73,7 +73,7 @@
 			<BG:inp.indicatieGeheim xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
 			<BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
 				<BG:gerelateerde StUF:entiteittype="NPS">
-					<BG:inp.bsn>999993859</BG:inp.bsn>
+					<BG:inp.bsn xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
 					<BG:geslachtsnaam>Kierkegaard</BG:geslachtsnaam>
 					<BG:voorvoegselGeslachtsnaam StUF:noValue="geenWaarde" xsi:nil="true"/>
 					<BG:voorletters>C.E.C.</BG:voorletters>
