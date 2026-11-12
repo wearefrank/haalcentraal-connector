@@ -50,7 +50,9 @@
     <ing.indicatieGezagMinderjarige authorizedApplications="LBA,GWS,TOP" />
     <inp.indicatieGeheim authorizedApplications="LBA,GWS,TOP,PGAx-SG-ZVH" />
     <inp.heeftAlsEchtgenootPartner>
-        <inp.bsn authorizedApplications="TOP,GWS" />
+        <gerelateerde>
+            <inp.bsn authorizedApplications="TOP,GWS,LBA" />
+        </gerelateerde>
         <geslachtsnaamPartner authorizedApplications="DEC_ZKN,GWS" />
         <adellijkeTitelPredikaat authorizedApplications="" />
         <geslachtsaanduiding authorizedApplications="TOP" />

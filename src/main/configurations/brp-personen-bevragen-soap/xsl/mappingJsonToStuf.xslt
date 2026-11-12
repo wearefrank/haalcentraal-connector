@@ -30,7 +30,59 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+
+    <xsl:param name="partnerResultaat" as="node()?"/>
+
+    <!-- Vroegst en laatst mogelijke dag (yyyymmdd) van een (onvolledige) datum; leeg als de datum onbekend is -->
+    <xsl:function name="local:datum-bereik" as="xsd:string*">
+        <xsl:param name="d" as="element()?"/>
+        <xsl:choose>
+            <xsl:when test="$d/type = 'Datum'">
+                <xsl:sequence select="(translate($d/datum, '-', ''), translate($d/datum, '-', ''))"/>
+            </xsl:when>
+            <xsl:when test="$d/type = 'JaarMaandDatum'">
+                <xsl:variable name="jaarMaand" select="concat(format-number(number($d/jaar), '0000'), format-number(number($d/maand), '00'))"/>
+                <xsl:sequence select="(concat($jaarMaand, '01'), concat($jaarMaand, '31'))"/>
+            </xsl:when>
+            <xsl:when test="$d/type = 'JaarDatum'">
+                <xsl:variable name="jaar" select="format-number(number($d/jaar), '0000')"/>
+                <xsl:sequence select="(concat($jaar, '0101'), concat($jaar, '1231'))"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:sequence select="()"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+
+    <!-- 'O' = partner zeker op/voor ontbinding overleden, 'S' = zeker niet, '' = niet te bepalen.
+         Bij onvolledige datums telt het hele mogelijke bereik; overlappen de bereiken, dan is de volgorde onzeker -->
+    <xsl:function name="local:reden-ontbinding" as="xsd:string">
+        <xsl:param name="p" as="element()?"/>
+        <xsl:variable name="gevonden" select="$partnerResultaat/root/personen[burgerservicenummer = $p/burgerservicenummer][1]"/>
+        <xsl:variable name="ontbinding" select="local:datum-bereik($p/ontbindingHuwelijkPartnerschap/datum)"/>
+        <xsl:variable name="overlijden" select="local:datum-bereik($gevonden/overlijden/datum)"/>
+        <xsl:choose>
+            <xsl:when test="not($p/burgerservicenummer/text()) or not($gevonden) or empty($ontbinding)">
+                <xsl:sequence select="''"/>
+            </xsl:when>
+            <!-- Niet overleden -->
+            <xsl:when test="not($gevonden/overlijden)"><xsl:sequence select="'S'"/></xsl:when>
+            <!-- Overleden, maar datum onbekend -->
+            <xsl:when test="empty($overlijden)"><xsl:sequence select="''"/></xsl:when>
+            <xsl:when test="$overlijden[2] le $ontbinding[1]"><xsl:sequence select="'O'"/></xsl:when>
+            <xsl:when test="$overlijden[1] gt $ontbinding[2]"><xsl:sequence select="'S'"/></xsl:when>
+            <xsl:otherwise><xsl:sequence select="''"/></xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+
+    <xsl:function name="local:laatste-ontbonden" as="element()?">
+        <xsl:param name="persoon" as="element()?"/>
+        <xsl:for-each select="$persoon/partners[ontbindingHuwelijkPartnerschap/datum]">
+            <xsl:sort select="local:formatteer-datum(ontbindingHuwelijkPartnerschap/datum)" order="descending"/>
+            <xsl:if test="position() = 1"><xsl:sequence select="."/></xsl:if>
+        </xsl:for-each>
+    </xsl:function>
+
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
     <xsl:param name="berichtcode">La01</xsl:param>
     <xsl:param name="varZenderApplicatie" />
@@ -77,6 +129,9 @@
                             <!-- Also use a dissolved partner: with naamgebruik P/V/N the ex-partner's name is still used. -->
                             <!-- Which of several active partners is taken is not specified, the first is arbitrary but harmless. -->
                             <xsl:variable name="partner" select="(partners[not(ontbindingHuwelijkPartnerschap/datum)], partners)[1]"/>
+                            <xsl:variable name="actief" select="partners[not(ontbindingHuwelijkPartnerschap/datum)]"/>
+                            <xsl:variable name="ontbonden" select="partners[ontbindingHuwelijkPartnerschap/datum]"/>
+                            <xsl:variable name="laatstePartner" select="local:laatste-ontbonden(.)"/>
                             <xsl:variable name="mapping">
                                 <object StUF:entiteittype="NPS">
                                     <xsl:choose>
@@ -398,20 +453,16 @@
                                     <inp.burgerlijkeStaat>
                                         <number>
                                             <xsl:if test="$originalMessage//BG:inp.bsn/text() != ''">
-                                                <xsl:variable name="actief" select="partners[not(ontbindingHuwelijkPartnerschap/datum)]"/>
-                                                <xsl:variable name="ontbonden" select="partners[ontbindingHuwelijkPartnerschap/datum]"/>
-                                                <xsl:variable name="laatste">
-                                                    <xsl:for-each select="$ontbonden">
-                                                        <xsl:sort select="local:formatteer-datum(ontbindingHuwelijkPartnerschap/datum)" order="descending"/>
-                                                        <xsl:if test="position() = 1"><xsl:value-of select="soortVerbintenis/code"/></xsl:if>
-                                                    </xsl:for-each>
-                                                </xsl:variable>
+                                                <xsl:variable name="laatste" select="string($laatstePartner/soortVerbintenis/code)"/>
+                                                <xsl:variable name="reden" select="local:reden-ontbinding($laatstePartner)"/>
                                                 <xsl:choose>
                                                     <xsl:when test="$actief[soortVerbintenis/code = 'H']">2</xsl:when>
                                                     <xsl:when test="$actief[soortVerbintenis/code = 'P']">5</xsl:when>
                                                     <xsl:when test="$actief"><xsl:attribute name="noValue">waardeOnbekend</xsl:attribute></xsl:when>
-                                                    <xsl:when test="$laatste = 'H'">3</xsl:when><!-- 4 bij overlijden partner -->
-                                                    <xsl:when test="$laatste = 'P'">6</xsl:when><!-- 7 bij overlijden partner -->
+                                                    <xsl:when test="$laatste = 'H' and $reden = 'O'">4</xsl:when>
+                                                    <xsl:when test="$laatste = 'H' and $reden = 'S'">3</xsl:when>
+                                                    <xsl:when test="$laatste = 'P' and $reden = 'O'">7</xsl:when>
+                                                    <xsl:when test="$laatste = 'P' and $reden = 'S'">6</xsl:when>
                                                     <xsl:when test="$ontbonden"><xsl:attribute name="noValue">waardeOnbekend</xsl:attribute></xsl:when>
                                                     <xsl:otherwise>1</xsl:otherwise>
                                                 </xsl:choose>
@@ -788,8 +839,20 @@
                 <datumOntbinding>
                     <test><xsl:value-of select="local:formatteer-datum(ontbindingHuwelijkPartnerschap/datum)"/></test>
                 </datumOntbinding>
-                <redenOntbinding> <!-- S of O uit de overlijdens-check van issue 1; anders leeg. Tijdelijk alleen S of leeg -->
-                    <test><xsl:if test="ontbindingHuwelijkPartnerschap/datum">S</xsl:if></test>
+                <redenOntbinding>
+                    <test>
+                        <xsl:choose>
+                            <xsl:when test="not(ontbindingHuwelijkPartnerschap/datum)"/>
+                            <xsl:when test=". is local:laatste-ontbonden(..)">
+                                <xsl:variable name="reden" select="local:reden-ontbinding(.)"/>
+                                <xsl:choose>
+                                    <xsl:when test="$reden != ''"><xsl:value-of select="$reden"/></xsl:when>
+                                    <xsl:otherwise><xsl:attribute name="noValue">waardeOnbekend</xsl:attribute></xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:when>
+                            <xsl:otherwise>S</xsl:otherwise>
+                        </xsl:choose>
+                    </test>
                 </redenOntbinding>
             </inp.heeftAlsEchtgenootPartner>
         </xsl:variable>
