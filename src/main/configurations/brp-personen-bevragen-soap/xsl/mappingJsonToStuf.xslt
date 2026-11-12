@@ -33,18 +33,45 @@
 
     <xsl:param name="partnerResultaat" as="node()?"/>
 
-    <!-- 'O' = partner overleden op/voor ontbinding, 'S' = anders, '' = niet te bepalen -->
+    <!-- Vroegst en laatst mogelijke dag (yyyymmdd) van een (onvolledige) datum; leeg als de datum onbekend is -->
+    <xsl:function name="local:datum-bereik" as="xsd:string*">
+        <xsl:param name="d" as="element()?"/>
+        <xsl:choose>
+            <xsl:when test="$d/type = 'Datum'">
+                <xsl:sequence select="(translate($d/datum, '-', ''), translate($d/datum, '-', ''))"/>
+            </xsl:when>
+            <xsl:when test="$d/type = 'JaarMaandDatum'">
+                <xsl:variable name="jaarMaand" select="concat(format-number(number($d/jaar), '0000'), format-number(number($d/maand), '00'))"/>
+                <xsl:sequence select="(concat($jaarMaand, '01'), concat($jaarMaand, '31'))"/>
+            </xsl:when>
+            <xsl:when test="$d/type = 'JaarDatum'">
+                <xsl:variable name="jaar" select="format-number(number($d/jaar), '0000')"/>
+                <xsl:sequence select="(concat($jaar, '0101'), concat($jaar, '1231'))"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:sequence select="()"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+
+    <!-- 'O' = partner zeker op/voor ontbinding overleden, 'S' = zeker niet, '' = niet te bepalen.
+         Bij onvolledige datums telt het hele mogelijke bereik; overlappen de bereiken, dan is de volgorde onzeker -->
     <xsl:function name="local:reden-ontbinding" as="xsd:string">
         <xsl:param name="p" as="element()?"/>
         <xsl:variable name="gevonden" select="$partnerResultaat/root/personen[burgerservicenummer = $p/burgerservicenummer][1]"/>
-        <xsl:variable name="ontbinding" select="local:formatteer-datum($p/ontbindingHuwelijkPartnerschap/datum)"/>
-        <xsl:variable name="overlijden" select="local:formatteer-datum($gevonden/overlijden/datum)"/>
+        <xsl:variable name="ontbinding" select="local:datum-bereik($p/ontbindingHuwelijkPartnerschap/datum)"/>
+        <xsl:variable name="overlijden" select="local:datum-bereik($gevonden/overlijden/datum)"/>
         <xsl:choose>
-            <xsl:when test="not($p/burgerservicenummer/text()) or not($gevonden) or $ontbinding = ''">
+            <xsl:when test="not($p/burgerservicenummer/text()) or not($gevonden) or empty($ontbinding)">
                 <xsl:sequence select="''"/>
             </xsl:when>
-            <xsl:when test="$overlijden != '' and $overlijden le $ontbinding"><xsl:sequence select="'O'"/></xsl:when>
-            <xsl:otherwise><xsl:sequence select="'S'"/></xsl:otherwise>
+            <!-- Niet overleden -->
+            <xsl:when test="not($gevonden/overlijden)"><xsl:sequence select="'S'"/></xsl:when>
+            <!-- Overleden, maar datum onbekend -->
+            <xsl:when test="empty($overlijden)"><xsl:sequence select="''"/></xsl:when>
+            <xsl:when test="$overlijden[2] le $ontbinding[1]"><xsl:sequence select="'O'"/></xsl:when>
+            <xsl:when test="$overlijden[1] gt $ontbinding[2]"><xsl:sequence select="'S'"/></xsl:when>
+            <xsl:otherwise><xsl:sequence select="''"/></xsl:otherwise>
         </xsl:choose>
     </xsl:function>
 
