@@ -167,7 +167,7 @@
                                 </huisnummertoevoeging>
                             </xsl:if>
                             <postcode>
-                                <xsl:value-of select="(//*[local-name()='aoa.postcode'])[1]/text()" />
+                                <xsl:value-of select="upper-case(replace((//*[local-name()='aoa.postcode'])[1], '\s', ''))" />
                             </postcode>
                         </xsl:when>
                         <xsl:otherwise>
