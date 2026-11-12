@@ -1,0 +1,15 @@
+{
+    "type": "RaadpleegMetBurgerservicenummer",
+    "personen": [
+        {
+            "burgerservicenummer": "999993859",
+            "overlijden": {
+                "datum": {
+                    "type": "Datum",
+                    "datum": "2021-02-11",
+                    "langFormaat": "11 februari 2021"
+                }
+            }
+        }
+    ]
+}
