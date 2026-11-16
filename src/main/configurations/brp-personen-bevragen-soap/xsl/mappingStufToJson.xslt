@@ -25,7 +25,7 @@
     <xsl:template match="/">
         <xsl:param name="vanafBSN" select="//BG:vanaf//*[local-name() = 'inp.bsn']" />
         <xsl:param name="totEnMetBSN" select="//BG:totEnMet//*[local-name() = 'inp.bsn']" />
-        <xsl:variable name="gemeenteUitBericht" select="normalize-space((//BG:gelijk//BG:inp.gemeenteVanInschrijving)[1])" />
+        <xsl:variable name="gemeenteUitBericht" select="normalize-space((//BG:gelijk)[1]/BG:inp.gemeenteVanInschrijving)" />
         <xsl:variable name="gemeente" select="if ($gemeenteUitBericht != '') then $gemeenteUitBericht else normalize-space($gemeenteVanInschrijving)" />
         <root>
             <xsl:choose>
