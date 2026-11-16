@@ -43,7 +43,7 @@
     <ing.datumVerliesVerblijfstitel authorizedApplications="GWS" />
     <inp.datumVestigingInNederland authorizedApplications="LBA,DEC_ZKN" />
     <inp.immigratieLand authorizedApplications="DEC_ZKN" />
-    <inp.datumVertrekUitNederland authorizedApplications="LBA" />
+    <inp.datumVertrekUitNederland authorizedApplications="LBA,GWS" />
     <inp.emigratieLand authorizedApplications="LBA,GWS" />
     <aanduidingBijzonderNederlanderschap authorizedApplications="GWS" />
     <ing.aanduidingEuropeesKiesrecht authorizedApplications="DEC_ZKN" />
@@ -51,7 +51,7 @@
     <inp.indicatieGeheim authorizedApplications="LBA,GWS,TOP,PGAx-SG-ZVH" />
     <inp.heeftAlsEchtgenootPartner>
         <gerelateerde>
-            <inp.bsn authorizedApplications="TOP,GWS" />
+            <inp.bsn authorizedApplications="TOP,GWS,LBA" />
             <geslachtsnaamPartner authorizedApplications="DEC_ZKN,GWS" />
             <adellijkeTitelPredikaat authorizedApplications="" />
             <geslachtsaanduiding authorizedApplications="TOP" />
@@ -60,10 +60,10 @@
             </verblijfsadres>
             <sub.correspondentieAdres authorizedApplications="GWS" />
         </gerelateerde>
-        <soortVerbintenis authorizedApplications="GWS,TOP" />
-        <datumSluiting authorizedApplications="LBA, GWS,TOP" />
-        <datumOntbinding authorizedApplications="LBA,GWS,TOP" />
-        <redenOntbinding authorizedApplications="LBA,GWS,TOP" />
+        <soortVerbintenis authorizedApplications="DEC_ZKN,GWS,TOP" />
+        <datumSluiting authorizedApplications="DEC_ZKN,LBA,GWS,TOP" />
+        <datumOntbinding authorizedApplications="DEC_ZKN,LBA,GWS,TOP" />
+        <redenOntbinding authorizedApplications="DEC_ZKN,LBA,GWS,TOP" />
     </inp.heeftAlsEchtgenootPartner>
     <inp.heeftAlsKinderen>
         <gerelateerde>
