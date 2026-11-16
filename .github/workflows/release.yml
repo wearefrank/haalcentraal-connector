@@ -14,7 +14,7 @@ jobs:
       version-next-tag: ${{ steps.next-version.outputs.release-tag }}
       version-next-type: ${{ steps.next-version.outputs.release-type }}
     steps:
-      - uses: step-security/harden-runner@46b06cea07f9e64621fdf066ba77ac6915163d43 # v2.22.3
+      - uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2.22.4
         with:
           disable-sudo: true
           egress-policy: audit
@@ -40,7 +40,7 @@ jobs:
           GH_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
 
   ci:
-    uses: wearefrank/ci-cd-templates/.github/workflows/ci-generic.yml@3ea6c89c3ffb6c75528377110fea41851bc87c01 #2.4.11
+    uses: wearefrank/ci-cd-templates/.github/workflows/ci-generic.yml@b8eabd63f33049bb804be55918652ab50c69f730 #2.5.1
     needs: analyze-commits
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
@@ -49,7 +49,7 @@ jobs:
       version: ${{ needs.analyze-commits.outputs.version-next }}
 
   larva:
-    uses: wearefrank/ci-cd-templates/.github/workflows/larva-testrunner.yml@3ea6c89c3ffb6c75528377110fea41851bc87c01 #2.4.11
+    uses: wearefrank/ci-cd-templates/.github/workflows/larva-testrunner.yml@b8eabd63f33049bb804be55918652ab50c69f730 #2.5.1
     needs:
       - analyze-commits
       - ci
@@ -72,7 +72,7 @@ jobs:
       - ci
       - larva
     steps:
-      - uses: step-security/harden-runner@46b06cea07f9e64621fdf066ba77ac6915163d43 # v2.22.3
+      - uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2.22.4
         with:
           egress-policy: audit
 
@@ -108,7 +108,7 @@ jobs:
           GH_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
 
   docker-release:
-    uses: wearefrank/ci-cd-templates/.github/workflows/docker-release-generic.yml@3ea6c89c3ffb6c75528377110fea41851bc87c01 #2.4.11
+    uses: wearefrank/ci-cd-templates/.github/workflows/docker-release-generic.yml@b8eabd63f33049bb804be55918652ab50c69f730 #2.5.1
     needs: 
       - analyze-commits
       - release
