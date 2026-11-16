@@ -45,6 +45,7 @@ receive from Haalcentraal-->
         <fields>indicatieGezagMinderjarige</fields>
         <fields>verblijfstitel</fields>
         <fields>europeesKiesrecht</fields>
+        <fields>partners.burgerservicenummer</fields>
         <fields>partners.naam.geslachtsnaam</fields>
         <fields>partners.naam.voorvoegsel</fields>
         <fields>partners.ontbindingHuwelijkPartnerschap</fields>
