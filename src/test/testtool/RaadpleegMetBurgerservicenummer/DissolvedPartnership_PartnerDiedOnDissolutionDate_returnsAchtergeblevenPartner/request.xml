@@ -33,88 +33,14 @@
             </BG:totEnMet>
             <BG:scope>
                 <BG:object StUF:entiteittype="NPS">
-                    <BG:inp.bsn xsi:nil="true" />
-                    <BG:geslachtsnaam xsi:nil="true" />
-                    <BG:voorvoegselGeslachtsnaam xsi:nil="true" />
-                    <BG:voornamen xsi:nil="true" />
-                    <BG:aanduidingNaamgebruik xsi:nil="true" />
-                    <BG:geslachtsaanduiding xsi:nil="true" />
-                    <BG:geboortedatum xsi:nil="true" />
-                    <BG:inp.geboorteplaats xsi:nil="true" />
-                    <BG:inp.geboorteLand xsi:nil="true" />
-                    <BG:overlijdensdatum xsi:nil="true" />
-                    <BG:inp.verblijftIn StUF:entiteittype="NPSTGO">
-                        <BG:gerelateerde StUF:entiteittype="TGO">
-                            <BG:adresAanduidingGrp>
-                                <BG:wpl.woonplaatsNaam xsi:nil="true" />
-                                <BG:gor.straatnaam xsi:nil="true" />
-                                <BG:aoa.postcode xsi:nil="true" />
-                                <BG:aoa.huisnummer xsi:nil="true" />
-                                <BG:aoa.huisletter xsi:nil="true" />
-                                <BG:aoa.huisnummertoevoeging xsi:nil="true" />
-                            </BG:adresAanduidingGrp>
-                        </BG:gerelateerde>
-                        <StUF:tijdvakRelatie>
-                            <StUF:beginRelatie xsi:nil="true" />
-                            <StUF:eindRelatie xsi:nil="true" />
-                        </StUF:tijdvakRelatie>
-                    </BG:inp.verblijftIn>
-                    <BG:verblijfsadres>
-                        <BG:wpl.woonplaatsNaam xsi:nil="true" />
-                        <BG:gor.straatnaam xsi:nil="true" />
-                        <BG:aoa.postcode xsi:nil="true" />
-                        <BG:aoa.huisnummer xsi:nil="true" />
-                        <BG:aoa.huisletter xsi:nil="true" />
-                        <BG:aoa.huisnummertoevoeging xsi:nil="true" />
-                        <BG:begindatumVerblijf xsi:nil="true" />
-                    </BG:verblijfsadres>
-                    <BG:sub.verblijfBuitenland>
-                        <BG:lnd.landcode xsi:nil="true" />
-                        <BG:sub.adresBuitenland1 xsi:nil="true" />
-                        <BG:sub.adresBuitenland2 xsi:nil="true" />
-                        <BG:sub.adresBuitenland3 xsi:nil="true" />
-                    </BG:sub.verblijfBuitenland>
-                    <BG:inp.adresHerkomst xsi:nil="true" />
-                    <BG:sub.correspondentieAdres>
-                        <BG:wpl.woonplaatsNaam xsi:nil="true" />
-                        <BG:postcode xsi:nil="true" />
-                        <BG:gor.straatnaam xsi:nil="true" />
-                        <BG:aoa.huisnummer xsi:nil="true" />
-                        <BG:aoa.huisletter xsi:nil="true" />
-                        <BG:aoa.huisnummertoevoeging xsi:nil="true" />
-                    </BG:sub.correspondentieAdres>
                     <BG:inp.burgerlijkeStaat xsi:nil="true" />
-                    <BG:inp.gemeenteVanInschrijving xsi:nil="true" />
-                    <BG:inp.datumInschrijving xsi:nil="true" />
-                    <BG:vbt.aanduidingVerblijfstitel xsi:nil="true" />
-                    <BG:ing.datumVerkrijgingVerblijfstitel xsi:nil="true" />
-                    <BG:ing.datumVerliesVerblijfstitel xsi:nil="true" />
-                    <BG:inp.datumVertrekUitNederland xsi:nil="true" />
-                    <BG:inp.emigratieLand xsi:nil="true" />
-                    <BG:inp.aanduidingBijzonderNederlanderschap xsi:nil="true" />
-                    <BG:ing.indicatieGezagMinderjarige xsi:nil="true" />
-                    <BG:inp.indicatieGeheim xsi:nil="true" />
                     <BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
                         <BG:gerelateerde StUF:entiteittype="NPS">
                             <BG:inp.bsn xsi:nil="true" />
-                            <BG:geslachtsnaam xsi:nil="true" />
-                            <BG:voorvoegselGeslachtsnaam xsi:nil="true" />
                         </BG:gerelateerde>
-                        <BG:datumSluiting xsi:nil="true" />
                         <BG:datumOntbinding xsi:nil="true" />
                         <BG:redenOntbinding xsi:nil="true" />
                     </BG:inp.heeftAlsEchtgenootPartner>
-                    <BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
-                        <BG:gerelateerde StUF:entiteittype="NPS">
-                            <BG:inp.bsn xsi:nil="true" />
-                        </BG:gerelateerde>
-                        <BG:ouderAanduiding xsi:nil="true" />
-                    </BG:inp.heeftAlsOuders>
-                    <BG:inp.heeftAlsNationaliteit StUF:entiteittype="NPSNAT">
-                        <BG:gerelateerde StUF:entiteittype="NAT">
-                            <BG:code xsi:nil="true" />
-                        </BG:gerelateerde>
-                    </BG:inp.heeftAlsNationaliteit>
                 </BG:object>
             </BG:scope>
         </BG:npsLv01>

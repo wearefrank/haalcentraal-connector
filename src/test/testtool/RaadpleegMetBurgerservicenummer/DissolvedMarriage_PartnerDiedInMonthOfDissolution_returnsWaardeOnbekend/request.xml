@@ -1,0 +1,48 @@
+<soapenv:Envelope xmlns:StUF="http://www.egem.nl/StUF/StUF0301"
+    xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310"
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <soapenv:Header />
+    <soapenv:Body>
+        <BG:npsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <BG:stuurgegevens>
+                <StUF:berichtcode>Lv01</StUF:berichtcode>
+                <StUF:zender>
+                    <StUF:applicatie>GWS</StUF:applicatie>
+                    <StUF:gebruiker>PROD</StUF:gebruiker>
+                </StUF:zender>
+                <StUF:ontvanger>
+                    <StUF:organisatie>NEDGR</StUF:organisatie>
+                    <StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
+                </StUF:ontvanger>
+                <StUF:referentienummer>1f5dcba5-80e4-4ab5-9dd6-a03db10699b1</StUF:referentienummer>
+                <StUF:tijdstipBericht>20241015055521156</StUF:tijdstipBericht>
+                <StUF:entiteittype>NPS</StUF:entiteittype>
+            </BG:stuurgegevens>
+            <BG:parameters>
+                <StUF:sortering>7</StUF:sortering>
+                <StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+                <StUF:maximumAantal>30</StUF:maximumAantal>
+            </BG:parameters>
+            <BG:vanaf StUF:entiteittype="NPS">
+                <BG:inp.bsn>555555021</BG:inp.bsn>
+            </BG:vanaf>
+            <BG:totEnMet StUF:entiteittype="NPS">
+                <BG:inp.bsn>555555021</BG:inp.bsn>
+            </BG:totEnMet>
+            <BG:scope>
+                <BG:object StUF:entiteittype="NPS">
+                    <BG:inp.burgerlijkeStaat xsi:nil="true" />
+                    <BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
+                        <BG:gerelateerde StUF:entiteittype="NPS">
+                            <BG:inp.bsn xsi:nil="true" />
+                        </BG:gerelateerde>
+                        <BG:datumOntbinding xsi:nil="true" />
+                        <BG:redenOntbinding xsi:nil="true" />
+                    </BG:inp.heeftAlsEchtgenootPartner>
+                </BG:object>
+            </BG:scope>
+        </BG:npsLv01>
+    </soapenv:Body>
+</soapenv:Envelope>
