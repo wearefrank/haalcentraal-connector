@@ -1,5 +1,36 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.25.0](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.25...v1.25.0) (2026-11-16)
+
+### 🍕 Features
+
+* callbacksender - implemented partner lookup to check if they're deceased (only when needed and allowed) ([96bbc09](https://github.com/wearefrank/haalcentraal-connector/commit/96bbc09d1df62d745a8ddbcb8cb5352dca477d0e))
+* implemented partner lookup to check if they're deceased (only when needed and allowed) ([d669a68](https://github.com/wearefrank/haalcentraal-connector/commit/d669a6865647d2e89a4ecc6b2fc033e1c042d562))
+
+### 🐛 Bug Fixes
+
+* correctly get (up to 20) partners bsn to get determine the redenOntbindings field ([bd8156b](https://github.com/wearefrank/haalcentraal-connector/commit/bd8156b5d60b6caf8bd080c9945e702e398e1838))
+* partial dates now returns WaardeOnbekend ([dfd2082](https://github.com/wearefrank/haalcentraal-connector/commit/dfd2082a67b337a9ebb38984bacc088ede7403bc))
+* sync callback authorizedApplicationsMap with SOAP and request partner BSN for DEC_ZKN ([045595e](https://github.com/wearefrank/haalcentraal-connector/commit/045595e75f5f2eac3a718eb4d73711d60b1d9881))
+
+### 📝 Documentation
+
+* document 20 dissolved partner limit for redenOntbinding lookup ([1bc1190](https://github.com/wearefrank/haalcentraal-connector/commit/1bc1190fcda0d1bcb4bbea219fb517a4d5e73a6c))
+
+### 🧑‍💻 Code Refactoring
+
+* updated pipe name and refactored xslt logic so it is more readable ([1dad9a9](https://github.com/wearefrank/haalcentraal-connector/commit/1dad9a99c35a376aba7b77fe6decb43e2ff966a5))
+
+### ✅ Tests
+
+* added tests to validate callback flow ([9e08548](https://github.com/wearefrank/haalcentraal-connector/commit/9e08548fecb79b43369dff04c6eeca186d924422))
+* added tests to validate raadpleegMetBSN flow ([389c039](https://github.com/wearefrank/haalcentraal-connector/commit/389c039bb56628d9b444e40334e9ff56d2b128cb))
+* added the extra stub steps to get the partner information for the callbacks tests ([fe0dbb3](https://github.com/wearefrank/haalcentraal-connector/commit/fe0dbb35dfc67af4e4d321f4a7f12425d5dcde59))
+* trim fixtures of new scenarios and add partial-date and lookup-error scenarios ([7b7a3b8](https://github.com/wearefrank/haalcentraal-connector/commit/7b7a3b8646ab90f12320d5a6c4e9dd8fa3ebdd1d))
+* updated existing tests ([558c5fe](https://github.com/wearefrank/haalcentraal-connector/commit/558c5fe71a133d810b629ae3dc2d99065240873f))
+* verify callback redenOntbinding per relation when an earlier partner died and a later one divorced ([c73cc31](https://github.com/wearefrank/haalcentraal-connector/commit/c73cc313b7bae32b5b209f7440e3916aa2a08b2a))
+* verify SOAP redenOntbinding per relation when an earlier partner died and a later one divorced ([fe858ac](https://github.com/wearefrank/haalcentraal-connector/commit/fe858acf6031a039d7979a7a50b307ba630e45aa))
+
 ## [1.24.25](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.24...v1.24.25) (2026-11-16)
 
 ### 🐛 Bug Fixes
