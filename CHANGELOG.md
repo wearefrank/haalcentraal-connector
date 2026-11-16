@@ -1,5 +1,21 @@
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 
+## [1.24.25](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.24...v1.24.25) (2026-11-16)
+
+### 🐛 Bug Fixes
+
+* the BG:inp.gemeenteVanInschrijving value will only be used from the main object ([5975652](https://github.com/wearefrank/haalcentraal-connector/commit/59756520a2bc7ddb3a2ac80442646050f88757e5))
+* updated mappingStufToJson.xslt to remove unneeded fields and use gor.straatnaam, aoa.huisnummer and inp.gemeenteVanInschrijving when available ([19ad24b](https://github.com/wearefrank/haalcentraal-connector/commit/19ad24bfbc4fcbf2a7f8241380edf00e7f850d6d))
+
+### ✅ Tests
+
+* cover gemeente fallback for naam and straat searches without woonplaatsNaam ([7d01c6d](https://github.com/wearefrank/haalcentraal-connector/commit/7d01c6dfd8adf3572fec411f18191b9e17d6c95e)), closes [#424](https://github.com/wearefrank/haalcentraal-connector/issues/424)
+
+### 🤖 Build System
+
+* **dependencies:** bump the github-actions group across 1 directory with 10 updates ([7ad4a63](https://github.com/wearefrank/haalcentraal-connector/commit/7ad4a63d78c3b0afb01d98f5a51adca335f33d13))
+* **dependencies:** bump the github-actions group with 7 updates ([5a710d9](https://github.com/wearefrank/haalcentraal-connector/commit/5a710d9b19261a3ad53b5c18a399ce906b6ff0de))
+
 ## [1.24.24](https://github.com/wearefrank/haalcentraal-connector/compare/v1.24.23...v1.24.24) (2026-11-10)
 
 ### 🐛 Bug Fixes
