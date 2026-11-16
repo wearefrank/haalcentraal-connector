@@ -109,7 +109,7 @@
 				<Forward name="exception" path="Exception" />
 			</SenderPipe>
 
-			<!-- BSN van de laatst ontbonden partner als diens overlijdensdatum nodig is voor burgerlijkeStaat of redenOntbinding -->
+			<!-- BSN's van de ontbonden partners waarvan de overlijdensdatum nodig is (burgerlijkeStaat: laatste, redenOntbinding: allemaal) -->
 			<XsltPipe name="GetPartnerIfNeededAndAllowed"
 			          styleSheetName="xsl/GetPartnerIfNeededAndAllowed.xslt"
 			          getInputFromSessionKey="xmlbody"
@@ -119,7 +119,7 @@
 				<Forward name="success" path="PartnerOpvragingNodig" />
 			</XsltPipe>
 
-			<IfPipe name="PartnerOpvragingNodig" xpathExpression="string-length(normalize-space(/partnerBsn)) &gt; 0">
+			<IfPipe name="PartnerOpvragingNodig" xpathExpression="count(/partners/partnerBsn) &gt; 0">
 				<Forward name="then" path="BouwPartnerRequest" />
 				<Forward name="else" path="MapResponse" />
 			</IfPipe>

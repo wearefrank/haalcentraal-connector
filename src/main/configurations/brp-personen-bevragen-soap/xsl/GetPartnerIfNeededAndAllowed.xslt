@@ -1,5 +1,7 @@
-<!-- Geeft het BSN van de laatst ontbonden partner terug als de overlijdensdatum van die partner nodig is
-     (voor inp.burgerlijkeStaat of redenOntbinding) en de applicatie dat gegeven mag zien; anders een lege partnerBsn -->
+<!-- Geeft de BSN's van de ontbonden partners terug waarvan de overlijdensdatum nodig is en de applicatie dat gegeven mag zien:
+     - inp.burgerlijkeStaat: alleen de laatst ontbonden partner
+     - redenOntbinding:      elke ontbonden partner met een BSN
+     Resultaat: <partners><partnerBsn>..</partnerBsn>*</partners> (leeg als er niets opgevraagd hoeft te worden) -->
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310"
                 xmlns:local="http://frankframework.org/xpath-functions"
@@ -47,7 +49,6 @@
                 <xsl:if test="position() = 1"><xsl:sequence select="."/></xsl:if>
             </xsl:for-each>
         </xsl:variable>
-        <xsl:variable name="partnerBsn" select="string($laatstOntbonden/burgerservicenummer)"/>
 
         <!-- Burgerlijke staat 3/4 of 6/7 hangt af van het overlijden van de partner. Bij een actieve partner of een
              onbekende soort verbintenis (wordt waardeOnbekend) is dat niet nodig -->
@@ -58,15 +59,32 @@
                                                            and not($heeftActievePartner)
                                                            and $laatstOntbonden/soortVerbintenis/code = ('H', 'P')"/>
 
-        <!-- redenOntbinding (O of S) van de laatst ontbonden partner hangt af van het overlijden van die partner -->
+        <!-- redenOntbinding (O of S) van elke ontbonden partner hangt af van het overlijden van die partner -->
         <xsl:variable name="redenOntbindingGevraagd" select="exists($scope/BG:inp.heeftAlsEchtgenootPartner/BG:redenOntbinding)"/>
         <xsl:variable name="redenOntbindingGeautoriseerd" select="local:geautoriseerd($authMap/inp.heeftAlsEchtgenootPartner/redenOntbinding)"/>
         <xsl:variable name="redenOntbindingNodig" select="$redenOntbindingGevraagd and $redenOntbindingGeautoriseerd"/>
 
-        <partnerBsn>
-            <xsl:if test="$isBsnVraag and $partnerBsn != '' and ($burgerlijkeStaatNodig or $redenOntbindingNodig)">
-                <xsl:value-of select="$partnerBsn"/>
-            </xsl:if>
-        </partnerBsn>
+        <xsl:variable name="teBevragen" as="element()*">
+            <xsl:choose>
+                <xsl:when test="not($isBsnVraag)"/>
+                <xsl:when test="$redenOntbindingNodig">
+                    <xsl:sequence select="$persoon/partners[ontbindingHuwelijkPartnerschap/datum]"/>
+                </xsl:when>
+                <xsl:when test="$burgerlijkeStaatNodig">
+                    <xsl:sequence select="$laatstOntbonden"/>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:variable>
+        <!-- Dubbele BSN's eruit (zelfde partner twee keer getrouwd) -->
+        <xsl:variable name="bsns" select="distinct-values($teBevragen/burgerservicenummer[normalize-space()])"/>
+
+        <!-- RaadpleegMetBurgerservicenummer accepteert max. 20 BSN's. Zijn het er meer, dan gaat de laatst ontbonden partner
+             voor (nodig voor burgerlijkeStaat); de rest krijgt redenOntbinding waardeOnbekend omdat ze niet gevonden worden -->
+        <partners>
+            <xsl:for-each select="if (count($bsns) le 20) then $bsns
+                                  else subsequence(distinct-values(($laatstOntbonden/burgerservicenummer, $bsns)), 1, 20)">
+                <partnerBsn><xsl:value-of select="."/></partnerBsn>
+            </xsl:for-each>
+        </partners>
     </xsl:template>
 </xsl:stylesheet>
