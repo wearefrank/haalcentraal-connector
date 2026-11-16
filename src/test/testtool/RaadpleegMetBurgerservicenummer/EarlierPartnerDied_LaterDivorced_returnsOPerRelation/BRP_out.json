@@ -1,0 +1,24 @@
+{
+    "type": "RaadpleegMetBurgerservicenummer",
+    "personen": [
+        {
+            "burgerservicenummer": "555555021",
+            "partners": [
+                {
+                    "burgerservicenummer": "999993859",
+                    "soortVerbintenis": { "code": "H" },
+                    "ontbindingHuwelijkPartnerschap": {
+                        "datum": { "type": "Datum", "datum": "1990-05-17" }
+                    }
+                },
+                {
+                    "burgerservicenummer": "999993861",
+                    "soortVerbintenis": { "code": "H" },
+                    "ontbindingHuwelijkPartnerschap": {
+                        "datum": { "type": "Datum", "datum": "1999-06-02" }
+                    }
+                }
+            ]
+        }
+    ]
+}
