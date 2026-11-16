@@ -115,10 +115,10 @@
         <BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
         <BG:sub.verblijfBuitenland />
       </BG:gerelateerde>
-      <BG:soortVerbintenis xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
-      <BG:datumSluiting xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
-      <BG:datumOntbinding xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
-      <BG:redenOntbinding xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
+      <BG:soortVerbintenis>H</BG:soortVerbintenis>
+      <BG:datumSluiting>19850110</BG:datumSluiting>
+      <BG:datumOntbinding>19900517</BG:datumOntbinding>
+      <BG:redenOntbinding>S</BG:redenOntbinding>
     </BG:inp.heeftAlsEchtgenootPartner>
     <BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
       <BG:gerelateerde StUF:entiteittype="NPS">
@@ -134,10 +134,10 @@
         <BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
         <BG:sub.verblijfBuitenland />
       </BG:gerelateerde>
-      <BG:soortVerbintenis xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
-      <BG:datumSluiting xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
-      <BG:datumOntbinding xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
-      <BG:redenOntbinding xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
+      <BG:soortVerbintenis>P</BG:soortVerbintenis>
+      <BG:datumSluiting>20010203</BG:datumSluiting>
+      <BG:datumOntbinding>20101100</BG:datumOntbinding>
+      <BG:redenOntbinding>S</BG:redenOntbinding>
     </BG:inp.heeftAlsEchtgenootPartner>
     <BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
       <BG:gerelateerde StUF:entiteittype="NPS">
@@ -153,10 +153,10 @@
         <BG:inp.geboorteLand>6030</BG:inp.geboorteLand>
         <BG:sub.verblijfBuitenland />
       </BG:gerelateerde>
-      <BG:soortVerbintenis xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
-      <BG:datumSluiting xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
-      <BG:datumOntbinding xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
-      <BG:redenOntbinding xsi:nil="true" StUF:noValue="nietGeautoriseerd" />
+      <BG:soortVerbintenis>H</BG:soortVerbintenis>
+      <BG:datumSluiting>19920404</BG:datumSluiting>
+      <BG:datumOntbinding>19990602</BG:datumOntbinding>
+      <BG:redenOntbinding>S</BG:redenOntbinding>
     </BG:inp.heeftAlsEchtgenootPartner>
     <BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
       <BG:gerelateerde StUF:entiteittype="NPS">

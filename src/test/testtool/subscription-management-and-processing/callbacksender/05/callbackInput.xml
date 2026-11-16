@@ -127,10 +127,10 @@
             <BG:inp.geboorteLand xsi:nil="true" StUF:noValue="geenWaarde"/>
             <BG:sub.verblijfBuitenland/>
          </BG:gerelateerde>
-         <BG:soortVerbintenis xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-         <BG:datumSluiting xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-         <BG:datumOntbinding xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
-         <BG:redenOntbinding xsi:nil="true" StUF:noValue="nietGeautoriseerd"/>
+         <BG:soortVerbintenis>H</BG:soortVerbintenis>
+         <BG:datumSluiting>20150620</BG:datumSluiting>
+         <BG:datumOntbinding>20210211</BG:datumOntbinding>
+         <BG:redenOntbinding>S</BG:redenOntbinding>
       </BG:inp.heeftAlsEchtgenootPartner>
       <BG:inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
          <BG:gerelateerde StUF:entiteittype="NPS">

@@ -1,0 +1,6 @@
+{
+    "type":  "https://www.rfc-editor.org/rfc/rfc9110.html#name-500-internal-server-error",
+    "title":  "Internal Server Error",
+    "status":  500,
+    "instance":  "/personen"
+}
