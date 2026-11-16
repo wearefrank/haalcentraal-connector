@@ -1,0 +1,38 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><BG:npsLa01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:a="http://www.egem.nl/StUF/StUF0301" xmlns:gml="http://www.opengis.net/gml" xmlns:ns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<BG:stuurgegevens>
+		<StUF:berichtcode>La01</StUF:berichtcode>
+		<StUF:zender>
+			<StUF:organisatie>NEDGR</StUF:organisatie>
+			<StUF:applicatie>NEDMAG_VnA</StUF:applicatie>
+		</StUF:zender>
+		<StUF:ontvanger>
+			<StUF:applicatie>GWS</StUF:applicatie>
+			<StUF:gebruiker>PROD</StUF:gebruiker>
+		</StUF:ontvanger>
+		<StUF:crossRefnummer>1f5dcba5-80e4-4ab5-9dd6-a03db10699b1</StUF:crossRefnummer>
+		<StUF:entiteittype>NPS</StUF:entiteittype>
+	</BG:stuurgegevens>
+	<BG:parameters>
+		<StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+		<StUF:aantalVoorkomens>1</StUF:aantalVoorkomens>
+	</BG:parameters>
+	<BG:antwoord>
+		<BG:object StUF:entiteittype="NPS" StUF:sleutelVerzendend="existingkey">
+			<BG:inp.burgerlijkeStaat>3</BG:inp.burgerlijkeStaat>
+			<BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
+				<BG:gerelateerde StUF:entiteittype="NPS">
+					<BG:inp.bsn>999993859</BG:inp.bsn>
+				</BG:gerelateerde>
+				<BG:datumOntbinding>19900517</BG:datumOntbinding>
+				<BG:redenOntbinding>O</BG:redenOntbinding>
+			</BG:inp.heeftAlsEchtgenootPartner>
+			<BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
+				<BG:gerelateerde StUF:entiteittype="NPS">
+					<BG:inp.bsn>999993861</BG:inp.bsn>
+				</BG:gerelateerde>
+				<BG:datumOntbinding>19990602</BG:datumOntbinding>
+				<BG:redenOntbinding>S</BG:redenOntbinding>
+			</BG:inp.heeftAlsEchtgenootPartner>
+		</BG:object>
+	</BG:antwoord>
+</BG:npsLa01></soapenv:Body></soapenv:Envelope>
