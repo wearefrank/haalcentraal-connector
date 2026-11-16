@@ -169,7 +169,7 @@ Database structure for BAG keys:
     
     #### Additional Notes:
     - For **search options i, ii, and iv**, sending only the **Stuf (npsLv01) message** is sufficient.
-    - For **search options iii and v**, the value of `gemeenteVanInschrijving` must be added to the headers. By default, this value is set to `0518` for testing purposes. If provided in the headers, the default value is overridden.
+    - For **search options iii and v**, the value of `gemeenteVanInschrijving` comes from the message, with a fallback to the header/propery value (default `0518`).
     - The required fields for each application are determined using the `fields.xml` file.
     - Based on the type of search, the necessary fields are extracted from the **Stuf (npsLv01) message**.
     
