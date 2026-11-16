@@ -1,0 +1,17 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Body>
+        <BG:npsLk01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0310" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <BG:object StUF:entiteittype="NPS" StUF:verwerkingssoort="T" StUF:sleutelVerzendend="529148a9a8f563968aeebd4aa8c48aef41a70fac" StUF:sleutelOntvangend="DEC_ZKN.00000142157">
+                <BG:inp.burgerlijkeStaat>3</BG:inp.burgerlijkeStaat>
+                <BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
+                    <BG:datumOntbinding>19900517</BG:datumOntbinding>
+                    <BG:redenOntbinding>O</BG:redenOntbinding>
+                </BG:inp.heeftAlsEchtgenootPartner>
+                <BG:inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
+                    <BG:datumOntbinding>19990602</BG:datumOntbinding>
+                    <BG:redenOntbinding>S</BG:redenOntbinding>
+                </BG:inp.heeftAlsEchtgenootPartner>
+            </BG:object>
+        </BG:npsLk01>
+    </soapenv:Body>
+</soapenv:Envelope>
