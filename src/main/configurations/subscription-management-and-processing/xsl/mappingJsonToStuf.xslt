@@ -691,14 +691,13 @@
                     <test>
                         <xsl:choose>
                             <xsl:when test="not(ontbindingHuwelijkPartnerschap/datum)"/>
-                            <xsl:when test=". is local:laatste-ontbonden(..)">
+                            <xsl:otherwise>
                                 <xsl:variable name="reden" select="local:reden-ontbinding(.)"/>
                                 <xsl:choose>
                                     <xsl:when test="$reden != ''"><xsl:value-of select="$reden"/></xsl:when>
                                     <xsl:otherwise><xsl:attribute name="noValue">waardeOnbekend</xsl:attribute></xsl:otherwise>
                                 </xsl:choose>
-                            </xsl:when>
-                            <xsl:otherwise>S</xsl:otherwise>
+                            </xsl:otherwise>
                         </xsl:choose>
                     </test>
                 </redenOntbinding>
