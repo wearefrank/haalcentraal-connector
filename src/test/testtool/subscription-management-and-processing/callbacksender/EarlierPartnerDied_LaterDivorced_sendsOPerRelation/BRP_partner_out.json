@@ -1,0 +1,14 @@
+{
+    "type": "RaadpleegMetBurgerservicenummer",
+    "personen": [
+        {
+            "burgerservicenummer": "999993859",
+            "overlijden": {
+                "datum": { "type": "Datum", "datum": "1990-05-01" }
+            }
+        },
+        {
+            "burgerservicenummer": "999993861"
+        }
+    ]
+}
