@@ -7,10 +7,22 @@
 	&brp-pb-outway;
 	&brp-call-diginetwerk;
 
-	<SharedResources active="!${brp.proefomgeving.active}">
+	<!-- One HttpSession per authType, selected via 'outway-${hcc.outway.brp.authType}-connector'.
+		 Only the session matching hcc.outway.brp.authType is active, see DeploymentSpecifics.properties.
+		 A session per authType is needed because FF errors on attributes that are empty or have default values. -->
+	<SharedResources>
 		<HttpSession
 			name="outway-none-connector"
-			active="${hcc.outway-none-connector.active}"
+			active="${hcc.outway.brp.none.active}"
+
+			proxyHost="${hcc.outway.proxy.host}"
+			proxyPort="${hcc.outway.proxy.port}"
+			proxyAuthAlias="${hcc.outway.proxy.authAlias}"
+			/>
+		<!-- The X-API-KEY header itself is added by the sender, based on hcc.outway.header.authAlias -->
+		<HttpSession
+			name="outway-header-connector"
+			active="${hcc.outway.brp.header.active}"
 
 			proxyHost="${hcc.outway.proxy.host}"
 			proxyPort="${hcc.outway.proxy.port}"
@@ -18,7 +30,7 @@
 			/>
 		<HttpSession
 			name="outway-mtls-connector"
-			active="${hcc.outway-mtls-connector.active}"
+			active="${hcc.outway.brp.mtls.active}"
 			
 			keystore="${hcc.outway.keystore.uri}"
 			keystoreType="${hcc.outway.keystore.type}"
@@ -33,7 +45,7 @@
 			/>
 		<HttpSession
 			name="outway-oauth2-connector"
-			active="${hcc.outway-oauth2-connector.active}"
+			active="${hcc.outway.brp.oauth2.active}"
 
 			clientAlias="${hcc.outway.clientAlias}"
 			clientId="${hcc.outway.clientId}"
@@ -46,6 +58,18 @@
 			proxyHost="${hcc.outway.proxy.host}"
 			proxyPort="${hcc.outway.proxy.port}"
 			proxyAuthAlias="${hcc.outway.proxy.authAlias}"
+			/>
+		<HttpSession
+			name="outway-oauth2mtls-connector"
+			active="${hcc.outway.brp.oauth2mtls.active}"
+
+			clientAlias="${hcc.outway.clientAlias}"
+			clientId="${hcc.outway.clientId}"
+			clientSecret="${hcc.outway.clientSecret}"
+			tokenEndpoint="${hcc.outway.tokenEndpoint}"
+			oauthAuthenticationMethod="${hcc.outway.oauthAuthenticationMethod}"
+			scope="${hcc.outway.scope}"
+			resourceServer="${hcc.outway.resource.server}"
 
 			keystore="${hcc.outway.keystore.uri}"
 			keystoreType="${hcc.outway.keystore.type}"
@@ -53,6 +77,10 @@
 			keystoreAlias="${hcc.outway.keystore.alias}"
 			keystoreAliasAuthAlias="${hcc.outway.keystore.aliasAuthAlias}"
 			keystorePassword="${hcc.outway.keystore.password}"
+
+			proxyHost="${hcc.outway.proxy.host}"
+			proxyPort="${hcc.outway.proxy.port}"
+			proxyAuthAlias="${hcc.outway.proxy.authAlias}"
 			/>
 	</SharedResources>
 </Configuration>
